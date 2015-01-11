@@ -1,4 +1,4 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Danny Wahl - iyWare</title><description>Things I Break</description><link>http://www.iyware.com/</link><generator>Ghost 0.5</generator><lastBuildDate>Sun, 11 Jan 2015 12:31:29 GMT</lastBuildDate><atom:link href="http://www.iyware.com/author/danny/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Moving</title><description>&lt;p&gt;Crazy things happening right now. You may notice this website looks very broken. Well, that’s just because I’m in the process of moving from a hosted version of WordPress to something a lot more nerdy:&lt;/p&gt;
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Danny Wahl - iyWare</title><description>Things I Break</description><link>http://www.iyware.com/</link><generator>Ghost 0.5</generator><lastBuildDate>Sun, 11 Jan 2015 13:11:31 GMT</lastBuildDate><atom:link href="http://www.iyware.com/author/danny/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Moving</title><description>&lt;p&gt;Crazy things happening right now. You may notice this website looks very broken. Well, that’s just because I’m in the process of moving from a hosted version of WordPress to something a lot more nerdy:&lt;/p&gt;
 
 &lt;p&gt;A local &lt;a href="http://ghost.org/"&gt;ghost&lt;/a&gt; exported to static HTML via &lt;a href="https://github.com/axitkhurana/buster"&gt;buster&lt;/a&gt; (a la &lt;a href="http://jekyllrb.com/"&gt;jekyll&lt;/a&gt;) and then pushed to &lt;a href="https://pages.github.com/"&gt;github pages&lt;/a&gt;.&lt;/p&gt;
 
@@ -36,11 +36,11 @@ adb reboot-bootloader
 
 &lt;p&gt;Everyone loves running &lt;code&gt;brew update &amp;amp;&amp;amp; brew upgrade&lt;/code&gt; just to see what’s been updated. It’s a seriously &lt;a href="https://github.com/Homebrew/homebrew/commits/master/Library/Formula"&gt;busy repo&lt;/a&gt;, but it’s easy to forget to do and then your versions languish. Fortunately for us &lt;a href="http://mkalmes.net/"&gt;Mark Kalmes&lt;/a&gt; wrote a LaunchAgent plist for us called, aptly, &lt;a href="http://mkalmes.net/2012/01/02/brewupdate-a-launchd-agent-for-automatic-homebrew-formulae-updates.html"&gt;brewupdate&lt;/a&gt;. We’re going to grab the latest version and install it.&lt;/p&gt;
 
-&lt;p&gt;curl &lt;a href="https://raw.githubusercontent.com/mkalmes/brewupdate/develop/net.mkalmes.brewupdate.plist"&gt;https://raw.githubusercontent.com/mkalmes/brewupdate/develop/net.mkalmes.brewupdate.plist&lt;/a&gt; &gt; ~/Library/LaunchAgents/net.mkalmes.brewupdate.plist launchctl load ~/Library/LaunchAgents/net.mkalmes.brewupdate.plist&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;curl https://raw.githubusercontent.com/mkalmes/brewupdate/develop/net.mkalmes.brewupdate.plist &amp;gt; ~/Library/LaunchAgents/net.mkalmes.brewupdate.plist  
+launchctl load ~/Library/LaunchAgents/net.mkalmes.brewupdate.plist  
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;The first line downloads the latest version straight from github to the user-space LaunchAgents folder. The second line loads it. You can edit the file and change when it updates, the default is 11 AM (local time zone). I changed mine to 8 AM because I like to start the day with a fresh brew (ha ha.)&lt;/p&gt;
-
-&lt;p&gt;&lt;key&gt;StartCalendarInterval&lt;/key&gt;&lt;dict&gt;&lt;key&gt;Hour&lt;/key&gt;&lt;integer&gt;8&lt;/integer&gt;&lt;key&gt;Minute&lt;/key&gt;&lt;integer&gt;0&lt;/integer&gt;&lt;/dict&gt;&lt;/p&gt;
 
 &lt;p&gt;Just don’t forget to run &lt;code&gt;brew upgrade&lt;/code&gt; yourself occasionally. You could make another LaunchAgent by changing the parameter from &lt;code&gt;update&lt;/code&gt; to &lt;code&gt;upgrade&lt;/code&gt;, but I really don’t like unattended upgrades as much as updates.&lt;/p&gt;
 
@@ -50,34 +50,61 @@ adb reboot-bootloader
 
 &lt;p&gt;First we need to create our /Sites folder and we’ll still keep our web documents inside of that folder.&lt;/p&gt;
 
-&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;mkdir ~/Sites ~/Sites/htdocs&lt;/span&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;mkdir ~/Sites ~/Sites/htdocs  
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Then edit your &lt;code&gt;/usr/local/etc/apache2/2.4/httpd.conf&lt;/code&gt; file and change the DocumentRoot directive, as well as accompanying Directory declaration to match your new htdocs location:&lt;/p&gt;
 
-&lt;p&gt;DocumentRoot "/Users/USERNAME/Sites/htdocs" &lt;directory&gt;&lt;/directory&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-apache"&gt;DocumentRoot "/Users/USERNAME/Sites/htdocs"  
+&amp;lt;directory&amp;gt;  
+&amp;lt;/directory&amp;gt;  
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Obviously replace &lt;code&gt;USERNAME&lt;/code&gt; with your username’s folder name. Then inside of that directory declaration we’re going to change some of the default Apache values to be more permissive:&lt;/p&gt;
 
-&lt;p&gt;&lt;span class="lang:apache decode:true  crayon-inline "&gt;Options All MultiViews&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;span class="lang:apache decode:true  crayon-inline "&gt;AllowOverride All&lt;/span&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-apache"&gt;Options All MultiViews  
+AllowOverride All  
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;This is given with the usual caveat that OF COURSE you would never default everything like this on a production server- but on a development server there’s generally not much security implication (unless you’re playing with live data!). My full DocumentRoot section looks like this:&lt;/p&gt;
 
-&lt;p&gt;DocumentRoot "/Users/dannywahl/Sites/htdocs" &lt;directory&gt; # # Possible values for the Options directive are "None", "All", # or any combination of: # Indexes Includes FollowSymLinks SymLinksifOwnerMatch ExecCGI MultiViews # # Note that "MultiViews" must be named &lt;em&gt;explicitly&lt;/em&gt; --- "Options All" # doesn't give it to you. # # The Options directive is both complicated and important. Please see # &lt;a href="http://httpd.apache.org/docs/2.4/mod/core.html#options"&gt;http://httpd.apache.org/docs/2.4/mod/core.html#options&lt;/a&gt; # for more information. # Options All MultiViews # # AllowOverride controls what directives may be placed in .htaccess files. # It can be "All", "None", or any combination of the keywords: # AllowOverride FileInfo AuthConfig Limit # AllowOverride All # # Controls who can get stuff from this server. # Require all granted &lt;/directory&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-apache"&gt;DocumentRoot "/Users/dannywahl/Sites/htdocs"  
+&amp;lt;directory&amp;gt;  
+  #
+  # Possible values for the Options directive are "None", "All", 
+  # or any combination of: 
+  # Indexes Includes FollowSymLinks SymLinksifOwnerMatch ExecCGI MultiViews 
+  # 
+  # Note that "MultiViews" must be named *explicitly* --- "Options All" 
+  # doesn't give it to you. # # The Options directive is both complicated and important. Please see 
+  # http://httpd.apache.org/docs/2.4/mod/core.html#options 
+  # for more information. 
+  Options All MultiViews 
+  # 
+  # AllowOverride controls what directives may be placed in .htaccess files. 
+  # It can be "All", "None", or any combination of the keywords: 
+  # AllowOverride FileInfo AuthConfig Limit 
+  AllowOverride All 
+  # 
+  # Controls who can get stuff from this server. 
+  # Require all granted
+&amp;lt;/directory&amp;gt;  
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Now, restart your httpd daemon:&lt;/p&gt;
 
-&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;sudo httpd -k restart&lt;/span&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;sudo httpd -k restart  
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;If you didn’t use &lt;code&gt;--with-privileged-ports&lt;/code&gt; when you installed Apache then you don’t need root. Now when you visit &lt;a href="http://localhost/"&gt;http://localhost&lt;/a&gt; you should just get a blank directory listing instead of the default “It Works!” page. Let’s put a test page there. First let’s create a sub-directory in our /Sites folder called &lt;code&gt;phpinfo.localhost&lt;/code&gt; (more on the &lt;code&gt;.&lt;/code&gt; later).&lt;/p&gt;
 
-&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;mkdir ~/Sites/phpinfo.localhost&lt;/span&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;mkdir ~/Sites/phpinfo.localhost  
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Now let’s create a page that calls the &lt;code&gt;phpinfo();&lt;/code&gt; function and place it in that folder. if you don’t know about &lt;a href="http://cn2.php.net/manual/en/function.phpinfo.php"&gt;phpinfo()&lt;/a&gt; it’s a simple function that outputs a page that shows you information about your PHP configuration.&lt;/p&gt;
 
-&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;printf ‘&lt;?php phpinfo(); ??&gt; &lt;br&gt;
-‘ &gt;&gt; ~/Sites/htdocs/phpinfo.localhost/index.php&lt;/span&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;printf ‘&amp;lt;?php phpinfo(); ??&amp;gt;‘ &amp;gt;&amp;gt; ~/Sites/htdocs/phpinfo.localhost/index.php  
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Now you should be able to visit &lt;code&gt;http://localhost/phpinfo.localhost/&lt;/code&gt; and see the overview of your PHP configuration. That’s it for now for Apache, let’s move on to MySQL.&lt;/p&gt;
 
@@ -85,32 +112,53 @@ adb reboot-bootloader
 
 &lt;p&gt;In the first post we simply installed MySQL and set a root password. It’s good to have a password because some authentication APIs require one, but we’re not necessarily using it for security (otherwise we wouldn’t be using root), so we’re going to save our authentication in a my.cnf &lt;a href="http://dev.mysql.com/doc/refman/5.1/en/option-files.html"&gt;options file&lt;/a&gt;. Homebrew provides us with a sample file, but it’s not symlinked by default so we’re going to copy it to an available configuration folder and since MySQL is running in user-space, we will override the configuration at the user-space level:&lt;/p&gt;
 
-&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;cp -v $(brew –prefix mysql)/support-files/my-default.cnf ~/.my.cnf&lt;/span&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-sql"&gt;cp -v $(brew –prefix mysql)/support-files/my-default.cnf ~/.my.cnf  
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Now we have our config override, let’s have it auto-save our credentials.&lt;/p&gt;
 
-&lt;p&gt;cat &gt; ~/.my.cnf [client] user=root password=PASS [mysql] user=root password=PASS [mysqldump] user=root password=PASS [mysqldiff] user=root password=PASS EOF&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;cat &amp;gt; ~/.my.cnf  
+[client] 
+user=root  
+password=PASS  
+[mysql] 
+user=root  
+password=PASS  
+[mysqldump] 
+user=root  
+password=PASS  
+[mysqldiff] 
+user=root  
+password=PASS  
+EOF  
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Replace “PASS” with your root MySQL password. If you have special characters in your password, which you shouldn’t, add double quotes around the password. Now you can connect to mysql without having to manually authenticate.&lt;/p&gt;
 
-&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;mysql -u root&lt;/span&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-sql"&gt;mysql -u root  
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id="phpmyadmin"&gt;phpmyadmin&lt;/h2&gt;
 
 &lt;p&gt;Finally we’re going to install everyone’s favorite database manager, &lt;a href="http://www.phpmyadmin.net/home_page/index.php"&gt;phpmyadmin&lt;/a&gt;. Again, we’ll be using homebrew to install it.&lt;/p&gt;
 
-&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;brew install phpmyadmin&lt;/span&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;brew install phpmyadmin  
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;After a successful installation you will get a caveat about adding a directory alias to your httpd configuration to enable phpmyadmin, but we’re not going to do that we’re going to &lt;a href="http://en.wikipedia.org/wiki/Symbolic_link"&gt;symlink&lt;/a&gt; it to to our ~/Sites directory.&lt;/p&gt;
 
-&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;ln -s /usr/local/share/phpmyadmin ~/Sites/htdocs/phpmyadmin.localhost &lt;br&gt;
-&lt;/span&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;ln -s /usr/local/share/phpmyadmin ~/Sites/htdocs/phpmyadmin.localhost  
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;This will create a symbolic link in your webroot called phpmyadmin.localhost that takes you to /usr/local/share/phpmyadmin (which itself is a symlink to the Cellar). The benefit here is you don’t need to restart Apache, and again we’ll go over it later but the .localhost is important.&lt;/p&gt;
 
 &lt;p&gt;Now that phpmyadmin is installed, we need to configure it. First we’ll import the phpmyadmin linked tabled &lt;a href="http://docs.phpmyadmin.net/en/latest/setup.html#linked-tables"&gt;configuration storage&lt;/a&gt; via commandline:&lt;/p&gt;
 
-&lt;p&gt;mysql -u root -e 'CREATE DATABASE IF NOT EXISTS &lt;code&gt;phpmyadmin&lt;/code&gt;;' mysql -u root phpmyadmin Once the tables are imported open your phpmyadmin config file located at &lt;code&gt;/usr/local/etc/phpmyadmin.config.inc.php&lt;/code&gt; and you're going to do a few things:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-sql"&gt;mysql -u root -e 'CREATE DATABASE IF NOT EXISTS `phpmyadmin`;'  
+mysql -u root phpmyadmin  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Once the tables are imported open your phpmyadmin config file located at &lt;code&gt;/usr/local/etc/phpmyadmin.config.inc.php&lt;/code&gt; and you're going to do a few things:&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href="http://www.question-defense.com/tools/phpmyadmin-blowfish-secret-generator"&gt;generate a blowfish secret&lt;/a&gt;  &lt;/li&gt;
@@ -120,7 +168,48 @@ adb reboot-bootloader
 
 &lt;p&gt;In the end your blowfish and servers configuration sections should look something like this:&lt;/p&gt;
 
-&lt;p&gt;$cfg['blowfish&lt;em&gt;secret'] = 'y=PUY@-GleE+~%OiGQVz#)N4I)@Q%Ug&lt;/em&gt;Jr[DxF'; /* YOU MUST FILL IN THIS FOR COOKIE AUTH! &lt;em&gt;/ /&lt;/em&gt; * Servers configuration &lt;em&gt;/ $i = 0; /&lt;/em&gt; * First server &lt;em&gt;/ $i++; /&lt;/em&gt; Authentication type &lt;em&gt;/ $cfg['Servers'][$i]['auth_type'] = 'cookie'; /&lt;/em&gt; Server parameters &lt;em&gt;/ $cfg['Servers'][$i]['host'] = '127.0.0.1'; $cfg['Servers'][$i]['connect_type'] = 'tcp'; $cfg['Servers'][$i]['compress'] = false; $cfg['Servers'][$i]['AllowNoPassword'] = false; /&lt;/em&gt; * phpMyAdmin configuration storage settings. &lt;em&gt;/ /&lt;/em&gt; User used to manipulate with storage &lt;em&gt;/ // $cfg['Servers'][$i]['controlhost'] = ''; // $cfg['Servers'][$i]['controlport'] = ''; $cfg['Servers'][$i]['controluser'] = 'root'; $cfg['Servers'][$i]['controlpass'] = 'root'; /&lt;/em&gt; Storage database and tables &lt;em&gt;/ $cfg['Servers'][$i]['pmadb'] = 'phpmyadmin'; $cfg['Servers'][$i]['bookmarktable'] = 'pma&lt;strong&gt;bookmark'; $cfg['Servers'][$i]['relation'] = 'pma&lt;/strong&gt;relation'; $cfg['Servers'][$i]['table_info'] = 'pma&lt;strong&gt;table_info'; $cfg['Servers'][$i]['table_coords'] = 'pma&lt;/strong&gt;table_coords'; $cfg['Servers'][$i]['pdf_pages'] = 'pma&lt;strong&gt;pdf_pages'; $cfg['Servers'][$i]['column_info'] = 'pma&lt;/strong&gt;column_info'; $cfg['Servers'][$i]['history'] = 'pma&lt;strong&gt;history'; $cfg['Servers'][$i]['table_uiprefs'] = 'pma&lt;/strong&gt;table_uiprefs'; $cfg['Servers'][$i]['tracking'] = 'pma&lt;strong&gt;tracking'; $cfg['Servers'][$i]['designer_coords'] = 'pma&lt;/strong&gt;designer_coords'; $cfg['Servers'][$i]['userconfig'] = 'pma&lt;strong&gt;userconfig'; $cfg['Servers'][$i]['recent'] = 'pma&lt;/strong&gt;recent'; $cfg['Servers'][$i]['favorite'] = 'pma&lt;strong&gt;favorite'; $cfg['Servers'][$i]['users'] = 'pma&lt;/strong&gt;users'; $cfg['Servers'][$i]['usergroups'] = 'pma&lt;strong&gt;usergroups'; $cfg['Servers'][$i]['navigationhiding'] = 'pma&lt;/strong&gt;navigationhiding'; $cfg['Servers'][$i]['savedsearches'] = 'pma__savedsearches'; /&lt;/em&gt; Contrib / Swekey authentication &lt;em&gt;/ // $cfg['Servers'][$i]['auth_swekey_config'] = '/etc/swekey-pma.conf'; /&lt;/em&gt; * End of servers configuration */&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-php"&gt;$cfg['blowfish_secret'] = 'y=PUY@-GleE+~%OiGQVz#)N4I)@Q%Ug_Jr[DxF';
+/* YOU MUST FILL IN THIS FOR COOKIE AUTH! */
+/* * Servers configuration */
+$i = 0;
+/* * First server */
+$i++;
+/* Authentication type */
+$cfg['Servers'][$i]['auth_type'] = 'cookie';
+/* Server parameters */
+$cfg['Servers'][$i]['host'] = '127.0.0.1';
+$cfg['Servers'][$i]['connect_type'] = 'tcp';
+$cfg['Servers'][$i]['compress'] = false;
+$cfg['Servers'][$i]['AllowNoPassword'] = false;
+/* * phpMyAdmin configuration storage settings. */
+/* User used to manipulate with storage */
+// $cfg['Servers'][$i]['controlhost'] = '';
+// $cfg['Servers'][$i]['controlport'] = '';
+$cfg['Servers'][$i]['controluser'] = 'root';
+$cfg['Servers'][$i]['controlpass'] = 'root';
+/* Storage database and tables */
+$cfg['Servers'][$i]['pmadb'] = 'phpmyadmin';
+$cfg['Servers'][$i]['bookmarktable'] = 'pma__bookmark';
+$cfg['Servers'][$i]['relation'] = 'pma__relation';
+$cfg['Servers'][$i]['table_info'] = 'pma__table_info';
+$cfg['Servers'][$i]['table_coords'] = 'pma__table_coords';
+$cfg['Servers'][$i]['pdf_pages'] = 'pma__pdf_pages';
+$cfg['Servers'][$i]['column_info'] = 'pma__column_info';
+$cfg['Servers'][$i]['history'] = 'pma__history';
+$cfg['Servers'][$i]['table_uiprefs'] = 'pma__table_uiprefs';
+$cfg['Servers'][$i]['tracking'] = 'pma__tracking';
+$cfg['Servers'][$i]['designer_coords'] = 'pma__designer_coords'; 
+$cfg['Servers'][$i]['userconfig'] = 'pma__userconfig';
+$cfg['Servers'][$i]['recent'] = 'pma__recent';
+$cfg['Servers'][$i]['favorite'] = 'pma__favorite';
+$cfg['Servers'][$i]['users'] = 'pma__users';
+$cfg['Servers'][$i]['usergroups'] = 'pma__usergroups';
+$cfg['Servers'][$i]['navigationhiding'] = 'pma__navigationhiding';
+$cfg['Servers'][$i]['savedsearches'] = 'pma__savedsearches';
+/* Contrib / Swekey authentication */
+// $cfg['Servers'][$i]['auth_swekey_config'] = '/etc/swekey-pma.conf';
+/* * End of servers configuration */
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;You might notice that I changed my host to "127.0.0.1" from "localhost". By default /etc/hosts should resolve localhost to 127.0.0.1 so it shouldn't trigger a DNS lookup, but by changing it to an IP address you'll never have that happen because there are ways to inadvertently send lookups to your machine DNS for localhost. Again, this is not necessary. After saving your phpmyadmin configuration you should be able to visit the page at &lt;code&gt;http://localhost/phpmyadmin.localhost&lt;/code&gt;&lt;/p&gt;
 
@@ -128,47 +217,68 @@ adb reboot-bootloader
 
 &lt;p&gt;&lt;a href="http://www.thekelleys.org.uk/dnsmasq/doc.html"&gt;Dnsmasq&lt;/a&gt; is a lightweight DNS/DHCP server which can be installed and serve DNS for addresses that aren't in the &lt;a href="http://en.wikipedia.org/wiki/Global_Namespace"&gt;global namespace&lt;/a&gt;. We'll be installing dnsmasq via homebrew and configuring it, along with Apache to serve sites on &lt;a href="http://en.wikipedia.org/wiki/Top-level_domain#Reserved_domains"&gt;reserved TLDs&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;brew install dnsmasq&lt;/span&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;brew install dnsmasq  
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Once dnsmasq is installed we need to copy a configuration profile, edit it, and then load the daemon. First we'll copy a provided configuration:&lt;/p&gt;
 
-&lt;p&gt;cp /usr/local/opt/dnsmasq/dnsmasq.conf.example /usr/local/etc/dnsmasq.conf printf '\naddress=/localhost/127.0.0.1' &gt;&gt; /usr/local/etc/dnsmasq.conf sudo cp -fv /usr/local/opt/dnsmasq/*.plist /Library/LaunchDaemons sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;cp /usr/local/opt/dnsmasq/dnsmasq.conf.example /usr/local/etc/dnsmasq.conf  
+printf '\naddress=/localhost/127.0.0.1' &amp;gt;&amp;gt; /usr/local/etc/dnsmasq.conf  
+sudo cp -fv /usr/local/opt/dnsmasq/*.plist /Library/LaunchDaemons  
+sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist  
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Effectively we are telling dnsmasq to resolve all .localhost domains to 127.0.0.1 and setting it to run the daemon at the machine level (with Apache). So you can now try to ping any .localhost domain and it will resolve to 127.0.0.1:&lt;/p&gt;
 
-&lt;p&gt;ping -c 1 thisdoesntexist.localhost PING thisdoesntexist.localhost (127.0.0.1): 56 data bytes 64 bytes from 127.0.0.1: icmp_seq=0 ttl=64 time=0.029 ms --- thisdoesntexist.localhost ping statistics --- 1 packets transmitted, 1 packets received, 0.0% packet loss round-trip min/avg/max/stddev = 0.029/0.029/0.029/0.000 ms&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;ping -c 1 thisdoesntexist.localhost  
+PING thisdoesntexist.localhost (127.0.0.1): 56 data bytes  
+64 bytes from 127.0.0.1: icmp_seq=0 ttl=64 time=0.029 ms
+
+--- thisdoesntexist.localhost ping statistics ---
+1 packets transmitted, 1 packets received, 0.0% packet loss  
+round-trip min/avg/max/stddev = 0.029/0.029/0.029/0.000 ms  
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Obviously trying to visit &lt;a href="http://thisdoesntexit.localhost/"&gt;http://thisdoesntexit.localhost&lt;/a&gt; won't work because Apache isn't configured to handle requests to that address, yet. There are two different ways to configure this, the first is to create a vhost entry for every domain you want to use, the second is to enable &lt;a href="http://httpd.apache.org/docs/2.2/mod/mod_vhost_alias.html"&gt;mod&lt;em&gt;vhost&lt;/em&gt;alias&lt;/a&gt;- which is what we'll do now.&lt;/p&gt;
 
-&lt;h2 id="mod_vhost_alias"&gt;mod&lt;em&gt;vhost&lt;/em&gt;alias&lt;/h2&gt;
+&lt;h2 id="mod_vhost_alias"&gt;mod_vhost_alias&lt;/h2&gt;
 
-&lt;p&gt;Mod_vhost_alias is an Apache module that let's you do pattern matching from a request URL to a directory structure, there are lots of cool examples at the documentation site- but the one we want is pretty straight forward. Open your httpd.conf file (in /usr/local/etc/apache2/2.4/) and uncomment the mod&lt;em&gt;vhost&lt;/em&gt;alias module&lt;/p&gt;
+&lt;p&gt;Mod&lt;em&gt;vhost&lt;/em&gt;alias is an Apache module that let's you do pattern matching from a request URL to a directory structure, there are lots of cool examples at the documentation site- but the one we want is pretty straight forward. Open your httpd.conf file (in /usr/local/etc/apache2/2.4/) and uncomment the mod&lt;em&gt;vhost&lt;/em&gt;alias module&lt;/p&gt;
 
-&lt;p&gt;&lt;span class="lang:apache decode:true  crayon-inline "&gt;LoadModule vhost&lt;em&gt;alias&lt;/em&gt;module libexec/mod&lt;em&gt;vhost&lt;/em&gt;alias.so&lt;/span&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-apache"&gt;LoadModule vhost_alias_module libexec/mod_vhost_alias.so  
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;then in terminal we'll configure vhost&lt;em&gt;alias&lt;/em&gt;module:&lt;/p&gt;
 
-&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;printf '\nUseCanonicalName Off\nVirtualDocumentRoot /Users/USERNAME/Sites/htdocs/%%0' &gt;&gt; /usr/local/etc/apache2/2.4/httpd.conf&lt;/span&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;printf '\nUseCanonicalName Off\nVirtualDocumentRoot /Users/USERNAME/Sites/htdocs/%%0' &amp;gt;&amp;gt; /usr/local/etc/apache2/2.4/httpd.conf  
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;And finally restart the httpd daemon:&lt;/p&gt;
 
-&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;sudo httpd -k restart&lt;/span&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;sudo httpd -k restart  
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;The end result is that now every folder that ends in .localhost in your ~/Sites/htdocs/ folder is accessible as a &lt;a href="http://en.wikipedia.org/wiki/Fully_qualified_domain_name"&gt;FQDN&lt;/a&gt;. Go back to your browser and now you can visit &lt;a href="http://phpinfo.localhost/"&gt;http://phpinfo.localhost&lt;/a&gt; and &lt;a href="http://phpmyadmin.localhost/"&gt;http://phpmyadmin.localhost&lt;/a&gt; If you create another folder inside of htdocs that ends in .localhost it will be available in your dev environment as a standalone domain. Here's a couple of examples of how that could be useful:&lt;/p&gt;
 
 &lt;p&gt;Say you want a standalone domain of wordpress:&lt;/p&gt;
 
-&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;git clone git@github.com:WordPress/WordPress.git ~/Sites/htdocs/wordpress.localhost&lt;/span&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;git clone git@github.com:WordPress/WordPress.git ~/Sites/htdocs/wordpress.localhost  
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;What about multiple branches of drupal on standalone domains? Let's make &lt;code&gt;http://drupal6.localhost&lt;/code&gt; and &lt;code&gt;http://drupal7.localhost&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;git clone git@github.com:drupal/drupal.git --branch 6.x --single-branch ~/Sites/htdocs/drupal6.localhost git clone git@github.com:drupal/drupal.git --branch 7.x --single-branch ~/Sites/htdocs/drupal7.localhost&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;git clone git@github.com:drupal/drupal.git --branch 6.x --single-branch ~/Sites/htdocs/drupal6.localhost  
+git clone git@github.com:drupal/drupal.git --branch 7.x --single-branch ~/Sites/htdocs/drupal7.localhost  
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;As another example, how about a single domain with multiple moodle instances in sub-directories like &lt;code&gt;http://moodle.localhost/26&lt;/code&gt; and &lt;code&gt;http://moodle.localhost/27&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;mkdir ~/Sites/htdocs/moodle git clone git@github.com:moodle/moodle.git --branch MOODLE&lt;em&gt;26&lt;/em&gt;STABLE --single-branch ~/Sites/htdocs/moodle/26 git clone git@github.com:moodle/moodle.git --branch MOODLE&lt;em&gt;27&lt;/em&gt;STABLE --single-branch ~/Sites/htdocs/moodle/27&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;mkdir ~/Sites/htdocs/moodle  
+git clone git@github.com:moodle/moodle.git --branch MOODLE_26_STABLE --single-branch ~/Sites/htdocs/moodle/26  
+git clone git@github.com:moodle/moodle.git --branch MOODLE_27_STABLE --single-branch ~/Sites/htdocs/moodle/27  
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id="wrappingup"&gt;Wrapping Up&lt;/h3&gt;
+&lt;h2 id="wrappingup"&gt;Wrapping Up&lt;/h2&gt;
 
 &lt;p&gt;So there you go! Mac OS X with brewed versions of important stuff like openssl and git, Apache 2.4, MySQL, and PHP 5.6 and a killer setup using mod&lt;em&gt;vhost&lt;/em&gt;alias and dnsmasq to provision .localhost domains on the fly. Of course there are a million ways to dev from here, but this is a pretty solid foundation.&lt;/p&gt;
 
