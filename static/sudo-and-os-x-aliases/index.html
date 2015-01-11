@@ -1,0 +1,149 @@
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Sudo and OS X Aliases</title>
+    <meta name="description" content="">
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.css?v=c7bfc3f1e8">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic%7COpen+Sans:700,400">
+
+    <link rel="canonical" href="http://www.iyware.com/sudo-and-os-x-aliases/">
+    
+    <meta property="og:site_name" content="iyWare">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Sudo and OS X Aliases">
+    <meta property="og:description" content="I spend a lot of time in the shell on Ubuntu – and in Gnome one of the basic features that I rely on is the right click “Open as Administrator” which will prompt for administrator privileges and then open the...">
+    <meta property="og:url" content="http://www.iyware.com/sudo-and-os-x-aliases/">
+    <meta property="article:published_time" content="2011-01-25T22:14:44.000Z">
+    <meta property="article:modified_time" content="2013-10-08T21:05:49.000Z">
+    <meta property="article:tag" content="Alias">
+    <meta property="article:tag" content="Gnome">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="OS X">
+    <meta property="article:tag" content="Terminal">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Sudo and OS X Aliases">
+    <meta name="twitter:description" content="I spend a lot of time in the shell on Ubuntu – and in Gnome one of the basic features that I rely on is the right click “Open as Administrator” which will prompt for administrator privileges and then open the...">
+    <meta name="twitter:url" content="http://www.iyware.com/sudo-and-os-x-aliases/">
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "iyWare",
+    "author": {
+        "@type": "Person",
+        "name": "Danny Wahl",
+        "image": "http://www.iyware.com/content/images/2015/01/743499.jpg",
+        "url": "http://www.iyware.com/author/danny",
+        "sameAs": null
+    },
+    "headline": "Sudo and OS X Aliases",
+    "url": "http://www.iyware.com/sudo-and-os-x-aliases/",
+    "datePublished": "2011-01-25T22:14:44.000Z",
+    "dateModified": "2013-10-08T21:05:49.000Z",
+    "keywords": "Alias, Gnome, Linux, OS X, Terminal",
+    "description": "I spend a lot of time in the shell on Ubuntu – and in Gnome one of the basic features that I rely on is the right click “Open as Administrator” which will prompt for administrator privileges and then open the..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.5">
+    <link rel="alternate" type="application/rss+xml" title="iyWare" href="http://www.iyware.com/rss/">
+</head>
+<body class="post-template tag-alias tag-gnome tag-linux tag-os-x tag-terminal">
+
+    
+
+
+<header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        <a class="back-button icon-arrow-left" href="http://www.iyware.com">Home</a>
+        <a class="subscribe-button icon-feed" href="http://www.iyware.com/rss/">Subscribe</a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post tag-alias tag-gnome tag-linux tag-os-x tag-terminal">
+
+        <header class="post-header">
+            <h1 class="post-title">Sudo and OS X Aliases</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2011-01-26">26 January 2011</time>  on <a href="../tag/alias/">Alias</a>, <a href="../tag/gnome/">Gnome</a>, <a href="../tag/linux/">Linux</a>, <a href="../tag/os-x/">OS X</a>, <a href="../tag/terminal/">Terminal</a>
+            </section>
+        </header>
+
+        <section class="post-content">
+            <p>I spend a lot of time in the shell on Ubuntu – and in Gnome one of the basic features that I rely on is the right click “Open as Administrator” which will prompt for administrator privileges and then open the file with the default application. Unfortunately, this feature is missing from OS X is a severe way.</p>
+
+<p>There’s not much you can do about this from the GUI – but on Ubuntu standard editors are integrated into terminal with a simple syntax.</p>
+
+<p>This will prompt for sudo authentication and then initiate a new instance of <a href="http://projects.gnome.org/gedit/">gEdit</a> and the terminal thread will wait until the file is saved before exiting. This is extremely useful, but try it on a Mac and you’ll see this:</p>
+
+<p>Less useful. Well here’s how to integrate gedit (or any other program really) into your shell on OS X. The magic is all in terminal aliases.</p>
+
+<p>The first thing you’ll see is your $PATH variable defined, and possibly some aliases. We’re going to be adding some more aliases. Here’s a few text editors (<a href="http://www.fraiseapp.com/">Fraise</a>, <a href="http://projects.gnome.org/gedit/">gEdit</a>, and <a href="http://kodapp.com/">Kod</a>):</p>
+
+<p>ta-da you can now launch programs from terminal. But! try adding sudo and we’re right back to the “command not found”. The reason for that is that the first thing that happens after you type sudo is your command is actually passed to the super user shell – which doesn’t have your aliases in it. So you need to add one more line alias at the end:</p>
+
+<p>And we’re done, you can now sudo and edit files through terminal on OS X just like basically every other operating system that’s been available in this century. Seriously Apple, when is Finder going to get some usability improvements?</p>
+        </section>
+
+        <footer class="post-footer">
+
+
+            <figure class="author-image">
+                <a class="img" href="../author/danny/" style="background-image: url(../content/images/2015/01/743499.jpg)"><span class="hidden">Danny Wahl's Picture</span></a>
+            </figure>
+
+            <section class="author">
+                <h4><a href="../author/danny/">Danny Wahl</a></h4>
+
+                    <p>My name is Danny Wahl and I provide Ed Tech consulting to international schools in the APAC region. I dabble in writing, programming, design, and ukulele playing.</p>
+                <div class="author-meta">
+                    
+                    
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/share?text=Sudo%20and%20OS%20X%20Aliases&amp;url=http://www.iyware.com/sudo-and-os-x-aliases/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://www.iyware.com/sudo-and-os-x-aliases/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://www.iyware.com/sudo-and-os-x-aliases/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+        </footer>
+
+    </article>
+
+</main>
+
+
+
+    <footer class="site-footer clearfix">
+         <section class="copyright"><a href="http://www.iyware.com">iyWare</a> © 2015</section>
+         <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
+    </footer>
+
+    <script src="../public/jquery.js?v=c7bfc3f1e8"></script>
+
+    <script type="text/javascript" src="../assets/js/jquery.fitvids.js?v=c7bfc3f1e8"></script>
+    <script type="text/javascript" src="../assets/js/index.js?v=c7bfc3f1e8"></script>
+
+</body>

@@ -1,0 +1,139 @@
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>CSS3 Multiple Backgrounds Vs. Transforms</title>
+    <meta name="description" content="">
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.css?v=c7bfc3f1e8">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic%7COpen+Sans:700,400">
+
+    <link rel="canonical" href="http://www.iyware.com/css3-multiple-backgrounds-vs-transforms/">
+    
+    <meta property="og:site_name" content="iyWare">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="CSS3 Multiple Backgrounds Vs. Transforms">
+    <meta property="og:description" content="We all know how multiple backgrounds work, and they’re really neat. Recently I started thinking about being able to use a single image and transforms to simulate some of the multiple background effects. Specifically the one where you want...">
+    <meta property="og:url" content="http://www.iyware.com/css3-multiple-backgrounds-vs-transforms/">
+    <meta property="article:published_time" content="2012-07-13T14:48:23.000Z">
+    <meta property="article:modified_time" content="2013-10-07T15:13:53.000Z">
+    <meta property="article:tag" content="CSS">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="CSS3 Multiple Backgrounds Vs. Transforms">
+    <meta name="twitter:description" content="We all know how multiple backgrounds work, and they’re really neat. Recently I started thinking about being able to use a single image and transforms to simulate some of the multiple background effects. Specifically the one where you want...">
+    <meta name="twitter:url" content="http://www.iyware.com/css3-multiple-backgrounds-vs-transforms/">
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "iyWare",
+    "author": {
+        "@type": "Person",
+        "name": "Danny Wahl",
+        "image": "http://www.iyware.com/content/images/2015/01/743499.jpg",
+        "url": "http://www.iyware.com/author/danny",
+        "sameAs": null
+    },
+    "headline": "CSS3 Multiple Backgrounds Vs. Transforms",
+    "url": "http://www.iyware.com/css3-multiple-backgrounds-vs-transforms/",
+    "datePublished": "2012-07-13T14:48:23.000Z",
+    "dateModified": "2013-10-07T15:13:53.000Z",
+    "keywords": "CSS",
+    "description": "We all know how multiple backgrounds work, and they’re really neat. Recently I started thinking about being able to use a single image and transforms to simulate some of the multiple background effects. Specifically the one where you want..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.5">
+    <link rel="alternate" type="application/rss+xml" title="iyWare" href="http://www.iyware.com/rss/">
+</head>
+<body class="post-template tag-css">
+
+    
+
+
+<header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        <a class="back-button icon-arrow-left" href="http://www.iyware.com">Home</a>
+        <a class="subscribe-button icon-feed" href="http://www.iyware.com/rss/">Subscribe</a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post tag-css">
+
+        <header class="post-header">
+            <h1 class="post-title">CSS3 Multiple Backgrounds Vs. Transforms</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2012-07-13">13 July 2012</time>  on <a href="../tag/css/">CSS</a>
+            </section>
+        </header>
+
+        <section class="post-content">
+            <p>We all know how multiple backgrounds work, and they’re really neat. Recently I started thinking about being able to use a single image and transforms to simulate some of the multiple background effects. Specifically the one where you want to put the same image in all 4 corners of a div, but facing a different direction (check out Mary’s example <a href="http://moodle.org/mod/forum/discuss.php?d=206918" title="Some CSS3 fun stuff to try out...">here</a> for Moodle).</p>
+
+<p>The “problem” with multiple backgrounds like that is that you’re serving multiple images (which makes sense right…). But you’re not really serving multiple images, you’re serving one image that you’ve manipulated in some photo software to be oriented differently, what if you could take that one image and make it orient however you like? You can with transforms. Unfortunately multiple backgrounds don’t support transforms, only the container itself – because that would make things too easy! So we’re going to use the standard “wrapper” trick with pseudo-elements, and let’s face it, you probably still have wrappers in your code you don’t need anyways, so let’s put them to use.</p>
+
+<p>So there you go. The ::before elements have the left images, the ::after elements have the right images, and we use transform to flip them. Simple as that. And make a note that the current spec. supports pseudo-pseudo elements (e.g. #id::before::before) but no browsers currently implement it. Once they do you can drop the wrapper and use those, though it’s not definitively better, especially from a DOM perspective.</p>
+
+<p><a href="../content/images/import/transform_bg.html" title="CSS3 Transform Multiple Background Demo">Demo</a></p>
+        </section>
+
+        <footer class="post-footer">
+
+
+            <figure class="author-image">
+                <a class="img" href="../author/danny/" style="background-image: url(../content/images/2015/01/743499.jpg)"><span class="hidden">Danny Wahl's Picture</span></a>
+            </figure>
+
+            <section class="author">
+                <h4><a href="../author/danny/">Danny Wahl</a></h4>
+
+                    <p>My name is Danny Wahl and I provide Ed Tech consulting to international schools in the APAC region. I dabble in writing, programming, design, and ukulele playing.</p>
+                <div class="author-meta">
+                    
+                    
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/share?text=CSS3%20Multiple%20Backgrounds%20Vs.%20Transforms&amp;url=http://www.iyware.com/css3-multiple-backgrounds-vs-transforms/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://www.iyware.com/css3-multiple-backgrounds-vs-transforms/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://www.iyware.com/css3-multiple-backgrounds-vs-transforms/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+        </footer>
+
+    </article>
+
+</main>
+
+
+
+    <footer class="site-footer clearfix">
+         <section class="copyright"><a href="http://www.iyware.com">iyWare</a> © 2015</section>
+         <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
+    </footer>
+
+    <script src="../public/jquery.js?v=c7bfc3f1e8"></script>
+
+    <script type="text/javascript" src="../assets/js/jquery.fitvids.js?v=c7bfc3f1e8"></script>
+    <script type="text/javascript" src="../assets/js/index.js?v=c7bfc3f1e8"></script>
+
+</body>

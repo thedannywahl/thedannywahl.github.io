@@ -1,0 +1,165 @@
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>XBMC Dharma Program Launcher</title>
+    <meta name="description" content="">
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.css?v=c7bfc3f1e8">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic%7COpen+Sans:700,400">
+
+    <link rel="canonical" href="http://www.iyware.com/xbmc-dharma-program-launcher/">
+    
+    <meta property="og:site_name" content="iyWare">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="XBMC Dharma Program Launcher">
+    <meta property="og:description" content="In the last release of XBMC (Camelot) I set out to integrate my favorite media center with my favorite game center, HyperSpin.  Using AutoHotkey, Python, and a series of gross XML hacks, I was able to fairly seamlessly integrate the...">
+    <meta property="og:url" content="http://www.iyware.com/xbmc-dharma-program-launcher/">
+    <meta property="article:published_time" content="2011-01-29T18:16:30.000Z">
+    <meta property="article:modified_time" content="2013-10-08T21:05:37.000Z">
+    <meta property="article:tag" content="AutoHotKey">
+    <meta property="article:tag" content="FireFox">
+    <meta property="article:tag" content="HyperSpin">
+    <meta property="article:tag" content="Python">
+    <meta property="article:tag" content="XBMC">
+    <meta property="article:tag" content="XML">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="XBMC Dharma Program Launcher">
+    <meta name="twitter:description" content="In the last release of XBMC (Camelot) I set out to integrate my favorite media center with my favorite game center, HyperSpin.  Using AutoHotkey, Python, and a series of gross XML hacks, I was able to fairly seamlessly integrate the...">
+    <meta name="twitter:url" content="http://www.iyware.com/xbmc-dharma-program-launcher/">
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "iyWare",
+    "author": {
+        "@type": "Person",
+        "name": "Danny Wahl",
+        "image": "http://www.iyware.com/content/images/2015/01/743499.jpg",
+        "url": "http://www.iyware.com/author/danny",
+        "sameAs": null
+    },
+    "headline": "XBMC Dharma Program Launcher",
+    "url": "http://www.iyware.com/xbmc-dharma-program-launcher/",
+    "datePublished": "2011-01-29T18:16:30.000Z",
+    "dateModified": "2013-10-08T21:05:37.000Z",
+    "keywords": "AutoHotKey, FireFox, HyperSpin, Python, XBMC, XML",
+    "description": "In the last release of XBMC (Camelot) I set out to integrate my favorite media center with my favorite game center, HyperSpin.  Using AutoHotkey, Python, and a series of gross XML hacks, I was able to fairly seamlessly integrate the..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.5">
+    <link rel="alternate" type="application/rss+xml" title="iyWare" href="http://www.iyware.com/rss/">
+</head>
+<body class="post-template tag-autohotkey tag-firefox tag-hyperspin tag-python tag-xbmc tag-xml">
+
+    
+
+
+<header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        <a class="back-button icon-arrow-left" href="http://www.iyware.com">Home</a>
+        <a class="subscribe-button icon-feed" href="http://www.iyware.com/rss/">Subscribe</a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post tag-autohotkey tag-firefox tag-hyperspin tag-python tag-xbmc tag-xml">
+
+        <header class="post-header">
+            <h1 class="post-title">XBMC Dharma Program Launcher</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2011-01-30">30 January 2011</time>  on <a href="../tag/autohotkey/">AutoHotKey</a>, <a href="../tag/firefox/">FireFox</a>, <a href="../tag/hyperspin/">HyperSpin</a>, <a href="../tag/python/">Python</a>, <a href="../tag/xbmc/">XBMC</a>, <a href="../tag/xml/">XML</a>
+            </section>
+        </header>
+
+        <section class="post-content">
+            <p>In the last release of <a href="http://xbmc.org">XBMC</a> (Camelot) I set out to integrate my favorite media center with my favorite game center, <a href="http://hyperspin-fe.com">HyperSpin</a>.  Using <a href="http://www.autohotkey.com/">AutoHotkey</a>, Python, and a series of gross XML hacks, I was able to fairly seamlessly integrate the two programs (using the <a href="http://en.wikipedia.org/wiki/Aeon_%28Project%29">Aeon Stark</a> skin), creating the <a href="http://www.hyperspin-fe.com/forum/showthread.php?t=3898">ultimate media center</a>.  Soon after <a href="http://forum.xbmc.org/showthread.php?t=55776">came requests</a> for other programs, like Boxxee and Hulu Desktop.  Through more hackery I was able to get those working too.  But now Dharma is out, and I decided to do it right this time.</p>
+
+<p>Fortunately, I read up (read: stumbled upon) a few things in the XBMC builtin functions that are going to make this a cinch.  Now, this time, instead of integrating HyperSpin, I’m going to integrate a more ubiquitous program (FireFox) but once you see how simple it is, integrating HyperSpin will be a walk in the park.  And the best part is, this will work with any skin (that supports custom menu items, or at least favourites) and will survive a GIT update because it’s stored in your user profile, not hard coded into the skin.</p>
+
+<p>Ok, enough background, let’s get to work.  First thing’s first, download, install, and setup XBMC.  Now, find your userdata folder.  I always run XBMC in portable mode xbmc.exe -p so my userdata folder is actually in the XBMC install folder. If you run it the standard way, then your XBMC userdata folder is in your Windows userdata folder (C:Documents and Settingsusers… for Windows XP) and (C:users for Windows 7). For reference of this writeup, when I talk about my userdata folder the folder I’m talking about is the XBMC userdata folder, and the location is C:Program FilesXBMCportable_datauserdata</p>
+
+<h3 id="autohotkeylauncher">AutoHotKey Launcher</h3>
+
+<p>Ok, so the first thing we’re doing is creating an AutoHotKey launcher that runs FireFox.exe and saving in the root of the C: drive as internet.ahk Here’s the Code:</p>
+
+<p>Now, compile it and run it – all that should happen is a Firefox window opens and your app is closed. Close Firefox and that’s it. Quickly here’s the why of the AHK launcher: 1) AHK will allow you to manipulate windows in the GUI in a much more powerful way that Python. 2) You may want to do multiple things like connect to a proxy, vpn, or something else entirely when launching FireFox 3) You may choose to exit XBMC entirely, then your code would stop executing, oops!</p>
+
+<h3 id="favourites">Favourites</h3>
+
+<p>Next we’re going to write the XBMC launcher that will call our new internet.exe executable. Navigate to your userdata data folder and look for favourites.xml and if it’s not there, create it. Please note the spelling. Ok, I’ll just give you the code that you can append to your file</p>
+
+<p>Now, if you already have any entries don’t create a new top level favourites entry, just add a new second level favourite. Take a look at the code and you’ll notice that it’s a lot simpler than the old entry. Here’s where the magic happens: XBMC.System.ExecWait() (or it’s cousin XBMC.System.Exec())</p>
+
+<blockquote>
+  <p>System.Exec: Execute shell commands. <br>
+   System.ExecWait: Execute shell commands and freezes XBMC until shell is closed.</p>
+</blockquote>
+
+<p>You can find a little more detailed explanation in <a href="http://forum.xbmc.org/showthread.php?t=46777">this thread</a> at the XBMC forums. Suffice it to say that Exec() will require a more powerful CPU than ExecWait() because ExecWait() will freeze the XBMC thread until the executed thread exits.</p>
+
+<h3 id="mainmenu">Main Menu</h3>
+
+<p>The final step is to go into the XBMC skin settings, and in Aeon65 go to Main Menu -&gt; New Menu item. It will populate with whatever is in your favourites.xml. Select “Internet” and you’re done. If you have questions you can use the comments below, or for more information on integrating HyperSpin instead of FireFox, you can ask in the <a href="http://www.hyperspin-fe.com/forum/showthread.php?t=3898">HyperSpin Forums</a>.</p>
+        </section>
+
+        <footer class="post-footer">
+
+
+            <figure class="author-image">
+                <a class="img" href="../author/danny/" style="background-image: url(../content/images/2015/01/743499.jpg)"><span class="hidden">Danny Wahl's Picture</span></a>
+            </figure>
+
+            <section class="author">
+                <h4><a href="../author/danny/">Danny Wahl</a></h4>
+
+                    <p>My name is Danny Wahl and I provide Ed Tech consulting to international schools in the APAC region. I dabble in writing, programming, design, and ukulele playing.</p>
+                <div class="author-meta">
+                    
+                    
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/share?text=XBMC%20Dharma%20Program%20Launcher&amp;url=http://www.iyware.com/xbmc-dharma-program-launcher/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://www.iyware.com/xbmc-dharma-program-launcher/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://www.iyware.com/xbmc-dharma-program-launcher/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+        </footer>
+
+    </article>
+
+</main>
+
+
+
+    <footer class="site-footer clearfix">
+         <section class="copyright"><a href="http://www.iyware.com">iyWare</a> © 2015</section>
+         <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
+    </footer>
+
+    <script src="../public/jquery.js?v=c7bfc3f1e8"></script>
+
+    <script type="text/javascript" src="../assets/js/jquery.fitvids.js?v=c7bfc3f1e8"></script>
+    <script type="text/javascript" src="../assets/js/index.js?v=c7bfc3f1e8"></script>
+
+</body>

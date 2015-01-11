@@ -1,0 +1,143 @@
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Nexus5 Stock Lollipop Root How-To</title>
+    <meta name="description" content="">
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.css?v=c7bfc3f1e8">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic%7COpen+Sans:700,400">
+
+    <link rel="canonical" href="http://www.iyware.com/nexus5-stock-lollipop-root/">
+    
+    <meta property="og:site_name" content="iyWare">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Nexus5 Stock Lollipop Root How-To">
+    <meta property="og:description" content="I just got my new Nexus 5, upgrading from my now almost 3 year old Galaxy Nexus. I got a good deal on the Galaxy Nexus because I bought it well after the Nexus 4 was released and the price...">
+    <meta property="og:url" content="http://www.iyware.com/nexus5-stock-lollipop-root/">
+    <meta property="article:published_time" content="2014-12-12T08:41:50.000Z">
+    <meta property="article:modified_time" content="2014-12-12T08:41:50.000Z">
+    <meta property="article:tag" content="Homebrew">
+    <meta property="article:tag" content="Lollipop">
+    <meta property="article:tag" content="Nexus5">
+    <meta property="article:tag" content="SuperSU">
+    <meta property="article:tag" content="TWRP">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Nexus5 Stock Lollipop Root How-To">
+    <meta name="twitter:description" content="I just got my new Nexus 5, upgrading from my now almost 3 year old Galaxy Nexus. I got a good deal on the Galaxy Nexus because I bought it well after the Nexus 4 was released and the price...">
+    <meta name="twitter:url" content="http://www.iyware.com/nexus5-stock-lollipop-root/">
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "iyWare",
+    "author": {
+        "@type": "Person",
+        "name": "Danny Wahl",
+        "image": "http://www.iyware.com/content/images/2015/01/743499.jpg",
+        "url": "http://www.iyware.com/author/danny",
+        "sameAs": null
+    },
+    "headline": "Nexus5 Stock Lollipop Root How-To",
+    "url": "http://www.iyware.com/nexus5-stock-lollipop-root/",
+    "datePublished": "2014-12-12T08:41:50.000Z",
+    "dateModified": "2014-12-12T08:41:50.000Z",
+    "keywords": "Homebrew, Lollipop, Nexus5, SuperSU, TWRP",
+    "description": "I just got my new Nexus 5, upgrading from my now almost 3 year old Galaxy Nexus. I got a good deal on the Galaxy Nexus because I bought it well after the Nexus 4 was released and the price..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.5">
+    <link rel="alternate" type="application/rss+xml" title="iyWare" href="http://www.iyware.com/rss/">
+</head>
+<body class="post-template tag-homebrew tag-lollipop tag-nexus5 tag-supersu tag-twrp">
+
+    
+
+
+<header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        <a class="back-button icon-arrow-left" href="http://www.iyware.com">Home</a>
+        <a class="subscribe-button icon-feed" href="http://www.iyware.com/rss/">Subscribe</a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post tag-homebrew tag-lollipop tag-nexus5 tag-supersu tag-twrp">
+
+        <header class="post-header">
+            <h1 class="post-title">Nexus5 Stock Lollipop Root How-To</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2014-12-12">12 December 2014</time>  on <a href="../tag/homebrew/">Homebrew</a>, <a href="../tag/lollipop/">Lollipop</a>, <a href="../tag/nexus5/">Nexus5</a>, <a href="../tag/supersu/">SuperSU</a>, <a href="../tag/twrp/">TWRP</a>
+            </section>
+        </header>
+
+        <section class="post-content">
+            <p>I just got my new <a href="http://www.google.com/nexus/5/">Nexus 5</a>, upgrading from my now almost 3 year old <a href="http://en.wikipedia.org/wiki/Galaxy_Nexus">Galaxy Nexus</a>. I got a good deal on the Galaxy Nexus because I bought it well after the <a href="http://en.wikipedia.org/wiki/Nexus_4">Nexus 4</a> was released and the price had dropped significantly. Unfortunately because of Google’s marketing strategy with the <a href="http://www.google.com/nexus/6/">Nexus 6</a> that didn’t happen this time; the prices for the Nexus 5 have remained pretty steady. But I needed (wanted) a new phone, so I bought it.</p>
+
+<p>Unfortunately the Nexus 5 I received shipped with Android 4.4.x and I knew that 5.0 was available. I didn’t really want to do an upgrade immediately after setting up the phone, so I decided it would be best to flash the factory image since I have no data to lose. When I went to the <a href="http://forum.xda-developers.com/google-nexus-5">Nexus 5 section</a> of XDA-Developers I was a little disappointed. I just wanted a rooted, stock Lollipop ROM, but didn’t find one. In addition a lot of the toolkits etc… seemed a little dated. The last thing I wanted to do was download toolkits and then be manually updating components (roms, recoveries, root, etc…) so I decided to just do it myself. It was all pretty easy, so here’s the process I used, getting all the files directly from the sources, you can copy and paste these commands into your terminal and have your phone up and running pretty quickly- depending on your internet connection speed.</p>
+
+<p>brew install wget brew install android-platform-tools cd ~/Desktop mkdir nexus5 cd nexus5 wget <a href="http://download.chainfire.eu/636/SuperSU/UPDATE-SuperSU-v2.37.zip">http://download.chainfire.eu/636/SuperSU/UPDATE-SuperSU-v2.37.zip</a> -O supersu.zip wget <a href="http://techerrata.com/file/twrp2/hammerhead/openrecovery-twrp-2.8.2.0-hammerhead.img">http://techerrata.com/file/twrp2/hammerhead/openrecovery-twrp-2.8.2.0-hammerhead.img</a> -O recovery.img wget <a href="https://dl.google.com/dl/android/aosp/hammerhead-lrx21o-factory-01315e08.tgz">https://dl.google.com/dl/android/aosp/hammerhead-lrx21o-factory-01315e08.tgz</a> -O lollipop.tgz # PLUG IN YOUR DEVICE NOW # tar zxvf lollipop.tgz cd hammerhead-lrx21o adb reboot-bootloader fastboot oem unlock sh flash-all.sh # if it reboots, go back to bootloader # adb reboot-bootloader cd .. fastboot flash recovery recovery.img fastboot reboot adb push supersu.zip /sdcard/0/ adb reboot-bootloader # now boot recovery and install superSU zip, done!</p>
+
+<p>The process is pretty simple: download root, TWRP, and the stock lollipop ROM. Flash the ROM, flash recovery, reboot the device, push the root zip, and reboot to fastboot. You’ll still need to manually flash SuperSU zip in TWRP, but that’s it. No messing with broken rapidshare links, no messing with outdated toolkits, just a nice rooted ROM.</p>
+        </section>
+
+        <footer class="post-footer">
+
+
+            <figure class="author-image">
+                <a class="img" href="../author/danny/" style="background-image: url(../content/images/2015/01/743499.jpg)"><span class="hidden">Danny Wahl's Picture</span></a>
+            </figure>
+
+            <section class="author">
+                <h4><a href="../author/danny/">Danny Wahl</a></h4>
+
+                    <p>My name is Danny Wahl and I provide Ed Tech consulting to international schools in the APAC region. I dabble in writing, programming, design, and ukulele playing.</p>
+                <div class="author-meta">
+                    
+                    
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/share?text=Nexus5%20Stock%20Lollipop%20Root%20How-To&amp;url=http://www.iyware.com/nexus5-stock-lollipop-root/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://www.iyware.com/nexus5-stock-lollipop-root/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://www.iyware.com/nexus5-stock-lollipop-root/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+        </footer>
+
+    </article>
+
+</main>
+
+
+
+    <footer class="site-footer clearfix">
+         <section class="copyright"><a href="http://www.iyware.com">iyWare</a> © 2015</section>
+         <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
+    </footer>
+
+    <script src="../public/jquery.js?v=c7bfc3f1e8"></script>
+
+    <script type="text/javascript" src="../assets/js/jquery.fitvids.js?v=c7bfc3f1e8"></script>
+    <script type="text/javascript" src="../assets/js/index.js?v=c7bfc3f1e8"></script>
+
+</body>

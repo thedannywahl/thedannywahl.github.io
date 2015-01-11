@@ -1,0 +1,152 @@
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>rsync Over SSH + expect</title>
+    <meta name="description" content="">
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.css?v=c7bfc3f1e8">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic%7COpen+Sans:700,400">
+
+    <link rel="canonical" href="http://www.iyware.com/rsync-over-ssh-expect/">
+    
+    <meta property="og:site_name" content="iyWare">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="rsync Over SSH + expect">
+    <meta property="og:description" content="lately I decided that a good plan of action would be to take the web server files in my virtual machine: Apache config, Postgres config and databases, Moodle root and moodle data and back them up to the host server...">
+    <meta property="og:url" content="http://www.iyware.com/rsync-over-ssh-expect/">
+    <meta property="article:published_time" content="2011-03-21T12:32:54.000Z">
+    <meta property="article:modified_time" content="2013-10-08T21:04:22.000Z">
+    <meta property="article:tag" content="Apache">
+    <meta property="article:tag" content="Expect">
+    <meta property="article:tag" content="Moodle">
+    <meta property="article:tag" content="Postgres">
+    <meta property="article:tag" content="Rsync">
+    <meta property="article:tag" content="Script">
+    <meta property="article:tag" content="SSH">
+    <meta property="article:tag" content="Virtualization">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="rsync Over SSH + expect">
+    <meta name="twitter:description" content="lately I decided that a good plan of action would be to take the web server files in my virtual machine: Apache config, Postgres config and databases, Moodle root and moodle data and back them up to the host server...">
+    <meta name="twitter:url" content="http://www.iyware.com/rsync-over-ssh-expect/">
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "iyWare",
+    "author": {
+        "@type": "Person",
+        "name": "Danny Wahl",
+        "image": "http://www.iyware.com/content/images/2015/01/743499.jpg",
+        "url": "http://www.iyware.com/author/danny",
+        "sameAs": null
+    },
+    "headline": "rsync Over SSH + expect",
+    "url": "http://www.iyware.com/rsync-over-ssh-expect/",
+    "datePublished": "2011-03-21T12:32:54.000Z",
+    "dateModified": "2013-10-08T21:04:22.000Z",
+    "keywords": "Apache, Expect, Moodle, Postgres, Rsync, Script, SSH, Virtualization",
+    "description": "lately I decided that a good plan of action would be to take the web server files in my virtual machine: Apache config, Postgres config and databases, Moodle root and moodle data and back them up to the host server..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.5">
+    <link rel="alternate" type="application/rss+xml" title="iyWare" href="http://www.iyware.com/rss/">
+</head>
+<body class="post-template tag-apache tag-expect tag-moodle tag-postgres tag-rsync tag-script tag-ssh tag-virtualization">
+
+    
+
+
+<header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        <a class="back-button icon-arrow-left" href="http://www.iyware.com">Home</a>
+        <a class="subscribe-button icon-feed" href="http://www.iyware.com/rss/">Subscribe</a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post tag-apache tag-expect tag-moodle tag-postgres tag-rsync tag-script tag-ssh tag-virtualization">
+
+        <header class="post-header">
+            <h1 class="post-title">rsync Over SSH + expect</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2011-03-21">21 March 2011</time>  on <a href="../tag/apache/">Apache</a>, <a href="../tag/expect/">Expect</a>, <a href="../tag/moodle/">Moodle</a>, <a href="../tag/postgres/">Postgres</a>, <a href="../tag/rsync/">Rsync</a>, <a href="../tag/script/">Script</a>, <a href="../tag/ssh/">SSH</a>, <a href="../tag/virtualization/">Virtualization</a>
+            </section>
+        </header>
+
+        <section class="post-content">
+            <p>lately I decided that a good plan of action would be to take the web server files in my virtual machine: Apache config, Postgres config and databases, Moodle root and moodle data and back them up to the host server via <a href="http://samba.anu.edu.au/rsync/documentation.html">rsync</a> over <a href="http://www.openssh.com/">SSH</a>.  Once they’re on the host machine, in this case a Mac Mini Server, the target folder can be backed up via Time Machine.</p>
+
+<p>So if an end user accidentally deletes a critical file from their Moodle course, and somehow can’t restore it from their course backups (which happen nightly and are kept for 12 months) then I can browse Time Machine, restore it and then rsync it back!  It all sounds good until you start getting into SSH sessions which is a PAIN to say the least.</p>
+
+<p>The first problem I encountered was that rsync really needs to be run by an account that has read/write access to all the files that you want to backup, but you shouldn’t use root – depending on how secure you want to be… So what user has access to apache config (apache) postgres (postgres) web root (www-data) and moodle data (admin user) other than root?  The short answer is nobody, the long answer is create a user and drop them in the respective groups.  I went with the short answer because I’m fairly comfortable security wise using root to rsync from the VM to the host.  If somebody has access to the host server they have my whole VM anyways.</p>
+
+<p>The second problem was that <a href="http://bashcurescancer.com/setting_up_ssh_keys_for_access_without_password.html">ssh-agent</a> is only a temporary shell, so after you’ve set up your authentication you need to start the shell and invoke <a href="http://www.usc.edu/its/ssh/key.html">ssh-add</a>, enter your passphrase and then start your backup script.  No problem if you want to leave a root shell open 24/7 which I don’t.  Also a problem if say, your session times out, then you need to re-add your key to the temp-session and start over.  This can be a big problem if you’re using a shell script to stop services at night to complete the backup.  If rsync hangs at the passphrase prompt you’re offline until you notice it – and you don’t have a backup!</p>
+
+<p>Enter <a href="http://oreilly.com/catalog/expect/chapter/ch03.html">expect</a>.  A program used for automating/interacting with programs which is really a powerful tool.  By writing a small expect script and calling that instead you can easily automate your backup via rsync, without needing a permanent root shell and without needing to mess with ssh-agent.  First let’s look at a simple backup script for rsyncing your apache config files to a remote server:</p>
+
+<p>That’s not too difficult, now let’s add expect into the mix to automate the process</p>
+
+<p>ta-da!  That’s pretty easy to follow right?  You type expect backup.exp passphrase, where backup.exp is whatever you save the script as, and passphrase is your SSH passphrase and then the magic happens.  Of course this is very basic, and doesn’t handle errors or exceptions – something which you’ll definitely want to do – in case expect hangs you’ll want to kill rsync and start Apache eventually. Now just add the expect file to your cron jobs for fully automated backups.</p>
+        </section>
+
+        <footer class="post-footer">
+
+
+            <figure class="author-image">
+                <a class="img" href="../author/danny/" style="background-image: url(../content/images/2015/01/743499.jpg)"><span class="hidden">Danny Wahl's Picture</span></a>
+            </figure>
+
+            <section class="author">
+                <h4><a href="../author/danny/">Danny Wahl</a></h4>
+
+                    <p>My name is Danny Wahl and I provide Ed Tech consulting to international schools in the APAC region. I dabble in writing, programming, design, and ukulele playing.</p>
+                <div class="author-meta">
+                    
+                    
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/share?text=rsync%20Over%20SSH%20%2B%20expect&amp;url=http://www.iyware.com/rsync-over-ssh-expect/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://www.iyware.com/rsync-over-ssh-expect/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://www.iyware.com/rsync-over-ssh-expect/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+        </footer>
+
+    </article>
+
+</main>
+
+
+
+    <footer class="site-footer clearfix">
+         <section class="copyright"><a href="http://www.iyware.com">iyWare</a> © 2015</section>
+         <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
+    </footer>
+
+    <script src="../public/jquery.js?v=c7bfc3f1e8"></script>
+
+    <script type="text/javascript" src="../assets/js/jquery.fitvids.js?v=c7bfc3f1e8"></script>
+    <script type="text/javascript" src="../assets/js/index.js?v=c7bfc3f1e8"></script>
+
+</body>
