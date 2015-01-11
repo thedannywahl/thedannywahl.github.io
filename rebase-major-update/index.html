@@ -1,0 +1,145 @@
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Rebase Major Update</title>
+    <meta name="description" content="">
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.css?v=c7bfc3f1e8">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic%7COpen+Sans:700,400">
+
+    <link rel="canonical" href="http://www.iyware.com/rebase-major-update/">
+    
+    <meta property="og:site_name" content="iyWare">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Rebase Major Update">
+    <meta property="og:description" content="I have been on a bit of an update spree on Zebra lately, removing, adding, and changing settings. One of the biggest changes I made was to rewrite the pagelayout.css @media queries using the HTML5 Boilerplate mobile first design...">
+    <meta property="og:url" content="http://www.iyware.com/rebase-major-update/">
+    <meta property="article:published_time" content="2011-12-25T13:13:44.000Z">
+    <meta property="article:modified_time" content="2013-10-08T20:56:46.000Z">
+    <meta property="article:tag" content="CSS">
+    <meta property="article:tag" content="PHP">
+    <meta property="article:tag" content="Theme">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Rebase Major Update">
+    <meta name="twitter:description" content="I have been on a bit of an update spree on Zebra lately, removing, adding, and changing settings. One of the biggest changes I made was to rewrite the pagelayout.css @media queries using the HTML5 Boilerplate mobile first design...">
+    <meta name="twitter:url" content="http://www.iyware.com/rebase-major-update/">
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "iyWare",
+    "author": {
+        "@type": "Person",
+        "name": "Danny Wahl",
+        "url": "http://www.iyware.com/author/danny",
+        "sameAs": null
+    },
+    "headline": "Rebase Major Update",
+    "url": "http://www.iyware.com/rebase-major-update/",
+    "datePublished": "2011-12-25T13:13:44.000Z",
+    "dateModified": "2013-10-08T20:56:46.000Z",
+    "keywords": "CSS, PHP, Theme",
+    "description": "I have been on a bit of an update spree on Zebra lately, removing, adding, and changing settings. One of the biggest changes I made was to rewrite the pagelayout.css @media queries using the HTML5 Boilerplate mobile first design..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.5">
+    <link rel="alternate" type="application/rss+xml" title="iyWare" href="http://www.iyware.com/rss/">
+</head>
+<body class="post-template tag-css tag-php tag-theme">
+
+    
+
+
+<header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        <a class="back-button icon-arrow-left" href="http://www.iyware.com">Home</a>
+        <a class="subscribe-button icon-feed" href="http://www.iyware.com/rss/">Subscribe</a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post tag-css tag-php tag-theme">
+
+        <header class="post-header">
+            <h1 class="post-title">Rebase Major Update</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2011-12-25">25 December 2011</time>  on <a href="../tag/css/">CSS</a>, <a href="../tag/php/">PHP</a>, <a href="../tag/theme/">Theme</a>
+            </section>
+        </header>
+
+        <section class="post-content">
+            <p>I have been on a bit of an update spree on <a href="https://github.com/thedannywahl/Zebra_4_Moodle_2/">Zebra</a> lately, removing, adding, and changing settings. One of the biggest changes I made was to rewrite the pagelayout.css <code>@media</code> queries using the <a href="http://html5boilerplate.com/">HTML5 Boilerplate</a> <a href="https://github.com/h5bp/html5-boilerplate/wiki/The-style">mobile first</a> design theory.</p>
+
+<p>Switching to this mobile first practice cut about 1/3 of the declarations out of my query sections as well as having to declare a max-width (so I canned those settings). Overall I’m pretty happy with how much simpler things are now in the page layout.</p>
+
+<p>Here’s a comparison of the before and after:</p>
+
+<h3 id="before">Before</h3>
+
+<h3 id="after">After</h3>
+
+<p>They make look about the same length but that’s because I added a lot of little updates to the newer version too, trust me, it’s simpler and it looks and works better than before. So I’ve back-ported these changes to <a href="https://github.com/thedannywahl/Rebase_4_Moodle_2/tree/no_settings">Rebase [no settings branch]</a> (and updated <a href="https://github.com/thedannywahl/Ubiquity_4_Moodle_2">Ubiquity</a>) so you can download and play with them – Zebra is just one working application of how to use this page layout.</p>
+
+<p>I still have some more pagelayout work to do (thanks to some bugs being brought up in the <a href="http://moodle.org/mod/forum/discuss.php?d=190066">Moodle Forum</a> &amp; <a href="http://tracker.moodle.org/browse/MDL-30238">Tracker</a>) but after that I have a couple of ideas I’d like to try like <a href="https://github.com/scottjehl/Respond/blob/ef19727febffd5ad8052f0c87cf47ae924221067/respond.src.js">respond.js</a>, <a href="http://code.google.com/chrome/chromeframe/" title="Update: California Progress">Chrome Frame</a>, a resizable header, and trying to leverage Moodle’s built-in accessibility links (normally hidden) as buttons for mobile devices.</p>
+
+<p>I also now have proper IE6, 7, 8, and 9 virtual machines (running Xp, Xp, 7, and 7 respectively) so I can (and am actively doing) more IE compatibility testing. With one caveat – for IE6 it’s mostly just laughing at how broken things are and making sure Chrome Frame is popping up correctly. Look for optional Chrome Frame coming soon!</p>
+        </section>
+
+        <footer class="post-footer">
+
+
+
+            <section class="author">
+                <h4><a href="../author/danny/">Danny Wahl</a></h4>
+
+                    <p>Read <a href="../author/danny/">more posts</a> by this author.</p>
+                <div class="author-meta">
+                    
+                    
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/share?text=Rebase%20Major%20Update&amp;url=http://www.iyware.com/rebase-major-update/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://www.iyware.com/rebase-major-update/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://www.iyware.com/rebase-major-update/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+        </footer>
+
+    </article>
+
+</main>
+
+
+
+    <footer class="site-footer clearfix">
+         <section class="copyright"><a href="http://www.iyware.com">iyWare</a> © 2015</section>
+         <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
+    </footer>
+
+    <script src="../public/jquery.js?v=c7bfc3f1e8"></script>
+
+    <script type="text/javascript" src="../assets/js/jquery.fitvids.js?v=c7bfc3f1e8"></script>
+    <script type="text/javascript" src="../assets/js/index.js?v=c7bfc3f1e8"></script>
+
+</body>

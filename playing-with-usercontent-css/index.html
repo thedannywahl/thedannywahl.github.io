@@ -1,0 +1,151 @@
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Playing With userContent.css</title>
+    <meta name="description" content="">
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.css?v=c7bfc3f1e8">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic%7COpen+Sans:700,400">
+
+    <link rel="canonical" href="http://www.iyware.com/playing-with-usercontent-css/">
+    
+    <meta property="og:site_name" content="iyWare">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Playing With userContent.css">
+    <meta property="og:description" content="Here in China the fact that some websites just are never available (e.g. facebook, youtube, twitter, google+, hulu, etc…) and some sites get blocked intermittently depending on what you’re searching for is a constant source of frustration for...">
+    <meta property="og:url" content="http://www.iyware.com/playing-with-usercontent-css/">
+    <meta property="article:published_time" content="2011-11-04T21:11:56.000Z">
+    <meta property="article:modified_time" content="2013-10-08T21:00:31.000Z">
+    <meta property="article:tag" content="CSS">
+    <meta property="article:tag" content="FireFox">
+    <meta property="article:tag" content="OS X">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Playing With userContent.css">
+    <meta name="twitter:description" content="Here in China the fact that some websites just are never available (e.g. facebook, youtube, twitter, google+, hulu, etc…) and some sites get blocked intermittently depending on what you’re searching for is a constant source of frustration for...">
+    <meta name="twitter:url" content="http://www.iyware.com/playing-with-usercontent-css/">
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "iyWare",
+    "author": {
+        "@type": "Person",
+        "name": "Danny Wahl",
+        "url": "http://www.iyware.com/author/danny",
+        "sameAs": null
+    },
+    "headline": "Playing With userContent.css",
+    "url": "http://www.iyware.com/playing-with-usercontent-css/",
+    "datePublished": "2011-11-04T21:11:56.000Z",
+    "dateModified": "2013-10-08T21:00:31.000Z",
+    "keywords": "CSS, FireFox, OS X",
+    "description": "Here in China the fact that some websites just are never available (e.g. facebook, youtube, twitter, google+, hulu, etc…) and some sites get blocked intermittently depending on what you’re searching for is a constant source of frustration for..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.5">
+    <link rel="alternate" type="application/rss+xml" title="iyWare" href="http://www.iyware.com/rss/">
+</head>
+<body class="post-template tag-css tag-firefox tag-os-x">
+
+    
+
+
+<header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        <a class="back-button icon-arrow-left" href="http://www.iyware.com">Home</a>
+        <a class="subscribe-button icon-feed" href="http://www.iyware.com/rss/">Subscribe</a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post tag-css tag-firefox tag-os-x">
+
+        <header class="post-header">
+            <h1 class="post-title">Playing With userContent.css</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2011-11-05">05 November 2011</time>  on <a href="../tag/css/">CSS</a>, <a href="../tag/firefox/">FireFox</a>, <a href="../tag/os-x/">OS X</a>
+            </section>
+        </header>
+
+        <section class="post-content">
+            <p>Here in China the fact that some websites just are never available (e.g. facebook, youtube, twitter, google+, hulu, <a href="http://en.wikipedia.org/wiki/List_of_websites_blocked_in_the_People%27s_Republic_of_China">etc…</a>) and some sites get blocked intermittently depending on what you’re <a href="http://en.wikipedia.org/wiki/List_of_words_censored_by_search_engines_in_the_People%27s_Republic_of_China">searching for</a> is a constant source of frustration for me. My typical day looks like this:</p>
+
+<ol>
+<li>Need to look something up  </li>
+<li>type google.com  </li>
+<li>connection reset  </li>
+<li>type bing.com and enter search criteria  </li>
+<li>open results in new page  </li>
+<li>results pages have connection reset  </li>
+<li>type yahoo.com and enter search  </li>
+<li>I never find what I’m looking for with yahoo  </li>
+<li>give up and try again later</li>
+</ol>
+
+<p>So one day I decided that I needed to give myself a little pick-me-up as I was contemplating throwing my laptop across the room. So off I went to figure out how to edit the connection reset page in Firefox. Turns out that it all comes down to userContent.css, so let’s dive in. The first thing I did was find an image I wanted to plaster all over that boring info box, save it and then call it.</p>
+
+<p>On OS X userContent.css can be found in your user library (specifically ~/Library/Application Support/Firefox/Profiles/[RANDOMSTRING].default/chrome/ where [RANDOMSTRING] is a… you guessed it, random string of characters). The first thing to do is copy userContent-example.css to userContent.css. The second step is to start hacking away. I found some threads over at the Mozilla developer forums that said that it doesn’t support local images, but guess what? It does! Anyways here’s what I added to mine:</p>
+
+<p>Vendor prefixes in <em>my</em> CSS? Well I guess this is just for Firefox so I’ll let it slide this time. And here’s what it looks like:</p>
+
+<p></p><div class="gallery galleryid-406 gallery-columns-2 gallery-size-thumbnail" id="gallery-7"><figure class="gallery-item"><div class="gallery-icon landscape"><a href="../content/images/import/userContent-before.png"><img src="../content/images/import/userContent-before-300x300.png" alt="userContent-before" title=""></a></div></figure><figure class="gallery-item"><div class="gallery-icon landscape"><a href="../content/images/import/userContent-after.png"><img src="../content/images/import/userContent-after-300x300.png" alt="userContent-after" title=""></a></div></figure></div>Now I know what you’re thinking: How the heck did you come up with <code>@-moz-document url-prefix(about:neterror?e=netReset)</code> so that you could do that hilarious thing you did? Well I didn’t. I found it somewhere else, and if I could remember where, I’d link to it, but I’m going to guess it was at <a href="http://www-archive.mozilla.org/unix/customizing.html#userContent">Mozilla</a> because that page is purple in my Google search results for “<a href="http://www.google.com/#hl=en&amp;sugexp=kjrmc&amp;cp=10&amp;gs_id=1p&amp;xhr=t&amp;q=userContent.css&amp;pf=p&amp;sclient=psy-ab&amp;safe=off&amp;source=hp&amp;pbx=1&amp;oq=userConten&amp;aq=0&amp;aqi=g4&amp;aql=f&amp;gs_sm=&amp;gs_upl=&amp;bav=on.2,or.r_gc.r_pw.,cf.osb&amp;fp=25f1a21493d5da43&amp;biw=1226&amp;bih=677">UserContent.css</a>” but to spare you the trouble of having to try to figure out the other error codes (should you want to mess with them too) here’s the rest:
+        </section>
+
+        <footer class="post-footer">
+
+
+
+            <section class="author">
+                <h4><a href="../author/danny/">Danny Wahl</a></h4>
+
+                    <p>Read <a href="../author/danny/">more posts</a> by this author.</p>
+                <div class="author-meta">
+                    
+                    
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/share?text=Playing%20With%20userContent.css&amp;url=http://www.iyware.com/playing-with-usercontent-css/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://www.iyware.com/playing-with-usercontent-css/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://www.iyware.com/playing-with-usercontent-css/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+        </footer>
+
+    </article>
+
+</main>
+
+
+
+    <footer class="site-footer clearfix">
+         <section class="copyright"><a href="http://www.iyware.com">iyWare</a> © 2015</section>
+         <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
+    </footer>
+
+    <script src="../public/jquery.js?v=c7bfc3f1e8"></script>
+
+    <script type="text/javascript" src="../assets/js/jquery.fitvids.js?v=c7bfc3f1e8"></script>
+    <script type="text/javascript" src="../assets/js/index.js?v=c7bfc3f1e8"></script>
+
+</body>

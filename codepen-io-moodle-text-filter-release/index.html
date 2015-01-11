@@ -1,0 +1,157 @@
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>CodePen.io Moodle Text Filter Release</title>
+    <meta name="description" content="">
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.css?v=c7bfc3f1e8">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic%7COpen+Sans:700,400">
+
+    <link rel="canonical" href="http://www.iyware.com/codepen-io-moodle-text-filter-release/">
+    
+    <meta property="og:site_name" content="iyWare">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="CodePen.io Moodle Text Filter Release">
+    <meta property="og:description" content="Syntax highlighting is hard. So is porting a syntax highlighter from platform to platform. So we thought, “Why not be lazy?” Bam. Introducing the CodePen.io Moodle Text Filter – for the lazy man (or woman). This plugin converts any Pen...">
+    <meta property="og:url" content="http://www.iyware.com/codepen-io-moodle-text-filter-release/">
+    <meta property="article:published_time" content="2014-02-13T20:44:33.000Z">
+    <meta property="article:modified_time" content="2014-02-13T20:57:04.000Z">
+    <meta property="article:tag" content="Codecademy">
+    <meta property="article:tag" content="Codepen">
+    <meta property="article:tag" content="Plugin">
+    <meta property="article:tag" content="Syntax Highlight">
+    <meta property="article:tag" content="Text Filter">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="CodePen.io Moodle Text Filter Release">
+    <meta name="twitter:description" content="Syntax highlighting is hard. So is porting a syntax highlighter from platform to platform. So we thought, “Why not be lazy?” Bam. Introducing the CodePen.io Moodle Text Filter – for the lazy man (or woman). This plugin converts any Pen...">
+    <meta name="twitter:url" content="http://www.iyware.com/codepen-io-moodle-text-filter-release/">
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "iyWare",
+    "author": {
+        "@type": "Person",
+        "name": "Danny Wahl",
+        "url": "http://www.iyware.com/author/danny",
+        "sameAs": null
+    },
+    "headline": "CodePen.io Moodle Text Filter Release",
+    "url": "http://www.iyware.com/codepen-io-moodle-text-filter-release/",
+    "datePublished": "2014-02-13T20:44:33.000Z",
+    "dateModified": "2014-02-13T20:57:04.000Z",
+    "keywords": "Codecademy, Codepen, Plugin, Syntax Highlight, Text Filter",
+    "description": "Syntax highlighting is hard. So is porting a syntax highlighter from platform to platform. So we thought, “Why not be lazy?” Bam. Introducing the CodePen.io Moodle Text Filter – for the lazy man (or woman). This plugin converts any Pen..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.5">
+    <link rel="alternate" type="application/rss+xml" title="iyWare" href="http://www.iyware.com/rss/">
+</head>
+<body class="post-template tag-codecademy tag-codepen tag-plugin tag-syntax-highlight tag-text-filter">
+
+    
+
+
+<header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        <a class="back-button icon-arrow-left" href="http://www.iyware.com">Home</a>
+        <a class="subscribe-button icon-feed" href="http://www.iyware.com/rss/">Subscribe</a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post tag-codecademy tag-codepen tag-plugin tag-syntax-highlight tag-text-filter">
+
+        <header class="post-header">
+            <h1 class="post-title">CodePen.io Moodle Text Filter Release</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2014-02-14">14 February 2014</time>  on <a href="../tag/codecademy/">Codecademy</a>, <a href="../tag/codepen/">Codepen</a>, <a href="../tag/plugin/">Plugin</a>, <a href="../tag/syntax-highlight/">Syntax Highlight</a>, <a href="../tag/text-filter/">Text Filter</a>
+            </section>
+        </header>
+
+        <section class="post-content">
+            <p>Syntax highlighting is hard. So is porting a syntax highlighter from platform to platform. So we thought, “Why not be lazy?” Bam. Introducing the <a href="http://codepen.io" title="Contact">CodePen.io</a> Moodle Text Filter – for the lazy man (or woman). This plugin converts any Pen URL into an embed of that Pen.</p>
+
+<p>Here’s a brief overview of what we’re talking about. Put some text into the ol’ text editor, and if it contains a link to a Pen (i.e. /pen/) the filter will embed the Pen.</p>
+
+<p><img src="../content/images/import/1.png" alt="codepentexteditor"></p>
+
+<p>Notice that in the above image the first two lines are both a Pen URL, but look at the output:</p>
+
+<p><img src="../content/images/import/2.png" alt="renderedpen"></p>
+
+<p>Only the first one was embedded. That’s because a <em>link</em> to a pen is escaped by the filter. The third line wasn’t converted because it isn’t a link to a Pen, it is a link to the details page. The fourth line wasn’t converted because, I don’t really have to explain it do I? What kind of terrible online course is this anyways?</p>
+
+<p>For any users that have JavaScript disabled… stop it! I mean, we provide a nice fall back:</p>
+
+<p><img src="../content/images/import/3.png" alt="dudejustturnonJS"></p>
+
+<p>So that they can click the link to the Pen… and CodePen.io will tell them they need JavaScript to view it. Hooray!</p>
+
+<p>Well, that’s about it. One final note, if you have the “Convert URLS to links and images” enabled on your Moodle you’ll need to prioritize the CodePen filter otherwise they’ll all be escaped and I’ll get angry comments about our plugin being broken.</p>
+
+<p><img src="../content/images/import/4.png" alt="fixurfilters"></p>
+
+<p>Also, consider getting a Pro plan at CodePen – I did, and I use it daily in my classroom. It’s awesome. We even have a “Fun = CodePen + Codecademy + Moodle;” post coming soon on using those tools to teach HTML JavaScript.</p>
+
+<p>Go <a href="https://moodle.org/plugins/view.php?plugin=filter_codepen">grab the filter</a> from the Moodle Plugins Directory.</p>
+        </section>
+
+        <footer class="post-footer">
+
+
+
+            <section class="author">
+                <h4><a href="../author/danny/">Danny Wahl</a></h4>
+
+                    <p>Read <a href="../author/danny/">more posts</a> by this author.</p>
+                <div class="author-meta">
+                    
+                    
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/share?text=CodePen.io%20Moodle%20Text%20Filter%20Release&amp;url=http://www.iyware.com/codepen-io-moodle-text-filter-release/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://www.iyware.com/codepen-io-moodle-text-filter-release/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://www.iyware.com/codepen-io-moodle-text-filter-release/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+        </footer>
+
+    </article>
+
+</main>
+
+
+
+    <footer class="site-footer clearfix">
+         <section class="copyright"><a href="http://www.iyware.com">iyWare</a> © 2015</section>
+         <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
+    </footer>
+
+    <script src="../public/jquery.js?v=c7bfc3f1e8"></script>
+
+    <script type="text/javascript" src="../assets/js/jquery.fitvids.js?v=c7bfc3f1e8"></script>
+    <script type="text/javascript" src="../assets/js/index.js?v=c7bfc3f1e8"></script>
+
+</body>

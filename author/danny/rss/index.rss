@@ -1,0 +1,862 @@
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Danny Wahl - iyWare</title><description>Things I Break</description><link>http://www.iyware.com/</link><generator>Ghost 0.5</generator><lastBuildDate>Sun, 11 Jan 2015 07:29:49 GMT</lastBuildDate><atom:link href="http://www.iyware.com/author/danny/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Moving</title><description>&lt;p&gt;Crazy things happening right now. You may notice this website looks very broken. Well, that’s just because I’m in the process of moving from a hosted version of WordPress to something a lot more nerdy:&lt;/p&gt;
+
+&lt;p&gt;A local &lt;a href="http://ghost.org/"&gt;ghost&lt;/a&gt; exported to static HTML via &lt;a href="https://github.com/axitkhurana/buster"&gt;buster&lt;/a&gt; (a la &lt;a href="http://jekyllrb.com/"&gt;jekyll&lt;/a&gt;) and then pushed to &lt;a href="https://pages.github.com/"&gt;github pages&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Until then, this site’s gonna look a little broken, oh well :(&lt;/p&gt;</description><link>http://www.iyware.com/moving/</link><guid isPermaLink="false">d80a404b-304a-41ac-afc0-fcf64e978200</guid><dc:creator>Danny Wahl</dc:creator><pubDate>Fri, 09 Jan 2015 13:46:30 GMT</pubDate></item><item><title>Nexus5 Stock Lollipop Root How-To</title><description>&lt;p&gt;I just got my new &lt;a href="http://www.google.com/nexus/5/"&gt;Nexus 5&lt;/a&gt;, upgrading from my now almost 3 year old &lt;a href="http://en.wikipedia.org/wiki/Galaxy_Nexus"&gt;Galaxy Nexus&lt;/a&gt;. I got a good deal on the Galaxy Nexus because I bought it well after the &lt;a href="http://en.wikipedia.org/wiki/Nexus_4"&gt;Nexus 4&lt;/a&gt; was released and the price had dropped significantly. Unfortunately because of Google’s marketing strategy with the &lt;a href="http://www.google.com/nexus/6/"&gt;Nexus 6&lt;/a&gt; that didn’t happen this time; the prices for the Nexus 5 have remained pretty steady. But I needed (wanted) a new phone, so I bought it.&lt;/p&gt;
+
+&lt;p&gt;Unfortunately the Nexus 5 I received shipped with Android 4.4.x and I knew that 5.0 was available. I didn’t really want to do an upgrade immediately after setting up the phone, so I decided it would be best to flash the factory image since I have no data to lose. When I went to the &lt;a href="http://forum.xda-developers.com/google-nexus-5"&gt;Nexus 5 section&lt;/a&gt; of XDA-Developers I was a little disappointed. I just wanted a rooted, stock Lollipop ROM, but didn’t find one. In addition a lot of the toolkits etc… seemed a little dated. The last thing I wanted to do was download toolkits and then be manually updating components (roms, recoveries, root, etc…) so I decided to just do it myself. It was all pretty easy, so here’s the process I used, getting all the files directly from the sources, you can copy and paste these commands into your terminal and have your phone up and running pretty quickly- depending on your internet connection speed.&lt;/p&gt;
+
+&lt;p&gt;brew install wget brew install android-platform-tools cd ~/Desktop mkdir nexus5 cd nexus5 wget &lt;a href="http://download.chainfire.eu/636/SuperSU/UPDATE-SuperSU-v2.37.zip"&gt;http://download.chainfire.eu/636/SuperSU/UPDATE-SuperSU-v2.37.zip&lt;/a&gt; -O supersu.zip wget &lt;a href="http://techerrata.com/file/twrp2/hammerhead/openrecovery-twrp-2.8.2.0-hammerhead.img"&gt;http://techerrata.com/file/twrp2/hammerhead/openrecovery-twrp-2.8.2.0-hammerhead.img&lt;/a&gt; -O recovery.img wget &lt;a href="https://dl.google.com/dl/android/aosp/hammerhead-lrx21o-factory-01315e08.tgz"&gt;https://dl.google.com/dl/android/aosp/hammerhead-lrx21o-factory-01315e08.tgz&lt;/a&gt; -O lollipop.tgz # PLUG IN YOUR DEVICE NOW # tar zxvf lollipop.tgz cd hammerhead-lrx21o adb reboot-bootloader fastboot oem unlock sh flash-all.sh # if it reboots, go back to bootloader # adb reboot-bootloader cd .. fastboot flash recovery recovery.img fastboot reboot adb push supersu.zip /sdcard/0/ adb reboot-bootloader # now boot recovery and install superSU zip, done!&lt;/p&gt;
+
+&lt;p&gt;The process is pretty simple: download root, TWRP, and the stock lollipop ROM. Flash the ROM, flash recovery, reboot the device, push the root zip, and reboot to fastboot. You’ll still need to manually flash SuperSU zip in TWRP, but that’s it. No messing with broken rapidshare links, no messing with outdated toolkits, just a nice rooted ROM.&lt;/p&gt;</description><link>http://www.iyware.com/nexus5-stock-lollipop-root/</link><guid isPermaLink="false">43e6a11f-85a0-4114-8b8a-67c237bd26bb</guid><category>Homebrew</category><category>Lollipop</category><category>Nexus5</category><category>SuperSU</category><category>TWRP</category><dc:creator>Danny Wahl</dc:creator><pubDate>Fri, 12 Dec 2014 08:41:50 GMT</pubDate></item><item><title>Yosemite MAMP Homebrew Dev Setup, Part 2</title><description>&lt;p&gt;In my previous post &lt;a href="http://www.iyware.com/osx-yosemite-mamp-homebrew-development-setup/" title="OS X 10.10 Yosemite, Apache, MySQL, PHP 5.6, (MAMP) Homebrew Dev Setup"&gt;OS X 10.10 Yosemite, Apache, MySQL, PHP 5.6, (MAMP) Homebrew Dev Setup&lt;/a&gt; I covered a lot. Like a lot a lot, but by the end of the post all we had really accomplished was installing the basic building blocks of a development server, namely: Apache, MySQL, and PHP. In this post we’ll take those components and turn them into a sweet development workflow.&lt;/p&gt;
+
+&lt;h2 id="updatingbrew"&gt;Updating Brew&lt;/h2&gt;
+
+&lt;p&gt;Everyone loves running &lt;code&gt;brew update &amp;amp;&amp;amp; brew upgrade&lt;/code&gt; just to see what’s been updated. It’s a seriously &lt;a href="https://github.com/Homebrew/homebrew/commits/master/Library/Formula"&gt;busy repo&lt;/a&gt;, but it’s easy to forget to do and then your versions languish. Fortunately for us &lt;a href="http://mkalmes.net/"&gt;Mark Kalmes&lt;/a&gt; wrote a LaunchAgent plist for us called, aptly, &lt;a href="http://mkalmes.net/2012/01/02/brewupdate-a-launchd-agent-for-automatic-homebrew-formulae-updates.html"&gt;brewupdate&lt;/a&gt;. We’re going to grab the latest version and install it.&lt;/p&gt;
+
+&lt;p&gt;curl &lt;a href="https://raw.githubusercontent.com/mkalmes/brewupdate/develop/net.mkalmes.brewupdate.plist"&gt;https://raw.githubusercontent.com/mkalmes/brewupdate/develop/net.mkalmes.brewupdate.plist&lt;/a&gt; &gt; ~/Library/LaunchAgents/net.mkalmes.brewupdate.plist launchctl load ~/Library/LaunchAgents/net.mkalmes.brewupdate.plist&lt;/p&gt;
+
+&lt;p&gt;The first line downloads the latest version straight from github to the user-space LaunchAgents folder. The second line loads it. You can edit the file and change when it updates, the default is 11 AM (local time zone). I changed mine to 8 AM because I like to start the day with a fresh brew (ha ha.)&lt;/p&gt;
+
+&lt;p&gt;&lt;key&gt;StartCalendarInterval&lt;/key&gt;&lt;dict&gt;&lt;key&gt;Hour&lt;/key&gt;&lt;integer&gt;8&lt;/integer&gt;&lt;key&gt;Minute&lt;/key&gt;&lt;integer&gt;0&lt;/integer&gt;&lt;/dict&gt;&lt;/p&gt;
+
+&lt;p&gt;Just don’t forget to run &lt;code&gt;brew upgrade&lt;/code&gt; yourself occasionally. You could make another LaunchAgent by changing the parameter from &lt;code&gt;update&lt;/code&gt; to &lt;code&gt;upgrade&lt;/code&gt;, but I really don’t like unattended upgrades as much as updates.&lt;/p&gt;
+
+&lt;h2 id="apache2documentroot"&gt;Apache 2: DocumentRoot&lt;/h2&gt;
+
+&lt;p&gt;That’s a clever title, you see we’re &lt;em&gt;running&lt;/em&gt; Apache HTTPD 2, and at the same time this is part 2 of the Apache section… Anyways, at the end of Part 1 Apache was running on port 80 like a champ. The DocumentRoot is set to something ridiculous like &lt;code&gt;/usr/local/var/www/htdocs&lt;/code&gt; which is pretty freaking inconvenient.&lt;/p&gt;
+
+&lt;p&gt;First we need to create our /Sites folder and we’ll still keep our web documents inside of that folder.&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;mkdir ~/Sites ~/Sites/htdocs&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Then edit your &lt;code&gt;/usr/local/etc/apache2/2.4/httpd.conf&lt;/code&gt; file and change the DocumentRoot directive, as well as accompanying Directory declaration to match your new htdocs location:&lt;/p&gt;
+
+&lt;p&gt;DocumentRoot "/Users/USERNAME/Sites/htdocs" &lt;directory&gt;&lt;/directory&gt;&lt;/p&gt;
+
+&lt;p&gt;Obviously replace &lt;code&gt;USERNAME&lt;/code&gt; with your username’s folder name. Then inside of that directory declaration we’re going to change some of the default Apache values to be more permissive:&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:apache decode:true  crayon-inline "&gt;Options All MultiViews&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:apache decode:true  crayon-inline "&gt;AllowOverride All&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;This is given with the usual caveat that OF COURSE you would never default everything like this on a production server- but on a development server there’s generally not much security implication (unless you’re playing with live data!). My full DocumentRoot section looks like this:&lt;/p&gt;
+
+&lt;p&gt;DocumentRoot "/Users/dannywahl/Sites/htdocs" &lt;directory&gt; # # Possible values for the Options directive are "None", "All", # or any combination of: # Indexes Includes FollowSymLinks SymLinksifOwnerMatch ExecCGI MultiViews # # Note that "MultiViews" must be named &lt;em&gt;explicitly&lt;/em&gt; --- "Options All" # doesn't give it to you. # # The Options directive is both complicated and important. Please see # &lt;a href="http://httpd.apache.org/docs/2.4/mod/core.html#options"&gt;http://httpd.apache.org/docs/2.4/mod/core.html#options&lt;/a&gt; # for more information. # Options All MultiViews # # AllowOverride controls what directives may be placed in .htaccess files. # It can be "All", "None", or any combination of the keywords: # AllowOverride FileInfo AuthConfig Limit # AllowOverride All # # Controls who can get stuff from this server. # Require all granted &lt;/directory&gt;&lt;/p&gt;
+
+&lt;p&gt;Now, restart your httpd daemon:&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;sudo httpd -k restart&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;If you didn’t use &lt;code&gt;--with-privileged-ports&lt;/code&gt; when you installed Apache then you don’t need root. Now when you visit &lt;a href="http://localhost/"&gt;http://localhost&lt;/a&gt; you should just get a blank directory listing instead of the default “It Works!” page. Let’s put a test page there. First let’s create a sub-directory in our /Sites folder called &lt;code&gt;phpinfo.localhost&lt;/code&gt; (more on the &lt;code&gt;.&lt;/code&gt; later).&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;mkdir ~/Sites/phpinfo.localhost&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Now let’s create a page that calls the &lt;code&gt;phpinfo();&lt;/code&gt; function and place it in that folder. if you don’t know about &lt;a href="http://cn2.php.net/manual/en/function.phpinfo.php"&gt;phpinfo()&lt;/a&gt; it’s a simple function that outputs a page that shows you information about your PHP configuration.&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;printf ‘&lt;?php phpinfo(); ??&gt; &lt;br&gt;
+‘ &gt;&gt; ~/Sites/htdocs/phpinfo.localhost/index.php&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Now you should be able to visit &lt;code&gt;http://localhost/phpinfo.localhost/&lt;/code&gt; and see the overview of your PHP configuration. That’s it for now for Apache, let’s move on to MySQL.&lt;/p&gt;
+
+&lt;h2 id="mysql"&gt;MySQL&lt;/h2&gt;
+
+&lt;p&gt;In the first post we simply installed MySQL and set a root password. It’s good to have a password because some authentication APIs require one, but we’re not necessarily using it for security (otherwise we wouldn’t be using root), so we’re going to save our authentication in a my.cnf &lt;a href="http://dev.mysql.com/doc/refman/5.1/en/option-files.html"&gt;options file&lt;/a&gt;. Homebrew provides us with a sample file, but it’s not symlinked by default so we’re going to copy it to an available configuration folder and since MySQL is running in user-space, we will override the configuration at the user-space level:&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;cp -v $(brew –prefix mysql)/support-files/my-default.cnf ~/.my.cnf&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Now we have our config override, let’s have it auto-save our credentials.&lt;/p&gt;
+
+&lt;p&gt;cat &gt; ~/.my.cnf [client] user=root password=PASS [mysql] user=root password=PASS [mysqldump] user=root password=PASS [mysqldiff] user=root password=PASS EOF&lt;/p&gt;
+
+&lt;p&gt;Replace “PASS” with your root MySQL password. If you have special characters in your password, which you shouldn’t, add double quotes around the password. Now you can connect to mysql without having to manually authenticate.&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;mysql -u root&lt;/span&gt;&lt;/p&gt;
+
+&lt;h2 id="phpmyadmin"&gt;phpmyadmin&lt;/h2&gt;
+
+&lt;p&gt;Finally we’re going to install everyone’s favorite database manager, &lt;a href="http://www.phpmyadmin.net/home_page/index.php"&gt;phpmyadmin&lt;/a&gt;. Again, we’ll be using homebrew to install it.&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;brew install phpmyadmin&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;After a successful installation you will get a caveat about adding a directory alias to your httpd configuration to enable phpmyadmin, but we’re not going to do that we’re going to &lt;a href="http://en.wikipedia.org/wiki/Symbolic_link"&gt;symlink&lt;/a&gt; it to to our ~/Sites directory.&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;ln -s /usr/local/share/phpmyadmin ~/Sites/htdocs/phpmyadmin.localhost &lt;br&gt;
+&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;This will create a symbolic link in your webroot called phpmyadmin.localhost that takes you to /usr/local/share/phpmyadmin (which itself is a symlink to the Cellar). The benefit here is you don’t need to restart Apache, and again we’ll go over it later but the .localhost is important.&lt;/p&gt;
+
+&lt;p&gt;Now that phpmyadmin is installed, we need to configure it. First we’ll import the phpmyadmin linked tabled &lt;a href="http://docs.phpmyadmin.net/en/latest/setup.html#linked-tables"&gt;configuration storage&lt;/a&gt; via commandline:&lt;/p&gt;
+
+&lt;p&gt;mysql -u root -e 'CREATE DATABASE IF NOT EXISTS &lt;code&gt;phpmyadmin&lt;/code&gt;;' mysql -u root phpmyadmin Once the tables are imported open your phpmyadmin config file located at &lt;code&gt;/usr/local/etc/phpmyadmin.config.inc.php&lt;/code&gt; and you're going to do a few things:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="http://www.question-defense.com/tools/phpmyadmin-blowfish-secret-generator"&gt;generate a blowfish secret&lt;/a&gt;  &lt;/li&gt;
+&lt;li&gt;Set your &lt;code&gt;controluser&lt;/code&gt; and &lt;code&gt;controlpass&lt;/code&gt; (I use root again)  &lt;/li&gt;
+&lt;li&gt;Uncomment the storage database and tables section&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;In the end your blowfish and servers configuration sections should look something like this:&lt;/p&gt;
+
+&lt;p&gt;$cfg['blowfish&lt;em&gt;secret'] = 'y=PUY@-GleE+~%OiGQVz#)N4I)@Q%Ug&lt;/em&gt;Jr[DxF'; /* YOU MUST FILL IN THIS FOR COOKIE AUTH! &lt;em&gt;/ /&lt;/em&gt; * Servers configuration &lt;em&gt;/ $i = 0; /&lt;/em&gt; * First server &lt;em&gt;/ $i++; /&lt;/em&gt; Authentication type &lt;em&gt;/ $cfg['Servers'][$i]['auth_type'] = 'cookie'; /&lt;/em&gt; Server parameters &lt;em&gt;/ $cfg['Servers'][$i]['host'] = '127.0.0.1'; $cfg['Servers'][$i]['connect_type'] = 'tcp'; $cfg['Servers'][$i]['compress'] = false; $cfg['Servers'][$i]['AllowNoPassword'] = false; /&lt;/em&gt; * phpMyAdmin configuration storage settings. &lt;em&gt;/ /&lt;/em&gt; User used to manipulate with storage &lt;em&gt;/ // $cfg['Servers'][$i]['controlhost'] = ''; // $cfg['Servers'][$i]['controlport'] = ''; $cfg['Servers'][$i]['controluser'] = 'root'; $cfg['Servers'][$i]['controlpass'] = 'root'; /&lt;/em&gt; Storage database and tables &lt;em&gt;/ $cfg['Servers'][$i]['pmadb'] = 'phpmyadmin'; $cfg['Servers'][$i]['bookmarktable'] = 'pma&lt;strong&gt;bookmark'; $cfg['Servers'][$i]['relation'] = 'pma&lt;/strong&gt;relation'; $cfg['Servers'][$i]['table_info'] = 'pma&lt;strong&gt;table_info'; $cfg['Servers'][$i]['table_coords'] = 'pma&lt;/strong&gt;table_coords'; $cfg['Servers'][$i]['pdf_pages'] = 'pma&lt;strong&gt;pdf_pages'; $cfg['Servers'][$i]['column_info'] = 'pma&lt;/strong&gt;column_info'; $cfg['Servers'][$i]['history'] = 'pma&lt;strong&gt;history'; $cfg['Servers'][$i]['table_uiprefs'] = 'pma&lt;/strong&gt;table_uiprefs'; $cfg['Servers'][$i]['tracking'] = 'pma&lt;strong&gt;tracking'; $cfg['Servers'][$i]['designer_coords'] = 'pma&lt;/strong&gt;designer_coords'; $cfg['Servers'][$i]['userconfig'] = 'pma&lt;strong&gt;userconfig'; $cfg['Servers'][$i]['recent'] = 'pma&lt;/strong&gt;recent'; $cfg['Servers'][$i]['favorite'] = 'pma&lt;strong&gt;favorite'; $cfg['Servers'][$i]['users'] = 'pma&lt;/strong&gt;users'; $cfg['Servers'][$i]['usergroups'] = 'pma&lt;strong&gt;usergroups'; $cfg['Servers'][$i]['navigationhiding'] = 'pma&lt;/strong&gt;navigationhiding'; $cfg['Servers'][$i]['savedsearches'] = 'pma__savedsearches'; /&lt;/em&gt; Contrib / Swekey authentication &lt;em&gt;/ // $cfg['Servers'][$i]['auth_swekey_config'] = '/etc/swekey-pma.conf'; /&lt;/em&gt; * End of servers configuration */&lt;/p&gt;
+
+&lt;p&gt;You might notice that I changed my host to "127.0.0.1" from "localhost". By default /etc/hosts should resolve localhost to 127.0.0.1 so it shouldn't trigger a DNS lookup, but by changing it to an IP address you'll never have that happen because there are ways to inadvertently send lookups to your machine DNS for localhost. Again, this is not necessary. After saving your phpmyadmin configuration you should be able to visit the page at &lt;code&gt;http://localhost/phpmyadmin.localhost&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id="dnsmasq"&gt;dnsmasq&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href="http://www.thekelleys.org.uk/dnsmasq/doc.html"&gt;Dnsmasq&lt;/a&gt; is a lightweight DNS/DHCP server which can be installed and serve DNS for addresses that aren't in the &lt;a href="http://en.wikipedia.org/wiki/Global_Namespace"&gt;global namespace&lt;/a&gt;. We'll be installing dnsmasq via homebrew and configuring it, along with Apache to serve sites on &lt;a href="http://en.wikipedia.org/wiki/Top-level_domain#Reserved_domains"&gt;reserved TLDs&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;brew install dnsmasq&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Once dnsmasq is installed we need to copy a configuration profile, edit it, and then load the daemon. First we'll copy a provided configuration:&lt;/p&gt;
+
+&lt;p&gt;cp /usr/local/opt/dnsmasq/dnsmasq.conf.example /usr/local/etc/dnsmasq.conf printf '\naddress=/localhost/127.0.0.1' &gt;&gt; /usr/local/etc/dnsmasq.conf sudo cp -fv /usr/local/opt/dnsmasq/*.plist /Library/LaunchDaemons sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist&lt;/p&gt;
+
+&lt;p&gt;Effectively we are telling dnsmasq to resolve all .localhost domains to 127.0.0.1 and setting it to run the daemon at the machine level (with Apache). So you can now try to ping any .localhost domain and it will resolve to 127.0.0.1:&lt;/p&gt;
+
+&lt;p&gt;ping -c 1 thisdoesntexist.localhost PING thisdoesntexist.localhost (127.0.0.1): 56 data bytes 64 bytes from 127.0.0.1: icmp_seq=0 ttl=64 time=0.029 ms --- thisdoesntexist.localhost ping statistics --- 1 packets transmitted, 1 packets received, 0.0% packet loss round-trip min/avg/max/stddev = 0.029/0.029/0.029/0.000 ms&lt;/p&gt;
+
+&lt;p&gt;Obviously trying to visit &lt;a href="http://thisdoesntexit.localhost/"&gt;http://thisdoesntexit.localhost&lt;/a&gt; won't work because Apache isn't configured to handle requests to that address, yet. There are two different ways to configure this, the first is to create a vhost entry for every domain you want to use, the second is to enable &lt;a href="http://httpd.apache.org/docs/2.2/mod/mod_vhost_alias.html"&gt;mod&lt;em&gt;vhost&lt;/em&gt;alias&lt;/a&gt;- which is what we'll do now.&lt;/p&gt;
+
+&lt;h2 id="mod_vhost_alias"&gt;mod&lt;em&gt;vhost&lt;/em&gt;alias&lt;/h2&gt;
+
+&lt;p&gt;Mod_vhost_alias is an Apache module that let's you do pattern matching from a request URL to a directory structure, there are lots of cool examples at the documentation site- but the one we want is pretty straight forward. Open your httpd.conf file (in /usr/local/etc/apache2/2.4/) and uncomment the mod&lt;em&gt;vhost&lt;/em&gt;alias module&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:apache decode:true  crayon-inline "&gt;LoadModule vhost&lt;em&gt;alias&lt;/em&gt;module libexec/mod&lt;em&gt;vhost&lt;/em&gt;alias.so&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;then in terminal we'll configure vhost&lt;em&gt;alias&lt;/em&gt;module:&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;printf '\nUseCanonicalName Off\nVirtualDocumentRoot /Users/USERNAME/Sites/htdocs/%%0' &gt;&gt; /usr/local/etc/apache2/2.4/httpd.conf&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;And finally restart the httpd daemon:&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;sudo httpd -k restart&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;The end result is that now every folder that ends in .localhost in your ~/Sites/htdocs/ folder is accessible as a &lt;a href="http://en.wikipedia.org/wiki/Fully_qualified_domain_name"&gt;FQDN&lt;/a&gt;. Go back to your browser and now you can visit &lt;a href="http://phpinfo.localhost/"&gt;http://phpinfo.localhost&lt;/a&gt; and &lt;a href="http://phpmyadmin.localhost/"&gt;http://phpmyadmin.localhost&lt;/a&gt; If you create another folder inside of htdocs that ends in .localhost it will be available in your dev environment as a standalone domain. Here's a couple of examples of how that could be useful:&lt;/p&gt;
+
+&lt;p&gt;Say you want a standalone domain of wordpress:&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;git clone git@github.com:WordPress/WordPress.git ~/Sites/htdocs/wordpress.localhost&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;What about multiple branches of drupal on standalone domains? Let's make &lt;code&gt;http://drupal6.localhost&lt;/code&gt; and &lt;code&gt;http://drupal7.localhost&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;git clone git@github.com:drupal/drupal.git --branch 6.x --single-branch ~/Sites/htdocs/drupal6.localhost git clone git@github.com:drupal/drupal.git --branch 7.x --single-branch ~/Sites/htdocs/drupal7.localhost&lt;/p&gt;
+
+&lt;p&gt;As another example, how about a single domain with multiple moodle instances in sub-directories like &lt;code&gt;http://moodle.localhost/26&lt;/code&gt; and &lt;code&gt;http://moodle.localhost/27&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;mkdir ~/Sites/htdocs/moodle git clone git@github.com:moodle/moodle.git --branch MOODLE&lt;em&gt;26&lt;/em&gt;STABLE --single-branch ~/Sites/htdocs/moodle/26 git clone git@github.com:moodle/moodle.git --branch MOODLE&lt;em&gt;27&lt;/em&gt;STABLE --single-branch ~/Sites/htdocs/moodle/27&lt;/p&gt;
+
+&lt;h3 id="wrappingup"&gt;Wrapping Up&lt;/h3&gt;
+
+&lt;p&gt;So there you go! Mac OS X with brewed versions of important stuff like openssl and git, Apache 2.4, MySQL, and PHP 5.6 and a killer setup using mod&lt;em&gt;vhost&lt;/em&gt;alias and dnsmasq to provision .localhost domains on the fly. Of course there are a million ways to dev from here, but this is a pretty solid foundation.&lt;/p&gt;
+
+&lt;p&gt;If you need help with educational technology in your institution, from strategic planning, to implementation, to technical support contact us and we can help get you on the path to success.&lt;/p&gt;</description><link>http://www.iyware.com/yosemite-mamp-homebrew-dev-setup-part-2/</link><guid isPermaLink="false">9a641183-9430-493a-9294-b85129cefb68</guid><category>Apache</category><category>Development</category><category>dnsmasq</category><category>Homebrew</category><category>Moodle</category><category>MySQL</category><category>PHP</category><dc:creator>Danny Wahl</dc:creator><pubDate>Tue, 28 Oct 2014 19:39:48 GMT</pubDate></item><item><title>OS X 10.10 Yosemite, Apache, MySQL, PHP 5.6, (MAMP) Homebrew Dev Setup</title><description>&lt;h2 id="update"&gt;&lt;strong&gt;Update&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;A quick update, this was originally written for Yosemite Beta 1, XCode 6 Beta, and PHP56 RC1. Now that the official versions of all those are out, a lot of this post is unnecessary because, well, stable software is much more… stable. Who knew? Anyways, here’s a tl;dr for the stable version:&lt;/p&gt;
+
+&lt;h1 id="installhomebrewxcodeselectinstallrubyedcurlfsslhttpsrawgithubusercontentcomhomebrewinstallmasterinstallbrewdoctortapreposbrewtaphomebrewdupesbrewtaphomebrewversionsbrewtaphomebrewhomebrewphpbrewtaphomebrewapacheverifybrewupdatebrewupgrademacintoshbrewinstallgitbrewinstallopensslsshkeygentrsacemailaddressinvalidsshaddtsshid_rsaapachesudoapachectlstopsudolaunchctlunloadwsystemlibrarylaunchdaemonsorgapachehttpdplist2devnullbrewinstallhttpd24withprivilegedportswithbrewedsslsudocpvusrlocalcellarhttpd242410homebrewmxclhttpd24plistlibrarylaunchdaemonssudochownvrootwheellibrarylaunchdaemonshomebrewmxclhttpd24plistsudochmodv644librarylaunchdaemonshomebrewmxclhttpd24plistsudolaunchctlloadlibrarylaunchdaemonshomebrewmxclhttpd24plistsudohttpdkstartmysqlbrewinstallmysqllnsfvusrlocaloptmysqlplisttlibrarylaunchagentslaunchctlloadtlibrarylaunchagentshomebrewmxclmysqlplistmysqladminurootpasswordnewpasswordphpbrewinstallphp56homebrewapxswithapachewithhomebrewcurlwithhomebrewopensslwithphpdbgwithtidywithoutsnmpchmodrugwusrlocalcellarphp56562libphppearconfigsetphp_iniusrlocaletcphp56phpiniprintfnaddhandlerphp5scriptphpnaddtypetexthtmlphpusrlocaletcapache224httpdconfperlpiesdirectoryindexindexhtmldirectoryindexindexphpindexhtmlgusrlocaletcapache224httpdconfprintfnexportpathdbrewprefixhomebrewphpphp56bindpathtprofiledevstuffbrewinstallcomposerbrewinstallbehatbrewinstallnodenpmginstallgruntnpmginstallshifterbrewtapdanpoltawskihomebrewmdkbrewinstallmoodlesdk"&gt;Install Homebrew xcode-select --install ruby -e "$(curl -fsSL &lt;a href="https://raw.githubusercontent.com/Homebrew/install/master/install"&gt;https://raw.githubusercontent.com/Homebrew/install/master/install&lt;/a&gt;)" brew doctor # Tap Repos brew tap homebrew/dupes brew tap homebrew/versions brew tap homebrew/homebrew-php brew tap homebrew/apache # Verify brew update &amp;amp;&amp;amp; brew upgrade # Macintosh brew install git brew install openssl ssh-keygen -t rsa -C “email@address.invalid” ssh-add ~/.ssh/id&lt;em&gt;rsa # Apache sudo apachectl stop sudo launchctl unload -w /System/Library/LaunchDaemons/org.apache.httpd.plist 2&gt;/dev/null brew install httpd24 --with-privileged-ports --with-brewed-ssl sudo cp -v /usr/local/Cellar/httpd24/2.4.10/homebrew.mxcl.httpd24.plist /Library/LaunchDaemons sudo chown -v root:wheel /Library/LaunchDaemons/homebrew.mxcl.httpd24.plist sudo chmod -v 644 /Library/LaunchDaemons/homebrew.mxcl.httpd24.plist sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.httpd24.plist sudo httpd -k start # MySQL brew install mysql ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist mysqladmin -u root password “NEWPASSWORD” # PHP brew install php56 --homebrew-apxs --with-apache --with-homebrew-curl --with-homebrew-openssl --with-phpdbg --with-tidy --without-snmp chmod -R ug+w /usr/local/Cellar/php56/5.6.2/lib/php pear config-set php&lt;/em&gt;ini /usr/local/etc/php/5.6/php.ini printf '\nAddHandler php5-script .php\nAddType text/html .php' &gt;&gt; /usr/local/etc/apache2/2.4/httpd.conf perl -p -i -e 's/DirectoryIndex index.html/DirectoryIndex index.php index.html/g' /usr/local/etc/apache2/2.4/httpd.conf printf '\nexport PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"' &gt;&gt; ~/.profile # Dev Stuff brew install composer brew install behat brew install node npm -g install grunt npm -g install shifter brew tap danpoltawski/homebrew-mdk brew install moodle-sdk&lt;/h1&gt;
+
+&lt;h2 id="originalpost"&gt;&lt;strong&gt;Original Post&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;It’s that time of the year again. Apple will soon release a &lt;a href="http://www.apple.com/osx/preview/"&gt;“new” OS&lt;/a&gt; (10.10 Yosemite) and in celebration I’ll format my hard drive and reinstall from scratch and then slowly start reconfiguring my machine for development purposes. So I figured, if I’m going to do it- I might as well document it too. Because, to be honest, I kinda forget what I’ve done… Over a few posts we will look at every step of setting up a Moodle development machine from services configuration through installing Moodle and we’ll document all the tools and commands that are needed along the way. In part one we’ll go over installing Homebrew, git, Apache, MySQL, and PHP. In part two we’ll go over configuring Apache, MySQL, and git, as well as how to use the MDK, git, and JIRA to contribute your code. This post is good for any developer that’s using PHP- not just Moodle. So if you want to set up a Mac to develop in WordPress, Drupal, or whatever- this will get you started.&lt;/p&gt;
+
+&lt;h2 id="startingpoint"&gt;Starting Point&lt;/h2&gt;
+
+&lt;p&gt;Sorry, we won’t be starting with the unboxing of a new Mac, because I didn’t have a $2,000 budget for this post. And in fact we won’t even be starting with the OS setup, which is OK because if you’re using 10.7 or newer, then you’re okay. If you’re still running 10.6 I’m going to assume that it’s because Apple locked you out of updates because your machine is too old, jerks. Do yourself a favor, buy a new PC.&lt;/p&gt;
+
+&lt;p&gt;Here’s what you’ll need: Internet access (how are you even reading this?), administrative privileges (the account doesn’t have to be admin), and accounts at a couple of websites (or the ability to sign up). I’ll also need your credit card number and the last four digits of your social security number, just leave them in the comments. Just kidding, don’t.&lt;/p&gt;
+
+&lt;h3 id="mappmampmeh"&gt;MAPP? MAMP? Meh.&lt;/h3&gt;
+
+&lt;p&gt;If you spend any amount of time in the &lt;a href="https://moodle.org/course/view.php?id=5"&gt;Moodle forums&lt;/a&gt; you’ll run across all kinds of cool acronyms. Usually the &lt;a href="http://www.iyware.com/docs.moodle.org/27/en/Glossary_auto-linking_filter"&gt;glossary auto-linker&lt;/a&gt; will fill your head with some cool new knowledge, but for the sake of thoroughness we’ll go over a few of them here. You may see people talk about their WAMP or MAMP or LAMP server. Generally this describes their server configuration.&lt;/p&gt;
+
+&lt;p&gt;If somebody says they’re using &lt;span style="text-decoration: underline;"&gt;W&lt;/span&gt;AMP that means that their server is running on “Windows”. Lamp would be “Linux” and MAMP – Mac. Though technically it should be “OS X” but OAMP is hard to say. Generally most web softwares don’t need a specific platform to run on, a website can run on any operating system. Generally. Stupid ASP.&lt;/p&gt;
+
+&lt;p&gt;The second letter, “A”, which in the examples above is consistent means that the web service running on the server is “Apache”. There are a variety of web service applications available including IIS, Nginx, lighttpd. &lt;em&gt;Generally&lt;/em&gt; the software (i.e. Moodle) doesn’t mandate a specific web server software either. Now it could be that the software (i.e. Moodle) depends on some other software (i.e. PHP) that is not compatible or available on that web server. But again, this isn’t usually a problem.&lt;/p&gt;
+
+&lt;p&gt;The Third letter defines the database type. Moodle supports 4 different databases out of the box: MySQL, PostgreSQL, Oracle, and MSSQL. Because Moodle has a sweet database driver ($DB) the database that you use doesn’t really matter- in terms of developing on your machine. If you’re trying to pick a database for a large, live server, it probably does matter. So if you see LAMP, MySQL or LAPP, PostgreSQL. Users of other DB types aren’t so clever so they’ll just say boring stuff like “I’m using Windows Server 2008 RC2 with IIS 7 and MSSQL.” instead of WS08RC2IIS7MSSQLFTW, which in my opinion is cooler AND easier to understand.&lt;/p&gt;
+
+&lt;p&gt;Finally, the last “P” stands for “PHP” which stands for “PHP Hypertext Preprocessor” which stands for “PHP Hypertext Preprocessor Hypertext Preprocessor” which stands for “All work and no play makes Jack a dull boy.” Anyways… You’ll need this. Moodle won’t run with out it, and without a specific version as mentioned in the release notes of the Moodle version you download.&lt;/p&gt;
+
+&lt;p&gt;With so many options, how do you choose? Like I said in the title, “Meh”. I’m going to assume you’re developing on a Mac, so that rules out Windows and Linux. Apache is by far the most popular web server and is included with OS X. MSSQL and Oracle don’t run on OS X. You need PHP.&lt;/p&gt;
+
+&lt;p&gt;So your only real options are MySQL or PostgreSQL, and we’ll cover that in a bit, but first let’s start with “M”.&lt;/p&gt;
+
+&lt;h2 id="macintoshosx"&gt;Macintosh (OS X)&lt;/h2&gt;
+
+&lt;p&gt;We need to do a bit of configuring of our Mac before we dive into setting up services. Mostly this will involve downloading some applications.&lt;/p&gt;
+
+&lt;h3 id="getgit"&gt;Get git&lt;/h3&gt;
+
+&lt;p&gt;Moodle development is managed using &lt;a href="http://en.wikipedia.org/wiki/Git_%28software%29"&gt;git&lt;/a&gt;. git in a nutshell lets you track changes of code from lots of users. If you’re going to be doing Moodle development you MUST use git. Fortunately OS X comes with git included, but you can’t use it. Open up terminal and enter the following command:&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;which git; git -version&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;and you’ll end up with a return something like this&lt;/p&gt;
+
+&lt;p&gt;MacBook-Pro:~ dannywahl$ which git /usr/bin/git MacBook-Pro:~ dannywahl$ git -v xcode-select: note: no developer tools were found at '/Applications/Xcode.app', requesting install. Choose an option in the dialog to download the command line developer tools.&lt;/p&gt;
+
+&lt;p&gt;with a prompt to download XCode command line tools:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://www.iyware.com/content/images/import/Screen-Shot-2014-07-27-at-2.38.29-pm-960x600.png" alt="what git?"&gt;&lt;/p&gt;
+
+&lt;p&gt;Go ahead and download it. It’s also worth it to install Xcode as well. For this post you will need both Xcode 5 which you can download from the &lt;a href="https://developer.apple.com/downloads/index.action"&gt;Apple Developer site&lt;/a&gt; and the &lt;a href="https://developer.apple.com/xcode/downloads/"&gt;Xcode 6 beta&lt;/a&gt;. I recommend that you rename Xcode 5 from “xcode.app” to “xcode5.app” and Xcode 6 from “Xcode-beta.app” to “Xcode.app” because most of our toolchain will be using the utilities in Xcode 6. Once Xcode and the command line tools are installed we can now use the version of git included with OS X- however it’s a little dated, and we’re going to install a newer version of git from somewhere else.&lt;/p&gt;
+
+&lt;p&gt;When it comes to installing the git binary we have a few different choices. First, we can install the &lt;a href="http://git-scm.com/downloads"&gt;official git version&lt;/a&gt; from git-scm.com, second we can install a bundled version of git with a different application like &lt;a href="https://mac.github.com/"&gt;github for Mac&lt;/a&gt; or &lt;a href="http://www.git-tower.com/"&gt;git-tower&lt;/a&gt; (both of which we’ll go over later), or third you can use a third-party package manager to install a copy of git for you. This last option is the one we will be using.&lt;/p&gt;
+
+&lt;h3 id="homebrew"&gt;Homebrew&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href="http://brew.sh/"&gt;Homebrew&lt;/a&gt; is self-styled “The missing package manager for OS X” and they really deliver. If you’ve spent any amount of time working on an &lt;em&gt;actual&lt;/em&gt; Unix or Linux machine you probably both appreciate OS X’s “Unix roots” and really dislike what Apple has chosen to trim back. Without a package manager like pac-man, apt, or the like, OS X is really limited. Homebrew solves that in a really elegant way, so let’s install it. Open up terminal and copy and paste this single command:&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;ruby -e “$(curl -fsSL &lt;a href="https://raw.github.com/Homebrew/homebrew/go/install)”"&gt;https://raw.github.com/Homebrew/homebrew/go/install)”&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;This command has three requirements, one you need to have administrator access or you’ll not be able to install the program as the /usr/ directory is protected. Two you’ll need internet access as the command downloads the script from github and then passes it to ruby to run. If you don’t have internet access you’ll see an error like this:&lt;/p&gt;
+
+&lt;p&gt;dannywahlmbp:~ dannywahl$ ruby -e "$(curl -fsSL &lt;a href="https://raw.github.com/Homebrew/homebrew/go/install"&gt;https://raw.github.com/Homebrew/homebrew/go/install&lt;/a&gt;)" curl: (6) Could not resolve host: raw.github.com&lt;/p&gt;
+
+&lt;p&gt;Three, you will need to have the XCode command line utilities installed. You should have already install them. If you don’t have the command line tools installed then you will be prompted to install them:&lt;/p&gt;
+
+&lt;p&gt;&lt;mark&gt;&gt; Installing the Command Line Tools (expect a GUI popup): &lt;/mark&gt;&gt; /usr/bin/sudo /usr/bin/xcode-select --install xcode-select: note: install requested for command line developer tools Press any key when the installation has completed.&lt;/p&gt;
+
+&lt;p&gt;After that you should be good to go. Just run &lt;code&gt;brew doctor&lt;/code&gt; as recommended to make sure everything’s okay.&lt;/p&gt;
+
+&lt;p&gt;Last login: Tue Jul 29 10:28:20 on ttys000 dannywahlmbp:~ dannywahl$ ruby -e "$(curl -fsSL &lt;a href="https://raw.github.com/Homebrew/homebrew/go/install"&gt;https://raw.github.com/Homebrew/homebrew/go/install&lt;/a&gt;)" &lt;mark&gt;&gt; This script will install: /usr/local/bin/brew /usr/local/Library/... /usr/local/share/man/man1/brew.1 Press RETURN to continue or any other key to abort &lt;/mark&gt;&gt; /usr/bin/sudo /bin/mkdir /usr/local WARNING: Improper use of the sudo command could lead to data loss or the deletion of important system files. Please double-check your typing when using sudo. Type "man sudo" for more information. To proceed, enter your password, or type Ctrl-C to abort. Password: &lt;mark&gt;&gt; /usr/bin/sudo /bin/chmod g+rwx /usr/local &lt;/mark&gt;&gt; /usr/bin/sudo /usr/bin/chgrp admin /usr/local &lt;mark&gt;&gt; /usr/bin/sudo /bin/mkdir /Library/Caches/Homebrew &lt;/mark&gt;&gt; /usr/bin/sudo /bin/chmod g+rwx /Library/Caches/Homebrew &lt;mark&gt;&gt; Downloading and installing Homebrew... remote: Counting objects: 188543, done. remote: Compressing objects: 100% (51551/51551), done. remote: Total 188543 (delta 135844), reused 188510 (delta 135819) Receiving objects: 100% (188543/188543), 37.53 MiB | 395.00 KiB/s, done. Resolving deltas: 100% (135844/135844), done. From &lt;a href="https://github.com/Homebrew/homebrew"&gt;https://github.com/Homebrew/homebrew&lt;/a&gt; * [new branch] master -&gt; origin/master HEAD is now at 881c231 Fix up dep directories before activating ENV extensions &lt;/mark&gt;&gt; Installation successful! &lt;mark&gt;&gt; Next steps Run &lt;code&gt;brew doctor&lt;/code&gt; before you install anything Run &lt;code&gt;brew help&lt;/code&gt; to get started dannywahlmbp:~ dannywahl$ brew doctor Your system is ready to brew.&lt;/mark&gt;&lt;/p&gt;
+
+&lt;p&gt;If you see “Your system is ready to brew.” then we can move on to the next step. At this point you do have OS X’s version of git installed. To see your specific version run &lt;code&gt;git --version&lt;/code&gt; in terminal:&lt;/p&gt;
+
+&lt;p&gt;dannywahlmbp:~ dannywahl$ git --version git version 1.9.3 (Apple Git-50)&lt;/p&gt;
+
+&lt;p&gt;That’s the version on my system, which is the bleeding-edge version of git that Apple is shipping on a beta operating system and according to &lt;a href="https://github.com/git/git/releases"&gt;github releases&lt;/a&gt;, it was released (at time of this writing) about two and a half months ago. Not to mention it’s a full major release behind. git-scm.com has the latest version of git available as 2.0.3. I like to be a little more up to date than that. If we search the homebrew repository we can see the latest version available is 2.0.2:&lt;/p&gt;
+
+&lt;p&gt;dannywahlmbp:~ dannywahl$ brew search git bagit git-extras git-number github-release easy-git git-flow git-open gitslave geogit git-flow-avh git-sh legit git git-flow-clone git-ssh libgit2 git-annex git-ftp git-tf magit git-archive-all git-gerrit git-tig stgit git-cal git-imerge git-tracker topgit git-cola git-integration git-url-sub git-crypt git-multipush gitbucket git-encrypt git-now giter8 homebrew/versions/git-tf-2.0.2 homebrew/binary/subgit&lt;/p&gt;
+
+&lt;p&gt;At the time of this writing 2.0.2 is only 13 days old and 2.0.3 is only 5 days old. That’s a much better timeframe for updating. So let’s install the homebrew version of git using &lt;code&gt;brew install git&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;dannywahlmbp:~ dannywahl$ brew install git &gt; Downloading &lt;a href="https://www.kernel.org/pub/software/scm/git/git-2.0.3.tar.gz"&gt;https://www.kernel.org/pub/software/scm/git/git-2.0.3.tar.gz&lt;/a&gt; ######################################################################## 100.0% &lt;mark&gt;&gt; make prefix=/usr/local/Cellar/git/2.0.3 sysconfdir=/usr/local/etc CC=clang C &lt;/mark&gt;&gt; make CC=clang CFLAGS= LDFLAGS= &lt;mark&gt;&gt; make clean &lt;/mark&gt;&gt; make CC=clang CFLAGS= LDFLAGS= &lt;mark&gt;&gt; Downloading &lt;a href="https://www.kernel.org/pub/software/scm/git/git-manpages-2.0.3.t"&gt;https://www.kernel.org/pub/software/scm/git/git-manpages-2.0.3.t&lt;/a&gt; ######################################################################## 100.0% &lt;/mark&gt;&gt; Downloading &lt;a href="https://www.kernel.org/pub/software/scm/git/git-htmldocs-2.0.3.t"&gt;https://www.kernel.org/pub/software/scm/git/git-htmldocs-2.0.3.t&lt;/a&gt; ######################################################################## 100.0% &lt;mark&gt;&gt; Caveats The OS X keychain credential helper has been installed to: /usr/local/bin/git-credential-osxkeychain The 'contrib' directory has been installed to: /usr/local/share/git-core/contrib Bash completion has been installed to: /usr/local/etc/bash_completion.d zsh completion has been installed to: /usr/local/share/zsh/site-functions &lt;/mark&gt;&gt; Summary /usr/local/Cellar/git/2.0.3: 1328 files, 31M, built in 69 seconds&lt;/p&gt;
+
+&lt;p&gt;So you’ll see a couple of things- first we actually installed 2.0.3 and that’s because homebrew isn’t a repository of binaries, it simply manages them, the install actually comes from the main git repository at git-scm (kernel.org). In addition to the vanilla git binary we also get bash completion and man pages. Sweet! Go ahead and check the version again, you may have to quit your terminal session and start a new one.&lt;/p&gt;
+
+&lt;p&gt;dannywahlmbp:~ dannywahl$ git --version git version 2.0.3&lt;/p&gt;
+
+&lt;p&gt;That’s pretty much it for git, now we can move on to github, where we’ll be managing our source code.&lt;/p&gt;
+
+&lt;h3 id="github"&gt;Github&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/"&gt;Github&lt;/a&gt; is where all the cool kids are storing their code these days. Well, everybody except &lt;a href="http://git.moodle.org/gw"&gt;Moodle&lt;/a&gt; and &lt;a href="https://gitorious.org/mahara"&gt;Mahara&lt;/a&gt;. But at least they provide copies of their work at github- Moodle at least, I didn’t check Mahara (too lazy to open a new tab…).&lt;/p&gt;
+
+&lt;p&gt;Basically Github is “the cloud” for source code versioning. You create a repository there, “clone” it to your machine, edit, and push your changes back to the server. If you’re new to git there are lots of resources available to you. We’ll cover a few basics in this post but mastering it is beyond the scope. I suggest you check out:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://www.git-tower.com/learn/ebook/mac/introduction"&gt;Learn Version Control With Git&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://git-scm.com/book/en/Getting-Started"&gt;Git –local-branching-on-the-cheap&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://try.github.io/levels/1/challenges/1"&gt;Code School – Try Git&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.atlassian.com/git/tutorial/git-basics"&gt;Git Tutorials&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Sorry, that list isn’t nearly as fun as anything Buzzfeed has put together, and full disclosure- I learned git just by Moodle development so I can’t vouch for any of the above resources… (then why did I even recommend them? Stupid!) Anyways…&lt;/p&gt;
+
+&lt;p&gt;If you do not already have an account at github you will need to go &lt;a href="https://github.com/join"&gt;sign up&lt;/a&gt;. Once you’ve cleared the hoops of verifying email, etc… log in. Github should provide you with a nice step-by-step tutorial of setting up you Mac. But we’ll do it again, just to be sure!&lt;/p&gt;
+
+&lt;p&gt;Log in and head over to your &lt;a href="https://github.com/settings/profile"&gt;profile&lt;/a&gt;, fill in any info you want and then click on the &lt;a href="https://github.com/settings/ssh"&gt;SSH Keys&lt;/a&gt; tab on the left. &lt;a href="http://en.wikipedia.org/wiki/Ssh"&gt;SSH&lt;/a&gt; basically lets you securely communicate with the server where you are storing your code. Right now we’ll go through the process of generating an SSH key and storing it on github.&lt;/p&gt;
+
+&lt;h4 id="checkforexistingsshkeys"&gt;Check for existing SSH Keys&lt;/h4&gt;
+
+&lt;p&gt;Open Terminal again, now if you’re on a fresh OS install you won’t have to do this but you can. Type the following command:&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;ls -lsa ~/.ssh&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;ls&lt;/code&gt; is the command to ‘list’ everything in a directory. &lt;code&gt;~&lt;/code&gt; is short code for your home folder, on a Mac that’s /Users/UserName (by default). &lt;code&gt;/&lt;/code&gt; is a folder inside of your home folder. &lt;code&gt;.ssh&lt;/code&gt; is the name of the folder. On Unix systems a folder that starts with a ‘.’ will be hidden- no need for &lt;a href="http://ss64.com/osx/chflags.html"&gt;chflags&lt;/a&gt;! So we’ve put together a command that says “show the contents of the hidden folder ‘.ssh’ inside of my home folder”. And that is probably shockingly similar to the AppleScript that you would use to do that too.&lt;/p&gt;
+
+&lt;p&gt;If terminal gives you this return:&lt;/p&gt;
+
+&lt;p&gt;dannywahlmbp:~ dannywahl$ ls -lsa ~/.ssh ls: /Users/dannywahl/.ssh: No such file or directory&lt;/p&gt;
+
+&lt;p&gt;then we need to create the directory with another command (just copy and paste):&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;mkdir ~/.ssh; chmod 700 ~/.ssh&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;This will do two things, create the ssh directory, and then make sure only you can access it. You can learn more about Unix permissions &lt;a href="http://en.wikipedia.org/wiki/Unix_permissions#Numeric_notation"&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;If terminal gives you this return:&lt;/p&gt;
+
+&lt;p&gt;dannywahlmbp:~ dannywahl$ ls -lsa ~/.ssh/ total 16 0 drwx------ 4 dannywahl staff 136 Jul 31 16:41 . 0 drwxr-xr-x+ 18 dannywahl staff 612 Jul 31 16:36 .. 8 -rw------- 1 dannywahl staff 1766 Jul 31 16:41 id&lt;em&gt;rsa 8 -rw-r--r-- 1 dannywahl staff 398 Jul 31 16:41 id&lt;/em&gt;rsa.pub&lt;/p&gt;
+
+&lt;p&gt;Then you already have an SSH Key. IF you created this key and are sure of its security you can use it with github, skip to the “Adding your SSH Key to Github” section below. Otherwise you can create a new one.&lt;/p&gt;
+
+&lt;h4 id="creatingansshkeyset"&gt;Creating an SSH Key Set&lt;/h4&gt;
+
+&lt;p&gt;When you create an SSH key you actually create two keys, a private key and a public key. You keep the private key and you can share the public key with others. This allows them to receive messages and ensure it is from you, but they can’t pretend to be you and send out messages on your behalf. Back in terminal we’re going to create a new &lt;a href="http://en.wikipedia.org/wiki/RSA_%28cryptosystem%29"&gt;RSA&lt;/a&gt; SSH key set. Run the command:&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;ssh-keygen -t rsa -C “email@address.invalid”&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;This will kick off a “Wizard” of sorts and walk you through creating your key pair. First you need to specify where to save the new keys, the default is your ~/.ssh folder, so just push enter.&lt;/p&gt;
+
+&lt;p&gt;Generating public/private rsa key pair. Enter file in which to save the key (/Users/dannywahl/.ssh/id_rsa):&lt;/p&gt;
+
+&lt;p&gt;Note that you can specify a different name, as you can have multiple SSH key pairs. Though for most instances a single pair is all that is necessary.&lt;/p&gt;
+
+&lt;p&gt;Next it will ask you for a key passphrase, which is optional. I strongly suggest that you add a passphrase for both added security and the fact that other SSH applications (not github) require a passphrase to function properly and if you want to reuse your key pair you will need a passphrase. Type your passphrase press Enter and type it again to make sure it matches.&lt;/p&gt;
+
+&lt;p&gt;Enter passphrase (empty for no passphrase): Enter same passphrase again:&lt;/p&gt;
+
+&lt;p&gt;After that your key pair will be save and you will be given some information about it. It will look something like this:&lt;/p&gt;
+
+&lt;p&gt;Your identification has been saved in /Users/dannywahl/.ssh/id&lt;em&gt;rsa. Your public key has been saved in /Users/dannywahl/.ssh/id&lt;/em&gt;rsa.pub. The key fingerprint is: fa:e7:5c:f2:60:d8:ad:44:3c:a4:07:0d:b5:09:77:9f danny@iyware.com The key's randomart image is: +--[ RSA 2048]----+ | =A+ . | | &lt;em&gt;=&lt;/em&gt; . | | +.=oE . | | . o= = | | .S . | | . | | | | | | | +-----------------+&lt;/p&gt;
+
+&lt;p&gt;The finger print and randomart allow you to verify that a public key copy is a real copy. Please note that these are NOT my real public key credentials. On that note you should NEVER share your private key with anyone.&lt;/p&gt;
+
+&lt;h4 id="activatingyourkey"&gt;Activating Your Key&lt;/h4&gt;
+
+&lt;p&gt;Now that you have created your key you need to tell the operating system to use it. We will use the &lt;code&gt;ssh-add&lt;/code&gt; command to load your key. Enter this command, and then type your key passphrase. If you didn’t enter a passphrase, simply press Enter.&lt;/p&gt;
+
+&lt;p&gt;dannywahlmbp:~ dannywahl$ ssh-add ~/.ssh/id&lt;em&gt;rsa Enter passphrase for /Users/dannywahl/.ssh/id&lt;/em&gt;rsa: Identity added: /Users/dannywahl/.ssh/id&lt;em&gt;rsa (/Users/dannywahl/.ssh/id&lt;/em&gt;rsa)&lt;/p&gt;
+
+&lt;h4 id="copyyourpublickeytogithub"&gt;Copy Your Public Key to Github&lt;/h4&gt;
+
+&lt;p&gt;The final step is to give github a copy of your public key. If you don’t have the &lt;a href="https://github.com/settings/ssh"&gt;SSH Keys&lt;/a&gt; page open you will need to navigate there and click “Add SSH Keys”. You can store more than one key with github, which is useful if you have multiple devices that you do development from.&lt;/p&gt;
+
+&lt;p&gt;Back in terminal you have one more command to run, simply copy and paste (unless you renamed your key):&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;pbcopy &lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;This command copies the contents of your public key to your clipboard. You can also open your key in a text editor and copy the contents but this command prevents both omitting a character and accidentally editing the key. Switch back to github and paste in the “Key” field. If there’s a blank line at the end, that’s ok- don’t erase it. Remember we want the contents of the key exactly.&lt;/p&gt;
+
+&lt;p&gt;You’ll want to give you key a title so that if you ever have a security issue at github you can see exactly which machine accessed or changed which repositories. Your page should look something like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://www.iyware.com/content/images/import/addkey-960x600.png" alt="Add an SSH Public Key"&gt;&lt;/p&gt;
+
+&lt;p&gt;Click the “Add key” button and you’ll be taken back to the SSH Keys page, where your new key will be listed. If you look at terminal you’ll notice that the fingerprints match.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://www.iyware.com/content/images/import/sshkeys-960x600.png" alt="sshkeys"&gt;&lt;/p&gt;
+
+&lt;p&gt;For now we’re done with github. So far we’ve set up homebrew, installed git, created an SSH key pair, and added a copy of our public key to github. Next we’ll start setting up the “server” side of our development machine, starting with Apache.&lt;/p&gt;
+
+&lt;h2 id="apache"&gt;Apache&lt;/h2&gt;
+
+&lt;p&gt;The &lt;a href="http://httpd.apache.org/"&gt;Apache HTTPD&lt;/a&gt; server is the most popular web server in the world. And in fact Apache is included with OS X by default. Just copy and paste this command into terminal:&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;apachectl -v&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Mine says:&lt;/p&gt;
+
+&lt;p&gt;Server version: Apache/2.4.9 (Unix) Server built: Jun 28 2014 12:11:10&lt;/p&gt;
+
+&lt;p&gt;Which is actually not that bad. Apache is one of those softwares that updates rather slowly, 2.4.10 was released on July 10th. Since Apache is included in OS X we can just use that right? Sure, just visit this link: &lt;a href="http://localhost/"&gt;http://localhost&lt;/a&gt;. Oops, does your screen look something like this?&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://www.iyware.com/content/images/import/unabletoconnect-960x600.png" alt="localhost: Unable to connect"&gt;&lt;/p&gt;
+
+&lt;p&gt;That’s because even though Apache is included in OS X it’s off by default. We have a few options available that we’ll look at to enabling Apache.&lt;/p&gt;
+
+&lt;h3 id="theappleway"&gt;The Apple Way&lt;/h3&gt;
+
+&lt;p&gt;Even though Apple includes Apache as a part of OS X, and they used to include an option to enable it in the “Sharing” pane of System preferences, the preferred way to enable Apache on OS X since 10.7 is to &lt;a href="http://www.apple.com/osx/server/"&gt;buy the Server app&lt;/a&gt; from the App Store. That’s right, for only $19 Apple will sell you a button that starts Apache.&lt;/p&gt;
+
+&lt;h3 id="thepoormansway"&gt;The Poor Man’s Way&lt;/h3&gt;
+
+&lt;p&gt;The second option is to simply start Apache ourselves. Go to terminal and type this command:&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;sudo apachectl start&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;After you type your password head back to &lt;a href="http://loclahost/"&gt;http://localhost&lt;/a&gt; and it should look more like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://www.iyware.com/content/images/import/itworks-960x600.png" alt="it works!"&gt;&lt;/p&gt;
+
+&lt;p&gt;$20 bucks for that. To be fair to Apple, Server does give you lots of other functionality but for our purposes they’re not really necessary. Kind of like installing XCode to use git. Now, I’m going to recommend that you actually stop the Apache service because we are not going to use the built in version that Apple ships with.&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;sudo apachectl stop&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3 id="thehomebrewway"&gt;The Homebrew Way&lt;/h3&gt;
+
+&lt;p&gt;The reason we’re not going to use the version that ships with Apple is because they do a TON of customization to the Apache configurations and it makes it really difficult to simply add a vhost or edit a config. You even have to mess with groups to allow yourself to change files in your ~/Sites folder. Instead we’re going to install Apache via Homebrew and it will run entirely within your home folder.&lt;/p&gt;
+
+&lt;p&gt;First we need to unload the OS X version of Apache which is loaded on the machine at startup, but “stopped”. Copy and paste this into terminal.&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;sudo launchctl unload -w /System/Library/LaunchDaemons/org.apache.httpd.plist 2&gt;/dev/null&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Next we need to do is add the Apache repository to the list of repositories that Homebrew tracks, as it is not included by default.&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;brew tap homebrew/apache&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;and you’ll see that the repository is downloaded and 9 new forumlae are available for install.&lt;/p&gt;
+
+&lt;p&gt;dannywahlmbp:~ dannywahl$ brew tap homebrew/apache Cloning into '/usr/local/Library/Taps/homebrew/homebrew-apache'... remote: Counting objects: 241, done. remote: Total 241 (delta 0), reused 0 (delta 0) Receiving objects: 100% (241/241), 45.55 KiB | 39.00 KiB/s, done. Resolving deltas: 100% (130/130), done. Checking connectivity... done. Tapped 9 formulae&lt;/p&gt;
+
+&lt;p&gt;The new repository gives us two versions of Apache 2.2 and 2.4. For our development we will be installing Apache 2.4, however when we try we end up with an error:&lt;/p&gt;
+
+&lt;p&gt;dannywahlmbp:~ dannywahl$ brew install httpd24 Error: No available formula for apr (dependency of httpd24) Searching taps... homebrew/dupes/apr-util homebrew/dupes/apr homebrew/science/reapr&lt;/p&gt;
+
+&lt;p&gt;it seems that Apache 2.4 requires another app called ‘apr’ that isn’t on our system. Fortunately Homebrew does us a favor and tells us where to find it and it’s available in another repository, so we need to add that to our list of available repositories like before:&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;brew tap homebrew/dupes&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;According to the &lt;a href="https://github.com/Homebrew/homebrew-dupes"&gt;‘dupes’ repository&lt;/a&gt;, “These formulae duplicate software provided by OS X, though may provide more recent or bugfix versions.” Now what’s nice is that homebrew will resolve dependencies for us now that it knows where the files are, so let’s try again:&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;brew install httpd24 –with-privileged-ports&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;httpd24&lt;/code&gt; will get us the current version of Apache 2.4. The ‘with-privileged-ports’ parameter tells Apache to run on port 80/443 instead of 8080/8443. Essentially this means you can visit &lt;a href="http://localhost/"&gt;http://localhost&lt;/a&gt; instead of having to type &lt;a href="http://localhost:8080/"&gt;http://localhost:8080&lt;/a&gt;. 80 and 443 are the default ports that all websites run on and for our development purposes are preferable.&lt;/p&gt;
+
+&lt;p&gt;If you get an error during compiling please follow the instructions of the output. If you have installed a beta version of Xcode on your machine please do NOT open an issue with the Homebrew people (like &lt;a href="https://github.com/Homebrew/homebrew/issues/31217"&gt;this one&lt;/a&gt;). Instead head over to the App Store and redownload the old version. If the app store won’t let you download you can go to the &lt;a href="https://developer.apple.com/downloads/"&gt;Apple Developer Downloads&lt;/a&gt; page and download the latest stable version of Xcode to your machine. You don’t have to remove the beta version, but the stable needs to be named ‘Xcode.app’.&lt;/p&gt;
+
+&lt;p&gt;Error: Homebrew doesn't know what compiler versions ship with your version of Xcode (6.0). Please &lt;code&gt;brew update&lt;/code&gt; and if that doesn't help, file an issue with the output of &lt;code&gt;brew --config&lt;/code&gt;: &lt;a href="https://github.com/Homebrew/homebrew/issues"&gt;https://github.com/Homebrew/homebrew/issues&lt;/a&gt; Note that we only track stable, released versions of Xcode. Thanks! READ THIS: &lt;a href="https://github.com/Homebrew/homebrew/wiki/troubleshooting"&gt;https://github.com/Homebrew/homebrew/wiki/troubleshooting&lt;/a&gt; If reporting this issue please do so at (not Homebrew/homebrew): &lt;a href="https://github.com/homebrew/homebrew-apache/issues"&gt;https://github.com/homebrew/homebrew-apache/issues&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Another issue I ran into was a configure failure because zlib couldn’t be found:&lt;/p&gt;
+
+&lt;p&gt;brew install httpd24 --with-privileged-ports &lt;mark&gt;&gt; Downloading &lt;a href="https://archive.apache.org/dist/httpd/httpd-2.4.10.tar.bz2"&gt;https://archive.apache.org/dist/httpd/httpd-2.4.10.tar.bz2&lt;/a&gt; Already downloaded: /Library/Caches/Homebrew/httpd24-2.4.10.tar.bz2 &lt;/mark&gt;&gt; ./configure --enable-layout=Homebrew --enable-mods-shared=all --with-mpm=pre checking whether to enable mod&lt;em&gt;sed... shared (all) checking whether to enable mod&lt;/em&gt;charset&lt;em&gt;lite... shared (all) checking whether to enable mod&lt;/em&gt;deflate... checking dependencies checking for zlib location... not found checking whether to enable mod&lt;em&gt;deflate... configure: error: mod&lt;/em&gt;deflate has been requested but can not be built due to prerequisite failures READ THIS: &lt;a href="https://github.com/Homebrew/homebrew/wiki/troubleshooting"&gt;https://github.com/Homebrew/homebrew/wiki/troubleshooting&lt;/a&gt; If reporting this issue please do so at (not Homebrew/homebrew): &lt;a href="https://github.com/homebrew/homebrew-apache/issues"&gt;https://github.com/homebrew/homebrew-apache/issues&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This is probably a result of using a beta version of the Xcode command line tools, but there’s a simple fix that’s &lt;a href="https://github.com/Homebrew/homebrew-apache/issues/30"&gt;been reported&lt;/a&gt;. First you need to install zlib in Homebrew from the dupes repository.&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;brew install zlib&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Homebrew will give you this caveat:&lt;/p&gt;
+
+&lt;p&gt;&lt;mark&gt;&gt; Caveats This formula is keg-only, so it was not symlinked into /usr/local. Mac OS X already provides this software and installing another version in parallel can cause all kinds of trouble. Generally there are no consequences of this for you. If you build your own software and it requires this formula, you'll need to add to your build variables: LDFLAGS: -L/usr/local/opt/zlib/lib CPPFLAGS: -I/usr/local/opt/zlib/include&lt;/mark&gt;&lt;/p&gt;
+
+&lt;p&gt;Which basically means that you need to manually use that version of zlib, which is what we’ll tell our Apache build script to do now. Go back to terminal and enter the following command:&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;brew edit httpd24&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;This will open the config in your default text editor. Enter this line:&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;args &lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;After this section:&lt;/p&gt;
+
+&lt;p&gt;if build.with? "privileged-ports" args That will add a new argument that forces it to use our Homebrew version of zlib. Save the file and run the build again:&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;brew install httpd24 --with-privileged-ports&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;If you don't have any errors then your output should look something like this:&lt;/p&gt;
+
+&lt;p&gt;dannywahlmbp:~ dannywahl$ brew install httpd24 --with-privileged-ports &gt; Downloading &lt;a href="https://archive.apache.org/dist/httpd/httpd-2.4.10.tar.bz2"&gt;https://archive.apache.org/dist/httpd/httpd-2.4.10.tar.bz2&lt;/a&gt; Already downloaded: /Library/Caches/Homebrew/httpd24-2.4.10.tar.bz2 &lt;mark&gt;&gt; ./configure --enable-layout=Homebrew --enable-mods-shared=all --with-mpm=pre &lt;/mark&gt;&gt; make &lt;mark&gt;&gt; make install &lt;/mark&gt;&gt; Caveats To have launchd start httpd24 at login: ln -sfv /usr/local/opt/httpd24/*.plist ~/Library/LaunchAgents Then to load httpd24 now: launchctl load ~/Library/LaunchAgents/homebrew.mxcl.httpd24.plist &lt;mark&gt;&gt; Summary /usr/local/Cellar/httpd24/2.4.10: 199 files, 4.4M, built in 86 seconds&lt;/mark&gt;&lt;/p&gt;
+
+&lt;p&gt;Finally it's important that we look at the caveats as they will tell us how to make sure that Apache starts when we log in to the system. Since we used the &lt;code&gt;--with-privileged-ports&lt;/code&gt; parameter we will have to make some adjustments to the recommendations that Homebrew provides. Their recommendation is to create a symlink to your user LaunchAgents folder. That folder contains plists that do certain things when you log in. However, on a Unix system lower ports like 80 require root to run. Since this launch agent is launching Apache under your username it will quietly fail. Instead we will have the system (root) load it for us. The biggest difference is that Apache will be loaded at system start instead of when you log in. So go ahead and copy and paste this modified command into terminal.&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;sudo ln -sfv /usr/local/opt/httpd24/*.plist /Library/LaunchDaemons; sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.httpd24.plist&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Now the next time you reboot Apache will load. But the beautiful thing about a service is that you can start, stop, or reload it at any time- we don't &lt;em&gt;need&lt;/em&gt; to log out and log in again to start. Now, since we're running Apache as root we will need to use 'sudo'. So it's not necessary now, because we just loaded it, but for the future you can use:&lt;/p&gt;
+
+&lt;p&gt;sudo httpd -k start sudo httpd -k restart sudo httpd -k stop&lt;/p&gt;
+
+&lt;p&gt;for more info you can check the manual '&lt;code&gt;man&lt;/code&gt;' entry that's included with our Apache install.&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;man httpd&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Now Apache is installed (by you) and running (as root). Go ahead and go back to &lt;a href="http://localhost/"&gt;http://localhost&lt;/a&gt; and you should see this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://www.iyware.com/content/images/import/itworks1-960x600.png" alt="Apache is Installed"&gt;&lt;/p&gt;
+
+&lt;p&gt;By default the Apache configuration files are stored in&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;/usr/local/etc/apache2/2.4&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;and the web root is at&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;/usr/local/var/www/htdocs&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;We'll revisit further Apache configuration when we get to Moodle setup, but for now enjoy your shiny new site!&lt;/p&gt;
+
+&lt;h2 id="mysqluhhpostgresql"&gt;MySQL, uhh.. PostgreSQL&lt;/h2&gt;
+
+&lt;p&gt;The next step on setting up our MA*P server is the database. In the old, olden days of 3 years ago OS X included MySQL in OS X server. Then Apple switched to Postgres. Then Apple bundled Postgres with the OS and added an 'enable' button in the Server app (a la Apache). And now starting with OS 10.9 it's back to being bundled exclusively with the Server App. tl;dr: you need to install a database, and I figure if it's so trivial for Apple to switch databases then it doesn't really matter which one we're using right ;)&lt;/p&gt;
+
+&lt;p&gt;Ok, here's the exception, if you're planning on developing some sort of Moodle plugin, or fixing bugs that are database oriented, then you'll probably want to install multiple database drivers. But for simpler development where Moodle $DB handled the transactions, pick your poison. I'm going to use MySQL. So let's head back to the Homebrew app in terminal and get started:&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;brew install mysql&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Ok, caveat. If you happen to be on an as-of-yet-unreleased OS and have both Xcode 5 and Xcode 6 beta installed on your system you will need to use Xcode 6 to install MySQL otherwise this will happen:&lt;/p&gt;
+
+&lt;p&gt;brew install mysql &gt; Installing dependencies for mysql: cmake, pkg-config, makedepend, ope &lt;mark&gt;&gt; Installing mysql dependency: cmake &lt;/mark&gt;&gt; Downloading &lt;a href="http://www.cmake.org/files/v3.0/cmake-3.0.0.tar.gz"&gt;http://www.cmake.org/files/v3.0/cmake-3.0.0.tar.gz&lt;/a&gt; ######################################################################## 100.0% &lt;mark&gt;&gt; ./bootstrap --prefix=/usr/local/Cellar/cmake/3.0.0 --system-libs --no-system See also "/tmp/cmake-Lgaj/cmake-3.0.0/CMakeFiles/CMakeError.log". --------------------------------------------- Error when bootstrapping CMake: Problem while running initial CMake --------------------------------------------- READ THIS: &lt;a href="https://github.com/Homebrew/homebrew/wiki/troubleshooting"&gt;https://github.com/Homebrew/homebrew/wiki/troubleshooting&lt;/a&gt; These open issues may also help: Qt5 Cmake Files Incorrect (&lt;a href="https://github.com/Homebrew/homebrew/issues/29938"&gt;https://github.com/Homebrew/homebrew/issues/29938&lt;/a&gt;) Fix LLVM CMake modules not being preprocessed (&lt;a href="https://github.com/Homebrew/homebrew/pull/29976"&gt;https://github.com/Homebrew/homebrew/pull/29976&lt;/a&gt;) glm: Does not install FindGLM.cmake (&lt;a href="https://github.com/Homebrew/homebrew/issues/28403"&gt;https://github.com/Homebrew/homebrew/issues/28403&lt;/a&gt;) cmake builds fail on CLT-only with --env=std (&lt;a href="https://github.com/Homebrew/homebrew/issues/29101"&gt;https://github.com/Homebrew/homebrew/issues/29101&lt;/a&gt;) cmake find_package(PythonLibs) broken with brewed python on 10.9 (&lt;a href="https://github.com/Homebrew/homebrew/issues/25118"&gt;https://github.com/Homebrew/homebrew/issues/25118&lt;/a&gt;)&lt;/mark&gt;&lt;/p&gt;
+
+&lt;p&gt;It's nice that they give you a log to inspect, but it's also kind of annoying that the /tmp dir gets cleaned up one it's done failing... Basically if you can capture the log in Console while it's failing you'll see that something in the Xcode tool is causing the failure. I guessed that it was because of Xcode 5 - and hey, lucky guess! So if you have that error drop into terminal and use this command:&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;mv /Applications/Xcode.app /Applications/Xcode5.app; mv /Applications/Xcode6-beta4.app /Applications/Xcode.app&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Or just go to the /Applications folder and rename them, your choice. Then run the install command again. When the build is done you can move your Xcode apps back to their original names. If all goes well you should end up with some terminal output like this:&lt;/p&gt;
+
+&lt;p&gt;brew install mysql &gt; Installing dependencies for mysql: cmake, pkg-config, makedepend, ope &lt;mark&gt;&gt; Installing mysql dependency: cmake &lt;/mark&gt;&gt; Downloading &lt;a href="http://www.cmake.org/files/v3.0/cmake-3.0.0.tar.gz"&gt;http://www.cmake.org/files/v3.0/cmake-3.0.0.tar.gz&lt;/a&gt; Already downloaded: /Library/Caches/Homebrew/cmake-3.0.0.tar.gz &lt;mark&gt;&gt; ./bootstrap --prefix=/usr/local/Cellar/cmake/3.0.0 --system-libs --no-system &lt;/mark&gt;&gt; make &lt;mark&gt;&gt; make install /usr/local/Cellar/cmake/3.0.0: 1622 files, 25M, built in 4.1 minutes &lt;/mark&gt;&gt; Installing mysql dependency: pkg-config &lt;mark&gt;&gt; Downloading &lt;a href="http://pkgconfig.freedesktop.org/releases/pkg-config-0.28.tar.gz"&gt;http://pkgconfig.freedesktop.org/releases/pkg-config-0.28.tar.gz&lt;/a&gt; ######################################################################## 100.0% &lt;/mark&gt;&gt; ./configure --prefix=/usr/local/Cellar/pkg-config/0.28 --disable-host-tool - &lt;mark&gt;&gt; make &lt;/mark&gt;&gt; make check &lt;mark&gt;&gt; make install /usr/local/Cellar/pkg-config/0.28: 10 files, 608K, built in 89 seconds &lt;/mark&gt;&gt; Installing mysql dependency: makedepend &lt;mark&gt;&gt; Downloading &lt;a href="http://xorg.freedesktop.org/releases/individual/util/makedepend-"&gt;http://xorg.freedesktop.org/releases/individual/util/makedepend-&lt;/a&gt; ######################################################################## 100.0% &lt;/mark&gt;&gt; Downloading &lt;a href="http://xorg.freedesktop.org/releases/individual/proto/xproto-7.0"&gt;http://xorg.freedesktop.org/releases/individual/proto/xproto-7.0&lt;/a&gt; ######################################################################## 100.0% &lt;mark&gt;&gt; ./configure --disable-silent-rules --prefix=/private/tmp/makedepend-xfpn/mak &lt;/mark&gt;&gt; make install &lt;mark&gt;&gt; Downloading &lt;a href="http://xorg.freedesktop.org/releases/individual/util/util-macros"&gt;http://xorg.freedesktop.org/releases/individual/util/util-macros&lt;/a&gt; ######################################################################## 100.0% &lt;/mark&gt;&gt; ./configure --prefix=/private/tmp/makedepend-xfpn/makedepend-1.0.5/xorg-macr &lt;mark&gt;&gt; make install &lt;/mark&gt;&gt; ./configure --disable-silent-rules --prefix=/usr/local/Cellar/makedepend/1.0 &lt;mark&gt;&gt; make install /usr/local/Cellar/makedepend/1.0.5: 7 files, 92K, built in 27 seconds &lt;/mark&gt;&gt; Installing mysql dependency: openssl &lt;mark&gt;&gt; Downloading &lt;a href="https://www.openssl.org/source/openssl-1.0.1h.tar.gz"&gt;https://www.openssl.org/source/openssl-1.0.1h.tar.gz&lt;/a&gt; curl: (28) Operation timed out after 6190 milliseconds with 0 out of 0 bytes received Trying a mirror... &lt;/mark&gt;&gt; Downloading &lt;a href="http://mirrors.ibiblio.org/openssl/source/openssl-1.0.1h.tar.gz"&gt;http://mirrors.ibiblio.org/openssl/source/openssl-1.0.1h.tar.gz&lt;/a&gt; ######################################################################## 100.0% &lt;mark&gt;&gt; perl ./Configure --prefix=/usr/local/Cellar/openssl/1.0.1h --openssldir=/usr &lt;/mark&gt;&gt; make depend &lt;mark&gt;&gt; make &lt;/mark&gt;&gt; make test &lt;mark&gt;&gt; make install MANDIR=/usr/local/Cellar/openssl/1.0.1h/share/man MANSUFFIX=ssl &lt;/mark&gt;&gt; Caveats A CA file has been bootstrapped using certificates from the system keychain. To add additional certificates, place .pem files in /usr/local/etc/openssl/certs and run /usr/local/opt/openssl/bin/c&lt;em&gt;rehash This formula is keg-only, so it was not symlinked into /usr/local. Mac OS X already provides this software and installing another version in parallel can cause all kinds of trouble. The OpenSSL provided by OS X is too old for some software. Generally there are no consequences of this for you. If you build your own software and it requires this formula, you'll need to add to your build variables: LDFLAGS: -L/usr/local/opt/openssl/lib CPPFLAGS: -I/usr/local/opt/openssl/include &lt;mark&gt;&gt; Summary /usr/local/Cellar/openssl/1.0.1h: 429 files, 15M, built in 4.1 minutes &lt;/mark&gt;&gt; Installing mysql &lt;mark&gt;&gt; Downloading &lt;a href="http://cdn.mysql.com/Downloads/MySQL-5.6/mysql-5.6.20.tar.gz"&gt;http://cdn.mysql.com/Downloads/MySQL-5.6/mysql-5.6.20.tar.gz&lt;/a&gt; ######################################################################## 100.0% &lt;/mark&gt;&gt; cmake . -DCMAKE&lt;/em&gt;INSTALL&lt;em&gt;PREFIX=/usr/local/Cellar/mysql/5.6.20 -DCMAKE&lt;/em&gt;FIND&lt;em&gt;F &lt;mark&gt;&gt; make &lt;/mark&gt;&gt; make install &lt;mark&gt;&gt; Caveats A "/etc/my.cnf" from another install may interfere with a Homebrew-built server starting up correctly. To connect: mysql -uroot To have launchd start mysql at login: ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents Then to load mysql now: launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist Or, if you don't want/need launchctl, you can just run: mysql.server start &lt;/mark&gt;&gt; /usr/local/Cellar/mysql/5.6.20/bin/mysql&lt;/em&gt;install_db --verbose --user=dannywa &lt;mark&gt;&gt; Summary /usr/local/Cellar/mysql/5.6.20: 9578 files, 339M, built in 7.2 minutes&lt;/mark&gt;&lt;/p&gt;
+
+&lt;p&gt;Now that's pretty amazing to me, and where homebrew is really worth its salt. All of those dependencies managed, auto downloaded, configured, and installed: cmake, pkg-config, makedepend, openssl, and finally mysql. There's no way I could have done that in 7.2 minutes manually.&lt;/p&gt;
+
+&lt;p&gt;Generally MySQL runs at a high enough port that it can run in user space, so you don't need to sudo it into the /Library/LaunchAgents folder, it's ok to run it from your home folder, so go ahead and follow the instruction on screen:&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents; launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;That will load MySQL. Now we'll test it and make some configuration changes. In shell we will connect to the mysql server:&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;mysql -u root&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;You will now drop into a MySQL prompt that should look something like this:&lt;/p&gt;
+
+&lt;p&gt;Welcome to the MySQL monitor. Commands end with ; or \g. Your MySQL connection id is 3 Server version: 5.6.20 Homebrew Copyright (c) 2000, 2014, Oracle and/or its affiliates. All rights reserved. Oracle is a registered trademark of Oracle Corporation and/or its affiliates. Other names may be trademarks of their respective owners. Type 'help;' or '\h' for help. Type '\c' to clear the current input statement. mysql&gt;&lt;/p&gt;
+
+&lt;p&gt;Notice that we have version 5.6.20 Homebrew - helpful in identifying that we are connected to the &lt;em&gt;correct&lt;/em&gt; database. Now at the prompt (&lt;code&gt;mysql &amp;gt;&lt;/code&gt;) we will set a password for the root account. It's not only good practice, it's required by some software. Obviously in a production server you would worry about security- but for a dev server using root is A-OK in my book. To set the root password enter this command:&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;exit&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;No, that didn't really change the root password. That simply disconnected from the MySQL server and dropped us back into our standard shell. You see, there's a simple command called &lt;code&gt;mysqladmin&lt;/code&gt; that's been installed for us as well which makes it much easier to change the password. Now we will use this command:&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;mysqladmin -u root password "newpwd"&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Please substitute "newpwd" for the password you want to use for the root account. I use "root" (no quotes). Again- it's a dev. server. Remember that the MySQL docs recommend only alphanumeric characters for MySQL passwords. If you run into log in issues later it might be because of special characters. Now, let's try to connect to mysql again as above and you should get an error:&lt;/p&gt;
+
+&lt;p&gt;mysql -u root ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: NO)&lt;/p&gt;
+
+&lt;p&gt;If you want to connect via terminal in the future you will have to use the &lt;code&gt;-p&lt;/code&gt; flag like so:&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;mysql -u root -p&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;After which you will be prompted for the password which you just set.&lt;/p&gt;
+
+&lt;p&gt;For now that's the basic configuration of MySQL, we'll cover creating databases later when we go into Moodle setup.&lt;/p&gt;
+
+&lt;h2 id="php"&gt;PHP&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href="http://php.net/"&gt;PHP&lt;/a&gt; is one of the most popular dynamic languages out there. It's robust, it's solid, and it's what Moodle uses. So let's install it. Once again, OS X ships with PHP installed, but we're going to disable it and replace with the Homebrew version. My shipped version is 5.5.9 (cli) which was released on Feb 4, 2014. The latest stable version is 5.5.15:&lt;/p&gt;
+
+&lt;p&gt;php -v PHP 5.5.9 (cli) (built: Jun 28 2014 15:59:38) Copyright (c) 1997-2014 The PHP Group Zend Engine v2.5.0, Copyright (c) 1998-2014 Zend Technologies&lt;/p&gt;
+
+&lt;p&gt;Now, before we install PHP we need to remember that Moodle requires and recommends a lot of submodules:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;php&lt;/li&gt;
+&lt;li&gt;pcreunicode&lt;/li&gt;
+&lt;li&gt;php_extension iconv&lt;/li&gt;
+&lt;li&gt;php_extension mbstring&lt;/li&gt;
+&lt;li&gt;php_extension curl&lt;/li&gt;
+&lt;li&gt;php_extension openssl&lt;/li&gt;
+&lt;li&gt;php_extension tokenizer&lt;/li&gt;
+&lt;li&gt;php_extension xmlrpc&lt;/li&gt;
+&lt;li&gt;php_extension soap&lt;/li&gt;
+&lt;li&gt;php_extension ctype&lt;/li&gt;
+&lt;li&gt;php_extension zip&lt;/li&gt;
+&lt;li&gt;php_extension zlib&lt;/li&gt;
+&lt;li&gt;php_extension gd&lt;/li&gt;
+&lt;li&gt;php_extension simplexml&lt;/li&gt;
+&lt;li&gt;php_extension spl&lt;/li&gt;
+&lt;li&gt;php_extension pcre&lt;/li&gt;
+&lt;li&gt;php_extension dom&lt;/li&gt;
+&lt;li&gt;php_extension xml&lt;/li&gt;
+&lt;li&gt;php_extension intl&lt;/li&gt;
+&lt;li&gt;php_extension json&lt;/li&gt;
+&lt;li&gt;php_extension hash&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Man that's a lot of requirements/recommendations, fortunately Homebrew is going to provide us a lot of flexibility in getting everything installed. First we're going to need to tap two new repositories 'versions' and 'homebrew-php':&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;brew tap homebrew/versions; brew tap homebrew/homebrew-php&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;If everything goes well your output should look something like this:&lt;/p&gt;
+
+&lt;p&gt;brew tap homebrew/versions Cloning into '/usr/local/Library/Taps/homebrew/homebrew-versions'... remote: Counting objects: 2274, done. remote: Compressing objects: 100% (42/42), done. remote: Total 2274 (delta 18), reused 4 (delta 2) Receiving objects: 100% (2274/2274), 729.39 KiB | 338.00 KiB/s, done. Resolving deltas: 100% (1278/1278), done. Checking connectivity... done. Tapped 160 formulae dannywahlmbp:~ dannywahl$ brew tap homebrew/homebrew-php Cloning into '/usr/local/Library/Taps/homebrew/homebrew-php'... remote: Counting objects: 6685, done. remote: Compressing objects: 100% (5/5), done. remote: Total 6685 (delta 0), reused 1 (delta 0) Receiving objects: 100% (6685/6685), 1.32 MiB | 691.00 KiB/s, done. Resolving deltas: 100% (4322/4322), done. Checking connectivity... done. Tapped 408 formulae&lt;/p&gt;
+
+&lt;p&gt;Next you'll need to decide which version of PHP you want. I'm going to use PHP 5.6 even though it's only at RC1 as of this writing because I really want to try &lt;a href="http://phpdbg.com/"&gt;phpdbg&lt;/a&gt;. If nobody tests release versions of software then how will the bugs be found? Let's take a look at what options are available to us by running this command:&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;brew options php56&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;and we get quite a few options:&lt;/p&gt;
+
+&lt;p&gt;brew options php56 --disable-opcache Build without Opcache extension --homebrew-apxs Build against apxs in Homebrew prefix --with-apache Enable building of shared Apache 2.0 Handler module, overriding any options which disable apache --with-cgi Enable building of the CGI executable (implies --without-apache) --with-debug Compile with debugging symbols --with-fpm Enable building of the fpm SAPI executable (implies --without-apache) --with-gmp Build with gmp support --with-homebrew-curl Include Curl support via Homebrew --with-homebrew-libxslt Include LibXSLT support via Homebrew --with-homebrew-openssl Include OpenSSL support via Homebrew --with-imap Include IMAP extension --with-intl Include internationalization support --with-libmysql Include (old-style) libmysql support instead of mysqlnd --with-mssql Include MSSQL-DB support --with-pdo-oci Include Oracle databases (requries ORACLE_HOME be set) --with-pgsql Include PostgreSQL support --with-phpdbg Enable building of the phpdbg SAPI executable (PHP 5.4 and above) --with-thread-safety Build with thread safety --with-tidy Include Tidy support --without-bz2 Build without bz2 support --without-mysql Remove MySQL/MariaDB support --without-pcntl Build without Process Control support --without-pear Build without PEAR --HEAD install HEAD version&lt;/p&gt;
+
+&lt;p&gt;Even though it's probably not required for php56 I'm going to use the &lt;code&gt;--with-phpdbg&lt;/code&gt; flag just to be safe. In addition I'm going to use a few other options for homebrew versions of software. Since we've already installed Homebrew OpenSSL we'll use that, as well as APXS and Curl. Apxs is a tool for building Apache modules (like PHP) - since we're using a newer version of Apache than shipped with OS X we should probably use a newer version of APXS too. Curl is another one of those tools that's slightly outdated and we may as well use the latest stable version. The version on my system is 7.30.0, and at the time of this writing the version shipping with Homebrew is 7.37.1. I've also used &lt;code&gt;--with-tidy&lt;/code&gt; because if I recall correctly Moodle text editors can leverage it for WYSIWYG input. Finally, notice that we're not using the &lt;code&gt;--with-intl&lt;/code&gt; flag, that's because currently intl is broken and we'll have to install a separate package after PHP builds. Here's my full install command (copy and paste):&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;brew install php56 --homebrew-apxs --with-apache --with-homebrew-curl --with-homebrew-openssl --with-phpdbg --with-tidy&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;If you get an error about missing bzip2 like this:&lt;/p&gt;
+
+&lt;p&gt;&gt; ./configure --prefix=/usr/local/Cellar/php56/5.6.0-rc.2 --localstatedir=/usr checking for gzgets in -lz... yes checking whether to enable bc style precision math functions... yes checking for BZip2 support... yes checking for BZip2 in default path... not found configure: error: Please reinstall the BZip2 distribution READ THIS: &lt;a href="https://github.com/Homebrew/homebrew/wiki/troubleshooting"&gt;https://github.com/Homebrew/homebrew/wiki/troubleshooting&lt;/a&gt; If reporting this issue please do so at (not Homebrew/homebrew): &lt;a href="https://github.com/homebrew/homebrew-php/issues"&gt;https://github.com/homebrew/homebrew-php/issues&lt;/a&gt; /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/rubygems/core&lt;em&gt;ext/kernel&lt;/em&gt;require.rb:55:in &lt;code&gt;require': Class is not a module (TypeError) from /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/rubygems/core_ext/kernel_require.rb:55:in&lt;/code&gt;require' from /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/net/http.rb:390:in &lt;code&gt;&amp;lt;http&amp;gt;' from /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/net/http.rb:384:in&lt;/code&gt;&lt;net&gt;' from /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/net/http.rb:25:in &lt;code&gt;&amp;lt;top&amp;gt;' from /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/rubygems/core_ext/kernel_require.rb:55:in&lt;/code&gt;require' from /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/rubygems/core&lt;em&gt;ext/kernel&lt;/em&gt;require.rb:55:in &lt;code&gt;require' from /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/net/https.rb:21:in&lt;/code&gt;&lt;top&gt;' from /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/rubygems/core&lt;em&gt;ext/kernel&lt;/em&gt;require.rb:55:in &lt;code&gt;require' from /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/rubygems/core_ext/kernel_require.rb:55:in&lt;/code&gt;require' from /usr/local/Library/Homebrew/utils.rb:308:in &lt;code&gt;open' from /usr/local/Library/Homebrew/utils.rb:350:in&lt;/code&gt;issues&lt;em&gt;matching' from /usr/local/Library/Homebrew/utils.rb:378:in &lt;code&gt;issues_for_formula' from /usr/local/Library/Homebrew/exceptions.rb:171:in&lt;/code&gt;fetch&lt;/em&gt;issues' from /usr/local/Library/Homebrew/exceptions.rb:167:in &lt;code&gt;issues' from /usr/local/Library/Homebrew/exceptions.rb:207:in&lt;/code&gt;dump' from /usr/local/Library/brew.rb:158:in &lt;code&gt;rescue in &amp;lt;main&amp;gt;' from /usr/local/Library/brew.rb:66:in&lt;/code&gt;&lt;main&gt;'&lt;/main&gt;&lt;/top&gt;&lt;/net&gt;&lt;/p&gt;
+
+&lt;p&gt;Then you will need to edit the formula to set the path of your bzip2 binary manually. First, find where your bzip2 binary is located with the following command:&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;which bzip2&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Then edit the forumula for php:&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;brew edit php56&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;and add this line:&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;args &lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;after these lines:&lt;/p&gt;
+
+&lt;p&gt;def install_args args = super&lt;/p&gt;
+
+&lt;p&gt;Another common error that seems to be occuring, and has been reported (&lt;a href="https://github.com/Homebrew/homebrew-php/issues/1268"&gt;here&lt;/a&gt;) is a compilation error while building phar. The basic error is:&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;make: &lt;em&gt;*&lt;/em&gt; [ext/phar/phar.phar] Illegal instruction: 4 &lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;or&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;/Library/Ruby/Site/2.0.0/rubygems/core&lt;em&gt;ext/kernel&lt;/em&gt;require.rb:55:in require': Class is not a module (TypeError)&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;I found this to be an error of trying to use Homebrew's OpenSSL, either by setting it as the default on the system or using the &lt;code&gt;--with-homebrew-ssl&lt;/code&gt; flag. So for now my build is using the system version of OpenSSL. If the build goes correctly then your total output should look something like this:&lt;/p&gt;
+
+&lt;p&gt;brew install php56 --homebrew-apxs --with-apache --with-homebrew-curl --with-phpdbg --with-tidy &lt;mark&gt;&gt; Installing dependencies for php56: curl, libpng, freetype, xz, gettex &lt;/mark&gt;&gt; Installing php56 dependency: curl &lt;mark&gt;&gt; Downloading &lt;a href="http://curl.haxx.se/download/curl-7.37.1.tar.gz"&gt;http://curl.haxx.se/download/curl-7.37.1.tar.gz&lt;/a&gt; ######################################################################## 100.0% &lt;/mark&gt;&gt; ./configure --prefix=/usr/local/Cellar/curl/7.37.1 --with-darwinssl --withou &lt;mark&gt;&gt; make install &lt;/mark&gt;&gt; Caveats This formula is keg-only, so it was not symlinked into /usr/local. Mac OS X already provides this software and installing another version in parallel can cause all kinds of trouble. Generally there are no consequences of this for you. If you build your own software and it requires this formula, you'll need to add to your build variables: LDFLAGS: -L/usr/local/opt/curl/lib CPPFLAGS: -I/usr/local/opt/curl/include &lt;mark&gt;&gt; Summary /usr/local/Cellar/curl/7.37.1: 285 files, 2.8M, built in 91 seconds &lt;/mark&gt;&gt; Installing php56 dependency: libpng &lt;mark&gt;&gt; Downloading &lt;a href="https://downloads.sf.net/project/libpng/libpng16/1.6.12/libpng-1"&gt;https://downloads.sf.net/project/libpng/libpng16/1.6.12/libpng-1&lt;/a&gt; ######################################################################## 100.0% &lt;/mark&gt;&gt; ./configure --disable-silent-rules --prefix=/usr/local/Cellar/libpng/1.6.12 &lt;mark&gt;&gt; make install /usr/local/Cellar/libpng/1.6.12: 17 files, 1.2M, built in 24 seconds &lt;/mark&gt;&gt; Installing php56 dependency: freetype &lt;mark&gt;&gt; Downloading &lt;a href="https://downloads.sf.net/project/freetype/freetype2/2.5.3/freety"&gt;https://downloads.sf.net/project/freetype/freetype2/2.5.3/freety&lt;/a&gt; ######################################################################## 100.0% &lt;/mark&gt;&gt; ./configure --prefix=/usr/local/Cellar/freetype/2.5.3&lt;em&gt;1 --without-harfbuzz &lt;mark&gt;&gt; make &lt;/mark&gt;&gt; make install /usr/local/Cellar/freetype/2.5.3&lt;/em&gt;1: 60 files, 2.5M, built in 26 seconds &lt;mark&gt;&gt; Installing php56 dependency: xz &lt;/mark&gt;&gt; Downloading &lt;a href="http://fossies.org/linux/misc/xz-5.0.5.tar.gz"&gt;http://fossies.org/linux/misc/xz-5.0.5.tar.gz&lt;/a&gt; ######################################################################## 100.0% &lt;mark&gt;&gt; ./configure --prefix=/usr/local/Cellar/xz/5.0.5 &lt;/mark&gt;&gt; make install /usr/local/Cellar/xz/5.0.5: 58 files, 1.5M, built in 34 seconds &lt;mark&gt;&gt; Installing php56 dependency: gettext &lt;/mark&gt;&gt; Downloading &lt;a href="http://ftpmirror.gnu.org/gettext/gettext-0.19.2.tar.xz"&gt;http://ftpmirror.gnu.org/gettext/gettext-0.19.2.tar.xz&lt;/a&gt; ######################################################################## 100.0% &lt;mark&gt;&gt; ./configure --prefix=/usr/local/Cellar/gettext/0.19.2 --with-included-gettex &lt;/mark&gt;&gt; make &lt;mark&gt;&gt; make install &lt;/mark&gt;&gt; Caveats This formula is keg-only, so it was not symlinked into /usr/local. OS X provides the BSD gettext library and some software gets confused if both are in the library path. Generally there are no consequences of this for you. If you build your own software and it requires this formula, you'll need to add to your build variables: LDFLAGS: -L/usr/local/opt/gettext/lib CPPFLAGS: -I/usr/local/opt/gettext/include &lt;mark&gt;&gt; Summary /usr/local/Cellar/gettext/0.19.2: 1920 files, 18M, built in 5.3 minutes &lt;/mark&gt;&gt; Installing php56 dependency: jpeg &lt;mark&gt;&gt; Downloading &lt;a href="http://www.ijg.org/files/jpegsrc.v8d.tar.gz"&gt;http://www.ijg.org/files/jpegsrc.v8d.tar.gz&lt;/a&gt; ######################################################################## 100.0% &lt;/mark&gt;&gt; ./configure --prefix=/usr/local/Cellar/jpeg/8d &lt;mark&gt;&gt; make install /usr/local/Cellar/jpeg/8d: 18 files, 780K, built in 21 seconds &lt;/mark&gt;&gt; Installing php56 dependency: autoconf &lt;mark&gt;&gt; Downloading &lt;a href="http://ftpmirror.gnu.org/autoconf/autoconf-2.69.tar.gz"&gt;http://ftpmirror.gnu.org/autoconf/autoconf-2.69.tar.gz&lt;/a&gt; ######################################################################## 100.0% &lt;/mark&gt;&gt; ./configure --prefix=/usr/local/Cellar/autoconf/2.69 &lt;mark&gt;&gt; make install /usr/local/Cellar/autoconf/2.69: 70 files, 3.1M, built in 28 seconds &lt;/mark&gt;&gt; Installing php56 dependency: automake &lt;mark&gt;&gt; Downloading &lt;a href="http://ftpmirror.gnu.org/automake/automake-1.14.1.tar.gz"&gt;http://ftpmirror.gnu.org/automake/automake-1.14.1.tar.gz&lt;/a&gt; ######################################################################## 100.0% &lt;/mark&gt;&gt; ./configure --prefix=/usr/local/Cellar/automake/1.14.1 &lt;mark&gt;&gt; make install /usr/local/Cellar/automake/1.14.1: 131 files, 3.2M, built in 37 seconds &lt;/mark&gt;&gt; Installing php56 dependency: libtool &lt;mark&gt;&gt; Downloading &lt;a href="http://ftpmirror.gnu.org/libtool/libtool-2.4.2.tar.gz"&gt;http://ftpmirror.gnu.org/libtool/libtool-2.4.2.tar.gz&lt;/a&gt; ######################################################################## 100.0% &lt;/mark&gt;&gt; Patching patching file libltdl/config/ltmain.sh &lt;mark&gt;&gt; ./configure --prefix=/usr/local/Cellar/libtool/2.4.2 --program-prefix=g --en &lt;/mark&gt;&gt; make install &lt;mark&gt;&gt; Caveats In order to prevent conflicts with Apple's own libtool we have prepended a "g" so, you have instead: glibtool and glibtoolize. &lt;/mark&gt;&gt; Summary /usr/local/Cellar/libtool/2.4.2: 69 files, 2.5M, built in 46 seconds &lt;mark&gt;&gt; Installing php56 dependency: homebrew/dupes/tidy &lt;/mark&gt;&gt; Downloading ftp://mirror.internode.on.net/pub/gentoo/distfiles/tidy-20090325 ######################################################################## 100.0% &lt;mark&gt;&gt; sh build/gnuauto/setup.sh &lt;/mark&gt;&gt; ./configure --prefix=/usr/local/Cellar/tidy/20090325 --mandir=/usr/local/Cel &lt;mark&gt;&gt; make install /usr/local/Cellar/tidy/20090325: 10 files, 940K, built in 43 seconds &lt;/mark&gt;&gt; Installing php56 dependency: unixodbc &lt;mark&gt;&gt; Downloading &lt;a href="http://www.unixodbc.org/unixODBC-2.3.2.tar.gz"&gt;http://www.unixodbc.org/unixODBC-2.3.2.tar.gz&lt;/a&gt; ######################################################################## 100.0% &lt;/mark&gt;&gt; ./configure --prefix=/usr/local/Cellar/unixodbc/2.3.2 --enable-gui=no &lt;mark&gt;&gt; make install /usr/local/Cellar/unixodbc/2.3.2: 31 files, 960K, built in 2.4 minutes &lt;/mark&gt;&gt; Installing php56 &lt;mark&gt;&gt; Downloading &lt;a href="http://downloads.php.net/tyrael/php-5.6.0RC3.tar.bz2"&gt;http://downloads.php.net/tyrael/php-5.6.0RC3.tar.bz2&lt;/a&gt; ######################################################################## 100.0% Warning: Backing up all known pear.conf and .pearrc files Warning: If you have a pre-existing pear install outside of homebrew-php, or you are using a non-standard pear.conf location, installation may fail. &lt;/mark&gt;&gt; ./configure --prefix=/usr/local/Cellar/php56/5.6.0-rc.3 --localstatedir=/usr &lt;mark&gt;&gt; make &lt;/mark&gt;&gt; make install &lt;mark&gt;&gt; /usr/local/Cellar/php56/5.6.0-rc.3/bin/pear config-set php&lt;em&gt;ini /usr/local/et &lt;/em&gt;&lt;/mark&gt;&gt; Caveats To enable PHP in Apache add the following to httpd.conf and restart Apache: LoadModule php5module /usr/local/opt/php56/libexec/apache2/libphp5.so The php.ini file can be found in: /usr/local/etc/php/5.6/php.ini ✩✩✩✩ PEAR ✩✩✩✩ If PEAR complains about permissions, 'fix' the default PEAR permissions and config: chmod -R ug+w /usr/local/Cellar/php56/5.6.0-rc.3/lib/php pear config-set php_ini /usr/local/etc/php/5.6/php.ini ✩✩✩✩ Extensions ✩✩✩✩ If you are having issues with custom extension compiling, ensure that you are using the brew version, by placing /usr/local/bin before /usr/sbin in your PATH: PATH="/usr/local/bin:$PATH" PHP56 Extensions will always be compiled against this PHP. Please install them using --without-homebrew-php to enable compiling against system PHP. ✩✩✩✩ PHP CLI ✩✩✩✩ If you wish to swap the PHP you use on the command line, you should add the following to ~/.bashrc, ~/.zshrc, ~/.profile or your shell's equivalent configuration file: export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH" To have launchd start php56 at login: ln -sfv /usr/local/opt/php56/*.plist ~/Library/LaunchAgents Then to load php56 now: launchctl load ~/Library/LaunchAgents/homebrew.mxcl.php56.plist &lt;mark&gt;&gt; Summary /usr/local/Cellar/php56/5.6.0-rc.3: 497 files, 50M, built in 5.9 minutes&lt;/mark&gt;&lt;/p&gt;
+
+&lt;p&gt;As you can see looking at the caveats there are still a few steps we need to do. First we will fix the PEAR permissions, this might not be necessary, but it won't hurt anything so go ahead and copy and paste these commands into the terminal:&lt;/p&gt;
+
+&lt;p&gt;chmod -R ug+w /usr/local/Cellar/php56/5.6.0-rc.3/lib/php pear config-set php_ini /usr/local/etc/php/5.6/php.ini&lt;/p&gt;
+
+&lt;p&gt;Next we'll make sure that PHP gets loaded at login by the launchd and load it now, too:&lt;/p&gt;
+
+&lt;p&gt;ln -sfv /usr/local/opt/php56/*.plist ~/Library/LaunchAgents launchctl load ~/Library/LaunchAgents/homebrew.mxcl.php56.plist&lt;/p&gt;
+
+&lt;p&gt;Then we'll check our command line version. First, exit or Quit Terminal and reopen it, then run this command in terminal:&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;php -v&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;The output should have 5.6 listed as the version, like this:&lt;/p&gt;
+
+&lt;p&gt;php -v PHP 5.6.0RC3 (cli) (built: Aug 7 2014 10:21:55) Copyright (c) 1997-2014 The PHP Group Zend Engine v2.6.0-dev, Copyright (c) 1998-2014 Zend Technologies&lt;/p&gt;
+
+&lt;p&gt;If it lists 5.5 as the version then you need to update you $PATH variable. Depending on the version of shell your're running you need to add the following line to your terminal config (default ~/.profile). The following commands should add it for you:&lt;/p&gt;
+
+&lt;p&gt;touch ~/.profile cat &gt;&gt; ~/.profile Now you can exit Terminal and reopen it and run &lt;code&gt;php -v&lt;/code&gt; again.&lt;/p&gt;
+
+&lt;p&gt;Finally you need to add the php handlers to the httpd.conf. Open up &lt;code&gt;/usr/local/etc/apache2/2.4/httpd.conf&lt;/code&gt; and add the following three lines to the document:&lt;/p&gt;
+
+&lt;p&gt;LoadModule php5_module /usr/local/opt/php56/libexec/apache2/libphp5.so AddHandler php5-script .php AddType text/html .php&lt;/p&gt;
+
+&lt;p&gt;and find the line that starts with &lt;code&gt;DirectoryIndex&lt;/code&gt; and change it to read:&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;DirectoryIndex index.php index.html&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Save the document and then restart the httpd service with the following command:&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;sudo httpd -k restart&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Now we having functioning PHP on our server, but remember we need to install &lt;code&gt;intl&lt;/code&gt; separately, so go back to terminal and run the following command:&lt;/p&gt;
+
+&lt;p&gt;&lt;span class="lang:sh decode:true  crayon-inline "&gt;brew install php56-intl&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;When it finishes building you should have output similar to this:&lt;/p&gt;
+
+&lt;p&gt;brew install php56-intl &gt; Installing php56-intl dependency: icu4c &lt;mark&gt;&gt; Downloading &lt;a href="http://download.icu-project.org/files/icu4c/52.1/icu4c-52"&gt;http://download.icu-project.org/files/icu4c/52.1/icu4c-52&lt;/a&gt;&lt;em&gt;1-src. ######################################################################## 100.0% &lt;/em&gt;&lt;/mark&gt;&gt; ./configure --prefix=/usr/local/Cellar/icu4c/52.1 --disable-samples --disabl &lt;mark&gt;&gt; make VERBOSE=1 &lt;/mark&gt;&gt; make VERBOSE=1 install &lt;mark&gt;&gt; Caveats This formula is keg-only, so it was not symlinked into /usr/local. Conflicts; see: &lt;a href="https://github.com/Homebrew/homebrew/issues/issue/167"&gt;https://github.com/Homebrew/homebrew/issues/issue/167&lt;/a&gt; Generally there are no consequences of this for you. If you build your own software and it requires this formula, you'll need to add to your build variables: LDFLAGS: -L/usr/local/opt/icu4c/lib CPPFLAGS: -I/usr/local/opt/icu4c/include &lt;/mark&gt;&gt; Summary /usr/local/Cellar/icu4c/52.1: 239 files, 60M, built in 2.6 minutes &lt;mark&gt;&gt; Installing php56-intl &lt;/mark&gt;&gt; Downloading &lt;a href="http://downloads.php.net/tyrael/php-5.6.0RC3.tar.bz2"&gt;http://downloads.php.net/tyrael/php-5.6.0RC3.tar.bz2&lt;/a&gt; ######################################################################## 100.0% &lt;mark&gt;&gt; PHPAUTOCONF="/usr/local/opt/autoconf/bin/autoconf" PHP_AUTOHEADER="/usr/loc &lt;/mark&gt;&gt; ./configure --prefix=/usr/local/Cellar/php56-intl/5.6.0-rc.3 --with-php-conf &lt;mark&gt;&gt; make &lt;/mark&gt;&gt; Caveats To finish installing intl for PHP 5.6: * /usr/local/etc/php/5.6/conf.d/ext-intl.ini was created, do not forget to remove it upon extension removal. * Validate installation via one of the following methods: * * Using PHP from a webserver: * - Restart your webserver. * - Write a PHP page that calls "phpinfo();" * - Load it in a browser and look for the info on the intl module. * - If you see it, you have been successful! * * Using PHP from the command line: * - Run "php -i" (command-line "phpinfo()") * - Look for the info on the intl module. * - If you see it, you have been successful! &lt;mark&gt;&gt; Summary /usr/local/Cellar/php56-intl/5.6.0-rc.3: 3 files, 360K, built in 52 seconds brew install composer &lt;/mark&gt;&gt; Downloading &lt;a href="http://getcomposer.org/download/1.0.0-alpha8/composer.phar"&gt;http://getcomposer.org/download/1.0.0-alpha8/composer.phar&lt;/a&gt; ######################################################################## 100.0% &lt;mark&gt;&gt; Caveats Verify your installation by running: "composer --version". You can read more about composer and packagist by running: "brew home composer". &lt;/mark&gt;&gt; Summary /usr/local/Cellar/composer/1.0.0-alpha8: 3 files, 952K, built in 3 seconds&lt;/p&gt;
+
+&lt;p&gt;And there we have it! That will give us every required Moodle php extension, except for opcache, which at the time of this writing is &lt;a href="https://github.com/Homebrew/homebrew-php/issues/1100"&gt;not compatible with PHP 5.6&lt;/a&gt;. When it does become available you can simply run &lt;code&gt;brew install php56-opcache&lt;/code&gt; and you're done.&lt;/p&gt;
+
+&lt;h3 id="wrappingup"&gt;Wrapping Up&lt;/h3&gt;
+
+&lt;p&gt;That's the end of the first part of this extensive walk through of setting up a Moodle development server. This first part should really help anyone doing any sort of PHP development on a Mac whether it's WordPress, Drupal, or whatever. In part two we'll dive into configuring Apache and MySQL for Moodle development as well how to use the MDK, git, and JIRA to contribute your code and bug fixes back to the community.&lt;/p&gt;
+
+&lt;p&gt;If you need help with educational technology in your institution, from strategic planning, to implementation, to technical support contact us and we can help get you on the path to success.&lt;/p&gt;</description><link>http://www.iyware.com/osx-yosemite-mamp-homebrew-development-setup/</link><guid isPermaLink="false">30dbf1e7-e4cf-4997-84ef-d8fb05d78850</guid><category>Apache</category><category>Development</category><category>Homebrew</category><category>MDK</category><category>Moodle</category><category>PHP</category><category>MySQL</category><category>PostgreSQL</category><category>WordPress</category><dc:creator>Danny Wahl</dc:creator><pubDate>Wed, 13 Aug 2014 11:17:52 GMT</pubDate></item><item><title>Elegance: What's coming?</title><description>&lt;p&gt;This is just a quick note to say that the next minor version of Elegance is in development. The next release (version 2.7.1) will feature a lot of bug fixes and a couple of new features. If you’d like to follow development you can check the status of the &lt;a href="https://github.com/thedannywahl/moodle-theme_elegance/issues?milestone=1&amp;amp;page=1&amp;amp;state=open"&gt;2.7.1 Milestone over at github&lt;/a&gt;. It’s already past due by a day- but we had a lot of new issues opened in the last week that we wanted to fix before a new release. In general we do a lot of testing on the weekly+ and master branches of Moodle so we &lt;em&gt;should&lt;/em&gt; be able to get a release out the door one week behind a Moodle release.&lt;/p&gt;
+
+&lt;p&gt;So what do you need to do to get ready for the next version? I suggest you head over to the &lt;a href="http://realfavicongenerator.net/"&gt;Favicon Generator&lt;/a&gt; and make sure you have branding for all your mobile devices.&lt;/p&gt;</description><link>http://www.iyware.com/elegance-whats-coming/</link><guid isPermaLink="false">79d0f9f9-72ae-4b96-9992-d33bb70ca661</guid><category>Elegance</category><category>Favicon</category><category>PHP</category><category>Theme</category><dc:creator>Danny Wahl</dc:creator><pubDate>Tue, 22 Jul 2014 07:56:12 GMT</pubDate></item><item><title>Moodle $OUTPUT: An Introduction</title><description>&lt;p&gt;Here at iyWare we’re not really developers. Sure we write some code, and we have even released a few plugins for &lt;a href="https://github.com/thedannywahl/Zebra_4_Moodle_2"&gt;Moodle&lt;/a&gt;, &lt;a href="https://github.com/thedannywahl/California_4_WordPress_3"&gt;WordPress&lt;/a&gt;, and &lt;a href="https://github.com/thedannywahl/Zebra_4_Mahara"&gt;Mahara&lt;/a&gt; but really we’re in the educational technology consulting business. Recently &lt;a href="http://www.iyware.com/new-home-elegance/" title="New Home for Elegance"&gt;we took over development&lt;/a&gt; of the &lt;a href="https://moodle.org/plugins/view.php?plugin=theme_elegance" title="Elegance"&gt;Elegance&lt;/a&gt; Moodle theme from its original author and began auditing the code. We quickly released a &lt;a href="http://www.iyware.com/elegance-2-7-release/" title="Elegance 2.7 release"&gt;Moodle 2.7 compatible&lt;/a&gt; version- but to the (&lt;a href="https://moodle.org/mod/forum/discuss.php?d=263376#p1141999"&gt;understandable&lt;/a&gt;) &lt;a href="https://moodle.org/mod/forum/discuss.php?d=263376#p1142297"&gt;dissatisfaction&lt;/a&gt; &lt;a href="https://moodle.org/mod/forum/discuss.php?d=263376#p1142539"&gt;of a lot&lt;/a&gt; &lt;a href="https://moodle.org/mod/forum/discuss.php?d=263376#p1143365"&gt;of users&lt;/a&gt; some of the changes we made were perceived as “worse” or at least “not better” than the older version of the theme. So in this post I’d like to clarify why some of the changes we made were made and why they’re actually better. This may get a bit technical but I’ll try to keep it simple.&lt;/p&gt;
+
+&lt;h2 id="doutputrulesall"&gt;$OUTPUT Rules All&lt;/h2&gt;
+
+&lt;p&gt;In Moodle what a plugin can do is determined by what kind of plugin it is. This is logical AND makes sense. For example an activity (say Forum) is not allowed to ask you if you want to change your site logo. Other software, like WordPress aren’t so well defined. Have you ever changed themes and had an entire post-type (like testimonials) disappear? That’s because themes in WordPress are allowed to do things beyond change the look and feel of the site. Imagine in Moodle if you changed your theme and suddenly couldn’t use the Quiz module any more! So we have a good system of permissions in Moodle and what’s allowed to do what.&lt;/p&gt;
+
+&lt;p&gt;Now we’re going to introduce you to &lt;code&gt;$OUTPUT&lt;/code&gt;. $OUTPUT is a variable (meaning its content changes) that stores everything that gets output to a page- i.e. what you see in Moodle. This is a not-quite-technically-accurate definition because there are other global variables like $CFG, $THEME, $PAGE, $USER, and $DB but I think you get the idea. When a plugin has some data or information that it wants to display on the screen it gives it to $OUTPUT. For example, a list of quiz questions, or a button group that says “ok” or “cancel”. Generally the way that things are given to, read from, or changed in $OUTPUT is via what’s called in programming language a “&lt;a href="http://en.wikipedia.org/wiki/Method_%28programming%29"&gt;method&lt;/a&gt;“. Simply stated a method is a way of doing things- this applies offline as well as online. I have a method of stacking our plates (largest on bottom, smallest on top) so they don’t fall over. People have various methods of parking their cars- and the method varies depending on the type of parking spot.&lt;/p&gt;
+
+&lt;h2 id="methodtothemadness"&gt;Method to the Madness&lt;/h2&gt;
+
+&lt;p&gt;Methods in Moodle are defined by Moodle core- and this is why a quiz can’t change a logo or a theme can’t add an activity type. Moodle core will, in a programmatic way, tell the plugin “sorry you can’t do that.” There’s pretty much one exception to this, themes actually CAN do pretty much whatever they want with $OUTPUT. Sure, there are a few limitations (like the example above) but really they can add to, remove from, or change ANYTHING inside of $OUTPUT. This isn’t actually a bad thing, look and feel some times requires to a degree modifying the document structure- some times! The bad thing is that ONLY themes have this power. So let’s give an example of why this is good, and then an example of why it might be bad.&lt;/p&gt;
+
+&lt;h3 id="thegoodfonticons"&gt;The Good: Font Icons&lt;/h3&gt;
+
+&lt;p&gt;Iconography definitely falls into the “look &amp;amp; feel” department. So if a theme wants to use a font icon (like &lt;a href="http://fontawesome.io/"&gt;fontawesome&lt;/a&gt; it will have to change $OUTPUT. The transaction would look something like this:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Quiz Module: Hey, $OUTPUT the user is adding a quiz to the course page. Make sure you use that piece of paper with a fat red check mark on it as the icon.&lt;/p&gt;
+  
+  &lt;p&gt;$OUTPUT: Cool, thanks for that info.&lt;/p&gt;
+  
+  &lt;p&gt;$OUTPUT: Yo! Theme, here’s everything you need to put on the page, get to work.&lt;/p&gt;
+  
+  &lt;p&gt;Theme plugin: Hold up $OUTPUT Imma let you finish, but font-awesome has the best icons. So We’re going to use a “question mark” icon instead.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Ta-da! Now you’re using an icon font to change the look-and feel of your website, but not really changing the functionality- which is the textbook definition of what a theme should do.&lt;/p&gt;
+
+&lt;h3 id="thebadsharethislinks"&gt;The Bad: “Share This” Links&lt;/h3&gt;
+
+&lt;p&gt;Let’s say you work at an actually-forward-thinking school that’s not bound by stuff like COPPA or CISPA, or a think-of-the-children mindset, or just a university. Pretend your school really wants to be able to add an array of “share this” links at the bottom of every forum post, next to the “reply”, “edit”, and “permalink” links. There are a number of options that you might try (or think you can try):&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;#### “local” plugin type&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;At first a developer might think “I’ll just make a small plugin that modifies the method that makes forum posts to include “share” links. They write a “local” plugin- meaning it’s not one of the well-defined plugin types (like assignment, theme, authentication, etc…) and write their new version of the method- and voila! It doesn’t work! Remember, Moodle tells plugins that they can’t change other plugins’ methods or their part of $OUTPUT. &lt;br&gt;
+- #### Forum 2: Electric Boogaloo!&lt;/p&gt;
+
+&lt;p&gt;The next option is to fork (or make a copy of) the forum module and change its name (and all mentions of its name) to something different, like “Forum 2″. Then you change the method of your new module to add sharing links. Install the new Forum 2 on your Moodle and people can start using it. But now you have 2 forum modules. Do you leave them both enabled? One without sharing links and the other with? No, that’s silly- turn off the old forum. And now your Moodle administrator has 9,000 emails from teachers and students saying they can’t find their old posts- their conditional activities and course completion are broken. Fix it! Fix it! Fix it!. Now you need to write &lt;em&gt;another&lt;/em&gt; plugin called a “tool” that takes all of the old “Forum” instances on your site and converts them to “Forum 2″ types. What a nightmare! And don’t forget as soon as Moodle updates the original “Forum” you need to track those changes and copy them to your new version. &lt;br&gt;
+- #### Or…&lt;/p&gt;
+
+&lt;h3 id="theuglythesocialesttheme"&gt;The Ugly: The Social-est Theme&lt;/h3&gt;
+
+&lt;p&gt;Instead of continuing with the “social” sharing example let’s switch to another one. Assume that you want to add some touch icons to your theme. There’s a variety of ways to achieve this and we’ll look at some of them here, with their drawbacks and advantages.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;#### The “HTML” Way&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This is probably the most straight forward way to add touch icons to your theme. Simply put the icons in the /pix/ folder and add the meta tag to your layout. Of course if your theme uses multiple layout files (which it probably does) you’ll need to add it to all all 5 or 6 or 7 layout files. The downside here is that by working outside of the image API you will probably cause some caching issues- and you &lt;em&gt;might&lt;/em&gt; even end up with broken images, depending on the site config. &lt;br&gt;
+- #### The “Moodle” Way&lt;/p&gt;
+
+&lt;p&gt;So why not just use the pix_url() method instead? Good idea, actually! Then your touch icons are handled Moodle and all edge cases of config and cache are taken into account for you. But what if you have different themes for desktop and for mobile?&lt;/p&gt;
+
+&lt;h4 id="andonitgoes"&gt;And On it Goes…&lt;/h4&gt;
+
+&lt;p&gt;Okay, rather than itemizing every option we’re simply going to go down the rabbit trail. Now what if your site has a different theme for desktop vs. mobile? Simply add the new method and the images to both themes. Now what if your site allows teachers to choose their own course theme? Simply add the new method and images to all themes. Now what if some of those themes are “core” themes (included with Moodle) like “More”? Simply clone that theme (see the bullet point above) and add the method and images to your new theme OR create a new “child” theme (a theme that requires another theme) and add your method and images to that theme OR edit the core code [please don’t do that!!!!]&lt;/p&gt;
+
+&lt;p&gt;Did we mention that if you make a child theme to make a few modifications that settings aren’t inherited? They’re not. So if you want to clone “more” and make a few changes you’re really out of luck. You’re really just inheriting layout, styles, and JS – which would be good if that’s all themes could do. But that custom logo you created? Nope.&lt;/p&gt;
+
+&lt;p&gt;You might as well make your own theme. There is one final option, if you don’t have an in-house developer who can build and maintain a theme your only option is to ask a theme developer to add a feature to a theme. Which we get a lot of, and usually they’re very specific to that instance and wouldn’t be a good general inclusion for a them. But the reason that people ask is because of what’s specifically outlined above- there’s no other way to do it.&lt;/p&gt;
+
+&lt;h3 id="rubbermeetstheroad"&gt;Rubber Meets the Road&lt;/h3&gt;
+
+&lt;p&gt;Okay there’s a bit of a background, now let’s look at some of the things specific to Elegance.&lt;/p&gt;
+
+&lt;h4 id="courseresourcetiles"&gt;Course Resource Tiles&lt;/h4&gt;
+
+&lt;p&gt;As we’ve stated, one of the core responsibilities of a theme is to control the look and feel. The “Tiled Resources” was a cool look &amp;amp; feel feature but it wasn’t a complete feature- it took the big resource output and reformatted it as a box instead of a rectangle, and then “floated” it so they stacked next to each other. We removed this from the theme because it wasn’t &lt;em&gt;fully&lt;/em&gt; functional- and the functionality that it was trying to create already has a definition: “Course Format”. Remember how we said a theme can’t create a new activity? Well we shouldn’t try to have it &lt;em&gt;pretend&lt;/em&gt; like it has added other plugin types- we should actually create them. Very quickly, off the top of my head, here’s a list of the problems with the Tiled Resources as it existed in the theme that would need to be fixed for it to be fully functional:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Does it work across multiple course formats (including third party?)&lt;/li&gt;
+&lt;li&gt;How are labels output inside of the “box”?&lt;/li&gt;
+&lt;li&gt;How are folders w/ expanded content displayed in the “box”?&lt;/li&gt;
+&lt;li&gt;How does a resource with the “Description” shown on the page look?&lt;/li&gt;
+&lt;li&gt;How does the list of conditional access rules look on the page?&lt;/li&gt;
+&lt;li&gt;Does “drag and drop” reordering of resources work?&lt;/li&gt;
+&lt;li&gt;How do indented (move right/left) resources look?&lt;/li&gt;
+&lt;li&gt;How do boxes look on a mobile phone or tablet? Desktop?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;All of these things fall into the definition of a course format- which a theme could then tweak the look and feel of, but ADDING all of this stuff to a theme is like cramming two plugins into one. On top of that you have a little bit of “vendor lock in”. We all know that teachers shouldn’t tailor their display to their theme and/or device – but they do. And this facilitates that. As an admin you’d never be able to remove or change Elegance as a theme option because suddenly &lt;em&gt;poof&lt;/em&gt; Tiled Resources is gone. That’s not good.&lt;/p&gt;
+
+&lt;h4 id="mycoursetileblock"&gt;My Course Tile Block&lt;/h4&gt;
+
+&lt;p&gt;Let me just start by saying that the function that added this part to the theme was called something like “theme&lt;em&gt;elegance&lt;/em&gt;my&lt;em&gt;course&lt;/em&gt;tiles&lt;em&gt;fake&lt;/em&gt;block”. That should be enough right there. A theme is a theme, a block is a block. A fake block in a theme is NOT a block. And here’s the problem(s) with it:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;No block settings (global)&lt;/li&gt;
+&lt;li&gt;No block config (per-block)&lt;/li&gt;
+&lt;li&gt;Users can’t hide, move, or dock the block&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;All of those things are required by a block type plugin, but a theme modifying doesn’t have to follow the block rules to the detriment of the user. Not to mention, again, that if you switch themes you lose your block- unlike all other block types.&lt;/p&gt;
+
+&lt;h3 id="conclusion"&gt;Conclusion&lt;/h3&gt;
+
+&lt;p&gt;In conclusion there are three main ways that themes modify $OUTPUT of a Moodle site:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Strictly changing look and feel without changing functionality  &lt;/li&gt;
+&lt;li&gt;Adding functionality that &lt;em&gt;can’t&lt;/em&gt; be added by other plugin types  &lt;/li&gt;
+&lt;li&gt;Adding functionality that &lt;em&gt;can&lt;/em&gt; by added by other plugin types&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The above two examples are examples of #3. They were providing functionality that should be provided by “real” plugins. This makes testing and maintaining the theme exponentially harder because you usage cases and configuration options increase with each additional fake plugin you add to your theme.&lt;/p&gt;
+
+&lt;p&gt;Now, to be clear, we didn’t remove these features from Elegance simply because ideally they should be a standalone plugin. We removed them because they were broken. Sure, for most simple Moodle installs they mostly worked, but we have to support all Moodle installs. And the only way to ensure that it works properly is to build the functionality correctly. So, while we understand that it’s not fun to lose functionality (especially stuff you really like!) we’re now on the path to being able to do it the right way.&lt;/p&gt;
+
+&lt;p&gt;If you need help with educational technology in your institution, from strategic planning, to implementation, to technical support contact us and we can help get you on the path to success.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://www.iyware.com/contact/" ?**="" contact="" us&lt;="" a=""&gt;&lt;/a&gt;&lt;/p&gt;</description><link>http://www.iyware.com/moodle-output-an-introduction/</link><guid isPermaLink="false">da4fb4ba-9b6e-4f6e-a3f1-41c4eeeb5c7f</guid><category>Development</category><category>Elegance</category><category>Mahara</category><category>Theme</category><category>WordPress</category><dc:creator>Danny Wahl</dc:creator><pubDate>Fri, 18 Jul 2014 16:44:33 GMT</pubDate></item><item><title>Elegance 2.7 release</title><description>&lt;p&gt;It’s taken a little bit longer than we had hoped but we’re happy to announce that the official 2.7 version of Elegance has been released! It’s currently available in the &lt;a href="https://moodle.org/plugins/view.php?plugin=theme_elegance"&gt;Moodle plugins directory&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;As with all of our releases we have also opened a new &lt;a href="https://moodle.org/mod/forum/discuss.php?d=263376"&gt;support thread&lt;/a&gt; at the moodle.org forums. Since this is our first release since taking over development of this plugin we were primarily on a “how does this work?” expedition. As such there’s not a lot of new functionality, but there are quite a few bugs that have been fixed.&lt;/p&gt;
+
+&lt;p&gt;The two biggest changes in this release are 1) official Moodle 2.7 compatibility and 2) dependence on moodle-theme_bootstrap. This is not to be confused with “bootstrapbase” which is included in Moodle 2.7. But, in the effort of easing confusion – if you’re using the Moodle auto-updater (which you should be) you’ll automatically be prompted to install this parent theme first. This also allowed us to lighten the code base- a lot!&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/thedannywahl/moodle-theme_elegance/compare/7c80461...2.7.0.06"&gt;199 changed files with &lt;strong&gt;982&lt;/strong&gt; additions and &lt;strong&gt;36,422&lt;/strong&gt; deletions.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Finally we’d like to thank all the &lt;a href="https://github.com/thedannywahl/moodle-theme_elegance/graphs/contributors"&gt;contributors&lt;/a&gt; and &lt;a href="https://github.com/thedannywahl/moodle-theme_elegance/issues?state=open"&gt;bug reporters&lt;/a&gt; that helped make this release possible.&lt;/p&gt;
+
+&lt;p&gt;Well what are you waiting for? &lt;a href="https://moodle.org/plugins/view.php?plugin=theme_elegance"&gt;Go get it&lt;/a&gt;!&lt;/p&gt;</description><link>http://www.iyware.com/elegance-2-7-release/</link><guid isPermaLink="false">26a2e1d1-7c63-4255-bebf-89868ac5a236</guid><category>Elegance</category><category>Simplex</category><category>Theme</category><dc:creator>Danny Wahl</dc:creator><pubDate>Fri, 04 Jul 2014 23:11:28 GMT</pubDate></item><item><title>New Home for Elegance</title><description>&lt;p&gt;It’s been a whirlwind few months in the Moodle theme community. Julian Ridden released a new theme, &lt;a href="https://moodle.org/plugins/view.php?plugin=theme_elegance"&gt;Elegance&lt;/a&gt; which garnered &lt;a href="https://moodle.org/plugins/stats.php?plugin=theme_elegance"&gt;a massive amount of downloads&lt;/a&gt; as well as a TON of forum posts and issues at github. This was partly Julian’s fault because he labeled the theme as STABLE when it really should have been BETA or even ALPHA, but this also happens with stuff that’s labeled ALPHA too- people see it, want to try it, and are surprised when stuff doesn’t work. Then a few child themes / clones were created, notably elegantchild, and a few people even helped fix bugs!&lt;/p&gt;
+
+&lt;p&gt;And then something happened that nobody expected; Julian announced that he would stop development on all of his plugins and be leaving the Moodle community for Ruby~ier pastures- namely to work for Instructure’s Canvas LMS. I gotta say, it sounds like an awesome gig! I would have loved to have been on the ground floor of Moodle and we here at iyWare sincerely wish him the best at his new job.&lt;/p&gt;
+
+&lt;p&gt;But that sudden departure left a huge hole in the Moodle community and specifically in the support department for the Elegance theme. Which is a bummer, and on a personal note, we had just arranged with several clients to do a roll-out to Elegance on 2.7 two days before the announcement was made, d’oh! We figured, since we were already going to be supporting Elegance for some of our clients for the foreseeable future (until we could get them onto something actively developed at least) we should push our changes to the community. Some people liked this, some people didn’t.&lt;/p&gt;
+
+&lt;p&gt;Well, today I’m pleased to announce that we are now officially, and with the blessing of Julian and the Moodle Plugin Liaison David Mudrak, the lead developers of the Elegance theme for Moodle. We don’t currently have a lot of short-term plans for Elegance, other than fixing regressions introduced in 2.7 and patching existing bugs, but we do have some ideas coming down the road.&lt;/p&gt;
+
+&lt;p&gt;Now you may be thinking to yourself, “what about Simplex?”. Yeah, we’re a little behind on that- but I’m happy to say that Elegance will be the main theme plugin for the Simplex project! Remember the Simplex project is about primary school users and a touch friendly interface for Moodle. We really think that Elegance (and Bootstrap 3) are a step in the right direction. And along those lines we do have a couple of plugins for Simplex in the pipeline now and they should be out soon. Of course our goal is not for them to be dependent on theme_elegance so they should work with any theme! Here’s a sneak peek of a front-page interface: &lt;br&gt;
+&lt;img src="http://www.iyware.com/content/images/import/Screen-Shot-2014-06-18-at-2.33.22-PM-960x491.png" alt="Elegance preview"&gt;&lt;/p&gt;</description><link>http://www.iyware.com/new-home-elegance/</link><guid isPermaLink="false">31ba7739-31a3-4624-8bde-96187c053ac6</guid><category>Elegance</category><category>Simplex</category><category>Theme</category><dc:creator>Danny Wahl</dc:creator><pubDate>Wed, 18 Jun 2014 14:48:40 GMT</pubDate></item><item><title>Moodle Demo Site Down</title><description>&lt;p&gt;Just a quick note, we had to take down our Moodle demo site (moodle.iyware.com). The demo site has always lived on the dev branch of Moodle and with the new &lt;a href="https://tracker.moodle.org/browse/MDL-42931"&gt;2.7 system requirements&lt;/a&gt; our host no longer meets them. &lt;a href="https://discussion.dreamhost.com/thread-138999.html"&gt;We’ve let our host know&lt;/a&gt; that we’d like to see a server upgrade – but for not it’s not going to happen. Rather than reinstall on a stable branch, we’ve decided to shut down the demo site for now.&lt;/p&gt;</description><link>http://www.iyware.com/moodle-demo-site/</link><guid isPermaLink="false">c9fba146-f86b-4de4-839a-62819b5faf61</guid><dc:creator>Danny Wahl</dc:creator><pubDate>Thu, 24 Apr 2014 08:57:02 GMT</pubDate></item><item><title>CodePen.io Moodle Text Filter Release</title><description>&lt;p&gt;Syntax highlighting is hard. So is porting a syntax highlighter from platform to platform. So we thought, “Why not be lazy?” Bam. Introducing the &lt;a href="http://codepen.io/" title="Contact"&gt;CodePen.io&lt;/a&gt; Moodle Text Filter – for the lazy man (or woman). This plugin converts any Pen URL into an embed of that Pen.&lt;/p&gt;
+
+&lt;p&gt;Here’s a brief overview of what we’re talking about. Put some text into the ol’ text editor, and if it contains a link to a Pen (i.e. /pen/) the filter will embed the Pen.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://www.iyware.com/content/images/import/1.png" alt="codepentexteditor"&gt;&lt;/p&gt;
+
+&lt;p&gt;Notice that in the above image the first two lines are both a Pen URL, but look at the output:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://www.iyware.com/content/images/import/2.png" alt="renderedpen"&gt;&lt;/p&gt;
+
+&lt;p&gt;Only the first one was embedded. That’s because a &lt;em&gt;link&lt;/em&gt; to a pen is escaped by the filter. The third line wasn’t converted because it isn’t a link to a Pen, it is a link to the details page. The fourth line wasn’t converted because, I don’t really have to explain it do I? What kind of terrible online course is this anyways?&lt;/p&gt;
+
+&lt;p&gt;For any users that have JavaScript disabled… stop it! I mean, we provide a nice fall back:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://www.iyware.com/content/images/import/3.png" alt="dudejustturnonJS"&gt;&lt;/p&gt;
+
+&lt;p&gt;So that they can click the link to the Pen… and CodePen.io will tell them they need JavaScript to view it. Hooray!&lt;/p&gt;
+
+&lt;p&gt;Well, that’s about it. One final note, if you have the “Convert URLS to links and images” enabled on your Moodle you’ll need to prioritize the CodePen filter otherwise they’ll all be escaped and I’ll get angry comments about our plugin being broken.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://www.iyware.com/content/images/import/4.png" alt="fixurfilters"&gt;&lt;/p&gt;
+
+&lt;p&gt;Also, consider getting a Pro plan at CodePen – I did, and I use it daily in my classroom. It’s awesome. We even have a “Fun = CodePen + Codecademy + Moodle;” post coming soon on using those tools to teach HTML JavaScript.&lt;/p&gt;
+
+&lt;p&gt;Go &lt;a href="https://moodle.org/plugins/view.php?plugin=filter_codepen"&gt;grab the filter&lt;/a&gt; from the Moodle Plugins Directory.&lt;/p&gt;</description><link>http://www.iyware.com/codepen-io-moodle-text-filter-release/</link><guid isPermaLink="false">103cb730-c2aa-4403-817b-f9eb8a31409d</guid><category>Codecademy</category><category>Codepen</category><category>Plugin</category><category>Syntax Highlight</category><category>Text Filter</category><dc:creator>Danny Wahl</dc:creator><pubDate>Thu, 13 Feb 2014 20:44:33 GMT</pubDate></item><item><title>The Simplex Project: Introduction</title><description>&lt;p&gt;It’s no secret that Moodle is geared toward college and university use, or at least to higher-level learning, but there’s still a huge contingent of primary school users out there. Unfortunately the attitude generally is “take it or leave it” when it comes to usability for small children and themes exemplify this more than anything.&lt;/p&gt;
+
+&lt;p&gt;We’ve decided to change that. Introducing &lt;a href="http://simplex.iyware.com/"&gt;Simplex&lt;/a&gt;, a Moodle project designed specifically for primary student and touch-device users. We don’t mean just a large logo in comic-sans or bright pink background with the normal Moodle interface resting on top. We mean a bottom-to-top redesign of the user interface and experience.&lt;/p&gt;
+
+&lt;p&gt;Currently we’re hoping for a beta release around May and a stable release around July. If you’re interested in helping out head to the &lt;a href="http://simplex.iyware.com/" title="Simplex project"&gt;project page&lt;/a&gt; to see how you can help. If you just want to follow the development progress you can bookmark the &lt;a href="http://www.iyware.com/tag/simplex/"&gt;Simplex tag&lt;/a&gt; here.&lt;/p&gt;</description><link>http://www.iyware.com/simplex-project-introduction/</link><guid isPermaLink="false">f3a37a09-3551-4dd4-9ec4-99f2040dd925</guid><category>Simplex</category><category>Theme</category><dc:creator>Danny Wahl</dc:creator><pubDate>Wed, 22 Jan 2014 15:21:14 GMT</pubDate></item><item><title>Code Kids Love</title><description>&lt;p&gt;I’ve been involved in technology so long that some times I forget how easy it is to introduce that “wow” factor to someone that’s never been introduced to it, and never had the time to become jaded to it. Unfortunately very often curriculum and standards forget this too. It’s not uncommon to hear sentiments along the lines of (paradoxically) either “Kids don’t know how to do anything with technology!” or “Kids should be doing robotics, solar powered go-karts, etc…” We’re simultaneously setting the bar low and high. And I believe that’s because tech is tough to get right.&lt;/p&gt;
+
+&lt;p&gt;To that end I’m not advocating the following as a “solution” to educational technology and the unique challenges that it presents, but rather I’m intending to show that sometimes it’s not as hard as we think. So, in an introductory HTML course that I’ve taught, using the awesome &lt;a href="http://www.codecademy.com/tracks/web"&gt;Codecademy Web Fundamentals&lt;/a&gt; course, these are the 2 “hooks” that get the kids engaged from the start:&lt;/p&gt;
+
+&lt;p&gt;&lt;title&gt;TYPE YOUR NAME HERE!&lt;/title&gt;&lt;/p&gt;
+
+&lt;p&gt;I know it doesn’t seem like much, but when a kid sees their name on the top of a tab in Firefox, it’s like black magic to them. Something they absolutely had no idea they could even do they now have 100% control over. It’s awesome. The second bit of code I’ve found that absolutely hooks students is this:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://www.iyware.com/bing.com"&gt; google.com &lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;That’s all it takes. A link that says “Google” but goes to “Bing”. Put yourself in their shoes for a second. We’re all used to links doing what they’re supposed to because we design them that way and with good reason. But they don’t &lt;em&gt;have&lt;/em&gt; to. You’re in control of the user experience and when a student discovers that the possibilities suddenly become limitless. And that’s what ed. tech should be all about; introducing students to possibilities.&lt;/p&gt;</description><link>http://www.iyware.com/code-kids-love/</link><guid isPermaLink="false">cc725f61-abaa-4cf4-a094-5ef0e519b25f</guid><category>Codecademy</category><category>Curriculum</category><category>HTML</category><category>Standards</category><category>Teaching</category><dc:creator>Danny Wahl</dc:creator><pubDate>Mon, 28 Oct 2013 09:43:22 GMT</pubDate></item><item><title>We've Gone Free Culture</title><description>&lt;p&gt;That’s right, I’ve really done it now. I’ve officially changed the &lt;a href="http://www.iyware.com/license/" title="License"&gt;license&lt;/a&gt; for all content on this site to a &lt;a href="http://freedomdefined.org/Definition"&gt;Free Culture&lt;/a&gt; compatible one. In the past all content was available under the CC BY-SA-NC 3.0 license, but the past is the past and now we’re rocking a much simpler &lt;a href="http://creativecommons.org/licenses/by/3.0/"&gt;CC BY 3.0&lt;/a&gt; license; also known as the Creative Commons Attribution License.&lt;/p&gt;
+
+&lt;p&gt;What does this mean for you? If you see a cool code snippet and want to use it, use it! If you like one of my blog posts and want to include it in your self-published (or publishing-house published) book, do it. If you want to use some of my free code in another one of your free (or not) projects, go for it! And hopefully we can avoid things &lt;a href="https://moodle.org/mod/forum/discuss.php?d=185628#p809131"&gt;like this&lt;/a&gt; from happening, which is why I explicitly retain the right to dual (or triple or quadruple) license any content.&lt;/p&gt;
+
+&lt;p&gt;Look, if you need some code, an idea, an image, whatever for a project but it doesn’t “work” with CC, just ask me. I’ll probably give you whatever you want.&lt;/p&gt;
+
+&lt;p&gt;You might wonder, “why?” The answer really boils down to two main points:&lt;/p&gt;
+
+&lt;p&gt;The first is this: I stand on the shoulders of giants. If it weren’t for the fact that HTML was designed to be open I probably never would have been able to learn it with trusty old ‘View source’ and Notepad. If it weren’t for all the great how-to blogs and tips ‘n tricks websites I could never have innovated anything new myself. The stuff that’s “mine” is probably on like 5% mine, so why should I stop somebody else from taking the next step? Just because I don’t want them to make money? That’s petty, and wrong.&lt;/p&gt;
+
+&lt;p&gt;And the second, this: I’m not a professional programmer. I don’t make a living by writing code. I make a living by selling my ideas and my expertise. Most of the ideas I get paid for don’t exist on this blog, mainly because they can’t. They’re solutions that are developed for specific clients to solve specific problems. So the things I share here are the universals that those solutions can be distilled down to. Use them! But if you need specifics, contact me.&lt;/p&gt;</description><link>http://www.iyware.com/weve-gone-free-culture/</link><guid isPermaLink="false">20c61375-234c-4320-88da-4061f52f00e7</guid><category>Creative Commons</category><category>License</category><category>Open Source</category><dc:creator>Danny Wahl</dc:creator><pubDate>Wed, 09 Oct 2013 14:58:13 GMT</pubDate></item><item><title>Whois Spam</title><description>&lt;p&gt;That’s not a question. It’s a statement, or rather a discovery I made the other day when troubleshooting VPN connectivity issues.&lt;/p&gt;
+
+&lt;p&gt;Danny-Wahls-MacBook-Pro:~ danny.wahl$ whois youtube.com Whois Server Version 2.0 Domain names in the .com and .net domains can now be registered with many different competing registrars. Go to &lt;a href="http://www.internic.net/"&gt;http://www.internic.net&lt;/a&gt; for detailed information. YOUTUBE.COM.ZZZZZ.GET.LAID.AT.WWW.SWINGINGCOMMUNITY.COM YOUTUBE.COM.ZEN.GET.ONE.MILLION.DOLLARS.AT.WWW.UNIMUNDI.COM YOUTUBE.COM.MORE.INFO.AT.WWW.BEYONDWHOIS.COM YOUTUBE.COM.IS.N0T.AS.1337.AS.WWW.GULLI.COM YOUTUBE.COM.BLACKRAMINC.COM YOUTUBE.COM&lt;/p&gt;
+
+&lt;p&gt;Come on guys, I don’t care how 1337 your site is. I’m never going to it now.&lt;/p&gt;</description><link>http://www.iyware.com/whois-spam/</link><guid isPermaLink="false">1fa31d94-f36d-4efd-9ab1-5117365d6845</guid><category>1337</category><category>spam</category><category>VPN</category><category>whois</category><dc:creator>Danny Wahl</dc:creator><pubDate>Fri, 04 Oct 2013 21:25:10 GMT</pubDate></item><item><title>URL Shorteners &amp; Page Load Speed</title><description>&lt;p&gt;URL shorteners are all the rage right now. They make it easy to share links in sites like twitter without blowing your character limit. They make sharing gross long urls easy in email (for the bulk of users that don’t know how to use an &lt;code&gt;&amp;lt;a&amp;gt;&lt;/code&gt; tag or a “link” button). And some even offer cool analytics on the back end. They seem like an all around good idea because who wants to see this:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;http://www.google.com/url?sa=t&amp;amp;rct=j&amp;amp;q=&amp;amp;esrc=s&amp;amp;source=web&amp;amp;cd=2&amp;amp;cad=rja&amp;amp;ved=0CDIQFjAB&amp;amp;url=%68%74%74%70%3a%2f%2f%65%6e%2e%77%69%6b%69%70%65%64%69%61%2e%6f%72%67%2f%77%69%6b%69%2f%55%52%4c%5f%73%68%6f%72%74%65%6e%69%6e%67&amp;amp;ei=B_VAUo23J8iErgeCh4DYCw&amp;amp;usg=AFQjCNEayxRGdtXyKBGD8Kk5rbG1EeU4qw&amp;amp;sig2=fH4cQutvz40ycjP3Z9kPaQ&amp;amp;bvm=bv.52434380,d.bmk&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;When you could see this:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;http://goo.gl/4mQ43y&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;But we also know that there’s a good push towards minimizing page load speeds, so I’d like to take a look at whether or not the URL shorteners are worth the time. What I’ll outline here is an emulation of a real-world example I came across while riding the bus home from work. The emulation will not be extremely scientific but I’ll examining the overhead from a shortened link shared on twitter. Now link shortening is unavoidable when sharing something on twitter because all links are filtered through &lt;a href="http://www.iyware.com/t.co"&gt;t.co&lt;/a&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Twitter uses the t.co domain as part of a service to protect users from harmful activity, to provide value for the developer ecosystem, and as a quality signal for surfacing relevant, interesting Tweets. &lt;a href="https://support.twitter.com//entries/109623"&gt;Read more&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;So, on to the experiment. We’re going to take a link to &lt;a href="http://iyware.com/url-shorteners-page-load-speed/"&gt;this post&lt;/a&gt; that you’re reading right now and:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Get the RSS feed url  &lt;/li&gt;
+&lt;li&gt;Pass it to &lt;a href="http://goo.gl/"&gt;goo.gl&lt;/a&gt; URL shortening service: &lt;a href="http://goo.gl/bmTwkE"&gt;http://goo.gl/bmTwkE&lt;/a&gt;  &lt;/li&gt;
+&lt;li&gt;Pass that to &lt;a href="http://ow.ly/"&gt;ow.ly&lt;/a&gt; URL shortening service: &lt;a href="http://ow.ly/p99kM"&gt;http://ow.ly/p99kM&lt;/a&gt;  &lt;/li&gt;
+&lt;li&gt;Pass that link to our &lt;a href="https://twitter.com/thedannywahl/status/382330965151858688"&gt;tweet&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Once that’s live we’re going to start profiling in in firebug and then we can see our results. Now I know what you’re thinking: Why share a link to the RSS feed? It’s a dumb idea but like I said, this is an emulation of a real-world experience. So here are the results:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://www.iyware.com/content/images/import/urlshorteningresults.jpg"&gt;  &lt;/p&gt;
+
+&lt;p&gt;A small note, I was having trouble (read: I’m lazy) documenting the profiling info for t.co, but it was consistently coming in around 200ms. Also, the info above is from 3 separate tests, but they were all about the same results. Now &lt;a href="http://blog.testobject.com/2013/09/47-of-users-will-wait-only-3-seconds.html"&gt;current studies&lt;/a&gt; show you have about 3 seconds to load your page, and by using URL shorteners you’re potentially risking using up to a full third of that time just redirecting the user. “But redirects aren’t actually &lt;em&gt;my&lt;/em&gt; page loading” one might say. Yes they are to the end user. From the time I click a link, I’m loading &lt;em&gt;your&lt;/em&gt; page. I don’t care if the jQuery CDN is down or Google analytics is slow to load, it’s your fault (and rightly so).&lt;/p&gt;
+
+&lt;p&gt;Let me paint the picture a little worse for you too. This test was done on a 40Mbit fibre connection. Not an hspa or 3g mobile connection. Sure it’s only 2 extra “get”s but remember this, it’s also 2 extra DNS lookups. The amount of info that we’re grabbing is extremely small (20bytes) but DNS lookup times can vary wildly.&lt;/p&gt;
+
+&lt;p&gt;Look at the results again, another thing to take into consideration is that it’s possible all url shorteners are not created equal. Surely Google has a greater infrastructure than twitter or ow.ly and the results bear that. Could it be that I’m in a place with a longer round trip to the ow.ly servers? Most definitely so, but as a user, I don’t care.&lt;/p&gt;
+
+&lt;p&gt;So, in the end, I have to suggest this: If you don’t need it, don’t use it. Which is probably pretty good advice for the whole of web development.&lt;/p&gt;
+
+&lt;p&gt;On a final note I’d like to point out that &lt;a href="https://en.greatfire.org/search/blocked"&gt;not all internets are created equal&lt;/a&gt;. bit.ly and ow.ly are blocked in mainland China (where I am) by the &lt;a href="http://en.wikipedia.org/wiki/Great_Firewall_of_China"&gt;Great Firewall&lt;/a&gt;. There are many websites besides twitter where users or admins rely a lot on these services unnecessarily. By unnecessarily I mean that there are probably alternative methods of achieving the desired functions (analytics, malware scanning) that they’re serving.&lt;/p&gt;</description><link>http://www.iyware.com/url-shorteners-page-load-speed/</link><guid isPermaLink="false">ace96573-43b4-405e-841e-f570c843b585</guid><category>bit.ly</category><category>GFW</category><category>goo.gl</category><category>mobile</category><category>ow.ly</category><category>page speed</category><category>performance</category><dc:creator>Danny Wahl</dc:creator><pubDate>Tue, 24 Sep 2013 10:23:37 GMT</pubDate></item></channel></rss>
