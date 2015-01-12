@@ -11,16 +11,16 @@
 
     <link rel="shortcut icon" href="../favicon.ico">
 
-    <link rel="stylesheet" type="text/css" href="../assets/css/screen.css?v=c7bfc3f1e8">
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic%7COpen+Sans:700,400">
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.css?v=ce5c7838de">
+	<link rel="stylesheet" type="text/css" href="../assets/css/prism.min.css?v=ce5c7838de">
 
-    <link rel="canonical" href="http://www.iyware.com/rsync-over-ssh-expect/">
+    <link rel="canonical" href="http://iyware.com/rsync-over-ssh-expect/">
     
     <meta property="og:site_name" content="iyWare">
     <meta property="og:type" content="article">
     <meta property="og:title" content="rsync Over SSH + expect">
     <meta property="og:description" content="lately I decided that a good plan of action would be to take the web server files in my virtual machine: Apache config, Postgres config and databases, Moodle root and moodle data and back them up to the host server...">
-    <meta property="og:url" content="http://www.iyware.com/rsync-over-ssh-expect/">
+    <meta property="og:url" content="http://iyware.com/rsync-over-ssh-expect/">
     <meta property="article:published_time" content="2011-03-21T12:32:54.000Z">
     <meta property="article:modified_time" content="2013-10-08T21:04:22.000Z">
     <meta property="article:tag" content="Apache">
@@ -35,7 +35,7 @@
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="rsync Over SSH + expect">
     <meta name="twitter:description" content="lately I decided that a good plan of action would be to take the web server files in my virtual machine: Apache config, Postgres config and databases, Moodle root and moodle data and back them up to the host server...">
-    <meta name="twitter:url" content="http://www.iyware.com/rsync-over-ssh-expect/">
+    <meta name="twitter:url" content="http://iyware.com/rsync-over-ssh-expect/">
     
     <script type="application/ld+json">
 {
@@ -45,11 +45,12 @@
     "author": {
         "@type": "Person",
         "name": "Danny Wahl",
-        "url": "http://www.iyware.com/author/danny",
+        "image": "http://iyware.com/content/images/2015/01/743499.jpg",
+        "url": "http://iyware.com/author/danny",
         "sameAs": null
     },
     "headline": "rsync Over SSH + expect",
-    "url": "http://www.iyware.com/rsync-over-ssh-expect/",
+    "url": "http://iyware.com/rsync-over-ssh-expect/",
     "datePublished": "2011-03-21T12:32:54.000Z",
     "dateModified": "2013-10-08T21:04:22.000Z",
     "keywords": "Apache, Expect, Moodle, Postgres, Rsync, Script, SSH, Virtualization",
@@ -58,7 +59,7 @@
     </script>
 
     <meta name="generator" content="Ghost 0.5">
-    <link rel="alternate" type="application/rss+xml" title="iyWare" href="http://www.iyware.com/rss/">
+    <link rel="alternate" type="application/rss+xml" title="iyWare" href="http://iyware.com/rss/">
 </head>
 <body class="post-template tag-apache tag-expect tag-moodle tag-postgres tag-rsync tag-script tag-ssh tag-virtualization">
 
@@ -67,8 +68,8 @@
 
 <header class="main-header post-head no-cover">
     <nav class="main-nav  clearfix">
-        <a class="back-button icon-arrow-left" href="http://www.iyware.com">Home</a>
-        <a class="subscribe-button icon-feed" href="http://www.iyware.com/rss/">Subscribe</a>
+        <a class="back-button icon-arrow-left" href="http://iyware.com">Home</a>
+        <a class="subscribe-button icon-feed" href="http://iyware.com/rss/">Subscribe</a>
     </nav>
 </header>
 
@@ -97,16 +98,31 @@
 <p>That’s not too difficult, now let’s add expect into the mix to automate the process</p>
 
 <p>ta-da!  That’s pretty easy to follow right?  You type expect backup.exp passphrase, where backup.exp is whatever you save the script as, and passphrase is your SSH passphrase and then the magic happens.  Of course this is very basic, and doesn’t handle errors or exceptions – something which you’ll definitely want to do – in case expect hangs you’ll want to kill rsync and start Apache eventually. Now just add the expect file to your cron jobs for fully automated backups.</p>
+			<div id="disqus_thread"></div>
+				<script type="text/javascript">
+					/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+					var disqus_shortname = 'iyware'; // required: replace example with your forum shortname
+					/* * * DON'T EDIT BELOW THIS LINE * * */
+					(function() {
+						var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+						dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+						(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+					})();
+					</script>
+					<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
         </section>
 
         <footer class="post-footer">
 
 
+            <figure class="author-image">
+                <a class="img" href="../author/danny/" style="background-image: url(../content/images/2015/01/743499.jpg)"><span class="hidden">Danny Wahl's Picture</span></a>
+            </figure>
 
             <section class="author">
                 <h4><a href="../author/danny/">Danny Wahl</a></h4>
 
-                    <p>Read <a href="../author/danny/">more posts</a> by this author.</p>
+                    <p>My name is Danny Wahl and I provide Ed Tech consulting to international schools in the APAC region. I dabble in writing, programming, design, and ukulele playing.</p>
                 <div class="author-meta">
                     
                     
@@ -116,13 +132,13 @@
 
             <section class="share">
                 <h4>Share this post</h4>
-                <a class="icon-twitter" href="https://twitter.com/share?text=rsync%20Over%20SSH%20%2B%20expect&amp;url=http://www.iyware.com/rsync-over-ssh-expect/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                <a class="icon-twitter" href="https://twitter.com/share?text=rsync%20Over%20SSH%20%2B%20expect&amp;url=http://iyware.com/rsync-over-ssh-expect/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
                     <span class="hidden">Twitter</span>
                 </a>
-                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://www.iyware.com/rsync-over-ssh-expect/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://iyware.com/rsync-over-ssh-expect/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
                     <span class="hidden">Facebook</span>
                 </a>
-                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://www.iyware.com/rsync-over-ssh-expect/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://iyware.com/rsync-over-ssh-expect/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
                     <span class="hidden">Google+</span>
                 </a>
             </section>
@@ -136,13 +152,15 @@
 
 
     <footer class="site-footer clearfix">
-         <section class="copyright"><a href="http://www.iyware.com">iyWare</a> © 2015</section>
+         <section class="copyright"><a href="http://iyware.com">iyWare</a> © 2015</section>
          <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
     </footer>
 
-    <script src="../public/jquery.js?v=c7bfc3f1e8"></script>
+    <script src="../public/jquery.js?v=ce5c7838de"></script>
 
-    <script type="text/javascript" src="../assets/js/jquery.fitvids.js?v=c7bfc3f1e8"></script>
-    <script type="text/javascript" src="../assets/js/index.js?v=c7bfc3f1e8"></script>
+    <script type="text/javascript" src="../assets/js/jquery.fitvids.js?v=ce5c7838de"></script>
+    <script type="text/javascript" src="../assets/js/index.js?v=ce5c7838de"></script>
+	
+    <script type="text/javascript" src="../assets/js/prism.min.js?v=ce5c7838de"></script>
 
 </body>

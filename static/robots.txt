@@ -1,3 +1,0 @@
-User-agent: *
-Sitemap: http://iyware.com/sitemap.xml
-Disallow: /ghost/
