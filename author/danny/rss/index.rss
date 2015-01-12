@@ -1,4 +1,4 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Danny Wahl - iyWare</title><description>Things I Break</description><link>http://iyware.com/</link><generator>Ghost 0.5</generator><lastBuildDate>Mon, 12 Jan 2015 06:14:40 GMT</lastBuildDate><atom:link href="http://iyware.com/author/danny/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Moving</title><description>&lt;p&gt;Crazy things happening right now. You may notice this website looks very broken. Well, that’s just because I’m in the process of moving from a hosted version of WordPress to something a lot more nerdy:&lt;/p&gt;
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Danny Wahl - iyWare</title><description>Things I Break</description><link>http://iyware.com/</link><generator>Ghost 0.5</generator><lastBuildDate>Mon, 12 Jan 2015 06:23:50 GMT</lastBuildDate><atom:link href="http://iyware.com/author/danny/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Moving</title><description>&lt;p&gt;Crazy things happening right now. You may notice this website looks very broken. Well, that’s just because I’m in the process of moving from a hosted version of WordPress to something a lot more nerdy:&lt;/p&gt;
 
 &lt;p&gt;A local &lt;a href="http://ghost.org/"&gt;ghost&lt;/a&gt; exported to static HTML via &lt;a href="https://github.com/axitkhurana/buster"&gt;buster&lt;/a&gt; (a la &lt;a href="http://jekyllrb.com/"&gt;jekyll&lt;/a&gt;) and then pushed to &lt;a href="https://pages.github.com/"&gt;github pages&lt;/a&gt;.&lt;/p&gt;
 
@@ -55,20 +55,20 @@ launchctl load ~/Library/LaunchAgents/net.mkalmes.brewupdate.plist
 
 &lt;p&gt;Then edit your &lt;code&gt;/usr/local/etc/apache2/2.4/httpd.conf&lt;/code&gt; file and change the DocumentRoot directive, as well as accompanying Directory declaration to match your new htdocs location:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class="language-apache"&gt;DocumentRoot "/Users/USERNAME/Sites/htdocs"  
+&lt;pre&gt;&lt;code class="language-apacheconf"&gt;DocumentRoot "/Users/USERNAME/Sites/htdocs"  
 &amp;lt;directory&amp;gt;  
 &amp;lt;/directory&amp;gt;  
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Obviously replace &lt;code&gt;USERNAME&lt;/code&gt; with your username’s folder name. Then inside of that directory declaration we’re going to change some of the default Apache values to be more permissive:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class="language-apache"&gt;Options All MultiViews  
+&lt;pre&gt;&lt;code class="language-apacheconf"&gt;Options All MultiViews  
 AllowOverride All  
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;This is given with the usual caveat that OF COURSE you would never default everything like this on a production server- but on a development server there’s generally not much security implication (unless you’re playing with live data!). My full DocumentRoot section looks like this:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class="language-apache"&gt;DocumentRoot "/Users/dannywahl/Sites/htdocs"  
+&lt;pre&gt;&lt;code class="language-apacheconf"&gt;DocumentRoot "/Users/dannywahl/Sites/htdocs"  
 &amp;lt;directory&amp;gt;  
   #
   # Possible values for the Options directive are "None", "All", 
