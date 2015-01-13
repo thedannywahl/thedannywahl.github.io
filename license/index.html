@@ -11,7 +11,7 @@
 
     <link rel="shortcut icon" href="../favicon.ico">
 
-    <link rel="stylesheet" type="text/css" href="../assets/css/screen.css?v=ad6e4698fb">
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.min.css?v=a755119f9f">
 
     <link rel="canonical" href="http://iyware.com/license/">
     
@@ -51,27 +51,19 @@
     <meta name="generator" content="Ghost 0.5">
     <link rel="alternate" type="application/rss+xml" title="iyWare" href="http://iyware.com/rss/">
 </head>
-<body class="post-template page-template page">
+<body class="post-template page-template page  ">
 
     
 
 
-<header class="main-header post-head no-cover">
-    <nav class="main-nav  clearfix">
-        <a class="back-button icon-arrow-left" href="http://iyware.com">Home</a>
-        <a class="subscribe-button icon-feed" href="http://iyware.com/rss/">Subscribe</a>
-    </nav>
-</header>
+    <article role="main" class="">
 
-<main class="content" role="main">
-
-    <article class="post page">
-
-        <header class="post-header">
-            <h1 class="post-title">License</h1>
+        <header>
+            <a href="http://iyware.com" id="home_link">«</a>
+            <h1>License</h1>
         </header>
 
-        <section class="post-content">
+        <div class="text">
             <p>All content on this site is licensed under Creative Commons Attribution 3.0 Unported (CC BY 3.0) unless otherwise specified. You are free to share (to copy, distribute and transmit the work), to remix (to adapt the work), and to make commercial use of the work under the following condition:</p>
 
 <ul>
@@ -93,26 +85,38 @@
 <p>Notice &amp;dash; For any reuse or distribution, you must make clear to others the license terms of this work. The best way to do this is with a link to <a href="http://creativecommons.org/licenses/by/3.0/" title="cc-by-deed">this web page</a>.</p>
 
 <p>Read the <a href="http://creativecommons.org/licenses/by/3.0/legalcode" title="cc-by">full license</a> at creativecommons.org</p>
-        </section>
+        </div>
+
 
     </article>
 
-</main>
 
 
-    <footer class="site-footer clearfix">
-         <section class="copyright"><a href="http://iyware.com">iyWare</a> © 2015</section>
-         <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
-    </footer>
 
-    <script src="../public/jquery.js?v=ad6e4698fb"></script>
 
-    <script type="text/javascript" src="../assets/js/jquery.fitvids.js?v=ad6e4698fb"></script>
-    <script type="text/javascript" src="../assets/js/index.js?v=ad6e4698fb"></script>
+    <script>
 
-	<link rel="stylesheet" type="text/css" href="../assets/css/prism.min.css?v=ad6e4698fb">
-	
-    <script type="text/javascript" src="../assets/js/prism.min.js?v=ad6e4698fb"></script>
+
+        function no_schema_links () {
+            var links = document.querySelectorAll('.js-remove-domain-schema');
+            if (links) {
+                for (i = 0; i < links.length; ++i) {
+                    var link = links[i],
+                        text = link.innerHTML,
+                        no_schema = text.replace(/.*?:\/\//g, "");
+                    link.innerHTML = no_schema;
+                }
+            }
+        }
+
+        window.onload = function () {
+            no_schema_links();
+
+        }
+    </script>
+
+    <script src="../public/jquery.js?v=a755119f9f"></script>
+
 
 </body>
 </html>

@@ -11,7 +11,7 @@
 
     <link rel="shortcut icon" href="../favicon.ico">
 
-    <link rel="stylesheet" type="text/css" href="../assets/css/screen.css?v=ad6e4698fb">
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.min.css?v=a755119f9f">
 
     <link rel="canonical" href="http://iyware.com/contact/">
     
@@ -51,50 +51,54 @@
     <meta name="generator" content="Ghost 0.5">
     <link rel="alternate" type="application/rss+xml" title="iyWare" href="http://iyware.com/rss/">
 </head>
-<body class="post-template page-template page">
+<body class="post-template page-template page  ">
 
     
 
 
-<header class="main-header post-head no-cover">
-    <nav class="main-nav  clearfix">
-        <a class="back-button icon-arrow-left" href="http://iyware.com">Home</a>
-        <a class="subscribe-button icon-feed" href="http://iyware.com/rss/">Subscribe</a>
-    </nav>
-</header>
+    <article role="main" class="">
 
-<main class="content" role="main">
-
-    <article class="post page">
-
-        <header class="post-header">
-            <h1 class="post-title">Contact</h1>
+        <header>
+            <a href="http://iyware.com" id="home_link">«</a>
+            <h1>Contact</h1>
         </header>
 
-        <section class="post-content">
+        <div class="text">
             <p>Interested in finding out more about our services? Drop us a line, and we’ll get back to you as soon as we can.</p>
 
 <p>Sorry about the captcha, we just don’t like working with robots.</p>
-        </section>
+        </div>
+
 
     </article>
 
-</main>
 
 
-    <footer class="site-footer clearfix">
-         <section class="copyright"><a href="http://iyware.com">iyWare</a> © 2015</section>
-         <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
-    </footer>
 
-    <script src="../public/jquery.js?v=ad6e4698fb"></script>
 
-    <script type="text/javascript" src="../assets/js/jquery.fitvids.js?v=ad6e4698fb"></script>
-    <script type="text/javascript" src="../assets/js/index.js?v=ad6e4698fb"></script>
+    <script>
 
-	<link rel="stylesheet" type="text/css" href="../assets/css/prism.min.css?v=ad6e4698fb">
-	
-    <script type="text/javascript" src="../assets/js/prism.min.js?v=ad6e4698fb"></script>
+
+        function no_schema_links () {
+            var links = document.querySelectorAll('.js-remove-domain-schema');
+            if (links) {
+                for (i = 0; i < links.length; ++i) {
+                    var link = links[i],
+                        text = link.innerHTML,
+                        no_schema = text.replace(/.*?:\/\//g, "");
+                    link.innerHTML = no_schema;
+                }
+            }
+        }
+
+        window.onload = function () {
+            no_schema_links();
+
+        }
+    </script>
+
+    <script src="../public/jquery.js?v=a755119f9f"></script>
+
 
 </body>
 </html>
