@@ -1,0 +1,143 @@
+<!doctype html><html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>No Listening Sockets Available?</title>
+    <meta name="description" content="">
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.min.css?v=d02990e32b">
+
+    <link rel="canonical" href="http://iyware.com/no-listening-sockets-available/">
+    
+    <meta property="og:site_name" content="iyWare">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="No Listening Sockets Available?">
+    <meta property="og:description" content="I’ve been trying to hunt down some sigterm and oom errors thrown by Apache 2 lately and in the process I decided to have it log in its default location /var/log/ and on my desktop. Amid an array...">
+    <meta property="og:url" content="http://iyware.com/no-listening-sockets-available/">
+    <meta property="article:published_time" content="2011-11-03T15:37:37.000Z">
+    <meta property="article:modified_time" content="2013-10-08T21:01:47.000Z">
+    <meta property="article:tag" content="Apache">
+    <meta property="article:tag" content="Error">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="No Listening Sockets Available?">
+    <meta name="twitter:description" content="I’ve been trying to hunt down some sigterm and oom errors thrown by Apache 2 lately and in the process I decided to have it log in its default location /var/log/ and on my desktop. Amid an array...">
+    <meta name="twitter:url" content="http://iyware.com/no-listening-sockets-available/">
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "iyWare",
+    "author": {
+        "@type": "Person",
+        "name": "Danny Wahl",
+        "image": "http://iyware.com/content/images/2015/01/me.jpg",
+        "url": "http://iyware.com/author/danny",
+        "sameAs": null
+    },
+    "headline": "No Listening Sockets Available?",
+    "url": "http://iyware.com/no-listening-sockets-available/",
+    "datePublished": "2011-11-03T15:37:37.000Z",
+    "dateModified": "2013-10-08T21:01:47.000Z",
+    "keywords": "Apache, Error",
+    "description": "I’ve been trying to hunt down some sigterm and oom errors thrown by Apache 2 lately and in the process I decided to have it log in its default location /var/log/ and on my desktop. Amid an array..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.5">
+    <link rel="alternate" type="application/rss+xml" title="iyWare" href="http://iyware.com/rss/">
+</head>
+<body class="post-template tag-apache tag-error  noimage">
+
+    
+
+
+    <article role="main" class="">
+        <header class="group">
+            <a href="../" id="home_link">«</a>
+            <div class="hgroup">
+            	<h1>No Listening Sockets Available?</h1>
+            	<div class="meta">
+            		<time datetime="2011-11-03">November 03, 2011</time>
+            		 • 
+					<span class="tags"><a href="../tag/apache/">Apache</a>, <a href="../tag/error/">Error</a></span>
+            	</div>
+			</div>
+        </header>
+
+        <div class="text" id="js-post-content">
+            <p>I’ve been trying to hunt down some sigterm and oom errors thrown by <a href="http://httpd.apache.org">Apache 2</a> lately and in the process I decided to have it log in its default location /var/log/ and on my desktop. Amid an array of other things I’d been doing at some point I created the log like this:</p>
+
+<p>Then went back to work. Several hours later when I went to restart Apache it wouldn’t work, and I got this deceiving message:</p>
+
+<p>So after trying some things I decided I’d try to reboot. When the machine came back up Apache was ‘running’ meaning it was an active task, but the httpd wasn’t actually working. Oh, and there was only one thread (I’m using mpm-prefork) and it was consuming 97% of the cpu. Tried restarting Apache, same error as above. So I begrudgingly went back and undid a couple hours of tuning to try and fix Apache to no avail. Finally in one last desperate command I fixed it:</p>
+
+<p>Immediately Apache started spinning up threads, the cpu use went down, and it started logging away. I was baffled, I had assumed since the log was completely public (777) that surely couldn’t have been the root of the ‘Unable to open logs’ error. Well, it was, doesn’t make much sense to me, but now it’s back to re-undoing my Apache tuning.</p>
+            
+			<div id="disqus_thread"></div>
+				<script type="text/javascript">
+					var disqus_shortname = 'iyware';
+					(function() {
+						var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+						dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+						(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+					})();
+				</script>
+				<noscript><p style="text-align:center;"><small>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></small></p></noscript>
+            
+        </div>
+
+        <footer class="post-footer" role="contentinfo">
+
+            <div class="vcard">
+                <a href="../rss/index.rss" id="btn_feed" class="btn" title="Feed">
+                    <span aria-hidden="true" data-icon=")"></span>
+                    <strong>Feed</strong>
+                </a>
+
+                <a href="../" class="photo">
+                    <span style="background-image: url('../content/images/2015/01/me.jpg');">
+                        <img src="../content/images/2015/01/me.jpg" alt="Danny Wahl">
+                    </span>
+                </a>
+
+                <div class="details">
+                    <h4><a href="../" class="url n">Danny Wahl</a></h4>
+                    <span>danny @ iyware.com</span><br>
+                    <span>License: <a href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span><br>
+                    
+              
+                </div>
+            </div>
+
+            <div id="user_bio">
+                <div class="inner">
+                    My name is Danny Wahl and I provide Ed Tech consulting to international schools in the APAC region. I dabble in writing, programming, design, and ukulele playing.
+                </div>
+            </div>
+
+        </footer>
+
+    </article>
+
+
+
+
+
+		<script type="text/javascript" src="../assets/js/prism.min.js?v=d02990e32b"></script>
+	<aside style="display:none;">
+		<a href="../sitemap.xml">sitemap.xml</a>
+		<a href="../sitemap-pages.xml">sitemap.xml</a>
+		<a href="../sitemap-posts.xml">sitemap.xml</a>
+		<a href="../sitemap-authors.xml">sitemap.xml</a>
+		<a href="../sitemap-tags.xml">sitemap.xml</a>
+	</aside>
+</body>
+</html>

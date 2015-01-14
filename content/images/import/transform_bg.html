@@ -1,0 +1,91 @@
+<!doctype html><html><head><title>CSS3 Transforms: Multiple BGs</title>
+<style type="text/css">
+body {
+    background-color: #EEE;
+    color: #444;
+}
+
+#content-wrapper {
+    box-shadow: 0 0 2px 0 #000;
+}
+
+#content p {
+    margin: 20px 50px;
+}
+
+#content,
+#content-wrapper {
+    width: 400px;
+    min-height: 200px;
+    display: block;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+}
+
+#content::before { /* Top Left: no transform */
+    content: "";
+    z-index: -1;
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: url(transform-bg.png) 0 0 no-repeat;
+    top: 0;
+    left: 0;
+}
+
+#content::after { /* Top Right: flip horizontally */
+    content: "";
+    z-index: -1;
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: url(transform-bg.png) 0 0 no-repeat;
+    -moz-transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    transform: scaleX(-1);
+    top: 0;
+    right: 0;
+}
+
+#content-wrapper::before { /* Bottom Left: flip vertical */
+    content: "";
+    z-index: -1;
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: url(transform-bg.png) 0 0 no-repeat;
+    -moz-transform: scaleY(-1);
+    -ms-transform: scaleY(-1);
+    -webkit-transform: scaleY(-1);
+    -o-transform: scaleY(-1);
+    transform: scaleY(-1);
+    bottom: 0;
+    left: 0;
+}
+
+#content-wrapper::after { /* Bottom Right: flip horizontal + vertical */
+    content: "";
+    z-index: -1;
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: url(transform-bg.png) 0 0 no-repeat;
+    -moz-transform: scaleX(-1) scaleY(-1);
+    -ms-transform: scaleX(-1) scaleY(-1);
+    -webkit-transform: scaleX(-1) scaleY(-1);
+    -o-transform: scaleX(-1) scaleY(-1);
+    transform: scaleX(-1) scaleY(-1);
+    bottom: 0;
+    right: 0;
+}
+</style>
+</head>
+<body>
+<div id="content-wrapper">
+<div id="content"><p>Hello World!</p></div>
+</div>
+</body>
+</html>
