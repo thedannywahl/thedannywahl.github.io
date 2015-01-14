@@ -11,7 +11,7 @@
 
     <link rel="shortcut icon" href="../favicon.ico">
 
-    <link rel="stylesheet" type="text/css" href="../assets/css/screen.min.css?v=a755119f9f">
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.min.css?v=d02990e32b">
 
     <link rel="canonical" href="http://iyware.com/moodle-output-an-introduction/">
     
@@ -64,7 +64,7 @@
 
     <article role="main" class="">
         <header class="group">
-            <a href="http://iyware.com" id="home_link">«</a>
+            <a href="../" id="home_link">«</a>
             <div class="hgroup">
             <h1>Moodle $OUTPUT: An Introduction</h1>
             <div class="meta"><time datetime="2014-07-19">July 19, 2014</time></div>
@@ -199,7 +199,7 @@
             
         </div>
 
-        <footer role="contentinfo">
+        <footer class="post-footer" role="contentinfo">
 
             <div class="vcard">
                 <a href="../rss/index.rss" id="btn_feed" class="btn" title="Feed">
@@ -207,14 +207,14 @@
                     <strong>Feed</strong>
                 </a>
 
-                <a href="http://iyware.com" class="photo">
+                <a href="../" class="photo">
                     <span style="background-image: url('../content/images/2015/01/me.jpg');">
                         <img src="../content/images/2015/01/me.jpg" alt="Danny Wahl">
                     </span>
                 </a>
 
                 <div class="details">
-                    <h4><a href="http://iyware.com" class="url n">Danny Wahl</a></h4>
+                    <h4><a href="../" class="url n">Danny Wahl</a></h4>
                     <span>danny @ iyware.com</span><br>
                     <span>License: <a href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span><br>
                     
@@ -235,27 +235,8 @@
 
 
 
-    <script>
-        function no_schema_links () {
-            var links = document.querySelectorAll('.js-remove-domain-schema');
-            if (links) {
-                for (i = 0; i < links.length; ++i) {
-                    var link = links[i],
-                        text = link.innerHTML,
-                        no_schema = text.replace(/.*?:\/\//g, "");
-                    link.innerHTML = no_schema;
-                }
-            }
-        }
 
-        window.onload = function () {
-            no_schema_links();
-        }
-    </script>
-
-    <script src="../public/jquery.js?v=a755119f9f"></script>
-
-		<script type="text/javascript" src="../assets/js/prism.min.js?v=a755119f9f"></script>
+		<script type="text/javascript" src="../assets/js/prism.min.js?v=d02990e32b"></script>
 	<aside style="display:none;">
 		<a href="../sitemap.xml">sitemap.xml</a>
 		<a href="../sitemap-pages.xml">sitemap.xml</a>
