@@ -1,4 +1,4 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>iyWare</title><description>Things I Break</description><link>http://iyware.com/</link><generator>Ghost 0.5</generator><lastBuildDate>Fri, 16 Jan 2015 04:47:58 GMT</lastBuildDate><atom:link href="http://iyware.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Moving</title><description>&lt;p&gt;&lt;strong&gt;Update&lt;/strong&gt;: We're mostly back up now.&lt;/p&gt;
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>iyWare</title><description>Things I Break</description><link>http://iyware.com/</link><generator>Ghost 0.5</generator><lastBuildDate>Fri, 16 Jan 2015 04:51:17 GMT</lastBuildDate><atom:link href="http://iyware.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Moving</title><description>&lt;p&gt;&lt;strong&gt;Update&lt;/strong&gt;: We're mostly back up now.&lt;/p&gt;
 
 &lt;p&gt;Crazy things happening right now. You may notice this website looks very broken. Well, that’s just because I’m in the process of moving from a hosted version of WordPress to something a lot more nerdy:&lt;/p&gt;
 
@@ -541,7 +541,7 @@ total 16
 
 &lt;p&gt;When you create an SSH key you actually create two keys, a private key and a public key. You keep the private key and you can share the public key with others. This allows them to receive messages and ensure it is from you, but they can’t pretend to be you and send out messages on your behalf. Back in terminal we’re going to create a new &lt;a href="http://en.wikipedia.org/wiki/RSA_%28cryptosystem%29"&gt;RSA&lt;/a&gt; SSH key set. Run the command:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class="language-bash"&gt;ssh-keygen -t rsa -C “email@address.invalid”  
+&lt;pre&gt;&lt;code class="language-bash"&gt;ssh-keygen -t rsa -C "email@address.invalid"  
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;This will kick off a “Wizard” of sorts and walk you through creating your key pair. First you need to specify where to save the new keys, the default is your ~/.ssh folder, so just push enter.&lt;/p&gt;

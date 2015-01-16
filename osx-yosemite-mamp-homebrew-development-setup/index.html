@@ -21,7 +21,7 @@
     <meta property="og:description" content="Update: A quick update, this was originally written for Yosemite Beta 1, XCode 6 Beta, and PHP56 RC1. Now that the official versions of all those are out, a lot of this post is unnecessary because, well, stable software is...">
     <meta property="og:url" content="http://iyware.com/osx-yosemite-mamp-homebrew-development-setup/">
     <meta property="article:published_time" content="2014-08-13T11:17:52.000Z">
-    <meta property="article:modified_time" content="2015-01-16T04:45:47.970Z">
+    <meta property="article:modified_time" content="2015-01-16T04:51:14.665Z">
     <meta property="article:tag" content="DevOps">
     
     <meta name="twitter:card" content="summary">
@@ -44,7 +44,7 @@
     "headline": "OS X 10.10 Yosemite, Apache, MySQL, PHP 5.6, (MAMP) Homebrew Dev Setup",
     "url": "http://iyware.com/osx-yosemite-mamp-homebrew-development-setup/",
     "datePublished": "2014-08-13T11:17:52.000Z",
-    "dateModified": "2015-01-16T04:45:47.970Z",
+    "dateModified": "2015-01-16T04:51:14.665Z",
     "keywords": "DevOps",
     "description": "Update: A quick update, this was originally written for Yosemite Beta 1, XCode 6 Beta, and PHP56 RC1. Now that the official versions of all those are out, a lot of this post is unnecessary because, well, stable software is..."
 }
@@ -329,7 +329,7 @@ total 16
 
 <p>When you create an SSH key you actually create two keys, a private key and a public key. You keep the private key and you can share the public key with others. This allows them to receive messages and ensure it is from you, but they can’t pretend to be you and send out messages on your behalf. Back in terminal we’re going to create a new <a href="http://en.wikipedia.org/wiki/RSA_%28cryptosystem%29">RSA</a> SSH key set. Run the command:</p>
 
-<pre><code class="language-bash">ssh-keygen -t rsa -C “email@address.invalid”  
+<pre><code class="language-bash">ssh-keygen -t rsa -C "email@address.invalid"  
 </code></pre>
 
 <p>This will kick off a “Wizard” of sorts and walk you through creating your key pair. First you need to specify where to save the new keys, the default is your ~/.ssh folder, so just push enter.</p>
