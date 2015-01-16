@@ -11,7 +11,7 @@
 
     <link rel="shortcut icon" href="../favicon.ico">
 
-    <link rel="stylesheet" type="text/css" href="../assets/css/screen.min.css?v=7a0af690ae">
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.min.css?v=1b66dd11cc">
 
     <link rel="canonical" href="http://iyware.com/rebase-major-update/">
     
@@ -87,18 +87,18 @@
 <p>I still have some more pagelayout work to do (thanks to some bugs being brought up in the <a href="http://moodle.org/mod/forum/discuss.php?d=190066">Moodle Forum</a> &amp; <a href="http://tracker.moodle.org/browse/MDL-30238">Tracker</a>) but after that I have a couple of ideas I’d like to try like <a href="https://github.com/scottjehl/Respond/blob/ef19727febffd5ad8052f0c87cf47ae924221067/respond.src.js">respond.js</a>, <a href="http://code.google.com/chrome/chromeframe/" title="Update: California Progress">Chrome Frame</a>, a resizable header, and trying to leverage Moodle’s built-in accessibility links (normally hidden) as buttons for mobile devices.</p>
 
 <p>I also now have proper IE6, 7, 8, and 9 virtual machines (running Xp, Xp, 7, and 7 respectively) so I can (and am actively doing) more IE compatibility testing. With one caveat – for IE6 it’s mostly just laughing at how broken things are and making sure Chrome Frame is popping up correctly. Look for optional Chrome Frame coming soon!</p>
-            
+            <!--sse-->
 			<div id="disqus_thread"></div>
-				<script type="text/javascript">
-					var disqus_shortname = 'iyware';
-					(function() {
-						var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-						dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-						(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-					})();
-				</script>
-				<noscript><p style="text-align:center;"><small>Please enable JavaScript to view the <a href="https://disqus.com/home/forums/iyware/">comments powered by Disqus.</a></small></p></noscript>
-            
+			<script type="text/javascript">
+				var disqus_shortname = 'iyware';
+				(function() {
+					var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+					dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+					(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+				})();
+			</script>
+			<noscript><p style="text-align:center;"><small>Please enable JavaScript to view the <a href="https://disqus.com/home/forums/iyware/">comments powered by Disqus.</a></small></p></noscript>
+			<!--/sse-->
         </div>
 
         <footer class="post-footer" role="contentinfo">
@@ -117,7 +117,7 @@
 
                 <div class="details">
                     <h4><a href="../" class="url n">Danny Wahl</a></h4>
-                    <span>danny @ iyware.com</span><br>
+                    <!--sse--><span>danny @ iyware.com</span><br><!--/sse-->
                     <span>License: <a href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span><br>
                     
               
@@ -141,7 +141,7 @@
 
 
 
-		<script type="text/javascript" src="../assets/js/prism.min.js?v=7a0af690ae"></script>
+		<script type="text/javascript" src="../assets/js/prism.min.js?v=1b66dd11cc"></script>
 	<aside style="display:none;">
 		<a href="../sitemap.xml">sitemap.xml</a>
 		<a href="../sitemap-pages.xml">sitemap-pages.xml</a>
