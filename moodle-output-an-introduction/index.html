@@ -21,7 +21,7 @@
     <meta property="og:description" content="Here at iyWare we’re not really developers. Sure we write some code, and we have even released a few plugins for Moodle, WordPress, and Mahara but really we’re in the educational technology consulting business. Recently we took over...">
     <meta property="og:url" content="http://iyware.com/moodle-output-an-introduction/">
     <meta property="article:published_time" content="2014-07-18T16:44:33.000Z">
-    <meta property="article:modified_time" content="2015-01-15T04:42:28.374Z">
+    <meta property="article:modified_time" content="2015-01-16T05:36:03.532Z">
     <meta property="article:tag" content="Moodle">
     
     <meta name="twitter:card" content="summary">
@@ -44,7 +44,7 @@
     "headline": "Moodle $OUTPUT: An Introduction",
     "url": "http://iyware.com/moodle-output-an-introduction/",
     "datePublished": "2014-07-18T16:44:33.000Z",
-    "dateModified": "2015-01-15T04:42:28.374Z",
+    "dateModified": "2015-01-16T05:36:03.532Z",
     "keywords": "Moodle",
     "description": "Here at iyWare we’re not really developers. Sure we write some code, and we have even released a few plugins for Moodle, WordPress, and Mahara but really we’re in the educational technology consulting business. Recently we took over..."
 }
@@ -78,7 +78,7 @@
 
 <p>In Moodle what a plugin can do is determined by what kind of plugin it is. This is logical AND makes sense. For example an activity (say Forum) is not allowed to ask you if you want to change your site logo. Other software, like WordPress aren’t so well defined. Have you ever changed themes and had an entire post-type (like testimonials) disappear? That’s because themes in WordPress are allowed to do things beyond change the look and feel of the site. Imagine in Moodle if you changed your theme and suddenly couldn’t use the Quiz module any more! So we have a good system of permissions in Moodle and what’s allowed to do what.</p>
 
-<p>Now we’re going to introduce you to <code>$OUTPUT</code>. $OUTPUT is a variable (meaning its content changes) that stores everything that gets output to a page- i.e. what you see in Moodle. This is a not-quite-technically-accurate definition because there are other global variables like $CFG, $THEME, $PAGE, $USER, and $DB but I think you get the idea. When a plugin has some data or information that it wants to display on the screen it gives it to $OUTPUT. For example, a list of quiz questions, or a button group that says “ok” or “cancel”. Generally the way that things are given to, read from, or changed in $OUTPUT is via what’s called in programming language a “<a href="http://en.wikipedia.org/wiki/Method_%28programming%29">method</a>“. Simply stated a method is a way of doing things- this applies offline as well as online. I have a method of stacking our plates (largest on bottom, smallest on top) so they don’t fall over. People have various methods of parking their cars- and the method varies depending on the type of parking spot.</p>
+<p>Now we’re going to introduce you to <code>$OUTPUT</code>. $OUTPUT is a variable (meaning its content changes) that stores everything that gets output to a page- i.e. what you see in Moodle. This is a not-quite-technically-accurate definition because there are other global variables like <code>$CFG</code>, <code>$THEME</code>, <code>$PAGE</code>, <code>$USER</code>, and <code>$DB</code> but I think you get the idea. When a plugin has some data or information that it wants to display on the screen it gives it to $OUTPUT. For example, a list of quiz questions, or a button group that says “ok” or “cancel”. Generally the way that things are given to, read from, or changed in $OUTPUT is via what’s called in programming language a "<a href="http://en.wikipedia.org/wiki/Method_%28programming%29">method</a>". Simply stated a method is a way of doing things- this applies offline as well as online. I have a method of stacking our plates (largest on bottom, smallest on top) so they don’t fall over. People have various methods of parking their cars- and the method varies depending on the type of parking spot.</p>
 
 <h2 id="methodtothemadness">Method to the Madness</h2>
 
