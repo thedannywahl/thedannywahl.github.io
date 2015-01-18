@@ -1,4 +1,4 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>iyWare</title><description>Things I Break</description><link>http://iyware.com/</link><generator>Ghost 0.5</generator><lastBuildDate>Fri, 16 Jan 2015 05:36:06 GMT</lastBuildDate><atom:link href="http://iyware.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Moving</title><description>&lt;p&gt;&lt;strong&gt;Update&lt;/strong&gt;: We're mostly back up now.&lt;/p&gt;
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>iyWare</title><description>Things I Break</description><link>http://iyware.com/</link><generator>Ghost 0.5</generator><lastBuildDate>Sun, 18 Jan 2015 05:41:09 GMT</lastBuildDate><atom:link href="http://iyware.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Moving</title><description>&lt;p&gt;&lt;strong&gt;Update&lt;/strong&gt;: We're mostly back up now.&lt;/p&gt;
 
 &lt;p&gt;Crazy things happening right now. You may notice this website looks very broken. Well, that’s just because I’m in the process of moving from a hosted version of WordPress to something a lot more nerdy:&lt;/p&gt;
 
@@ -1454,26 +1454,25 @@ You can read more about composer and packagist by running:
 
 &lt;p&gt;Let’s say you work at an actually-forward-thinking school that’s not bound by stuff like COPPA or CISPA, or a think-of-the-children mindset, or just a university. Pretend your school really wants to be able to add an array of “share this” links at the bottom of every forum post, next to the “reply”, “edit”, and “permalink” links. There are a number of options that you might try (or think you can try):&lt;/p&gt;
 
-&lt;ul&gt;
-&lt;li&gt;#### “local” plugin type&lt;/li&gt;
-&lt;/ul&gt;
+&lt;h4 id="localplugintype"&gt;“local” plugin type&lt;/h4&gt;
 
-&lt;p&gt;At first a developer might think “I’ll just make a small plugin that modifies the method that makes forum posts to include “share” links. They write a “local” plugin- meaning it’s not one of the well-defined plugin types (like assignment, theme, authentication, etc…) and write their new version of the method- and voila! It doesn’t work! Remember, Moodle tells plugins that they can’t change other plugins’ methods or their part of $OUTPUT. &lt;br&gt;
-- #### Forum 2: Electric Boogaloo!&lt;/p&gt;
+&lt;p&gt;At first a developer might think “I’ll just make a small plugin that modifies the method that makes forum posts to include “share” links. They write a “local” plugin- meaning it’s not one of the well-defined plugin types (like assignment, theme, authentication, etc…) and write their new version of the method- and voila! It doesn’t work! Remember, Moodle tells plugins that they can’t change other plugins’ methods or their part of $OUTPUT.&lt;/p&gt;
 
-&lt;p&gt;The next option is to fork (or make a copy of) the forum module and change its name (and all mentions of its name) to something different, like “Forum 2″. Then you change the method of your new module to add sharing links. Install the new Forum 2 on your Moodle and people can start using it. But now you have 2 forum modules. Do you leave them both enabled? One without sharing links and the other with? No, that’s silly- turn off the old forum. And now your Moodle administrator has 9,000 emails from teachers and students saying they can’t find their old posts- their conditional activities and course completion are broken. Fix it! Fix it! Fix it!. Now you need to write &lt;em&gt;another&lt;/em&gt; plugin called a “tool” that takes all of the old “Forum” instances on your site and converts them to “Forum 2″ types. What a nightmare! And don’t forget as soon as Moodle updates the original “Forum” you need to track those changes and copy them to your new version. &lt;br&gt;
-- #### Or…&lt;/p&gt;
+&lt;h4 id="forum2electricboogaloo"&gt;Forum 2: Electric Boogaloo!&lt;/h4&gt;
+
+&lt;p&gt;The next option is to fork (or make a copy of) the forum module and change its name (and all mentions of its name) to something different, like “Forum 2″. Then you change the method of your new module to add sharing links. Install the new Forum 2 on your Moodle and people can start using it. But now you have 2 forum modules. Do you leave them both enabled? One without sharing links and the other with? No, that’s silly- turn off the old forum. And now your Moodle administrator has 9,000 emails from teachers and students saying they can’t find their old posts- their conditional activities and course completion are broken. Fix it! Fix it! Fix it!. Now you need to write &lt;em&gt;another&lt;/em&gt; plugin called a “tool” that takes all of the old “Forum” instances on your site and converts them to “Forum 2″ types. What a nightmare! And don’t forget as soon as Moodle updates the original “Forum” you need to track those changes and copy them to your new version.&lt;/p&gt;
+
+&lt;h4 id="or"&gt;Or…&lt;/h4&gt;
 
 &lt;h3 id="theuglythesocialesttheme"&gt;The Ugly: The Social-est Theme&lt;/h3&gt;
 
 &lt;p&gt;Instead of continuing with the “social” sharing example let’s switch to another one. Assume that you want to add some touch icons to your theme. There’s a variety of ways to achieve this and we’ll look at some of them here, with their drawbacks and advantages.&lt;/p&gt;
 
-&lt;ul&gt;
-&lt;li&gt;#### The “HTML” Way&lt;/li&gt;
-&lt;/ul&gt;
+&lt;h4 id="thehtmlway"&gt;The “HTML” Way&lt;/h4&gt;
 
-&lt;p&gt;This is probably the most straight forward way to add touch icons to your theme. Simply put the icons in the /pix/ folder and add the meta tag to your layout. Of course if your theme uses multiple layout files (which it probably does) you’ll need to add it to all all 5 or 6 or 7 layout files. The downside here is that by working outside of the image API you will probably cause some caching issues- and you &lt;em&gt;might&lt;/em&gt; even end up with broken images, depending on the site config. &lt;br&gt;
-- #### The “Moodle” Way&lt;/p&gt;
+&lt;p&gt;This is probably the most straight forward way to add touch icons to your theme. Simply put the icons in the /pix/ folder and add the meta tag to your layout. Of course if your theme uses multiple layout files (which it probably does) you’ll need to add it to all all 5 or 6 or 7 layout files. The downside here is that by working outside of the image API you will probably cause some caching issues- and you &lt;em&gt;might&lt;/em&gt; even end up with broken images, depending on the site config.&lt;/p&gt;
+
+&lt;h4 id="themoodleway"&gt;The “Moodle” Way&lt;/h4&gt;
 
 &lt;p&gt;So why not just use the pix_url() method instead? Good idea, actually! Then your touch icons are handled Moodle and all edge cases of config and cache are taken into account for you. But what if you have different themes for desktop and for mobile?&lt;/p&gt;
 
@@ -1485,11 +1484,11 @@ You can read more about composer and packagist by running:
 
 &lt;p&gt;You might as well make your own theme. There is one final option, if you don’t have an in-house developer who can build and maintain a theme your only option is to ask a theme developer to add a feature to a theme. Which we get a lot of, and usually they’re very specific to that instance and wouldn’t be a good general inclusion for a them. But the reason that people ask is because of what’s specifically outlined above- there’s no other way to do it.&lt;/p&gt;
 
-&lt;h3 id="rubbermeetstheroad"&gt;Rubber Meets the Road&lt;/h3&gt;
+&lt;h2 id="rubbermeetstheroad"&gt;Rubber Meets the Road&lt;/h2&gt;
 
 &lt;p&gt;Okay there’s a bit of a background, now let’s look at some of the things specific to Elegance.&lt;/p&gt;
 
-&lt;h4 id="courseresourcetiles"&gt;Course Resource Tiles&lt;/h4&gt;
+&lt;h3 id="courseresourcetiles"&gt;Course Resource Tiles&lt;/h3&gt;
 
 &lt;p&gt;As we’ve stated, one of the core responsibilities of a theme is to control the look and feel. The “Tiled Resources” was a cool look &amp;amp; feel feature but it wasn’t a complete feature- it took the big resource output and reformatted it as a box instead of a rectangle, and then “floated” it so they stacked next to each other. We removed this from the theme because it wasn’t &lt;em&gt;fully&lt;/em&gt; functional- and the functionality that it was trying to create already has a definition: “Course Format”. Remember how we said a theme can’t create a new activity? Well we shouldn’t try to have it &lt;em&gt;pretend&lt;/em&gt; like it has added other plugin types- we should actually create them. Very quickly, off the top of my head, here’s a list of the problems with the Tiled Resources as it existed in the theme that would need to be fixed for it to be fully functional:&lt;/p&gt;
 
@@ -1506,9 +1505,9 @@ You can read more about composer and packagist by running:
 
 &lt;p&gt;All of these things fall into the definition of a course format- which a theme could then tweak the look and feel of, but ADDING all of this stuff to a theme is like cramming two plugins into one. On top of that you have a little bit of “vendor lock in”. We all know that teachers shouldn’t tailor their display to their theme and/or device – but they do. And this facilitates that. As an admin you’d never be able to remove or change Elegance as a theme option because suddenly &lt;em&gt;poof&lt;/em&gt; Tiled Resources is gone. That’s not good.&lt;/p&gt;
 
-&lt;h4 id="mycoursetileblock"&gt;My Course Tile Block&lt;/h4&gt;
+&lt;h3 id="mycoursetileblock"&gt;My Course Tile Block&lt;/h3&gt;
 
-&lt;p&gt;Let me just start by saying that the function that added this part to the theme was called something like “theme&lt;em&gt;elegance&lt;/em&gt;my&lt;em&gt;course&lt;/em&gt;tiles&lt;em&gt;fake&lt;/em&gt;block”. That should be enough right there. A theme is a theme, a block is a block. A fake block in a theme is NOT a block. And here’s the problem(s) with it:&lt;/p&gt;
+&lt;p&gt;Let me just start by saying that the function that added this part to the theme was called something like “theme_elegance_my_course_tiles_fake_block”. That should be enough right there. A theme is a theme, a block is a block. A fake block in a theme is NOT a block. And here’s the problem(s) with it:&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;No block settings (global)&lt;/li&gt;
@@ -1518,7 +1517,7 @@ You can read more about composer and packagist by running:
 
 &lt;p&gt;All of those things are required by a block type plugin, but a theme modifying doesn’t have to follow the block rules to the detriment of the user. Not to mention, again, that if you switch themes you lose your block- unlike all other block types.&lt;/p&gt;
 
-&lt;h3 id="conclusion"&gt;Conclusion&lt;/h3&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;/h2&gt;
 
 &lt;p&gt;In conclusion there are three main ways that themes modify $OUTPUT of a Moodle site:&lt;/p&gt;
 
@@ -1530,17 +1529,20 @@ You can read more about composer and packagist by running:
 
 &lt;p&gt;The above two examples are examples of #3. They were providing functionality that should be provided by “real” plugins. This makes testing and maintaining the theme exponentially harder because you usage cases and configuration options increase with each additional fake plugin you add to your theme.&lt;/p&gt;
 
-&lt;p&gt;Now, to be clear, we didn’t remove these features from Elegance simply because ideally they should be a standalone plugin. We removed them because they were broken. Sure, for most simple Moodle installs they mostly worked, but we have to support all Moodle installs. And the only way to ensure that it works properly is to build the functionality correctly. So, while we understand that it’s not fun to lose functionality (especially stuff you really like!) we’re now on the path to being able to do it the right way.&lt;/p&gt;
-
-&lt;p&gt;If you need help with educational technology in your institution, from strategic planning, to implementation, to technical support contact us and we can help get you on the path to success.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="http://iyware.com/contact/" ?**="" contact="" us&lt;="" a=""&gt;&lt;/a&gt;&lt;/p&gt;</description><link>http://iyware.com/moodle-output-an-introduction/</link><guid isPermaLink="false">da4fb4ba-9b6e-4f6e-a3f1-41c4eeeb5c7f</guid><category>Moodle</category><dc:creator>Danny Wahl</dc:creator><pubDate>Fri, 18 Jul 2014 16:44:33 GMT</pubDate></item><item><title>Elegance 2.7 release</title><description>&lt;p&gt;It’s taken a little bit longer than we had hoped but we’re happy to announce that the official 2.7 version of Elegance has been released! It’s currently available in the &lt;a href="https://moodle.org/plugins/view.php?plugin=theme_elegance"&gt;Moodle plugins directory&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Now, to be clear, we didn’t remove these features from Elegance simply because ideally they should be a standalone plugin. We removed them because they were broken. Sure, for most simple Moodle installs they mostly worked, but we have to support all Moodle installs. And the only way to ensure that it works properly is to build the functionality correctly. So, while we understand that it’s not fun to lose functionality (especially stuff you really like!) we’re now on the path to being able to do it the right way.&lt;/p&gt;</description><link>http://iyware.com/moodle-output-an-introduction/</link><guid isPermaLink="false">da4fb4ba-9b6e-4f6e-a3f1-41c4eeeb5c7f</guid><category>Moodle</category><dc:creator>Danny Wahl</dc:creator><pubDate>Fri, 18 Jul 2014 16:44:33 GMT</pubDate></item><item><title>Elegance 2.7 release</title><description>&lt;p&gt;It’s taken a little bit longer than we had hoped but we’re happy to announce that the official 2.7 version of Elegance has been released! It’s currently available in the &lt;a href="https://moodle.org/plugins/view.php?plugin=theme_elegance"&gt;Moodle plugins directory&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;As with all of our releases we have also opened a new &lt;a href="https://moodle.org/mod/forum/discuss.php?d=263376"&gt;support thread&lt;/a&gt; at the moodle.org forums. Since this is our first release since taking over development of this plugin we were primarily on a “how does this work?” expedition. As such there’s not a lot of new functionality, but there are quite a few bugs that have been fixed.&lt;/p&gt;
 
-&lt;p&gt;The two biggest changes in this release are 1) official Moodle 2.7 compatibility and 2) dependence on moodle-theme_bootstrap. This is not to be confused with “bootstrapbase” which is included in Moodle 2.7. But, in the effort of easing confusion – if you’re using the Moodle auto-updater (which you should be) you’ll automatically be prompted to install this parent theme first. This also allowed us to lighten the code base- a lot!&lt;/p&gt;
+&lt;p&gt;The two biggest changes in this release are &lt;/p&gt;
 
-&lt;p&gt;&lt;a href="https://github.com/thedannywahl/moodle-theme_elegance/compare/7c80461...2.7.0.06"&gt;199 changed files with &lt;strong&gt;982&lt;/strong&gt; additions and &lt;strong&gt;36,422&lt;/strong&gt; deletions.&lt;/a&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;official Moodle 2.7 compatibility  &lt;/li&gt;
+&lt;li&gt;dependence on moodle-theme_bootstrap&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;This is not to be confused with “bootstrapbase” which is included in Moodle 2.7. But, in the effort of easing confusion – if you’re using the Moodle auto-updater (which you should be) you’ll automatically be prompted to install this parent theme first. This also allowed us to lighten the code base- a lot!&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/thedannywahl/moodle-theme_elegance/compare/7c80461...2.7.0.06"&gt;199 changed files with &lt;strong&gt;982&lt;/strong&gt; additions and &lt;strong&gt;36,422&lt;/strong&gt; deletions&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Finally we’d like to thank all the &lt;a href="https://github.com/thedannywahl/moodle-theme_elegance/graphs/contributors"&gt;contributors&lt;/a&gt; and &lt;a href="https://github.com/thedannywahl/moodle-theme_elegance/issues?state=open"&gt;bug reporters&lt;/a&gt; that helped make this release possible.&lt;/p&gt;
 
@@ -1552,8 +1554,11 @@ You can read more about composer and packagist by running:
 
 &lt;p&gt;Well, today I’m pleased to announce that we are now officially, and with the blessing of Julian and the Moodle Plugin Liaison David Mudrak, the lead developers of the Elegance theme for Moodle. We don’t currently have a lot of short-term plans for Elegance, other than fixing regressions introduced in 2.7 and patching existing bugs, but we do have some ideas coming down the road.&lt;/p&gt;
 
-&lt;p&gt;Now you may be thinking to yourself, “what about Simplex?”. Yeah, we’re a little behind on that- but I’m happy to say that Elegance will be the main theme plugin for the Simplex project! Remember the Simplex project is about primary school users and a touch friendly interface for Moodle. We really think that Elegance (and Bootstrap 3) are a step in the right direction. And along those lines we do have a couple of plugins for Simplex in the pipeline now and they should be out soon. Of course our goal is not for them to be dependent on theme_elegance so they should work with any theme! Here’s a sneak peek of a front-page interface: &lt;br&gt;
-&lt;img src="http://iyware.com/content/images/import/Screen-Shot-2014-06-18-at-2.33.22-PM-960x491.png" alt="Elegance preview"&gt;&lt;/p&gt;</description><link>http://iyware.com/new-home-elegance/</link><guid isPermaLink="false">31ba7739-31a3-4624-8bde-96187c053ac6</guid><category>Moodle</category><dc:creator>Danny Wahl</dc:creator><pubDate>Wed, 18 Jun 2014 14:48:40 GMT</pubDate></item><item><title>Moodle Demo Site Down</title><description>&lt;p&gt;Just a quick note, we had to take down our Moodle demo site (moodle.iyware.com). The demo site has always lived on the dev branch of Moodle and with the new &lt;a href="https://tracker.moodle.org/browse/MDL-42931"&gt;2.7 system requirements&lt;/a&gt; our host no longer meets them. &lt;a href="https://discussion.dreamhost.com/thread-138999.html"&gt;We’ve let our host know&lt;/a&gt; that we’d like to see a server upgrade – but for not it’s not going to happen. Rather than reinstall on a stable branch, we’ve decided to shut down the demo site for now.&lt;/p&gt;</description><link>http://iyware.com/moodle-demo-site/</link><guid isPermaLink="false">c9fba146-f86b-4de4-839a-62819b5faf61</guid><category>Moodle</category><dc:creator>Danny Wahl</dc:creator><pubDate>Thu, 24 Apr 2014 08:57:02 GMT</pubDate></item><item><title>CodePen.io Moodle Text Filter Release</title><description>&lt;p&gt;Syntax highlighting is hard. So is porting a syntax highlighter from platform to platform. So we thought, “Why not be lazy?” Bam. Introducing the &lt;a href="http://codepen.io/" title="Contact"&gt;CodePen.io&lt;/a&gt; Moodle Text Filter – for the lazy man (or woman). This plugin converts any Pen URL into an embed of that Pen.&lt;/p&gt;
+&lt;p&gt;Now you may be thinking to yourself, “what about Simplex?”. Yeah, we’re a little behind on that- but I’m happy to say that Elegance will be the main theme plugin for the Simplex project! Remember the Simplex project is about primary school users and a touch friendly interface for Moodle. We really think that Elegance (and Bootstrap 3) are a step in the right direction. And along those lines we do have a couple of plugins for Simplex in the pipeline now and they should be out soon. Of course our goal is not for them to be dependent on theme_elegance so they should work with any theme! Here’s a sneak peek of a front-page interface:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://iyware.com/content/images/import/Screen-Shot-2014-06-18-at-2.33.22-PM-960x491.png" alt="Elegance preview"&gt;&lt;/p&gt;
+
+&lt;p&gt;Stay tuned!&lt;/p&gt;</description><link>http://iyware.com/new-home-elegance/</link><guid isPermaLink="false">31ba7739-31a3-4624-8bde-96187c053ac6</guid><category>Moodle</category><dc:creator>Danny Wahl</dc:creator><pubDate>Wed, 18 Jun 2014 14:48:40 GMT</pubDate></item><item><title>Moodle Demo Site Down</title><description>&lt;p&gt;Just a quick note, we had to take down our Moodle demo site (moodle.iyware.com). The demo site has always lived on the dev branch of Moodle and with the new &lt;a href="https://tracker.moodle.org/browse/MDL-42931"&gt;2.7 system requirements&lt;/a&gt; our host no longer meets them. &lt;a href="https://discussion.dreamhost.com/thread-138999.html"&gt;We’ve let our host know&lt;/a&gt; that we’d like to see a server upgrade – but for not it’s not going to happen. Rather than reinstall on a stable branch, we’ve decided to shut down the demo site for now.&lt;/p&gt;</description><link>http://iyware.com/moodle-demo-site/</link><guid isPermaLink="false">c9fba146-f86b-4de4-839a-62819b5faf61</guid><category>Moodle</category><dc:creator>Danny Wahl</dc:creator><pubDate>Thu, 24 Apr 2014 08:57:02 GMT</pubDate></item><item><title>CodePen.io Moodle Text Filter Release</title><description>&lt;p&gt;Syntax highlighting is hard. So is porting a syntax highlighter from platform to platform. So we thought, “Why not be lazy?” Bam. Introducing the &lt;a href="http://codepen.io/" title="Contact"&gt;CodePen.io&lt;/a&gt; Moodle Text Filter – for the lazy man (or woman). This plugin converts any Pen URL into an embed of that Pen.&lt;/p&gt;
 
 &lt;p&gt;Here’s a brief overview of what we’re talking about. Put some text into the ol’ text editor, and if it contains a link to a Pen (i.e. /pen/) the filter will embed the Pen.&lt;/p&gt;
 
@@ -1577,7 +1582,7 @@ You can read more about composer and packagist by running:
 
 &lt;p&gt;Also, consider getting a Pro plan at CodePen – I did, and I use it daily in my classroom. It’s awesome. We even have a “Fun = CodePen + Codecademy + Moodle;” post coming soon on using those tools to teach HTML JavaScript.&lt;/p&gt;
 
-&lt;p&gt;Go &lt;a href="https://moodle.org/plugins/view.php?plugin=filter_codepen"&gt;grab the filter&lt;/a&gt; from the Moodle Plugins Directory.&lt;/p&gt;</description><link>http://iyware.com/codepen-io-moodle-text-filter-release/</link><guid isPermaLink="false">103cb730-c2aa-4403-817b-f9eb8a31409d</guid><category>Moodle</category><dc:creator>Danny Wahl</dc:creator><pubDate>Thu, 13 Feb 2014 20:44:33 GMT</pubDate></item><item><title>The Simplex Project: Introduction</title><description>&lt;p&gt;It’s no secret that Moodle is geared toward college and university use, or at least to higher-level learning, but there’s still a huge contingent of primary school users out there. Unfortunately the attitude generally is “take it or leave it” when it comes to usability for small children and themes exemplify this more than anything.&lt;/p&gt;
+&lt;p&gt;Go &lt;a href="https://moodle.org/plugins/view.php?plugin=filter_codepen"&gt;grab the filter&lt;/a&gt; from the Moodle Plugins Directory.&lt;/p&gt;</description><link>http://iyware.com/codepen-io-moodle-text-filter-release/</link><guid isPermaLink="false">103cb730-c2aa-4403-817b-f9eb8a31409d</guid><category>Moodle</category><category>Portfolio</category><dc:creator>Danny Wahl</dc:creator><pubDate>Thu, 13 Feb 2014 20:44:33 GMT</pubDate></item><item><title>The Simplex Project: Introduction</title><description>&lt;p&gt;It’s no secret that Moodle is geared toward college and university use, or at least to higher-level learning, but there’s still a huge contingent of primary school users out there. Unfortunately the attitude generally is “take it or leave it” when it comes to usability for small children and themes exemplify this more than anything.&lt;/p&gt;
 
 &lt;p&gt;We’ve decided to change that. Introducing &lt;a href="http://simplex.iyware.com/"&gt;Simplex&lt;/a&gt;, a Moodle project designed specifically for primary student and touch-device users. We don’t mean just a large logo in comic-sans or bright pink background with the normal Moodle interface resting on top. We mean a bottom-to-top redesign of the user interface and experience.&lt;/p&gt;
 
