@@ -21,7 +21,7 @@
     <meta property="og:description" content="Once again I’ve been working away at adding new features to Zebra for Moodle 2. One of my big pushes, by request (though it’s been on my plate) is getting some sort of better support for Internet Explorer...">
     <meta property="og:url" content="http://iyware.com/browser-detection-in-moodle/">
     <meta property="article:published_time" content="2012-03-19T16:28:10.000Z">
-    <meta property="article:modified_time" content="2015-01-15T04:56:24.084Z">
+    <meta property="article:modified_time" content="2015-01-19T01:03:32.980Z">
     <meta property="article:tag" content="Moodle">
     
     <meta name="twitter:card" content="summary">
@@ -44,7 +44,7 @@
     "headline": "Browser Detection in Moodle",
     "url": "http://iyware.com/browser-detection-in-moodle/",
     "datePublished": "2012-03-19T16:28:10.000Z",
-    "dateModified": "2015-01-15T04:56:24.084Z",
+    "dateModified": "2015-01-19T01:03:32.980Z",
     "keywords": "Moodle",
     "description": "Once again I’ve been working away at adding new features to Zebra for Moodle 2. One of my big pushes, by request (though it’s been on my plate) is getting some sort of better support for Internet Explorer..."
 }
@@ -80,13 +80,43 @@
   <p>A fast &amp; lightweight polyfill for min/max-width CSS3 Media Queries (for IE 6-8, and more). The goal of this script is to provide a fast and lightweight (3kb minified / 1kb gzipped) script to enable responsive web designs in browsers that don’t support CSS3 Media Queries – in particular, Internet Explorer 8 and under.</p>
 </blockquote>
 
-<p>Which was exactly what I wanted. I love not re-inventing the wheel. At first I just threw it in the javascripts_footer() array and called it a day (it worked!). But then I got to thinking, why should I make good users with modern browsers suffer having to load this javascript just to not run it? So I decided to sniff out the browser. At first I tried using IE conditionals (e.g. blah blah blah…) but it turns out those do not play nice with php at all and a switch just got too big too fast.</p>
+<p>Which was exactly what I wanted. I love not re-inventing the wheel. At first I just threw it in the javascripts_footer() array and called it a day (it worked!). But then I got to thinking, why should I make good users with modern browsers suffer having to load this javascript just to not run it? So I decided to sniff out the browser. At first I tried using IE conditionals (e.g. <code>&lt;!--[if lt IE 9]&gt;blah blah blah…&lt;![endif]--&gt;</code>) but it turns out those do not play nice with php at all and a switch just got too big too fast.</p>
 
-<p>Then I was reminded that Moodle already does browser detection and that the value is stored in the body classes. Turns out that Moodle actually stores two values: IE and IE# where # is the version (7, 8, etc…). With that knowledge it was fairly simple to serve respond.js to only those users. All I had to do was add the code to my page layout(s). In this example the variable $userespond is simply a value stored from the theme settings page – so an administrator can turn it off entirely.</p>
+<p>Then I was reminded that Moodle already does browser detection and that the value is stored in the body classes. Turns out that Moodle actually stores two values: IE and IE# where # is the version (7, 8, etc…). With that knowledge it was fairly simple to serve respond.js to only those users. All I had to do was add the code to my page layout(s). In this example the variable <code>$userespond</code> is simply a value stored from the theme settings page – so an administrator can turn it off entirely.</p>
 
-<p>That was pretty easy. So then I decided to do the same thing to load <a href="http://code.google.com/chrome/chromeframe/" title="Google Chrome Fram">Chrome Frame</a> as another option. In this example there are two variables. The first is $usecf which does the same thing as $userespond above, and the second is a max version of IE to target. So if you set it to “7” users on IE8 won’t see a prompt to install. The default is 6 by the way, and this is about as much “compatibility” as I plan to add for this theme with IE6.</p>
+<pre><code class="language-php">// general.php
+if ($userespond == 1) {  
+    $usingie = strpos($PAGE-&gt;bodyclasses, 'ie ie');
+    $usingie9 = strpos($PAGE-&gt;bodyclasses, 'ie9');
+    if (($usingie !== false) &amp;&amp; ($usingie9 === false)) {
+        $PAGE-&gt;requires-&gt;js('/theme/zebra/javascript/respond.js');
+    }
+}
+</code></pre>
+
+<p>That was pretty easy. So then I decided to do the same thing to load <a href="http://code.google.com/chrome/chromeframe/" title="Google Chrome Fram">Chrome Frame</a> as another option. In this example there are two variables. The first is <code>$usecf</code> which does the same thing as <code>$userespond</code> above, and the second is a max version of IE to target. So if you set it to “7” users on IE8 won’t see a prompt to install. The default is 6 by the way, and this is about as much “compatibility” as I plan to add for this theme with IE6.</p>
+
+<pre><code class="language-php">// general.php
+&lt;?php if ($usecf == 1) {  
+    $ieversion = strpos($PAGE-&gt;bodyclasses, $cfmaxversion);
+    if ($ieversion !== false) {
+        $PAGE-&gt;requires-&gt;js(new moodle_url('http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js')); ?&gt;
+        &lt;script&gt;
+            //&lt;![CDATA[
+                window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})
+            //]]&gt;
+        &lt;/script&gt;
+    &lt;?php }
+}
+</code></pre>
 
 <p>Then I remembered that for a while now I’ve had a javascript included in the footer that only fixes a viewport re-flow error on iOS, and I figured I should target that the same way. Unfortunately Moodle doesn’t store that information as easily, but it’s pretty straight forward information to get, since there are only three devices that use iOS.</p>
+
+<pre><code class="language-php">// general.php
+if (preg_match('/iPhone|iPod|iPad/i', $_SERVER['HTTP_USER_AGENT'])) {  
+    $PAGE-&gt;requires-&gt;js('/theme/zebra/javascript/iOS-viewport-fix.js');
+}
+</code></pre>
 
 <p>There, now I feel a lot better for all the Firefox (or Opera?) users out there. Instead of downloading and evaluating three javascripts that would do nothing on your browser, you get nothing! Now, I am fully aware that browser detection is not a great practice, for starters any one can change their user-agent and none of this would work. But, all 3 of these scripts are attempts at preventing degradation so if they don’t run the worst that happens is the user’s browser is as broken as it would have been if I hadn’t included the scripts at all.</p>
             <!--sse-->
