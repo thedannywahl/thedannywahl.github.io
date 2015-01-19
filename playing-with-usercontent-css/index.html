@@ -21,7 +21,7 @@
     <meta property="og:description" content="Here in China the fact that some websites just are never available (e.g. facebook, youtube, twitter, google+, hulu, etc…) and some sites get blocked intermittently depending on what you’re searching for is a constant source of frustration for...">
     <meta property="og:url" content="http://iyware.com/playing-with-usercontent-css/">
     <meta property="article:published_time" content="2011-11-04T21:11:56.000Z">
-    <meta property="article:modified_time" content="2015-01-15T04:57:56.656Z">
+    <meta property="article:modified_time" content="2015-01-19T03:17:37.473Z">
     <meta property="article:tag" content="DevOps">
     
     <meta name="twitter:card" content="summary">
@@ -44,7 +44,7 @@
     "headline": "Playing With userContent.css",
     "url": "http://iyware.com/playing-with-usercontent-css/",
     "datePublished": "2011-11-04T21:11:56.000Z",
-    "dateModified": "2015-01-15T04:57:56.656Z",
+    "dateModified": "2015-01-19T03:17:37.473Z",
     "keywords": "DevOps",
     "description": "Here in China the fact that some websites just are never available (e.g. facebook, youtube, twitter, google+, hulu, etc…) and some sites get blocked intermittently depending on what you’re searching for is a constant source of frustration for..."
 }
@@ -88,11 +88,46 @@
 
 <p>So one day I decided that I needed to give myself a little pick-me-up as I was contemplating throwing my laptop across the room. So off I went to figure out how to edit the connection reset page in Firefox. Turns out that it all comes down to userContent.css, so let’s dive in. The first thing I did was find an image I wanted to plaster all over that boring info box, save it and then call it.</p>
 
-<p>On OS X userContent.css can be found in your user library (specifically ~/Library/Application Support/Firefox/Profiles/[RANDOMSTRING].default/chrome/ where [RANDOMSTRING] is a… you guessed it, random string of characters). The first thing to do is copy userContent-example.css to userContent.css. The second step is to start hacking away. I found some threads over at the Mozilla developer forums that said that it doesn’t support local images, but guess what? It does! Anyways here’s what I added to mine:</p>
+<p>On OS X userContent.css can be found in your user library (specifically <code>~/Library/Application Support/Firefox/Profiles/[RANDOMSTRING].default/chrome/</code> where [RANDOMSTRING] is a… you guessed it, random string of characters). The first thing to do is copy <code>userContent-example.css</code> to <code>userContent.css</code>. The second step is to start hacking away. I found some threads over at the Mozilla developer forums that said that it doesn’t support local images, but guess what? It does! Anyways here’s what I added to mine:</p>
 
 <p>Vendor prefixes in <em>my</em> CSS? Well I guess this is just for Firefox so I’ll let it slide this time. And here’s what it looks like:</p>
 
-<p></p><div class="gallery galleryid-406 gallery-columns-2 gallery-size-thumbnail" id="gallery-7"><figure class="gallery-item"><div class="gallery-icon landscape"><a href="../content/images/import/userContent-before.png"><img src="../content/images/import/userContent-before-300x300.png" alt="userContent-before" title=""></a></div></figure><figure class="gallery-item"><div class="gallery-icon landscape"><a href="../content/images/import/userContent-after.png"><img src="../content/images/import/userContent-after-300x300.png" alt="userContent-after" title=""></a></div></figure></div>Now I know what you’re thinking: How the heck did you come up with <code>@-moz-document url-prefix(about:neterror?e=netReset)</code> so that you could do that hilarious thing you did? Well I didn’t. I found it somewhere else, and if I could remember where, I’d link to it, but I’m going to guess it was at <a href="http://www-archive.mozilla.org/unix/customizing.html#userContent">Mozilla</a> because that page is purple in my Google search results for “<a href="http://www.google.com/#hl=en&amp;sugexp=kjrmc&amp;cp=10&amp;gs_id=1p&amp;xhr=t&amp;q=userContent.css&amp;pf=p&amp;sclient=psy-ab&amp;safe=off&amp;source=hp&amp;pbx=1&amp;oq=userConten&amp;aq=0&amp;aqi=g4&amp;aql=f&amp;gs_sm=&amp;gs_upl=&amp;bav=on.2,or.r_gc.r_pw.,cf.osb&amp;fp=25f1a21493d5da43&amp;biw=1226&amp;bih=677">UserContent.css</a>” but to spare you the trouble of having to try to figure out the other error codes (should you want to mess with them too) here’s the rest:
+<p><img src="../content/images/import/userContent-before.png" alt="userContent-before"></p>
+
+<p><img src="../content/images/import/userContent-after.png" alt="userContent-after"></p>
+
+<p>Now I know what you’re thinking: How the heck did you come up with <code>@-moz-document url-prefix(about:neterror?e=netReset)</code> so that you could do that hilarious thing you did? Well I didn’t. I found it somewhere else, and if I could remember where, I’d link to it, but I’m going to guess it was at <a href="http://www-archive.mozilla.org/unix/customizing.html#userContent">Mozilla</a> because that page is purple in my Google search results for “<a href="http://www.google.com/#hl=en&amp;sugexp=kjrmc&amp;cp=10&amp;gs_id=1p&amp;xhr=t&amp;q=userContent.css&amp;pf=p&amp;sclient=psy-ab&amp;safe=off&amp;source=hp&amp;pbx=1&amp;oq=userConten&amp;aq=0&amp;aqi=g4&amp;aql=f&amp;gs_sm=&amp;gs_upl=&amp;bav=on.2,or.r_gc.r_pw.,cf.osb&amp;fp=25f1a21493d5da43&amp;biw=1226&amp;bih=677">UserContent.css</a>” but to spare you the trouble of having to try to figure out the other error codes (should you want to mess with them too) here’s the rest:</p>
+
+<pre><code class="language-css">@-moz-document url-prefix(about:neterror?e=generic) { }
+
+@-moz-document url-prefix(about:neterror?e=dnsNotFound) { }
+
+@-moz-document url-prefix(about:neterror?e=fileNotFound) { }
+
+@-moz-document url-prefix(about:neterror?e=malformedURI) { }
+
+@-moz-document url-prefix(about:neterror?e=protocolNotFound) { }
+
+@-moz-document url-prefix(about:neterror?e=connectionFailure) { }
+
+@-moz-document url-prefix(about:neterror?e=netTimeout) { }
+
+@-moz-document url-prefix(about:neterror?e=redirectLoop) { }
+
+@-moz-document url-prefix(about:neterror?e=unknownSocketType) { }
+
+@-moz-document url-prefix(about:neterror?e=netReset) { }
+
+@-moz-document url-prefix(about:neterror?e=netOffline) { }
+
+@-moz-document url-prefix(about:neterror?e=netInterrupt) { }
+
+@-moz-document url-prefix(about:neterror?e=deniedPortAccess) { }
+
+@-moz-document url-prefix(about:neterror?e=proxyResolveFailure) { }
+
+@-moz-document url-prefix(about:neterror?e=proxyConnectFailure) { }
+</code></pre>
             <!--sse-->
 			<div id="disqus_thread"></div>
 			<script type="text/javascript">

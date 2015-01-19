@@ -21,7 +21,7 @@
     <meta property="og:description" content="ZenPhoto is a pretty robust, but light weight photo gallery software.  The front-end is pretty sparse, but the framework is excellent – meaning you can customize the layout in almost any way at the site, album, and image level without needing...">
     <meta property="og:url" content="http://iyware.com/zenphoto-album-name-hack/">
     <meta property="article:published_time" content="2011-02-16T10:11:11.000Z">
-    <meta property="article:modified_time" content="2015-01-15T05:00:23.997Z">
+    <meta property="article:modified_time" content="2015-01-19T05:18:54.878Z">
     <meta property="article:tag" content="DevOps">
     
     <meta name="twitter:card" content="summary">
@@ -44,7 +44,7 @@
     "headline": "ZenPhoto Album Name Hack",
     "url": "http://iyware.com/zenphoto-album-name-hack/",
     "datePublished": "2011-02-16T10:11:11.000Z",
-    "dateModified": "2015-01-15T05:00:23.997Z",
+    "dateModified": "2015-01-19T05:18:54.878Z",
     "keywords": "DevOps",
     "description": "ZenPhoto is a pretty robust, but light weight photo gallery software.  The front-end is pretty sparse, but the framework is excellent – meaning you can customize the layout in almost any way at the site, album, and image level without needing..."
 }
@@ -76,9 +76,30 @@
 
 <p>Luckily, I was able to find pretty quickly some functions in the admin-functions back-end that I was able to call in the template and integrate it fairly easily, all with ‘native’ code. So here’s what you would see when looking at a gallery by default:</p>
 
+<pre><code class="language-markup">&lt;div id="albums"&gt;  
+        &lt;div class="album"&gt;...&lt;/div&gt;
+        &lt;div class="album"&gt;...&lt;/div&gt;
+&lt;/div&gt;  
+</code></pre>
+
 <p>Browse to your theme directory and edit index.php to look like the following:</p>
 
+<pre><code class="language-php">&lt;div id="albums"&gt;  
+    &lt;?php while (next_album()): ?&gt;
+        &lt;div class="album" id="&lt;?php echo seoFriendly(getAlbumTitle()); ?&gt;"&gt;
+            …
+        &lt;/div&gt;
+    &lt;?php endwhile; ?&gt;
+&lt;/div&gt;  
+</code></pre>
+
 <p>the <code>echo seoFriendly();</code> function is the key here, and in the end you’ll have something that looks like this:</p>
+
+<pre><code class="language-markup">&lt;div id="albums"&gt;  
+        &lt;div class="album" id="escaped-album-title"&gt;...&lt;/div&gt;
+        &lt;div class="album" id="another-valid-html-title"&gt;...&lt;/div&gt;
+&lt;/div&gt;  
+</code></pre>
 
 <p>If all of your album titles are safe (no spaces, punctuation, special characters, etc…) then you could just use <code>getAlbumTitle();</code> but if they’re not, you won’t pass validation.</p>
             <!--sse-->

@@ -21,7 +21,7 @@
     <meta property="og:description" content="Boy that’s a lot of ‘P’s! Let’s just jump right in, shall we. Here’s the scenario, a user creates a post that they only want to share with select people because of the private nature of...">
     <meta property="og:url" content="http://iyware.com/making-wordpress-password-protected-posts-private/">
     <meta property="article:published_time" content="2011-11-28T12:37:43.000Z">
-    <meta property="article:modified_time" content="2015-01-15T04:57:19.408Z">
+    <meta property="article:modified_time" content="2015-01-19T02:15:43.997Z">
     <meta property="article:tag" content="WordPress">
     
     <meta name="twitter:card" content="summary">
@@ -44,7 +44,7 @@
     "headline": "Making WordPress Password Protected Posts Private",
     "url": "http://iyware.com/making-wordpress-password-protected-posts-private/",
     "datePublished": "2011-11-28T12:37:43.000Z",
-    "dateModified": "2015-01-15T04:57:19.408Z",
+    "dateModified": "2015-01-19T02:15:43.997Z",
     "keywords": "WordPress",
     "description": "Boy that’s a lot of ‘P’s! Let’s just jump right in, shall we. Here’s the scenario, a user creates a post that they only want to share with select people because of the private nature of..."
 }
@@ -85,25 +85,91 @@
 
 <p>There may be other things but this was the quick set I saw that I knew I needed to change. Turns out we can do this in just a couple of quick steps. First let’s look at what might be a standard single.php:</p>
 
+<pre><code class="language-php">&lt;?php get_header(); ?&gt;  
+    &lt;article id="post-&lt;?php the_ID(); ?&gt;" &lt;?php post_class(); ?&gt;&gt;
+        &lt;header&gt;&lt;h2&gt;&lt;?php the_title(); ?&gt;&lt;/h2&gt;&lt;/header&gt;
+        &lt;aside id="meta"&gt;&lt;?php the_author(); ?&gt; : &lt;?php the_date(); ?&gt;&lt;/aside&gt;
+        &lt;?php if ( has_post_thumbnail() ) : ?&gt;
+            &lt;?php $post_thumbnail_id = get_post_thumbnail_id($post-&gt;ID); ?&gt;
+            &lt;figure&gt;
+                &lt;?php echo wp_get_attachment_link( $post_thumbnail_id, 'thumbnail', true ); ?&gt;
+                &lt;figcaption&gt;This is an image caption&lt;/figcaption&gt;
+            &lt;/figure&gt;
+        &lt;?php endif; ?&gt;
+        &lt;?php the_content(); ?&gt;
+    &lt;/article&gt;
+    &lt;?php comments_template(); ?&gt;
+&lt;?php get_footer(); ?&gt;  
+</code></pre>
+
 <p>Pretty simple, let’s break it down: Grab the header, the the author, time, and featured image, then the content and the comments. The only thing that wouldn’t show up would be the comments and the content. The title would also be prefixed with “Protected: “. That sure is a lot of information for a “Protected” post. Let’s fix that.</p>
 
-<h3 id="singlephp">single.php</h3>
+<h2 id="singlephp">single.php</h2>
 
-<p>The first step is to add a conditional to our above code, fortunately there’s an article class called <code>post-password-required</code> when a post is passworded and the user hasn’t input the password before. We’re going to leverage that by using the php function <code>&lt;a href="http://php.net/manual/en/function.in-array.php"&gt;in_array()&lt;/a&gt;</code>.</p>
+<p>The first step is to add a conditional to our above code, fortunately there’s an article class called <code>post-password-required</code> when a post is passworded and the user hasn’t input the password before. We’re going to leverage that by using the php function <a href="http://php.net/manual/en/function.in-array.php"><code>in_array()</code></a>.</p>
+
+<pre><code class="language-php">&lt;?php get_header(); ?&gt;  
+    &lt;?php if ( in_array( "post-password-required", get_post_class() ) ) : ?&gt;
+        &lt;article id="post-&lt;?php the_ID(); ?&gt;"&gt;
+            &lt;header&gt;&lt;h2&gt;Password Required&lt;/h2&gt;&lt;/header&gt;
+            &lt;?php the_content(); ?&gt;
+        &lt;/article&gt;
+    &lt;?php else : ?&gt;
+        &lt;article id="post-&lt;?php the_ID(); ?&gt;" &lt;?php post_class(); ?&gt;&gt;
+            &lt;header&gt;&lt;h2&gt;&lt;?php the_title(); ?&gt;&lt;/h2&gt;&lt;/header&gt;
+            &lt;aside id="meta"&gt;&lt;?php the_author(); ?&gt; : &lt;?php the_date(); ?&gt;&lt;/aside&gt;
+            &lt;?php if ( has_post_thumbnail() ) : ?&gt;
+                &lt;?php $post_thumbnail_id = get_post_thumbnail_id($post-&gt;ID); ?&gt;
+                &lt;figure&gt;
+                    &lt;?php echo wp_get_attachment_link( $post_thumbnail_id, 'thumbnail', true ); ?&gt;
+                    &lt;figcaption&gt;This is an image caption&lt;/figcaption&gt;
+                &lt;/figure&gt;
+            &lt;?php endif; ?&gt;
+            &lt;?php the_content(); ?&gt;
+            &lt;?php comments_template(); ?&gt;
+        &lt;/article&gt;
+    &lt;?php endif; ?&gt;
+&lt;?php get_footer(); ?&gt;  
+</code></pre>
 
 <p>So if the post is going to require a password, we don’t serve any of that other content, just <code>the_content()</code>. We don’t even give them the title of the article.</p>
 
 <p>Next we’re going to remove our protected posts from archive, search, category, and tag lists, again just to prevent exposing that the post even exists, because that could be annoying to visitors that don’t have the password! We’re going to achieve this by filtering our queries on those types of pages.</p>
 
-<h3 id="functionsphp">functions.php</h3>
+<h2 id="functionsphp">functions.php</h2>
 
-<p>This is a pretty simple filter, we’re just using the <code>&lt;a href="http://codex.wordpress.org/Class_Reference/wpdb"&gt;wpdb&lt;/a&gt;</code> class to append one more rule to the database query, and that rule is that the post password must be null. Kind of an odd way to do it, but this is the only way to check if a post is protected or not (in a query).</p>
+<pre><code class="language-php">// Exclude passworded posts from search and archive
+function password_post_exclude($where, $wp_query = NULL) {  
+    global $wpdb;  
+    if ( ! $wp_query ) {
+        global $wp_query;
+    }
+    if ( $wp_query-&gt;is_archive  || $wp_query-&gt;is_search ) {  
+        $where .= " AND $wpdb-&gt;posts.post_password = ''";  
+    }  
+    return $where;  
+}  
+add_filter( 'posts_where','password_post_exclude', 1, 2 );  
+</code></pre>
 
-<h3 id="notes">Notes</h3>
+<p>This is a pretty simple filter, we’re just using the <a href="http://codex.wordpress.org/Class_Reference/wpdb"><code>wpdb</code></a> class to append one more rule to the database query, and that rule is that the post password must be null. Kind of an odd way to do it, but this is the only way to check if a post is protected or not (in a query).</p>
+
+<h2 id="notes">Notes</h2>
 
 <p>That’s all there is to making your protected posts a little more private. Now I know what you’re thinking, obfuscation isn’t security. I know that. This isn’t to make things more secure, this is to increase the privacy of the post by limiting what information is shown and removing it from general access. I know what else you’re thinking: If your website is open to search engines your post is still going to get crawled and indexed for people to find. Yes and no; yes it will get crawled but here’s what it will index: Title: “Password Required” Content: “You need a password to view this post”. Versus the default of: Title: “Protected: Your Secret Post Title” Content: “You need a password to view this post”. So even if it gets indexed it’s not going to show up in search results, and again this isn’t about security!</p>
 
 <p>Finally, since we’re serving our own title for the protected post you can remove the WP prep-end from the title with another custom function:</p>
+
+<pre><code class="language-php">// Remove "Protected: " from passworded posts because we serve our own title
+function strip_the_title( $title ) {  
+    $title = attribute_escape( $title );
+    $modified = '#Protected: #';
+    $original = '';
+    $title = preg_replace( $modified, $original, $title );
+    return $title;
+}
+add_filter( 'the_title', 'strip_the_title' );  
+</code></pre>
             <!--sse-->
 			<div id="disqus_thread"></div>
 			<script type="text/javascript">

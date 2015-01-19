@@ -21,7 +21,7 @@
     <meta property="og:description" content="lately I decided that a good plan of action would be to take the web server files in my virtual machine: Apache config, Postgres config and databases, Moodle root and moodle data and back them up to the host server...">
     <meta property="og:url" content="http://iyware.com/rsync-over-ssh-expect/">
     <meta property="article:published_time" content="2011-03-21T12:32:54.000Z">
-    <meta property="article:modified_time" content="2015-01-15T05:00:01.246Z">
+    <meta property="article:modified_time" content="2015-01-19T05:15:50.490Z">
     <meta property="article:tag" content="DevOps">
     
     <meta name="twitter:card" content="summary">
@@ -44,7 +44,7 @@
     "headline": "rsync Over SSH + expect",
     "url": "http://iyware.com/rsync-over-ssh-expect/",
     "datePublished": "2011-03-21T12:32:54.000Z",
-    "dateModified": "2015-01-15T05:00:01.246Z",
+    "dateModified": "2015-01-19T05:15:50.490Z",
     "keywords": "DevOps",
     "description": "lately I decided that a good plan of action would be to take the web server files in my virtual machine: Apache config, Postgres config and databases, Moodle root and moodle data and back them up to the host server..."
 }
@@ -82,7 +82,31 @@
 
 <p>Enter <a href="http://oreilly.com/catalog/expect/chapter/ch03.html">expect</a>.  A program used for automating/interacting with programs which is really a powerful tool.  By writing a small expect script and calling that instead you can easily automate your backup via rsync, without needing a permanent root shell and without needing to mess with ssh-agent.  First let’s look at a simple backup script for rsyncing your apache config files to a remote server:</p>
 
+<pre><code class="language-bash">#rsync.sh
+#Stop Apache
+/etc/init.d/apache2 stop
+
+#Backup Apache
+rsync --progress -avze ssh --numeric-ids --delete /etc/apache2 username@yourserver.domain.com:/path/to/backup/etc
+
+#Start Apache
+/etc/init.d/apache2 start
+</code></pre>
+
 <p>That’s not too difficult, now let’s add expect into the mix to automate the process</p>
+
+<pre><code class="language-bash">#backup.exp
+if {[llength $argv] == 0} {  
+  puts "Usage: expect backup.exp passphrase"
+  exit 1
+}
+
+spawn sh rsync.sh  
+set passphrase [lindex $argv 0]  
+expect "Enter passphrase for key '/path/to/key/id_type':"  
+send "$passphrase\r"  
+expect eof  
+</code></pre>
 
 <p>ta-da!  That’s pretty easy to follow right?  You type expect backup.exp passphrase, where backup.exp is whatever you save the script as, and passphrase is your SSH passphrase and then the magic happens.  Of course this is very basic, and doesn’t handle errors or exceptions – something which you’ll definitely want to do – in case expect hangs you’ll want to kill rsync and start Apache eventually. Now just add the expect file to your cron jobs for fully automated backups.</p>
             <!--sse-->
