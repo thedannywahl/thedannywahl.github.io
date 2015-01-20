@@ -1,4 +1,4 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>iyWare</title><description>Things I Break</description><link>http://iyware.com/</link><generator>Ghost 0.5</generator><lastBuildDate>Tue, 20 Jan 2015 13:59:47 GMT</lastBuildDate><atom:link href="http://iyware.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Migrate from WordPress to Ghost</title><description>&lt;p&gt;I've been using &lt;a href="http://wordpress.org/"&gt;WordPress&lt;/a&gt; as the backend of my website for about 4 years now.  I've been a fan of its simplicity, its usability, and its extensability.  I didn't want to spend a lot of time developing a site- I just wanted to blog but as time went on my site was hacked, hacked again, botched an upgrade, received 20,000+ spam comments, and I realized I was spending more time as a WordPress administrator than as a WordPress author.  In a nutshell I was tired of my WordPress backend looking like this:&lt;/p&gt;
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>iyWare</title><description>Things I Break</description><link>http://iyware.com/</link><generator>Ghost 0.5</generator><lastBuildDate>Tue, 20 Jan 2015 14:20:54 GMT</lastBuildDate><atom:link href="http://iyware.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Migrate from WordPress to Ghost</title><description>&lt;p&gt;I've been using &lt;a href="http://wordpress.org/"&gt;WordPress&lt;/a&gt; as the backend of my website for about 4 years now.  I've been a fan of its simplicity, its usability, and its extensability.  I didn't want to spend a lot of time developing a site- I just wanted to blog but as time went on my site was hacked, hacked again, botched an upgrade, received 20,000+ spam comments, and I realized I was spending more time as a WordPress administrator than as a WordPress author.  In a nutshell I was tired of my WordPress backend looking like this:&lt;/p&gt;
 
 &lt;p&gt;&lt;img src="http://iyware.com/content/images/2015/01/picture-of-an-ugly-wp-dashboard.png" alt=""&gt;&lt;/p&gt;
 
@@ -181,7 +181,7 @@
 
 &lt;p&gt;Now when I export my WordPress data the tag "Android" will still be associated with this post.  At the time of this writing Ghost 0.5.8 has only rudimentary tag support, so you can't set "Android" as the first or primary tag or anything like that- tags are simply all listed alphabetically.&lt;/p&gt;
 
-&lt;p&gt;If you have many posts I suggest using the WordPress plugin "&lt;a href="https://wordpress.org/plugins/wpcat2tag-importer/"&gt;Categories to Tags Converter&lt;/a&gt;" which will automate this process for you.&lt;/p&gt;
+&lt;p&gt;If you have many posts I suggest using the WordPress plugin "&lt;a href="https://wordpress.org/plugins/wpcat2tag-importer/"&gt;Categories to Tags Converter&lt;/a&gt;" which will automate this process for you.  I have not personally used this plugin.&lt;/p&gt;
 
 &lt;h4 id="deleteyourwordpressusers"&gt;Delete Your WordPress Users&lt;/h4&gt;
 
@@ -266,7 +266,7 @@ WHERE user_id NOT IN
 
 &lt;p&gt;&lt;img src="http://iyware.com/content/images/2015/01/editing-a-plugin-in-wordpress.png" alt=""&gt;&lt;/p&gt;
 
-&lt;p&gt;Search the file for the definition of the function &lt;code&gt;populate_data()&lt;/code&gt; at at the begging of the function add an &lt;code&gt;ini_set()&lt;/code&gt;.  Your code should now look like this:&lt;/p&gt;
+&lt;p&gt;Search the file for the definition of the function &lt;code&gt;populate_data()&lt;/code&gt; at the begging of the function add an &lt;code&gt;ini_set()&lt;/code&gt;.  Your code should now look like this:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class="language-php"&gt;    /**
      * Gets the raw data in an array that will be later turned into glorious escaped json format
@@ -323,7 +323,7 @@ WHERE user_id NOT IN
 
 &lt;p&gt;saying that it couldn't grab some data from WordPress.  When PHP threw the error it would set the headers to a webpage to display the error, then Ghost Export would try to set them to be a file download, and we'd end up with a content encoding error.&lt;/p&gt;
 
-&lt;p&gt;There are a couple of ways to fix this.  The first (and easiest) is to disable debugging.  This will prevent PHP from throwing a notice, that value will silently fail (not a problem) and you'll get your export file.  The second is to comment out the linke looking for the &lt;code&gt;description&lt;/code&gt; index so the failure doesn't occur.  You still don't end up with the data but it's not a big deal.  Again in class-ghost.php edit the &lt;code&gt;user_meta&lt;/code&gt; section to comment out &lt;code&gt;bio&lt;/code&gt; as shown below:&lt;/p&gt;
+&lt;p&gt;There are a couple of ways to fix this.  The first (and easiest) is to disable debugging.  This will prevent PHP from throwing a notice, that value will silently fail (not a problem) and you'll get your export file.  The second is to comment out the link looking for the &lt;code&gt;description&lt;/code&gt; index so the failure doesn't occur.  You still don't end up with the data but it's not a big deal.  Again in class-ghost.php edit the &lt;code&gt;user_meta&lt;/code&gt; section to comment out &lt;code&gt;bio&lt;/code&gt; as shown below:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class="language-php"&gt;        foreach ( $users as $user ) {
             $user_meta = get_user_meta( $user-&amp;gt;ID );
@@ -492,7 +492,7 @@ NULL
 
 &lt;h2 id="optionallymovewordpresstoanotherdomain"&gt;Optionally Move WordPress to Another Domain&lt;/h2&gt;
 
-&lt;p&gt;If you intend to run Ghost on the same domain as your WordPress instance was originally running you'll need to move your WordPress to a different domain.  Personally I moved my to the &lt;code&gt;old.&lt;/code&gt; subdomain.  To do this you can simply head to Settings -&gt; General in WordPress and change both "WordPress Address (URL) and "Site Address (URL)" to the new domain that you wish to use.&lt;/p&gt;
+&lt;p&gt;If you intend to run Ghost on the same domain as your WordPress instance was originally running you'll need to move your WordPress to a different domain.  Personally I moved my WordPress instance to the &lt;code&gt;old.&lt;/code&gt; subdomain.  To do this you can simply head to Settings -&gt; General in WordPress and change both "WordPress Address (URL) and "Site Address (URL)" to the new domain that you wish to use.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src="http://iyware.com/content/images/2015/01/wordpress-settings-general.png" alt=""&gt;&lt;/p&gt;
 
