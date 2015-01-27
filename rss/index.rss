@@ -1,4 +1,112 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>iyWare</title><description>Things I Break</description><link>http://iyware.com/</link><generator>Ghost 0.5</generator><lastBuildDate>Fri, 23 Jan 2015 12:37:54 GMT</lastBuildDate><atom:link href="http://iyware.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Migrate from WordPress to Ghost</title><description>&lt;p&gt;I've been using &lt;a href="http://wordpress.org/"&gt;WordPress&lt;/a&gt; as the backend of my website for about 4 years now.  I've been a fan of its simplicity, its usability, and its extensability.  I didn't want to spend a lot of time developing a site- I just wanted to blog but as time went on my site was hacked, hacked again, botched an upgrade, received 20,000+ spam comments, and I realized I was spending more time as a WordPress administrator than as a WordPress author.  In a nutshell I was tired of my WordPress backend looking like this:&lt;/p&gt;
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>iyWare</title><description>Things I Break</description><link>http://iyware.com/</link><generator>Ghost 0.5</generator><lastBuildDate>Tue, 27 Jan 2015 02:41:31 GMT</lastBuildDate><atom:link href="http://iyware.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Don't Use .dev For Development</title><description>&lt;p&gt;A while back I wrote about setting up &lt;a href="http://www.thekelleys.org.uk/dnsmasq/doc.html"&gt;DNSMasq&lt;/a&gt; for your local development using the &lt;code&gt;.localhost&lt;/code&gt; &lt;a href="http://en.wikipedia.org/wiki/Top-level_domain"&gt;TLD&lt;/a&gt;.  Unfortunately during my research I came across a lot of people advocating setup using the hypothetical &lt;code&gt;.dev&lt;/code&gt; domain under the guise of "DevOps".  I hate to say it but this is a bad idea, so consider this post a public service announcement.&lt;/p&gt;
+
+&lt;h2 id="generictlds"&gt;Generic TLDs&lt;/h2&gt;
+
+&lt;p&gt;In the beginning there was &lt;code&gt;.com&lt;/code&gt; and it was good.  In 1984 the IETF released &lt;a href="http://tools.ietf.org/html/rfc920"&gt;RFC-920&lt;/a&gt; which specified a list of generic top level domains including:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;.gov&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.edu&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.com&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.mil&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.org&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.net&lt;/code&gt; (added later)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;in addition to country code TLDs.  We're probably all familiar with these as they have been the primary domains since then, and upto even a few years ago it would have been safe to mess around with other top-level domains on your local DNS or intranet.  But the issue now is that the IANA has started registering &lt;a href="https://www.iana.org/domains/root/db"&gt;more and more&lt;/a&gt; TLDs.&lt;/p&gt;
+
+&lt;p&gt;Do you remember how pissed you were (or your sysadmin was) when your intranet was set to the same domain as your company website and no one could reach the website because your AD server was serving an IIS error page?  I do.  Everyone that's advocating using &lt;code&gt;.dev&lt;/code&gt; is potentially doing the same thing.&lt;/p&gt;
+
+&lt;h2 id="newhotnesswhatever"&gt;New hotness: .whatever&lt;/h2&gt;
+
+&lt;p&gt;According to &lt;a href="http://www.gtld.com/"&gt;gTLD.com&lt;/a&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The release of more than 1,000 new gTLDs (generic Top Level Domains) is the biggest shake-up since the internet began.&lt;/p&gt;
+  
+  &lt;p&gt;Dot place, dot trend, dot industry, dot meme – dot allsorts. They’re up for grabs.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;You read that right, we went from a list of 6 TLDs to over 1,000 [vegeta-its-over-1000.gif]!  Why?&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;One of ICANN's key commitments is to promote competition in the domain name market&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;a href="http://newgtlds.icann.org/en/applicants/customer-service/faqs/faqs-en"&gt;Money&lt;/a&gt;, duh.&lt;/p&gt;
+
+&lt;h2 id="dontdowhatdonnydevdoes"&gt;Don't Do What Donny Dev Does&lt;/h2&gt;
+
+&lt;p&gt;Ok, that's all well and good but what about &lt;code&gt;.dev&lt;/code&gt;?  Turns out it's &lt;a href="https://www.iana.org/domains/root/db/dev.html"&gt;already available&lt;/a&gt; as a TLD.  Oops.  Oh, look, it's administered by Google too- so you know it's super serious.  Now, I want you go to back to a DNSmasq article where the author advocates routing all &lt;code&gt;.dev&lt;/code&gt; traffic to &lt;code&gt;127.0.0.1&lt;/code&gt; and replace &lt;code&gt;.dev&lt;/code&gt; with &lt;code&gt;.com&lt;/code&gt; and then tell me how smart of an idea it is.  Awesome DevOps d00d!&lt;/p&gt;
+
+&lt;h2 id="reservedtopleveldomainnames"&gt;Reserved Top Level Domain Names&lt;/h2&gt;
+
+&lt;p&gt;Now that I've dumped all over DNS hacking it's only fair that I suggest an alternative.  The answer is simple: &lt;a href="http://tools.ietf.org/html/rfc2606"&gt;RFC-2606&lt;/a&gt;.  You see after the IETF released the list of Generic TLDs they released a list of Reserved TLDs.  Reserved meaning that they will never be valid TLDs in a global DNS sense.  This is similar to how &lt;code&gt;192.xxx.xxx.xxx&lt;/code&gt; and &lt;code&gt;10.xxx.xxx.xxx&lt;/code&gt; are reserved IP addresses.&lt;/p&gt;
+
+&lt;p&gt;The list of Reserved TLDs contains 4 different domains specifically for "Testing &amp;amp; Documentation Examples":&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;.test&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.example&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.invalid&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.localhost&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;A subsection of the document also declares reserved second-level addresses:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;example.com&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;example.net&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;example.org&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;so feel free to continue to use &lt;code&gt;nobody@example.com&lt;/code&gt; for instructions for users.&lt;/p&gt;
+
+&lt;h2 id="usingreservedtlds"&gt;Using Reserved TLDs&lt;/h2&gt;
+
+&lt;p&gt;RFC-2606 goes on to describe recommended usage cases for the four reserved TLDs but they're pretty vague, saying things like:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;".invalid" is intended for use in online construction of domain names that are sure to be invalid and which it is obvious at a glance are invalid.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;In order to clarify when and how these Reserved TLDs should be used another specification was released, &lt;a href="http://tools.ietf.org/html/rfc6761"&gt;RFC-6761&lt;/a&gt;: Special-Use Domain Names.  This document clarifies how a Reserved TLD should be used and how it should be handled by DNS servers.  This document specifies seven categories of use: &lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;users&lt;/li&gt;
+&lt;li&gt;applications&lt;/li&gt;
+&lt;li&gt;APIs &amp;amp; libraries&lt;/li&gt;
+&lt;li&gt;DNS cache servers&lt;/li&gt;
+&lt;li&gt;Authoratative DNS servers&lt;/li&gt;
+&lt;li&gt;DNS server operators&lt;/li&gt;
+&lt;li&gt;DNS registries/registrars&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Probably as a developer you only care about the first 4, and maybe number 5, essentially, how does your local network handle these domains?  Go read the specification and the outline for each Reserved TLD.&lt;/p&gt;
+
+&lt;h2 id="recommendedsetup"&gt;Recommended Setup&lt;/h2&gt;
+
+&lt;p&gt;Now I'll outline my recommendation to you for using the Reserved TLDs.  There's a bit of wiggle room in here, by design of the RFCs.&lt;/p&gt;
+
+&lt;h3 id="localhosttld"&gt;.localhost TLD&lt;/h3&gt;
+
+&lt;p&gt;I recommend (as does RFC-6761) that you use &lt;code&gt;.localhost&lt;/code&gt; to only look at your local loopback address: &lt;code&gt;127.0.0.1&lt;/code&gt;. The specification explicitly states that APIs and libraries &lt;em&gt;should&lt;/em&gt; point at the loopback address already, so if you were to try to point it anywhere else you might end up with unexpected results.  In addition everyone knows that &lt;code&gt;localhost === 127.0.0.1&lt;/code&gt; so from a people perspective, this just makes sense.&lt;/p&gt;
+
+&lt;h3 id="invalidtld"&gt;.invalid TLD&lt;/h3&gt;
+
+&lt;p&gt;This is just my personal recommendation, but it is acceptable according to the specification.  Your local DNS cache server should be configured to point &lt;code&gt;.invalid&lt;/code&gt; domains back to development machines. This should NOT be configured on a client machine.  If you're using static IPs or DHCP reservations (better, IMO) then you can easily set this up.&lt;/p&gt;
+
+&lt;p&gt;The reason for this is that you can serve the same site (hopefully) from &lt;code&gt;.localhost&lt;/code&gt; or &lt;code&gt;.invalid&lt;/code&gt;.  If you have a cool new feature that you want to show someone or want someone to play with then they can view it- but they know that it requires your dev machine to be up and running.  This is great for face-to-face development.  Here's an example:&lt;/p&gt;
+
+&lt;p&gt;I spend a while working on &lt;code&gt;dannywahlmbp.localhost/widget&lt;/code&gt; and I want some feedback.  I send a coworker a link to &lt;code&gt;dannywahlmbp.invalid/widget&lt;/code&gt; and we can sit down and check it out together.  If I shut my laptop- it's gone.  This isn't necessarily obvious in the naming but it can be documented.&lt;/p&gt;
+
+&lt;h3 id="testexampletlds"&gt;.test &amp;amp; .example TLDs&lt;/h3&gt;
+
+&lt;p&gt;You could decide to use either of these interchangably but I recommend using &lt;code&gt;.test&lt;/code&gt; first.  My recommendation is that &lt;code&gt;.test&lt;/code&gt; is where you move code to be tested- this is the first step toward production.  So my code base would be moved off of my development machine and onto a server that's accessible by all machines on our local network 24/7.  Maybe you start running code coverage here- maybe it's even an upstream repository.  Of course you'll need to configure your local DNS server.&lt;/p&gt;
+
+&lt;p&gt;The final step is to use &lt;code&gt;.example&lt;/code&gt;.  My recommendation is that you use this for code that's nearly ready to go live.  You could also use this to tie together multiple locations and even use an internet-facing IP address, knowing that it's not going to be resolved by global DNS servers.&lt;/p&gt;
+
+&lt;p&gt;After that you're ready to go live with trusty ol' &lt;code&gt;.com&lt;/code&gt;.  Hacking on domains and DNS can be fun and a lot of people have built some really cool tools- but it's important that you use them appropriately too.  Once &lt;code&gt;.dev&lt;/code&gt; domains start becoming prevalent I imagine that there will be a few people kicking themselves for mapping it to their local machine, but hey, that's part of learning!&lt;/p&gt;</description><link>http://iyware.com/dont-use-dev-for-development/</link><guid isPermaLink="false">b3eb1e13-08a6-4a51-bd5e-ee5aae947505</guid><category>DevOps</category><dc:creator>Danny Wahl</dc:creator><pubDate>Tue, 27 Jan 2015 02:39:52 GMT</pubDate></item><item><title>Migrate from WordPress to Ghost</title><description>&lt;p&gt;I've been using &lt;a href="http://wordpress.org/"&gt;WordPress&lt;/a&gt; as the backend of my website for about 4 years now.  I've been a fan of its simplicity, its usability, and its extensability.  I didn't want to spend a lot of time developing a site- I just wanted to blog but as time went on my site was hacked, hacked again, botched an upgrade, received 20,000+ spam comments, and I realized I was spending more time as a WordPress administrator than as a WordPress author.  In a nutshell I was tired of my WordPress backend looking like this:&lt;/p&gt;
 
 &lt;p&gt;&lt;img src="http://iyware.com/content/images/2015/01/picture-of-an-ugly-wp-dashboard.png" alt=""&gt;&lt;/p&gt;
 
@@ -2132,18 +2240,4 @@ You can read more about composer and packagist by running:
 
 &lt;p&gt;The first is this: I stand on the shoulders of giants. If it weren’t for the fact that HTML was designed to be open I probably never would have been able to learn it with trusty old ‘View source’ and Notepad. If it weren’t for all the great how-to blogs and tips ‘n tricks websites I could never have innovated anything new myself. The stuff that’s “mine” is probably on like 5% mine, so why should I stop somebody else from taking the next step? Just because I don’t want them to make money? That’s petty, and wrong.&lt;/p&gt;
 
-&lt;p&gt;And the second, this: I’m not a professional programmer. I don’t make a living by writing code. I make a living by selling my ideas and my expertise. Most of the ideas I get paid for don’t exist on this blog, mainly because they can’t. They’re solutions that are developed for specific clients to solve specific problems. So the things I share here are the universals that those solutions can be distilled down to. Use them! But if you need specifics, contact me.&lt;/p&gt;</description><link>http://iyware.com/weve-gone-free-culture/</link><guid isPermaLink="false">20c61375-234c-4320-88da-4061f52f00e7</guid><category>DevOps</category><dc:creator>Danny Wahl</dc:creator><pubDate>Wed, 09 Oct 2013 14:58:13 GMT</pubDate></item><item><title>Whois Spam</title><description>&lt;p&gt;That’s not a question. It’s a statement, or rather a discovery I made the other day when troubleshooting VPN connectivity issues.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class="language-bash"&gt;whois youtube.com  
-Whois Server Version 2.0 Domain names in the .com and .net  
-domains can now be registered with many different competing registrars.  
-Go to http://www.internic.net for detailed information.
-
-YOUTUBE.COM.ZZZZZ.GET.LAID.AT.WWW.SWINGINGCOMMUNITY.COM  
-YOUTUBE.COM.ZEN.GET.ONE.MILLION.DOLLARS.AT.WWW.UNIMUNDI.COM  
-YOUTUBE.COM.MORE.INFO.AT.WWW.BEYONDWHOIS.COM  
-YOUTUBE.COM.IS.N0T.AS.1337.AS.WWW.GULLI.COM  
-YOUTUBE.COM.BLACKRAMINC.COM YOUTUBE.COM  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Come on guys, I don’t care how 1337 your site is. I’m never going to it now.&lt;/p&gt;</description><link>http://iyware.com/whois-spam/</link><guid isPermaLink="false">1fa31d94-f36d-4efd-9ab1-5117365d6845</guid><category>DevOps</category><dc:creator>Danny Wahl</dc:creator><pubDate>Fri, 04 Oct 2013 21:25:10 GMT</pubDate></item></channel></rss>
+&lt;p&gt;And the second, this: I’m not a professional programmer. I don’t make a living by writing code. I make a living by selling my ideas and my expertise. Most of the ideas I get paid for don’t exist on this blog, mainly because they can’t. They’re solutions that are developed for specific clients to solve specific problems. So the things I share here are the universals that those solutions can be distilled down to. Use them! But if you need specifics, contact me.&lt;/p&gt;</description><link>http://iyware.com/weve-gone-free-culture/</link><guid isPermaLink="false">20c61375-234c-4320-88da-4061f52f00e7</guid><category>DevOps</category><dc:creator>Danny Wahl</dc:creator><pubDate>Wed, 09 Oct 2013 14:58:13 GMT</pubDate></item></channel></rss>
