@@ -1,33 +1,37 @@
-<!doctype html><html>
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from localhost:2368/moodle-output-an-introduction/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 29 Jan 2015 00:08:32 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <title>iyWare | Moodle $OUTPUT: An Introduction</title>
-    <meta name="description" content="">
+    <meta name="description" content="" />
 
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link rel="shortcut icon" href="../favicon.ico">
 
-    <link rel="stylesheet" type="text/css" href="../assets/css/screen.min.css?v=edeb0d273f">
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.minb9a3.css?v=a66fc0cd5e" />
 
-    <link rel="canonical" href="http://iyware.com/moodle-output-an-introduction/">
+    <link rel="canonical" href="http://iyware.com/moodle-output-an-introduction/" />
     
-    <meta property="og:site_name" content="iyWare">
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Moodle $OUTPUT: An Introduction">
-    <meta property="og:description" content="Here at iyWare we’re not really developers. Sure we write some code, and we have even released a few plugins for Moodle, WordPress, and Mahara but really we’re in the educational technology consulting business. Recently we took over...">
-    <meta property="og:url" content="http://iyware.com/moodle-output-an-introduction/">
-    <meta property="article:published_time" content="2014-07-18T16:44:33.000Z">
-    <meta property="article:modified_time" content="2015-01-18T05:28:43.417Z">
-    <meta property="article:tag" content="Moodle">
+    <meta property="og:site_name" content="iyWare" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Moodle $OUTPUT: An Introduction" />
+    <meta property="og:description" content="Here at iyWare we’re not really developers. Sure we write some code, and we have even released a few plugins for Moodle, WordPress, and Mahara but really we’re in the educational technology consulting business. Recently we took over..." />
+    <meta property="og:url" content="http://iyware.com/moodle-output-an-introduction/" />
+    <meta property="article:published_time" content="2014-07-18T16:44:33.000Z" />
+    <meta property="article:modified_time" content="2015-01-18T05:28:43.417Z" />
+    <meta property="article:tag" content="Moodle" />
     
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Moodle $OUTPUT: An Introduction">
-    <meta name="twitter:description" content="Here at iyWare we’re not really developers. Sure we write some code, and we have even released a few plugins for Moodle, WordPress, and Mahara but really we’re in the educational technology consulting business. Recently we took over...">
-    <meta name="twitter:url" content="http://iyware.com/moodle-output-an-introduction/">
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Moodle $OUTPUT: An Introduction" />
+    <meta name="twitter:description" content="Here at iyWare we’re not really developers. Sure we write some code, and we have even released a few plugins for Moodle, WordPress, and Mahara but really we’re in the educational technology consulting business. Recently we took over..." />
+    <meta name="twitter:url" content="http://iyware.com/moodle-output-an-introduction/" />
     
     <script type="application/ld+json">
 {
@@ -50,8 +54,8 @@
 }
     </script>
 
-    <meta name="generator" content="Ghost 0.5">
-    <link rel="alternate" type="application/rss+xml" title="iyWare" href="http://iyware.com/rss/">
+    <meta name="generator" content="Ghost 0.5" />
+    <link rel="alternate" type="application/rss+xml" title="iyWare" href="http://iyware.com/rss/" />
 </head>
 <body class="post-template tag-moodle  noimage">
 
@@ -60,13 +64,13 @@
 
     <article role="main" class="">
         <header class="group">
-            <a href="../" id="home_link">«</a>
+            <a href="../index.html" id="home_link">«</a>
             <div class="hgroup">
             	<h1>Moodle $OUTPUT: An Introduction</h1>
             	<div class="meta">
             		<time datetime="2014-07-19">July 19, 2014</time>
-            		 • 
-					<span class="tags"><a href="../tag/moodle/">Moodle</a></span>
+            		&nbsp;&bull;&nbsp;
+					<span class="tags"><a href="../tag/moodle/index.html">Moodle</a></span>
             	</div>
 			</div>
         </header>
@@ -78,7 +82,7 @@
 
 <p>In Moodle what a plugin can do is determined by what kind of plugin it is. This is logical AND makes sense. For example an activity (say Forum) is not allowed to ask you if you want to change your site logo. Other software, like WordPress aren’t so well defined. Have you ever changed themes and had an entire post-type (like testimonials) disappear? That’s because themes in WordPress are allowed to do things beyond change the look and feel of the site. Imagine in Moodle if you changed your theme and suddenly couldn’t use the Quiz module any more! So we have a good system of permissions in Moodle and what’s allowed to do what.</p>
 
-<p>Now we’re going to introduce you to <code>$OUTPUT</code>. $OUTPUT is a variable (meaning its content changes) that stores everything that gets output to a page- i.e. what you see in Moodle. This is a not-quite-technically-accurate definition because there are other global variables like <code>$CFG</code>, <code>$THEME</code>, <code>$PAGE</code>, <code>$USER</code>, and <code>$DB</code> but I think you get the idea. When a plugin has some data or information that it wants to display on the screen it gives it to $OUTPUT. For example, a list of quiz questions, or a button group that says “ok” or “cancel”. Generally the way that things are given to, read from, or changed in $OUTPUT is via what’s called in programming language a "<a href="http://en.wikipedia.org/wiki/Method_%28programming%29">method</a>". Simply stated a method is a way of doing things- this applies offline as well as online. I have a method of stacking our plates (largest on bottom, smallest on top) so they don’t fall over. People have various methods of parking their cars- and the method varies depending on the type of parking spot.</p>
+<p>Now we’re going to introduce you to <code>$OUTPUT</code>. $OUTPUT is a variable (meaning its content changes) that stores everything that gets output to a page- i.e. what you see in Moodle. This is a not-quite-technically-accurate definition because there are other global variables like <code>$CFG</code>, <code>$THEME</code>, <code>$PAGE</code>, <code>$USER</code>, and <code>$DB</code> but I think you get the idea. When a plugin has some data or information that it wants to display on the screen it gives it to $OUTPUT. For example, a list of quiz questions, or a button group that says “ok” or “cancel”. Generally the way that things are given to, read from, or changed in $OUTPUT is via what’s called in programming language a "<a href="http://en.wikipedia.org/wiki/Method_(programming)">method</a>". Simply stated a method is a way of doing things- this applies offline as well as online. I have a method of stacking our plates (largest on bottom, smallest on top) so they don’t fall over. People have various methods of parking their cars- and the method varies depending on the type of parking spot.</p>
 
 <h2 id="methodtothemadness">Method to the Madness</h2>
 
@@ -197,21 +201,21 @@
         <footer class="post-footer" role="contentinfo">
 
             <div class="vcard">
-                <a href="../rss/index.rss" id="btn_feed" class="btn" title="Feed">
+                <a href="../rss/index.html" id="btn_feed" class="btn" title="Feed">
                     <span aria-hidden="true" data-icon=")"></span>
                     <strong>Feed</strong>
                 </a>
 
-                <a href="../" class="photo">
+                <a href="../index.html" class="photo">
                     <span style="background-image: url('../content/images/2015/01/me.jpg');">
                         <img src="../content/images/2015/01/me.jpg" alt="Danny Wahl">
                     </span>
                 </a>
 
                 <div class="details">
-                    <h4><a href="../" class="url n">Danny Wahl</a></h4>
-                    <!--sse--><span>danny @ iyware.com</span><br><!--/sse-->
-                    <span>License: <a href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span><br>
+                    <h4><a href="../index.html" class="url n">Danny Wahl</a></h4>
+                    <!--sse--><span>danny &#64; iyware.com</span><br/><!--/sse-->
+                    <span>License: <a href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span><br/>
                     
               
                 </div>
@@ -234,14 +238,16 @@
 
 
 
-		<script type="text/javascript" src="../assets/js/prism.min.js?v=edeb0d273f"></script>
+		<script type="text/javascript" src="../assets/js/prism.minb9a3.js?v=a66fc0cd5e"></script>
 	<aside style="display:none;">
 		<a href="../sitemap.xml">sitemap.xml</a>
 		<a href="../sitemap-pages.xml">sitemap-pages.xml</a>
 		<a href="../sitemap-posts.xml">sitemap-posts.xml</a>
 		<a href="../sitemap-posts.xml">sitemap-authors.xml</a>
 		<a href="../sitemap-tags.xml">sitemap-tags.xml</a>
-		<a href="../author/danny/">Danny Author Archive</a>
+		<a href="../sitemap.xls">Sitemap style</a>
 	</aside>
 </body>
+
+<!-- Mirrored from localhost:2368/moodle-output-an-introduction/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 29 Jan 2015 00:08:32 GMT -->
 </html>
