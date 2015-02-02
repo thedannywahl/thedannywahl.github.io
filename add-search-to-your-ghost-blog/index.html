@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from localhost:2368/add-search-to-your-ghost-blog/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 02 Feb 2015 05:51:29 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>iyWare | Add Search to Your Ghost Blog with Swiftype</title>
+    <meta name="description" content="" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.mine709.css?v=317f41f8b9" />
+
+    <link rel="canonical" href="http://iyware.com/add-search-to-your-ghost-blog/" />
+    
+    <meta property="og:site_name" content="iyWare" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Add Search to Your Ghost Blog with Swiftype" />
+    <meta property="og:description" content="If you&#x27;re moving from WordPress to Ghost (or really any other blog platform) one of the things you&#x27;ve probably noticed is sorely missing is search.  The Ghost devs know it too.  Adding search is on the roadmap, unfortunately it&#x27;s backlogged..." />
+    <meta property="og:url" content="http://iyware.com/add-search-to-your-ghost-blog/" />
+    <meta property="article:published_time" content="2015-02-02T05:39:55.348Z" />
+    <meta property="article:modified_time" content="2015-02-02T05:43:41.527Z" />
+    <meta property="article:tag" content="Ghost" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Add Search to Your Ghost Blog with Swiftype" />
+    <meta name="twitter:description" content="If you&#x27;re moving from WordPress to Ghost (or really any other blog platform) one of the things you&#x27;ve probably noticed is sorely missing is search.  The Ghost devs know it too.  Adding search is on the roadmap, unfortunately it&#x27;s backlogged..." />
+    <meta name="twitter:url" content="http://iyware.com/add-search-to-your-ghost-blog/" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "iyWare",
+    "author": {
+        "@type": "Person",
+        "name": "Danny Wahl",
+        "image": "http://iyware.com/content/images/2015/01/me.jpg",
+        "url": "http://iyware.com/author/danny",
+        "sameAs": null
+    },
+    "headline": "Add Search to Your Ghost Blog with Swiftype",
+    "url": "http://iyware.com/add-search-to-your-ghost-blog/",
+    "datePublished": "2015-02-02T05:39:55.348Z",
+    "dateModified": "2015-02-02T05:43:41.527Z",
+    "keywords": "Ghost",
+    "description": "If you&#x27;re moving from WordPress to Ghost (or really any other blog platform) one of the things you&#x27;ve probably noticed is sorely missing is search.  The Ghost devs know it too.  Adding search is on the roadmap, unfortunately it&#x27;s backlogged..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.5" />
+    <link rel="alternate" type="application/rss+xml" title="iyWare" href="http://iyware.com/rss/" />
+</head>
+<body class="post-template tag-ghost-tag  noimage">
+
+    
+
+
+    <article role="main" class="">
+        <header class="group">
+            <a href="../index.html" id="home_link">«</a>
+            <div class="hgroup">
+            	<h1>Add Search to Your Ghost Blog with Swiftype</h1>
+            	<div class="meta">
+            		<time datetime="2015-02-02">February 02, 2015</time>
+            		&nbsp;&bull;&nbsp;
+					<span class="tags"><a href="../tag/ghost-tag/index.html">Ghost</a></span>
+            	</div>
+			</div>
+        </header>
+
+        <div class="text" id="js-post-content">
+            <p>If you're moving from WordPress to Ghost (or really any other blog platform) one of the things you've probably noticed is sorely missing is search.  The Ghost devs know it too.  Adding search is on the roadmap, unfortunately it's <a href="https://trello.com/c/tNNWYXzf/51-search">backlogged</a> and they're currently looking for a <a href="https://ghost.org/contribute/search-lead/">Search Lead</a> developer.  So I wouldn't count on native search coming for a while- like maybe 0.7.</p>
+
+<p>In the meantime, it's not that hard to integrate a third-party service into your Ghost site, and in this post I'll show you how to do it using <a href="https://swiftype.com/">Swiftype</a>.  What is Swiftype?</p>
+
+<blockquote>
+  <p>Swiftype is a hosted software service that eliminates the need to create your own search software from scratch, making it possible for any website owner or mobile app developer to add great search to their product.</p>
+</blockquote>
+
+<p>Sounds exactly like what we need!</p>
+
+<h2 id="signupforswiftype">Sign up for Swiftype</h2>
+
+<p>Head on over to the <a href="https://swiftype.com/pricing">Swiftype pricing page</a> page and scout out the plan that you want.  Personally I'm just using the free plan.</p>
+
+<p><img src="../content/images/2015/01/swiftype-pricing-overview.png" alt="" /></p>
+
+<p>Another option available is to activate Smart Errors as an app in your<a href="https://www.cloudflare.com/zone-picker?from=/cloudflare-apps"> Cloudflare dashboard</a> if you're using Cloudflare.  This will also give you the added benefit of having a better 404 page than this: <code>;&gt; &lt;</code></p>
+
+<p><img src="../content/images/2015/01/smart-errors-cloudflare-app.png" alt="" /></p>
+
+<p>After you've enabled smart errors head to your <a href="https://swiftype.com/home">swiftype dashboard</a> and create what they call a "<a href="https://swiftype.com/engines/new">Search Engine</a>" which is actually a search context (generally a domain- but you can have it search multiple domains).</p>
+
+<p><img src="../content/images/2015/02/swiftype-search-engine-overview.png" alt="" /></p>
+
+<h2 id="option1addswiftypesearchwithcloudflare">Option 1: Add Swiftype Search with Cloudflare</h2>
+
+<p>After you've created your account you can very simply integrate Swiftype search into your site by heading back to Cloudflare and enabling the <a href="https://www.cloudflare.com/apps/swiftype_search">Swiftype Search</a> app.  This will provide the most basic integration- a simple 'search' button gets injected into your pages.  It's crude, but it works.</p>
+
+<h2 id="option2addswiftypetoyourghosttheme">Option 2: Add Swiftype to Your Ghost Theme</h2>
+
+<p>If you're looking for a richer integration then you will need to install the Swiftype code to your Ghost theme template.  There are a variety of ways to do this- you could add a search icon to your footer, or to your <code>default.hbs</code> template file if you want every page to be searchable.  However, I'll be showing you how to make a static search page with an embedded search form.</p>
+
+<p>Go back to the Swiftype page and inside your search engine choose "Install" from the toolbar.</p>
+
+<p><img src="../content/images/2015/02/swiftype-searchengine-toolbar.png" alt="" /></p>
+
+<h3 id="downloadswiftypeautocompletesearch">Download Swiftype Autocomplete &amp; Search</h3>
+
+<p>Before you install the integration code you'll need to download the packages.  You could do it with git so you can upgrade in the future (make sure you initialize as a submodule if ghost is a git module too!).  Or you can simply download them:</p>
+
+<ul>
+<li><a href="https://github.com/swiftype/swiftype-autocomplete-jquery">Swiftype autocomplete</a></li>
+<li><a href="https://github.com/swiftype/swiftype-search-jquery">Swiftype search</a></li>
+</ul>
+
+<p>Notice that these are jQuery plugins.  It shouldn't be an issue as <code>{{ghost_foot}}</code> will insert jQuery into your theme- and that should be a part of your theme!</p>
+
+<h3 id="addautocompletesearchtoyourthemefolder">Add Autocomplete &amp; Search to your Theme Folder</h3>
+
+<p>Navigate to <code>/ghost/content/themes/[your theme]/assets/js/</code> where <code>/ghost/</code> is your ghost installation directory and <code>[your theme]</code> is your theme name (default is casper).  If your theme doesn't have a <code>js</code> folder you can create one.  Move the JavaScript files from the Swiftype downloads into this folder.  Note that you don't need all the files, only the <code>.js</code> files:</p>
+
+<ul>
+<li>jquery.swiftype.autocomplete.js</li>
+<li>jquery.ba-hashchange.min.js</li>
+<li>jquery.swiftype.search.js</li>
+</ul>
+
+<p><img src="../content/images/2015/02/swiftype-js-files-added-to-ghost.png" alt="" /></p>
+
+<p>Now do the same thing for the CSS files but in the <code>/assets/css/</code> folder:</p>
+
+<ul>
+<li>autocomplete.css</li>
+<li>search.css</li>
+</ul>
+
+<p><img src="../content/images/2015/02/swiftype-css-files-added-to-ghost.png" alt="" /></p>
+
+<p>Optionally you can concatenate the CSS to the end of the Ghost CSS file <code>screen.css</code>, which is probably a better idea because it will save you 2 HTTP requests and a little bit of bandwidth.</p>
+
+<h3 id="addautocompletesearchtoyourthemetemplate">Add Autocomplete &amp; Search to your Theme Template</h3>
+
+<p>Now that you have added the files to your Ghost <code>/assets/</code> folder you can insert them into your theme template files.  Navigate to <code>/Ghost/content/themes/[your theme]/</code> and open up <code>default.hbs</code>.  The reason that we need to edit the default template is because the function <code>{{ghost_foot}}</code> outputs the jQuery call.  If you call Swiftype before jQuery is loaded (e.g. in <code>page.hbs</code>) you'll get an error.</p>
+
+<p>In <code>default.hbs</code> find the line with <code>{{ghost-foot}}</code> and add the following:</p>
+
+<pre><code class="language-handlebars">        &lt;script src="{{asset "js/jquery.swiftype.autocomplete.js"}}"&gt;&lt;/script&gt;
+        &lt;script src="{{asset "js/jquery.ba-hashchange.min.js"}}"&gt;&lt;/script&gt;
+        &lt;script src="{{asset "js/jquery.swiftype.search.js"}}"&gt;&lt;/script&gt;
+
+        &lt;script type="text/javascript"&gt;
+            $("#st-search-input").swiftype({
+                engineKey: "XXXXXXXXXX"
+            });
+            $("#st-search-input").swiftypeSearch({
+                engineKey: "XXXXXXXXXX",
+                resultContainingElement: "#st-results-container"
+            });
+        &lt;/script&gt;
+</code></pre>
+
+<p>Notice that we're using the <a href="http://themes.ghost.org/v0.5.8/docs/asset"><code>{{asset }}</code></a> API so you don't have to worry about the full path, Ghost will build it for you.  You'll need to replace <code>engineKey: "XXX"</code> with your engine key, found on your Swiftkey dashboard.</p>
+
+<p>If you want search to be available on every page (you'll still have to add a search form to <code>default.hbs</code> then leave the code as is.  If you intend to only have search available on a specific search page then you can wrap the above code in <a href="http://themes.ghost.org/v0.5.8/docs/is"><code>{{is}}</code></a> brackets:</p>
+
+<pre><code class="language-handlebars">    {{#is 'page'}}
+        &lt;script src="{{asset "js/jquery.swiftype.autocomplete.js"}}"&gt;&lt;/script&gt;
+        &lt;script src="{{asset "js/jquery.ba-hashchange.min.js"}}"&gt;&lt;/script&gt;
+        &lt;script src="{{asset "js/jquery.swiftype.search.js"}}"&gt;&lt;/script&gt;
+
+        &lt;script type="text/javascript"&gt;
+            $("#st-search-input").swiftype({
+                engineKey: "XXXXXX"
+            });
+            $("#st-search-input").swiftypeSearch({
+                engineKey: "XXXXXX",
+                resultContainingElement: "#st-results-container"
+            });
+        &lt;/script&gt;
+    {{/is}}
+</code></pre>
+
+<p>This will tell Ghost to only include the javascript on 'page' types.  Unfortunately at this point the API isn't robust enough to target a specific page, but this will save you a few HTTP requests on archives and posts.</p>
+
+<h3 id="createasearchpage">Create a Search Page</h3>
+
+<p>If you are intending to create a static search page and not to integrate search into your theme template then head to your Ghost dashboard and create a new post.  I titled mine "Search":</p>
+
+<p><img src="../content/images/2015/02/post-named-search-in-ghost.png" alt="" /></p>
+
+<p>Click on the 'settings' wheel and change the post into a static page.  You can also adjust the slug if you'd like.</p>
+
+<p><img src="../content/images/2015/02/adjusting-a-post-type-in-ghost.png" alt="" /></p>
+
+<p>If you want to provide information to your users you can add content to the page, for example I added all the tags I use on my blog.  There's no easy way to do this I just don't have many tags, if you want something more dynamic, I suggest you add it to your template.</p>
+
+<p><img src="../content/images/2015/02/edited-search-page-with-content.png" alt="" /></p>
+
+<p>Finally it's time to add the search form to your page.  Even though Ghost uses Markdown, remember that any HTML is valid Markdown, so you can directly create a form:</p>
+
+<pre><code class="language-markdown">&lt;form&gt;  
+    &lt;input type="text" id="st-search-input"&gt;
+    &lt;button type="submit"&gt;Search&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;div id="st-results-container"&gt;&lt;/div&gt;  
+</code></pre>
+
+<p>Publish your page and you should be ready to go (assuming Swiftype has finished indexing your content).  Just make sure that the form ID and the results ID match your jQuery selectors- they should if you just copied from here.</p>
+
+<p><img src="../content/images/2015/02/swiftype-autocomplete.png" alt="" /></p>
+
+<p>That's it for the integration.  You can always go back and edit the CSS to better match your site.  You can also add the <a href="https://swiftype.com/engines/iyware-dot-com/install"><code>renderFunction</code></a> to your JavaScript to control how Swiftype outputs its results.</p>
+
+<p>There you have it, you now have an indexed and searchable blog.</p>
+            <!--sse-->
+			<div id="disqus_thread"></div>
+			<script type="text/javascript">
+				var disqus_shortname = 'iyware';
+				(function() {
+					var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+					dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+					(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+				})();
+			</script>
+			<noscript><p style="text-align:center;"><small>Please enable JavaScript to view the <a href="https://disqus.com/home/forums/iyware/">comments powered by Disqus.</a></small></p></noscript>
+			<!--/sse-->
+        </div>
+
+        <footer class="post-footer" role="contentinfo">
+
+            <div class="vcard">
+                <a href="../rss/index.html" id="btn_feed" class="btn" title="Feed">
+                    <span aria-hidden="true" data-icon=")"></span>
+                    <strong>Feed</strong>
+                </a>
+
+                <a href="../index.html" class="photo">
+                    <span style="background-image: url('../content/images/2015/01/me.jpg');">
+                        <img src="../content/images/2015/01/me.jpg" alt="Danny Wahl">
+                    </span>
+                </a>
+
+                <div class="details">
+                    <h4><a href="../index.html" class="url n">Danny Wahl</a></h4>
+                    <!--sse--><span>danny &#64; iyware.com</span><br/><!--/sse-->
+                    <span>License: <a href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span><br/>
+                    
+              
+                </div>
+            </div>
+
+            <div id="user_bio">
+                <div class="inner">
+                    My name is Danny Wahl and I provide Ed Tech consulting to international schools in the APAC region. I dabble in writing, programming, design, and ukulele playing.
+                </div>
+            </div>
+
+        </footer>
+
+    </article>
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<ins class="adsbygoogle" style="display:inline-block;width:320px;height:100px" data-ad-client="ca-pub-5811335018322110" data-ad-slot="8562617448"></ins>
+	<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+
+
+
+
+    <script src="../public/jquerye709.js?v=317f41f8b9"></script>
+
+		<script type="text/javascript" src="../assets/js/prism.mine709.js?v=317f41f8b9"></script>
+	
+
+	<aside style="display:none;">
+		<a href="../search/index.html">Search</a>
+		<a href="../clients/index.html">Clients</a>
+	</aside>
+</body>
+
+<!-- Mirrored from localhost:2368/add-search-to-your-ghost-blog/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 02 Feb 2015 05:51:36 GMT -->
+</html>

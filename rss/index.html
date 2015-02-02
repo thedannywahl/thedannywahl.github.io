@@ -1,5 +1,149 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[iyWare]]></title><description><![CDATA[Things I Break]]></description><link>http://iyware.com/</link><generator>Ghost 0.5</generator><lastBuildDate>Thu, 29 Jan 2015 06:30:34 GMT</lastBuildDate><atom:link href="http://iyware.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Don't Use .dev For Development]]></title><description><![CDATA[<p>A while back I wrote about setting up <a href="http://www.thekelleys.org.uk/dnsmasq/doc.html">DNSMasq</a> for your local development using the <code>.localhost</code> <a href="http://en.wikipedia.org/wiki/Top-level_domain">TLD</a>.  Unfortunately during my research I came across a lot of people advocating setup using the hypothetical <code>.dev</code> domain under the guise of "DevOps".  I hate to say it but this is a bad idea, so consider this post a public service announcement.</p>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[iyWare]]></title><description><![CDATA[Things I Break]]></description><link>http://iyware.com/</link><generator>Ghost 0.5</generator><lastBuildDate>Mon, 02 Feb 2015 05:51:39 GMT</lastBuildDate><atom:link href="http://iyware.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Add Search to Your Ghost Blog with Swiftype]]></title><description><![CDATA[<p>If you're moving from WordPress to Ghost (or really any other blog platform) one of the things you've probably noticed is sorely missing is search.  The Ghost devs know it too.  Adding search is on the roadmap, unfortunately it's <a href="https://trello.com/c/tNNWYXzf/51-search">backlogged</a> and they're currently looking for a <a href="https://ghost.org/contribute/search-lead/">Search Lead</a> developer.  So I wouldn't count on native search coming for a while- like maybe 0.7.</p>
+
+<p>In the meantime, it's not that hard to integrate a third-party service into your Ghost site, and in this post I'll show you how to do it using <a href="https://swiftype.com/">Swiftype</a>.  What is Swiftype?</p>
+
+<blockquote>
+  <p>Swiftype is a hosted software service that eliminates the need to create your own search software from scratch, making it possible for any website owner or mobile app developer to add great search to their product.</p>
+</blockquote>
+
+<p>Sounds exactly like what we need!</p>
+
+<h2 id="signupforswiftype">Sign up for Swiftype</h2>
+
+<p>Head on over to the <a href="https://swiftype.com/pricing">Swiftype pricing page</a> page and scout out the plan that you want.  Personally I'm just using the free plan.</p>
+
+<p><img src="http://iyware.com/content/images/2015/01/swiftype-pricing-overview.png" alt=""></p>
+
+<p>Another option available is to activate Smart Errors as an app in your<a href="https://www.cloudflare.com/zone-picker?from=/cloudflare-apps"> Cloudflare dashboard</a> if you're using Cloudflare.  This will also give you the added benefit of having a better 404 page than this: <code>;&gt; &lt;</code></p>
+
+<p><img src="http://iyware.com/content/images/2015/01/smart-errors-cloudflare-app.png" alt=""></p>
+
+<p>After you've enabled smart errors head to your <a href="https://swiftype.com/home">swiftype dashboard</a> and create what they call a "<a href="https://swiftype.com/engines/new">Search Engine</a>" which is actually a search context (generally a domain- but you can have it search multiple domains).</p>
+
+<p><img src="http://iyware.com/content/images/2015/02/swiftype-search-engine-overview.png" alt=""></p>
+
+<h2 id="option1addswiftypesearchwithcloudflare">Option 1: Add Swiftype Search with Cloudflare</h2>
+
+<p>After you've created your account you can very simply integrate Swiftype search into your site by heading back to Cloudflare and enabling the <a href="https://www.cloudflare.com/apps/swiftype_search">Swiftype Search</a> app.  This will provide the most basic integration- a simple 'search' button gets injected into your pages.  It's crude, but it works.</p>
+
+<h2 id="option2addswiftypetoyourghosttheme">Option 2: Add Swiftype to Your Ghost Theme</h2>
+
+<p>If you're looking for a richer integration then you will need to install the Swiftype code to your Ghost theme template.  There are a variety of ways to do this- you could add a search icon to your footer, or to your <code>default.hbs</code> template file if you want every page to be searchable.  However, I'll be showing you how to make a static search page with an embedded search form.</p>
+
+<p>Go back to the Swiftype page and inside your search engine choose "Install" from the toolbar.</p>
+
+<p><img src="http://iyware.com/content/images/2015/02/swiftype-searchengine-toolbar.png" alt=""></p>
+
+<h3 id="downloadswiftypeautocompletesearch">Download Swiftype Autocomplete &amp; Search</h3>
+
+<p>Before you install the integration code you'll need to download the packages.  You could do it with git so you can upgrade in the future (make sure you initialize as a submodule if ghost is a git module too!).  Or you can simply download them:</p>
+
+<ul>
+<li><a href="https://github.com/swiftype/swiftype-autocomplete-jquery">Swiftype autocomplete</a></li>
+<li><a href="https://github.com/swiftype/swiftype-search-jquery">Swiftype search</a></li>
+</ul>
+
+<p>Notice that these are jQuery plugins.  It shouldn't be an issue as <code>{{ghost_foot}}</code> will insert jQuery into your theme- and that should be a part of your theme!</p>
+
+<h3 id="addautocompletesearchtoyourthemefolder">Add Autocomplete &amp; Search to your Theme Folder</h3>
+
+<p>Navigate to <code>/ghost/content/themes/[your theme]/assets/js/</code> where <code>/ghost/</code> is your ghost installation directory and <code>[your theme]</code> is your theme name (default is casper).  If your theme doesn't have a <code>js</code> folder you can create one.  Move the JavaScript files from the Swiftype downloads into this folder.  Note that you don't need all the files, only the <code>.js</code> files:</p>
+
+<ul>
+<li>jquery.swiftype.autocomplete.js</li>
+<li>jquery.ba-hashchange.min.js</li>
+<li>jquery.swiftype.search.js</li>
+</ul>
+
+<p><img src="http://iyware.com/content/images/2015/02/swiftype-js-files-added-to-ghost.png" alt=""></p>
+
+<p>Now do the same thing for the CSS files but in the <code>/assets/css/</code> folder:</p>
+
+<ul>
+<li>autocomplete.css</li>
+<li>search.css</li>
+</ul>
+
+<p><img src="http://iyware.com/content/images/2015/02/swiftype-css-files-added-to-ghost.png" alt=""></p>
+
+<p>Optionally you can concatenate the CSS to the end of the Ghost CSS file <code>screen.css</code>, which is probably a better idea because it will save you 2 HTTP requests and a little bit of bandwidth.</p>
+
+<h3 id="addautocompletesearchtoyourthemetemplate">Add Autocomplete &amp; Search to your Theme Template</h3>
+
+<p>Now that you have added the files to your Ghost <code>/assets/</code> folder you can insert them into your theme template files.  Navigate to <code>/Ghost/content/themes/[your theme]/</code> and open up <code>default.hbs</code>.  The reason that we need to edit the default template is because the function <code>{{ghost_foot}}</code> outputs the jQuery call.  If you call Swiftype before jQuery is loaded (e.g. in <code>page.hbs</code>) you'll get an error.</p>
+
+<p>In <code>default.hbs</code> find the line with <code>{{ghost-foot}}</code> and add the following:</p>
+
+<pre><code class="language-handlebars">        &lt;script src="{{asset "js/jquery.swiftype.autocomplete.js"}}"&gt;&lt;/script&gt;
+        &lt;script src="{{asset "js/jquery.ba-hashchange.min.js"}}"&gt;&lt;/script&gt;
+        &lt;script src="{{asset "js/jquery.swiftype.search.js"}}"&gt;&lt;/script&gt;
+
+        &lt;script type="text/javascript"&gt;
+            $("#st-search-input").swiftype({
+                engineKey: "XXXXXXXXXX"
+            });
+            $("#st-search-input").swiftypeSearch({
+                engineKey: "XXXXXXXXXX",
+                resultContainingElement: "#st-results-container"
+            });
+        &lt;/script&gt;
+</code></pre>
+
+<p>Notice that we're using the <a href="http://themes.ghost.org/v0.5.8/docs/asset"><code>{{asset }}</code></a> API so you don't have to worry about the full path, Ghost will build it for you.  You'll need to replace <code>engineKey: "XXX"</code> with your engine key, found on your Swiftkey dashboard.</p>
+
+<p>If you want search to be available on every page (you'll still have to add a search form to <code>default.hbs</code> then leave the code as is.  If you intend to only have search available on a specific search page then you can wrap the above code in <a href="http://themes.ghost.org/v0.5.8/docs/is"><code>{{is}}</code></a> brackets:</p>
+
+<pre><code class="language-handlebars">    {{#is 'page'}}
+        &lt;script src="{{asset "js/jquery.swiftype.autocomplete.js"}}"&gt;&lt;/script&gt;
+        &lt;script src="{{asset "js/jquery.ba-hashchange.min.js"}}"&gt;&lt;/script&gt;
+        &lt;script src="{{asset "js/jquery.swiftype.search.js"}}"&gt;&lt;/script&gt;
+
+        &lt;script type="text/javascript"&gt;
+            $("#st-search-input").swiftype({
+                engineKey: "XXXXXX"
+            });
+            $("#st-search-input").swiftypeSearch({
+                engineKey: "XXXXXX",
+                resultContainingElement: "#st-results-container"
+            });
+        &lt;/script&gt;
+    {{/is}}
+</code></pre>
+
+<p>This will tell Ghost to only include the javascript on 'page' types.  Unfortunately at this point the API isn't robust enough to target a specific page, but this will save you a few HTTP requests on archives and posts.</p>
+
+<h3 id="createasearchpage">Create a Search Page</h3>
+
+<p>If you are intending to create a static search page and not to integrate search into your theme template then head to your Ghost dashboard and create a new post.  I titled mine "Search":</p>
+
+<p><img src="http://iyware.com/content/images/2015/02/post-named-search-in-ghost.png" alt=""></p>
+
+<p>Click on the 'settings' wheel and change the post into a static page.  You can also adjust the slug if you'd like.</p>
+
+<p><img src="http://iyware.com/content/images/2015/02/adjusting-a-post-type-in-ghost.png" alt=""></p>
+
+<p>If you want to provide information to your users you can add content to the page, for example I added all the tags I use on my blog.  There's no easy way to do this I just don't have many tags, if you want something more dynamic, I suggest you add it to your template.</p>
+
+<p><img src="http://iyware.com/content/images/2015/02/edited-search-page-with-content.png" alt=""></p>
+
+<p>Finally it's time to add the search form to your page.  Even though Ghost uses Markdown, remember that any HTML is valid Markdown, so you can directly create a form:</p>
+
+<pre><code class="language-markdown">&lt;form&gt;  
+    &lt;input type="text" id="st-search-input"&gt;
+    &lt;button type="submit"&gt;Search&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;div id="st-results-container"&gt;&lt;/div&gt;  
+</code></pre>
+
+<p>Publish your page and you should be ready to go (assuming Swiftype has finished indexing your content).  Just make sure that the form ID and the results ID match your jQuery selectors- they should if you just copied from here.</p>
+
+<p><img src="http://iyware.com/content/images/2015/02/swiftype-autocomplete.png" alt=""></p>
+
+<p>That's it for the integration.  You can always go back and edit the CSS to better match your site.  You can also add the <a href="https://swiftype.com/engines/iyware-dot-com/install"><code>renderFunction</code></a> to your JavaScript to control how Swiftype outputs its results.</p>
+
+<p>There you have it, you now have an indexed and searchable blog.</p>]]></description><link>http://iyware.com/add-search-to-your-ghost-blog/</link><guid isPermaLink="false">761b70ab-c126-4d8c-9b4c-3794af4bc8c9</guid><category><![CDATA[Ghost]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Mon, 02 Feb 2015 05:39:55 GMT</pubDate></item><item><title><![CDATA[Don't Use .dev For Development]]></title><description><![CDATA[<p>A while back I wrote about setting up <a href="http://www.thekelleys.org.uk/dnsmasq/doc.html">DNSMasq</a> for your local development using the <code>.localhost</code> <a href="http://en.wikipedia.org/wiki/Top-level_domain">TLD</a>.  Unfortunately during my research I came across a lot of people advocating setup using the hypothetical <code>.dev</code> domain under the guise of "DevOps".  I hate to say it but this is a bad idea, so consider this post a public service announcement.</p>
 
 <h2 id="generictlds">Generic TLDs</h2>
 
@@ -2231,14 +2375,4 @@ You can read more about composer and packagist by running:
 <pre><code class="language-markup">&lt;a href="bing.com"&gt; google.com &lt;/a&gt;  
 </code></pre>
 
-<p>That’s all it takes. A link that says “Google” but goes to “Bing”. Put yourself in their shoes for a second. We’re all used to links doing what they’re supposed to because we design them that way and with good reason. But they don’t <em>have</em> to. You’re in control of the user experience and when a student discovers that the possibilities suddenly become limitless. And that’s what ed. tech should be all about; introducing students to possibilities.</p>]]></description><link>http://iyware.com/code-kids-love/</link><guid isPermaLink="false">cc725f61-abaa-4cf4-a094-5ef0e519b25f</guid><category><![CDATA[Education]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Mon, 28 Oct 2013 09:43:22 GMT</pubDate></item><item><title><![CDATA[We've Gone Free Culture]]></title><description><![CDATA[<p>That’s right, I’ve really done it now. I’ve officially changed the license for all content on this site to a <a href="http://freedomdefined.org/Definition">Free Culture</a> compatible one. In the past all content was available under the CC BY-SA-NC 3.0 license, but the past is the past and now we’re rocking a much simpler <a href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> license; also known as the Creative Commons Attribution License.</p>
-
-<p>What does this mean for you? If you see a cool code snippet and want to use it, use it! If you like one of my blog posts and want to include it in your self-published (or publishing-house published) book, do it. If you want to use some of my free code in another one of your free (or not) projects, go for it! And hopefully we can avoid things <a href="https://moodle.org/mod/forum/discuss.php?d=185628#p809131">like this</a> from happening, which is why I explicitly retain the right to dual (or triple or quadruple) license any content.</p>
-
-<p>Look, if you need some code, an idea, an image, whatever for a project but it doesn’t “work” with CC, just ask me. I’ll probably give you whatever you want.</p>
-
-<p>You might wonder, “why?” The answer really boils down to two main points:</p>
-
-<p>The first is this: I stand on the shoulders of giants. If it weren’t for the fact that HTML was designed to be open I probably never would have been able to learn it with trusty old ‘View source’ and Notepad. If it weren’t for all the great how-to blogs and tips ‘n tricks websites I could never have innovated anything new myself. The stuff that’s “mine” is probably on like 5% mine, so why should I stop somebody else from taking the next step? Just because I don’t want them to make money? That’s petty, and wrong.</p>
-
-<p>And the second, this: I’m not a professional programmer. I don’t make a living by writing code. I make a living by selling my ideas and my expertise. Most of the ideas I get paid for don’t exist on this blog, mainly because they can’t. They’re solutions that are developed for specific clients to solve specific problems. So the things I share here are the universals that those solutions can be distilled down to. Use them! But if you need specifics, contact me.</p>]]></description><link>http://iyware.com/weve-gone-free-culture/</link><guid isPermaLink="false">20c61375-234c-4320-88da-4061f52f00e7</guid><category><![CDATA[DevOps]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Wed, 09 Oct 2013 14:58:13 GMT</pubDate></item></channel></rss>
+<p>That’s all it takes. A link that says “Google” but goes to “Bing”. Put yourself in their shoes for a second. We’re all used to links doing what they’re supposed to because we design them that way and with good reason. But they don’t <em>have</em> to. You’re in control of the user experience and when a student discovers that the possibilities suddenly become limitless. And that’s what ed. tech should be all about; introducing students to possibilities.</p>]]></description><link>http://iyware.com/code-kids-love/</link><guid isPermaLink="false">cc725f61-abaa-4cf4-a094-5ef0e519b25f</guid><category><![CDATA[Education]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Mon, 28 Oct 2013 09:43:22 GMT</pubDate></item></channel></rss>
