@@ -1,0 +1,13 @@
+/* TEAM */
+	Author: Danny Wahl
+	Contact: danny [at] iyware.com
+	Twitter: @thedannywahl
+
+/* SITE */
+	URL: https://iyware.com
+	Language: English
+	Doctype: HTML5
+	Standards: HTML5, CSS3
+	Components: jQuery, Prism
+	Software: node.js, Ghost, Roon, HTTrack, Disqus, Cloudflare, Swiftype
+	IDE: Coda 2, git
