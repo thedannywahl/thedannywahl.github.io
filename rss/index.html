@@ -1,5 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[iyWare]]></title><description><![CDATA[Things I Break]]></description><link>http://iyware.com/</link><generator>Ghost 0.5</generator><lastBuildDate>Mon, 02 Feb 2015 06:02:09 GMT</lastBuildDate><atom:link href="http://iyware.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Add Search to Your Ghost Blog with Swiftype]]></title><description><![CDATA[<p>If you're moving from WordPress to Ghost (or really any other blog platform) one of the things you've probably noticed is sorely missing is search.  The Ghost devs know it too.  Adding search is on the roadmap, unfortunately it's <a href="https://trello.com/c/tNNWYXzf/51-search">backlogged</a> and they're currently looking for a <a href="https://ghost.org/contribute/search-lead/">Search Lead</a> developer.  So I wouldn't count on native search coming for a while- like maybe 0.7.</p>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[iyWare]]></title><description><![CDATA[Things I Break]]></description><link>http://iyware.com/</link><generator>Ghost 0.5</generator><lastBuildDate>Tue, 03 Feb 2015 01:12:31 GMT</lastBuildDate><atom:link href="http://iyware.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Start Your Ghost NPM Server on Mac Log In]]></title><description><![CDATA[<p>If you follow the <a href="http://support.ghost.org/installing-ghost-mac/">Ghost documentation</a> to install and start Ghost then you probably just open terminal, <code>cd</code> to your install directory and type <code>npm start</code>, this leaves you with a terminal window always opened.  There's a few simple steps you can take to get node, and therefore Ghost, running on log in on OS X.</p>
+
+<p>The first is to install the NPM package <a href="https://www.npmjs.com/package/forever-mac">forever</a>:</p>
+
+<pre><code class="language-bash">npm install forever -g  
+</code></pre>
+
+<p>Next you should copy this <code>.plist</code> and save it to <code>~/Library/LaunchAgents/node.forever.ghost.plist</code>.</p>
+
+<pre><code class="language-markup">&lt;?xml version="1.0" encoding="UTF-8"?&gt;  
+&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;  
+&lt;plist version="1.0"&gt;  
+&lt;dict&gt;  
+    &lt;key&gt;KeepAlive&lt;/key&gt;
+    &lt;dict&gt;
+        &lt;key&gt;SuccessfulExit&lt;/key&gt;
+        &lt;false/&gt;
+    &lt;/dict&gt;
+    &lt;key&gt;Label&lt;/key&gt;
+    &lt;string&gt;node.forever.ghost&lt;/string&gt;
+    &lt;key&gt;ProgramArguments&lt;/key&gt;
+    &lt;array&gt;
+        &lt;string&gt;/usr/local/bin/node&lt;/string&gt;
+        &lt;string&gt;/usr/local/bin/forever&lt;/string&gt;
+        &lt;string&gt;start&lt;/string&gt;
+        &lt;string&gt;[PATH TO GHOST]/ghost/index.js&lt;/string&gt;
+    &lt;/array&gt;
+    &lt;key&gt;RunAtLoad&lt;/key&gt;
+    &lt;true/&gt;
+&lt;/dict&gt;  
+&lt;/plist&gt;  
+</code></pre>
+
+<p>replacing <code>[PATH TO GHOST]</code> with the path to your Ghost installation.  Finally load the launchAgent:</p>
+
+<pre><code class="language-bash">launchctl load ~/Library/LaunchAgents/node.forever.ghost.plist  
+</code></pre>
+
+<p>Now you can head to your ghost URL (default <a href="http://localhost:2368/">http://localhost:2368</a>) and start blogging- node forever will start ghost every time you log in to your Mac.</p>]]></description><link>http://iyware.com/start-your-ghost-npm-server-on-mac-log-in/</link><guid isPermaLink="false">f79a2079-9d27-47ea-aaca-33a653703298</guid><category><![CDATA[Ghost]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Tue, 03 Feb 2015 00:39:00 GMT</pubDate></item><item><title><![CDATA[Add Search to Your Ghost Blog with Swiftype]]></title><description><![CDATA[<p>If you're moving from WordPress to Ghost (or really any other blog platform) one of the things you've probably noticed is sorely missing is search.  The Ghost devs know it too.  Adding search is on the roadmap, unfortunately it's <a href="https://trello.com/c/tNNWYXzf/51-search">backlogged</a> and they're currently looking for a <a href="https://ghost.org/contribute/search-lead/">Search Lead</a> developer.  So I wouldn't count on native search coming for a while- like maybe 0.7.</p>
 
 <p>In the meantime, it's not that hard to integrate a third-party service into your Ghost site, and in this post I'll show you how to do it using <a href="https://swiftype.com/">Swiftype</a>.  What is Swiftype?</p>
 
@@ -2363,16 +2401,4 @@ You can read more about composer and packagist by running:
 
 <p>We’ve decided to change that. Introducing <a href="http://simplex.iyware.com/">Simplex</a>, a Moodle project designed specifically for primary student and touch-device users. We don’t mean just a large logo in comic-sans or bright pink background with the normal Moodle interface resting on top. We mean a bottom-to-top redesign of the user interface and experience.</p>
 
-<p>Currently we’re hoping for a beta release around May and a stable release around July. If you’re interested in helping out head to the <a href="http://simplex.iyware.com/" title="Simplex project">project page</a> to see how you can help. If you just want to follow the development progress you can bookmark the <a href="http://www.iyware.com/tag/simplex/">Simplex tag</a> here.</p>]]></description><link>http://iyware.com/simplex-project-introduction/</link><guid isPermaLink="false">f3a37a09-3551-4dd4-9ec4-99f2040dd925</guid><category><![CDATA[Moodle]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Wed, 22 Jan 2014 15:21:14 GMT</pubDate></item><item><title><![CDATA[Code Kids Love]]></title><description><![CDATA[<p>I’ve been involved in technology so long that some times I forget how easy it is to introduce that “wow” factor to someone that’s never been introduced to it, and never had the time to become jaded to it. Unfortunately very often curriculum and standards forget this too. It’s not uncommon to hear sentiments along the lines of (paradoxically) either “Kids don’t know how to do anything with technology!” or “Kids should be doing robotics, solar powered go-karts, etc…” We’re simultaneously setting the bar low and high. And I believe that’s because tech is tough to get right.</p>
-
-<p>To that end I’m not advocating the following as a “solution” to educational technology and the unique challenges that it presents, but rather I’m intending to show that sometimes it’s not as hard as we think. So, in an introductory HTML course that I’ve taught, using the awesome <a href="http://www.codecademy.com/tracks/web">Codecademy Web Fundamentals</a> course, these are the 2 “hooks” that get the kids engaged from the start:</p>
-
-<pre><code class="language-markup">&lt;title&gt;TYPE YOUR NAME HERE!&lt;/title&gt;  
-</code></pre>
-
-<p>I know it doesn’t seem like much, but when a kid sees their name on the top of a tab in Firefox, it’s like black magic to them. Something they absolutely had no idea they could even do they now have 100% control over. It’s awesome. The second bit of code I’ve found that absolutely hooks students is this:</p>
-
-<pre><code class="language-markup">&lt;a href="bing.com"&gt; google.com &lt;/a&gt;  
-</code></pre>
-
-<p>That’s all it takes. A link that says “Google” but goes to “Bing”. Put yourself in their shoes for a second. We’re all used to links doing what they’re supposed to because we design them that way and with good reason. But they don’t <em>have</em> to. You’re in control of the user experience and when a student discovers that the possibilities suddenly become limitless. And that’s what ed. tech should be all about; introducing students to possibilities.</p>]]></description><link>http://iyware.com/code-kids-love/</link><guid isPermaLink="false">cc725f61-abaa-4cf4-a094-5ef0e519b25f</guid><category><![CDATA[Education]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Mon, 28 Oct 2013 09:43:22 GMT</pubDate></item></channel></rss>
+<p>Currently we’re hoping for a beta release around May and a stable release around July. If you’re interested in helping out head to the <a href="http://simplex.iyware.com/" title="Simplex project">project page</a> to see how you can help. If you just want to follow the development progress you can bookmark the <a href="http://www.iyware.com/tag/simplex/">Simplex tag</a> here.</p>]]></description><link>http://iyware.com/simplex-project-introduction/</link><guid isPermaLink="false">f3a37a09-3551-4dd4-9ec4-99f2040dd925</guid><category><![CDATA[Moodle]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Wed, 22 Jan 2014 15:21:14 GMT</pubDate></item></channel></rss>
