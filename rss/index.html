@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[iyWare]]></title><description><![CDATA[Things I Break]]></description><link>http://iyware.com/</link><generator>Ghost 0.5</generator><lastBuildDate>Wed, 04 Feb 2015 05:43:43 GMT</lastBuildDate><atom:link href="http://iyware.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Ghost on GitHub Pages With HTTrack]]></title><description><![CDATA[<p>I've written a little bit about this before but this site is currently created using a local copy of <a href="https://tryghost.org/">Ghost</a> and then converted to a static HTML site and deployed to GitHub pages.  This post will overview how I do that.</p>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[iyWare]]></title><description><![CDATA[Things I Break]]></description><link>http://iyware.com/</link><generator>Ghost 0.5</generator><lastBuildDate>Wed, 04 Feb 2015 05:46:33 GMT</lastBuildDate><atom:link href="http://iyware.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Ghost on GitHub Pages With HTTrack]]></title><description><![CDATA[<p>I've written a little bit about this before but this site is currently created using a local copy of <a href="https://tryghost.org/">Ghost</a> and then converted to a static HTML site and deployed to GitHub pages.  This post will overview how I do that.</p>
 
 <p>First I'd like to say that I am aware of, and initially used, the tool <a href="https://github.com/axitkhurana/buster">Buster</a> (get it, Ghost Buster), it's a fine little utility that basically functions as a fancy <code>wget</code> wrapper, but it has some <a href="https://github.com/axitkhurana/buster/issues/">issues</a>.  Issues that were preventing this site from being fully functional.  In the author's defense- some of it may have actually been caused by <a href="http://brew.sh/">homebrew</a>'s wget.  So I decided to investigate an alternative toolset.</p>
 
@@ -76,7 +76,7 @@ git push -u origin master
 <pre><code class="language-bash">httrack -iC2  
 </code></pre>
 
-<p>This is update your site and reuse your cache.  It will delete items that are remotely deleted, update changed assets, and it will add new files.  Then push to GitHub again.</p>
+<p>This command updates your site and reuses your cache, you don't need to do a full re-scrape.  It will delete items that are remotely deleted, update changed assets, and it will add new files.  Then push to GitHub again.</p>
 
 <h3 id="wrapitinashellscript">Wrap it in a Shell Script</h3>
 
@@ -1274,7 +1274,7 @@ brew install moodle-sdk
 
 <h2 id="mappmampmeh">MAPP? MAMP? Meh.</h2>
 
-<p>If you spend any amount of time in the <a href="https://moodle.org/course/view.php?id=5">Moodle forums</a> you’ll run across all kinds of cool acronyms. Usually the <a href="http://iyware.com/docs.moodle.org/27/en/Glossary_auto-linking_filter">glossary auto-linker</a> will fill your head with some cool new knowledge, but for the sake of thoroughness we’ll go over a few of them here. You may see people talk about their WAMP or MAMP or LAMP server. Generally this describes their server configuration.</p>
+<p>If you spend any amount of time in the <a href="https://moodle.org/course/view.php?id=5">Moodle forums</a> you’ll run across all kinds of cool acronyms. Usually the <a href="https://docs.moodle.org/27/en/Glossary_auto-linking_filter">glossary auto-linker</a> will fill your head with some cool new knowledge, but for the sake of thoroughness we’ll go over a few of them here. You may see people talk about their WAMP or MAMP or LAMP server. Generally this describes their server configuration.</p>
 
 <p>If somebody says they’re using <span style="text-decoration: underline;">W</span>AMP that means that their server is running on "Windows". Lamp would be "Linux" and MAMP – Mac. Though technically it should be "OS X" but OAMP is hard to say. Generally most web softwares don’t need a specific platform to run on, a website can run on any operating system. Generally. Stupid ASP.</p>
 
