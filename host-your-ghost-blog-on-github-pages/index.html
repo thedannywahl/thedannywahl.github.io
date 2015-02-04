@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from localhost:2368/host-your-ghost-blog-on-github-pages/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 04 Feb 2015 05:43:40 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>iyWare | Ghost on GitHub Pages With HTTrack</title>
+    <meta name="description" content="" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.mina8c1.css?v=81e7bb23cf" />
+
+    <link rel="canonical" href="http://iyware.com/host-your-ghost-blog-on-github-pages/" />
+    
+    <meta property="og:site_name" content="iyWare" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Ghost on GitHub Pages With HTTrack" />
+    <meta property="og:description" content="I&#x27;ve written a little bit about this before but this site is currently created using a local copy of Ghost and then converted to a static HTML site and deployed to GitHub pages.  This post will overview how I do..." />
+    <meta property="og:url" content="http://iyware.com/host-your-ghost-blog-on-github-pages/" />
+    <meta property="article:published_time" content="2015-02-04T05:41:23.251Z" />
+    <meta property="article:modified_time" content="2015-02-04T05:41:23.249Z" />
+    <meta property="article:tag" content="Ghost" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Ghost on GitHub Pages With HTTrack" />
+    <meta name="twitter:description" content="I&#x27;ve written a little bit about this before but this site is currently created using a local copy of Ghost and then converted to a static HTML site and deployed to GitHub pages.  This post will overview how I do..." />
+    <meta name="twitter:url" content="http://iyware.com/host-your-ghost-blog-on-github-pages/" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "iyWare",
+    "author": {
+        "@type": "Person",
+        "name": "Danny Wahl",
+        "image": "http://iyware.com/content/images/2015/01/me.jpg",
+        "url": "http://iyware.com/author/danny",
+        "sameAs": null
+    },
+    "headline": "Ghost on GitHub Pages With HTTrack",
+    "url": "http://iyware.com/host-your-ghost-blog-on-github-pages/",
+    "datePublished": "2015-02-04T05:41:23.251Z",
+    "dateModified": "2015-02-04T05:41:23.249Z",
+    "keywords": "Ghost",
+    "description": "I&#x27;ve written a little bit about this before but this site is currently created using a local copy of Ghost and then converted to a static HTML site and deployed to GitHub pages.  This post will overview how I do..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.5" />
+    <link rel="alternate" type="application/rss+xml" title="iyWare" href="http://iyware.com/rss/" />
+</head>
+<body class="post-template tag-ghost-tag  noimage">
+
+    
+
+
+    <article role="main" class="">
+        <header class="group">
+            <a href="../index.html" id="home_link">«</a>
+            <div class="hgroup">
+            	<h1>Ghost on GitHub Pages With HTTrack</h1>
+            	<div class="meta">
+            		<time datetime="2015-02-04">February 04, 2015</time>
+            		&nbsp;&bull;&nbsp;
+					<span class="tags"><a href="../tag/ghost-tag/index.html">Ghost</a></span>
+            	</div>
+			</div>
+        </header>
+
+        <div class="text" id="js-post-content">
+            <p>I've written a little bit about this before but this site is currently created using a local copy of <a href="https://tryghost.org/">Ghost</a> and then converted to a static HTML site and deployed to GitHub pages.  This post will overview how I do that.</p>
+
+<p>First I'd like to say that I am aware of, and initially used, the tool <a href="https://github.com/axitkhurana/buster">Buster</a> (get it, Ghost Buster), it's a fine little utility that basically functions as a fancy <code>wget</code> wrapper, but it has some <a href="https://github.com/axitkhurana/buster/issues/">issues</a>.  Issues that were preventing this site from being fully functional.  In the author's defense- some of it may have actually been caused by <a href="http://brew.sh/">homebrew</a>'s wget.  So I decided to investigate an alternative toolset.</p>
+
+<p>This bring us to <a href="http://www.httrack.com/">HTTrack</a>.  <code>httrack</code> is an alternative website downloader (like <code>wget</code>) and is available for just about <a href="http://www.httrack.com/page/2/en/index.html">every platform</a>.  HTTrack has a lot of options, and if you need something fancy I recommend that you <a href="http://www.httrack.com/html/fcguide.html">read the guide</a>.  That said, here's a step-by-step to deploy your Ghost blog to GitHub Pages.</p>
+
+<h2 id="initializeyourgitrepository">Initialize Your Git Repository</h2>
+
+<p>I'll go over how to deploy to a user (or organization) page on <a href="https://help.github.com/articles/user-organization-and-project-pages/">Github Pages</a>.  If you need to do it for a project, just replace the user steps with the steps necessary for your repo, but generally it's just using the <code>gh-pages</code> branch instead of <code>master</code>.</p>
+
+<p>Create the directory that you want to init as a git repository and open a terminal prompt in that directory.  HTTrack will create some meta files (a cache and a log) and clone your site to something that is ASCII safe.  So for example if your Ghost blog is running on <code>http://localhost:2368</code> which is the default, from your output directory HTTrack will create:</p>
+
+<ul>
+<li><code>./hts-cache/</code></li>
+<li><code>./hts-log.txt</code></li>
+<li><code>./localhost_2368/</code></li>
+</ul>
+
+<p>with <code>./localhost_2368/</code> containing your static site.  So you'll need to initialize your git repository there.  I have mine in <code>~/Sites/htdocs/iyware.com/localhost_2368/</code></p>
+
+<pre><code class="language-bash">mkdir ~/Sites/htdocs/iyware.com/localhost_2368/  
+cd ~/Sites/htdocs/iyware.com/localhost_2368/  
+git init  
+git checkout -b master  
+git remote add origin git@github.com:[USER NAME]/[USER NAME].github.io.git  
+</code></pre>
+
+<p>A few notes here:</p>
+
+<ol>
+<li>Replace <code>[USER NAME]</code> with your user name, or organization name.  </li>
+<li>Replace <code>-b master</code> with <code>-b gh-pages</code> if this is a project page.  </li>
+<li>You don't have to use the SSH repository path, you can use HTTPS but you'll be prompted to authenticate every time you update your site. If you don't have <a href="https://help.github.com/articles/generating-ssh-keys/">SSH configured</a>, I strongly suggest you do it.</li>
+<li>If you have things in your repository you might want to <code>git fetch</code> and <code>git merge</code> them- but you probably don't.  Even if you blow them away locally, they'll still be in your commit history.</li>
+</ol>
+
+<p>Initializing your Git repository is obviously a one time task.</p>
+
+<h2 id="generateyourinitialstaticsite">Generate Your Initial Static Site</h2>
+
+<p>One of the dowsides of HTTrack to wget is that it seems to be a bit slower.  One of the benefits that HTTrack has over wget is its cache.  That means that the first crawl of your site is going to be considerably slower than using wget (or buster) but updates to your site should be relatively quick.  Luckily we can begin the process with a single command.  The directory from where you run this command doesn't matter:</p>
+
+<pre><code class="language-bash">httrack http://localhost:2368/ -O /PATH/TO/OUTPUT/FOLDER/ -c128 -I0 -#p "+sitemap*"  
+</code></pre>
+
+<p>Let's break this command down a little bit.  The first parameter is the path to the site you want to crawl, e.g. your ghost blog.  The second parameter <code>-O</code> is the path to the output folder.  You'll obviously need to replace <code>/PATH/TO/OUTPUT/FOLDER/</code> with your actual path (NOT the <code>localhost_2368</code> folder but it's parent.  Mine is <code>/Users/dannywahl/Sites/htdocs/iyware.com/</code>.  <code>-c128</code> means that we scrape with a rate of 128 simulatneous connections.  <code>-I0</code> tells httrack not to make a custom index.html file for the output and <code>-#p</code> is detailed output (verbose).</p>
+
+<p>The <code>"+sitemap*"</code> tells httrack to explicitly to grab any links to a sitemap.  Ghost automatically generates a sitemap, but it uses <code>@blog.url</code> to populate them so httrack will not scrape them by default- so we need add this command.  This might be dangerous if you blog content contains a lot of links to other sites' sitemaps.  You might consider changing it to your Ghost blog url, e.g. <code>"+http://iyware.com/sitemap*"</code> to only grab your site's sitemap.</p>
+
+<p>If it all goes right you'll see the progress of your site scrape in the terminal output like this:</p>
+
+<pre><code class="language-bash">Mirror launched on Wed, 04 Feb 2015 12:06:11 by HTTrack Website Copier/3.48-19 [XR&amp;CO'2014]  
+mirroring http://localhost:2368/ +/sitemap* with the wizard help..  
+...
+Thanks for using HTTrack!  
+</code></pre>
+
+<p>Now you should have a fully viewable static site in <code>/localhost_2368/</code> that is ready to deploy to GitHub Pages.</p>
+
+<h2 id="deploytogithubpages">Deploy to GitHub Pages</h2>
+
+<p>In terminal navigate back to the <code>/localhost_2368/</code> directory and commit at push your changes to GitHub:</p>
+
+<pre><code class="language-bash">git add .  
+git commit -m "Blog updated"  
+git push -u origin master  
+</code></pre>
+
+<p>Now you should be able to visit your GitHub page and see the static version of your site.</p>
+
+<h3 id="updateyourstaticsite">Update Your Static Site</h3>
+
+<p>The next time you update your Ghost blog and you need to update your static site navigate to the folder containing <code>/localhost_2368/</code> and run this command:</p>
+
+<pre><code class="language-bash">httrack -iC2  
+</code></pre>
+
+<p>This is update your site and reuse your cache.  It will delete items that are remotely deleted, update changed assets, and it will add new files.  Then push to GitHub again.</p>
+
+<h3 id="wrapitinashellscript">Wrap it in a Shell Script</h3>
+
+<p>After the initial static site is created and the git repository is created it's quite a simple and repetitive task to update and deploy, so you can stick it all in a simple shell script like this:</p>
+
+<pre><code class="language-bash"># working path
+cd /Users/dannywahl/Sites/htdocs/iyware.com/
+
+# update
+httrack -iC2
+
+# replace favicon
+mv favicon.ico localhost_2368/favicon.ico
+
+# deploy
+cd /Users/dannywahl/Sites/htdocs/iyware.com/localhost_2368/
+
+current_time=$(date -u +"%Y-%m-%d %T")  
+git add .  
+git commit -m "Blog update at $current_time"  
+git push -u origin master  
+echo "Deployed to github"  
+</code></pre>
+
+<p>I have that saved as a utility called <code>bustit</code> so now I can simply type <code>bustit</code> in terminal to deploy my updated blog.</p>
+
+<p>It's not nearly as robust as <code>buster</code> but it very easily could be- it's the same wrapper for a site downloader and a git interface, I just didn't make it modular or extensible, maybe I will in the future.</p>
+
+<h2 id="extras">Extras</h2>
+
+<p>If you're not happy with the look of your sitemaps it's because <code>sitemap.xsl</code> is missing- you'll need to visit <code>http://localhost:2368/sitemap.xsl</code> and save that to the static site root (next to <code>sitemap.xml</code>).  I can't figure out how to get httrack (or buster) to download this- but you only need to do that the first time.  This file is not necessary.</p>
+
+<p>If you're used to using <code>buster</code> it automatically adds a <code>README</code> file to your site.  You'll need to create that manually if you want it.  Same for <code>CNAME</code> and <code>robots.txt</code>.</p>
+
+<p>Well that's all there is to it.  Create an initial static copy, update that copy when you update Ghost, and push to github.  Maybe in the future I'll rewrite this as a robust application because I think it would be cool to integrate it with AppleScript Folder Actions so that whenever the Ghost sqlite database is updated this triggers, but for now this works just fine.</p>
+            <!--sse-->
+			<div id="disqus_thread"></div>
+			<script type="text/javascript">
+				var disqus_shortname = 'iyware';
+				(function() {
+					var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+					dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+					(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+				})();
+			</script>
+			<noscript><p style="text-align:center;"><small>Please enable JavaScript to view the <a href="https://disqus.com/home/forums/iyware/">comments powered by Disqus.</a></small></p></noscript>
+			<!--/sse-->
+        </div>
+
+        <footer class="post-footer" role="contentinfo">
+
+            <div class="vcard">
+                <a href="../rss/index.html" id="btn_feed" class="btn" title="Feed">
+                    <span aria-hidden="true" data-icon=")"></span>
+                    <strong>Feed</strong>
+                </a>
+
+                <a href="../index.html" class="photo">
+                    <span style="background-image: url('../content/images/2015/01/me.jpg');">
+                        <img src="../content/images/2015/01/me.jpg" alt="Danny Wahl">
+                    </span>
+                </a>
+
+                <div class="details">
+                    <h4><a href="../index.html" class="url n">Danny Wahl</a></h4>
+                    <!--sse--><span>danny &#64; iyware.com</span><br/><!--/sse-->
+                    <span>License: <a href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span><br/>
+                    
+              
+                </div>
+            </div>
+
+            <div id="user_bio">
+                <div class="inner">
+                    My name is Danny Wahl and I provide IT management and consulting in the APAC region. I dabble in writing, programming, design, and ukulele playing.
+                </div>
+            </div>
+
+        </footer>
+
+    </article>
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<ins class="adsbygoogle" style="display:inline-block;width:320px;height:100px" data-ad-client="ca-pub-5811335018322110" data-ad-slot="8562617448"></ins>
+	<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+
+
+
+
+    <script src="../public/jquerya8c1.js?v=81e7bb23cf"></script>
+
+		<script type="text/javascript" src="../assets/js/prism.mina8c1.js?v=81e7bb23cf"></script>
+	
+
+	<aside style="display:none;">
+		<a href="../search/index.html">Search</a>
+		<a href="../clients/index.html">Clients</a>
+	</aside>
+</body>
+
+<!-- Mirrored from localhost:2368/host-your-ghost-blog-on-github-pages/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 04 Feb 2015 05:43:40 GMT -->
+</html>
