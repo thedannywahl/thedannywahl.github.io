@@ -1,5 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[iyWare]]></title><description><![CDATA[Things I Break]]></description><link>http://iyware.com/</link><generator>Ghost 0.5</generator><lastBuildDate>Fri, 13 Feb 2015 02:54:21 GMT</lastBuildDate><atom:link href="http://iyware.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Secure Ghost With Cloudflare SSE]]></title><description><![CDATA[<p><a href="https://www.cloudflare.com/">Cloudflare</a> is a great company for so many reasons.  They provide DNS, CDN, and security all in one &dash; even on their free tier.  If you're not using Cloudflare yet, you should consider it.  In this post we'll look at integrating <a href="https://support.cloudflare.com/hc/en-us/articles/200170036">Cloudflare SSE</a> (Server Side Exclusion) to your Ghost theme.</p>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[iyWare]]></title><description><![CDATA[Things I Break]]></description><link>http://iyware.com/</link><generator>Ghost 0.5</generator><lastBuildDate>Fri, 13 Feb 2015 05:06:05 GMT</lastBuildDate><atom:link href="http://iyware.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Proxy Ghost with Homebrew Apache]]></title><description><![CDATA[<p>I don't know if you're like me, but I'm lazy.  As such I find adding ports to URLs to be quite tedius, so the fact that <a href="https://ghost.org/">Ghost</a> runs on a non-standard web port (<code>:2368</code> as opposed to <code>:80</code>) bugs me.  I know it's so that it can run in userspace and not colide with any other services, but still.  So in this post we'll outline how to fix that.</p>
+
+<p>This outline should work for any version of <a href="http://httpd.apache.org/">Apache</a> but I'm using <a href="http://brew.sh/">homebrew</a> <a href="https://github.com/Homebrew/homebrew-apache/blob/master/httpd24.rb">Apache 2.4</a> using the <code>--with-privileged-ports</code> switch to run on port 80 but Apache can be running on any port.  If you're looking for how to install Apache I've written about it before <a href="http://iyware.com/osx-yosemite-mamp-homebrew-development-setup/">here</a>.</p>
+
+<h2 id="enableapachemods">Enable Apache Mods</h2>
+
+<p>We need to enable 2 modules to allow Ghost to be proxied by Apache, <a href="http://httpd.apache.org/docs/current/mod/mod_proxy.html"><code>mod_proxy</code></a> (which enables proxy in general) and <a href="http://httpd.apache.org/docs/current/mod/mod_proxy_http.html"><code>mod_proxy_http</code></a> (which enables HTTP proxy specifically).</p>
+
+<p>Navigate to your <code>httpd.conf</code> file located at <code>/usr/local/etc/apache2/2.4/</code> and open it with your favorite editor.</p>
+
+<p><img src="http://iyware.com/content/images/2015/02/folder-containing-homebrew-apache-config.png" alt=""></p>
+
+<p>Locate the lines for <code>proxy_module</code> and <code>proxy_http_module</code> and uncomment them by removing the <code>#</code> at the beginning of the line so that:</p>
+
+<pre><code class="language-apacheconf">#LoadModule proxy_module libexec/mod_proxy.so
+</code></pre>
+
+<p>becomes:</p>
+
+<pre><code class="language-apacheconf">LoadModule proxy_module libexec/mod_proxy.so  
+</code></pre>
+
+<p>The snippet of that whole section should look something like this:</p>
+
+<pre><code class="language-apacheconf">#LoadModule remoteip_module libexec/mod_remoteip.so
+LoadModule proxy_module libexec/mod_proxy.so  
+#LoadModule proxy_connect_module libexec/mod_proxy_connect.so
+#LoadModule proxy_ftp_module libexec/mod_proxy_ftp.so
+LoadModule proxy_http_module libexec/mod_proxy_http.so  
+#LoadModule proxy_fcgi_module libexec/mod_proxy_fcgi.so
+#LoadModule proxy_scgi_module libexec/mod_proxy_scgi.so
+</code></pre>
+
+<p>Your settings may vary depending on other modules that you have previously enabled, the important thing is that both modules are uncommented.</p>
+
+<h2 id="addanapachevhost">Add an Apache VHost</h2>
+
+<p>The next step is to define an Apache VirtualHost declaration essentially stating how the proxy should work.  In the same <code>httpd.conf</code> document scroll all the way to the bottom and add the following snippet:</p>
+
+<pre><code class="language-apacheconf">&lt;VirtualHost example.com:80&gt;  
+     ServerName example.com
+     ProxyRequests off
+     ProxyPass / http://127.0.0.1:2368/
+     ProxyPassReverse / http:/127.0.0.1:2368/
+&lt;/VirtualHost&gt;  
+</code></pre>
+
+<p>You'll need to replace <code>example.com</code> with the domain that you'd like to access Ghost from.  If it's a localhost installation I highly suggest that you consider leveraging DNSmasq and mod_vhost_alias as well as this works well with that solution as well.  If you want more information about localhost development I've written previously about it <a href="http://iyware.com/yosemite-mamp-homebrew-dev-setup-part-2/#dnsmasq">here</a>.</p>
+
+<p>My VHost looks like this:</p>
+
+<pre><code class="language-apacheconf">&lt;VirtualHost ghost.localhost:80&gt;  
+     ServerName ghost.localhost
+     ProxyRequests off
+     ProxyPass / http://127.0.0.1:2368/
+     ProxyPassReverse / http:/127.0.0.1:2368/
+&lt;/VirtualHost&gt;  
+</code></pre>
+
+<h2 id="restartapache">Restart Apache</h2>
+
+<p>After you've finished editing your config file save it and then restart Apache with this command:</p>
+
+<pre><code class="language-bash">sudo httpd -k restart  
+</code></pre>
+
+<p>This will immediately restart your Apache server, even if you're using a LaunchAgent to start it on load or log in.</p>
+
+<p>Now you can visit the URL you declared in your Apache configuration and access your Ghost instance.  Please note that you can still visit it from the old URL as well, this doesn't block access, so if Apache ever breaks you can still get to Ghost.</p>]]></description><link>http://iyware.com/proxy-ghost-with-homebrew-apache/</link><guid isPermaLink="false">a45f48e9-c05f-418e-8d1f-b2aa4d59988f</guid><category><![CDATA[DevOps]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Fri, 13 Feb 2015 04:55:19 GMT</pubDate></item><item><title><![CDATA[Secure Ghost With Cloudflare SSE]]></title><description><![CDATA[<p><a href="https://www.cloudflare.com/">Cloudflare</a> is a great company for so many reasons.  They provide DNS, CDN, and security all in one &dash; even on their free tier.  If you're not using Cloudflare yet, you should consider it.  In this post we'll look at integrating <a href="https://support.cloudflare.com/hc/en-us/articles/200170036">Cloudflare SSE</a> (Server Side Exclusion) to your Ghost theme.</p>
 
 <p>Cloudflare SSE is a cool feature that will simply strip out any content that you want at the time it's being served to the user, but only for users (IP addresses/ranges) that Cloudflare knows to be a threat.  So instead of completely blocking a user from your site in the event of a false-positive, which happens, you can prevent them from seeing only certain info like contact info, or comments.</p>
 
@@ -2606,16 +2674,4 @@ You can read more about composer and packagist by running:
 
 <p>Finally we’d like to thank all the <a href="https://github.com/thedannywahl/moodle-theme_elegance/graphs/contributors">contributors</a> and <a href="https://github.com/thedannywahl/moodle-theme_elegance/issues?state=open">bug reporters</a> that helped make this release possible.</p>
 
-<p>Well what are you waiting for? <a href="https://moodle.org/plugins/view.php?plugin=theme_elegance">Go get it</a>!</p>]]></description><link>http://iyware.com/elegance-2-7-release/</link><guid isPermaLink="false">26a2e1d1-7c63-4255-bebf-89868ac5a236</guid><category><![CDATA[Moodle]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Fri, 04 Jul 2014 23:11:28 GMT</pubDate></item><item><title><![CDATA[New Home for Elegance]]></title><description><![CDATA[<p>It’s been a whirlwind few months in the Moodle theme community. Julian Ridden released a new theme, <a href="https://moodle.org/plugins/view.php?plugin=theme_elegance">Elegance</a> which garnered <a href="https://moodle.org/plugins/stats.php?plugin=theme_elegance">a massive amount of downloads</a> as well as a TON of forum posts and issues at github. This was partly Julian’s fault because he labeled the theme as STABLE when it really should have been BETA or even ALPHA, but this also happens with stuff that’s labeled ALPHA too- people see it, want to try it, and are surprised when stuff doesn’t work. Then a few child themes / clones were created, notably elegantchild, and a few people even helped fix bugs!</p>
-
-<p>And then something happened that nobody expected; Julian announced that he would stop development on all of his plugins and be leaving the Moodle community for Ruby~ier pastures- namely to work for Instructure’s Canvas LMS. I gotta say, it sounds like an awesome gig! I would have loved to have been on the ground floor of Moodle and we here at iyWare sincerely wish him the best at his new job.</p>
-
-<p>But that sudden departure left a huge hole in the Moodle community and specifically in the support department for the Elegance theme. Which is a bummer, and on a personal note, we had just arranged with several clients to do a roll-out to Elegance on 2.7 two days before the announcement was made, d’oh! We figured, since we were already going to be supporting Elegance for some of our clients for the foreseeable future (until we could get them onto something actively developed at least) we should push our changes to the community. Some people liked this, some people didn’t.</p>
-
-<p>Well, today I’m pleased to announce that we are now officially, and with the blessing of Julian and the Moodle Plugin Liaison David Mudrak, the lead developers of the Elegance theme for Moodle. We don’t currently have a lot of short-term plans for Elegance, other than fixing regressions introduced in 2.7 and patching existing bugs, but we do have some ideas coming down the road.</p>
-
-<p>Now you may be thinking to yourself, “what about Simplex?”. Yeah, we’re a little behind on that- but I’m happy to say that Elegance will be the main theme plugin for the Simplex project! Remember the Simplex project is about primary school users and a touch friendly interface for Moodle. We really think that Elegance (and Bootstrap 3) are a step in the right direction. And along those lines we do have a couple of plugins for Simplex in the pipeline now and they should be out soon. Of course our goal is not for them to be dependent on theme_elegance so they should work with any theme! Here’s a sneak peek of a front-page interface:</p>
-
-<p><img src="http://iyware.com/content/images/import/Screen-Shot-2014-06-18-at-2.33.22-PM-960x491.png" alt="Elegance preview"></p>
-
-<p>Stay tuned!</p>]]></description><link>http://iyware.com/new-home-elegance/</link><guid isPermaLink="false">31ba7739-31a3-4624-8bde-96187c053ac6</guid><category><![CDATA[Moodle]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Wed, 18 Jun 2014 14:48:40 GMT</pubDate></item></channel></rss>
+<p>Well what are you waiting for? <a href="https://moodle.org/plugins/view.php?plugin=theme_elegance">Go get it</a>!</p>]]></description><link>http://iyware.com/elegance-2-7-release/</link><guid isPermaLink="false">26a2e1d1-7c63-4255-bebf-89868ac5a236</guid><category><![CDATA[Moodle]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Fri, 04 Jul 2014 23:11:28 GMT</pubDate></item></channel></rss>
