@@ -1,5 +1,132 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[iyWare]]></title><description><![CDATA[Things I Break]]></description><link>http://iyware.com/</link><generator>Ghost 0.5</generator><lastBuildDate>Fri, 06 Feb 2015 02:00:07 GMT</lastBuildDate><atom:link href="http://iyware.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Enable Accessibility Zoom on iOS 8]]></title><description><![CDATA[<p>When <a href="https://www.apple.com/osx/all-features/">OS X 10.10 was released</a> one of the coolest new features was the ability to use your iOS device as an input 'camera' in QuickTime capture.  This feature was a great addition for teachers at <a href="https://tiseagles.com/">Tianjin International School</a> - which had just rolled out its 1:1 iPad program in grades 3-6.  Recording the screen of the iPad allowed the teacher to make demonstrative tutorials for their students.</p>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[iyWare]]></title><description><![CDATA[Things I Break]]></description><link>http://iyware.com/</link><generator>Ghost 0.5</generator><lastBuildDate>Fri, 13 Feb 2015 00:26:17 GMT</lastBuildDate><atom:link href="http://iyware.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Secure Ghost With Cloudflare SSE]]></title><description><![CDATA[<p><a href="https://www.cloudflare.com/">Cloudflare</a> is a great company for so many reasons.  They provide DNS, CDN, and security all in one &dash; even on their free tier.  If you're not using Cloudflare yet, you should consider it.  In this post we'll look at integrating <a href="https://support.cloudflare.com/hc/en-us/articles/200170036">Cloudflare SSE</a> (Server Side Exclusion) to your Ghost theme.</p>
+
+<p>Cloudflare SSE is a cool feature that will simply strip out any content that you want at the time it's being served to the user, but only for users (IP addresses/ranges) that Cloudflare knows to be a threat.  So instead of completely blocking a user from your site in the event of a false-positive, which happens, you can prevent them from seeing only certain info like contact info, or comments.</p>
+
+<h2 id="enablesse">Enable SSE</h2>
+
+<p>If you don't have your domain set up with Cloudflare yet you'll need to that, which is beyond the scope of this article, but fairly straight forward.  After you've added your domain to Cloudflare click the 'settings' wheel and select "CloudFlare Settings" from the drop-down menu.</p>
+
+<p><img src="http://iyware.com/content/images/2015/02/cloudflare-settings-for-a-domain.png" alt=""></p>
+
+<p>Depending on the security profile that you selected when configuring your domain you may or may not have different options enabled, but you'll need to check that SSE is enabled anyways.  On the CloudFlare Settings page click the "Security Settings" tab.</p>
+
+<p><img src="http://iyware.com/content/images/2015/02/cloudflare-security-settings-tab.png" alt=""></p>
+
+<p>Scroll down the settings page until until you see the "Server side exclude (SSE)" option and enable it.</p>
+
+<p><img src="http://iyware.com/content/images/2015/02/cloudflare-SEE-enabled.png" alt=""></p>
+
+<p>That's it to enable you SSE on your site, but it won't do anything until you add the SSE tags to your blog template.</p>
+
+<h2 id="modifyyourghosttheme">Modify Your Ghost Theme</h2>
+
+<p>Now that SSE is enabled you need to decide what exactly you want to exclude.  Generally I exclude any calls to the <a href="http://themes.ghost.org/v0.5.8/docs/author">author theme API</a> with either <code>{{author}}</code> or <code>{{#author}}{{/author}}</code> as well as components of the <a href="http://themes.ghost.org/v0.5.8/docs/blog">@blog</a> API.  Again this is up to you.</p>
+
+<h3 id="excludeyourpersonalinfo">Exclude Your Personal Info</h3>
+
+<p>In your theme find the <code>post.hbs</code> file and find the <code>{{#author}}{{/author}}</code> section.  In order to exclude it you're simply going to wrap it in HTML comments <code>&lt;!--sse--&gt;&lt;!--/sse--&gt;</code> like this:</p>
+
+<pre><code class="language-handlebars">    &lt;!--sse--&gt;
+        {{#author}}
+            ...
+        {{/author}}
+    &lt;!--/sse--&gt;
+</code></pre>
+
+<p>The default Ghost theme "Casper" should look like this:</p>
+
+<pre><code class="language-handlebars">        &lt;!--sse--&gt;
+        {{! Everything inside the #author tags pulls data from the author }}
+        {{#author}}
+
+            {{#if image}}
+            &lt;figure class="author-image"&gt;
+                &lt;a class="img" href="{{url}}" style="background-image: url({{image}})"&gt;&lt;span class="hidden"&gt;{{name}}'s Picture&lt;/span&gt;&lt;/a&gt;
+            &lt;/figure&gt;
+            {{/if}}
+
+            &lt;section class="author"&gt;
+                &lt;h4&gt;&lt;a href="{{url}}"&gt;{{name}}&lt;/a&gt;&lt;/h4&gt;
+
+                {{#if bio}}
+                    &lt;p&gt;{{bio}}&lt;/p&gt;
+                {{else}}
+                    &lt;p&gt;Read &lt;a href="{{url}}"&gt;more posts&lt;/a&gt; by this author.&lt;/p&gt;
+                {{/if}}
+                &lt;div class="author-meta"&gt;
+                    {{#if location}}&lt;span class="author-location icon-location"&gt;{{location}}&lt;/span&gt;{{/if}}
+                    {{#if website}}&lt;span class="author-link icon-link"&gt;&lt;a href="{{website}}"&gt;{{website}}&lt;/a&gt;&lt;/span&gt;{{/if}}
+                &lt;/div&gt;
+            &lt;/section&gt;
+
+        {{/author}}
+        &lt;!--/sse--&gt;
+</code></pre>
+
+<p>Now whenever a visitor that CloudFlare deems a "threat" accesses a post that whole section will be excluded.</p>
+
+<h3 id="excludesharelinks">Exclude Share Links</h3>
+
+<p>In <code>post.hbs</code> right below the <code>{{author}}</code> section you can remove the "share" links:</p>
+
+<pre><code class="language-handlebars">            &lt;!--sse--&gt;
+            &lt;section class="share"&gt;
+                &lt;h4&gt;Share this post&lt;/h4&gt;
+                &lt;a class="icon-twitter" href="https://twitter.com/share?text={{encode title}}&amp;amp;url={{url absolute="true"}}"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;"&gt;
+                    &lt;span class="hidden"&gt;Twitter&lt;/span&gt;
+                &lt;/a&gt;
+                &lt;a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u={{url absolute="true"}}"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;"&gt;
+                    &lt;span class="hidden"&gt;Facebook&lt;/span&gt;
+                &lt;/a&gt;
+                &lt;a class="icon-google-plus" href="https://plus.google.com/share?url={{url absolute="true"}}"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;"&gt;
+                    &lt;span class="hidden"&gt;Google+&lt;/span&gt;
+                &lt;/a&gt;
+            &lt;/section&gt;
+            &lt;!--/sse--&gt;
+</code></pre>
+
+<h3 id="exludecomments">Exlude Comments</h3>
+
+<p>If you've integrated comments into your site, you're likely doing so via JavaScript loading as Ghost (as of this writing) doesn't support native comments.  So you can simply exclude those too (in <code>post.hbs</code>):</p>
+
+<pre><code class="language-handlebars">                &lt;!--sse--&gt;
+            &lt;div id="disqus_thread"&gt;&lt;/div&gt;
+            &lt;script type="text/javascript"&gt;
+                var disqus_shortname = 'yoursite';
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            &lt;/script&gt;
+            &lt;noscript&gt;&lt;p style="text-align:center;"&gt;&lt;small&gt;Please enable JavaScript to view the &lt;a href="https://disqus.com/home/forums/yoursite/"&gt;comments powered by Disqus.&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;&lt;/noscript&gt;
+            &lt;!--/sse--&gt;
+</code></pre>
+
+<p>And now a "threat" won't be able to access your comments via your site, of course I can't comment on the security of Disqus itself.</p>
+
+<h3 id="excludeanything">Exclude Anything</h3>
+
+<p>You can exclude anything you want from your theme templates, if you've added say a phone number or an email address that can be excluded too.</p>
+
+<pre><code class="language-handlebars">&lt;!--sse--&gt;danny &amp;#64; iyware.com&lt;!--/sse--&gt;  
+</code></pre>
+
+<h3 id="excludepostcontent">Exclude Post Content</h3>
+
+<p>Due to the ethos behind <a href="http://daringfireball.net/projects/markdown/">Markdown</a> HTML comments are not supported within the Ghost editor so you won't be able to add SSE to the content of a post.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Using CloudFlare SSE is just one small step toward securing your Ghost blog but it should be an effective step.  If you trust CloudFlare's analytics there's quite a bit of malicious activity out there (8% on my site).</p>
+
+<p><img src="http://iyware.com/content/images/2015/02/cloudflare-threat-analytics.png" alt=""></p>
+
+<p>My guess would be that this is mostly bots looking for vulnerabilities, but still they're out there trying to crawl your personal info, spam your comments, and generally ruin your day.  So take a few minutes and add another layer of security to your blog.</p>]]></description><link>http://iyware.com/secure-ghost-with-cloudflare-sse/</link><guid isPermaLink="false">34dfcafe-bca4-4c0b-b662-9dc65eb110ec</guid><category><![CDATA[Ghost]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Thu, 12 Feb 2015 11:55:47 GMT</pubDate></item><item><title><![CDATA[Enable Accessibility Zoom on iOS 8]]></title><description><![CDATA[<p>When <a href="https://www.apple.com/osx/all-features/">OS X 10.10 was released</a> one of the coolest new features was the ability to use your iOS device as an input 'camera' in QuickTime capture.  This feature was a great addition for teachers at <a href="https://tiseagles.com/">Tianjin International School</a> - which had just rolled out its 1:1 iPad program in grades 3-6.  Recording the screen of the iPad allowed the teacher to make demonstrative tutorials for their students.</p>
 
 <p>I was asked to create an example of a screen-captured video, so I figured that I would kill two birds with one stone as another teacher had asked about how to record only a certain part of a screen or to show only a part of a screen.  Instead of telling him how, I decided to create a video demonstrating how to enable, and use Zoom under iOS Accessibility settings.</p>
 
@@ -2491,4 +2618,4 @@ You can read more about composer and packagist by running:
 
 <p><img src="http://iyware.com/content/images/import/Screen-Shot-2014-06-18-at-2.33.22-PM-960x491.png" alt="Elegance preview"></p>
 
-<p>Stay tuned!</p>]]></description><link>http://iyware.com/new-home-elegance/</link><guid isPermaLink="false">31ba7739-31a3-4624-8bde-96187c053ac6</guid><category><![CDATA[Moodle]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Wed, 18 Jun 2014 14:48:40 GMT</pubDate></item><item><title><![CDATA[Moodle Demo Site Down]]></title><description><![CDATA[<p>Just a quick note, we had to take down our Moodle demo site (moodle.iyware.com). The demo site has always lived on the dev branch of Moodle and with the new <a href="https://tracker.moodle.org/browse/MDL-42931">2.7 system requirements</a> our host no longer meets them. <a href="https://discussion.dreamhost.com/thread-138999.html">We’ve let our host know</a> that we’d like to see a server upgrade – but for not it’s not going to happen. Rather than reinstall on a stable branch, we’ve decided to shut down the demo site for now.</p>]]></description><link>http://iyware.com/moodle-demo-site/</link><guid isPermaLink="false">c9fba146-f86b-4de4-839a-62819b5faf61</guid><category><![CDATA[Moodle]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Thu, 24 Apr 2014 08:57:02 GMT</pubDate></item></channel></rss>
+<p>Stay tuned!</p>]]></description><link>http://iyware.com/new-home-elegance/</link><guid isPermaLink="false">31ba7739-31a3-4624-8bde-96187c053ac6</guid><category><![CDATA[Moodle]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Wed, 18 Jun 2014 14:48:40 GMT</pubDate></item></channel></rss>
