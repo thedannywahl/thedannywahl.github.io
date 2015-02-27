@@ -1,5 +1,0 @@
-301 Moved Permanently
-
-This asset has been moved to:
-
-https://iyware.com/browser-detection-in-moodle/
