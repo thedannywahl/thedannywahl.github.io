@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<!-- Mirrored from ghost.localhost/host-your-ghost-blog-on-github-pages/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 27 Feb 2015 07:31:33 GMT -->
+<!-- Mirrored from localhost:2368/host-your-ghost-blog-on-github-pages/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 04 Mar 2015 02:23:02 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8" />
@@ -15,15 +15,15 @@
 
     <link rel="shortcut icon" href="../favicon.ico">
 
-    <link rel="stylesheet" type="text/css" href="../assets/css/screen.minbd99.css?v=c71313f89c" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.min2de3.css?v=93f8bccb5f" />
 
-    <link rel="canonical" href="http://iyware.com/host-your-ghost-blog-on-github-pages/" />
+    <link rel="canonical" href="https://iyware.com/host-your-ghost-blog-on-github-pages/" />
     
     <meta property="og:site_name" content="iyWare" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="Ghost on GitHub Pages With HTTrack" />
     <meta property="og:description" content="I&#x27;ve written a little bit about this before but this site is currently created using a local copy of Ghost and then converted to a static HTML site and deployed to GitHub pages.  This post will overview how I do..." />
-    <meta property="og:url" content="http://iyware.com/host-your-ghost-blog-on-github-pages/" />
+    <meta property="og:url" content="https://iyware.com/host-your-ghost-blog-on-github-pages/" />
     <meta property="article:published_time" content="2015-02-04T05:41:23.251Z" />
     <meta property="article:modified_time" content="2015-02-04T05:44:51.331Z" />
     <meta property="article:tag" content="Ghost" />
@@ -31,7 +31,7 @@
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="Ghost on GitHub Pages With HTTrack" />
     <meta name="twitter:description" content="I&#x27;ve written a little bit about this before but this site is currently created using a local copy of Ghost and then converted to a static HTML site and deployed to GitHub pages.  This post will overview how I do..." />
-    <meta name="twitter:url" content="http://iyware.com/host-your-ghost-blog-on-github-pages/" />
+    <meta name="twitter:url" content="https://iyware.com/host-your-ghost-blog-on-github-pages/" />
     
     <script type="application/ld+json">
 {
@@ -41,12 +41,12 @@
     "author": {
         "@type": "Person",
         "name": "Danny Wahl",
-        "image": "http://iyware.com/content/images/2015/01/me.jpg",
-        "url": "http://iyware.com/author/danny",
+        "image": "https://iyware.com/content/images/2015/01/me.jpg",
+        "url": "https://iyware.com/author/danny",
         "sameAs": null
     },
     "headline": "Ghost on GitHub Pages With HTTrack",
-    "url": "http://iyware.com/host-your-ghost-blog-on-github-pages/",
+    "url": "https://iyware.com/host-your-ghost-blog-on-github-pages/",
     "datePublished": "2015-02-04T05:41:23.251Z",
     "dateModified": "2015-02-04T05:44:51.331Z",
     "keywords": "Ghost",
@@ -55,7 +55,7 @@
     </script>
 
     <meta name="generator" content="Ghost 0.5" />
-    <link rel="alternate" type="application/rss+xml" title="iyWare" href="http://iyware.com/rss/" />
+    <link rel="alternate" type="application/rss+xml" title="iyWare" href="https://iyware.com/rss/" />
 </head>
 <body class="post-template tag-ghost-tag  noimage">
 
@@ -123,7 +123,7 @@ git remote add origin git@github.com:[USER NAME]/[USER NAME].github.io.git
 
 <p>Let's break this command down a little bit.  The first parameter is the path to the site you want to crawl, e.g. your ghost blog.  The second parameter <code>-O</code> is the path to the output folder.  You'll obviously need to replace <code>/PATH/TO/OUTPUT/FOLDER/</code> with your actual path (NOT the <code>localhost_2368</code> folder but it's parent.  Mine is <code>/Users/dannywahl/Sites/htdocs/iyware.com/</code>.  <code>-c128</code> means that we scrape with a rate of 128 simulatneous connections.  <code>-I0</code> tells httrack not to make a custom index.html file for the output and <code>-#p</code> is detailed output (verbose).</p>
 
-<p>The <code>"+sitemap*"</code> tells httrack to explicitly to grab any links to a sitemap.  Ghost automatically generates a sitemap, but it uses <code>@blog.url</code> to populate them so httrack will not scrape them by default- so we need add this command.  This might be dangerous if you blog content contains a lot of links to other sites' sitemaps.  You might consider changing it to your Ghost blog url, e.g. <code>"+http://iyware.com/sitemap*"</code> to only grab your site's sitemap.</p>
+<p>The <code>"+sitemap*"</code> tells httrack to explicitly to grab any links to a sitemap.  Ghost automatically generates a sitemap, but it uses <code>@blog.url</code> to populate them so httrack will not scrape them by default- so we need add this command.  This might be dangerous if you blog content contains a lot of links to other sites' sitemaps.  You might consider changing it to your Ghost blog url, e.g. <code>"+https://iyware.com/sitemap*"</code> to only grab your site's sitemap.</p>
 
 <p>If it all goes right you'll see the progress of your site scrape in the terminal output like this:</p>
 
@@ -244,9 +244,9 @@ echo "Deployed to github"
 
 
 
-    <script src="../public/jquerybd99.js?v=c71313f89c"></script>
+    <script src="../public/jquery2de3.js?v=93f8bccb5f"></script>
 
-		<script type="text/javascript" src="../assets/js/prism.minbd99.js?v=c71313f89c"></script>
+		<script type="text/javascript" src="../assets/js/prism.min2de3.js?v=93f8bccb5f"></script>
 	
 
 	<aside style="display:none;">
@@ -255,5 +255,5 @@ echo "Deployed to github"
 	</aside>
 </body>
 
-<!-- Mirrored from ghost.localhost/host-your-ghost-blog-on-github-pages/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 27 Feb 2015 07:31:33 GMT -->
+<!-- Mirrored from localhost:2368/host-your-ghost-blog-on-github-pages/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 04 Mar 2015 02:23:02 GMT -->
 </html>

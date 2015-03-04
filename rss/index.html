@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[iyWare]]></title><description><![CDATA[Things I Break]]></description><link>http://iyware.com/</link><generator>Ghost 0.5</generator><lastBuildDate>Fri, 27 Feb 2015 07:31:33 GMT</lastBuildDate><atom:link href="http://iyware.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Proxy Ghost with Homebrew Apache]]></title><description><![CDATA[<p>I don't know if you're like me, but I'm lazy.  As such I find adding ports to URLs to be quite tedius, so the fact that <a href="https://ghost.org/">Ghost</a> runs on a non-standard web port (<code>:2368</code> as opposed to <code>:80</code>) bugs me.  I know it's so that it can run in userspace and not colide with any other services, but still.  So in this post we'll outline how to fix that.</p>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[iyWare]]></title><description><![CDATA[Things I Break]]></description><link>https://iyware.com/</link><generator>Ghost 0.5</generator><lastBuildDate>Wed, 04 Mar 2015 02:23:02 GMT</lastBuildDate><atom:link href="https://iyware.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Proxy Ghost with Homebrew Apache]]></title><description><![CDATA[<p>I don't know if you're like me, but I'm lazy.  As such I find adding ports to URLs to be quite tedius, so the fact that <a href="https://ghost.org/">Ghost</a> runs on a non-standard web port (<code>:2368</code> as opposed to <code>:80</code>) bugs me.  I know it's so that it can run in userspace and not colide with any other services, but still.  So in this post we'll outline how to fix that.</p>
 
-<p>This outline should work for any version of <a href="http://httpd.apache.org/">Apache</a> but I'm using <a href="http://brew.sh/">homebrew</a> <a href="https://github.com/Homebrew/homebrew-apache/blob/master/httpd24.rb">Apache 2.4</a> using the <code>--with-privileged-ports</code> switch to run on port 80 but Apache can be running on any port.  If you're looking for how to install Apache I've written about it before <a href="http://iyware.com/osx-yosemite-mamp-homebrew-development-setup/">here</a>.</p>
+<p>This outline should work for any version of <a href="http://httpd.apache.org/">Apache</a> but I'm using <a href="http://brew.sh/">homebrew</a> <a href="https://github.com/Homebrew/homebrew-apache/blob/master/httpd24.rb">Apache 2.4</a> using the <code>--with-privileged-ports</code> switch to run on port 80 but Apache can be running on any port.  If you're looking for how to install Apache I've written about it before <a href="https://iyware.com/osx-yosemite-mamp-homebrew-development-setup/">here</a>.</p>
 
 <h2 id="enableapachemods">Enable Apache Mods</h2>
 
@@ -9,7 +9,7 @@
 
 <p>Navigate to your <code>httpd.conf</code> file located at <code>/usr/local/etc/apache2/2.4/</code> and open it with your favorite editor.</p>
 
-<p><img src="http://iyware.com/content/images/2015/02/folder-containing-homebrew-apache-config.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/02/folder-containing-homebrew-apache-config.png" alt=""></p>
 
 <p>Locate the lines for <code>proxy_module</code> and <code>proxy_http_module</code> and uncomment them by removing the <code>#</code> at the beginning of the line so that:</p>
 
@@ -46,7 +46,7 @@ LoadModule proxy_http_module libexec/mod_proxy_http.so
 &lt;/VirtualHost&gt;  
 </code></pre>
 
-<p>You'll need to replace <code>example.com</code> with the domain that you'd like to access Ghost from.  If it's a localhost installation I highly suggest that you consider leveraging DNSmasq and mod_vhost_alias as well as this works well with that solution as well.  If you want more information about localhost development I've written previously about it <a href="http://iyware.com/yosemite-mamp-homebrew-dev-setup-part-2/#dnsmasq">here</a>.</p>
+<p>You'll need to replace <code>example.com</code> with the domain that you'd like to access Ghost from.  If it's a localhost installation I highly suggest that you consider leveraging DNSmasq and mod_vhost_alias as well as this works well with that solution as well.  If you want more information about localhost development I've written previously about it <a href="https://iyware.com/yosemite-mamp-homebrew-dev-setup-part-2/#dnsmasq">here</a>.</p>
 
 <p>My VHost looks like this:</p>
 
@@ -67,7 +67,7 @@ LoadModule proxy_http_module libexec/mod_proxy_http.so
 
 <p>This will immediately restart your Apache server, even if you're using a LaunchAgent to start it on load or log in.</p>
 
-<p>Now you can visit the URL you declared in your Apache configuration and access your Ghost instance.  Please note that you can still visit it from the old URL as well, this doesn't block access, so if Apache ever breaks you can still get to Ghost.</p>]]></description><link>http://iyware.com/proxy-ghost-with-homebrew-apache/</link><guid isPermaLink="false">a45f48e9-c05f-418e-8d1f-b2aa4d59988f</guid><category><![CDATA[DevOps]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Fri, 13 Feb 2015 04:55:19 GMT</pubDate></item><item><title><![CDATA[Secure Ghost With Cloudflare SSE]]></title><description><![CDATA[<p><a href="https://www.cloudflare.com/">Cloudflare</a> is a great company for so many reasons.  They provide DNS, CDN, and security all in one &dash; even on their free tier.  If you're not using Cloudflare yet, you should consider it.  In this post we'll look at integrating <a href="https://support.cloudflare.com/hc/en-us/articles/200170036">Cloudflare SSE</a> (Server Side Exclusion) to your Ghost theme.</p>
+<p>Now you can visit the URL you declared in your Apache configuration and access your Ghost instance.  Please note that you can still visit it from the old URL as well, this doesn't block access, so if Apache ever breaks you can still get to Ghost.</p>]]></description><link>https://iyware.com/proxy-ghost-with-homebrew-apache/</link><guid isPermaLink="false">a45f48e9-c05f-418e-8d1f-b2aa4d59988f</guid><category><![CDATA[DevOps]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Fri, 13 Feb 2015 04:55:19 GMT</pubDate></item><item><title><![CDATA[Secure Ghost With Cloudflare SSE]]></title><description><![CDATA[<p><a href="https://www.cloudflare.com/">Cloudflare</a> is a great company for so many reasons.  They provide DNS, CDN, and security all in one &dash; even on their free tier.  If you're not using Cloudflare yet, you should consider it.  In this post we'll look at integrating <a href="https://support.cloudflare.com/hc/en-us/articles/200170036">Cloudflare SSE</a> (Server Side Exclusion) to your Ghost theme.</p>
 
 <p>Cloudflare SSE is a cool feature that will simply strip out any content that you want at the time it's being served to the user, but only for users (IP addresses/ranges) that Cloudflare knows to be a threat.  So instead of completely blocking a user from your site in the event of a false-positive, which happens, you can prevent them from seeing only certain info like contact info, or comments.</p>
 
@@ -75,15 +75,15 @@ LoadModule proxy_http_module libexec/mod_proxy_http.so
 
 <p>If you don't have your domain set up with Cloudflare yet you'll need to that, which is beyond the scope of this article, but fairly straight forward.  After you've added your domain to Cloudflare click the 'settings' wheel and select "CloudFlare Settings" from the drop-down menu.</p>
 
-<p><img src="http://iyware.com/content/images/2015/02/cloudflare-settings-for-a-domain.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/02/cloudflare-settings-for-a-domain.png" alt=""></p>
 
 <p>Depending on the security profile that you selected when configuring your domain you may or may not have different options enabled, but you'll need to check that SSE is enabled anyways.  On the CloudFlare Settings page click the "Security Settings" tab.</p>
 
-<p><img src="http://iyware.com/content/images/2015/02/cloudflare-security-settings-tab.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/02/cloudflare-security-settings-tab.png" alt=""></p>
 
 <p>Scroll down the settings page until until you see the "Server side exclude (SSE)" option and enable it.</p>
 
-<p><img src="http://iyware.com/content/images/2015/02/cloudflare-SEE-enabled.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/02/cloudflare-SEE-enabled.png" alt=""></p>
 
 <p>That's it to enable you SSE on your site, but it won't do anything until you add the SSE tags to your blog template.</p>
 
@@ -192,15 +192,15 @@ LoadModule proxy_http_module libexec/mod_proxy_http.so
 
 <p>Using CloudFlare SSE is just one small step toward securing your Ghost blog but it should be an effective step.  If you trust CloudFlare's analytics there's quite a bit of malicious activity out there (8% on my site).</p>
 
-<p><img src="http://iyware.com/content/images/2015/02/cloudflare-threat-analytics.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/02/cloudflare-threat-analytics.png" alt=""></p>
 
-<p>My guess would be that this is mostly bots looking for vulnerabilities, but still they're out there trying to crawl your personal info, spam your comments, and generally ruin your day.  So take a few minutes and add another layer of security to your blog.</p>]]></description><link>http://iyware.com/secure-ghost-with-cloudflare-sse/</link><guid isPermaLink="false">34dfcafe-bca4-4c0b-b662-9dc65eb110ec</guid><category><![CDATA[Ghost]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Thu, 12 Feb 2015 11:55:47 GMT</pubDate></item><item><title><![CDATA[Enable Accessibility Zoom on iOS 8]]></title><description><![CDATA[<p>When <a href="https://www.apple.com/osx/all-features/">OS X 10.10 was released</a> one of the coolest new features was the ability to use your iOS device as an input 'camera' in QuickTime capture.  This feature was a great addition for teachers at <a href="https://tiseagles.com/">Tianjin International School</a> - which had just rolled out its 1:1 iPad program in grades 3-6.  Recording the screen of the iPad allowed the teacher to make demonstrative tutorials for their students.</p>
+<p>My guess would be that this is mostly bots looking for vulnerabilities, but still they're out there trying to crawl your personal info, spam your comments, and generally ruin your day.  So take a few minutes and add another layer of security to your blog.</p>]]></description><link>https://iyware.com/secure-ghost-with-cloudflare-sse/</link><guid isPermaLink="false">34dfcafe-bca4-4c0b-b662-9dc65eb110ec</guid><category><![CDATA[Ghost]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Thu, 12 Feb 2015 11:55:47 GMT</pubDate></item><item><title><![CDATA[Enable Accessibility Zoom on iOS 8]]></title><description><![CDATA[<p>When <a href="https://www.apple.com/osx/all-features/">OS X 10.10 was released</a> one of the coolest new features was the ability to use your iOS device as an input 'camera' in QuickTime capture.  This feature was a great addition for teachers at <a href="https://tiseagles.com/">Tianjin International School</a> - which had just rolled out its 1:1 iPad program in grades 3-6.  Recording the screen of the iPad allowed the teacher to make demonstrative tutorials for their students.</p>
 
 <p>I was asked to create an example of a screen-captured video, so I figured that I would kill two birds with one stone as another teacher had asked about how to record only a certain part of a screen or to show only a part of a screen.  Instead of telling him how, I decided to create a video demonstrating how to enable, and use Zoom under iOS Accessibility settings.</p>
 
 <iframe width="640" height="480" src="https://www.youtube-nocookie.com/embed/ymQWahmrvLU?rel=0" frameborder="0" allowfullscreen></iframe>
 
-<p>This video was completely unscripted, and actually what you just saw was the 4th or 5th take as I did things like accidentally show my lastpass password or already have zoom enabled in the other takes.</p>]]></description><link>http://iyware.com/enable-accessibility-zoom-on-ios-8/</link><guid isPermaLink="false">41a8e1e6-4c9f-415a-95b5-80839313244c</guid><category><![CDATA[Education]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Fri, 06 Feb 2015 01:53:36 GMT</pubDate></item><item><title><![CDATA[Ghost on GitHub Pages With HTTrack]]></title><description><![CDATA[<p>I've written a little bit about this before but this site is currently created using a local copy of <a href="https://tryghost.org/">Ghost</a> and then converted to a static HTML site and deployed to GitHub pages.  This post will overview how I do that.</p>
+<p>This video was completely unscripted, and actually what you just saw was the 4th or 5th take as I did things like accidentally show my lastpass password or already have zoom enabled in the other takes.</p>]]></description><link>https://iyware.com/enable-accessibility-zoom-on-ios-8/</link><guid isPermaLink="false">41a8e1e6-4c9f-415a-95b5-80839313244c</guid><category><![CDATA[Education]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Fri, 06 Feb 2015 01:53:36 GMT</pubDate></item><item><title><![CDATA[Ghost on GitHub Pages With HTTrack]]></title><description><![CDATA[<p>I've written a little bit about this before but this site is currently created using a local copy of <a href="https://tryghost.org/">Ghost</a> and then converted to a static HTML site and deployed to GitHub pages.  This post will overview how I do that.</p>
 
 <p>First I'd like to say that I am aware of, and initially used, the tool <a href="https://github.com/axitkhurana/buster">Buster</a> (get it, Ghost Buster), it's a fine little utility that basically functions as a fancy <code>wget</code> wrapper, but it has some <a href="https://github.com/axitkhurana/buster/issues/">issues</a>.  Issues that were preventing this site from being fully functional.  In the author's defense- some of it may have actually been caused by <a href="http://brew.sh/">homebrew</a>'s wget.  So I decided to investigate an alternative toolset.</p>
 
@@ -247,7 +247,7 @@ git remote add origin git@github.com:[USER NAME]/[USER NAME].github.io.git
 
 <p>Let's break this command down a little bit.  The first parameter is the path to the site you want to crawl, e.g. your ghost blog.  The second parameter <code>-O</code> is the path to the output folder.  You'll obviously need to replace <code>/PATH/TO/OUTPUT/FOLDER/</code> with your actual path (NOT the <code>localhost_2368</code> folder but it's parent.  Mine is <code>/Users/dannywahl/Sites/htdocs/iyware.com/</code>.  <code>-c128</code> means that we scrape with a rate of 128 simulatneous connections.  <code>-I0</code> tells httrack not to make a custom index.html file for the output and <code>-#p</code> is detailed output (verbose).</p>
 
-<p>The <code>"+sitemap*"</code> tells httrack to explicitly to grab any links to a sitemap.  Ghost automatically generates a sitemap, but it uses <code>@blog.url</code> to populate them so httrack will not scrape them by default- so we need add this command.  This might be dangerous if you blog content contains a lot of links to other sites' sitemaps.  You might consider changing it to your Ghost blog url, e.g. <code>"+http://iyware.com/sitemap*"</code> to only grab your site's sitemap.</p>
+<p>The <code>"+sitemap*"</code> tells httrack to explicitly to grab any links to a sitemap.  Ghost automatically generates a sitemap, but it uses <code>@blog.url</code> to populate them so httrack will not scrape them by default- so we need add this command.  This might be dangerous if you blog content contains a lot of links to other sites' sitemaps.  You might consider changing it to your Ghost blog url, e.g. <code>"+https://iyware.com/sitemap*"</code> to only grab your site's sitemap.</p>
 
 <p>If it all goes right you'll see the progress of your site scrape in the terminal output like this:</p>
 
@@ -312,7 +312,7 @@ echo "Deployed to github"
 
 <p>If you're used to using <code>buster</code> it automatically adds a <code>README</code> file to your site.  You'll need to create that manually if you want it.  Same for <code>CNAME</code> and <code>robots.txt</code>.</p>
 
-<p>Well that's all there is to it.  Create an initial static copy, update that copy when you update Ghost, and push to github.  Maybe in the future I'll rewrite this as a robust application because I think it would be cool to integrate it with AppleScript Folder Actions so that whenever the Ghost sqlite database is updated this triggers, but for now this works just fine.</p>]]></description><link>http://iyware.com/host-your-ghost-blog-on-github-pages/</link><guid isPermaLink="false">593db4b6-71ff-4e7b-8324-b7bc45332744</guid><category><![CDATA[Ghost]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Wed, 04 Feb 2015 05:41:23 GMT</pubDate></item><item><title><![CDATA[Start Your Ghost NPM Server on Mac Log In]]></title><description><![CDATA[<p>If you follow the <a href="http://support.ghost.org/installing-ghost-mac/">Ghost documentation</a> to install and start Ghost then you probably just open terminal, <code>cd</code> to your install directory and type <code>npm start</code>, this leaves you with a terminal window always opened.  There's a few simple steps you can take to get node, and therefore Ghost, running on log in on OS X.</p>
+<p>Well that's all there is to it.  Create an initial static copy, update that copy when you update Ghost, and push to github.  Maybe in the future I'll rewrite this as a robust application because I think it would be cool to integrate it with AppleScript Folder Actions so that whenever the Ghost sqlite database is updated this triggers, but for now this works just fine.</p>]]></description><link>https://iyware.com/host-your-ghost-blog-on-github-pages/</link><guid isPermaLink="false">593db4b6-71ff-4e7b-8324-b7bc45332744</guid><category><![CDATA[Ghost]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Wed, 04 Feb 2015 05:41:23 GMT</pubDate></item><item><title><![CDATA[Start Your Ghost NPM Server on Mac Log In]]></title><description><![CDATA[<p>If you follow the <a href="http://support.ghost.org/installing-ghost-mac/">Ghost documentation</a> to install and start Ghost then you probably just open terminal, <code>cd</code> to your install directory and type <code>npm start</code>, this leaves you with a terminal window always opened.  There's a few simple steps you can take to get node, and therefore Ghost, running on log in on OS X.</p>
 
 <p>The first is to install the NPM package <a href="https://www.npmjs.com/package/forever-mac">forever</a>:</p>
 
@@ -350,7 +350,7 @@ echo "Deployed to github"
 <pre><code class="language-bash">launchctl load ~/Library/LaunchAgents/node.forever.ghost.plist  
 </code></pre>
 
-<p>Now you can head to your ghost URL (default <a href="http://localhost:2368/">http://localhost:2368</a>) and start blogging- node forever will start ghost every time you log in to your Mac.</p>]]></description><link>http://iyware.com/start-your-ghost-npm-server-on-mac-log-in/</link><guid isPermaLink="false">f79a2079-9d27-47ea-aaca-33a653703298</guid><category><![CDATA[Ghost]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Tue, 03 Feb 2015 00:39:00 GMT</pubDate></item><item><title><![CDATA[Add Search to Your Ghost Blog with Swiftype]]></title><description><![CDATA[<p>If you're moving from WordPress to Ghost (or really any other blog platform) one of the things you've probably noticed is sorely missing is search.  The Ghost devs know it too.  Adding search is on the roadmap, unfortunately it's <a href="https://trello.com/c/tNNWYXzf/51-search">backlogged</a> and they're currently looking for a <a href="https://ghost.org/contribute/search-lead/">Search Lead</a> developer.  So I wouldn't count on native search coming for a while- like maybe 0.7.</p>
+<p>Now you can head to your ghost URL (default <a href="http://localhost:2368/">http://localhost:2368</a>) and start blogging- node forever will start ghost every time you log in to your Mac.</p>]]></description><link>https://iyware.com/start-your-ghost-npm-server-on-mac-log-in/</link><guid isPermaLink="false">f79a2079-9d27-47ea-aaca-33a653703298</guid><category><![CDATA[Ghost]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Tue, 03 Feb 2015 00:39:00 GMT</pubDate></item><item><title><![CDATA[Add Search to Your Ghost Blog with Swiftype]]></title><description><![CDATA[<p>If you're moving from WordPress to Ghost (or really any other blog platform) one of the things you've probably noticed is sorely missing is search.  The Ghost devs know it too.  Adding search is on the roadmap, unfortunately it's <a href="https://trello.com/c/tNNWYXzf/51-search">backlogged</a> and they're currently looking for a <a href="https://ghost.org/contribute/search-lead/">Search Lead</a> developer.  So I wouldn't count on native search coming for a while- like maybe 0.7.</p>
 
 <p>In the meantime, it's not that hard to integrate a third-party service into your Ghost site, and in this post I'll show you how to do it using <a href="https://swiftype.com/">Swiftype</a>.  What is Swiftype?</p>
 
@@ -364,15 +364,15 @@ echo "Deployed to github"
 
 <p>Head on over to the <a href="https://swiftype.com/pricing">Swiftype pricing page</a> page and scout out the plan that you want.  Personally I'm just using the free plan.</p>
 
-<p><img src="http://iyware.com/content/images/2015/01/swiftype-pricing-overview.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/01/swiftype-pricing-overview.png" alt=""></p>
 
 <p>Another option available is to activate Smart Errors as an app in your<a href="https://www.cloudflare.com/zone-picker?from=/cloudflare-apps"> Cloudflare dashboard</a> if you're using Cloudflare.  This will also give you the added benefit of having a better 404 page than this: <code>;&gt; &lt;</code></p>
 
-<p><img src="http://iyware.com/content/images/2015/01/smart-errors-cloudflare-app.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/01/smart-errors-cloudflare-app.png" alt=""></p>
 
 <p>After you've enabled smart errors head to your <a href="https://swiftype.com/home">swiftype dashboard</a> and create what they call a "<a href="https://swiftype.com/engines/new">Search Engine</a>" which is actually a search context (generally a domain- but you can have it search multiple domains).</p>
 
-<p><img src="http://iyware.com/content/images/2015/02/swiftype-search-engine-overview.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/02/swiftype-search-engine-overview.png" alt=""></p>
 
 <h2 id="option1addswiftypesearchwithcloudflare">Option 1: Add Swiftype Search with Cloudflare</h2>
 
@@ -384,7 +384,7 @@ echo "Deployed to github"
 
 <p>Go back to the Swiftype page and inside your search engine choose "Install" from the toolbar.</p>
 
-<p><img src="http://iyware.com/content/images/2015/02/swiftype-searchengine-toolbar.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/02/swiftype-searchengine-toolbar.png" alt=""></p>
 
 <h3 id="downloadswiftypeautocompletesearch">Download Swiftype Autocomplete &amp; Search</h3>
 
@@ -407,7 +407,7 @@ echo "Deployed to github"
 <li>jquery.swiftype.search.js</li>
 </ul>
 
-<p><img src="http://iyware.com/content/images/2015/02/swiftype-js-files-added-to-ghost.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/02/swiftype-js-files-added-to-ghost.png" alt=""></p>
 
 <p>Now do the same thing for the CSS files but in the <code>/assets/css/</code> folder:</p>
 
@@ -416,7 +416,7 @@ echo "Deployed to github"
 <li>search.css</li>
 </ul>
 
-<p><img src="http://iyware.com/content/images/2015/02/swiftype-css-files-added-to-ghost.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/02/swiftype-css-files-added-to-ghost.png" alt=""></p>
 
 <p>Optionally you can concatenate the CSS to the end of the Ghost CSS file <code>screen.css</code>, which is probably a better idea because it will save you 2 HTTP requests and a little bit of bandwidth.</p>
 
@@ -468,15 +468,15 @@ echo "Deployed to github"
 
 <p>If you are intending to create a static search page and not to integrate search into your theme template then head to your Ghost dashboard and create a new post.  I titled mine "Search":</p>
 
-<p><img src="http://iyware.com/content/images/2015/02/post-named-search-in-ghost.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/02/post-named-search-in-ghost.png" alt=""></p>
 
 <p>Click on the 'settings' wheel and change the post into a static page.  You can also adjust the slug if you'd like.</p>
 
-<p><img src="http://iyware.com/content/images/2015/02/adjusting-a-post-type-in-ghost.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/02/adjusting-a-post-type-in-ghost.png" alt=""></p>
 
 <p>If you want to provide information to your users you can add content to the page, for example I added all the tags I use on my blog.  There's no easy way to do this I just don't have many tags, if you want something more dynamic, I suggest you add it to your template.</p>
 
-<p><img src="http://iyware.com/content/images/2015/02/edited-search-page-with-content.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/02/edited-search-page-with-content.png" alt=""></p>
 
 <p>Finally it's time to add the search form to your page.  Even though Ghost uses Markdown, remember that any HTML is valid Markdown, so you can directly create a form:</p>
 
@@ -490,11 +490,11 @@ echo "Deployed to github"
 
 <p>Publish your page and you should be ready to go (assuming Swiftype has finished indexing your content).  Just make sure that the form ID and the results ID match your jQuery selectors- they should if you just copied from here.</p>
 
-<p><img src="http://iyware.com/content/images/2015/02/swiftype-autocomplete.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/02/swiftype-autocomplete.png" alt=""></p>
 
 <p>That's it for the integration.  You can always go back and edit the CSS to better match your site.  You can also add the <a href="https://swiftype.com/engines/iyware-dot-com/install"><code>renderFunction</code></a> to your JavaScript to control how Swiftype outputs its results.</p>
 
-<p>There you have it, you now have an indexed and searchable blog.</p>]]></description><link>http://iyware.com/add-search-to-your-ghost-blog/</link><guid isPermaLink="false">761b70ab-c126-4d8c-9b4c-3794af4bc8c9</guid><category><![CDATA[Ghost]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Mon, 02 Feb 2015 05:39:55 GMT</pubDate></item><item><title><![CDATA[Don't Use .dev For Development]]></title><description><![CDATA[<p>A while back I wrote about setting up <a href="http://www.thekelleys.org.uk/dnsmasq/doc.html">DNSMasq</a> for your local development using the <code>.localhost</code> <a href="http://en.wikipedia.org/wiki/Top-level_domain">TLD</a>.  Unfortunately during my research I came across a lot of people advocating setup using the hypothetical <code>.dev</code> domain under the guise of "DevOps".  I hate to say it but this is a bad idea, so consider this post a public service announcement.</p>
+<p>There you have it, you now have an indexed and searchable blog.</p>]]></description><link>https://iyware.com/add-search-to-your-ghost-blog/</link><guid isPermaLink="false">761b70ab-c126-4d8c-9b4c-3794af4bc8c9</guid><category><![CDATA[Ghost]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Mon, 02 Feb 2015 05:39:55 GMT</pubDate></item><item><title><![CDATA[Don't Use .dev For Development]]></title><description><![CDATA[<p>A while back I wrote about setting up <a href="http://www.thekelleys.org.uk/dnsmasq/doc.html">DNSMasq</a> for your local development using the <code>.localhost</code> <a href="http://en.wikipedia.org/wiki/Top-level_domain">TLD</a>.  Unfortunately during my research I came across a lot of people advocating setup using the hypothetical <code>.dev</code> domain under the guise of "DevOps".  I hate to say it but this is a bad idea, so consider this post a public service announcement.</p>
 
 <h2 id="generictlds">Generic TLDs</h2>
 
@@ -602,9 +602,9 @@ echo "Deployed to github"
 
 <p>The final step is to use <code>.example</code>.  My recommendation is that you use this for code that's nearly ready to go live.  You could also use this to tie together multiple locations and even use an internet-facing IP address, knowing that it's not going to be resolved by global DNS servers.</p>
 
-<p>After that you're ready to go live with trusty ol' <code>.com</code>.  Hacking on domains and DNS can be fun and a lot of people have built some really cool tools- but it's important that you use them appropriately too.  Once <code>.dev</code> domains start becoming prevalent I imagine that there will be a few people kicking themselves for mapping it to their local machine, but hey, that's part of learning!</p>]]></description><link>http://iyware.com/dont-use-dev-for-development/</link><guid isPermaLink="false">b3eb1e13-08a6-4a51-bd5e-ee5aae947505</guid><category><![CDATA[DevOps]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Tue, 27 Jan 2015 02:39:52 GMT</pubDate></item><item><title><![CDATA[Migrate from WordPress to Ghost]]></title><description><![CDATA[<p>I've been using <a href="http://wordpress.org/">WordPress</a> as the backend of my website for about 4 years now.  I've been a fan of its simplicity, its usability, and its extensability.  I didn't want to spend a lot of time developing a site- I just wanted to blog but as time went on my site was hacked, hacked again, botched an upgrade, received 20,000+ spam comments, and I realized I was spending more time as a WordPress administrator than as a WordPress author.  In a nutshell I was tired of my WordPress backend looking like this:</p>
+<p>After that you're ready to go live with trusty ol' <code>.com</code>.  Hacking on domains and DNS can be fun and a lot of people have built some really cool tools- but it's important that you use them appropriately too.  Once <code>.dev</code> domains start becoming prevalent I imagine that there will be a few people kicking themselves for mapping it to their local machine, but hey, that's part of learning!</p>]]></description><link>https://iyware.com/dont-use-dev-for-development/</link><guid isPermaLink="false">b3eb1e13-08a6-4a51-bd5e-ee5aae947505</guid><category><![CDATA[DevOps]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Tue, 27 Jan 2015 02:39:52 GMT</pubDate></item><item><title><![CDATA[Migrate from WordPress to Ghost]]></title><description><![CDATA[<p>I've been using <a href="http://wordpress.org/">WordPress</a> as the backend of my website for about 4 years now.  I've been a fan of its simplicity, its usability, and its extensability.  I didn't want to spend a lot of time developing a site- I just wanted to blog but as time went on my site was hacked, hacked again, botched an upgrade, received 20,000+ spam comments, and I realized I was spending more time as a WordPress administrator than as a WordPress author.  In a nutshell I was tired of my WordPress backend looking like this:</p>
 
-<p><img src="http://iyware.com/content/images/2015/01/picture-of-an-ugly-wp-dashboard.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/01/picture-of-an-ugly-wp-dashboard.png" alt=""></p>
 
 <p>So in my usual fashion I decided to pick something new that I knew nothing about and dive into that.  I picked <a href="http://ghost.org/">Ghost</a> because at its core it's what I wanted; a blogging platform.  Sure it's young, sure it's missing some features I want (or at least I thought I did until I actually started migrating) but that's OK with me.  It's extremely functional as a blog.</p>
 
@@ -633,7 +633,7 @@ echo "Deployed to github"
 
 <p>There is a plugin available from the WordPress plugins page called "<a href="https://wordpress.org/plugins/disqus-comment-system/">Disqus Comment System</a>" that needs to be installed.  This is the official Disqus plugin for WordPress and as such it works pretty well.  Simply install and activate the plugin.</p>
 
-<p><img src="http://iyware.com/content/images/2015/01/activated-disqus-comments-plugin.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/01/activated-disqus-comments-plugin.png" alt=""></p>
 
 <h4 id="addadisqussite">Add a Disqus Site</h4>
 
@@ -641,27 +641,27 @@ echo "Deployed to github"
 
 <p>Fill out the 3 fields on the form with the information for your site and click "Finish Registration".  For example my site name is just 'iyWare' and the URL is 'iyware.disqus.com'.  However, if you have a marketing identity or branding guideline, follow that.  Frankly I'm not sure how many people stumble up a blog by navigating the Disqus homepage so your conversion based on this information alone will probably be pretty low.</p>
 
-<p><img src="http://iyware.com/content/images/2015/01/signing-up-for-a-disqus-site.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/01/signing-up-for-a-disqus-site.png" alt=""></p>
 
 <p>After you click "Finish Registration" you will be taken to the "Install" page under "Settings".  Since we've installed the Disqus plugin on WordPress we don't need to do a separate installation.  But we will need to come back to this page to get the "Universal Code" (a.k.a. JavaScript) when it's time to install it in Ghost.</p>
 
-<p><img src="http://iyware.com/content/images/2015/01/disqus-installation-options.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/01/disqus-installation-options.png" alt=""></p>
 
 <h4 id="migratecommentstodisqus">Migrate Comments to Disqus</h4>
 
 <p>Head back to your WordPress Dashboard and navigate to Comments in the sidebar. If you have any spam comments you'll want to delete those so that they don't accidentally get imported into Disqus.  This shouldn't happen, but I had a few get in there.</p>
 
-<p><img src="http://iyware.com/content/images/2015/01/its-wonderful-spam.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/01/its-wonderful-spam.png" alt=""></p>
 
 <p>Now click on Comments &rarr; Disqus in the sidebar.  If your site was has not been configured yet you will need to authenticate to Disqus and type in your site's identifier, which is the "Unique Disqus URL" that you chose earlier.</p>
 
 <p>Once you've authenticated you can scroll down to the section titled "Import and Export" and find the label "Export Comments to Disqus".  Click the "Export Comments" button.</p>
 
-<p><img src="http://iyware.com/content/images/2015/01/export-comments-to-disqus-section.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/01/export-comments-to-disqus-section.png" alt=""></p>
 
 <p>Shortly you should get an email from Disqus saying that comment migration has begun.</p>
 
-<p><img src="http://iyware.com/content/images/2015/01/email-saying-disqus-import-began.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/01/email-saying-disqus-import-began.png" alt=""></p>
 
 <p>The linked site will show you the progress and tell you that it might take up to 24 hours to complete.  My site only too 3 or 4 hours, but I don't have too many comments (maybe 100?).  </p>
 
@@ -677,13 +677,13 @@ echo "Deployed to github"
 
 <p>the Ghost exporter DOES export the comments.  Since I had over 1,800 spam comments they all got added to the JSON file and caused a real headache later- just to be ignored by Ghost.  So do yourself a favor, and delete the comments.</p>
 
-<p><img src="http://iyware.com/content/images/2015/01/all-wordpress-comments-deleted.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/01/all-wordpress-comments-deleted.png" alt=""></p>
 
 <p>After this you might want to temporarily disable commenting on your WordPress site or fully integrate Disqus because if people continue adding comments to WP after you've done the migration, they will be lost when you kick over to Ghost.</p>
 
 <p>Finally you can head to your Disqus dashboard and view your site's comments there.</p>
 
-<p><img src="http://iyware.com/content/images/2015/01/disqus-moderation-dashboard.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/01/disqus-moderation-dashboard.png" alt=""></p>
 
 <h3 id="exportyourwordpressmediauploads">Export Your WordPress Media (Uploads)</h3>
 
@@ -711,13 +711,13 @@ echo "Deployed to github"
 
 <p>It does not matter if you have "Organize my uploads into month- and year-based folders" checked or not.  However, IF you do have it enabled you will be able to get even richer Ghost integration.  If you don't please don't change it- as this will only affect new media files.</p>
 
-<p><img src="http://iyware.com/content/images/2015/01/wordpress-multimedia-settings.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/01/wordpress-multimedia-settings.png" alt=""></p>
 
 <h4 id="downloadyourwordpressmediafiles">Download Your WordPress Media Files</h4>
 
 <p>Once you know where the files are open up your FTP client and download the entire containing folder.  So in the example above I would be downloading <code>/assets/</code> folder.  If yours is the default you will be downling the <code>/uploads/</code> folder NOT <code>/wp-content/</code>.  If you accidentally download <code>/wp-content/</code> it's OK- we'll just pull <code>/uploads/</code> from inside of it later.</p>
 
-<p><img src="http://iyware.com/content/images/2015/01/ftp-down-all-wordpress-uploads.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/01/ftp-down-all-wordpress-uploads.png" alt=""></p>
 
 <p>If you don't know your FTP credentials you'll need to check with your hosting provider about how to access.  If you don't have FTP you could try using the "<a href="https://wordpress.org/plugins/downml/">downML</a>" WordPress plugin to download your media library directly from WordPress.  I haven't personally tried this plugin.</p>
 
@@ -725,7 +725,7 @@ echo "Deployed to github"
 
 <p>This isn't a necessary step, but since Ghost doesn't have rich multimedia handling you could take this opportunity to properly minimize all of your media.  I simply dragged the entire <code>assets</code> folder that I downloaded onto the <a href="https://imageoptim.com/">ImageOptim</a> application.</p>
 
-<p><img src="http://iyware.com/content/images/2015/01/image-optimization-in-progress.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/01/image-optimization-in-progress.png" alt=""></p>
 
 <p>You might notice that for every file uploaded to WordPress, e.g. "1.png" there are multiple versions in the media folder.  This is because the way WordPress works is to create multiple sizes of each image and store them on the server, which you can then insert into a post/page/whatever.  Ghost will only use one version but it doesn't hurt to have them all there- it will only use more disk space, not more bandwidth.</p>
 
@@ -741,7 +741,7 @@ echo "Deployed to github"
 
 <p>Now you can take your WordPress uploads folder and just drop it into the <code>/ghost/content/images/</code> folder on your install.  You can see that I renamed mine to "import" (which might not have been the best idea) but if an image failed I wanted to know it was from WordPress.</p>
 
-<p><img src="http://iyware.com/content/images/2015/01/wp-content-in-ghost-content.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/01/wp-content-in-ghost-content.png" alt=""></p>
 
 <p>If you were using year and month folders in WordPress then you can merge the folder with the Ghost folder for a completely seamless migration.  However, since I haven't tested this You might need to be careful for name collisions when adding media in the future.  This should NOT be an issue because importing our WordPress post content (covered later) <em>should</em> add the media references to the sqlite database.</p>
 
@@ -749,7 +749,7 @@ echo "Deployed to github"
 
 <p>We'll still have a little more work to do to point the post data to the new URL but that will be covered later on.  For now your physical assets are located in Ghost.  You can test this by creating a new post in Ghost, inserting an image, and pointing the path to an imported image:</p>
 
-<p><img src="http://iyware.com/content/images/2015/01/wordpress-image-imported-into-ghost-1.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/01/wordpress-image-imported-into-ghost-1.png" alt=""></p>
 
 <h3 id="exportyourwordpressdata">Export Your WordPress Data</h3>
 
@@ -769,7 +769,7 @@ echo "Deployed to github"
 
 <p>The "<a href="https://wordpress.org/plugins/post-type-switcher/">Post Type Switcher</a>" WordPress plugin is a great utility for switching individual posts.  To change a post type after you have installed this plugin simply go to edit the post (page, or whatever) and click "Edit" under the "Post Type" section in the "Publish" widget, choose Post or Page, and click "Update".</p>
 
-<p><img src="http://iyware.com/content/images/2015/01/post-type-switcher-example.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/01/post-type-switcher-example.png" alt=""></p>
 
 <p>If You have a lot of posts to convert you might consider using the "<a href="https://wordpress.org/plugins/convert-post-types/">Convert Post Types</a>" plugin instead.  I have not personally used this plugin.</p>
 
@@ -777,11 +777,11 @@ echo "Deployed to github"
 
 <p>As we mentioned earlier, Ghost does not support Categories- only tags.  As a result when we export WordPress data later categories will be lost.  If you wish to preserve a category-like metadata in your post you must add the category as a tag in your WordPress posts.</p>
 
-<p><img src="http://iyware.com/content/images/2015/01/category-not-a-tag.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/01/category-not-a-tag.png" alt=""></p>
 
 <p>In this example the category "Android" will not be preserved when exporting to Ghost.  I need to manually add the category as a tag.</p>
 
-<p><img src="http://iyware.com/content/images/2015/01/category-and-tag.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/01/category-and-tag.png" alt=""></p>
 
 <p>Now when I export my WordPress data the tag "Android" will still be associated with this post.  At the time of this writing Ghost 0.5.8 has only rudimentary tag support, so you can't set "Android" as the first or primary tag or anything like that- tags are simply all listed alphabetically.</p>
 
@@ -791,11 +791,11 @@ echo "Deployed to github"
 
 <p>The Ghost export plugin will export all users and associated metadata, so if you have "Anyone can register" enabled under Settings &rarr; General in your WordPress instance you will need to check your users page to see how many users you have.</p>
 
-<p><img src="http://iyware.com/content/images/2015/01/anyone-can-register-is-enabled.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/01/anyone-can-register-is-enabled.png" alt=""></p>
 
 <p>Navigate to Users &rarr; All Users and see how many users are registered on your site.  My site had over 18,000 users registered with the default role "Subscriber".  If you don't have too many users you can filter the role and delete them.</p>
 
-<p><img src="http://iyware.com/content/images/2015/01/picture-of-too-many-wp-subscribers.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/01/picture-of-too-many-wp-subscribers.png" alt=""></p>
 
 <p>However, if you have more than a few hundred users it will be more effective to delete the users directly from the database.  You can connect to phpMyAdmin or directly to your database and execute the following SQL commands.</p>
 
@@ -819,13 +819,13 @@ WHERE user_id NOT IN
 
 <p>Again, please make sure you have a backup of your database first.  After you execute the SQL commands you can refresh the All Users page on WordPress and only post authors should be left- in my case just my account.</p>
 
-<p><img src="http://iyware.com/content/images/2015/01/all-extra-wp-users-deleted.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/01/all-extra-wp-users-deleted.png" alt=""></p>
 
 <h4 id="installwordpressghostexporter">Install WordPress Ghost Exporter</h4>
 
 <p>I've mentioned exporting your WordPress data to Ghost a few times so far and now we're going to get ready to do just that.  The final WordPress plugin you'll need to install is the oddly named "<a href="https://wordpress.org/plugins/ghost/">Ghost</a>" which takes all of WordPress data, and converts it to a format that can be imported to your Ghost instance.  Once you've installed and activated the plugin head to Tools &rarr; Export to Ghost in WordPress.</p>
 
-<p><img src="http://iyware.com/content/images/2015/01/export-to-ghost-page.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/01/export-to-ghost-page.png" alt=""></p>
 
 <h4 id="exportyourghostjsonfile">Export Your Ghost JSON File</h4>
 
@@ -833,7 +833,7 @@ WHERE user_id NOT IN
 
 <p>WordPress will think for a minute and you should eventually get a download prompt for a .json file</p>
 
-<p><img src="http://iyware.com/content/images/2015/01/download-wp2ghost-json-file.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/01/download-wp2ghost-json-file.png" alt=""></p>
 
 <p>Save the file to your local machine and you're done with WordPress for now.</p>
 
@@ -868,7 +868,7 @@ WHERE user_id NOT IN
 
 <p>I ended up settling on the script level so that it only changed it for this export tool.  To do this, in WordPress head to Plugins &rarr; Editor and choose "Ghost" from the menu on the top right then select the file <code>ghost/class-ghost.php</code>.  </p>
 
-<p><img src="http://iyware.com/content/images/2015/01/editing-a-plugin-in-wordpress.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/01/editing-a-plugin-in-wordpress.png" alt=""></p>
 
 <p>Search the file for the definition of the function <code>populate_data()</code> at the begging of the function add an <code>ini_set()</code>.  Your code should now look like this:</p>
 
@@ -953,7 +953,7 @@ WHERE user_id NOT IN
 
 <p>You won't necessarily know that you have a corrupt file until you go to import it and it fails.  But a fast way to check if your download file is vaild is to either open it in a text editor and check, or pass it to a website like <a href="http://jsonlint.com/">JSONLint</a>.  A corrupt file would look something like this:</p>
 
-<p><img src="http://iyware.com/content/images/2015/01/botched-JSON-export.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/01/botched-JSON-export.png" alt=""></p>
 
 <p>If you look closesly you can see that where it falls apart is actually on a user account.  When I first tried to export my WP data to JSON the file size was over 4MB.  4MB of text is quite a lot of data.  After removing comments, users, drafts, etc... the final file size was 498Kb.  So if you're getting a botched JSON file please make sure that you've followed this tutorial so far- otherwise investigate where it's failing and if you can't fix it submit a report at the <a href="https://wordpress.org/support/plugin/ghost">WordPress Support Forums for Ghost</a>.</p>
 
@@ -1028,7 +1028,7 @@ http:\/\/iyware.com\/assets\/
 
 <p>Once we've rewritten the paths for our media to be relative to our Ghost instance we need to edit the source for our images to always use the original image.  Go back to your WordPress instance and note the thumbnail sizes for images under Settings &rarr; Media.</p>
 
-<p><img src="http://iyware.com/content/images/2015/01/wordpress-image-sizes.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/01/wordpress-image-sizes.png" alt=""></p>
 
 <p>When you insert an image into a WordPress post you generally have to choose an image size and WordPress will insert the resized image with the dimensions appended to it inside of an anchor element linked to the original.  So, for example an image called "post.jpg" that was inserted into a WordPress post at medium size (using the settings above) would generate the following HTML:</p>
 
@@ -1060,7 +1060,7 @@ NULL
 
 <p>Now that our JSON file has been edited to better work with it's ready to be imported to Ghost.  Fortunately this is about the easiest part of the process.  On your Ghost instance head to Settings &rarr; Labs &rarr; Import.</p>
 
-<p><img src="http://iyware.com/content/images/2015/01/ghost-labs-import.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/01/ghost-labs-import.png" alt=""></p>
 
 <p>Click "Browse" and then select your edited JSON file and click "Import".  When the import is finished you should be able to browse your posts on the back-end and the front-end with working images and links to other media resources (.zip, .html, etc...).</p>
 
@@ -1072,7 +1072,7 @@ NULL
 
 <p>Before we integrate the code there are a couple of settings worth checking at the Disqus website.  In the Disqus Admin Panel click on the "settings" tab and scroll to "Community Settings".</p>
 
-<p><img src="http://iyware.com/content/images/2015/01/disqus-community-settings.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/01/disqus-community-settings.png" alt=""></p>
 
 <p>It's worth reviewing some of the settings regarding moderation and guest posting.  I personally enabled guest posting as I don't necessarily expect someone to sign up for an account at a third party website to comment on my site.</p>
 
@@ -1098,23 +1098,23 @@ NULL
 
 <p>If you intend to run Ghost on the same domain as your WordPress instance was originally running you'll need to move your WordPress to a different domain.  Personally I moved my WordPress instance to the <code>old.</code> subdomain.  To do this you can simply head to Settings -> General in WordPress and change both "WordPress Address (URL) and "Site Address (URL)" to the new domain that you wish to use.</p>
 
-<p><img src="http://iyware.com/content/images/2015/01/wordpress-settings-general.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/01/wordpress-settings-general.png" alt=""></p>
 
 <p>Without doing a massive find and replace in your database a lot of things will probably break- like image URLs but the site will be largely functional.</p>
 
 <p>Please note that as soon as you change this setting your WordPress site will stop serving at the old URL and only serve from the new URL so if you need to configure the submain with your DNS provider make sure to do that too.  I'm using CloudFlare for DNS so I simply added an "A Record" for "old" pointing to the IP address where WordPress is hosted.</p>
 
-<p><img src="http://iyware.com/content/images/2015/01/redirect-to-old-wordpress.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/01/redirect-to-old-wordpress.png" alt=""></p>
 
 <p>If you've already published Ghost to your domain and lost access to WordPress you can change it in the database directly.  Here's an example of the two fields to change in phpMyAdmin but changing directly in SQL will work too.</p>
 
 <p>Field <code>siteurl</code> in table <code>wp_options</code></p>
 
-<p><img src="http://iyware.com/content/images/2015/01/edit-old-wordpress-database-siteurl.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/01/edit-old-wordpress-database-siteurl.png" alt=""></p>
 
 <p>Field <code>home</code> in table <code>wp_options</code></p>
 
-<p><img src="http://iyware.com/content/images/2015/01/edit-old-wordpress-home.png" alt=""></p>
+<p><img src="https://iyware.com/content/images/2015/01/edit-old-wordpress-home.png" alt=""></p>
 
 <h2 id="finalsteps">Final Steps</h2>
 
@@ -1126,13 +1126,13 @@ NULL
 
 <p>Next time I'll write about some of the other things I've done to customize my Ghost instance which I think are rather nice, but for now that's the end of this tutorial.</p>
 
-<p>Happy blogging!</p>]]></description><link>http://iyware.com/migrate-from-wordpress-to-ghost/</link><guid isPermaLink="false">8884244a-654c-4a95-b0f0-24fcae4a8472</guid><category><![CDATA[Ghost]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Mon, 19 Jan 2015 07:49:03 GMT</pubDate></item><item><title><![CDATA[Moving]]></title><description><![CDATA[<p><strong>Update</strong>: We're mostly back up now.</p>
+<p>Happy blogging!</p>]]></description><link>https://iyware.com/migrate-from-wordpress-to-ghost/</link><guid isPermaLink="false">8884244a-654c-4a95-b0f0-24fcae4a8472</guid><category><![CDATA[Ghost]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Mon, 19 Jan 2015 07:49:03 GMT</pubDate></item><item><title><![CDATA[Moving]]></title><description><![CDATA[<p><strong>Update</strong>: We're mostly back up now.</p>
 
 <p>Crazy things happening right now. You may notice this website looks very broken. Well, that’s just because I’m in the process of moving from a hosted version of WordPress to something a lot more nerdy:</p>
 
 <p>A local <a href="http://ghost.org/">ghost</a> exported to static HTML via <a href="https://github.com/axitkhurana/buster">buster</a> (a lá <a href="http://jekyllrb.com/">jekyll</a>) and then pushed to <a href="https://pages.github.com/">github pages</a>.</p>
 
-<p>Until then, this site’s gonna look a little broken, oh well :(</p>]]></description><link>http://iyware.com/moving/</link><guid isPermaLink="false">d80a404b-304a-41ac-afc0-fcf64e978200</guid><category><![CDATA[DevOps]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Fri, 09 Jan 2015 13:46:30 GMT</pubDate></item><item><title><![CDATA[Nexus5 Stock Lollipop Root How-To]]></title><description><![CDATA[<p>I just got my new <a href="http://www.google.com/nexus/5/">Nexus 5</a>, upgrading from my now almost 3 year old <a href="http://en.wikipedia.org/wiki/Galaxy_Nexus">Galaxy Nexus</a>. I got a good deal on the Galaxy Nexus because I bought it well after the <a href="http://en.wikipedia.org/wiki/Nexus_4">Nexus 4</a> was released and the price had dropped significantly. Unfortunately because of Google’s marketing strategy with the <a href="http://www.google.com/nexus/6/">Nexus 6</a> that didn’t happen this time; the prices for the Nexus 5 have remained pretty steady. But I needed (wanted) a new phone, so I bought it.</p>
+<p>Until then, this site’s gonna look a little broken, oh well :(</p>]]></description><link>https://iyware.com/moving/</link><guid isPermaLink="false">d80a404b-304a-41ac-afc0-fcf64e978200</guid><category><![CDATA[DevOps]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Fri, 09 Jan 2015 13:46:30 GMT</pubDate></item><item><title><![CDATA[Nexus5 Stock Lollipop Root How-To]]></title><description><![CDATA[<p>I just got my new <a href="http://www.google.com/nexus/5/">Nexus 5</a>, upgrading from my now almost 3 year old <a href="http://en.wikipedia.org/wiki/Galaxy_Nexus">Galaxy Nexus</a>. I got a good deal on the Galaxy Nexus because I bought it well after the <a href="http://en.wikipedia.org/wiki/Nexus_4">Nexus 4</a> was released and the price had dropped significantly. Unfortunately because of Google’s marketing strategy with the <a href="http://www.google.com/nexus/6/">Nexus 6</a> that didn’t happen this time; the prices for the Nexus 5 have remained pretty steady. But I needed (wanted) a new phone, so I bought it.</p>
 
 <p>Unfortunately the Nexus 5 I received shipped with Android 4.4.x and I knew that 5.0 was available. I didn’t really want to do an upgrade immediately after setting up the phone, so I decided it would be best to flash the factory image since I have no data to lose. When I went to the <a href="http://forum.xda-developers.com/google-nexus-5">Nexus 5 section</a> of XDA-Developers I was a little disappointed. I just wanted a rooted, stock Lollipop ROM, but didn’t find one. In addition a lot of the toolkits etc… seemed a little dated. The last thing I wanted to do was download toolkits and then be manually updating components (roms, recoveries, root, etc…) so I decided to just do it myself. It was all pretty easy, so here’s the process I used, getting all the files directly from the sources, you can copy and paste these commands into your terminal and have your phone up and running pretty quickly- depending on your internet connection speed.</p>
 
@@ -1160,7 +1160,7 @@ adb reboot-bootloader
 # now boot recovery and install superSU zip, done!
 </code></pre>
 
-<p>The process is pretty simple: download root, TWRP, and the stock lollipop ROM. Flash the ROM, flash recovery, reboot the device, push the root zip, and reboot to fastboot. You’ll still need to manually flash SuperSU zip in TWRP, but that’s it. No messing with broken rapidshare links, no messing with outdated toolkits, just a nice rooted ROM.</p>]]></description><link>http://iyware.com/nexus5-stock-lollipop-root/</link><guid isPermaLink="false">43e6a11f-85a0-4114-8b8a-67c237bd26bb</guid><category><![CDATA[Android]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Fri, 12 Dec 2014 08:41:50 GMT</pubDate></item><item><title><![CDATA[Yosemite MAMP Homebrew Dev Setup, Part 2]]></title><description><![CDATA[<p>In my previous post <a href="http://iyware.com/osx-yosemite-mamp-homebrew-development-setup/" title="OS X 10.10 Yosemite, Apache, MySQL, PHP 5.6, (MAMP) Homebrew Dev Setup">OS X 10.10 Yosemite, Apache, MySQL, PHP 5.6, (MAMP) Homebrew Dev Setup</a> I covered a lot. Like a lot a lot, but by the end of the post all we had really accomplished was installing the basic building blocks of a development server, namely: Apache, MySQL, and PHP. In this post we’ll take those components and turn them into a sweet development workflow.</p>
+<p>The process is pretty simple: download root, TWRP, and the stock lollipop ROM. Flash the ROM, flash recovery, reboot the device, push the root zip, and reboot to fastboot. You’ll still need to manually flash SuperSU zip in TWRP, but that’s it. No messing with broken rapidshare links, no messing with outdated toolkits, just a nice rooted ROM.</p>]]></description><link>https://iyware.com/nexus5-stock-lollipop-root/</link><guid isPermaLink="false">43e6a11f-85a0-4114-8b8a-67c237bd26bb</guid><category><![CDATA[Android]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Fri, 12 Dec 2014 08:41:50 GMT</pubDate></item><item><title><![CDATA[Yosemite MAMP Homebrew Dev Setup, Part 2]]></title><description><![CDATA[<p>In my previous post <a href="https://iyware.com/osx-yosemite-mamp-homebrew-development-setup/" title="OS X 10.10 Yosemite, Apache, MySQL, PHP 5.6, (MAMP) Homebrew Dev Setup">OS X 10.10 Yosemite, Apache, MySQL, PHP 5.6, (MAMP) Homebrew Dev Setup</a> I covered a lot. Like a lot a lot, but by the end of the post all we had really accomplished was installing the basic building blocks of a development server, namely: Apache, MySQL, and PHP. In this post we’ll take those components and turn them into a sweet development workflow.</p>
 
 <h2 id="updatingbrew">Updating Brew</h2>
 
@@ -1412,7 +1412,7 @@ git clone git@github.com:moodle/moodle.git --branch MOODLE_27_STABLE --single-br
 
 <p>So there you go! Mac OS X with brewed versions of important stuff like openssl and git, Apache 2.4, MySQL, and PHP 5.6 and a killer setup using mod<em>vhost</em>alias and dnsmasq to provision .localhost domains on the fly. Of course there are a million ways to dev from here, but this is a pretty solid foundation.</p>
 
-<p>If you need help with educational technology in your institution, from strategic planning, to implementation, to technical support contact us and we can help get you on the path to success.</p>]]></description><link>http://iyware.com/yosemite-mamp-homebrew-dev-setup-part-2/</link><guid isPermaLink="false">9a641183-9430-493a-9294-b85129cefb68</guid><category><![CDATA[DevOps]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Tue, 28 Oct 2014 19:39:48 GMT</pubDate></item><item><title><![CDATA[OS X 10.10 Yosemite, Apache, MySQL, PHP 5.6, (MAMP) Homebrew Dev Setup]]></title><description><![CDATA[<h2 id="update">Update:</h2>
+<p>If you need help with educational technology in your institution, from strategic planning, to implementation, to technical support contact us and we can help get you on the path to success.</p>]]></description><link>https://iyware.com/yosemite-mamp-homebrew-dev-setup-part-2/</link><guid isPermaLink="false">9a641183-9430-493a-9294-b85129cefb68</guid><category><![CDATA[DevOps]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Tue, 28 Oct 2014 19:39:48 GMT</pubDate></item><item><title><![CDATA[OS X 10.10 Yosemite, Apache, MySQL, PHP 5.6, (MAMP) Homebrew Dev Setup]]></title><description><![CDATA[<h2 id="update">Update:</h2>
 
 <p>A quick update, this was originally written for Yosemite Beta 1, XCode 6 Beta, and PHP56 RC1. Now that the official versions of all those are out, a lot of this post is unnecessary because, well, stable software is much more… stable. Who knew? Anyways, here’s a tl;dr for the stable version:</p>
 
@@ -1510,7 +1510,7 @@ xcode-select: note: no developer tools were found at '/Applications/Xcode.app', 
 
 <p>with a prompt to download XCode command line tools:</p>
 
-<p><img src="http://iyware.com/content/images/import/Screen-Shot-2014-07-27-at-2.38.29-pm-960x600.png" alt="what git?"></p>
+<p><img src="https://iyware.com/content/images/import/Screen-Shot-2014-07-27-at-2.38.29-pm-960x600.png" alt="what git?"></p>
 
 <p>Go ahead and download it. It’s also worth it to install Xcode as well. For this post you will need both Xcode 5 which you can download from the <a href="https://developer.apple.com/downloads/index.action">Apple Developer site</a> and the <a href="https://developer.apple.com/xcode/downloads/">Xcode 6 beta</a>. I recommend that you rename Xcode 5 from "xcode.app" to "xcode5.app" and Xcode 6 from "Xcode-beta.app" to "Xcode.app" because most of our toolchain will be using the utilities in Xcode 6. Once Xcode and the command line tools are installed we can now use the version of git included with OS X- however it’s a little dated, and we’re going to install a newer version of git from somewhere else.</p>
 
@@ -1726,11 +1726,11 @@ Identity added: /Users/dannywahl/.ssh/id_rsa (/Users/dannywahl/.ssh/id_rsa)
 
 <p>You’ll want to give you key a title so that if you ever have a security issue at github you can see exactly which machine accessed or changed which repositories. Your page should look something like this:</p>
 
-<p><img src="http://iyware.com/content/images/import/addkey-960x600.png" alt="Add an SSH Public Key"></p>
+<p><img src="https://iyware.com/content/images/import/addkey-960x600.png" alt="Add an SSH Public Key"></p>
 
 <p>Click the "Add key" button and you’ll be taken back to the SSH Keys page, where your new key will be listed. If you look at terminal you’ll notice that the fingerprints match.</p>
 
-<p><img src="http://iyware.com/content/images/import/sshkeys-960x600.png" alt="sshkeys"></p>
+<p><img src="https://iyware.com/content/images/import/sshkeys-960x600.png" alt="sshkeys"></p>
 
 <p>For now we’re done with github. So far we’ve set up homebrew, installed git, created an SSH key pair, and added a copy of our public key to github. Next we’ll start setting up the "server" side of our development machine, starting with Apache.</p>
 
@@ -1748,7 +1748,7 @@ Identity added: /Users/dannywahl/.ssh/id_rsa (/Users/dannywahl/.ssh/id_rsa)
 
 <p>Which is actually not that bad. Apache is one of those softwares that updates rather slowly, 2.4.10 was released on July 10th. Since Apache is included in OS X we can just use that right? Sure, just visit this link: <a href="http://localhost/">http://localhost</a>. Oops, does your screen look something like this?</p>
 
-<p><img src="http://iyware.com/content/images/import/unabletoconnect-960x600.png" alt="localhost: Unable to connect"></p>
+<p><img src="https://iyware.com/content/images/import/unabletoconnect-960x600.png" alt="localhost: Unable to connect"></p>
 
 <p>That’s because even though Apache is included in OS X it’s off by default. We have a few options available that we’ll look at to enabling Apache.</p>
 
@@ -1765,7 +1765,7 @@ Identity added: /Users/dannywahl/.ssh/id_rsa (/Users/dannywahl/.ssh/id_rsa)
 
 <p>After you type your password head back to <a href="http://loclahost/">http://localhost</a> and it should look more like this:</p>
 
-<p><img src="http://iyware.com/content/images/import/itworks-960x600.png" alt="it works!"></p>
+<p><img src="https://iyware.com/content/images/import/itworks-960x600.png" alt="it works!"></p>
 
 <p>$20 bucks for that. To be fair to Apple, Server does give you lots of other functionality but for our purposes they’re not really necessary. Kind of like installing XCode to use git. Now, I’m going to recommend that you actually stop the Apache service because we are not going to use the built in version that Apple ships with.</p>
 
@@ -1924,7 +1924,7 @@ sudo httpd -k stop
 
 <p>Now Apache is installed (by you) and running (as root). Go ahead and go back to <a href="http://localhost/">http://localhost</a> and you should see this:</p>
 
-<p><img src="http://iyware.com/content/images/import/itworks1-960x600.png" alt="Apache is Installed"></p>
+<p><img src="https://iyware.com/content/images/import/itworks1-960x600.png" alt="Apache is Installed"></p>
 
 <p>By default the Apache configuration files are stored in <code>/usr/local/etc/apache2/2.4</code> and the web root is at <code>/usr/local/var/www/htdocs</code>. We'll revisit further Apache configuration when we get to Moodle setup, but for now enjoy your shiny new site!</p>
 
@@ -2548,9 +2548,9 @@ You can read more about composer and packagist by running:
 
 <h2 id="wrappingup">Wrapping Up</h2>
 
-<p>That's the end of the first part of this extensive walk through of setting up a Moodle development server. This first part should really help anyone doing any sort of PHP development on a Mac whether it's WordPress, Drupal, or whatever. In part two we'll dive into configuring Apache and MySQL for Moodle development as well how to use the MDK, git, and JIRA to contribute your code and bug fixes back to the community.</p>]]></description><link>http://iyware.com/osx-yosemite-mamp-homebrew-development-setup/</link><guid isPermaLink="false">30dbf1e7-e4cf-4997-84ef-d8fb05d78850</guid><category><![CDATA[DevOps]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Wed, 13 Aug 2014 11:17:52 GMT</pubDate></item><item><title><![CDATA[Elegance: What's coming?]]></title><description><![CDATA[<p>This is just a quick note to say that the next minor version of Elegance is in development. The next release (version 2.7.1) will feature a lot of bug fixes and a couple of new features. If you’d like to follow development you can check the status of the <a href="https://github.com/thedannywahl/moodle-theme_elegance/issues?milestone=1&amp;page=1&amp;state=open">2.7.1 Milestone over at github</a>. It’s already past due by a day- but we had a lot of new issues opened in the last week that we wanted to fix before a new release. In general we do a lot of testing on the weekly+ and master branches of Moodle so we <em>should</em> be able to get a release out the door one week behind a Moodle release.</p>
+<p>That's the end of the first part of this extensive walk through of setting up a Moodle development server. This first part should really help anyone doing any sort of PHP development on a Mac whether it's WordPress, Drupal, or whatever. In part two we'll dive into configuring Apache and MySQL for Moodle development as well how to use the MDK, git, and JIRA to contribute your code and bug fixes back to the community.</p>]]></description><link>https://iyware.com/osx-yosemite-mamp-homebrew-development-setup/</link><guid isPermaLink="false">30dbf1e7-e4cf-4997-84ef-d8fb05d78850</guid><category><![CDATA[DevOps]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Wed, 13 Aug 2014 11:17:52 GMT</pubDate></item><item><title><![CDATA[Elegance: What's coming?]]></title><description><![CDATA[<p>This is just a quick note to say that the next minor version of Elegance is in development. The next release (version 2.7.1) will feature a lot of bug fixes and a couple of new features. If you’d like to follow development you can check the status of the <a href="https://github.com/thedannywahl/moodle-theme_elegance/issues?milestone=1&amp;page=1&amp;state=open">2.7.1 Milestone over at github</a>. It’s already past due by a day- but we had a lot of new issues opened in the last week that we wanted to fix before a new release. In general we do a lot of testing on the weekly+ and master branches of Moodle so we <em>should</em> be able to get a release out the door one week behind a Moodle release.</p>
 
-<p>So what do you need to do to get ready for the next version? I suggest you head over to the <a href="http://realfavicongenerator.net/">Favicon Generator</a> and make sure you have branding for all your mobile devices.</p>]]></description><link>http://iyware.com/elegance-whats-coming/</link><guid isPermaLink="false">79d0f9f9-72ae-4b96-9992-d33bb70ca661</guid><category><![CDATA[Moodle]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Tue, 22 Jul 2014 07:56:12 GMT</pubDate></item><item><title><![CDATA[Moodle $OUTPUT: An Introduction]]></title><description><![CDATA[<p>Here at iyWare we’re not really developers. Sure we write some code, and we have even released a few plugins for <a href="https://github.com/thedannywahl/Zebra_4_Moodle_2">Moodle</a>, <a href="https://github.com/thedannywahl/California_4_WordPress_3">WordPress</a>, and <a href="https://github.com/thedannywahl/Zebra_4_Mahara">Mahara</a> but really we’re in the educational technology consulting business. Recently <a href="http://www.iyware.com/new-home-elegance/" title="New Home for Elegance">we took over development</a> of the <a href="https://moodle.org/plugins/view.php?plugin=theme_elegance" title="Elegance">Elegance</a> Moodle theme from its original author and began auditing the code. We quickly released a <a href="http://www.iyware.com/elegance-2-7-release/" title="Elegance 2.7 release">Moodle 2.7 compatible</a> version- but to the (<a href="https://moodle.org/mod/forum/discuss.php?d=263376#p1141999">understandable</a>) <a href="https://moodle.org/mod/forum/discuss.php?d=263376#p1142297">dissatisfaction</a> <a href="https://moodle.org/mod/forum/discuss.php?d=263376#p1142539">of a lot</a> <a href="https://moodle.org/mod/forum/discuss.php?d=263376#p1143365">of users</a> some of the changes we made were perceived as “worse” or at least “not better” than the older version of the theme. So in this post I’d like to clarify why some of the changes we made were made and why they’re actually better. This may get a bit technical but I’ll try to keep it simple.</p>
+<p>So what do you need to do to get ready for the next version? I suggest you head over to the <a href="http://realfavicongenerator.net/">Favicon Generator</a> and make sure you have branding for all your mobile devices.</p>]]></description><link>https://iyware.com/elegance-whats-coming/</link><guid isPermaLink="false">79d0f9f9-72ae-4b96-9992-d33bb70ca661</guid><category><![CDATA[Moodle]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Tue, 22 Jul 2014 07:56:12 GMT</pubDate></item><item><title><![CDATA[Moodle $OUTPUT: An Introduction]]></title><description><![CDATA[<p>Here at iyWare we’re not really developers. Sure we write some code, and we have even released a few plugins for <a href="https://github.com/thedannywahl/Zebra_4_Moodle_2">Moodle</a>, <a href="https://github.com/thedannywahl/California_4_WordPress_3">WordPress</a>, and <a href="https://github.com/thedannywahl/Zebra_4_Mahara">Mahara</a> but really we’re in the educational technology consulting business. Recently <a href="http://www.iyware.com/new-home-elegance/" title="New Home for Elegance">we took over development</a> of the <a href="https://moodle.org/plugins/view.php?plugin=theme_elegance" title="Elegance">Elegance</a> Moodle theme from its original author and began auditing the code. We quickly released a <a href="http://www.iyware.com/elegance-2-7-release/" title="Elegance 2.7 release">Moodle 2.7 compatible</a> version- but to the (<a href="https://moodle.org/mod/forum/discuss.php?d=263376#p1141999">understandable</a>) <a href="https://moodle.org/mod/forum/discuss.php?d=263376#p1142297">dissatisfaction</a> <a href="https://moodle.org/mod/forum/discuss.php?d=263376#p1142539">of a lot</a> <a href="https://moodle.org/mod/forum/discuss.php?d=263376#p1143365">of users</a> some of the changes we made were perceived as “worse” or at least “not better” than the older version of the theme. So in this post I’d like to clarify why some of the changes we made were made and why they’re actually better. This may get a bit technical but I’ll try to keep it simple.</p>
 
 <h2 id="doutputrulesall">$OUTPUT Rules All</h2>
 
@@ -2657,7 +2657,7 @@ You can read more about composer and packagist by running:
 
 <p>The above two examples are examples of #3. They were providing functionality that should be provided by “real” plugins. This makes testing and maintaining the theme exponentially harder because you usage cases and configuration options increase with each additional fake plugin you add to your theme.</p>
 
-<p>Now, to be clear, we didn’t remove these features from Elegance simply because ideally they should be a standalone plugin. We removed them because they were broken. Sure, for most simple Moodle installs they mostly worked, but we have to support all Moodle installs. And the only way to ensure that it works properly is to build the functionality correctly. So, while we understand that it’s not fun to lose functionality (especially stuff you really like!) we’re now on the path to being able to do it the right way.</p>]]></description><link>http://iyware.com/moodle-output-an-introduction/</link><guid isPermaLink="false">da4fb4ba-9b6e-4f6e-a3f1-41c4eeeb5c7f</guid><category><![CDATA[Moodle]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Fri, 18 Jul 2014 16:44:33 GMT</pubDate></item><item><title><![CDATA[Elegance 2.7 release]]></title><description><![CDATA[<p>It’s taken a little bit longer than we had hoped but we’re happy to announce that the official 2.7 version of Elegance has been released! It’s currently available in the <a href="https://moodle.org/plugins/view.php?plugin=theme_elegance">Moodle plugins directory</a>.</p>
+<p>Now, to be clear, we didn’t remove these features from Elegance simply because ideally they should be a standalone plugin. We removed them because they were broken. Sure, for most simple Moodle installs they mostly worked, but we have to support all Moodle installs. And the only way to ensure that it works properly is to build the functionality correctly. So, while we understand that it’s not fun to lose functionality (especially stuff you really like!) we’re now on the path to being able to do it the right way.</p>]]></description><link>https://iyware.com/moodle-output-an-introduction/</link><guid isPermaLink="false">da4fb4ba-9b6e-4f6e-a3f1-41c4eeeb5c7f</guid><category><![CDATA[Moodle]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Fri, 18 Jul 2014 16:44:33 GMT</pubDate></item><item><title><![CDATA[Elegance 2.7 release]]></title><description><![CDATA[<p>It’s taken a little bit longer than we had hoped but we’re happy to announce that the official 2.7 version of Elegance has been released! It’s currently available in the <a href="https://moodle.org/plugins/view.php?plugin=theme_elegance">Moodle plugins directory</a>.</p>
 
 <p>As with all of our releases we have also opened a new <a href="https://moodle.org/mod/forum/discuss.php?d=263376">support thread</a> at the moodle.org forums. Since this is our first release since taking over development of this plugin we were primarily on a “how does this work?” expedition. As such there’s not a lot of new functionality, but there are quite a few bugs that have been fixed.</p>
 
@@ -2674,4 +2674,4 @@ You can read more about composer and packagist by running:
 
 <p>Finally we’d like to thank all the <a href="https://github.com/thedannywahl/moodle-theme_elegance/graphs/contributors">contributors</a> and <a href="https://github.com/thedannywahl/moodle-theme_elegance/issues?state=open">bug reporters</a> that helped make this release possible.</p>
 
-<p>Well what are you waiting for? <a href="https://moodle.org/plugins/view.php?plugin=theme_elegance">Go get it</a>!</p>]]></description><link>http://iyware.com/elegance-2-7-release/</link><guid isPermaLink="false">26a2e1d1-7c63-4255-bebf-89868ac5a236</guid><category><![CDATA[Moodle]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Fri, 04 Jul 2014 23:11:28 GMT</pubDate></item></channel></rss>
+<p>Well what are you waiting for? <a href="https://moodle.org/plugins/view.php?plugin=theme_elegance">Go get it</a>!</p>]]></description><link>https://iyware.com/elegance-2-7-release/</link><guid isPermaLink="false">26a2e1d1-7c63-4255-bebf-89868ac5a236</guid><category><![CDATA[Moodle]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Fri, 04 Jul 2014 23:11:28 GMT</pubDate></item></channel></rss>
