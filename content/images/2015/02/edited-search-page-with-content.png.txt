@@ -1,7 +1,7 @@
 <HTML>
 <!-- Created by HTTrack Website Copier/3.48-19 [XR&CO'2014] -->
 
-<!-- Mirrored from localhost:2368/content/images/2015/02/edited-search-page-with-content.png by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 04 Mar 2015 07:27:46 GMT -->
+<!-- Mirrored from localhost:2368/content/images/2015/02/edited-search-page-with-content.png by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 04 Mar 2015 07:30:37 GMT -->
 <HEAD>
 <META HTTP-EQUIV="Content-Type" CONTENT="text/html;charset=UTF-8"><META HTTP-EQUIV="Refresh" CONTENT="0; URL=edited-search-page-with-content.png/index.html"><TITLE>Page has moved</TITLE>
 </HEAD>
@@ -10,5 +10,5 @@
 </BODY>
 <!-- Created by HTTrack Website Copier/3.48-19 [XR&CO'2014] -->
 
-<!-- Mirrored from localhost:2368/content/images/2015/02/edited-search-page-with-content.png by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 04 Mar 2015 07:27:46 GMT -->
+<!-- Mirrored from localhost:2368/content/images/2015/02/edited-search-page-with-content.png by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 04 Mar 2015 07:30:37 GMT -->
 </HTML>
