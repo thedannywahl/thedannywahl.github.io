@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[iyWare]]></title><description><![CDATA[Things I Break]]></description><link>https://iyware.com/</link><generator>Ghost 0.5</generator><lastBuildDate>Wed, 04 Mar 2015 02:23:02 GMT</lastBuildDate><atom:link href="https://iyware.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Proxy Ghost with Homebrew Apache]]></title><description><![CDATA[<p>I don't know if you're like me, but I'm lazy.  As such I find adding ports to URLs to be quite tedius, so the fact that <a href="https://ghost.org/">Ghost</a> runs on a non-standard web port (<code>:2368</code> as opposed to <code>:80</code>) bugs me.  I know it's so that it can run in userspace and not colide with any other services, but still.  So in this post we'll outline how to fix that.</p>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[iyWare]]></title><description><![CDATA[Things I Break]]></description><link>https://iyware.com/</link><generator>Ghost 0.5</generator><lastBuildDate>Wed, 04 Mar 2015 02:37:47 GMT</lastBuildDate><atom:link href="https://iyware.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Proxy Ghost with Homebrew Apache]]></title><description><![CDATA[<p>I don't know if you're like me, but I'm lazy.  As such I find adding ports to URLs to be quite tedius, so the fact that <a href="https://ghost.org/">Ghost</a> runs on a non-standard web port (<code>:2368</code> as opposed to <code>:80</code>) bugs me.  I know it's so that it can run in userspace and not colide with any other services, but still.  So in this post we'll outline how to fix that.</p>
 
 <p>This outline should work for any version of <a href="http://httpd.apache.org/">Apache</a> but I'm using <a href="http://brew.sh/">homebrew</a> <a href="https://github.com/Homebrew/homebrew-apache/blob/master/httpd24.rb">Apache 2.4</a> using the <code>--with-privileged-ports</code> switch to run on port 80 but Apache can be running on any port.  If you're looking for how to install Apache I've written about it before <a href="https://iyware.com/osx-yosemite-mamp-homebrew-development-setup/">here</a>.</p>
 
@@ -204,7 +204,7 @@ LoadModule proxy_http_module libexec/mod_proxy_http.so
 
 <p>First I'd like to say that I am aware of, and initially used, the tool <a href="https://github.com/axitkhurana/buster">Buster</a> (get it, Ghost Buster), it's a fine little utility that basically functions as a fancy <code>wget</code> wrapper, but it has some <a href="https://github.com/axitkhurana/buster/issues/">issues</a>.  Issues that were preventing this site from being fully functional.  In the author's defense- some of it may have actually been caused by <a href="http://brew.sh/">homebrew</a>'s wget.  So I decided to investigate an alternative toolset.</p>
 
-<p>This bring us to <a href="http://www.httrack.com/">HTTrack</a>.  <code>httrack</code> is an alternative website downloader (like <code>wget</code>) and is available for just about <a href="http://www.httrack.com/page/2/en/index.html">every platform</a>.  HTTrack has a lot of options, and if you need something fancy I recommend that you <a href="http://www.httrack.com/html/fcguide.html">read the guide</a>.  That said, here's a step-by-step to deploy your Ghost blog to GitHub Pages.</p>
+<p>This bring us to <a href="http://www.httrack.com/">HTTrack</a>.  <code>httrack</code> is an alternative website downloader (like <code>wget</code>) and is available for just about <a href="http://www.httrack.com/page/2/en/">every platform</a>.  HTTrack has a lot of options, and if you need something fancy I recommend that you <a href="http://www.httrack.com/html/fcguide.html">read the guide</a>.  That said, here's a step-by-step to deploy your Ghost blog to GitHub Pages.</p>
 
 <h2 id="initializeyourgitrepository">Initialize Your Git Repository</h2>
 
@@ -245,7 +245,7 @@ git remote add origin git@github.com:[USER NAME]/[USER NAME].github.io.git
 <pre><code class="language-bash">httrack http://localhost:2368/ -O /PATH/TO/OUTPUT/FOLDER/ -c128 -I0 -#p "+sitemap*"  
 </code></pre>
 
-<p>Let's break this command down a little bit.  The first parameter is the path to the site you want to crawl, e.g. your ghost blog.  The second parameter <code>-O</code> is the path to the output folder.  You'll obviously need to replace <code>/PATH/TO/OUTPUT/FOLDER/</code> with your actual path (NOT the <code>localhost_2368</code> folder but it's parent.  Mine is <code>/Users/dannywahl/Sites/htdocs/iyware.com/</code>.  <code>-c128</code> means that we scrape with a rate of 128 simulatneous connections.  <code>-I0</code> tells httrack not to make a custom index.html file for the output and <code>-#p</code> is detailed output (verbose).</p>
+<p>Let's break this command down a little bit.  The first parameter is the path to the site you want to crawl, e.g. your ghost blog.  The second parameter <code>-O</code> is the path to the output folder.  You'll obviously need to replace <code>/PATH/TO/OUTPUT/FOLDER/</code> with your actual path (NOT the <code>localhost_2368</code> folder but it's parent.  Mine is <code>/Users/dannywahl/Sites/htdocs/iyware.com/</code>.  <code>-c128</code> means that we scrape with a rate of 128 simulatneous connections.  <code>-I0</code> tells httrack not to make a custom / file for the output and <code>-#p</code> is detailed output (verbose).</p>
 
 <p>The <code>"+sitemap*"</code> tells httrack to explicitly to grab any links to a sitemap.  Ghost automatically generates a sitemap, but it uses <code>@blog.url</code> to populate them so httrack will not scrape them by default- so we need add this command.  This might be dangerous if you blog content contains a lot of links to other sites' sitemaps.  You might consider changing it to your Ghost blog url, e.g. <code>"+https://iyware.com/sitemap*"</code> to only grab your site's sitemap.</p>
 
@@ -1451,7 +1451,7 @@ brew install php56 --homebrew-apxs --with-apache --with-homebrew-curl --with-hom
 chmod -R ug+w /usr/local/Cellar/php56/5.6.2/lib/php  
 pear config-set php_ini /usr/local/etc/php/5.6/php.ini  
 printf '\nAddHandler php5-script .php\nAddType text/html .php' &gt;&gt; /usr/local/etc/apache2/2.4/httpd.conf  
-perl -p -i -e 's/DirectoryIndex index.html/DirectoryIndex index.php index.html/g' /usr/local/etc/apache2/2.4/httpd.conf  
+perl -p -i -e 's/DirectoryIndex //DirectoryIndex index.php //g' /usr/local/etc/apache2/2.4/httpd.conf  
 printf '\nexport PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"' &gt;&gt; ~/.profile  
 # Dev Stuff 
 brew install composer  
@@ -2470,7 +2470,7 @@ AddType text/html .php
 
 <p>and find the line that starts with <code>DirectoryIndex</code> and change it to read:</p>
 
-<pre><code class="language-apacheconf">DirectoryIndex index.php index.html  
+<pre><code class="language-apacheconf">DirectoryIndex index.php /  
 </code></pre>
 
 <p>Save the document and then restart the httpd service with the following command:</p>

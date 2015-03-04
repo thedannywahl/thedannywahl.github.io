@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<!-- Mirrored from localhost:2368/proxy-ghost-with-homebrew-apache/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 04 Mar 2015 02:23:00 GMT -->
+<!-- Mirrored from localhost:2368/proxy-ghost-with-homebrew-apache/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 04 Mar 2015 02:37:46 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8" />
@@ -64,13 +64,13 @@
 
     <article role="main" class="">
         <header class="group">
-            <a href="../index.html" id="home_link">«</a>
+            <a href="../" id="home_link">«</a>
             <div class="hgroup">
             	<h1>Proxy Ghost with Homebrew Apache</h1>
             	<div class="meta">
             		<time datetime="2015-02-13">February 13, 2015</time>
             		&nbsp;&bull;&nbsp;
-					<span class="tags"><a href="../tag/devops/index.html">DevOps</a></span>
+					<span class="tags"><a href="../tag/devops/">DevOps</a></span>
             	</div>
 			</div>
         </header>
@@ -78,7 +78,7 @@
         <div class="text" id="js-post-content">
             <p>I don't know if you're like me, but I'm lazy.  As such I find adding ports to URLs to be quite tedius, so the fact that <a href="https://ghost.org/">Ghost</a> runs on a non-standard web port (<code>:2368</code> as opposed to <code>:80</code>) bugs me.  I know it's so that it can run in userspace and not colide with any other services, but still.  So in this post we'll outline how to fix that.</p>
 
-<p>This outline should work for any version of <a href="http://httpd.apache.org/">Apache</a> but I'm using <a href="http://brew.sh/">homebrew</a> <a href="https://github.com/Homebrew/homebrew-apache/blob/master/httpd24.rb">Apache 2.4</a> using the <code>--with-privileged-ports</code> switch to run on port 80 but Apache can be running on any port.  If you're looking for how to install Apache I've written about it before <a href="../osx-yosemite-mamp-homebrew-development-setup/index.html">here</a>.</p>
+<p>This outline should work for any version of <a href="http://httpd.apache.org/">Apache</a> but I'm using <a href="http://brew.sh/">homebrew</a> <a href="https://github.com/Homebrew/homebrew-apache/blob/master/httpd24.rb">Apache 2.4</a> using the <code>--with-privileged-ports</code> switch to run on port 80 but Apache can be running on any port.  If you're looking for how to install Apache I've written about it before <a href="../osx-yosemite-mamp-homebrew-development-setup/">here</a>.</p>
 
 <h2 id="enableapachemods">Enable Apache Mods</h2>
 
@@ -123,7 +123,7 @@ LoadModule proxy_http_module libexec/mod_proxy_http.so
 &lt;/VirtualHost&gt;  
 </code></pre>
 
-<p>You'll need to replace <code>example.com</code> with the domain that you'd like to access Ghost from.  If it's a localhost installation I highly suggest that you consider leveraging DNSmasq and mod_vhost_alias as well as this works well with that solution as well.  If you want more information about localhost development I've written previously about it <a href="../yosemite-mamp-homebrew-dev-setup-part-2/index.html#dnsmasq">here</a>.</p>
+<p>You'll need to replace <code>example.com</code> with the domain that you'd like to access Ghost from.  If it's a localhost installation I highly suggest that you consider leveraging DNSmasq and mod_vhost_alias as well as this works well with that solution as well.  If you want more information about localhost development I've written previously about it <a href="../yosemite-mamp-homebrew-dev-setup-part-2/#dnsmasq">here</a>.</p>
 
 <p>My VHost looks like this:</p>
 
@@ -162,19 +162,19 @@ LoadModule proxy_http_module libexec/mod_proxy_http.so
         <footer class="post-footer" role="contentinfo">
 
             <div class="vcard">
-                <a href="../rss/index.html" id="btn_feed" class="btn" title="Feed">
+                <a href="../rss/" id="btn_feed" class="btn" title="Feed">
                     <span aria-hidden="true" data-icon=")"></span>
                     <strong>Feed</strong>
                 </a>
 
-                <a href="../index.html" class="photo">
+                <a href="../" class="photo">
                     <span style="background-image: url('../content/images/2015/01/me.jpg');">
                         <img src="../content/images/2015/01/me.jpg" alt="Danny Wahl">
                     </span>
                 </a>
 
                 <div class="details">
-                    <h4><a href="../index.html" class="url n">Danny Wahl</a></h4>
+                    <h4><a href="../" class="url n">Danny Wahl</a></h4>
                     <!--sse--><span>danny &#64; iyware.com</span><br/><!--/sse-->
                     <span>License: <a href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span><br/>
                     
@@ -206,10 +206,10 @@ LoadModule proxy_http_module libexec/mod_proxy_http.so
 	
 
 	<aside style="display:none;">
-		<a href="../search/index.html">Search</a>
-		<a href="../clients/index.html">Clients</a>
+		<a href="../search/">Search</a>
+		<a href="../clients/">Clients</a>
 	</aside>
 </body>
 
-<!-- Mirrored from localhost:2368/proxy-ghost-with-homebrew-apache/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 04 Mar 2015 02:23:00 GMT -->
+<!-- Mirrored from localhost:2368/proxy-ghost-with-homebrew-apache/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 04 Mar 2015 02:37:46 GMT -->
 </html>

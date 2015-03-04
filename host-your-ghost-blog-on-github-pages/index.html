@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<!-- Mirrored from localhost:2368/host-your-ghost-blog-on-github-pages/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 04 Mar 2015 02:23:02 GMT -->
+<!-- Mirrored from localhost:2368/host-your-ghost-blog-on-github-pages/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 04 Mar 2015 02:37:47 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8" />
@@ -64,13 +64,13 @@
 
     <article role="main" class="">
         <header class="group">
-            <a href="../index.html" id="home_link">«</a>
+            <a href="../" id="home_link">«</a>
             <div class="hgroup">
             	<h1>Ghost on GitHub Pages With HTTrack</h1>
             	<div class="meta">
             		<time datetime="2015-02-04">February 04, 2015</time>
             		&nbsp;&bull;&nbsp;
-					<span class="tags"><a href="../tag/ghost-tag/index.html">Ghost</a></span>
+					<span class="tags"><a href="../tag/ghost-tag/">Ghost</a></span>
             	</div>
 			</div>
         </header>
@@ -80,7 +80,7 @@
 
 <p>First I'd like to say that I am aware of, and initially used, the tool <a href="https://github.com/axitkhurana/buster">Buster</a> (get it, Ghost Buster), it's a fine little utility that basically functions as a fancy <code>wget</code> wrapper, but it has some <a href="https://github.com/axitkhurana/buster/issues/">issues</a>.  Issues that were preventing this site from being fully functional.  In the author's defense- some of it may have actually been caused by <a href="http://brew.sh/">homebrew</a>'s wget.  So I decided to investigate an alternative toolset.</p>
 
-<p>This bring us to <a href="http://www.httrack.com/">HTTrack</a>.  <code>httrack</code> is an alternative website downloader (like <code>wget</code>) and is available for just about <a href="http://www.httrack.com/page/2/en/index.html">every platform</a>.  HTTrack has a lot of options, and if you need something fancy I recommend that you <a href="http://www.httrack.com/html/fcguide.html">read the guide</a>.  That said, here's a step-by-step to deploy your Ghost blog to GitHub Pages.</p>
+<p>This bring us to <a href="http://www.httrack.com/">HTTrack</a>.  <code>httrack</code> is an alternative website downloader (like <code>wget</code>) and is available for just about <a href="http://www.httrack.com/page/2/en/">every platform</a>.  HTTrack has a lot of options, and if you need something fancy I recommend that you <a href="http://www.httrack.com/html/fcguide.html">read the guide</a>.  That said, here's a step-by-step to deploy your Ghost blog to GitHub Pages.</p>
 
 <h2 id="initializeyourgitrepository">Initialize Your Git Repository</h2>
 
@@ -121,7 +121,7 @@ git remote add origin git@github.com:[USER NAME]/[USER NAME].github.io.git
 <pre><code class="language-bash">httrack http://localhost:2368/ -O /PATH/TO/OUTPUT/FOLDER/ -c128 -I0 -#p "+sitemap*"  
 </code></pre>
 
-<p>Let's break this command down a little bit.  The first parameter is the path to the site you want to crawl, e.g. your ghost blog.  The second parameter <code>-O</code> is the path to the output folder.  You'll obviously need to replace <code>/PATH/TO/OUTPUT/FOLDER/</code> with your actual path (NOT the <code>localhost_2368</code> folder but it's parent.  Mine is <code>/Users/dannywahl/Sites/htdocs/iyware.com/</code>.  <code>-c128</code> means that we scrape with a rate of 128 simulatneous connections.  <code>-I0</code> tells httrack not to make a custom index.html file for the output and <code>-#p</code> is detailed output (verbose).</p>
+<p>Let's break this command down a little bit.  The first parameter is the path to the site you want to crawl, e.g. your ghost blog.  The second parameter <code>-O</code> is the path to the output folder.  You'll obviously need to replace <code>/PATH/TO/OUTPUT/FOLDER/</code> with your actual path (NOT the <code>localhost_2368</code> folder but it's parent.  Mine is <code>/Users/dannywahl/Sites/htdocs/iyware.com/</code>.  <code>-c128</code> means that we scrape with a rate of 128 simulatneous connections.  <code>-I0</code> tells httrack not to make a custom / file for the output and <code>-#p</code> is detailed output (verbose).</p>
 
 <p>The <code>"+sitemap*"</code> tells httrack to explicitly to grab any links to a sitemap.  Ghost automatically generates a sitemap, but it uses <code>@blog.url</code> to populate them so httrack will not scrape them by default- so we need add this command.  This might be dangerous if you blog content contains a lot of links to other sites' sitemaps.  You might consider changing it to your Ghost blog url, e.g. <code>"+https://iyware.com/sitemap*"</code> to only grab your site's sitemap.</p>
 
@@ -206,19 +206,19 @@ echo "Deployed to github"
         <footer class="post-footer" role="contentinfo">
 
             <div class="vcard">
-                <a href="../rss/index.html" id="btn_feed" class="btn" title="Feed">
+                <a href="../rss/" id="btn_feed" class="btn" title="Feed">
                     <span aria-hidden="true" data-icon=")"></span>
                     <strong>Feed</strong>
                 </a>
 
-                <a href="../index.html" class="photo">
+                <a href="../" class="photo">
                     <span style="background-image: url('../content/images/2015/01/me.jpg');">
                         <img src="../content/images/2015/01/me.jpg" alt="Danny Wahl">
                     </span>
                 </a>
 
                 <div class="details">
-                    <h4><a href="../index.html" class="url n">Danny Wahl</a></h4>
+                    <h4><a href="../" class="url n">Danny Wahl</a></h4>
                     <!--sse--><span>danny &#64; iyware.com</span><br/><!--/sse-->
                     <span>License: <a href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span><br/>
                     
@@ -250,10 +250,10 @@ echo "Deployed to github"
 	
 
 	<aside style="display:none;">
-		<a href="../search/index.html">Search</a>
-		<a href="../clients/index.html">Clients</a>
+		<a href="../search/">Search</a>
+		<a href="../clients/">Clients</a>
 	</aside>
 </body>
 
-<!-- Mirrored from localhost:2368/host-your-ghost-blog-on-github-pages/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 04 Mar 2015 02:23:02 GMT -->
+<!-- Mirrored from localhost:2368/host-your-ghost-blog-on-github-pages/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 04 Mar 2015 02:37:47 GMT -->
 </html>

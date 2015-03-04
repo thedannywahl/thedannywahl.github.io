@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<!-- Mirrored from localhost:2368/osx-yosemite-mamp-homebrew-development-setup/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 04 Mar 2015 02:23:06 GMT -->
+<!-- Mirrored from localhost:2368/osx-yosemite-mamp-homebrew-development-setup/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 04 Mar 2015 02:37:51 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8" />
@@ -64,13 +64,13 @@
 
     <article role="main" class="">
         <header class="group">
-            <a href="../index.html" id="home_link">«</a>
+            <a href="../" id="home_link">«</a>
             <div class="hgroup">
             	<h1>OS X 10.10 Yosemite, Apache, MySQL, PHP 5.6, (MAMP) Homebrew Dev Setup</h1>
             	<div class="meta">
             		<time datetime="2014-08-13">August 13, 2014</time>
             		&nbsp;&bull;&nbsp;
-					<span class="tags"><a href="../tag/devops/index.html">DevOps</a></span>
+					<span class="tags"><a href="../tag/devops/">DevOps</a></span>
             	</div>
 			</div>
         </header>
@@ -115,7 +115,7 @@ brew install php56 --homebrew-apxs --with-apache --with-homebrew-curl --with-hom
 chmod -R ug+w /usr/local/Cellar/php56/5.6.2/lib/php  
 pear config-set php_ini /usr/local/etc/php/5.6/php.ini  
 printf '\nAddHandler php5-script .php\nAddType text/html .php' &gt;&gt; /usr/local/etc/apache2/2.4/httpd.conf  
-perl -p -i -e 's/DirectoryIndex index.html/DirectoryIndex index.php index.html/g' /usr/local/etc/apache2/2.4/httpd.conf  
+perl -p -i -e 's/DirectoryIndex //DirectoryIndex index.php //g' /usr/local/etc/apache2/2.4/httpd.conf  
 printf '\nexport PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"' &gt;&gt; ~/.profile  
 # Dev Stuff 
 brew install composer  
@@ -1134,7 +1134,7 @@ AddType text/html .php
 
 <p>and find the line that starts with <code>DirectoryIndex</code> and change it to read:</p>
 
-<pre><code class="language-apacheconf">DirectoryIndex index.php index.html  
+<pre><code class="language-apacheconf">DirectoryIndex index.php /  
 </code></pre>
 
 <p>Save the document and then restart the httpd service with the following command:</p>
@@ -1230,19 +1230,19 @@ You can read more about composer and packagist by running:
         <footer class="post-footer" role="contentinfo">
 
             <div class="vcard">
-                <a href="../rss/index.html" id="btn_feed" class="btn" title="Feed">
+                <a href="../rss/" id="btn_feed" class="btn" title="Feed">
                     <span aria-hidden="true" data-icon=")"></span>
                     <strong>Feed</strong>
                 </a>
 
-                <a href="../index.html" class="photo">
+                <a href="../" class="photo">
                     <span style="background-image: url('../content/images/2015/01/me.jpg');">
                         <img src="../content/images/2015/01/me.jpg" alt="Danny Wahl">
                     </span>
                 </a>
 
                 <div class="details">
-                    <h4><a href="../index.html" class="url n">Danny Wahl</a></h4>
+                    <h4><a href="../" class="url n">Danny Wahl</a></h4>
                     <!--sse--><span>danny &#64; iyware.com</span><br/><!--/sse-->
                     <span>License: <a href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span><br/>
                     
@@ -1274,10 +1274,10 @@ You can read more about composer and packagist by running:
 	
 
 	<aside style="display:none;">
-		<a href="../search/index.html">Search</a>
-		<a href="../clients/index.html">Clients</a>
+		<a href="../search/">Search</a>
+		<a href="../clients/">Clients</a>
 	</aside>
 </body>
 
-<!-- Mirrored from localhost:2368/osx-yosemite-mamp-homebrew-development-setup/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 04 Mar 2015 02:23:06 GMT -->
+<!-- Mirrored from localhost:2368/osx-yosemite-mamp-homebrew-development-setup/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 04 Mar 2015 02:37:51 GMT -->
 </html>
