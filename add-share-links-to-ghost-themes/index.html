@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from 127.0.0.1:2368/add-share-links-to-ghost-themes/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 16 Mar 2015 12:16:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Add Share Links to Ghost Themes | iyWare</title>
+    <meta name="description" content="" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../assets/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.min8389.css?v=1282eb534a" />
+    <link rel="canonical" href="https://iyware.com/add-share-links-to-ghost-themes/" />
+    
+    <meta property="og:site_name" content="iyWare" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Add Share Links to Ghost Themes" />
+    <meta property="og:description" content="Seems like the internet is all about sharing these days.  Back in my day it was a place for the anti-social people to not-really-get-together, but I digress.  The ability to share content instantly and effortlessly is powerful.  Today we&#x27;ll take..." />
+    <meta property="og:url" content="https://iyware.com/add-share-links-to-ghost-themes/" />
+    <meta property="article:published_time" content="2015-03-16T05:51:24.259Z" />
+    <meta property="article:modified_time" content="2015-03-16T12:15:18.244Z" />
+    <meta property="article:tag" content="Ghost" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Add Share Links to Ghost Themes" />
+    <meta name="twitter:description" content="Seems like the internet is all about sharing these days.  Back in my day it was a place for the anti-social people to not-really-get-together, but I digress.  The ability to share content instantly and effortlessly is powerful.  Today we&#x27;ll take..." />
+    <meta name="twitter:url" content="https://iyware.com/add-share-links-to-ghost-themes/" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "iyWare",
+    "author": {
+        "@type": "Person",
+        "name": "Danny Wahl",
+        "image": "https://iyware.com/content/images/2015/03/dannywahl.jpg",
+        "url": "https://iyware.com/author/danny",
+        "sameAs": "https://iyware.com"
+    },
+    "headline": "Add Share Links to Ghost Themes",
+    "url": "https://iyware.com/add-share-links-to-ghost-themes/",
+    "datePublished": "2015-03-16T05:51:24.259Z",
+    "dateModified": "2015-03-16T12:15:18.244Z",
+    "keywords": "Ghost",
+    "description": "Seems like the internet is all about sharing these days.  Back in my day it was a place for the anti-social people to not-really-get-together, but I digress.  The ability to share content instantly and effortlessly is powerful.  Today we&#x27;ll take..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.5" />
+    <link rel="alternate" type="application/rss+xml" title="iyWare" href="https://iyware.com/rss/" />
+</head>
+<body class="post-template tag-ghost-tag">
+    
+
+	<header role="banner" class="header-main no-image">
+    		<ul class="nav">
+    <li class="nav-home" role="presentation"><a href="https://iyware.com/">Home</a></li>
+    <li class="nav-clients" role="presentation"><a href="https://iyware.com/clients/">Clients</a></li>
+    <li class="nav-search" role="presentation"><a href="https://iyware.com/search/">Search</a></li>
+</ul>
+		<h1>
+    		<a href="https://iyware.com/">
+            		<img src="../content/images/2015/01/logo.png" alt="iyWare">
+			</a>
+		</h1>
+	</header>
+
+    <article role="main" class="post tag-ghost-tag">
+    
+        <header>
+            <h1>Add Share Links to Ghost Themes</h1>
+
+			<small class="meta">
+						<a href="../author/danny/" class="author" style="background-image:url('../content/images/2015/03/dannywahl.jpg');"><img src="../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl's picture"></a>
+					<a href="../author/danny/">Danny Wahl</a>
+				&nbsp;&bull;&nbsp;
+				<time datetime="2015-03-16">March 16, 2015</time>
+					&nbsp;&bull;&nbsp;
+					<span class="tags"><a href="../tag/ghost-tag/">Ghost</a></span>
+			</small>
+        </header>
+
+        <div class="text">
+            <p>Seems like the internet is all about sharing these days.  Back in my day it was a place for the <em>anti-social</em> people to not-really-get-together, but I digress.  The ability to share content instantly and effortlessly is powerful.  Today we'll take a look at adding share links to a Ghost theme's handlebars template files, and to make things easier for you I'll provide some basic templates that you can simply copy and paste.</p>
+
+<h2 id="sharevsfollowvslike">Share vs. Follow vs. Like</h2>
+
+<p>First we need to differentiate between "share", "like", and "follow".  Share links provide an easy way to repost, send, or otherwise disseminate the content of a post via a third-party channel.  Like, and its kin (+1, prop, gild) provide a way to show a sense of solidarity with an idea or the content of the post.  And "follow" links provide a way for you to see what content the author is creating on the current platform or another platform.</p>
+
+<h2 id="nocostsharing">No-Cost Sharing</h2>
+
+<p>This article will be talking about the first option, that is "share" links.  We'll look at how to provide links to a variety of various social networks directly in your post template to facilitate the distribution of your post content.</p>
+
+<p>Specifially we will be looking at what I call "no-cost" sharing options.  By no-cost I mean that they require no <em>extra</em> resources (JS, images, etc...) and no extra HTTP requests.  These are simply links to third-party networks with URL queries crafted to pass the data to the remote site.  As a result adding these share links will add no over-head to your site for you or for your users, which is important especially if they're in a country with restricted internet access (like me).</p>
+
+<p>The information for these share links was pieced together from all over the web (other blogs, development API docs) but all of the porting to handlebars was done by me and more than a few were engineered by me- meaning I couldn't find a working example of how to share to a certian social network, so I built it.</p>
+
+<h2 id="gettingstartedwithposthbs">Getting Started with Post.hbs</h2>
+
+<p>We'll be specifically adding our sharing links to <code>post.hbs</code> because 1) it's the logical option- that's where the content you want to share is! and 2) it's exposed to the <a href="http://themes.ghost.org/v0.5.10/docs/post"><code>{{post}}</code></a> API in ghost.</p>
+
+<p>So navigate to your theme folder inside of your ghost installation, find <code>post.hbs</code> and open it in your favorite editor.  Ghost uses <a href="http://themes.ghost.org/v0.5.10/docs/handlebars">handlebars</a> to dynamically inject specific content into specific tag areas so you won't actually see anything that you've written in ghost inside of your template file.  Instead of the title of your post you'll see something like <code>{{title}}</code> and instead of the actual post content you'll see <code>{{content}}</code>.</p>
+
+<p>You'll need to play around with where you want the links to go and how you want to style them, but it's inside of this file that we will be adding them.</p>
+
+<h2 id="buildlinkswithghostapis">Build Links with Ghost APIs</h2>
+
+<p>We will be using several Ghost <a href="http://themes.ghost.org/">theme APIs</a> to construct our sharing links.  Briefly they are:</p>
+
+<h3 id="blogurl">{{@blog.url}}</h3>
+
+<p>This is the FQDN of your blog.  For example, on this website <code>{{@blog.url}}</code> resolves to <code>https://iyware.com</code></p>
+
+<h3 id="urlabsolutetrue">{{url absolute="true"}}</h3>
+
+<p>This is the complete url to a post on Ghost.  For example, on this post <code>{{url absolute="true"}}</code> would output <code>https://iyware.com/add-share-links-to-ghost-themes</code></p>
+
+<h3 id="blogtitle">{{@blog.title}}</h3>
+
+<p>This is the title of your blog which can be set under Ghost &rarr; Settings &rarr; General like this:</p>
+
+<p><img src="../content/images/2015/03/ghost-blog-title.png" alt="" /></p>
+
+<p>For example, for this website <code>{{@blog.title}}</code> is set to "iyWare".  Please do not confuse this with the title of your post, which we'll cover below.</p>
+
+<h3 id="title">{{title}}</h3>
+
+<p>This is the title of the post that you are writing.  For example <code>{{title}}</code> on this post is "Add Share Links to Ghost Themes".</p>
+
+<h3 id="excerpt">{{excerpt}}</h3>
+
+<p>The <code>{{excerpt}}</code> function allows you to specific a specific amount of words from the beginning of a post <em>without</em> formatting, meaning no headings, links, italics, etc.  You must specificy the number words that you want to include in the excerpt using the <code>words="##"</code> parameter.  For example using <code>{{excerpt words="25"}}</code> on this post would return the following:</p>
+
+<blockquote>
+  <p>Seems like the internet is all about sharing these days.  Back in my day it was a place for the anti-social people to not-really-get-together, but</p>
+</blockquote>
+
+<p>Notice tha the word anti-social is not emphasized like it is in this article.</p>
+
+<h3 id="tags">{{tags}}</h3>
+
+<p>The <code>{{tags}}</code> API simply returns an alphabetical list of tags associated with a post, but we'll be using some cool parameters later to manipulate their appearance.  Unfortunately at this time they can only be output in alphabetical order.  The <code>{{tags}}</code> code on this post simply returns {{Ghost}} with a link to the tag page.</p>
+
+<h3 id="image">{{image}}</h3>
+
+<p>The <code>{{image}}</code> tag provides the relative path to a post's image (if it has one).  This post doesn't have a post image but if it did it <code>{{image}}</code> would return <code>/images/2015/03/post-image-name.png</code>.  Notice that this is <strong>not</strong> actually returning the image (or an HTML image tag) to an image but rather a partial relative path.</p>
+
+<h3 id="ifif">{{#if }} ... {{/if}}</h3>
+
+<p>Finally we'll be the <code>{{#if}}</code> API to selectively output different code dependent upon the parameters that we provide.  For example to see if a post has an image associated with it we would use <code>{{#if image}} ... {{/if}}</code> and the code between the opening and closing "ifs" would happen.</p>
+
+<h2 id="discoveringshareapis">Discovering Share APIs</h2>
+
+<p>Your best bet to find a network that provides a sharing URL API is to search their developer documents (if they have any) or to look at other software that shares the way you want.  Remember, for the sake of this post we're not looking for JavaScript or embeddable widgets, we're just looking for HTML anchor tags.</p>
+
+<h2 id="urlquerystrings">URL Query Strings</h2>
+
+<p>A URL can be provided what's known as a "query string" which is simply a list of variables and values.  The query string always begins with <code>?</code>, followed by a variable name (e.g. <code>title</code>), an equals sign <code>=</code>, and the query value (e.g. </p>
+
+<h2 id="examplesharelinkpinterest">Example Share Link: Pinterest</h2>
+
+<p>We'll use pinterest as our first example share link.  This is the basic structure of the pinterest share URL with the query string empty:</p>
+
+<pre><code class="language-markup">https://https://pinterest.com/pin/create/button/?url=&amp;media=&amp;description=  
+</code></pre>
+
+<p>So we'll fill out the query with the following API calls:</p>
+
+<ul>
+<li><code>url={{url absolute="true"}}</code></li>
+<li><code>media={{@blog.url}}{{image}}</code></li>
+<li><code>description={{excerpt words="20"}}</code></li>
+</ul>
+
+<p>Then we'll wrap the media selector in an <code>{{#if}}</code> block in case there's no image associated with the post.</p>
+
+<pre><code class="language-handlebars">{{#if image}}&amp;media={{@blog.url}}{{image}}{{/if}}
+</code></pre>
+
+<p>Notice that the whole query key/value pair are selected, this prevents us from referring a blank image.  Finally we wrap it all in an html anchor tag:</p>
+
+<pre><code class="language-handlebars">&lt;a href="https://https://pinterest.com/pin/create/button/?{{url absolute="true"}}{{#if image}}&amp;media={{@blog.url}}{{image}}{{/if}}&amp;description=description={{excerpt words="20"}}"&gt;  
+    Pinterest
+&lt;/a&gt;  
+</code></pre>
+
+<p>Now when you include the link to pinterest in your post and a user clicks on it the result will be something like this:</p>
+
+<p><img src="../content/images/2015/03/share-to-pinterest-with-ghost.png" alt="" /></p>
+
+<h2 id="examplesharelinkemail">Example Share Link: E-Mail</h2>
+
+<p>There's no more tried-and-true method of sharing online resources than email so it's crucial to include a <code>mailto:</code> link.  We'll skip the "to" part of the URL and allow the user to fill that in themselves as it would require adding a form.  Instead let's just fill out the query string:</p>
+
+<ul>
+<li><code>?&amp;subject={{encode @blog.title}}%3A%20{{encode title}}</code></li>
+<li><code>&amp;body={{encode title}}%0D%0A{{url absolute="true"}}%0D%0A%0D%0A{{excerpt words="45"}}%2E%2E%2E</code></li>
+</ul>
+
+<p>This will output the blog title followed by the post title in the subject of the email like this: "iyWare: Add Share Links to Ghost Themes" and the body will be populated with the post title, URL, and excerpt of the post.  Now let's wrap it in an anchor element:</p>
+
+<pre><code class="language-handlebars">&lt;a class="Email" href="mailto:?&amp;subject={{encode @blog.title}}%3A%20{{encode title}}&amp;body={{encode title}}%0D%0A{{url absolute="true"}}%0D%0A%0D%0A{{excerpt words="45"}}%2E%2E%2E"&gt;  
+    Email
+&lt;/a&gt;  
+</code></pre>
+
+<p>Now when a user clicks on the "email" link their default mail client will open:</p>
+
+<p><img src="../content/images/2015/03/share-to-email-with-ghost.png" alt="" /></p>
+
+<p>In another post I'll provide prebuilt urls for a dozen or so popular social networks that you can just copy and paste into custom theme.</p>
+        </div>
+
+        <section class="share">
+        	<ul>
+				<li>
+					<a class="Email" href="mailto:?&subject=iyWare%3A%20Add%20Share%20Links%20to%20Ghost%20Themes&body=Add%20Share%20Links%20to%20Ghost%20Themes%0D%0Ahttps://iyware.com/add-share-links-to-ghost-themes/%0D%0A%0D%0ASeems like the internet is all about sharing these days.  Back in my day it was a place for the anti-social people to not-really-get-together, but I digress.  The ability to share content instantly and effortlessly is powerful.  Today we'll take a look at adding share%2E%2E%2E">Email</a>
+				</li>
+				<li>
+					<a class="twitter" href="https://twitter.com/home?status=https://iyware.com/add-share-links-to-ghost-themes/%20%23Ghost">Twitter</a>
+				</li>
+				<li>
+					<a class="Facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://iyware.com/add-share-links-to-ghost-themes/">Facebook</a>
+				</li>
+				<li>
+					<a class="Google+" href="https://plus.google.com/share?url=https://iyware.com/add-share-links-to-ghost-themes/">Google+</a>
+				</li>
+				<li>
+					<a class="LinkedIn" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://iyware.com/add-share-links-to-ghost-themes/&amp;title=Add%20Share%20Links%20to%20Ghost%20Themes&amp;summary=Seems%20like%20the%20internet%20is%20all%20about%20sharing%20these%20days.%20%20Back%20in%20my%20day%20it%20was%20a%20place%20for%20the%20anti-social%20people%20to%20not-really-get-together,%20but%20I%20digress.%20%20The%20ability%20to%20share%20content%20instantly%20and%20effortlessly%20is%20powerful.%20%20Today%20we'll%20take%20a%20look%20at%20adding%20share&amp;source=iyWare">LinkedIn</a>
+				</li>
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			</ul>
+        </section>
+
+        <footer class="post-footer vcard cf" role="contentinfo">
+                	<div class="wrapper">
+                	<a href="../author/danny/" class="author" style="background-image: url('../content/images/2015/03/dannywahl.jpg');">
+                    	<img src="../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl">
+					</a>
+					</div>
+                <div class="author-info meta">
+					<a href="../author/danny/">Danny Wahl</a>
+                    &nbsp;&bull;&nbsp;<span>天津</span>
+                    &nbsp;&bull;&nbsp;<a class="site" href="https://iyware.com/">https://iyware.com</a>
+                    <p class="bio">My name is Danny Wahl and I provide IT management and consulting in the APAC region. I dabble in writing, programming, design, and ukulele playing. Post content licensed CC-BY-4.0</p>
+                </div>
+        </footer>
+
+    </article>
+
+<footer class="footer-main cf">
+	<p class="feed"><a href="https://iyware.com/rss">RSS Feed</a></p>
+	<p class="description">
+        <a class="title" href="https://iyware.com/">iyWare</a>
+        <span>Things I Break</span>
+    </p>
+	<p class="copyright">&copy; 2015 <a href="https://iyware.com/">iyWare</a></p>
+</footer>
+    <script src="../public/jquery8389.js?v=1282eb534a"></script>
+
+		<script type="text/javascript" src="../assets/js/prism.min8389.js?v=1282eb534a"></script>
+	
+		<script src="../assets/js/jquery.swiftype.min8389.js?v=1282eb534a"></script>
+		
+		<script type="text/javascript">
+			$( '<li class="nav-search-form"><form action="/search/" autocomplete="on"><label id="nav-search-label" for="st-search-input">Search:</label><input id="search_submit" value="Search" type="submit"><input id="st-search-input" name="search" type="text" placeholder="search https://iyware.com"></form></li>' ).insertAfter( ".nav-search" );
+		</script>
+		<script type="text/javascript">
+			$("#st-search-input").swiftype({
+				engineKey: "sg3kn6rAnozjxvM4k8nk"
+			});
+			$("#st-search-input").swiftypeSearch({
+				engineKey: "sg3kn6rAnozjxvM4k8nk",
+				resultContainingElement: "#st-results-container"
+			});
+		</script>
+	<aside style="display:none;">
+		<a href="../search/">search</a>
+		<a href="../clients/">clients</a>
+	</aside>
+</body>
+
+<!-- Mirrored from 127.0.0.1:2368/add-share-links-to-ghost-themes/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 16 Mar 2015 12:16:45 GMT -->
+</html>
