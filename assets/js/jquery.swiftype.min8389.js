@@ -7,7 +7,7 @@ timeout_id=setTimeout(poll,$.fn[str_hashchange].delay);};window.attachEvent&&!wi
 var stSearch = function() {var query=document.getElementById("st-search-input").value;window.location.href="/search/#stq="+query+"&stp=1";};
 			var stRenderFunction = function(documentType, item) {
 				var header = '<header><h2><a class="st-search-result-link" href="' + item['url'] + '">' + item['title'] + '</a></h2></header>'
-				var text = '<div class="text"><p>' + item['body'].substring(0,250) + '</p></div>';
+				var text = '<div class="text"><p>' + item['body'].substring(20,250) + '</p></div>';
 				var continueReading = '<small class="continue"><a href="' +  item['url'] + '">Continue Reading</a></small>';
 				return '<div class="loop"><article>' + header + text + continueReading + '</article></div>';
 			};
