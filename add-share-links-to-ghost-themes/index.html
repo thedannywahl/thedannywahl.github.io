@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<!-- Mirrored from 127.0.0.1:2368/add-share-links-to-ghost-themes/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 16 Mar 2015 12:16:44 GMT -->
+<!-- Mirrored from 127.0.0.1:2368/add-share-links-to-ghost-themes/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 17 Mar 2015 02:31:03 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8" />
@@ -20,7 +20,7 @@
     <meta property="og:description" content="Seems like the internet is all about sharing these days.  Back in my day it was a place for the anti-social people to not-really-get-together, but I digress.  The ability to share content instantly and effortlessly is powerful.  Today we&#x27;ll take..." />
     <meta property="og:url" content="https://iyware.com/add-share-links-to-ghost-themes/" />
     <meta property="article:published_time" content="2015-03-16T05:51:24.259Z" />
-    <meta property="article:modified_time" content="2015-03-16T12:15:18.244Z" />
+    <meta property="article:modified_time" content="2015-03-16T13:20:41.265Z" />
     <meta property="article:tag" content="Ghost" />
     
     <meta name="twitter:card" content="summary" />
@@ -43,7 +43,7 @@
     "headline": "Add Share Links to Ghost Themes",
     "url": "https://iyware.com/add-share-links-to-ghost-themes/",
     "datePublished": "2015-03-16T05:51:24.259Z",
-    "dateModified": "2015-03-16T12:15:18.244Z",
+    "dateModified": "2015-03-16T13:20:41.265Z",
     "keywords": "Ghost",
     "description": "Seems like the internet is all about sharing these days.  Back in my day it was a place for the anti-social people to not-really-get-together, but I digress.  The ability to share content instantly and effortlessly is powerful.  Today we&#x27;ll take..."
 }
@@ -164,7 +164,7 @@
 
 <p>We'll use pinterest as our first example share link.  This is the basic structure of the pinterest share URL with the query string empty:</p>
 
-<pre><code class="language-markup">https://https://pinterest.com/pin/create/button/?url=&amp;media=&amp;description=  
+<pre><code class="language-markup">https://pinterest.com/pin/create/button/?url=&amp;media=&amp;description=  
 </code></pre>
 
 <p>So we'll fill out the query with the following API calls:</p>
@@ -182,7 +182,7 @@
 
 <p>Notice that the whole query key/value pair are selected, this prevents us from referring a blank image.  Finally we wrap it all in an html anchor tag:</p>
 
-<pre><code class="language-handlebars">&lt;a href="https://https://pinterest.com/pin/create/button/?{{url absolute="true"}}{{#if image}}&amp;media={{@blog.url}}{{image}}{{/if}}&amp;description=description={{excerpt words="20"}}"&gt;  
+<pre><code class="language-handlebars">&lt;a href="https://pinterest.com/pin/create/button/?{{url absolute="true"}}{{#if image}}&amp;media={{@blog.url}}{{image}}{{/if}}&amp;description={{excerpt words="20"}}"&gt;  
     Pinterest
 &lt;/a&gt;  
 </code></pre>
@@ -298,5 +298,5 @@
 	</aside>
 </body>
 
-<!-- Mirrored from 127.0.0.1:2368/add-share-links-to-ghost-themes/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 16 Mar 2015 12:16:45 GMT -->
+<!-- Mirrored from 127.0.0.1:2368/add-share-links-to-ghost-themes/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 17 Mar 2015 02:31:03 GMT -->
 </html>

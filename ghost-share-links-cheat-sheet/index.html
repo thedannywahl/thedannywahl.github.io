@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from 127.0.0.1:2368/ghost-share-links-cheat-sheet/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 17 Mar 2015 02:30:30 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Ghost Share Links Cheat Sheet | iyWare</title>
+    <meta name="description" content="" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../assets/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.min8389.css?v=1282eb534a" />
+    <link rel="canonical" href="https://iyware.com/ghost-share-links-cheat-sheet/" />
+    
+    <meta property="og:site_name" content="iyWare" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Ghost Share Links Cheat Sheet" />
+    <meta property="og:description" content="In my previous post I outlined how to create no-cost share links using the Ghost handlebars API.  In this post I&#x27;ll simply provide code snippets to some of the most popular social networks that you can copy and paste into..." />
+    <meta property="og:url" content="https://iyware.com/ghost-share-links-cheat-sheet/" />
+    <meta property="article:published_time" content="2015-03-16T12:20:12.548Z" />
+    <meta property="article:modified_time" content="2015-03-17T02:30:11.686Z" />
+    <meta property="article:tag" content="Ghost" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Ghost Share Links Cheat Sheet" />
+    <meta name="twitter:description" content="In my previous post I outlined how to create no-cost share links using the Ghost handlebars API.  In this post I&#x27;ll simply provide code snippets to some of the most popular social networks that you can copy and paste into..." />
+    <meta name="twitter:url" content="https://iyware.com/ghost-share-links-cheat-sheet/" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "iyWare",
+    "author": {
+        "@type": "Person",
+        "name": "Danny Wahl",
+        "image": "https://iyware.com/content/images/2015/03/dannywahl.jpg",
+        "url": "https://iyware.com/author/danny",
+        "sameAs": "https://iyware.com"
+    },
+    "headline": "Ghost Share Links Cheat Sheet",
+    "url": "https://iyware.com/ghost-share-links-cheat-sheet/",
+    "datePublished": "2015-03-16T12:20:12.548Z",
+    "dateModified": "2015-03-17T02:30:11.686Z",
+    "keywords": "Ghost",
+    "description": "In my previous post I outlined how to create no-cost share links using the Ghost handlebars API.  In this post I&#x27;ll simply provide code snippets to some of the most popular social networks that you can copy and paste into..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.5" />
+    <link rel="alternate" type="application/rss+xml" title="iyWare" href="https://iyware.com/rss/" />
+</head>
+<body class="post-template tag-ghost-tag">
+    
+
+	<header role="banner" class="header-main no-image">
+    		<ul class="nav">
+    <li class="nav-home" role="presentation"><a href="https://iyware.com/">Home</a></li>
+    <li class="nav-clients" role="presentation"><a href="https://iyware.com/clients/">Clients</a></li>
+    <li class="nav-search" role="presentation"><a href="https://iyware.com/search/">Search</a></li>
+</ul>
+		<h1>
+    		<a href="https://iyware.com/">
+            		<img src="../content/images/2015/01/logo.png" alt="iyWare">
+			</a>
+		</h1>
+	</header>
+
+    <article role="main" class="post tag-ghost-tag">
+    
+        <header>
+            <h1>Ghost Share Links Cheat Sheet</h1>
+
+			<small class="meta">
+						<a href="../author/danny/" class="author" style="background-image:url('../content/images/2015/03/dannywahl.jpg');"><img src="../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl's picture"></a>
+					<a href="../author/danny/">Danny Wahl</a>
+				&nbsp;&bull;&nbsp;
+				<time datetime="2015-03-16">March 16, 2015</time>
+					&nbsp;&bull;&nbsp;
+					<span class="tags"><a href="../tag/ghost-tag/">Ghost</a></span>
+			</small>
+        </header>
+
+        <div class="text">
+            <p>In my previous post I outlined how to create no-cost share links using the Ghost handlebars API.  In this post I'll simply provide code snippets to some of the most popular social networks that you can copy and paste into your custom theme.</p>
+
+<h2 id="email">Email</h2>
+
+<pre><code class="language-handlebars">&lt;a href="mailto:?&amp;subject={{encode @blog.title}}%3A%20{{encode title}}&amp;body={{encode title}}%0D%0A{{url absolute="true"}}%0D%0A%0D%0A{{excerpt words="45"}}%2E%2E%2E"&gt;  
+    Email
+&lt;/a&gt;  
+</code></pre>
+
+<p><img src="../content/images/2015/03/share-to-email-with-ghost-1.png" alt="" /></p>
+
+<h2 id="twitter">twitter</h2>
+
+<pre><code class="language-handlebars">&lt;a href="https://twitter.com/home?status={{url absolute="true"}}%20{{tags prefix="%23" separator="%20%23" autolink="false"}}"&gt;  
+    Twitter
+&lt;/a&gt;  
+</code></pre>
+
+<p><img src="../content/images/2015/03/share-to-twitter-with-ghost.png" alt="" /></p>
+
+<h2 id="facebook">Facebook</h2>
+
+<pre><code class="language-handlebars">&lt;a href="https://www.facebook.com/sharer/sharer.php?u={{url absolute="true"}}"&gt;  
+    Facebook
+&lt;/a&gt;  
+</code></pre>
+
+<p><img src="../content/images/2015/03/share-to-facebook-with-ghost-1.png" alt="" /></p>
+
+<h2 id="google">Google+</h2>
+
+<pre><code class="language-handlebars">&lt;a href="https://plus.google.com/share?url={{url absolute="true"}}"&gt;  
+    Google+
+&lt;/a&gt;  
+</code></pre>
+
+<p><img src="../content/images/2015/03/share-to-google-plus-with-ghost.png" alt="" /></p>
+
+<h2 id="linkedin">LinkedIn</h2>
+
+<pre><code class="language-handlebars">&lt;a href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{url absolute="true"}}&amp;title={{encode title}}&amp;summary={{excerpt words="45"}}&amp;source={{@blog.title}}"&gt;  
+    LinkedIn
+&lt;/a&gt;  
+</code></pre>
+
+<p><img src="../content/images/2015/03/share-to-linkedin-with-ghost.png" alt="" /></p>
+
+<h2 id="pinterest">Pinterest</h2>
+
+<pre><code class="language-handlebars">&lt;a href="https://pinterest.com/pin/create/button/?{{url absolute="true"}}{{#if image}}&amp;media={{@blog.url}}{{image}}{{/if}}&amp;description={{excerpt words="20"}}"&gt;  
+    Pinterest
+&lt;/a&gt;  
+</code></pre>
+
+<p><img src="../content/images/2015/03/share-to-pinterest-with-ghost-1.png" alt="" /></p>
+
+<h2 id="tumblr">tumblr</h2>
+
+<pre><code class="language-handlebars">&lt;a href="http://www.tumblr.com/share/link?url={{url absolute="true"}}&amp;name={{encode title}}&amp;description={{excerpt words="45"}}"&gt;  
+    Tumblr
+&lt;/a&gt;  
+</code></pre>
+
+<p><img src="../content/images/2015/03/share-to-tumblr-with-ghost.png" alt="" /></p>
+
+<h2 id="reddit">reddit</h2>
+
+<pre><code class="language-handlebars">&lt;a href="http://www.reddit.com/submit/?url={{url absolute="true"}}&amp;title={{encode title}}"&gt;  
+    reddit
+&lt;/a&gt;  
+</code></pre>
+
+<p><img src="../content/images/2015/03/share-to-reddit-with-ghost.png" alt="" /></p>
+
+<h2 id="xing">Xing</h2>
+
+<pre><code class="language-handlebars">&lt;a href="https://www.xing-share.com/app/user?op=share;sc_p=xing-share;url={{url absolute="true"}}"&gt;  
+    Xing
+&lt;/a&gt;  
+</code></pre>
+
+<p><img src="../content/images/2015/03/share-to-xing-with-ghost.png" alt="" /></p>
+
+<h2 id="vk">VK</h2>
+
+<pre><code class="language-handlebars">&lt;a href="https://vk.com/share.php?url={{url absolute="true"}}&amp;title={{encode title}}&amp;description={{excerpt words="45"}}{{#if image}}&amp;image={{@blog.url}}{{image}}{{/if}}&amp;noparse=true"&gt;  
+    VK
+&lt;/a&gt;  
+</code></pre>
+
+<p><img src="../content/images/2015/03/share-to-VK-with-ghost.png" alt="" /></p>
+
+<h2 id="buffer">buffer</h2>
+
+<pre><code class="language-handlebars">&lt;a href="https://bufferapp.com/add/?url={{url absolute="true"}}&amp;text={{excerpt words="20"}}"&gt;  
+    Buffer
+&lt;/a&gt;  
+</code></pre>
+
+<p><img src="../content/images/2015/03/share-to-buffer-with-ghost.png" alt="" /></p>
+
+<h2 id="stumbleupon">StumbleUpon</h2>
+
+<pre><code class="language-handlebars">&lt;a href="https://www.stumbleupon.com/submit?url={{url absolute="true"}}%2F&amp;title={{encode title}}"&gt;  
+    StumbleUpon
+&lt;/a&gt;  
+</code></pre>
+
+<p><img src="../content/images/2015/03/share-to-stumbleupon-with-ghost-2.png" alt="" /></p>
+
+<h2 id="sinaweibo">新浪微博 (Sina Weibo)</h2>
+
+<pre><code class="language-handlebars">&lt;a href="http://service.weibo.com/share/share.php?url={{url absolute="true"}}&amp;title={{encode title}}%0D%0A{{excerpt words="20"}}%20{{tags prefix="%23" separator="%23 %23" suffix="%23" autolink="false"}}{{#if image}}&amp;pic={{@blog.url}}{{image}}{{/if}}"&gt;  
+    新浪微博
+&lt;/a&gt;  
+</code></pre>
+
+<p><img src="../content/images/2015/03/share-to-sinaweibo-with-ghost.png" alt="" /></p>
+
+<h2 id="baidu">Baidu空间</h2>
+
+<pre><code class="language-handlebars">&lt;a href="http://hi.baidu.com/pub/show/share?url={{url absolute="true"}}&amp;title={{encode title}}"&gt;  
+    Baidu空间
+&lt;/a&gt;  
+</code></pre>
+
+<p><img src="../content/images/2015/03/share-to-baidu-with-ghost.png" alt="" /></p>
+
+<h2 id="renren">人人网 (Renren)</h2>
+
+<pre><code class="language-handlebars">&lt;a href="http://share.renren.com/share/buttonshare?link={{url absolute="true"}}&amp;title={{encode title}}"&gt;  
+    人人网
+&lt;/a&gt;  
+</code></pre>
+
+<p><img src="../content/images/2015/03/share-to-renren-with-ghost.png" alt="" /></p>
+
+<h2 id="qqtencentweibo">腾讯微博 (QQ Tencent Weibo)</h2>
+
+<pre><code class="language-handlebars">&lt;a href="http://v.t.qq.com/share/share.php?title={{encode title}}%3A%20{{excerpt words="20"}}%20{{tags prefix="%23" separator="%23 %23" suffix="%23" autolink="false"}}&amp;url={{url absolute="true"}}"&gt;  
+    腾讯微博
+&lt;/a&gt;  
+</code></pre>
+
+<p><img src="../content/images/2015/03/share-to-qq-tencent-weibo-with-ghost.png" alt="" /></p>
+
+<h2 id="qq">QQ空间</h2>
+
+<pre><code class="language-handlebars">&lt;a href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?title={{encode title}}&amp;url={{url absolute="true"}}&amp;summary={{excerpt words="20"}}"&gt;  
+    QQ空间
+&lt;/a&gt;  
+</code></pre>
+
+<p><img src="../content/images/2015/03/share-to-qq-zone-with-ghost.png" alt="" /></p>
+
+<h2 id="pengyou">腾讯朋友网 (Pengyou)</h2>
+
+<pre><code class="language-handlebars">&lt;a href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?to=pengyou&amp;title={{encode title}}&amp;url={{url absolute="true"}}&amp;summary={{excerpt words="20"}}"&gt;  
+    腾讯朋友网
+&lt;/a&gt;  
+</code></pre>
+
+<p><img src="../content/images/2015/03/share-to-pengyou-with-ghost.png" alt="" /></p>
+
+<p>And there you have it. Share links that you can copy and paste into your theme.  Now if you're wondering what they look like in the wild, well here they are- maybe try clicking one and share this post yourself.</p>
+        </div>
+
+        <section class="share">
+        	<ul>
+				<li>
+					<a class="Email" href="mailto:?&subject=iyWare%3A%20Ghost%20Share%20Links%20Cheat%20Sheet&body=Ghost%20Share%20Links%20Cheat%20Sheet%0D%0Ahttps://iyware.com/ghost-share-links-cheat-sheet/%0D%0A%0D%0AIn my previous post I outlined how to create no-cost share links using the Ghost handlebars API.  In this post I'll simply provide code snippets to some of the most popular social networks that you can copy and paste into your custom theme. Email &lt;%2E%2E%2E">Email</a>
+				</li>
+				<li>
+					<a class="twitter" href="https://twitter.com/home?status=https://iyware.com/ghost-share-links-cheat-sheet/%20%23Ghost">Twitter</a>
+				</li>
+				<li>
+					<a class="Facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://iyware.com/ghost-share-links-cheat-sheet/">Facebook</a>
+				</li>
+				<li>
+					<a class="Google+" href="https://plus.google.com/share?url=https://iyware.com/ghost-share-links-cheat-sheet/">Google+</a>
+				</li>
+				<li>
+					<a class="LinkedIn" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://iyware.com/ghost-share-links-cheat-sheet/&amp;title=Ghost%20Share%20Links%20Cheat%20Sheet&amp;summary=In%20my%20previous%20post%20I%20outlined%20how%20to%20create%20no-cost%20share%20links%20using%20the%20Ghost%20handlebars%20API.%20%20In%20this%20post%20I'll%20simply%20provide%20code%20snippets%20to%20some%20of%20the%20most%20popular%20social%20networks%20that%20you%20can%20copy%20and%20paste%20into%20your%20custom%20theme.%20Email%20<&amp;source=iyWare">LinkedIn</a>
+				</li>
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			</ul>
+        </section>
+
+        <footer class="post-footer vcard cf" role="contentinfo">
+                	<div class="wrapper">
+                	<a href="../author/danny/" class="author" style="background-image: url('../content/images/2015/03/dannywahl.jpg');">
+                    	<img src="../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl">
+					</a>
+					</div>
+                <div class="author-info meta">
+					<a href="../author/danny/">Danny Wahl</a>
+                    &nbsp;&bull;&nbsp;<span>天津</span>
+                    &nbsp;&bull;&nbsp;<a class="site" href="https://iyware.com/">https://iyware.com</a>
+                    <p class="bio">My name is Danny Wahl and I provide IT management and consulting in the APAC region. I dabble in writing, programming, design, and ukulele playing. Post content licensed CC-BY-4.0</p>
+                </div>
+        </footer>
+
+    </article>
+
+<footer class="footer-main cf">
+	<p class="feed"><a href="https://iyware.com/rss">RSS Feed</a></p>
+	<p class="description">
+        <a class="title" href="https://iyware.com/">iyWare</a>
+        <span>Things I Break</span>
+    </p>
+	<p class="copyright">&copy; 2015 <a href="https://iyware.com/">iyWare</a></p>
+</footer>
+    <script src="../public/jquery8389.js?v=1282eb534a"></script>
+
+		<script type="text/javascript" src="../assets/js/prism.min8389.js?v=1282eb534a"></script>
+	
+		<script src="../assets/js/jquery.swiftype.min8389.js?v=1282eb534a"></script>
+		
+		<script type="text/javascript">
+			$( '<li class="nav-search-form"><form action="/search/" autocomplete="on"><label id="nav-search-label" for="st-search-input">Search:</label><input id="search_submit" value="Search" type="submit"><input id="st-search-input" name="search" type="text" placeholder="search https://iyware.com"></form></li>' ).insertAfter( ".nav-search" );
+		</script>
+		<script type="text/javascript">
+			$("#st-search-input").swiftype({
+				engineKey: "sg3kn6rAnozjxvM4k8nk"
+			});
+			$("#st-search-input").swiftypeSearch({
+				engineKey: "sg3kn6rAnozjxvM4k8nk",
+				resultContainingElement: "#st-results-container"
+			});
+		</script>
+	<aside style="display:none;">
+		<a href="../search/">search</a>
+		<a href="../clients/">clients</a>
+	</aside>
+</body>
+
+<!-- Mirrored from 127.0.0.1:2368/ghost-share-links-cheat-sheet/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 17 Mar 2015 02:30:58 GMT -->
+</html>
