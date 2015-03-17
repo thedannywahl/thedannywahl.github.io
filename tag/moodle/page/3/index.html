@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<!-- Mirrored from 127.0.0.1:2368/tag/moodle/page/3/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 17 Mar 2015 11:29:09 GMT -->
+<!-- Mirrored from 127.0.0.1:2368/tag/moodle/page/3/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 17 Mar 2015 11:33:08 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8" />
@@ -186,11 +186,14 @@
 		<script src="../../../../assets/js/jquery.swiftype.min8389.js?v=1282eb534a"></script>
 		
 		<script type="text/javascript">
-			var swiftypeSearch = function() {
+			var stSearch = function() {
 				var query = document.getElementById("st-search-input").value;
 				window.location.href = "/search/#stq=" + query + "&stp=1";
-			}
-			$( '<li class="nav-search-form"><form action="#" onsubmit="swiftypeSearch();return false;" autocomplete="on"><label id="nav-search-label" for="st-search-input">Search:</label><input id="search_submit" value="Search" type="submit"><input id="st-search-input" name="search" type="text" placeholder="search https://iyware.com"></form></li>' ).insertAfter( ".nav-search" );
+			};
+			var stRenderFunction = function() {
+				
+			};
+			$( '<li class="nav-search-form"><form action="#" onsubmit="stSearch();return false;" autocomplete="on"><label id="nav-search-label" for="st-search-input">Search:</label><input id="search_submit" value="Search" type="submit"><input id="st-search-input" name="search" type="text" placeholder="search https://iyware.com"></form></li>' ).insertAfter( ".nav-search" );
 			$("#st-search-input").swiftype({
 				engineKey: "sg3kn6rAnozjxvM4k8nk"
 			});
@@ -202,6 +205,8 @@
 				engineKey: "sg3kn6rAnozjxvM4k8nk"
 			});
 			$("#st-search-input2").swiftypeSearch({
+				renderFunction: stRenderFunction,
+				perPage: 3,
 				engineKey: "sg3kn6rAnozjxvM4k8nk",
 				resultContainingElement: "#st-results-container"
 			});
@@ -212,5 +217,5 @@
 	</aside>
 </body>
 
-<!-- Mirrored from 127.0.0.1:2368/tag/moodle/page/3/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 17 Mar 2015 11:29:09 GMT -->
+<!-- Mirrored from 127.0.0.1:2368/tag/moodle/page/3/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 17 Mar 2015 11:33:08 GMT -->
 </html>
