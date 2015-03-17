@@ -20,10 +20,10 @@ var stSearch = function() {var query=document.getElementById("st-search-input").
 				engineKey: "sg3kn6rAnozjxvM4k8nk",
 				resultContainingElement: "#st-results-container"
 			});
-			$("#st-search-input2").swiftype({
+			$("#st-search-input").swiftype({
 				engineKey: "sg3kn6rAnozjxvM4k8nk"
 			});
-			$("#st-search-input2").swiftypeSearch({
+			$("#st-search-input").swiftypeSearch({
 				renderFunction: stRenderFunction,
 				perPage: 5,
 				engineKey: "sg3kn6rAnozjxvM4k8nk",
