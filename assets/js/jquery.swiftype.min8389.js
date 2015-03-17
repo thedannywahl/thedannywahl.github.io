@@ -7,8 +7,9 @@ timeout_id=setTimeout(poll,$.fn[str_hashchange].delay);};window.attachEvent&&!wi
 var stSearch = function() {var query=document.getElementById("st-search-input").value;window.location.href="/search/#stq="+query+"&stp=1";};
 			var stRenderFunction = function(documentType, item) {
 				var header = '<header><h2><a class="st-search-result-link" href="' + item['url'] + '">' + item['title'] + '</a></h2></header>'
-				var body = '<div class="text"><p>' + item['body'] + '</p></div>';
-				return '<article>' + header + body + '</article>';
+				var text = '<div class="text"><p>' + item['body'].substring(0,250) + '</p></div>';
+				var continueReading = '<small class="continue"><a href="' +  item['url'] + '">Continue Reading</a></small>';
+				return '<div class="loop"><article>' + header + text + continueReading + '</article></div>';
 			};
 			$( '<li class="nav-search-form"><form action="#" onsubmit="stSearch();return false;" autocomplete="on"><label id="nav-search-label" for="st-search-input">Search:</label><input id="search_submit" value="Search" type="submit"><input id="st-search-input" name="search" type="text" placeholder="search https://iyware.com"></form></li>' ).insertAfter( ".nav-search" );
 			$("#st-search-input").swiftype({
@@ -16,7 +17,7 @@ var stSearch = function() {var query=document.getElementById("st-search-input").
 			});
 			$("#st-search-input").swiftypeSearch({
 				renderFunction: stRenderFunction,
-				perPage: 5,
+				perPage: 4,
 				engineKey: "sg3kn6rAnozjxvM4k8nk",
 				resultContainingElement: "#st-results-container"
 			});
@@ -25,7 +26,7 @@ var stSearch = function() {var query=document.getElementById("st-search-input").
 			});
 			$("#st-search-input2").swiftypeSearch({
 				renderFunction: stRenderFunction,
-				perPage: 5,
+				perPage: 4,
 				engineKey: "sg3kn6rAnozjxvM4k8nk",
 				resultContainingElement: "#st-results-container"
 			});
