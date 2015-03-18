@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<!-- Mirrored from 127.0.0.1:2368/smbpasswd-gui/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 18 Mar 2015 01:05:47 GMT -->
+<!-- Mirrored from 127.0.0.1:2368/smbpasswd-gui/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 18 Mar 2015 01:53:18 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8" />
@@ -246,16 +246,24 @@ end try
 			window.location.href = "/search/#stq=" + query + "&stp=1";
 		};
 
+		var stAutoRenderFunction = function(document_type, item) {
+			var titleEnd = item['title'].length - 9;
+			var title = item['title'].substring(0,titleEnd);
+			return '<p class="title">' + title + '</p>';
+		};
+
 		var stRenderFunction = function(documentType, item) {
 			var titleEnd = item['title'].length - 9;
 			var title = item['title'].substring(0,titleEnd);
 			var header = '<header><h2><a class="st-search-result-link" href="' + item['url'] + '">' + title + '</a></h2></header>'
 			var text = '<div class="text"><p>' + item['body'].substring(20,250) + '</p></div>';
 			var continueReading = '<small class="continue"><a href="' +  item['url'] + '">Continue Reading</a></small>';
-			return '<div class="loop"><article>'+header+text+continueReading+'</article></div>';
+			return '<div class="loop"><article>' + header + text + continueReading + '</article></div>';
 		};
 
 		$("#st-search-input").swiftype({
+			renderFunction: stAutoRenderFunction,
+			resultLimit: 5,
 			engineKey:"sg3kn6rAnozjxvM4k8nk"
 		});
 		$("#st-search-input").swiftypeSearch({
@@ -265,6 +273,8 @@ end try
 			resultContainingElement:"#st-results-container"
 		});
 		$("#st-search-input2").swiftype({
+			renderFunction: stAutoRenderFunction,
+			resultLimit: 5,
 			engineKey: "sg3kn6rAnozjxvM4k8nk"
 		});
 		$("#st-search-input2").swiftypeSearch({
@@ -280,5 +290,5 @@ end try
 	</aside>
 </body>
 
-<!-- Mirrored from 127.0.0.1:2368/smbpasswd-gui/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 18 Mar 2015 01:05:47 GMT -->
+<!-- Mirrored from 127.0.0.1:2368/smbpasswd-gui/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 18 Mar 2015 01:53:18 GMT -->
 </html>
