@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<!-- Mirrored from 127.0.0.1:2368/foundation/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 18 Mar 2015 00:15:58 GMT -->
+<!-- Mirrored from 127.0.0.1:2368/foundation/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 18 Mar 2015 01:05:32 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8" />
@@ -205,33 +205,48 @@
 
 		<script type="text/javascript" src="../assets/js/prism.min8389.js?v=1282eb534a"></script>
 	
-	<script src="../assets/js/jquery.swiftype.min8389.js?v=1282eb534a"></script>
-$('<li class="nav-search-form"><form action="#" onsubmit="stSearch();return false;" autocomplete="on"><label id="nav-search-label" for="st-search-input">Search:</label><input id="search_submit" value="Search" type="submit"><input id="st-search-input" name="search" type="text" placeholder="search https://iyware.com"></form></li>').insertAfter(".nav-search");
+	<script type="text/javascript" src="../assets/js/jquery.swiftype.min8389.js?v=1282eb534a"></script>
+	<script type="text/javascript">
+		$('<li class="nav-search-form"><form action="#" onsubmit="stSearch();return false;" autocomplete="on"><label id="nav-search-label" for="st-search-input">Search:</label><input id="search_submit" value="Search" type="submit"><input id="st-search-input" name="search" type="text" placeholder="search https://iyware.com"></form></li>').insertAfter(".nav-search");
 
-var stSearch = function(){
-	var query = document.getElementById("st-search-input").value;
-	window.location.href = "/search/#stq=" + query + "&stp=1";
-};
+		var stSearch = function(){
+			var query = document.getElementById("st-search-input").value;
+			window.location.href = "/search/#stq=" + query + "&stp=1";
+		};
 
-var stRenderFunction = function(documentType, item) {
-	var titleEnd = item['title'].length - 9;
-	var title = item['title'].substring(0,titleEnd);
-	var header = '<header><h2><a class="st-search-result-link" href="%27%20%2b%20item%5b%27url%27%5d%20%2b%20%27/">' + title + '</a></h2></header>'
-	var text = '<div class="text"><p>' + item['body'].substring(20,250) + '</p></div>';
-	var continueReading = '<small class="continue"><a href="%27%20%2b%20%20item%5b%27url%27%5d%20%2b%20%27/">Continue Reading</a></small>';
-	return '<div class="loop"><article>'+header+text+continueReading+'</article></div>';
-};
+		var stRenderFunction = function(documentType, item) {
+			var titleEnd = item['title'].length - 9;
+			var title = item['title'].substring(0,titleEnd);
+			var header = '<header><h2><a class="st-search-result-link" href="' + item['url'] + '">' + title + '</a></h2></header>'
+			var text = '<div class="text"><p>' + item['body'].substring(20,250) + '</p></div>';
+			var continueReading = '<small class="continue"><a href="' +  item['url'] + '">Continue Reading</a></small>';
+			return '<div class="loop"><article>'+header+text+continueReading+'</article></div>';
+		};
 
-$("#st-search-input").swiftype({engineKey:"sg3kn6rAnozjxvM4k8nk"});
-$("#st-search-input").swiftypeSearch({renderFunction:stRenderFunction,perPage:4,engineKey:"sg3kn6rAnozjxvM4k8nk",resultContainingElement:"#st-results-container"});
-
-$("#st-search-input2").swiftype({engineKey: "sg3kn6rAnozjxvM4k8nk"});
-$("#st-search-input2").swiftypeSearch({renderFunction:stRenderFunction,perPage:4,engineKey:"sg3kn6rAnozjxvM4k8nk",resultContainingElement:"#st-results-container"});
+		$("#st-search-input").swiftype({
+			engineKey:"sg3kn6rAnozjxvM4k8nk"
+		});
+		$("#st-search-input").swiftypeSearch({
+			renderFunction:stRenderFunction,
+			perPage:4,
+			engineKey:"sg3kn6rAnozjxvM4k8nk",
+			resultContainingElement:"#st-results-container"
+		});
+		$("#st-search-input2").swiftype({
+			engineKey: "sg3kn6rAnozjxvM4k8nk"
+		});
+		$("#st-search-input2").swiftypeSearch({
+			renderFunction:stRenderFunction,
+			perPage:4,
+			engineKey:"sg3kn6rAnozjxvM4k8nk",
+			resultContainingElement:"#st-results-container"
+		});
+	</script>
 	<aside style="display:none;">
 		<a href="../search/">search</a>
 		<a href="../clients/">clients</a>
 	</aside>
 </body>
 
-<!-- Mirrored from 127.0.0.1:2368/foundation/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 18 Mar 2015 00:15:59 GMT -->
+<!-- Mirrored from 127.0.0.1:2368/foundation/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 18 Mar 2015 01:05:32 GMT -->
 </html>
