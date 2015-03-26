@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<!-- Mirrored from 127.0.0.1:2368/add-share-links-to-wordpress/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Mar 2015 01:51:09 GMT -->
+<!-- Mirrored from 127.0.0.1:2368/add-share-links-to-wordpress/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Mar 2015 01:52:49 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8" />
@@ -20,7 +20,7 @@
     <meta property="og:description" content="In my previous posts Ghost Share Links Cheat Sheet and Add Share Links to Ghost Themes I explained &quot;no-cost&quot; sharing and provided reusable code snippets in handlebars to add share links to 19 different social networks.  Here they are adapted..." />
     <meta property="og:url" content="https://iyware.com/add-share-links-to-wordpress/" />
     <meta property="article:published_time" content="2015-03-25T00:19:11.042Z" />
-    <meta property="article:modified_time" content="2015-03-26T01:50:58.941Z" />
+    <meta property="article:modified_time" content="2015-03-26T01:52:39.882Z" />
     <meta property="article:tag" content="WordPress" />
     
     <meta name="twitter:card" content="summary" />
@@ -43,7 +43,7 @@
     "headline": "Add Share Links to WordPress",
     "url": "https://iyware.com/add-share-links-to-wordpress/",
     "datePublished": "2015-03-25T00:19:11.042Z",
-    "dateModified": "2015-03-26T01:50:58.941Z",
+    "dateModified": "2015-03-26T01:52:39.882Z",
     "keywords": "WordPress",
     "description": "In my previous posts Ghost Share Links Cheat Sheet and Add Share Links to Ghost Themes I explained &quot;no-cost&quot; sharing and provided reusable code snippets in handlebars to add share links to 19 different social networks.  Here they are adapted..."
 }
@@ -128,15 +128,15 @@ ShareLinks(array("sinaWeibo", "renren")); //你好！
 <p>Different networks require/allow different query items and as such <code>shareLinks()</code> provides a number operators:</p>
 
 <ul>
-<li><code>$share["siteTitle"]</code>: This is a string returned from <code>get_bloginfo('name')</code>.</li>
-<li><code>$share["siteURL"]</code>: This is a string returned from <code>get_site_url()</code>.</li>
-<li><code>$share["postTitle"]</code>: This is a string returned from <code>get_the_title()</code>.</li>
-<li><code>$share["postURL"]</code>: This is a string returned from <code>get_permalink()</code> and then passed through <code>remove_query_arg()</code> to remove the page indicator.  If you want to share a specific page of a post then you'll need to remove the <code>remove_query_arg()</code> call.</li>
-<li><code>$share["postCategory"]</code>: This is a string of all categories of the post returned from <code>get_the_category()</code> and then the spaces are stripped out of category names and each category is prefixed with "#".  For example if a post is categorized as "Word Press, Themes" the return would be " #WordPress #Themes".</li>
-<li><code>$share["postDblCategory"]</code>: This is the same as <code>$share["postCategory"]</code> except categories are also suffixed with "#" as is required by some networks.  For example if a post is categorized as "The Simpsons, Ralph Wiggum" the return would be "#TheSimpsons# #RalphWiggum#".</li>
-<li><code>$share["postExcerpt"]</code>: This is a string returned from <code>get_the_excerpt()</code> and then passed to <code>wp_strip_all_tags()</code>: This will have "Continue Reading" at the end.  If you want to remove that you'll need to add a filter to your theme.</li>
-<li><code>$share["postShortExcerpt"]</code>: This is <code>$share["postExcerpt"]</code>: substringed to the first 90 characters for networks with shorter share limits.</li>
-<li><code>$share["postImage"]</code>  This is the URL of the featured image of the post.  If there is no featured image for the post, then it will grab the URL of the first image attached to the post.  If there are no images in the post then it is empty- which is fine.</li>
+<li><p><code>$share["siteTitle"]</code>: This is a string returned from <code>get_bloginfo('name')</code>.</p></li>
+<li><p><code>$share["siteURL"]</code>: This is a string returned from <code>get_site_url()</code>.</p></li>
+<li><p><code>$share["postTitle"]</code>: This is a string returned from <code>get_the_title()</code>.</p></li>
+<li><p><code>$share["postURL"]</code>: This is a string returned from <code>get_permalink()</code> and then passed through <code>remove_query_arg()</code> to remove the page indicator.  If you want to share a specific page of a post then you'll need to remove the <code>remove_query_arg()</code> call.</p></li>
+<li><p><code>$share["postCategory"]</code>: This is a string of all categories of the post returned from <code>get_the_category()</code> and then the spaces are stripped out of category names and each category is prefixed with "#".  For example if a post is categorized as "Word Press, Themes" the return would be " #WordPress #Themes".</p></li>
+<li><p><code>$share["postDblCategory"]</code>: This is the same as <code>$share["postCategory"]</code> except categories are also suffixed with "#" as is required by some networks.  For example if a post is categorized as "The Simpsons, Ralph Wiggum" the return would be "#TheSimpsons# #RalphWiggum#".</p></li>
+<li><p><code>$share["postExcerpt"]</code>: This is a string returned from <code>get_the_excerpt()</code> and then passed to <code>wp_strip_all_tags()</code>: This will have "Continue Reading" at the end.  If you want to remove that you'll need to add a filter to your theme.</p></li>
+<li><p><code>$share["postShortExcerpt"]</code>: This is <code>$share["postExcerpt"]</code>: substringed to the first 90 characters for networks with shorter share limits.</p></li>
+<li><p><code>$share["postImage"]</code>  This is the URL of the featured image of the post.  If there is no featured image for the post, then it will grab the URL of the first image attached to the post.  If there are no images in the post then it is empty- which is fine.</p></li>
 </ul>
 
 <h2 id="networksarray">Networks Array</h2>
@@ -579,5 +579,5 @@ ShareLinks(array("sinaWeibo", "renren")); //你好！
 	</aside>
 </body>
 
-<!-- Mirrored from 127.0.0.1:2368/add-share-links-to-wordpress/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Mar 2015 01:51:09 GMT -->
+<!-- Mirrored from 127.0.0.1:2368/add-share-links-to-wordpress/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Mar 2015 01:52:49 GMT -->
 </html>
