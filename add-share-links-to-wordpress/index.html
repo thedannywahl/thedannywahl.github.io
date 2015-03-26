@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from 127.0.0.1:2368/add-share-links-to-wordpress/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Mar 2015 01:40:53 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Add Share Links to WordPress - iyWare</title>
+    <meta name="description" content="" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../assets/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.min8389.css?v=1282eb534a" />
+    <link rel="canonical" href="https://iyware.com/add-share-links-to-wordpress/" />
+    
+    <meta property="og:site_name" content="iyWare" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Add Share Links to WordPress" />
+    <meta property="og:description" content="In my previous posts Ghost Share Links Cheat Sheet and Add Share Links to Ghost Themes I explained &quot;no-cost&quot; sharing and provided reusable code snippets in handlebars to add share links to 19 different social networks.  Here they are adapted..." />
+    <meta property="og:url" content="https://iyware.com/add-share-links-to-wordpress/" />
+    <meta property="article:published_time" content="2015-03-25T00:19:11.042Z" />
+    <meta property="article:modified_time" content="2015-03-26T01:40:40.767Z" />
+    <meta property="article:tag" content="WordPress" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Add Share Links to WordPress" />
+    <meta name="twitter:description" content="In my previous posts Ghost Share Links Cheat Sheet and Add Share Links to Ghost Themes I explained &quot;no-cost&quot; sharing and provided reusable code snippets in handlebars to add share links to 19 different social networks.  Here they are adapted..." />
+    <meta name="twitter:url" content="https://iyware.com/add-share-links-to-wordpress/" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "iyWare",
+    "author": {
+        "@type": "Person",
+        "name": "Danny Wahl",
+        "image": "https://iyware.com/content/images/2015/03/dannywahl.jpg",
+        "url": "https://iyware.com/author/danny",
+        "sameAs": "https://iyware.com"
+    },
+    "headline": "Add Share Links to WordPress",
+    "url": "https://iyware.com/add-share-links-to-wordpress/",
+    "datePublished": "2015-03-25T00:19:11.042Z",
+    "dateModified": "2015-03-26T01:40:40.767Z",
+    "keywords": "WordPress",
+    "description": "In my previous posts Ghost Share Links Cheat Sheet and Add Share Links to Ghost Themes I explained &quot;no-cost&quot; sharing and provided reusable code snippets in handlebars to add share links to 19 different social networks.  Here they are adapted..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.5" />
+    <link rel="alternate" type="application/rss+xml" title="iyWare" href="https://iyware.com/rss/" />
+</head>
+<body class="post-template tag-wordpress">
+    
+
+	<header role="banner" class="header-main no-image">
+    		<ul class="nav">
+    <li class="nav-home" role="presentation"><a href="https://iyware.com/">Home</a></li>
+    <li class="nav-clients" role="presentation"><a href="https://iyware.com/clients/">Clients</a></li>
+    <li class="nav-portfolio" role="presentation"><a href="https://iyware.com/tag/portfolio/">Portfolio</a></li>
+    <li class="nav-search" role="presentation"><a href="https://iyware.com/search/">Search</a></li>
+</ul>
+		<h1>
+    		<a href="https://iyware.com/">
+            		<img src="../content/images/2015/01/logo.png" alt="iyWare">
+			</a>
+		</h1>
+	</header>
+
+    <article role="main" class="post tag-wordpress" data-swiftype-index="true">
+    
+        <header>
+            <h1>Add Share Links to WordPress</h1>
+
+			<small class="meta">
+						<a href="../author/danny/" class="author" style="background-image:url('../content/images/2015/03/dannywahl.jpg');"><img src="../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl's picture"></a>
+					<a href="../author/danny/">Danny Wahl</a>
+				&nbsp;&bull;&nbsp;
+				<time datetime="2015-03-25">March 25, 2015</time>
+					&nbsp;&bull;&nbsp;
+					<span class="tags"><a href="../tag/wordpress/">WordPress</a></span>
+			</small>
+        </header>
+
+        <div class="text">
+            <p>In my previous posts <a href="../ghost-share-links-cheat-sheet/">Ghost Share Links Cheat Sheet</a> and <a href="../add-share-links-to-ghost-themes/">Add Share Links to Ghost Themes</a> I explained "no-cost" sharing and provided reusable code snippets in handlebars to add share links to 19 different social networks.  Here they are adapted for WordPress in a single easy to use function.</p>
+
+<p>tl;dr: <a href="https://gist.github.com/thedannywahl/fde944a1668fce9e2a60">Download WordPress shareLinks at github</a>.</p>
+
+<h2 id="installing">Installing</h2>
+
+<p>In your WordPress theme folder you can either simply add the following code to the <code>single.php</code> file inside of the <code>while()</code> loop or add it to your theme's <code>functions.php</code> and call it in <code>single.php</code></p>
+
+<h2 id="usage">Usage</h2>
+
+<p>This code provides a single function <code>shareLinks([$sites]){}</code> which takes an optional parameter <code>$sites[]</code> which is array of sites to output links.  If no parameter is provided then all sites are output.  For example:</p>
+
+<pre><code class="language-php">shareLinks();  //All the things!
+
+shareLinks(array("email")); //Old School!
+
+ShareLinks(array("sinaWeibo", "renren")); //你好！  
+</code></pre>
+
+<p>The function returns a string containing an unordered list with each site as its own list item.  The list item contains an anchor with a helper class of the machine-readable site name, like so:</p>
+
+<pre><code class="language-markup">&lt;ul&gt;  
+  &lt;li&gt;
+    &lt;a class="stumbleupon" href="https://stumbleupon.com..."&gt;StumbleUpon&lt;/a&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;  
+</code></pre>
+
+<p>To output the list it needs to be echoed after it is called.  The simplest way is like this:</p>
+
+<pre><code class="language-php">&lt;?php echo shareLinks(); ?&gt;  
+</code></pre>
+
+<p>Ok, now for the dev-nerd stuff...</p>
+
+<h2 id="queryitems">Query Items</h2>
+
+<p>Different networks require/allow different query items and as such <code>shareLinks()</code> provides a number operators:</p>
+
+<ul>
+<li><code>$share["siteTitle"]</code>: This is a string returned from <code>get_bloginfo('name')</code>.</li>
+<li><code>$share["siteURL"]</code>: This is a string returned from <code>get_site_url()</code>.</li>
+<li><code>$share["postTitle"]</code>: This is a string returned from <code>get_the_title()</code>.</li>
+<li><code>$share["postURL"]</code>: This is a string returned from <code>get_permalink()</code> and then passed through <code>remove_query_arg()</code> to remove the page indicator.  If you want to share a specific page of a post then you'll need to remove the <code>remove_query_arg()</code> call.</li>
+<li><code>$share["postCategory"]</code>: This is a string of all categories of the post returned from <code>get_the_category()</code> and then the spaces are stripped out of category names and each category is prefixed with "#".  For example if a post is categorized as "Word Press, Themes" the return would be " #WordPress #Themes".</li>
+<li><code>$share["postDblCategory"]</code>: This is the same as <code>$share["postCategory"]</code> except categories are also suffixed with "#" as is required by some networks.  For example if a post is categorized as "The Simpsons, Ralph Wiggum" the return would be "#TheSimpsons# #RalphWiggum#".</li>
+<li><code>$share["postExcerpt"]</code>: This is a string returned from <code>get_the_excerpt()</code> and then passed to <code>wp_strip_all_tags()</code>: This will have "Continue Reading" at the end.  If you want to remove that you'll need to add a filter to your theme.</li>
+<li><code>$share["postShortExcerpt"]</code>: This is <code>$share["postExcerpt"]</code>: substringed to the first 90 characters for networks with shorter share limits.</li>
+<li><code>$share["postImage"]</code>  This is the URL of the featured image of the post.  If there is no featured image for the post, then it will grab the URL of the first image attached to the post.  If there are no images in the post then it is empty- which is fine.</li>
+</ul>
+
+<h2 id="networksarray">Networks Array</h2>
+
+<p>Each network (facebook, twitter, etc..) is simply part of a multidimensional array.  To add another network, simply create another entry in <code>networks[]</code>.  Here's the schema of the primary array:</p>
+
+<pre><code class="language-php">    $networks["network-machine-readable-name"] = [
+        "name"  =&gt; "Network Display Name",
+        "url"   =&gt; "https://example.com/share?",
+        "query" =&gt; [
+            "foo" =&gt; $share["postURL"]
+            "bar" =&gt; $share["postTitle"],
+        ],
+    ];
+</code></pre>
+
+<p>The machine readable name is the helper class that's provided in the anchor, the "name" is the text output in the anchor content.  This is important especially when dealing with multilingual sites, for example "Sina Weibo" is <code>$networks["sinaWeibo"]</code> but the display name is: <code>"name" =&gt; "新浪微博"</code>  to change the display of the network name you would change the "name" value.</p>
+
+<p>The <code>"url"</code> array value is where the share URL is stored- this is different for each site, but it should always end with the beginning of the query URL (i.e. <code>?</code>).</p>
+
+<p>The <code>"query"</code> array value should store another array which are the components of the URL query.  These are different for each network, but can be populated with elements from the <code>$share[]</code> array as outlined above.  For example a query array might look like this:</p>
+
+<pre><code class="language-php">"query" =&gt; [
+    "url" =&gt; $share["postURL"],
+    "title" =&gt; $share["postTitle"],
+    "redirect" =&gt; "false",
+],
+</code></pre>
+
+<p>Notice the last option "redirect=false".  It's possible to add static elements to the query URL if they're required by the remote site.  In the end this will give us something like:</p>
+
+<pre><code class="language-markup">url=http://example.com&amp;title=Post Title&amp;redirect=false  
+</code></pre>
+
+<p>Finally, our query is passed through <a href="http://php.net/http_build_query"><code>http_build_query()</code></a> to make it URL encoded.</p>
+
+<h2 id="examples">Examples</h2>
+
+<p>The following are real examples of this function in action on my wife's blog (<a href="iywahl.com/">iywahl.com</a>) with a random post.  Her site is using WordPress 4.1.1 and the "Twenty Fifteen" theme.</p>
+
+<h3 id="email">Email</h3>
+
+<pre><code class="language-php">    $networks["email"] = [
+        "name"  =&gt; "E-mail",
+        "url"   =&gt; "mailto:?",
+        "query" =&gt; [
+            "subject" =&gt; $share["siteTitle"] . ": " . $share["postTitle"],
+            "body"    =&gt; $share["postTitle"] . "\r\n" . $share["postURL"] . "\r\n\r\n" . $share["postExcerpt"],
+        ],
+    ];
+</code></pre>
+
+<p><img src="../content/images/2015/03/share-to-email-with-wordpress.png" alt="" /></p>
+
+<h3 id="twitter">twitter</h3>
+
+<pre><code class="language-php">    $networks["twitter"] = [
+        "name"  =&gt; "twitter",
+        "url"   =&gt; "https://twitter.com/home?",
+        "query" =&gt; [
+            "status" =&gt; $share["postURL"] . $share["postCategory"],
+        ],
+    ];
+</code></pre>
+
+<p><img src="../content/images/2015/03/share-to-twitter-with-wordpress.png" alt="" /></p>
+
+<h3 id="facebook">Facebook</h3>
+
+<pre><code class="language-php">    $networks["facebook"] = [
+        "name"  =&gt; "Facebook",
+        "url"   =&gt; "https://www.facebook.com/sharer/sharer.php?",
+        "query" =&gt; [
+            "u" =&gt; $share["postURL"],
+        ],
+    ];
+</code></pre>
+
+<p><img src="../content/images/2015/03/share-to-facebook-with-wordpress.png" alt="" /></p>
+
+<h3 id="google">Google+</h3>
+
+<pre><code class="language-php">    $networks["googlePlus"] = [
+        "name"  =&gt; "Google+",
+        "url"   =&gt; "https://plus.google.com/share?",
+        "query" =&gt; [
+            "url" =&gt; $share["postURL"],
+        ],
+    ];
+</code></pre>
+
+<p><img src="../content/images/2015/03/share-to-googleplus-with-wordpress.png" alt="" /></p>
+
+<h3 id="linkedin">LinkedIn</h3>
+
+<pre><code class="language-php">    $networks["linkedin"] = [
+        "name"  =&gt; "LinkedIn",
+        "url"   =&gt; "https://www.linkedin.com/shareArticle?",
+        "query" =&gt; [
+            "mini"    =&gt; "true",
+            "url"     =&gt; $share["postURL"],
+            "title"   =&gt; $share["postTitle"],
+            "summary" =&gt; $share["postExcerpt"],
+            "source"  =&gt; $share["siteTitle"],
+        ],
+    ];
+</code></pre>
+
+<p><img src="../content/images/2015/03/share-to-linkedin-with-wordpress.png" alt="" /></p>
+
+<h3 id="pinterest">Pinterest</h3>
+
+<pre><code class="language-php">    $networks["pinterest"] = [
+        "name"  =&gt; "Pinterest",
+        "url"   =&gt; "https://pinterest.com/pin/create/button/?",
+        "query" =&gt; [
+            "url"         =&gt; $share["postURL"],
+            "media"       =&gt; $share["postImage"],
+            "description" =&gt; $share["postShortExcerpt"], 
+        ],
+    ];
+</code></pre>
+
+<p><img src="../content/images/2015/03/share-to-pinterest-with-wordpress.png" alt="" /></p>
+
+<h3 id="tumblr">Tumblr</h3>
+
+<pre><code class="language-php">    $networks["tumblr"] = [
+        "name"  =&gt; "tumblr",
+        "url"   =&gt; "http://www.tumblr.com/share/link?",
+        "query" =&gt; [
+            "url"         =&gt; $share["postURL"],
+            "name"        =&gt; $share["postTitle"],
+            "description" =&gt; $share["postExcerpt"],
+        ],
+    ];
+</code></pre>
+
+<p><img src="../content/images/2015/03/share-to-tumblr-with-wordpress.png" alt="" /></p>
+
+<h3 id="reddit">reddit</h3>
+
+<pre><code class="language-php">    $networks["reddit"] = [
+        "name"  =&gt; "reddit",
+        "url"   =&gt; "http://www.reddit.com/submit/?",
+        "query" =&gt; [
+            "url"   =&gt; $share["postURL"],
+            "title" =&gt; $share["postTitle"],
+        ],
+    ];
+</code></pre>
+
+<p><img src="../content/images/2015/03/share-to-reddit-with-wordpress.png" alt="" /></p>
+
+<h3 id="xing">Xing</h3>
+
+<pre><code class="language-php">    $networks["xing"] = [
+        "name"  =&gt; "Xing",
+        "url"   =&gt; "https://www.xing.com/spi/shares/new?",
+        "query" =&gt; [
+            "sc_p" =&gt; "xing-share",
+            "url"  =&gt; $share["postURL"],
+        ],
+    ];
+</code></pre>
+
+<p><img src="../content/images/2015/03/share-to-xing-with-wordpress.png" alt="" /></p>
+
+<h3 id="vk">VK</h3>
+
+<pre><code class="language-php">    $networks["vk"] = [
+        "name"  =&gt; "VK",
+        "url"   =&gt; "https://vk.com/share.php?",
+        "query" =&gt; [
+            "url"         =&gt; $share["postURL"],
+            "title"       =&gt; $share["postTitle"],
+            "description" =&gt; $share["postExcerpt"],
+            "image"       =&gt; $share["postImage"],
+            "noparse"     =&gt; "true",
+        ],
+    ];
+</code></pre>
+
+<p><img src="../content/images/2015/03/share-to-vk-with-wordpress.png" alt="" /></p>
+
+<h3 id="buffer">buffer</h3>
+
+<pre><code class="language-php">    $networks["buffer"] = [
+        "name"  =&gt; "buffer",
+        "url"   =&gt; "https://bufferapp.com/add/?",
+        "query" =&gt; [
+            "url"  =&gt; $share["postURL"],
+            "text" =&gt; $share["postShortExcerpt"],
+        ],
+    ];
+</code></pre>
+
+<p><img src="../content/images/2015/03/share-to-buffer-with-wordpress.png" alt="" /></p>
+
+<h3 id="stumbleupon">StumbleUpon</h3>
+
+<pre><code class="language-php">    $networks["stumbleupon"] = [
+        "name"  =&gt; "StumbleUpon",
+        "url"   =&gt; "https://www.stumbleupon.com/submit?",
+        "query" =&gt; [
+            "url"   =&gt; $share["postURL"],
+            "title" =&gt; $share["postTitle"],
+        ],
+    ];
+</code></pre>
+
+<p><img src="../content/images/2015/03/share-to-stumbleupon-with-wordpress.png" alt="" /></p>
+
+<h3 id="sinaweibo">新浪微博 (Sina Weibo)</h3>
+
+<pre><code class="language-php">    $networks["sinaWeibo"] = [
+        "name"  =&gt; "新浪微博",
+        "url"   =&gt; "http://service.weibo.com/share/share.php?",
+        "query" =&gt; [
+            "url"   =&gt; $share["postURL"],
+            "pic"   =&gt; $share["postImage"],
+            "title" =&gt; $share["postTitle"] . "%0D%0A" . $share["postShortExcerpt"] . $share["postDblCategory"],
+        ],
+    ];
+</code></pre>
+
+<p><img src="../content/images/2015/03/share-to-sinaweibo-with-wordpress.png" alt="" /></p>
+
+<h3 id="baidu">Baidu空间</h3>
+
+<pre><code class="language-php">    $networks["baidu"] = [
+        "name"  =&gt; "Baidu空间",
+        "url"   =&gt; "http://hi.baidu.com/pub/show/share?",
+        "query" =&gt; [
+            "url"   =&gt; $share["postURL"],
+            "title" =&gt; $share["postTitle"],
+        ],
+    ];
+</code></pre>
+
+<p><img src="../content/images/2015/03/share-to-baidus-with-wordpress.png" alt="" /></p>
+
+<h3 id="renren">人人网 (Renren)</h3>
+
+<pre><code class="language-php">    $networks["renren"] = [
+        "name"  =&gt; "人人网",
+        "url"   =&gt; "http://share.renren.com/share/buttonshare?",
+        "query" =&gt; [
+            "link"  =&gt; $share["postURL"],
+            "title" =&gt; $share["postTitle"],
+        ],
+    ];
+</code></pre>
+
+<p><img src="../content/images/2015/03/share-to-renren-with-wordpress.png" alt="" /></p>
+
+<h3 id="qqtencentweibo">腾讯微博 (QQ Tencent Weibo)</h3>
+
+<pre><code class="language-php">    $networks["tencentWeibo"] = [
+        "name"  =&gt; "腾讯微博",
+        "url"   =&gt; "http://v.t.qq.com/share/share.php?",
+        "query" =&gt; [
+            "title" =&gt; $share["postTitle"] . " " . $share["postShortExcerpt"] . $share["postDblCategory"],
+            "url"   =&gt; $share["postURL"],
+        ],
+    ];
+</code></pre>
+
+<p><img src="../content/images/2015/03/share-to-tencentweibo-with-wordpress.png" alt="" /></p>
+
+<h3 id="qq">QQ空间</h3>
+
+<pre><code class="language-php">    $networks["qzone"] = [
+        "name"  =&gt; "QQ空间",
+        "url"   =&gt; "http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?",
+        "query" =&gt; [
+            "title"   =&gt; $share["postTitle"],
+            "url"     =&gt; $share["postURL"],
+            "summary" =&gt; $share["postShortExcerpt"],
+        ],
+    ];
+</code></pre>
+
+<p><img src="../content/images/2015/03/share-to-qqzone-with-weibo.png" alt="" /></p>
+
+<h3 id="pengyou">腾讯朋友网 (Pengyou)</h3>
+
+<pre><code class="language-php">    $networks["pengyou"] = [
+        "name"  =&gt; "腾讯朋友网",
+        "url"   =&gt; "http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?",
+        "query" =&gt; [
+            "to" =&gt; "pengyou",
+            "title"   =&gt; $share["postTitle"],
+            "url"     =&gt; $share["postURL"],
+            "summary" =&gt; $share["postShortExcerpt"],
+        ],
+    ];
+</code></pre>
+
+<p><img src="../content/images/2015/03/share-to-pengyou-with-wordpress.png" alt="" /></p>
+
+<p>Wow, are you still reading this?  Go <a href="https://gist.github.com/thedannywahl/fde944a1668fce9e2a60">download shareLinks from github</a> and add it to your theme!</p>
+        </div>
+
+        <section class="share">
+        	<ul>
+				<li>
+					<a href="mailto:?&subject=iyWare%3A%20Add%20Share%20Links%20to%20WordPress&body=Add%20Share%20Links%20to%20WordPress%0D%0Ahttps://iyware.com/add-share-links-to-wordpress/%0D%0A%0D%0AIn my previous posts Ghost Share Links Cheat Sheet and Add Share Links to Ghost Themes I explained "no-cost" sharing and provided reusable code snippets in handlebars to add share links to 19 different social networks.  Here they are adapted for WordPress in a single%2E%2E%2E">Email</a>
+				</li>
+				<li>
+					<a href="https://twitter.com/home?status=https://iyware.com/add-share-links-to-wordpress/%20%23WordPress">Twitter</a>
+				</li>
+				<li>
+					<a href="https://www.facebook.com/sharer/sharer.php?u=https://iyware.com/add-share-links-to-wordpress/">Facebook</a>
+				</li>
+				<li>
+					<a href="https://plus.google.com/share?url=https://iyware.com/add-share-links-to-wordpress/">Google+</a>
+				</li>
+				<li>
+					<a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://iyware.com/add-share-links-to-wordpress/&amp;title=Add%20Share%20Links%20to%20WordPress&amp;summary=In%20my%20previous%20posts%20Ghost%20Share%20Links%20Cheat%20Sheet%20and%20Add%20Share%20Links%20to%20Ghost%20Themes%20I%20explained"no-cost" sharing and provided reusable code snippets in handlebars to add share links to 19 different social networks.  Here they are adapted for WordPress in a single&source=iyWare">LinkedIn</a>
+				</li>
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			</ul>
+        </section>
+
+        <footer class="post-footer vcard cf" role="contentinfo">
+                	<div class="wrapper">
+                	<a href="../author/danny/" class="author" style="background-image: url('../content/images/2015/03/dannywahl.jpg');">
+                    	<img src="../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl">
+					</a>
+					</div>
+                <div class="author-info meta">
+					<a href="../author/danny/" class="fn">Danny Wahl</a>
+                    &nbsp;&bull;&nbsp;<span class="adr">天津</span>
+                    &nbsp;&bull;&nbsp;<a class="site" href="https://iyware.com/">https://iyware.com</a>
+                    <p class="bio">My name is Danny Wahl and I provide IT management and consulting in the APAC region. I dabble in writing, programming, design, and ukulele playing. Post content licensed CC-BY-4.0</p>
+                </div>
+        </footer>
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+		var disqus_shortname = 'iyware';
+		(function() {
+			var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+			dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+			(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+		})();
+	</script>
+	<noscript>
+		<p style="text-align:center;">
+			<small>Please enable JavaScript to view the <a href="https://disqus.com/home/forums/iyware/">comments powered by Disqus.</a></small>
+		</p>
+	</noscript>
+	
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<ins class="adsbygoogle" style="display:block;width:320px;height:100px;margin:0 auto;" data-ad-client="ca-pub-5811335018322110" data-ad-slot="8562617448"></ins>
+	<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>  
+
+    </article>
+  
+
+<footer class="footer-main cf">
+	<p class="feed"><a href="https://iyware.com/rss">RSS Feed</a></p>
+	<p class="description">
+        <a class="title" href="https://iyware.com/">iyWare</a>
+        <span>Things I Break</span>
+    </p>
+	<p class="copyright">&copy; 2015 <a href="https://iyware.com/">iyWare</a></p>
+</footer>
+    <script src="../public/jquery8389.js?v=1282eb534a"></script>
+
+		<script type="text/javascript" src="../assets/js/prism.min8389.js?v=1282eb534a"></script>
+	
+	<script type="text/javascript" src="../assets/js/jquery.swiftype.min8389.js?v=1282eb534a"></script>
+	<script type="text/javascript">
+		$('<li class="nav-search-form"><form action="#" onsubmit="stSearch();return false;" autocomplete="on"><label id="nav-search-label" for="st-search-input">Search:</label><input id="search_submit" value="Search" type="submit"><input id="st-search-input" name="search" type="text" placeholder="search https://iyware.com"></form></li>').insertAfter(".nav-search");
+
+		var stSearch = function(){
+			var query = document.getElementById("st-search-input").value;
+			window.location.href = "/search/#stq=" + query + "&stp=1";
+		};
+
+		var stAutoRenderFunction = function(document_type, item) {
+			var titleEnd = item['title'].length - 9;
+			var title = item['title'].substring(0,titleEnd);
+			return '<p class="title">' + title + '</p>';
+		};
+
+		var stRenderFunction = function(documentType, item) {
+			var titleEnd = item['title'].length - 9;
+			var title = item['title'].substring(0,titleEnd);
+			var header = '<header><h2><a class="st-search-result-link" href="' + item['url'] + '">' + title + '</a></h2></header>'
+			var text = '<div class="text"><p>' + item['body'].substring(20,250) + '</p></div>';
+			var continueReading = '<small class="continue"><a href="' +  item['url'] + '">Continue Reading</a></small>';
+			return '<div class="loop"><article>' + header + text + continueReading + '</article></div>';
+		};
+
+		$("#st-search-input").swiftype({
+			renderFunction: stAutoRenderFunction,
+			resultLimit: 5,
+			engineKey:"sg3kn6rAnozjxvM4k8nk"
+		});
+		$("#st-search-input").swiftypeSearch({
+			renderFunction:stRenderFunction,
+			perPage:4,
+			engineKey:"sg3kn6rAnozjxvM4k8nk",
+			resultContainingElement:"#st-results-container"
+		});
+		$("#st-search-input2").swiftype({
+			renderFunction: stAutoRenderFunction,
+			resultLimit: 5,
+			engineKey: "sg3kn6rAnozjxvM4k8nk"
+		});
+		$("#st-search-input2").swiftypeSearch({
+			renderFunction:stRenderFunction,
+			perPage:4,
+			engineKey:"sg3kn6rAnozjxvM4k8nk",
+			resultContainingElement:"#st-results-container"
+		});
+	</script>
+	<aside style="display:none;">
+		<a href="../search/">search</a>
+		<a href="../clients/">clients</a>
+	</aside>
+</body>
+
+<!-- Mirrored from 127.0.0.1:2368/add-share-links-to-wordpress/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Mar 2015 01:41:19 GMT -->
+</html>
