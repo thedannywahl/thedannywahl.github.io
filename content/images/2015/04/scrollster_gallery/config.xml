@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<juiceboxgallery 
+
+	resizeOnImport="false"
+	galleryTitle="Scrollster for Instagram"
+	galleryWidth="680"
+	backgroundColor="rgba(63,114,155,1)"
+	showThumbsButton="false"
+	showOpenButton="true"
+	showExpandButton="false"
+	useThumbDots="true"
+	textColor="rgba(255,255,255,1)"
+
+>
+  <image imageURL="images/large1.jpg"
+	thumbURL="thumbs/large1.jpg"
+	linkURL="https://gumroad.com/l/scrollster"
+	linkTarget="_blank"
+	sourcePath="/Users/dannywahl/Desktop/large1.png">
+    <title><![CDATA[#spring]]></title>
+    <caption><![CDATA[Scrollster can display any instagram tag]]></caption>
+  </image>
+  <image imageURL="images/popular2.jpg"
+	thumbURL="thumbs/popular2.jpg"
+	linkURL="https://gumroad.com/l/scrollster"
+	linkTarget="_blank"
+	sourcePath="/Users/dannywahl/Desktop/popular2.png">
+    <title><![CDATA[Popular Page]]></title>
+    <caption><![CDATA[Or the popular page if no hastag is provided]]></caption>
+  </image>
+  <image imageURL="images/author_comments_likes1.jpg"
+	thumbURL="thumbs/author_comments_likes1.jpg"
+	linkURL="https://gumroad.com/l/scrollster"
+	linkTarget="_blank"
+	sourcePath="/Users/dannywahl/Desktop/author_comments_likes1.png">
+    <title><![CDATA[Author, comments, likes, caption]]></title>
+    <caption><![CDATA[You can show or hide the author, comments, likes, and caption]]></caption>
+  </image>
+  <image imageURL="images/author_comments_likes2.jpg"
+	thumbURL="thumbs/author_comments_likes2.jpg"
+	linkURL="https://gumroad.com/l/scrollster"
+	linkTarget="_blank"
+	sourcePath="/Users/dannywahl/Desktop/author_comments_likes2.png">
+    <title><![CDATA[Large Images]]></title>
+    <caption><![CDATA[You can control the size of the images, here's large]]></caption>
+  </image>
+  <image imageURL="images/medium1.jpg"
+	thumbURL="thumbs/medium1.jpg"
+	linkURL="https://gumroad.com/l/scrollster"
+	linkTarget="_blank"
+	sourcePath="/Users/dannywahl/Desktop/medium1.png">
+    <title><![CDATA[Medium Images]]></title>
+    <caption><![CDATA[here's medium]]></caption>
+  </image>
+  <image imageURL="images/small1.jpg"
+	thumbURL="thumbs/small1.jpg"
+	linkURL="https://gumroad.com/l/scrollster"
+	linkTarget="_blank"
+	sourcePath="/Users/dannywahl/Desktop/small1.png">
+    <title><![CDATA[Small Images]]></title>
+    <caption><![CDATA[and here's small]]></caption>
+  </image>
+  <image imageURL="images/example_on_Macbook.jpg"
+	thumbURL="thumbs/example_on_Macbook.jpg"
+	linkURL="https://www.youtube.com/watch?v=Zpxi1Ya9OqU"
+	linkTarget="_blank"
+	sourcePath="/Users/dannywahl/Desktop/example_on_Macbook.jpg">
+    <title><![CDATA[See it on Youtube]]></title>
+    <caption><![CDATA[Click here to see Scrollster in action on Youtube]]></caption>
+  </image>
+</juiceboxgallery>
