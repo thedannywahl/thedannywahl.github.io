@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<!-- Mirrored from 127.0.0.1:2368/add-search-to-your-ghost-blog/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Dec 2016 17:08:47 GMT -->
+<!-- Mirrored from 127.0.0.1:2368/add-search-to-your-ghost-blog/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Dec 2016 17:37:59 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8" />
@@ -81,7 +81,7 @@
 </ul>
 		<h1>
     		<a href="https://iyware.com/">
-            		<img src="../content/images/2015/01/logo.png" alt="iyWare">
+            		<img src="../content/images/2015/01/logo.html" alt="iyWare">
 			</a>
 		</h1>
 	</header>
@@ -92,7 +92,7 @@
             <h1>Add Search to Your Ghost Blog with Swiftype</h1>
 
 			<small class="meta">
-						<a href="../author/danny/" class="author" style="background-image:url('../content/images/2015/03/dannywahl.jpg');"><img src="../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl's picture"></a>
+						<a href="../author/danny/" class="author" style="background-image:url('../content/images/2015/03/dannywahl.html');"><img src="../content/images/2015/03/dannywahl.html" alt="Danny Wahl's picture"></a>
 					<a href="../author/danny/">Danny Wahl</a>
 				&nbsp;&bull;&nbsp;
 				<time datetime="2015-02-02">February 02, 2015</time>
@@ -116,15 +116,15 @@
 
 <p>Head on over to the <a href="https://swiftype.com/pricing">Swiftype pricing page</a> page and scout out the plan that you want.  Personally I'm just using the free plan.</p>
 
-<p><img src="../content/images/2015/01/swiftype-pricing-overview.png" alt="" /></p>
+<p><img src="../content/images/2015/01/swiftype-pricing-overview.html" alt="" /></p>
 
 <p>Another option available is to activate Smart Errors as an app in your<a href="https://www.cloudflare.com/zone-picker?from=/cloudflare-apps"> Cloudflare dashboard</a> if you're using Cloudflare.  This will also give you the added benefit of having a better 404 page than this: <code>;&gt; &lt;</code></p>
 
-<p><img src="../content/images/2015/01/smart-errors-cloudflare-app.png" alt="" /></p>
+<p><img src="../content/images/2015/01/smart-errors-cloudflare-app.html" alt="" /></p>
 
 <p>After you've enabled smart errors head to your <a href="https://swiftype.com/home">swiftype dashboard</a> and create what they call a "<a href="https://swiftype.com/engines/new">Search Engine</a>" which is actually a search context (generally a domain- but you can have it search multiple domains).</p>
 
-<p><img src="../content/images/2015/02/swiftype-search-engine-overview.png" alt="" /></p>
+<p><img src="../content/images/2015/02/swiftype-search-engine-overview.html" alt="" /></p>
 
 <h2 id="option1addswiftypesearchwithcloudflare">Option 1: Add Swiftype Search with Cloudflare</h2>
 
@@ -136,7 +136,7 @@
 
 <p>Go back to the Swiftype page and inside your search engine choose "Install" from the toolbar.</p>
 
-<p><img src="../content/images/2015/02/swiftype-searchengine-toolbar.png" alt="" /></p>
+<p><img src="../content/images/2015/02/swiftype-searchengine-toolbar.html" alt="" /></p>
 
 <h3 id="downloadswiftypeautocompletesearch">Download Swiftype Autocomplete &amp; Search</h3>
 
@@ -159,7 +159,7 @@
 <li>jquery.swiftype.search.js</li>
 </ul>
 
-<p><img src="../content/images/2015/02/swiftype-js-files-added-to-ghost.png" alt="" /></p>
+<p><img src="../content/images/2015/02/swiftype-js-files-added-to-ghost.html" alt="" /></p>
 
 <p>Now do the same thing for the CSS files but in the <code>/assets/css/</code> folder:</p>
 
@@ -168,7 +168,7 @@
 <li>search.css</li>
 </ul>
 
-<p><img src="../content/images/2015/02/swiftype-css-files-added-to-ghost.png" alt="" /></p>
+<p><img src="../content/images/2015/02/swiftype-css-files-added-to-ghost.html" alt="" /></p>
 
 <p>Optionally you can concatenate the CSS to the end of the Ghost CSS file <code>screen.css</code>, which is probably a better idea because it will save you 2 HTTP requests and a little bit of bandwidth.</p>
 
@@ -220,15 +220,15 @@
 
 <p>If you are intending to create a static search page and not to integrate search into your theme template then head to your Ghost dashboard and create a new post.  I titled mine "Search":</p>
 
-<p><img src="../content/images/2015/02/post-named-search-in-ghost.png" alt="" /></p>
+<p><img src="../content/images/2015/02/post-named-search-in-ghost.html" alt="" /></p>
 
 <p>Click on the 'settings' wheel and change the post into a static page.  You can also adjust the slug if you'd like.</p>
 
-<p><img src="../content/images/2015/02/adjusting-a-post-type-in-ghost.png" alt="" /></p>
+<p><img src="../content/images/2015/02/adjusting-a-post-type-in-ghost.html" alt="" /></p>
 
 <p>If you want to provide information to your users you can add content to the page, for example I added all the tags I use on my blog.  There's no easy way to do this I just don't have many tags, if you want something more dynamic, I suggest you add it to your template.</p>
 
-<p><img src="../content/images/2015/02/edited-search-page-with-content.png" alt="" /></p>
+<p><img src="../content/images/2015/02/edited-search-page-with-content.html" alt="" /></p>
 
 <p>Finally it's time to add the search form to your page.  Even though Ghost uses Markdown, remember that any HTML is valid Markdown, so you can directly create a form:</p>
 
@@ -242,7 +242,7 @@
 
 <p>Publish your page and you should be ready to go (assuming Swiftype has finished indexing your content).  Just make sure that the form ID and the results ID match your jQuery selectors- they should if you just copied from here.</p>
 
-<p><img src="../content/images/2015/02/swiftype-autocomplete.png" alt="" /></p>
+<p><img src="../content/images/2015/02/swiftype-autocomplete.html" alt="" /></p>
 
 <p>That's it for the integration.  You can always go back and edit the CSS to better match your site.  You can also add the <a href="https://swiftype.com/engines/iyware-dot-com/install"><code>renderFunction</code></a> to your JavaScript to control how Swiftype outputs its results.</p>
 
@@ -287,8 +287,8 @@
 
         <footer class="post-footer vcard cf" role="contentinfo">
                 	<div class="wrapper">
-                	<a href="../author/danny/" class="author" style="background-image: url('../content/images/2015/03/dannywahl.jpg');">
-                    	<img src="../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl">
+                	<a href="../author/danny/" class="author" style="background-image: url('../content/images/2015/03/dannywahl.html');">
+                    	<img src="../content/images/2015/03/dannywahl.html" alt="Danny Wahl">
 					</a>
 					</div>
                 <div class="author-info meta">
@@ -388,5 +388,5 @@
 	</aside>
 </body>
 
-<!-- Mirrored from 127.0.0.1:2368/add-search-to-your-ghost-blog/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Dec 2016 17:08:47 GMT -->
+<!-- Mirrored from 127.0.0.1:2368/add-search-to-your-ghost-blog/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Dec 2016 17:37:59 GMT -->
 </html>
