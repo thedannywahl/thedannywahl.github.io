@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
 
-<!-- Mirrored from 127.0.0.1:2368/adding-custom-images-in-moodle-2-0-themes/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Dec 2016 21:31:12 GMT -->
+<!-- Mirrored from 127.0.0.1:2368/adding-custom-images-in-moodle-2-0-themes/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 06 Jan 2018 22:14:17 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Adding Custom Images in Moodle 2.0 Themes - iyWare</title>
-    <meta name="description" content="" />
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="../assets/favicon.ico">
-    <link rel="stylesheet" type="text/css" href="../assets/css/screen.min543c.css?v=f30b9db75e" />
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.min7654.css?v=232eeda5be" />
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
     <link rel="canonical" href="https://iyware.com/adding-custom-images-in-moodle-2-0-themes/" />
     <meta name="referrer" content="no-referrer-when-downgrade" />
     <link rel="amphtml" href="https://iyware.com/adding-custom-images-in-moodle-2-0-themes/amp/" />
@@ -46,12 +46,16 @@
     "author": {
         "@type": "Person",
         "name": "Danny Wahl",
-        "image": "https://iyware.com/content/images/2015/03/dannywahl.jpg",
-        "url": "https://iyware.com/author/danny/",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://iyware.com/content/images/2015/03/dannywahl.jpg",
+            "width": 112,
+            "height": 112
+        },
+        "url": "https://iyware.com/author/danny-2/",
         "sameAs": [
             "https://iyware.com"
-        ],
-        "description": "My name is Danny Wahl and I provide consulting in IT and education. I dabble in writing, programming, design, and ukulele playing. Post content licensed CC-BY-4.0"
+        ]
     },
     "headline": "Adding Custom Images in Moodle 2.0 Themes",
     "url": "https://iyware.com/adding-custom-images-in-moodle-2-0-themes/",
@@ -61,24 +65,32 @@
     "description": "Moodle 2.0 introduced the ability for a theme to plug in a custom settings page and allow an administrator to change some settings. Moodle 2.0 also introduced a new image renderer that uses an output function. I wanted to allow a user to use either format in a",
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https://iyware.com"
+        "@id": "https://iyware.com/"
     }
 }
     </script>
 
-    <meta name="generator" content="Ghost 0.11" />
+    <script type="text/javascript" src="../public/ghost-sdk7654.js?v=232eeda5be"></script>
+<script type="text/javascript">
+ghost.init({
+	clientId: "ghost-frontend",
+	clientSecret: "035844ea19dd"
+});
+</script>
+    <meta name="generator" content="Ghost 1.19" />
     <link rel="alternate" type="application/rss+xml" title="iyWare" href="https://iyware.com/rss/" />
 </head>
 <body class="post-template tag-moodle">
     
 
 	<header role="banner" class="header-main no-image">
-    		<ul class="nav">
-    <li class="nav-home" role="presentation"><a href="https://iyware.com/">Home</a></li>
-    <li class="nav-clients" role="presentation"><a href="https://iyware.com/clients/">Clients</a></li>
-    <li class="nav-portfolio" role="presentation"><a href="https://iyware.com/tag/portfolio/">Portfolio</a></li>
-    <li class="nav-search" role="presentation"><a href="https://iyware.com/search/">Search</a></li>
+    		<ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="https://iyware.com/">Home</a></li>
+    <li class="nav-clients" role="menuitem"><a href="https://iyware.com/clients/">Clients</a></li>
+    <li class="nav-portfolio" role="menuitem"><a href="https://iyware.com/tag/portfolio/">Portfolio</a></li>
+    <li class="nav-search" role="menuitem"><a href="https://iyware.com/search/">Search</a></li>
 </ul>
+
 		<h1>
     		<a href="https://iyware.com/">
             		<img src="../content/images/2015/01/logo.png" alt="iyWare">
@@ -87,13 +99,13 @@
 	</header>
 
     <article role="main" class="post tag-moodle" data-swiftype-index="true">
-    
+
         <header>
             <h1>Adding Custom Images in Moodle 2.0 Themes</h1>
 
 			<small class="meta">
-						<a href="../author/danny/" class="author" style="background-image:url('../content/images/2015/03/dannywahl.jpg');"><img src="../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl's picture"></a>
-					<a href="../author/danny/">Danny Wahl</a>
+						<a href="../author/danny-2/" class="author" style="background-image:url('../content/images/2015/03/dannywahl.jpg');"><img src="../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl's picture"></a>
+					<a href="../author/danny-2/">Danny Wahl</a>
 				&nbsp;&bull;&nbsp;
 				<time datetime="2011-11-17">November 17, 2011</time>
 					&nbsp;&bull;&nbsp;
@@ -102,58 +114,49 @@
         </header>
 
         <div class="text">
-            <p>Moodle 2.0 introduced the ability for a theme to plug in a custom settings page and allow an administrator to change some settings. Moodle 2.0 also introduced a new image renderer that uses an output function. I wanted to allow a user to use either format in a setting, and for it to be as transparent to the user as possible. Thanks to a pointer from <a href="http://moodle.org/user/view.php?id=480148&amp;course=5">Richard Oelmann</a> I was able to do just that. Here’s a short walkthrough of the files necessary and the functions to allow a user to set a custom image, using any format.</p>
-
+            <div class="kg-card-markdown"><p>Moodle 2.0 introduced the ability for a theme to plug in a custom settings page and allow an administrator to change some settings. Moodle 2.0 also introduced a new image renderer that uses an output function. I wanted to allow a user to use either format in a setting, and for it to be as transparent to the user as possible. Thanks to a pointer from <a href="http://moodle.org/user/view.php?id=480148&amp;course=5">Richard Oelmann</a> I was able to do just that. Here’s a short walkthrough of the files necessary and the functions to allow a user to set a custom image, using any format.</p>
 <p>The basic assumption here is that we’re going to be creating a new theme called “Your Theme” (fitting enough). I’m also going to assume that you’ve read the <a href="http://docs.moodle.org/">Moodle Docs</a> about <a href="http://docs.moodle.org/dev/Themes_2.0_creating_your_first_theme">creating a new theme</a>, or <a href="http://docs.moodle.org/dev/Themes_2.0_how_to_clone_a_Moodle_2.0_theme">cloning a theme</a> so we’ll be ignoring things like config.php, lang strings, etc… where it’s not necessary.</p>
-
 <h2 id="languagestrings">Language Strings</h2>
-
 <p>The most important thing you need to do is document what you’re expecting the user to do. Seriously. It’s two lines of code, please at least just copy and paste! The user needs to know what you expect them to do. Here we’re adding two strings: <code>imageurl</code> and <code>imageurldesc</code>. The first is the label that will be called in the settings page, the second is the description for the setting. I like to start with the language strings because having unused strings in your theme won’t cause an error, but calling undefined strings definitely will.</p>
-
-<pre><code class="language-php">// lang/en/theme_yourtheme.php
+<pre><code class="language-language-php">// lang/en/theme_yourtheme.php
 
 $string['imageurl'] = 'Image URL';
 $string['imageurldesc'] = '&lt;p&gt;Input the URL to your image.&lt;/p&gt;
-                            &lt;p&gt;This can be used in one of three protocol types:
-                                &lt;ul&gt;
-                                    &lt;li&gt;
-                                        &lt;p&gt;Moodle Output (relative to theme):&lt;/p&gt;
-                                        &lt;p&gt;
-logo/companylogo  
-                                        &lt;/p&gt;
-                                    &lt;/li&gt;
-                                    &lt;li&gt;
-                                        &lt;p&gt;Full path:&lt;/p&gt;
-                                        &lt;p&gt;
-http://domain.com/theme/image.php?theme=yourtheme&amp;image=logo&amp;rev=1&amp;component=theme  
-                                            &lt;br /&gt;
-http://domain.com/path/to/image.jpg  
-                                        &lt;/p&gt;
-                                    &lt;/li&gt;
-                                    &lt;li&gt;
-                                        &lt;p&gt;Relative Path:&lt;/p&gt;
-                                        &lt;p&gt;
+							&lt;p&gt;This can be used in one of three protocol types:
+								&lt;ul&gt;
+									&lt;li&gt;
+										&lt;p&gt;Moodle Output (relative to theme):&lt;/p&gt;
+										&lt;p&gt;
+logo/companylogo
+										&lt;/p&gt;
+									&lt;/li&gt;
+									&lt;li&gt;
+										&lt;p&gt;Full path:&lt;/p&gt;
+										&lt;p&gt;
+http://domain.com/theme/image.php?theme=yourtheme&amp;image=logo&amp;rev=1&amp;component=theme
+											&lt;br /&gt;
+http://domain.com/path/to/image.jpg
+										&lt;/p&gt;
+									&lt;/li&gt;
+									&lt;li&gt;
+										&lt;p&gt;Relative Path:&lt;/p&gt;
+										&lt;p&gt;
 /path/to/file/companylogo.png
-                                        &lt;/p&gt;
-                                    &lt;/li&gt;
-                                &lt;/ul&gt;
-                            &lt;/p&gt;';
+										&lt;/p&gt;
+									&lt;/li&gt;
+								&lt;/ul&gt;
+							&lt;/p&gt;';
 </code></pre>
-
 <h2 id="libraryfunctions">Library Functions</h2>
-
 <p>The second place I go is to add the function, again, having uncalled functions will not cause an error, but calling undefined functions definitely will.</p>
-
 <p>The first function we’re going to call is our processor. This function calls all the sub-functions, so if you already have this top level function, we’re going to extend it, not define it. This function does the following three or four steps.</p>
-
 <ol>
-<li>get the current value of the setting if it’s empty/unset  </li>
-<li>set the value as <code>null</code>  </li>
-<li>send the value to the post-processor  </li>
+<li>get the current value of the setting if it’s empty/unset</li>
+<li>set the value as <code>null</code></li>
+<li>send the value to the post-processor</li>
 <li>return the value.</li>
 </ol>
-
-<pre><code class="language-php">// lib.php
+<pre><code class="language-language-php">// lib.php
 /**
  * This is the postprocess function for themes
  *
@@ -161,7 +164,7 @@ http://domain.com/path/to/image.jpg
  * @param stdClass $theme The theme object
  * @return string The processed CSS
  */
-function yourtheme_process_css($css, $theme) {  
+function yourtheme_process_css($css, $theme) {
     //Get the path to the image url from settings
     if (!empty($theme-&gt;;settings-&gt;;imageurl)) {
         $imageurl = $theme-&gt;;settings-&gt;;imageurl; //A setting exists, let's store that
@@ -174,10 +177,8 @@ function yourtheme_process_css($css, $theme) {
     return $css;
 }
 </code></pre>
-
 <p>The next function is the actual post-processor. Each setting will need its own post-processor because everything needs to be handled differently. This function does several things, but basically we’re using <a href="http://php.net/manual/en/function.strpos.php"><code>strpos()</code></a> to determine the image type – and by type I don’t mean meta, I mean if it’s using Moodle Output, full path, or relative path. Basically we’re using nested <code>if</code>s to strip away the options to see if we need to modify the setting before we post-process it. The only one that requires modification is Moodle Output, so we do 2 checks to make sure that it’s not that first.</p>
-
-<pre><code class="language-php">// lib.php
+<pre><code class="language-language-php">// lib.php
 /**
  * Sets the image url
  *
@@ -185,7 +186,7 @@ function yourtheme_process_css($css, $theme) {
  * @param mixed $imageurl
  * @return string
  */
-function yourtheme_set_imageurl($css, $imageurl) {  
+function yourtheme_set_imageurl($css, $imageurl) {
     global $OUTPUT;
     $tag = '[[setting:imageurl]]'; //This is the setting that is being post-processed, all instances in CSS will be replaced
     $replacement = $imageurl; //Grab the value that was passed from above (setting or null)
@@ -199,7 +200,7 @@ function yourtheme_set_imageurl($css, $imageurl) {
             $relative = '/';
             $rel = strpos($replacement, $relative); //Check to see if a relative path is used (leading slash)
             if($rel !== 0) { //Starts with a slash, keeping the user set value
-                $replacement = $OUTPUT-&gt;pix_url("$imageurl", 'theme'); //Using Moodle output, send to pix_url() and store the returned value
+                $replacement = $OUTPUT-&gt;pix_url(&quot;$imageurl&quot;, 'theme'); //Using Moodle output, send to pix_url() and store the returned value
             }
         }
     }
@@ -207,12 +208,9 @@ function yourtheme_set_imageurl($css, $imageurl) {
     return $css; //Send it back to the main function
 }
 </code></pre>
-
 <h3 id="settings">Settings</h3>
-
 <p>Now that we’ve got the back end setup we’re going to present the user with the settings. This starts with some simple security checks to make sure that only the right people can access your settings at the right times (contexts). Then it creates the setting, in this case we’re adding a text-box that’s going to be sanity checked by Moodle based on the assumption that it’s a URL that’s being input. Finally it takes the setting and stores it.</p>
-
-<pre><code class="language-php">// settings.php
+<pre><code class="language-language-php">// settings.php
 /**
  * Your Theme theme settings page
  *
@@ -222,7 +220,7 @@ function yourtheme_set_imageurl($css, $imageurl) {
  */
 defined('MOODLE_INTERNAL') || die;
 
-if ($ADMIN-&gt;fulltree) {  
+if ($ADMIN-&gt;fulltree) {
     //Set the path to the image url
     $name = 'theme_yourtheme/imageurl'; //Give this setting a name
     $title = get_string('imageurl','theme_yourtheme'); //Display the title from the language strings
@@ -231,38 +229,29 @@ if ($ADMIN-&gt;fulltree) {
     $settings-&gt;add($setting);
 }
 </code></pre>
-
 <h3 id="stylesheets">Style Sheets</h3>
-
 <p>Finally we need to actually have something that we want to process. You don’t have to call this last file custom.css, you can use whatever you want, all we need is a place to put our tag that we’re going to process. For this example we’re going to change the body background image. Don’t forget to use the new <a href="http://docs.moodle.org/dev/CSS_coding_style">Moodle CSS Coding Style</a>!</p>
-
-<pre><code class="language-css">/* style/custom.css */
-body {  
+<pre><code class="language-language-css">/* style/custom.css */
+body {
     background: url([[setting:imageurl]]) no-repeat scroll center top transparent;
 }
 </code></pre>
-
 <p>Now wherever that tag (shortcode for you WordPress people) <code>[[setting:imageurl]]</code> is used it will be replaced with our setting, and if the user setting is null it will be replaced with our default value.</p>
-
 <h3 id="notes">Notes</h3>
-
 <p>Finally, it’s possible to add as many and as wild of settings as you want – just be smart about naming them. In this example <code>imageurl</code> was to describe to you what we were going to do, but if you’re replacing 3 or 4 or 10 different images, then maybe something like <code>bodybgurl</code> would make more sense. Also you can really allow some flexibility with ease of use for the end user. Think about this example:</p>
-
-<pre><code class="language-css">/* style/custom.css */
-body {  
+<pre><code class="language-language-css">/* style/custom.css */
+body {
     background: url([[setting:bodybgurl]]) [[setting:bodybgrepeat]] [[setting:bodybgscroll]] [[setting:bodybgposition]] [[setting:bodybgcolor]];
 }
 </code></pre>
-
 <p>That’s a lot of flexibility. From a UX perspective you can create dropdowns using <code>admin_setting_configselect()</code> and a YUI color selector. Of course at this level your lib.php is getting pretty large. Maybe this option would be just as flexible for the end user, but require less of a programmer:</p>
-
-<pre><code class="language-css">/* style/custom.css */
-body {  
+<pre><code class="language-language-css">/* style/custom.css */
+body {
     background: [[setting:bodybackground]];
 }
 </code></pre>
-
 <p>Now the user can input <code>url(/path/to/image.jpg) fixed bottom center red</code> or just <code>blue</code> or whatever – but it does allow them more options to break it!</p>
+</div>
         </div>
 
         <section class="share">
@@ -282,7 +271,7 @@ body {
 				<li>
 					<a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://iyware.com/adding-custom-images-in-moodle-2-0-themes/&amp;title=Adding%20Custom%20Images%20in%20Moodle%202.0%20Themes&amp;summary=Moodle%202.0%20introduced%20the%20ability%20for%20a%20theme%20to%20plug%20in%20a%20custom%20settings%20page%20and%20allow%20an%20administrator%20to%20change%20some%20settings.%20Moodle%202.0%20also%20introduced%20a%20new%20image%20renderer%20that%20uses%20an%20output%20function.%20I%20wanted%20to%20allow%20a%20user%20to&amp;source=iyWare">LinkedIn</a>
 				</li>
-				
+
 
 
 
@@ -303,12 +292,12 @@ body {
 
         <footer class="post-footer vcard cf" role="contentinfo">
                 	<div class="wrapper">
-                	<a href="../author/danny/" class="author" style="background-image: url('../content/images/2015/03/dannywahl.jpg');">
+                	<a href="../author/danny-2/" class="author" style="background-image: url('../content/images/2015/03/dannywahl.jpg');">
                     	<img src="../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl">
 					</a>
 					</div>
                 <div class="author-info meta">
-					<a href="../author/danny/" class="fn">Danny Wahl</a>
+					<a href="../author/danny-2/" class="fn">Danny Wahl</a>
                     &nbsp;&bull;&nbsp;<span class="adr">天津</span>
                     &nbsp;&bull;&nbsp;<a class="site" href="https://iyware.com/">https://iyware.com</a>
                     <p class="bio">My name is Danny Wahl and I provide consulting in IT and education. I dabble in writing, programming, design, and ukulele playing. Post content licensed CC-BY-4.0</p>
@@ -328,15 +317,15 @@ body {
 			<small>Please enable JavaScript to view the <a href="https://disqus.com/home/forums/iyware/">comments powered by Disqus.</a></small>
 		</p>
 	</noscript>
-	
+
 	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 	<ins class="adsbygoogle" style="display:block;width:320px;height:100px;margin:0 auto;" data-ad-client="ca-pub-5811335018322110" data-ad-slot="8562617448"></ins>
 	<script>
 		(adsbygoogle = window.adsbygoogle || []).push({});
-	</script>  
+	</script>
 
     </article>
-  
+
 
 <footer class="footer-main cf">
 	<p class="feed"><a href="https://iyware.com/rss">RSS Feed</a></p>
@@ -344,14 +333,15 @@ body {
         <a class="title" href="https://iyware.com/">iyWare</a>
         <span>Things I Break</span>
     </p>
-	<p class="copyright">&copy; 2015 <a href="https://iyware.com/">iyWare</a></p>
+	<p class="copyright">&copy; 2018 <a href="https://iyware.com/">iyWare</a></p>
 </footer>
+
     <!-- You can safely delete this line if your theme does not require jQuery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
-		<script type="text/javascript" src="../assets/js/prism.min543c.js?v=f30b9db75e"></script>
-	
-	<script type="text/javascript" src="../assets/js/jquery.swiftype.min543c.js?v=f30b9db75e"></script>
+		<script type="text/javascript" src="../assets/js/prism.min7654.js?v=232eeda5be"></script>
+
+	<script type="text/javascript" src="../assets/js/jquery.swiftype.min7654.js?v=232eeda5be"></script>
 	<script type="text/javascript">
 		$('<li class="nav-search-form"><form action="#" onsubmit="stSearch();return false;" autocomplete="on"><label id="nav-search-label" for="st-search-input">Search:</label><input id="search_submit" value="Search" type="submit"><input id="st-search-input" name="search" type="text" placeholder="search https://iyware.com"></form></li>').insertAfter(".nav-search");
 
@@ -404,5 +394,5 @@ body {
 	</aside>
 </body>
 
-<!-- Mirrored from 127.0.0.1:2368/adding-custom-images-in-moodle-2-0-themes/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Dec 2016 21:31:12 GMT -->
+<!-- Mirrored from 127.0.0.1:2368/adding-custom-images-in-moodle-2-0-themes/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 06 Jan 2018 22:14:17 GMT -->
 </html>

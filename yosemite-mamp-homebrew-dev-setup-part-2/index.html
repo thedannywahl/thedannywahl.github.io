@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
 
-<!-- Mirrored from 127.0.0.1:2368/yosemite-mamp-homebrew-dev-setup-part-2/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Dec 2016 21:30:46 GMT -->
+<!-- Mirrored from 127.0.0.1:2368/yosemite-mamp-homebrew-dev-setup-part-2/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 06 Jan 2018 22:13:49 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Yosemite MAMP Homebrew Dev Setup, Part 2 - iyWare</title>
-    <meta name="description" content="" />
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="../assets/favicon.ico">
-    <link rel="stylesheet" type="text/css" href="../assets/css/screen.min543c.css?v=f30b9db75e" />
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.min7654.css?v=232eeda5be" />
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
     <link rel="canonical" href="https://iyware.com/yosemite-mamp-homebrew-dev-setup-part-2/" />
     <meta name="referrer" content="no-referrer-when-downgrade" />
     <link rel="amphtml" href="https://iyware.com/yosemite-mamp-homebrew-dev-setup-part-2/amp/" />
@@ -46,12 +46,16 @@
     "author": {
         "@type": "Person",
         "name": "Danny Wahl",
-        "image": "https://iyware.com/content/images/2015/03/dannywahl.jpg",
-        "url": "https://iyware.com/author/danny/",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://iyware.com/content/images/2015/03/dannywahl.jpg",
+            "width": 112,
+            "height": 112
+        },
+        "url": "https://iyware.com/author/danny-2/",
         "sameAs": [
             "https://iyware.com"
-        ],
-        "description": "My name is Danny Wahl and I provide consulting in IT and education. I dabble in writing, programming, design, and ukulele playing. Post content licensed CC-BY-4.0"
+        ]
     },
     "headline": "Yosemite MAMP Homebrew Dev Setup, Part 2",
     "url": "https://iyware.com/yosemite-mamp-homebrew-dev-setup-part-2/",
@@ -61,24 +65,32 @@
     "description": "In my previous post OS X 10.10 Yosemite, Apache, MySQL, PHP 5.6, (MAMP) Homebrew Dev Setup I covered a lot. Like a lot a lot, but by the end of the post all we had really accomplished was installing the basic building blocks of a development server, namely:",
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https://iyware.com"
+        "@id": "https://iyware.com/"
     }
 }
     </script>
 
-    <meta name="generator" content="Ghost 0.11" />
+    <script type="text/javascript" src="../public/ghost-sdk7654.js?v=232eeda5be"></script>
+<script type="text/javascript">
+ghost.init({
+	clientId: "ghost-frontend",
+	clientSecret: "035844ea19dd"
+});
+</script>
+    <meta name="generator" content="Ghost 1.19" />
     <link rel="alternate" type="application/rss+xml" title="iyWare" href="https://iyware.com/rss/" />
 </head>
 <body class="post-template tag-devops">
     
 
 	<header role="banner" class="header-main no-image">
-    		<ul class="nav">
-    <li class="nav-home" role="presentation"><a href="https://iyware.com/">Home</a></li>
-    <li class="nav-clients" role="presentation"><a href="https://iyware.com/clients/">Clients</a></li>
-    <li class="nav-portfolio" role="presentation"><a href="https://iyware.com/tag/portfolio/">Portfolio</a></li>
-    <li class="nav-search" role="presentation"><a href="https://iyware.com/search/">Search</a></li>
+    		<ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="https://iyware.com/">Home</a></li>
+    <li class="nav-clients" role="menuitem"><a href="https://iyware.com/clients/">Clients</a></li>
+    <li class="nav-portfolio" role="menuitem"><a href="https://iyware.com/tag/portfolio/">Portfolio</a></li>
+    <li class="nav-search" role="menuitem"><a href="https://iyware.com/search/">Search</a></li>
 </ul>
+
 		<h1>
     		<a href="https://iyware.com/">
             		<img src="../content/images/2015/01/logo.png" alt="iyWare">
@@ -87,13 +99,13 @@
 	</header>
 
     <article role="main" class="post tag-devops" data-swiftype-index="true">
-    
+
         <header>
             <h1>Yosemite MAMP Homebrew Dev Setup, Part 2</h1>
 
 			<small class="meta">
-						<a href="../author/danny/" class="author" style="background-image:url('../content/images/2015/03/dannywahl.jpg');"><img src="../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl's picture"></a>
-					<a href="../author/danny/">Danny Wahl</a>
+						<a href="../author/danny-2/" class="author" style="background-image:url('../content/images/2015/03/dannywahl.jpg');"><img src="../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl's picture"></a>
+					<a href="../author/danny-2/">Danny Wahl</a>
 				&nbsp;&bull;&nbsp;
 				<time datetime="2014-10-28">October 28, 2014</time>
 					&nbsp;&bull;&nbsp;
@@ -102,145 +114,104 @@
         </header>
 
         <div class="text">
-            <p>In my previous post <a href="../osx-yosemite-mamp-homebrew-development-setup/" title="OS X 10.10 Yosemite, Apache, MySQL, PHP 5.6, (MAMP) Homebrew Dev Setup">OS X 10.10 Yosemite, Apache, MySQL, PHP 5.6, (MAMP) Homebrew Dev Setup</a> I covered a lot. Like a lot a lot, but by the end of the post all we had really accomplished was installing the basic building blocks of a development server, namely: Apache, MySQL, and PHP. In this post we’ll take those components and turn them into a sweet development workflow.</p>
-
+            <div class="kg-card-markdown"><p>In my previous post <a href="../osx-yosemite-mamp-homebrew-development-setup/" title="OS X 10.10 Yosemite, Apache, MySQL, PHP 5.6, (MAMP) Homebrew Dev Setup">OS X 10.10 Yosemite, Apache, MySQL, PHP 5.6, (MAMP) Homebrew Dev Setup</a> I covered a lot. Like a lot a lot, but by the end of the post all we had really accomplished was installing the basic building blocks of a development server, namely: Apache, MySQL, and PHP. In this post we’ll take those components and turn them into a sweet development workflow.</p>
 <h2 id="updatingbrew">Updating Brew</h2>
-
 <p>Everyone loves running <code>brew update &amp;&amp; brew upgrade</code> just to see what’s been updated. It’s a seriously <a href="https://github.com/Homebrew/homebrew/commits/master/Library/Formula">busy repo</a>, but it’s easy to forget to do and then your versions languish. Fortunately for us <a href="http://mkalmes.net/">Mark Kalmes</a> wrote a LaunchAgent plist for us called, aptly, <a href="http://mkalmes.net/2012/01/02/brewupdate-a-launchd-agent-for-automatic-homebrew-formulae-updates.html">brewupdate</a>. We’re going to grab the latest version and install it.</p>
-
-<pre><code class="language-bash">curl https://raw.githubusercontent.com/mkalmes/brewupdate/develop/net.mkalmes.brewupdate.plist &gt; ~/Library/LaunchAgents/net.mkalmes.brewupdate.plist  
-launchctl load ~/Library/LaunchAgents/net.mkalmes.brewupdate.plist  
+<pre><code class="language-language-bash">curl https://raw.githubusercontent.com/mkalmes/brewupdate/develop/net.mkalmes.brewupdate.plist &gt; ~/Library/LaunchAgents/net.mkalmes.brewupdate.plist
+launchctl load ~/Library/LaunchAgents/net.mkalmes.brewupdate.plist
 </code></pre>
-
 <p>The first line downloads the latest version straight from github to the user-space LaunchAgents folder. The second line loads it. You can edit the file and change when it updates, the default is 11 AM (local time zone). I changed mine to 8 AM because I like to start the day with a fresh brew (ha ha.)</p>
-
 <p>Just don’t forget to run <code>brew upgrade</code> yourself occasionally. You could make another LaunchAgent by changing the parameter from <code>update</code> to <code>upgrade</code>, but I really don’t like unattended upgrades as much as updates.</p>
-
 <h2 id="apache2documentroot">Apache 2: DocumentRoot</h2>
-
 <p>That’s a clever title, you see we’re <em>running</em> Apache HTTPD 2, and at the same time this is part 2 of the Apache section… Anyways, at the end of Part 1 Apache was running on port 80 like a champ. The DocumentRoot is set to something ridiculous like <code>/usr/local/var/www/htdocs</code> which is pretty freaking inconvenient.</p>
-
 <p>First we need to create our /Sites folder and we’ll still keep our web documents inside of that folder.</p>
-
-<pre><code class="language-bash">mkdir ~/Sites ~/Sites/htdocs  
+<pre><code class="language-language-bash">mkdir ~/Sites ~/Sites/htdocs
 </code></pre>
-
 <p>Then edit your <code>/usr/local/etc/apache2/2.4/httpd.conf</code> file and change the DocumentRoot directive, as well as accompanying Directory declaration to match your new htdocs location:</p>
-
-<pre><code class="language-apacheconf">DocumentRoot "/Users/USERNAME/Sites/htdocs"  
-&lt;directory&gt;  
-&lt;/directory&gt;  
+<pre><code class="language-language-apacheconf">DocumentRoot &quot;/Users/USERNAME/Sites/htdocs&quot;
+&lt;directory&gt;
+&lt;/directory&gt;
 </code></pre>
-
 <p>Obviously replace <code>USERNAME</code> with your username’s folder name. Then inside of that directory declaration we’re going to change some of the default Apache values to be more permissive:</p>
-
-<pre><code class="language-apacheconf">Options All MultiViews  
-AllowOverride All  
+<pre><code class="language-language-apacheconf">Options All MultiViews
+AllowOverride All
 </code></pre>
-
 <p>This is given with the usual caveat that OF COURSE you would never default everything like this on a production server- but on a development server there’s generally not much security implication (unless you’re playing with live data!). My full DocumentRoot section looks like this:</p>
-
-<pre><code class="language-apacheconf">DocumentRoot "/Users/dannywahl/Sites/htdocs"  
-&lt;directory&gt;  
+<pre><code class="language-language-apacheconf">DocumentRoot &quot;/Users/dannywahl/Sites/htdocs&quot;
+&lt;directory&gt;
   #
-  # Possible values for the Options directive are "None", "All", 
+  # Possible values for the Options directive are &quot;None&quot;, &quot;All&quot;, 
   # or any combination of: 
   # Indexes Includes FollowSymLinks SymLinksifOwnerMatch ExecCGI MultiViews 
   # 
-  # Note that "MultiViews" must be named *explicitly* --- "Options All" 
+  # Note that &quot;MultiViews&quot; must be named *explicitly* --- &quot;Options All&quot; 
   # doesn't give it to you. # # The Options directive is both complicated and important. Please see 
   # http://httpd.apache.org/docs/2.4/mod/core.html#options 
   # for more information. 
   Options All MultiViews 
   # 
   # AllowOverride controls what directives may be placed in .htaccess files. 
-  # It can be "All", "None", or any combination of the keywords: 
+  # It can be &quot;All&quot;, &quot;None&quot;, or any combination of the keywords: 
   # AllowOverride FileInfo AuthConfig Limit 
   AllowOverride All 
   # 
   # Controls who can get stuff from this server. 
   # Require all granted
-&lt;/directory&gt;  
+&lt;/directory&gt;
 </code></pre>
-
 <p>Now, restart your httpd daemon:</p>
-
-<pre><code class="language-bash">sudo httpd -k restart  
+<pre><code class="language-language-bash">sudo httpd -k restart
 </code></pre>
-
 <p>If you didn’t use <code>--with-privileged-ports</code> when you installed Apache then you don’t need root. Now when you visit <a href="http://localhost/">http://localhost</a> you should just get a blank directory listing instead of the default “It Works!” page. Let’s put a test page there. First let’s create a sub-directory in our /Sites folder called <code>phpinfo.localhost</code> (more on the <code>.</code> later).</p>
-
-<pre><code class="language-bash">mkdir ~/Sites/phpinfo.localhost  
+<pre><code class="language-language-bash">mkdir ~/Sites/phpinfo.localhost
 </code></pre>
-
 <p>Now let’s create a page that calls the <code>phpinfo();</code> function and place it in that folder. if you don’t know about <a href="http://cn2.php.net/manual/en/function.phpinfo.php">phpinfo()</a> it’s a simple function that outputs a page that shows you information about your PHP configuration.</p>
-
-<pre><code class="language-bash">printf ‘&lt;?php phpinfo(); ??&gt;‘ &gt;&gt; ~/Sites/htdocs/phpinfo.localhost/index.php  
+<pre><code class="language-language-bash">printf ‘&lt;?php phpinfo(); ??&gt;‘ &gt;&gt; ~/Sites/htdocs/phpinfo.localhost/index.php
 </code></pre>
-
 <p>Now you should be able to visit <code>http://localhost/phpinfo.localhost/</code> and see the overview of your PHP configuration. That’s it for now for Apache, let’s move on to MySQL.</p>
-
 <h2 id="mysql">MySQL</h2>
-
 <p>In the first post we simply installed MySQL and set a root password. It’s good to have a password because some authentication APIs require one, but we’re not necessarily using it for security (otherwise we wouldn’t be using root), so we’re going to save our authentication in a my.cnf <a href="http://dev.mysql.com/doc/refman/5.1/en/option-files.html">options file</a>. Homebrew provides us with a sample file, but it’s not symlinked by default so we’re going to copy it to an available configuration folder and since MySQL is running in user-space, we will override the configuration at the user-space level:</p>
-
-<pre><code class="language-sql">cp -v $(brew –prefix mysql)/support-files/my-default.cnf ~/.my.cnf  
+<pre><code class="language-language-sql">cp -v $(brew –prefix mysql)/support-files/my-default.cnf ~/.my.cnf
 </code></pre>
-
 <p>Now we have our config override, let’s have it auto-save our credentials.</p>
-
-<pre><code class="language-bash">cat &gt; ~/.my.cnf  
+<pre><code class="language-language-bash">cat &gt; ~/.my.cnf 
 [client] 
-user=root  
-password=PASS  
+user=root 
+password=PASS 
 [mysql] 
-user=root  
-password=PASS  
+user=root 
+password=PASS 
 [mysqldump] 
-user=root  
-password=PASS  
+user=root 
+password=PASS 
 [mysqldiff] 
-user=root  
-password=PASS  
-EOF  
+user=root 
+password=PASS 
+EOF
 </code></pre>
-
 <p>Replace “PASS” with your root MySQL password. If you have special characters in your password, which you shouldn’t, add double quotes around the password. Now you can connect to mysql without having to manually authenticate.</p>
-
-<pre><code class="language-sql">mysql -u root  
+<pre><code class="language-language-sql">mysql -u root
 </code></pre>
-
 <h2 id="phpmyadmin">phpmyadmin</h2>
-
 <p>Finally we’re going to install everyone’s favorite database manager, <a href="http://www.phpmyadmin.net/home_page/index.php">phpmyadmin</a>. Again, we’ll be using homebrew to install it.</p>
-
-<pre><code class="language-bash">brew install phpmyadmin  
+<pre><code class="language-language-bash">brew install phpmyadmin
 </code></pre>
-
 <p>After a successful installation you will get a caveat about adding a directory alias to your httpd configuration to enable phpmyadmin, but we’re not going to do that we’re going to <a href="http://en.wikipedia.org/wiki/Symbolic_link">symlink</a> it to to our ~/Sites directory.</p>
-
-<pre><code class="language-bash">ln -s /usr/local/share/phpmyadmin ~/Sites/htdocs/phpmyadmin.localhost  
+<pre><code class="language-language-bash">ln -s /usr/local/share/phpmyadmin ~/Sites/htdocs/phpmyadmin.localhost  
 </code></pre>
-
 <p>This will create a symbolic link in your webroot called phpmyadmin.localhost that takes you to /usr/local/share/phpmyadmin (which itself is a symlink to the Cellar). The benefit here is you don’t need to restart Apache, and again we’ll go over it later but the .localhost is important.</p>
-
 <p>Now that phpmyadmin is installed, we need to configure it. First we’ll import the phpmyadmin linked tabled <a href="http://docs.phpmyadmin.net/en/latest/setup.html#linked-tables">configuration storage</a> via commandline:</p>
-
-<pre><code class="language-sql">mysql -u root -e 'CREATE DATABASE IF NOT EXISTS `phpmyadmin`;'  
-mysql -u root phpmyadmin  
+<pre><code class="language-language-sql">mysql -u root -e 'CREATE DATABASE IF NOT EXISTS `phpmyadmin`;'
+mysql -u root phpmyadmin
 </code></pre>
-
 <p>Once the tables are imported open your phpmyadmin config file located at <code>/usr/local/etc/phpmyadmin.config.inc.php</code> and you're going to do a few things:</p>
-
 <ol>
-<li><a href="http://www.question-defense.com/tools/phpmyadmin-blowfish-secret-generator">generate a blowfish secret</a>  </li>
-<li>Set your <code>controluser</code> and <code>controlpass</code> (I use root again)  </li>
+<li><a href="http://www.question-defense.com/tools/phpmyadmin-blowfish-secret-generator">generate a blowfish secret</a></li>
+<li>Set your <code>controluser</code> and <code>controlpass</code> (I use root again)</li>
 <li>Uncomment the storage database and tables section</li>
 </ol>
-
 <p>In the end your blowfish and servers configuration sections should look something like this:</p>
-
-<pre><code class="language-php">$cfg['blowfish_secret'] = 'y=PUY@-GleE+~%OiGQVz#)N4I)@Q%Ug_Jr[DxF';
+<pre><code class="language-language-php">$cfg['blowfish_secret'] = 'y=PUY@-GleE+~%OiGQVz#)N4I)@Q%Ug_Jr[DxF';
 /* YOU MUST FILL IN THIS FOR COOKIE AUTH! */
 /* * Servers configuration */
 $i = 0;
@@ -282,79 +253,54 @@ $cfg['Servers'][$i]['savedsearches'] = 'pma__savedsearches';
 // $cfg['Servers'][$i]['auth_swekey_config'] = '/etc/swekey-pma.conf';
 /* * End of servers configuration */
 </code></pre>
-
-<p>You might notice that I changed my host to "127.0.0.1" from "localhost". By default /etc/hosts should resolve localhost to 127.0.0.1 so it shouldn't trigger a DNS lookup, but by changing it to an IP address you'll never have that happen because there are ways to inadvertently send lookups to your machine DNS for localhost. Again, this is not necessary. After saving your phpmyadmin configuration you should be able to visit the page at <code>http://localhost/phpmyadmin.localhost</code></p>
-
+<p>You might notice that I changed my host to &quot;127.0.0.1&quot; from &quot;localhost&quot;. By default /etc/hosts should resolve localhost to 127.0.0.1 so it shouldn't trigger a DNS lookup, but by changing it to an IP address you'll never have that happen because there are ways to inadvertently send lookups to your machine DNS for localhost. Again, this is not necessary. After saving your phpmyadmin configuration you should be able to visit the page at <code>http://localhost/phpmyadmin.localhost</code></p>
 <h2 id="dnsmasq">dnsmasq</h2>
-
 <p><a href="http://www.thekelleys.org.uk/dnsmasq/doc.html">Dnsmasq</a> is a lightweight DNS/DHCP server which can be installed and serve DNS for addresses that aren't in the <a href="http://en.wikipedia.org/wiki/Global_Namespace">global namespace</a>. We'll be installing dnsmasq via homebrew and configuring it, along with Apache to serve sites on <a href="http://en.wikipedia.org/wiki/Top-level_domain#Reserved_domains">reserved TLDs</a>.</p>
-
-<pre><code class="language-bash">brew install dnsmasq  
+<pre><code class="language-language-bash">brew install dnsmasq
 </code></pre>
-
 <p>Once dnsmasq is installed we need to copy a configuration profile, edit it, and then load the daemon. First we'll copy a provided configuration:</p>
-
-<pre><code class="language-bash">cp /usr/local/opt/dnsmasq/dnsmasq.conf.example /usr/local/etc/dnsmasq.conf  
-printf '\naddress=/localhost/127.0.0.1' &gt;&gt; /usr/local/etc/dnsmasq.conf  
-sudo cp -fv /usr/local/opt/dnsmasq/*.plist /Library/LaunchDaemons  
-sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist  
+<pre><code class="language-language-bash">cp /usr/local/opt/dnsmasq/dnsmasq.conf.example /usr/local/etc/dnsmasq.conf
+printf '\naddress=/localhost/127.0.0.1' &gt;&gt; /usr/local/etc/dnsmasq.conf
+sudo cp -fv /usr/local/opt/dnsmasq/*.plist /Library/LaunchDaemons
+sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
 </code></pre>
-
 <p>Effectively we are telling dnsmasq to resolve all .localhost domains to 127.0.0.1 and setting it to run the daemon at the machine level (with Apache). So you can now try to ping any .localhost domain and it will resolve to 127.0.0.1:</p>
-
-<pre><code class="language-bash">ping -c 1 thisdoesntexist.localhost  
-PING thisdoesntexist.localhost (127.0.0.1): 56 data bytes  
+<pre><code class="language-language-bash">ping -c 1 thisdoesntexist.localhost
+PING thisdoesntexist.localhost (127.0.0.1): 56 data bytes 
 64 bytes from 127.0.0.1: icmp_seq=0 ttl=64 time=0.029 ms
 
 --- thisdoesntexist.localhost ping statistics ---
-1 packets transmitted, 1 packets received, 0.0% packet loss  
-round-trip min/avg/max/stddev = 0.029/0.029/0.029/0.000 ms  
+1 packets transmitted, 1 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 0.029/0.029/0.029/0.000 ms
 </code></pre>
-
 <p>Obviously trying to visit <a href="http://thisdoesntexit.localhost/">http://thisdoesntexit.localhost</a> won't work because Apache isn't configured to handle requests to that address, yet. There are two different ways to configure this, the first is to create a vhost entry for every domain you want to use, the second is to enable <a href="http://httpd.apache.org/docs/2.2/mod/mod_vhost_alias.html">mod_vhost_alias</a>- which is what we'll do now.</p>
-
 <h2 id="mod_vhost_alias">mod_vhost_alias</h2>
-
 <p>Mod_vhost_alias is an Apache module that let's you do pattern matching from a request URL to a directory structure, there are lots of cool examples at the documentation site- but the one we want is pretty straight forward. Open your httpd.conf file (in /usr/local/etc/apache2/2.4/) and uncomment the mod_vhost_alias module</p>
-
-<pre><code class="language-apacheconf">LoadModule vhost_alias_module libexec/mod_vhost_alias.so  
+<pre><code class="language-language-apacheconf">LoadModule vhost_alias_module libexec/mod_vhost_alias.so
 </code></pre>
-
 <p>then in terminal we'll configure vhost_alias_module:</p>
-
-<pre><code class="language-bash">printf '\nUseCanonicalName Off\nVirtualDocumentRoot /Users/USERNAME/Sites/htdocs/%%0' &gt;&gt; /usr/local/etc/apache2/2.4/httpd.conf  
+<pre><code class="language-language-bash">printf '\nUseCanonicalName Off\nVirtualDocumentRoot /Users/USERNAME/Sites/htdocs/%%0' &gt;&gt; /usr/local/etc/apache2/2.4/httpd.conf
 </code></pre>
-
 <p>And finally restart the httpd daemon:</p>
-
-<pre><code class="language-bash">sudo httpd -k restart  
+<pre><code class="language-language-bash">sudo httpd -k restart
 </code></pre>
-
 <p>The end result is that now every folder that ends in .localhost in your ~/Sites/htdocs/ folder is accessible as a <a href="http://en.wikipedia.org/wiki/Fully_qualified_domain_name">FQDN</a>. Go back to your browser and now you can visit <a href="http://phpinfo.localhost/">http://phpinfo.localhost</a> and <a href="http://phpmyadmin.localhost/">http://phpmyadmin.localhost</a> If you create another folder inside of htdocs that ends in .localhost it will be available in your dev environment as a standalone domain. Here's a couple of examples of how that could be useful:</p>
-
 <p>Say you want a standalone domain of wordpress:</p>
-
-<pre><code class="language-bash">git clone git@github.com:WordPress/WordPress.git ~/Sites/htdocs/wordpress.localhost  
+<pre><code class="language-language-bash">git clone git@github.com:WordPress/WordPress.git ~/Sites/htdocs/wordpress.localhost
 </code></pre>
-
 <p>What about multiple branches of drupal on standalone domains? Let's make <code>http://drupal6.localhost</code> and <code>http://drupal7.localhost</code></p>
-
-<pre><code class="language-bash">git clone git@github.com:drupal/drupal.git --branch 6.x --single-branch ~/Sites/htdocs/drupal6.localhost  
-git clone git@github.com:drupal/drupal.git --branch 7.x --single-branch ~/Sites/htdocs/drupal7.localhost  
+<pre><code class="language-language-bash">git clone git@github.com:drupal/drupal.git --branch 6.x --single-branch ~/Sites/htdocs/drupal6.localhost
+git clone git@github.com:drupal/drupal.git --branch 7.x --single-branch ~/Sites/htdocs/drupal7.localhost
 </code></pre>
-
 <p>As another example, how about a single domain with multiple moodle instances in sub-directories like <code>http://moodle.localhost/26</code> and <code>http://moodle.localhost/27</code></p>
-
-<pre><code class="language-bash">mkdir ~/Sites/htdocs/moodle  
-git clone git@github.com:moodle/moodle.git --branch MOODLE_26_STABLE --single-branch ~/Sites/htdocs/moodle/26  
-git clone git@github.com:moodle/moodle.git --branch MOODLE_27_STABLE --single-branch ~/Sites/htdocs/moodle/27  
+<pre><code class="language-language-bash">mkdir ~/Sites/htdocs/moodle
+git clone git@github.com:moodle/moodle.git --branch MOODLE_26_STABLE --single-branch ~/Sites/htdocs/moodle/26 
+git clone git@github.com:moodle/moodle.git --branch MOODLE_27_STABLE --single-branch ~/Sites/htdocs/moodle/27
 </code></pre>
-
 <h2 id="wrappingup">Wrapping Up</h2>
-
-<p>So there you go! Mac OS X with brewed versions of important stuff like openssl and git, Apache 2.4, MySQL, and PHP 5.6 and a killer setup using mod<em>vhost</em>alias and dnsmasq to provision .localhost domains on the fly. Of course there are a million ways to dev from here, but this is a pretty solid foundation.</p>
-
+<p>So there you go! Mac OS X with brewed versions of important stuff like openssl and git, Apache 2.4, MySQL, and PHP 5.6 and a killer setup using mod_vhost_alias and dnsmasq to provision .localhost domains on the fly. Of course there are a million ways to dev from here, but this is a pretty solid foundation.</p>
 <p>If you need help with educational technology in your institution, from strategic planning, to implementation, to technical support contact us and we can help get you on the path to success.</p>
+</div>
         </div>
 
         <section class="share">
@@ -374,7 +320,7 @@ git clone git@github.com:moodle/moodle.git --branch MOODLE_27_STABLE --single-br
 				<li>
 					<a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://iyware.com/yosemite-mamp-homebrew-dev-setup-part-2/&amp;title=Yosemite%20MAMP%20Homebrew%20Dev%20Setup%2C%20Part%202&amp;summary=In%20my%20previous%20post%20OS%20X%2010.10%20Yosemite,%20Apache,%20MySQL,%20PHP%205.6,%20(MAMP)%20Homebrew%20Dev%20Setup%20I%20covered%20a%20lot.%20Like%20a%20lot%20a%20lot,%20but%20by%20the%20end%20of%20the%20post%20all%20we%20had%20really%20accomplished%20was%20installing%20the%20basic%20building%20blocks&amp;source=iyWare">LinkedIn</a>
 				</li>
-				
+
 
 
 
@@ -395,12 +341,12 @@ git clone git@github.com:moodle/moodle.git --branch MOODLE_27_STABLE --single-br
 
         <footer class="post-footer vcard cf" role="contentinfo">
                 	<div class="wrapper">
-                	<a href="../author/danny/" class="author" style="background-image: url('../content/images/2015/03/dannywahl.jpg');">
+                	<a href="../author/danny-2/" class="author" style="background-image: url('../content/images/2015/03/dannywahl.jpg');">
                     	<img src="../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl">
 					</a>
 					</div>
                 <div class="author-info meta">
-					<a href="../author/danny/" class="fn">Danny Wahl</a>
+					<a href="../author/danny-2/" class="fn">Danny Wahl</a>
                     &nbsp;&bull;&nbsp;<span class="adr">天津</span>
                     &nbsp;&bull;&nbsp;<a class="site" href="https://iyware.com/">https://iyware.com</a>
                     <p class="bio">My name is Danny Wahl and I provide consulting in IT and education. I dabble in writing, programming, design, and ukulele playing. Post content licensed CC-BY-4.0</p>
@@ -420,15 +366,15 @@ git clone git@github.com:moodle/moodle.git --branch MOODLE_27_STABLE --single-br
 			<small>Please enable JavaScript to view the <a href="https://disqus.com/home/forums/iyware/">comments powered by Disqus.</a></small>
 		</p>
 	</noscript>
-	
+
 	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 	<ins class="adsbygoogle" style="display:block;width:320px;height:100px;margin:0 auto;" data-ad-client="ca-pub-5811335018322110" data-ad-slot="8562617448"></ins>
 	<script>
 		(adsbygoogle = window.adsbygoogle || []).push({});
-	</script>  
+	</script>
 
     </article>
-  
+
 
 <footer class="footer-main cf">
 	<p class="feed"><a href="https://iyware.com/rss">RSS Feed</a></p>
@@ -436,14 +382,15 @@ git clone git@github.com:moodle/moodle.git --branch MOODLE_27_STABLE --single-br
         <a class="title" href="https://iyware.com/">iyWare</a>
         <span>Things I Break</span>
     </p>
-	<p class="copyright">&copy; 2015 <a href="https://iyware.com/">iyWare</a></p>
+	<p class="copyright">&copy; 2018 <a href="https://iyware.com/">iyWare</a></p>
 </footer>
+
     <!-- You can safely delete this line if your theme does not require jQuery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
-		<script type="text/javascript" src="../assets/js/prism.min543c.js?v=f30b9db75e"></script>
-	
-	<script type="text/javascript" src="../assets/js/jquery.swiftype.min543c.js?v=f30b9db75e"></script>
+		<script type="text/javascript" src="../assets/js/prism.min7654.js?v=232eeda5be"></script>
+
+	<script type="text/javascript" src="../assets/js/jquery.swiftype.min7654.js?v=232eeda5be"></script>
 	<script type="text/javascript">
 		$('<li class="nav-search-form"><form action="#" onsubmit="stSearch();return false;" autocomplete="on"><label id="nav-search-label" for="st-search-input">Search:</label><input id="search_submit" value="Search" type="submit"><input id="st-search-input" name="search" type="text" placeholder="search https://iyware.com"></form></li>').insertAfter(".nav-search");
 
@@ -496,5 +443,5 @@ git clone git@github.com:moodle/moodle.git --branch MOODLE_27_STABLE --single-br
 	</aside>
 </body>
 
-<!-- Mirrored from 127.0.0.1:2368/yosemite-mamp-homebrew-dev-setup-part-2/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Dec 2016 21:30:46 GMT -->
+<!-- Mirrored from 127.0.0.1:2368/yosemite-mamp-homebrew-dev-setup-part-2/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 06 Jan 2018 22:13:49 GMT -->
 </html>

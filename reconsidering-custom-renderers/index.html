@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
 
-<!-- Mirrored from 127.0.0.1:2368/reconsidering-custom-renderers/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Dec 2016 21:31:08 GMT -->
+<!-- Mirrored from 127.0.0.1:2368/reconsidering-custom-renderers/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 06 Jan 2018 22:14:14 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Reconsidering Custom Renderers - iyWare</title>
-    <meta name="description" content="" />
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="../assets/favicon.ico">
-    <link rel="stylesheet" type="text/css" href="../assets/css/screen.min543c.css?v=f30b9db75e" />
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.min7654.css?v=232eeda5be" />
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
     <link rel="canonical" href="https://iyware.com/reconsidering-custom-renderers/" />
     <meta name="referrer" content="no-referrer-when-downgrade" />
     <link rel="amphtml" href="https://iyware.com/reconsidering-custom-renderers/amp/" />
@@ -46,12 +46,16 @@
     "author": {
         "@type": "Person",
         "name": "Danny Wahl",
-        "image": "https://iyware.com/content/images/2015/03/dannywahl.jpg",
-        "url": "https://iyware.com/author/danny/",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://iyware.com/content/images/2015/03/dannywahl.jpg",
+            "width": 112,
+            "height": 112
+        },
+        "url": "https://iyware.com/author/danny-2/",
         "sameAs": [
             "https://iyware.com"
-        ],
-        "description": "My name is Danny Wahl and I provide consulting in IT and education. I dabble in writing, programming, design, and ukulele playing. Post content licensed CC-BY-4.0"
+        ]
     },
     "headline": "Reconsidering Custom Renderers",
     "url": "https://iyware.com/reconsidering-custom-renderers/",
@@ -61,24 +65,32 @@
     "description": "One of the coolest new features in Moodle 2 is the fact that the core uses a series of renderes to output the final HTML, and that these renderers can extended or even overwritten by a plugin. One of the first things that people did was take the custommenu renderer",
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https://iyware.com"
+        "@id": "https://iyware.com/"
     }
 }
     </script>
 
-    <meta name="generator" content="Ghost 0.11" />
+    <script type="text/javascript" src="../public/ghost-sdk7654.js?v=232eeda5be"></script>
+<script type="text/javascript">
+ghost.init({
+	clientId: "ghost-frontend",
+	clientSecret: "035844ea19dd"
+});
+</script>
+    <meta name="generator" content="Ghost 1.19" />
     <link rel="alternate" type="application/rss+xml" title="iyWare" href="https://iyware.com/rss/" />
 </head>
 <body class="post-template tag-moodle">
     
 
 	<header role="banner" class="header-main no-image">
-    		<ul class="nav">
-    <li class="nav-home" role="presentation"><a href="https://iyware.com/">Home</a></li>
-    <li class="nav-clients" role="presentation"><a href="https://iyware.com/clients/">Clients</a></li>
-    <li class="nav-portfolio" role="presentation"><a href="https://iyware.com/tag/portfolio/">Portfolio</a></li>
-    <li class="nav-search" role="presentation"><a href="https://iyware.com/search/">Search</a></li>
+    		<ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="https://iyware.com/">Home</a></li>
+    <li class="nav-clients" role="menuitem"><a href="https://iyware.com/clients/">Clients</a></li>
+    <li class="nav-portfolio" role="menuitem"><a href="https://iyware.com/tag/portfolio/">Portfolio</a></li>
+    <li class="nav-search" role="menuitem"><a href="https://iyware.com/search/">Search</a></li>
 </ul>
+
 		<h1>
     		<a href="https://iyware.com/">
             		<img src="../content/images/2015/01/logo.png" alt="iyWare">
@@ -87,13 +99,13 @@
 	</header>
 
     <article role="main" class="post tag-moodle" data-swiftype-index="true">
-    
+
         <header>
             <h1>Reconsidering Custom Renderers</h1>
 
 			<small class="meta">
-						<a href="../author/danny/" class="author" style="background-image:url('../content/images/2015/03/dannywahl.jpg');"><img src="../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl's picture"></a>
-					<a href="../author/danny/">Danny Wahl</a>
+						<a href="../author/danny-2/" class="author" style="background-image:url('../content/images/2015/03/dannywahl.jpg');"><img src="../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl's picture"></a>
+					<a href="../author/danny-2/">Danny Wahl</a>
 				&nbsp;&bull;&nbsp;
 				<time datetime="2012-04-11">April 11, 2012</time>
 					&nbsp;&bull;&nbsp;
@@ -102,13 +114,10 @@
         </header>
 
         <div class="text">
-            <p>One of the coolest new features in Moodle 2 is the fact that the core uses a series of renderes to output the final HTML, and that these renderers can extended or even overwritten by a plugin. One of the first things that people did was take the custommenu renderer and extend it to include theme-specific menu items. I think the first person to do this was <a href="http://moodle.org/user/profile.php?id=713800">Mary Evans</a> (currently) of New School Learning in her theme <a href="http://moodle.org/mod/forum/discuss.php?d=174281">Aardvark Makeover</a>. (note: please don’t bug Mary if you decide to use that theme, she’s moved on to <a href="http://moodle.org/plugins/view.php?plugin=theme_aardvark_postit">bigger</a> and <a href="http://moodle.org/plugins/view.php?plugin=theme_custom_corners">better</a> themes)</p>
-
+            <div class="kg-card-markdown"><p>One of the coolest new features in Moodle 2 is the fact that the core uses a series of renderes to output the final HTML, and that these renderers can extended or even overwritten by a plugin. One of the first things that people did was take the custommenu renderer and extend it to include theme-specific menu items. I think the first person to do this was <a href="http://moodle.org/user/profile.php?id=713800">Mary Evans</a> (currently) of New School Learning in her theme <a href="http://moodle.org/mod/forum/discuss.php?d=174281">Aardvark Makeover</a>. (note: please don’t bug Mary if you decide to use that theme, she’s moved on to <a href="http://moodle.org/plugins/view.php?plugin=theme_aardvark_postit">bigger</a> and <a href="http://moodle.org/plugins/view.php?plugin=theme_custom_corners">better</a> themes)</p>
 <p>Of course since Mary did the heaving lifting I figured “Why not?” since I was currently in process of porting <a href="https://iyware.com/portfolio/zebra-2/" title="Zebra 2">Zebra</a> to Moodle 2. So some serious copy-pasta ensued and I had my cool little home icon and calendar in the custommenu. Now a year later there has been some cool development in the core to the custommenu and I realized how much I’ve been missing out on by killing YUI in my renderer, so I decided to rethink my approach.</p>
-
 <p>Here is my original renderers.php:</p>
-
-<pre><code class="language-php">// This file is part of Moodle - http://moodle.org/
+<pre><code class="language-language-php">// This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -148,13 +157,13 @@ class theme_zebra_core_renderer extends core_renderer {
      * @return string
      */
     protected function render_custom_menu(custom_menu $menu) {
-        $branchlabel = "&amp;nbsp;";
+        $branchlabel = &quot;&amp;nbsp;&quot;;
         $branchurl   = new moodle_url('/index.php');
         $branchtitle = get_string('menuhome','theme_zebra');
         $branchsort  = -1;
         $branch = $menu-&gt;add($branchlabel, $branchurl, $branchtitle, $branchsort);
 
-        $branchlabel = date("F j, Y");
+        $branchlabel = date(&quot;F j, Y&quot;);
         $branchurl   = new moodle_url('/calendar/view.php');
         $branchtitle = get_string('menutoday','theme_zebra');
         $branchsort  = +10000;
@@ -270,36 +279,31 @@ class theme_zebra_core_renderer extends core_renderer {
     }
 }
 </code></pre>
-
 <p>And here’s the call in the page layout general.php:</p>
-
-<pre><code class="language-php">&lt;?php if ($hascustommenu) { ?&gt;  
-    &lt;div id="custommenu-wrapper"&gt;
-        &lt;div id="custommenu"&gt;&lt;?php echo $custommenu; ?&gt;&lt;/div&gt;
+<pre><code class="language-language-php">&lt;?php if ($hascustommenu) { ?&gt;
+    &lt;div id=&quot;custommenu-wrapper&quot;&gt;
+        &lt;div id=&quot;custommenu&quot;&gt;&lt;?php echo $custommenu; ?&gt;&lt;/div&gt;
     &lt;/div&gt;
-&lt;?php } ?&gt;  
+&lt;?php } ?&gt;
 </code></pre>
-
 <p>That is a lot of work just to add a list-item to the beginning of a list. And as I said, you totally lose all the cool YUI injected classes on the custommenu. One other thing I wanted to do was explore adding a setting to turn the home/cal links on and off and to allow the date to be customized. Frankly I don’t know how (or if it’s even possible) to call a theme setting inside of a renderer.</p>
-
 <p>Anyways, here’s what it looks like now: renderers.php has been deleted! And the call in general.php looks like this now:</p>
-
-<pre><code class="language-php">&lt;?php if ($hascustommenu) { ?&gt;  
-    &lt;div id="custommenu-wrapper"&gt;
-        &lt;div id="custommenu"&gt;
-            &lt;a class="home" href="&lt;?php echo new moodle_url('/index.php'); ?&gt;"&gt;
+<pre><code class="language-language-php">&lt;?php if ($hascustommenu) { ?&gt;
+    &lt;div id=&quot;custommenu-wrapper&quot;&gt;
+        &lt;div id=&quot;custommenu&quot;&gt;
+            &lt;a class=&quot;home&quot; href=&quot;&lt;?php echo new moodle_url('/index.php'); ?&gt;&quot;&gt;
                 &lt;div&gt;&amp;nbsp;&lt;/div&gt;
             &lt;/a&gt;
             &lt;?php echo $custommenu; ?&gt;
-            &lt;a class="calendar" href="&lt;?php echo new moodle_url('calendar/view.php'); ?&gt;"&gt;
-                &lt;?php echo date("F j, Y"); ?&gt;
+            &lt;a class=&quot;calendar&quot; href=&quot;&lt;?php echo new moodle_url('calendar/view.php'); ?&gt;&quot;&gt;
+                &lt;?php echo date(&quot;F j, Y&quot;); ?&gt;
             &lt;/a&gt;
         &lt;/div&gt;
     &lt;/div&gt;
-&lt;?php } ?&gt;  
+&lt;?php } ?&gt;
 </code></pre>
-
 <p>So now the Home link and calendar link are simply hrefs inside the custommenu div. They’re not list-items any more, but they never really needed to be. And now I have the flexibility to customize their output with settings and have the full power of the YUI custommenu. So the moral of this story is: Just because you can override a core renderer doesn’t mean you should.</p>
+</div>
         </div>
 
         <section class="share">
@@ -319,7 +323,7 @@ class theme_zebra_core_renderer extends core_renderer {
 				<li>
 					<a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://iyware.com/reconsidering-custom-renderers/&amp;title=Reconsidering%20Custom%20Renderers&amp;summary=One%20of%20the%20coolest%20new%20features%20in%20Moodle%202%20is%20the%20fact%20that%20the%20core%20uses%20a%20series%20of%20renderes%20to%20output%20the%20final%20HTML,%20and%20that%20these%20renderers%20can%20extended%20or%20even%20overwritten%20by%20a%20plugin.%20One%20of%20the%20first%20things%20that%20people%20did&amp;source=iyWare">LinkedIn</a>
 				</li>
-				
+
 
 
 
@@ -340,12 +344,12 @@ class theme_zebra_core_renderer extends core_renderer {
 
         <footer class="post-footer vcard cf" role="contentinfo">
                 	<div class="wrapper">
-                	<a href="../author/danny/" class="author" style="background-image: url('../content/images/2015/03/dannywahl.jpg');">
+                	<a href="../author/danny-2/" class="author" style="background-image: url('../content/images/2015/03/dannywahl.jpg');">
                     	<img src="../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl">
 					</a>
 					</div>
                 <div class="author-info meta">
-					<a href="../author/danny/" class="fn">Danny Wahl</a>
+					<a href="../author/danny-2/" class="fn">Danny Wahl</a>
                     &nbsp;&bull;&nbsp;<span class="adr">天津</span>
                     &nbsp;&bull;&nbsp;<a class="site" href="https://iyware.com/">https://iyware.com</a>
                     <p class="bio">My name is Danny Wahl and I provide consulting in IT and education. I dabble in writing, programming, design, and ukulele playing. Post content licensed CC-BY-4.0</p>
@@ -365,15 +369,15 @@ class theme_zebra_core_renderer extends core_renderer {
 			<small>Please enable JavaScript to view the <a href="https://disqus.com/home/forums/iyware/">comments powered by Disqus.</a></small>
 		</p>
 	</noscript>
-	
+
 	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 	<ins class="adsbygoogle" style="display:block;width:320px;height:100px;margin:0 auto;" data-ad-client="ca-pub-5811335018322110" data-ad-slot="8562617448"></ins>
 	<script>
 		(adsbygoogle = window.adsbygoogle || []).push({});
-	</script>  
+	</script>
 
     </article>
-  
+
 
 <footer class="footer-main cf">
 	<p class="feed"><a href="https://iyware.com/rss">RSS Feed</a></p>
@@ -381,14 +385,15 @@ class theme_zebra_core_renderer extends core_renderer {
         <a class="title" href="https://iyware.com/">iyWare</a>
         <span>Things I Break</span>
     </p>
-	<p class="copyright">&copy; 2015 <a href="https://iyware.com/">iyWare</a></p>
+	<p class="copyright">&copy; 2018 <a href="https://iyware.com/">iyWare</a></p>
 </footer>
+
     <!-- You can safely delete this line if your theme does not require jQuery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
-		<script type="text/javascript" src="../assets/js/prism.min543c.js?v=f30b9db75e"></script>
-	
-	<script type="text/javascript" src="../assets/js/jquery.swiftype.min543c.js?v=f30b9db75e"></script>
+		<script type="text/javascript" src="../assets/js/prism.min7654.js?v=232eeda5be"></script>
+
+	<script type="text/javascript" src="../assets/js/jquery.swiftype.min7654.js?v=232eeda5be"></script>
 	<script type="text/javascript">
 		$('<li class="nav-search-form"><form action="#" onsubmit="stSearch();return false;" autocomplete="on"><label id="nav-search-label" for="st-search-input">Search:</label><input id="search_submit" value="Search" type="submit"><input id="st-search-input" name="search" type="text" placeholder="search https://iyware.com"></form></li>').insertAfter(".nav-search");
 
@@ -441,5 +446,5 @@ class theme_zebra_core_renderer extends core_renderer {
 	</aside>
 </body>
 
-<!-- Mirrored from 127.0.0.1:2368/reconsidering-custom-renderers/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Dec 2016 21:31:08 GMT -->
+<!-- Mirrored from 127.0.0.1:2368/reconsidering-custom-renderers/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 06 Jan 2018 22:14:14 GMT -->
 </html>

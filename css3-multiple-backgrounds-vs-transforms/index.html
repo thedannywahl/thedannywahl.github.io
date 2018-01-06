@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
 
-<!-- Mirrored from 127.0.0.1:2368/css3-multiple-backgrounds-vs-transforms/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Dec 2016 21:30:45 GMT -->
+<!-- Mirrored from 127.0.0.1:2368/css3-multiple-backgrounds-vs-transforms/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 06 Jan 2018 22:13:46 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>CSS3 Multiple Backgrounds Vs. Transforms - iyWare</title>
-    <meta name="description" content="" />
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="../assets/favicon.ico">
-    <link rel="stylesheet" type="text/css" href="../assets/css/screen.min543c.css?v=f30b9db75e" />
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.min7654.css?v=232eeda5be" />
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
     <link rel="canonical" href="https://iyware.com/css3-multiple-backgrounds-vs-transforms/" />
     <meta name="referrer" content="no-referrer-when-downgrade" />
     <link rel="amphtml" href="https://iyware.com/css3-multiple-backgrounds-vs-transforms/amp/" />
@@ -47,12 +47,16 @@
     "author": {
         "@type": "Person",
         "name": "Danny Wahl",
-        "image": "https://iyware.com/content/images/2015/03/dannywahl.jpg",
-        "url": "https://iyware.com/author/danny/",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://iyware.com/content/images/2015/03/dannywahl.jpg",
+            "width": 112,
+            "height": 112
+        },
+        "url": "https://iyware.com/author/danny-2/",
         "sameAs": [
             "https://iyware.com"
-        ],
-        "description": "My name is Danny Wahl and I provide consulting in IT and education. I dabble in writing, programming, design, and ukulele playing. Post content licensed CC-BY-4.0"
+        ]
     },
     "headline": "CSS3 Multiple Backgrounds Vs. Transforms",
     "url": "https://iyware.com/css3-multiple-backgrounds-vs-transforms/",
@@ -62,24 +66,32 @@
     "description": "We all know how multiple backgrounds work, and they’re really neat. Recently I started thinking about being able to use a single image and transforms to simulate some of the multiple background effects. Specifically the one where you want to put the same image in all 4 corners of",
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https://iyware.com"
+        "@id": "https://iyware.com/"
     }
 }
     </script>
 
-    <meta name="generator" content="Ghost 0.11" />
+    <script type="text/javascript" src="../public/ghost-sdk7654.js?v=232eeda5be"></script>
+<script type="text/javascript">
+ghost.init({
+	clientId: "ghost-frontend",
+	clientSecret: "035844ea19dd"
+});
+</script>
+    <meta name="generator" content="Ghost 1.19" />
     <link rel="alternate" type="application/rss+xml" title="iyWare" href="https://iyware.com/rss/" />
 </head>
 <body class="post-template tag-devops tag-css">
     
 
 	<header role="banner" class="header-main no-image">
-    		<ul class="nav">
-    <li class="nav-home" role="presentation"><a href="https://iyware.com/">Home</a></li>
-    <li class="nav-clients" role="presentation"><a href="https://iyware.com/clients/">Clients</a></li>
-    <li class="nav-portfolio" role="presentation"><a href="https://iyware.com/tag/portfolio/">Portfolio</a></li>
-    <li class="nav-search" role="presentation"><a href="https://iyware.com/search/">Search</a></li>
+    		<ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="https://iyware.com/">Home</a></li>
+    <li class="nav-clients" role="menuitem"><a href="https://iyware.com/clients/">Clients</a></li>
+    <li class="nav-portfolio" role="menuitem"><a href="https://iyware.com/tag/portfolio/">Portfolio</a></li>
+    <li class="nav-search" role="menuitem"><a href="https://iyware.com/search/">Search</a></li>
 </ul>
+
 		<h1>
     		<a href="https://iyware.com/">
             		<img src="../content/images/2015/01/logo.png" alt="iyWare">
@@ -88,13 +100,13 @@
 	</header>
 
     <article role="main" class="post tag-devops tag-css" data-swiftype-index="true">
-    
+
         <header>
             <h1>CSS3 Multiple Backgrounds Vs. Transforms</h1>
 
 			<small class="meta">
-						<a href="../author/danny/" class="author" style="background-image:url('../content/images/2015/03/dannywahl.jpg');"><img src="../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl's picture"></a>
-					<a href="../author/danny/">Danny Wahl</a>
+						<a href="../author/danny-2/" class="author" style="background-image:url('../content/images/2015/03/dannywahl.jpg');"><img src="../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl's picture"></a>
+					<a href="../author/danny-2/">Danny Wahl</a>
 				&nbsp;&bull;&nbsp;
 				<time datetime="2012-07-13">July 13, 2012</time>
 					&nbsp;&bull;&nbsp;
@@ -103,11 +115,9 @@
         </header>
 
         <div class="text">
-            <p>We all know how multiple backgrounds work, and they’re really neat. Recently I started thinking about being able to use a single image and transforms to simulate some of the multiple background effects. Specifically the one where you want to put the same image in all 4 corners of a div, but facing a different direction (check out Mary’s example <a href="http://moodle.org/mod/forum/discuss.php?d=206918" title="Some CSS3 fun stuff to try out...">here</a> for Moodle).</p>
-
+            <div class="kg-card-markdown"><p>We all know how multiple backgrounds work, and they’re really neat. Recently I started thinking about being able to use a single image and transforms to simulate some of the multiple background effects. Specifically the one where you want to put the same image in all 4 corners of a div, but facing a different direction (check out Mary’s example <a href="http://moodle.org/mod/forum/discuss.php?d=206918" title="Some CSS3 fun stuff to try out...">here</a> for Moodle).</p>
 <p>The “problem” with multiple backgrounds like that is that you’re serving multiple images (which makes sense right…). But you’re not really serving multiple images, you’re serving one image that you’ve manipulated in some photo software to be oriented differently, what if you could take that one image and make it orient however you like? You can with transforms. Unfortunately multiple backgrounds don’t support transforms, only the container itself – because that would make things too easy! So we’re going to use the standard “wrapper” trick with pseudo-elements, and let’s face it, you probably still have wrappers in your code you don’t need anyways, so let’s put them to use.</p>
-
-<pre><code class="language-css">#content,
+<pre><code class="language-language-css">#content,
 #content-wrapper {
     width: 400px;
     min-height: 200px;
@@ -118,7 +128,7 @@
 }
 
 #content::before { /* Top Left: no transform */
-    content: "";
+    content: &quot;&quot;;
     z-index: -1;
     position: absolute;
     width: 80px;
@@ -129,7 +139,7 @@
 }
 
 #content::after { /* Top Right: flip horizontally */
-    content: "";
+    content: &quot;&quot;;
     z-index: -1;
     position: absolute;
     width: 80px;
@@ -141,7 +151,7 @@
 }
 
 #content-wrapper::before { /* Bottom Left: flip vertical */
-    content: "";
+    content: &quot;&quot;;
     z-index: -1;
     position: absolute;
     width: 80px;
@@ -153,7 +163,7 @@
 }
 
 #content-wrapper::after { /* Bottom Right: flip horizontal + vertical */
-    content: "";
+    content: &quot;&quot;;
     z-index: -1;
     position: absolute;
     width: 80px;
@@ -164,10 +174,9 @@
     right: 0;
 }
 </code></pre>
-
 <p>So there you go. The <code>::before</code> elements have the left images, the <code>::after</code> elements have the right images, and we use transform to flip them. Simple as that. And make a note that the current spec. supports pseudo-pseudo elements (e.g. <code>#id::before::before</code>) but no browsers currently implement it. Once they do you can drop the wrapper and use those, though it’s not definitively better, especially from a DOM perspective.</p>
-
 <p><a href="../content/images/import/transform_bg.html" title="CSS3 Transform Multiple Background Demo">Demo</a></p>
+</div>
         </div>
 
         <section class="share">
@@ -187,7 +196,7 @@
 				<li>
 					<a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://iyware.com/css3-multiple-backgrounds-vs-transforms/&amp;title=CSS3%20Multiple%20Backgrounds%20Vs.%20Transforms&amp;summary=We%20all%20know%20how%20multiple%20backgrounds%20work,%20and%20they%e2%80%99re%20really%20neat.%20Recently%20I%20started%20thinking%20about%20being%20able%20to%20use%20a%20single%20image%20and%20transforms%20to%20simulate%20some%20of%20the%20multiple%20background%20effects.%20Specifically%20the%20one%20where%20you%20want%20to%20put%20the%20same%20image&amp;source=iyWare">LinkedIn</a>
 				</li>
-				
+
 
 
 
@@ -208,12 +217,12 @@
 
         <footer class="post-footer vcard cf" role="contentinfo">
                 	<div class="wrapper">
-                	<a href="../author/danny/" class="author" style="background-image: url('../content/images/2015/03/dannywahl.jpg');">
+                	<a href="../author/danny-2/" class="author" style="background-image: url('../content/images/2015/03/dannywahl.jpg');">
                     	<img src="../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl">
 					</a>
 					</div>
                 <div class="author-info meta">
-					<a href="../author/danny/" class="fn">Danny Wahl</a>
+					<a href="../author/danny-2/" class="fn">Danny Wahl</a>
                     &nbsp;&bull;&nbsp;<span class="adr">天津</span>
                     &nbsp;&bull;&nbsp;<a class="site" href="https://iyware.com/">https://iyware.com</a>
                     <p class="bio">My name is Danny Wahl and I provide consulting in IT and education. I dabble in writing, programming, design, and ukulele playing. Post content licensed CC-BY-4.0</p>
@@ -233,15 +242,15 @@
 			<small>Please enable JavaScript to view the <a href="https://disqus.com/home/forums/iyware/">comments powered by Disqus.</a></small>
 		</p>
 	</noscript>
-	
+
 	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 	<ins class="adsbygoogle" style="display:block;width:320px;height:100px;margin:0 auto;" data-ad-client="ca-pub-5811335018322110" data-ad-slot="8562617448"></ins>
 	<script>
 		(adsbygoogle = window.adsbygoogle || []).push({});
-	</script>  
+	</script>
 
     </article>
-  
+
 
 <footer class="footer-main cf">
 	<p class="feed"><a href="https://iyware.com/rss">RSS Feed</a></p>
@@ -249,14 +258,15 @@
         <a class="title" href="https://iyware.com/">iyWare</a>
         <span>Things I Break</span>
     </p>
-	<p class="copyright">&copy; 2015 <a href="https://iyware.com/">iyWare</a></p>
+	<p class="copyright">&copy; 2018 <a href="https://iyware.com/">iyWare</a></p>
 </footer>
+
     <!-- You can safely delete this line if your theme does not require jQuery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
-		<script type="text/javascript" src="../assets/js/prism.min543c.js?v=f30b9db75e"></script>
-	
-	<script type="text/javascript" src="../assets/js/jquery.swiftype.min543c.js?v=f30b9db75e"></script>
+		<script type="text/javascript" src="../assets/js/prism.min7654.js?v=232eeda5be"></script>
+
+	<script type="text/javascript" src="../assets/js/jquery.swiftype.min7654.js?v=232eeda5be"></script>
 	<script type="text/javascript">
 		$('<li class="nav-search-form"><form action="#" onsubmit="stSearch();return false;" autocomplete="on"><label id="nav-search-label" for="st-search-input">Search:</label><input id="search_submit" value="Search" type="submit"><input id="st-search-input" name="search" type="text" placeholder="search https://iyware.com"></form></li>').insertAfter(".nav-search");
 
@@ -309,5 +319,5 @@
 	</aside>
 </body>
 
-<!-- Mirrored from 127.0.0.1:2368/css3-multiple-backgrounds-vs-transforms/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Dec 2016 21:30:45 GMT -->
+<!-- Mirrored from 127.0.0.1:2368/css3-multiple-backgrounds-vs-transforms/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 06 Jan 2018 22:13:46 GMT -->
 </html>

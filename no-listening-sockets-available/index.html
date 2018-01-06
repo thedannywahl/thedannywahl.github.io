@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
 
-<!-- Mirrored from 127.0.0.1:2368/no-listening-sockets-available/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Dec 2016 21:31:06 GMT -->
+<!-- Mirrored from 127.0.0.1:2368/no-listening-sockets-available/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 06 Jan 2018 22:14:13 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>No Listening Sockets Available? - iyWare</title>
-    <meta name="description" content="" />
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="../assets/favicon.ico">
-    <link rel="stylesheet" type="text/css" href="../assets/css/screen.min543c.css?v=f30b9db75e" />
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.min7654.css?v=232eeda5be" />
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
     <link rel="canonical" href="https://iyware.com/no-listening-sockets-available/" />
     <meta name="referrer" content="no-referrer-when-downgrade" />
     <link rel="amphtml" href="https://iyware.com/no-listening-sockets-available/amp/" />
@@ -46,12 +46,16 @@
     "author": {
         "@type": "Person",
         "name": "Danny Wahl",
-        "image": "https://iyware.com/content/images/2015/03/dannywahl.jpg",
-        "url": "https://iyware.com/author/danny/",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://iyware.com/content/images/2015/03/dannywahl.jpg",
+            "width": 112,
+            "height": 112
+        },
+        "url": "https://iyware.com/author/danny-2/",
         "sameAs": [
             "https://iyware.com"
-        ],
-        "description": "My name is Danny Wahl and I provide consulting in IT and education. I dabble in writing, programming, design, and ukulele playing. Post content licensed CC-BY-4.0"
+        ]
     },
     "headline": "No Listening Sockets Available?",
     "url": "https://iyware.com/no-listening-sockets-available/",
@@ -61,24 +65,32 @@
     "description": "I’ve been trying to hunt down some sigterm and oom errors thrown by Apache 2 lately and in the process I decided to have it log in its default location /var/log/ and on my desktop. Amid an array of other things I’d been doing at some point",
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https://iyware.com"
+        "@id": "https://iyware.com/"
     }
 }
     </script>
 
-    <meta name="generator" content="Ghost 0.11" />
+    <script type="text/javascript" src="../public/ghost-sdk7654.js?v=232eeda5be"></script>
+<script type="text/javascript">
+ghost.init({
+	clientId: "ghost-frontend",
+	clientSecret: "035844ea19dd"
+});
+</script>
+    <meta name="generator" content="Ghost 1.19" />
     <link rel="alternate" type="application/rss+xml" title="iyWare" href="https://iyware.com/rss/" />
 </head>
 <body class="post-template tag-devops">
     
 
 	<header role="banner" class="header-main no-image">
-    		<ul class="nav">
-    <li class="nav-home" role="presentation"><a href="https://iyware.com/">Home</a></li>
-    <li class="nav-clients" role="presentation"><a href="https://iyware.com/clients/">Clients</a></li>
-    <li class="nav-portfolio" role="presentation"><a href="https://iyware.com/tag/portfolio/">Portfolio</a></li>
-    <li class="nav-search" role="presentation"><a href="https://iyware.com/search/">Search</a></li>
+    		<ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="https://iyware.com/">Home</a></li>
+    <li class="nav-clients" role="menuitem"><a href="https://iyware.com/clients/">Clients</a></li>
+    <li class="nav-portfolio" role="menuitem"><a href="https://iyware.com/tag/portfolio/">Portfolio</a></li>
+    <li class="nav-search" role="menuitem"><a href="https://iyware.com/search/">Search</a></li>
 </ul>
+
 		<h1>
     		<a href="https://iyware.com/">
             		<img src="../content/images/2015/01/logo.png" alt="iyWare">
@@ -87,13 +99,13 @@
 	</header>
 
     <article role="main" class="post tag-devops" data-swiftype-index="true">
-    
+
         <header>
             <h1>No Listening Sockets Available?</h1>
 
 			<small class="meta">
-						<a href="../author/danny/" class="author" style="background-image:url('../content/images/2015/03/dannywahl.jpg');"><img src="../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl's picture"></a>
-					<a href="../author/danny/">Danny Wahl</a>
+						<a href="../author/danny-2/" class="author" style="background-image:url('../content/images/2015/03/dannywahl.jpg');"><img src="../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl's picture"></a>
+					<a href="../author/danny-2/">Danny Wahl</a>
 				&nbsp;&bull;&nbsp;
 				<time datetime="2011-11-03">November 03, 2011</time>
 					&nbsp;&bull;&nbsp;
@@ -102,26 +114,21 @@
         </header>
 
         <div class="text">
-            <p>I’ve been trying to hunt down some sigterm and oom errors thrown by <a href="http://httpd.apache.org/">Apache 2</a> lately and in the process I decided to have it log in its default location /var/log/ and on my desktop. Amid an array of other things I’d been doing at some point I created the log like this:</p>
-
-<pre><code class="language-bash">touch ~/Desktop/apache.error.log  
-chmod 777 ~/Desktop/apache.error.log  
+            <div class="kg-card-markdown"><p>I’ve been trying to hunt down some sigterm and oom errors thrown by <a href="http://httpd.apache.org/">Apache 2</a> lately and in the process I decided to have it log in its default location /var/log/ and on my desktop. Amid an array of other things I’d been doing at some point I created the log like this:</p>
+<pre><code class="language-language-bash">touch ~/Desktop/apache.error.log
+chmod 777 ~/Desktop/apache.error.log
 </code></pre>
-
 <p>Then went back to work. Several hours later when I went to restart Apache it wouldn’t work, and I got this deceiving message:</p>
-
-<pre><code class="language-bash">no listening sockets available, shutting down  
-Unable to open logs  
-Only one usage of each socket address (protocol/network address/port) is normally permitted.  
-make_sock: could not bind to address 0.0.0.0:80  
+<pre><code class="language-language-bash">no listening sockets available, shutting down
+Unable to open logs
+Only one usage of each socket address (protocol/network address/port) is normally permitted.
+make_sock: could not bind to address 0.0.0.0:80
 </code></pre>
-
 <p>So after trying some things I decided I’d try to reboot. When the machine came back up Apache was ‘running’ meaning it was an active task, but the httpd wasn’t actually working. Oh, and there was only one thread (I’m using mpm-prefork) and it was consuming 97% of the cpu. Tried restarting Apache, same error as above. So I begrudgingly went back and undid a couple hours of tuning to try and fix Apache to no avail. Finally in one last desperate command I fixed it:</p>
-
-<pre><code class="language-bash">chown www-data:www-data ~/Desktop/apache.error.log  
+<pre><code class="language-language-bash">chown www-data:www-data ~/Desktop/apache.error.log
 </code></pre>
-
 <p>Immediately Apache started spinning up threads, the cpu use went down, and it started logging away. I was baffled, I had assumed since the log was completely public (777) that surely couldn’t have been the root of the ‘Unable to open logs’ error. Well, it was, doesn’t make much sense to me, but now it’s back to re-undoing my Apache tuning.</p>
+</div>
         </div>
 
         <section class="share">
@@ -141,7 +148,7 @@ make_sock: could not bind to address 0.0.0.0:80
 				<li>
 					<a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://iyware.com/no-listening-sockets-available/&amp;title=No%20Listening%20Sockets%20Available%3F&amp;summary=I%e2%80%99ve%20been%20trying%20to%20hunt%20down%20some%20sigterm%20and%20oom%20errors%20thrown%20by%20Apache%202%20lately%20and%20in%20the%20process%20I%20decided%20to%20have%20it%20log%20in%20its%20default%20location%20/var/log/%20and%20on%20my%20desktop.%20Amid%20an%20array%20of%20other%20things%20I%e2%80%99d&amp;source=iyWare">LinkedIn</a>
 				</li>
-				
+
 
 
 
@@ -162,12 +169,12 @@ make_sock: could not bind to address 0.0.0.0:80
 
         <footer class="post-footer vcard cf" role="contentinfo">
                 	<div class="wrapper">
-                	<a href="../author/danny/" class="author" style="background-image: url('../content/images/2015/03/dannywahl.jpg');">
+                	<a href="../author/danny-2/" class="author" style="background-image: url('../content/images/2015/03/dannywahl.jpg');">
                     	<img src="../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl">
 					</a>
 					</div>
                 <div class="author-info meta">
-					<a href="../author/danny/" class="fn">Danny Wahl</a>
+					<a href="../author/danny-2/" class="fn">Danny Wahl</a>
                     &nbsp;&bull;&nbsp;<span class="adr">天津</span>
                     &nbsp;&bull;&nbsp;<a class="site" href="https://iyware.com/">https://iyware.com</a>
                     <p class="bio">My name is Danny Wahl and I provide consulting in IT and education. I dabble in writing, programming, design, and ukulele playing. Post content licensed CC-BY-4.0</p>
@@ -187,15 +194,15 @@ make_sock: could not bind to address 0.0.0.0:80
 			<small>Please enable JavaScript to view the <a href="https://disqus.com/home/forums/iyware/">comments powered by Disqus.</a></small>
 		</p>
 	</noscript>
-	
+
 	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 	<ins class="adsbygoogle" style="display:block;width:320px;height:100px;margin:0 auto;" data-ad-client="ca-pub-5811335018322110" data-ad-slot="8562617448"></ins>
 	<script>
 		(adsbygoogle = window.adsbygoogle || []).push({});
-	</script>  
+	</script>
 
     </article>
-  
+
 
 <footer class="footer-main cf">
 	<p class="feed"><a href="https://iyware.com/rss">RSS Feed</a></p>
@@ -203,14 +210,15 @@ make_sock: could not bind to address 0.0.0.0:80
         <a class="title" href="https://iyware.com/">iyWare</a>
         <span>Things I Break</span>
     </p>
-	<p class="copyright">&copy; 2015 <a href="https://iyware.com/">iyWare</a></p>
+	<p class="copyright">&copy; 2018 <a href="https://iyware.com/">iyWare</a></p>
 </footer>
+
     <!-- You can safely delete this line if your theme does not require jQuery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
-		<script type="text/javascript" src="../assets/js/prism.min543c.js?v=f30b9db75e"></script>
-	
-	<script type="text/javascript" src="../assets/js/jquery.swiftype.min543c.js?v=f30b9db75e"></script>
+		<script type="text/javascript" src="../assets/js/prism.min7654.js?v=232eeda5be"></script>
+
+	<script type="text/javascript" src="../assets/js/jquery.swiftype.min7654.js?v=232eeda5be"></script>
 	<script type="text/javascript">
 		$('<li class="nav-search-form"><form action="#" onsubmit="stSearch();return false;" autocomplete="on"><label id="nav-search-label" for="st-search-input">Search:</label><input id="search_submit" value="Search" type="submit"><input id="st-search-input" name="search" type="text" placeholder="search https://iyware.com"></form></li>').insertAfter(".nav-search");
 
@@ -263,5 +271,5 @@ make_sock: could not bind to address 0.0.0.0:80
 	</aside>
 </body>
 
-<!-- Mirrored from 127.0.0.1:2368/no-listening-sockets-available/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Dec 2016 21:31:06 GMT -->
+<!-- Mirrored from 127.0.0.1:2368/no-listening-sockets-available/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 06 Jan 2018 22:14:13 GMT -->
 </html>

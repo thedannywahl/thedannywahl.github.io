@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
 
-<!-- Mirrored from 127.0.0.1:2368/simple-dynamic-sidebars-in-wordpress-themes/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Dec 2016 21:30:52 GMT -->
+<!-- Mirrored from 127.0.0.1:2368/simple-dynamic-sidebars-in-wordpress-themes/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 06 Jan 2018 22:14:00 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Simple Dynamic Sidebars in WordPress Themes - iyWare</title>
-    <meta name="description" content="" />
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="../assets/favicon.ico">
-    <link rel="stylesheet" type="text/css" href="../assets/css/screen.min543c.css?v=f30b9db75e" />
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.min7654.css?v=232eeda5be" />
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
     <link rel="canonical" href="https://iyware.com/simple-dynamic-sidebars-in-wordpress-themes/" />
     <meta name="referrer" content="no-referrer-when-downgrade" />
     <link rel="amphtml" href="https://iyware.com/simple-dynamic-sidebars-in-wordpress-themes/amp/" />
@@ -46,12 +46,16 @@
     "author": {
         "@type": "Person",
         "name": "Danny Wahl",
-        "image": "https://iyware.com/content/images/2015/03/dannywahl.jpg",
-        "url": "https://iyware.com/author/danny/",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://iyware.com/content/images/2015/03/dannywahl.jpg",
+            "width": 112,
+            "height": 112
+        },
+        "url": "https://iyware.com/author/danny-2/",
         "sameAs": [
             "https://iyware.com"
-        ],
-        "description": "My name is Danny Wahl and I provide consulting in IT and education. I dabble in writing, programming, design, and ukulele playing. Post content licensed CC-BY-4.0"
+        ]
     },
     "headline": "Simple Dynamic Sidebars in WordPress Themes",
     "url": "https://iyware.com/simple-dynamic-sidebars-in-wordpress-themes/",
@@ -61,24 +65,32 @@
     "description": "One of the things I loved right off the bat about WordPress is that it’s extremely flexible in terms of output and rendering, and that its built in functions are simple but also robust. Here’s an example of what I’m talking about. If you want to output",
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https://iyware.com"
+        "@id": "https://iyware.com/"
     }
 }
     </script>
 
-    <meta name="generator" content="Ghost 0.11" />
+    <script type="text/javascript" src="../public/ghost-sdk7654.js?v=232eeda5be"></script>
+<script type="text/javascript">
+ghost.init({
+	clientId: "ghost-frontend",
+	clientSecret: "035844ea19dd"
+});
+</script>
+    <meta name="generator" content="Ghost 1.19" />
     <link rel="alternate" type="application/rss+xml" title="iyWare" href="https://iyware.com/rss/" />
 </head>
 <body class="post-template tag-wordpress">
     
 
 	<header role="banner" class="header-main no-image">
-    		<ul class="nav">
-    <li class="nav-home" role="presentation"><a href="https://iyware.com/">Home</a></li>
-    <li class="nav-clients" role="presentation"><a href="https://iyware.com/clients/">Clients</a></li>
-    <li class="nav-portfolio" role="presentation"><a href="https://iyware.com/tag/portfolio/">Portfolio</a></li>
-    <li class="nav-search" role="presentation"><a href="https://iyware.com/search/">Search</a></li>
+    		<ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="https://iyware.com/">Home</a></li>
+    <li class="nav-clients" role="menuitem"><a href="https://iyware.com/clients/">Clients</a></li>
+    <li class="nav-portfolio" role="menuitem"><a href="https://iyware.com/tag/portfolio/">Portfolio</a></li>
+    <li class="nav-search" role="menuitem"><a href="https://iyware.com/search/">Search</a></li>
 </ul>
+
 		<h1>
     		<a href="https://iyware.com/">
             		<img src="../content/images/2015/01/logo.png" alt="iyWare">
@@ -87,13 +99,13 @@
 	</header>
 
     <article role="main" class="post tag-wordpress" data-swiftype-index="true">
-    
+
         <header>
             <h1>Simple Dynamic Sidebars in WordPress Themes</h1>
 
 			<small class="meta">
-						<a href="../author/danny/" class="author" style="background-image:url('../content/images/2015/03/dannywahl.jpg');"><img src="../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl's picture"></a>
-					<a href="../author/danny/">Danny Wahl</a>
+						<a href="../author/danny-2/" class="author" style="background-image:url('../content/images/2015/03/dannywahl.jpg');"><img src="../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl's picture"></a>
+					<a href="../author/danny-2/">Danny Wahl</a>
 				&nbsp;&bull;&nbsp;
 				<time datetime="2011-11-24">November 24, 2011</time>
 					&nbsp;&bull;&nbsp;
@@ -102,21 +114,18 @@
         </header>
 
         <div class="text">
-            <p>One of the things I loved right off the bat about <a href="http://wordpress.org/">WordPress</a> is that it’s extremely flexible in terms of output and rendering, and that its built in functions are simple but also robust. Here’s an example of what I’m talking about. If you want to output a sidebar (widget area) you simply call the <code>dynamic_sidebar()</code> function and WP handles the rest. A practical example of that might look something like this:</p>
-
-<pre><code class="language-php">&lt;div id="container"&gt;  
-    &lt;aside id="sidebar"&gt;
+            <div class="kg-card-markdown"><p>One of the things I loved right off the bat about <a href="http://wordpress.org/">WordPress</a> is that it’s extremely flexible in terms of output and rendering, and that its built in functions are simple but also robust. Here’s an example of what I’m talking about. If you want to output a sidebar (widget area) you simply call the <code>dynamic_sidebar()</code> function and WP handles the rest. A practical example of that might look something like this:</p>
+<pre><code class="language-language-php">&lt;div id=&quot;container&quot;&gt;
+    &lt;aside id=&quot;sidebar&quot;&gt;
         &lt;?php dynamic_sidebar(); ?&gt;
     &lt;/aside&gt;
-    &lt;article id="content"&gt;
+    &lt;article id=&quot;content&quot;&gt;
         ...
     &lt;/article&gt;
-&lt;/div&gt;  
+&lt;/div&gt;
 </code></pre>
-
 <p>It’s extremely simple to use and works well, no complaints here! When it come time to layout the styles your CSS would be similar to this:</p>
-
-<pre><code class="language-css">#sidebar {
+<pre><code class="language-language-css">#sidebar {
     float: right;
     width: 200px;
 }
@@ -125,28 +134,22 @@
     margin-right: 210px; /* 10 px for spacing */
 }
 </code></pre>
-
 <p>And that would generally work, but if you’re designing a theme for someone else to use, they actually might not want to use your sidebar and if they don’t add any widgets their content is going to have an empty 210px wide column on the right-hand side. WordPress provides a way to handle this too by evaluating the return value.</p>
-
-<pre><code class="language-php">&lt;?php if ( ! dynamic_sidebar() ) { ?&gt;  
+<pre><code class="language-language-php">&lt;?php if ( ! dynamic_sidebar() ) { ?&gt;
    &lt;li&gt;...&lt;/li&gt;
    &lt;li&gt;...&lt;/li&gt;
-&lt;?php } ?&gt;  
+&lt;?php } ?&gt;
 </code></pre>
-
 <p>Well that’s good too, but again, if you’re building a theme for someone else they probably don’t want to use your hard-coded links either! The good news is there’s a solution that involves only a little more code. And actually we’re still going to be using the return value to dynamically build our theme.</p>
-
-<pre><code class="language-php">&lt;div id="container"&gt;  
-    &lt;aside id="sidebar"&gt;&lt;?php dynamic_sidebar() == TRUE ? $class = 'sidebar' : $class = 'no-sidebar'; ?&gt;&lt;/aside&gt;
-    &lt;article id="content" class="&lt;?php echo $class; ?&gt;"&gt;
+<pre><code class="language-language-php">&lt;div id=&quot;container&quot;&gt;
+    &lt;aside id=&quot;sidebar&quot;&gt;&lt;?php dynamic_sidebar() == TRUE ? $class = 'sidebar' : $class = 'no-sidebar'; ?&gt;&lt;/aside&gt;
+    &lt;article id=&quot;content&quot; class=&quot;&lt;?php echo $class; ?&gt;&quot;&gt;
         ...
     &lt;/article&gt;
-&lt;/div&gt;  
+&lt;/div&gt;
 </code></pre>
-
 <p>What this does is immediately evaluate the return value (boolean) and store a variable based on the value, e.g. <code>TRUE</code> means there is a sidebar, <code>FALSE</code> means there is no sidebar. That variable is then echoed in another item as a class. You might also notice that the <code>#sidebar</code> article has no white-space any more, that’s to allow some of our CSS3 to work properly, but it’s not necessary. Now let’s look at the CSS:</p>
-
-<pre><code class="language-css">#sidebar {
+<pre><code class="language-language-css">#sidebar {
     float: right;
     width: 200px;
 }
@@ -163,10 +166,9 @@
     margin-right: 0;
 }
 </code></pre>
-
 <p>Only two more rules, none of which are overrides! The one that might look interesting just because it’s not too common yet is the <code>:empty</code> pseudo class. It’s a great little addition to CSS3 and you can <a href="http://webdesignernotebook.com/css/a-quick-note-about-the-empty-pseudo-class/">read more</a> <a href="http://www.w3.org/TR/css3-selectors/#empty-pseudo">about it</a>, but again, you don’t need it you can just use widths.</p>
-
 <p>So there you have it, if there’s a sidebar with some actual widgets in it, it will display, otherwise your content will look like it was never supposed to have a sidebar in the first place.</p>
+</div>
         </div>
 
         <section class="share">
@@ -186,7 +188,7 @@
 				<li>
 					<a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://iyware.com/simple-dynamic-sidebars-in-wordpress-themes/&amp;title=Simple%20Dynamic%20Sidebars%20in%20WordPress%20Themes&amp;summary=One%20of%20the%20things%20I%20loved%20right%20off%20the%20bat%20about%20WordPress%20is%20that%20it%e2%80%99s%20extremely%20flexible%20in%20terms%20of%20output%20and%20rendering,%20and%20that%20its%20built%20in%20functions%20are%20simple%20but%20also%20robust.%20Here%e2%80%99s%20an%20example%20of%20what%20I%e2%80%99m%20talking%20about.&amp;source=iyWare">LinkedIn</a>
 				</li>
-				
+
 
 
 
@@ -207,12 +209,12 @@
 
         <footer class="post-footer vcard cf" role="contentinfo">
                 	<div class="wrapper">
-                	<a href="../author/danny/" class="author" style="background-image: url('../content/images/2015/03/dannywahl.jpg');">
+                	<a href="../author/danny-2/" class="author" style="background-image: url('../content/images/2015/03/dannywahl.jpg');">
                     	<img src="../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl">
 					</a>
 					</div>
                 <div class="author-info meta">
-					<a href="../author/danny/" class="fn">Danny Wahl</a>
+					<a href="../author/danny-2/" class="fn">Danny Wahl</a>
                     &nbsp;&bull;&nbsp;<span class="adr">天津</span>
                     &nbsp;&bull;&nbsp;<a class="site" href="https://iyware.com/">https://iyware.com</a>
                     <p class="bio">My name is Danny Wahl and I provide consulting in IT and education. I dabble in writing, programming, design, and ukulele playing. Post content licensed CC-BY-4.0</p>
@@ -232,15 +234,15 @@
 			<small>Please enable JavaScript to view the <a href="https://disqus.com/home/forums/iyware/">comments powered by Disqus.</a></small>
 		</p>
 	</noscript>
-	
+
 	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 	<ins class="adsbygoogle" style="display:block;width:320px;height:100px;margin:0 auto;" data-ad-client="ca-pub-5811335018322110" data-ad-slot="8562617448"></ins>
 	<script>
 		(adsbygoogle = window.adsbygoogle || []).push({});
-	</script>  
+	</script>
 
     </article>
-  
+
 
 <footer class="footer-main cf">
 	<p class="feed"><a href="https://iyware.com/rss">RSS Feed</a></p>
@@ -248,14 +250,15 @@
         <a class="title" href="https://iyware.com/">iyWare</a>
         <span>Things I Break</span>
     </p>
-	<p class="copyright">&copy; 2015 <a href="https://iyware.com/">iyWare</a></p>
+	<p class="copyright">&copy; 2018 <a href="https://iyware.com/">iyWare</a></p>
 </footer>
+
     <!-- You can safely delete this line if your theme does not require jQuery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
-		<script type="text/javascript" src="../assets/js/prism.min543c.js?v=f30b9db75e"></script>
-	
-	<script type="text/javascript" src="../assets/js/jquery.swiftype.min543c.js?v=f30b9db75e"></script>
+		<script type="text/javascript" src="../assets/js/prism.min7654.js?v=232eeda5be"></script>
+
+	<script type="text/javascript" src="../assets/js/jquery.swiftype.min7654.js?v=232eeda5be"></script>
 	<script type="text/javascript">
 		$('<li class="nav-search-form"><form action="#" onsubmit="stSearch();return false;" autocomplete="on"><label id="nav-search-label" for="st-search-input">Search:</label><input id="search_submit" value="Search" type="submit"><input id="st-search-input" name="search" type="text" placeholder="search https://iyware.com"></form></li>').insertAfter(".nav-search");
 
@@ -308,5 +311,5 @@
 	</aside>
 </body>
 
-<!-- Mirrored from 127.0.0.1:2368/simple-dynamic-sidebars-in-wordpress-themes/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Dec 2016 21:30:52 GMT -->
+<!-- Mirrored from 127.0.0.1:2368/simple-dynamic-sidebars-in-wordpress-themes/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 06 Jan 2018 22:14:00 GMT -->
 </html>
