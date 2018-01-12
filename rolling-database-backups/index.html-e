@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from 127.0.0.1:2368/rolling-database-backups/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 12 Jan 2018 22:49:17 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Rolling Database Backups - iyWare</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../favicon.png">
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.mine7a7.css?v=01261fe8a8" />
+    <link rel="shortcut icon" href="../favicon.png" type="image/png" />
+    <link rel="canonical" href="https://iyware.com/rolling-database-backups/" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    
+    <meta property="og:site_name" content="iyWare" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Rolling Database Backups" />
+    <meta property="og:description" content="A few weeks back I decided to try to frustrate myself beyond belief by trying to write a bash script that would (among other things) dump a database every hour.  That idea quickly evolved to keeping the older backups, which turned into setting a cap on the maximum amount of" />
+    <meta property="og:url" content="https://iyware.com/rolling-database-backups/" />
+    <meta property="article:published_time" content="2011-04-29T13:14:35.000Z" />
+    <meta property="article:modified_time" content="2015-01-19T05:14:23.000Z" />
+    <meta property="article:tag" content="DevOps" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Rolling Database Backups" />
+    <meta name="twitter:description" content="A few weeks back I decided to try to frustrate myself beyond belief by trying to write a bash script that would (among other things) dump a database every hour.  That idea quickly evolved to keeping the older backups, which turned into setting a cap on the maximum amount of" />
+    <meta name="twitter:url" content="https://iyware.com/rolling-database-backups/" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Danny Wahl" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="DevOps" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "iyWare",
+        "logo": "https://iyware.com/content/images/2015/01/logo.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Danny Wahl",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://iyware.com/content/images/2015/03/dannywahl.jpg",
+            "width": 112,
+            "height": 112
+        },
+        "url": "https://iyware.com/author/danny-2/",
+        "sameAs": [
+            "https://iyware.com"
+        ]
+    },
+    "headline": "Rolling Database Backups",
+    "url": "https://iyware.com/rolling-database-backups/",
+    "datePublished": "2011-04-29T13:14:35.000Z",
+    "dateModified": "2015-01-19T05:14:23.000Z",
+    "keywords": "DevOps",
+    "description": "A few weeks back I decided to try to frustrate myself beyond belief by trying to write a bash script that would (among other things) dump a database every hour.  That idea quickly evolved to keeping the older backups, which turned into setting a cap on the maximum amount of",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://iyware.com/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 1.20" />
+    <link rel="alternate" type="application/rss+xml" title="iyWare" href="https://iyware.com/rss/" />
+</head>
+<body class="post-template tag-devops">
+    
+
+	<header role="banner" class="header-main no-image">
+    		<ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="https://iyware.com/">Home</a></li>
+    <li class="nav-clients" role="menuitem"><a href="https://iyware.com/clients/">Clients</a></li>
+    <li class="nav-portfolio" role="menuitem"><a href="https://iyware.com/tag/portfolio/">Portfolio</a></li>
+    <li class="nav-search" role="menuitem"><a href="https://iyware.com/search/">Search</a></li>
+</ul>
+
+		<h1>
+    		<a href="https://iyware.com/">
+            		<img src="../content/images/2015/01/logo.png" alt="iyWare">
+			</a>
+		</h1>
+	</header>
+
+    <article role="main" class="post tag-devops">
+
+        <header>
+            <h1>Rolling Database Backups</h1>
+
+			<small class="meta">
+						<a href="../author/danny-2/index.html" class="author" style="background-image:url('../content/images/2015/03/dannywahl.jpg');"><img src="../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl's picture"></a>
+					<a href="../author/danny-2/index.html">Danny Wahl</a>
+				&nbsp;&bull;&nbsp;
+				<time datetime="2011-04-29">April 29, 2011</time>
+					&nbsp;&bull;&nbsp;
+					<span class="tags"><a href="../tag/devops/index.html">DevOps</a></span>
+			</small>
+        </header>
+
+        <div class="text">
+            <div class="kg-card-markdown"><p>A few weeks back I decided to try to frustrate myself beyond belief by trying to write a bash script that would (among other things) dump a database every hour.  That idea quickly evolved to keeping the older backups, which turned into setting a cap on the maximum amount of old backups to keep, which then added needing to know which backup was which.  If you’re confused reading this, welcome to my world trying to write it.</p>
+<p>I was eventually able to write it (for PostgreSQL) and then port it to MySQL – acutally fairly easily – and in the process find out about some <a href="http://bugs.mysql.com/bug.php?id=17627">more limitations of MySQL</a>.  So for anyone looking to do something similar to what I wanted, here’s the scripts, followed by some notes.  I’m planning on doing a writeup of my entire script sometime – as the DB backup is just a small (albeit the most complex) part of it.</p>
+<h2 id="postgresql">PostgreSQL</h2>
+<pre><code class="language-language-bash">#!/bin/bash
+dbcount=24
+dbnames=( &quot;database1&quot; &quot;database2&quot; &quot;database3&quot; )
+dbusers=( &quot;dbuser1&quot; &quot;dbuser2&quot; &quot;dbuser3&quot; )
+domains=( &quot;domain1&quot; &quot;domain2&quot; &quot;domain3&quot; )
+domain_path=&quot;/var/www/&quot;
+backup_path=&quot;/backup/&quot;
+short_date=`date +&quot;%y%m%d-%H&quot;`
+# Dumping Databases
+for (( i = 0 ; i &lt;= `expr ${#domains[@]} \- 1`; i++ ))
+do
+  cd $domain_path${domains[$i]}$backup_path
+  for (( c = `expr $dbcount \- 1` ; c &gt;=0; c-- ))
+  do
+    n=`expr $c \+ 1`
+    while test &quot;${#n}&quot; -lt 2
+    do
+      n=&quot;0$n&quot;
+    done
+    d=$c
+    while test &quot;${#d}&quot; -lt 2
+    do
+      d=&quot;0$d&quot;
+    done
+    file=`ls | grep -E &quot;.($d).(tar)$&quot;`
+    if [[ $file =~ $date_regex ]]
+    then
+      if [ -f &quot;$file&quot; ]
+      then
+        mv $file ${dbnames[$i]}.${BASH_REMATCH[0]}.$n.tar
+      fi
+    fi
+  done
+  pg_dump -U ${dbusers[$i]} -Ft ${dbnames[$i]} &gt; ${dbnames[$i]}.$short_date.00.tar
+  old_file=`ls | grep -E &quot;.($dbcount).(tar)$&quot;`
+  if [[ $old_file =~ $date_regex ]]
+  then
+    if [ -f &quot;$old_file&quot; ]
+    then
+      rm $old_file
+    fi
+  fi
+done
+</code></pre>
+<p>You’ll notice by looking at this script that there aren’t any passwords involved, and that’s because it relies on reading the passwords from <a href="http://wiki.postgresql.org/wiki/Pgpass">.pgpass</a>.  You’ll also notice if you try to run the script that it complains you need root.  The reason for that is that I use root’s .pgpass file to store the passwords rather than the normal user just for a layer of security – as somebody that gets access to my standard account can’t just go grab my DB passwords and walk away – it is clear text after all.  You could drop the root check and move the pgpass file to ~ if you’re feeling lucky.</p>
+<h2 id="mysql">MySQL</h2>
+<pre><code class="language-language-bash">#!/bin/bash
+dbcount=24
+dbnames=( &quot;database1&quot; &quot;database2&quot; &quot;database3&quot; )
+domains=( &quot;domain1&quot; &quot;domain2&quot; &quot;domain3&quot; )
+domain_path=&quot;/var/www/&quot;
+backup_path=&quot;/backup/&quot;
+short_date=`date +&quot;%y%m%d-%H&quot;`
+date_regex=&quot;[0-9]{6}\-[0-9]{2}&quot;
+# Dumping Databases
+for (( i = 0 ; i &lt;= `expr ${#domains[@]} \- 1`; i++ ))
+do
+  cd $domain_path${domains[$i]}$backup_path
+  for (( c = `expr $dbcount \- 1` ; c &gt;=0; c-- ))
+  do
+    n=`expr $c \+ 1`
+    while test &quot;${#n}&quot; -lt 2
+    do
+      n=&quot;0$n&quot;
+    done
+    d=$c
+    while test &quot;${#d}&quot; -lt 2
+    do
+      d=&quot;0$d&quot;
+    done
+    file=`ls | grep -E &quot;.($d).(sql)$&quot;`
+    if [[ $file =~ $date_regex ]]
+    then
+      if [ -f &quot;$file&quot; ]
+      then
+        mv $file ${dbnames[$i]}.${BASH_REMATCH[0]}.$n.sql
+      fi
+    fi
+  done
+  mysqldump -B ${dbnames[$i]} &gt; ${dbnames[$i]}.$short_date.00.sql
+  old_file=`ls | grep -E &quot;.($dbcount).(sql)$&quot;`
+  if [[ $old_file =~ $date_regex ]]
+  then
+    if [ -f &quot;$old_file&quot; ]
+    then
+      rm $old_file
+    fi
+  fi
+done
+</code></pre>
+<p>This script is very very similar to the Postgres one – and that’s because it was ported from the Postgres script.  The main difference is that the database owner array is gone, and that’s because my.cnf only supports one account – so you need a credential set that has access to all of your databases you want to dump, e.g. Root.</p>
+<h2 id="notes">Notes</h2>
+<p>Well those are the scripts, and they should look pretty straight-forward, it loops through your databases that are associated with a domain, and dumps them to a folder you specify for that domain.  E.g. domain_1_db would be dumped to /path/to/domain_1/path/to/backup, or example_db would be backed up to /var/www/example/backup if that was where it was really stored. Your databases are also named with the regex you define for <code>$shore_date</code> which by default is <code>YYMMDD-HH.##.ext</code> the <code>##</code> is <code>00-$dbcount</code> (default is 23) 00 is the newest dump and 23 is the oldest. Anything older than that gets deleted.</p>
+</div>
+        </div>
+
+        <section class="share">
+					<small class="meta">Share this post</small>
+        	<ul>
+				<li>
+					<a href="mailto:?&subject=iyWare%3A%20Rolling%20Database%20Backups&body=Rolling%20Database%20Backups%0D%0Ahttps://iyware.com/rolling-database-backups/%0D%0A%0D%0AA few weeks back I decided to try to frustrate myself beyond belief by trying to write a bash script that would (among other things) dump a database every hour.  That idea quickly evolved to keeping the older backups, which turned into setting a cap%2E%2E%2E">Email</a>
+				</li>
+				<li>
+					<a href="https://twitter.com/home?status=https://iyware.com/rolling-database-backups/%20%23DevOps">Twitter</a>
+				</li>
+				<li>
+					<a href="https://www.facebook.com/sharer/sharer.php?u=https://iyware.com/rolling-database-backups/">Facebook</a>
+				</li>
+				<li>
+					<a href="https://plus.google.com/share?url=https://iyware.com/rolling-database-backups/">Google+</a>
+				</li>
+				<li>
+					<a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://iyware.com/rolling-database-backups/&amp;title=Rolling%20Database%20Backups&amp;summary=A%20few%20weeks%20back%20I%20decided%20to%20try%20to%20frustrate%20myself%20beyond%20belief%20by%20trying%20to%20write%20a%20bash%20script%20that%20would%20(among%20other%20things)%20dump%20a%20database%20every%20hour.%c2%a0%20That%20idea%20quickly%20evolved%20to%20keeping%20the%20older%20backups,%20which%20turned%20into%20setting%20a%20cap&amp;source=iyWare">LinkedIn</a>
+				</li>
+			</ul>
+        </section>
+
+        <footer class="post-footer vcard cf" role="contentinfo">
+                	<div class="wrapper">
+                	<a href="../author/danny-2/index.html" class="author" style="background-image: url('../content/images/2015/03/dannywahl.jpg');">
+                    	<img src="../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl">
+					</a>
+					</div>
+                <div class="author-info meta">
+					<a href="../author/danny-2/index.html" class="fn">Danny Wahl</a>
+                    &nbsp;&bull;&nbsp;<span class="adr">天津</span>
+                    &nbsp;&bull;&nbsp;<a class="site" href="https://iyware.com/">https://iyware.com</a>
+                    <p class="bio">My name is Danny Wahl and I provide consulting in IT and education. I dabble in writing, programming, design, and ukulele playing. Post content licensed CC-BY-4.0</p>
+                </div>
+        </footer>
+
+    </article>
+
+
+<footer class="footer-main cf">
+	<p class="feed"><a href="../rss">RSS Feed</a></p>
+	<p class="description">
+        <a class="title" href="../index.html">iyWare</a>
+        <span>Things I Break</span>
+    </p>
+	<p class="copyright">&copy; 2018 <a href="../index.html">iyWare</a></p>
+</footer>
+
+    <script type="text/javascript" async defer>document.body.className.match("post-template")&&(prismcss=document.createElement("link"),prismcss.rel="stylesheet",prismcss.href="../assets/css/prism.min.css",document.body.appendChild(prismcss),prismjs=document.createElement("script"),prismjs.type="text/javascript",prismjs.async=!0,prismjs.onload=function(){},prismjs.src="https://cdn.jsdelivr.net/npm/prismjs@1.9.0/prism.min.js",document.body.appendChild(prismjs),disqushtml=document.createElement("div"),disqushtml.id="disqus_thread",document.getElementsByTagName("article")[0].appendChild(disqushtml),disqusjs=document.createElement("script"),disqusjs.type="text/javascript",disqusjs.async=!0,disqusjs.src="https://iyware.disqus.com/embed.js",document.body.appendChild(disqusjs)),function(s,e,t,i,m,n,c){s.SwiftypeObject=m,s[m]=s[m]||function(){(s[m].q=s[m].q||[]).push(arguments)},n=e.createElement(t),c=e.getElementsByTagName(t)[0],n.async=1,n.src=i,c.parentNode.insertBefore(n,c)}(window,document,"script","https://s.swiftypecdn.com/install/v2/st.js","_st"),_st("install","UpLojaav5s--stgt7FKu","2.0.0");</script>
+    <aside style="display:none;visibility:hidden;">
+  -		<a href="../search/index.html">search</a>
+  -		<a href="../clients/index.html">clients</a>
+      <a href="../sitemap.xml">sitemap</a>
+  -	</aside>
+</body>
+
+<!-- Mirrored from 127.0.0.1:2368/rolling-database-backups/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 12 Jan 2018 22:49:17 GMT -->
+</html>

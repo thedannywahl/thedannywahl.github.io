@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from localhost:2368/proxy-ghost-with-homebrew-apache/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 04 Mar 2015 07:32:25 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>iyWare | Proxy Ghost with Homebrew Apache</title>
+    <meta name="description" content="" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.min50c9.css?v=bc8eb9ef7b" />
+
+    <link rel="canonical" href="https://iyware.com/proxy-ghost-with-homebrew-apache/" />
+    
+    <meta property="og:site_name" content="iyWare" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Proxy Ghost with Homebrew Apache" />
+    <meta property="og:description" content="I don&#x27;t know if you&#x27;re like me, but I&#x27;m lazy.  As such I find adding ports to URLs to be quite tedius, so the fact that Ghost runs on a non-standard web port (:2368 as opposed to :80) bugs me...." />
+    <meta property="og:url" content="https://iyware.com/proxy-ghost-with-homebrew-apache/" />
+    <meta property="article:published_time" content="2015-02-13T04:55:19.196Z" />
+    <meta property="article:modified_time" content="2015-02-13T05:17:44.824Z" />
+    <meta property="article:tag" content="DevOps" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Proxy Ghost with Homebrew Apache" />
+    <meta name="twitter:description" content="I don&#x27;t know if you&#x27;re like me, but I&#x27;m lazy.  As such I find adding ports to URLs to be quite tedius, so the fact that Ghost runs on a non-standard web port (:2368 as opposed to :80) bugs me...." />
+    <meta name="twitter:url" content="https://iyware.com/proxy-ghost-with-homebrew-apache/" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "iyWare",
+    "author": {
+        "@type": "Person",
+        "name": "Danny Wahl",
+        "image": "https://iyware.com/content/images/2015/01/me.jpg",
+        "url": "https://iyware.com/author/danny",
+        "sameAs": null
+    },
+    "headline": "Proxy Ghost with Homebrew Apache",
+    "url": "https://iyware.com/proxy-ghost-with-homebrew-apache/",
+    "datePublished": "2015-02-13T04:55:19.196Z",
+    "dateModified": "2015-02-13T05:17:44.824Z",
+    "keywords": "DevOps",
+    "description": "I don&#x27;t know if you&#x27;re like me, but I&#x27;m lazy.  As such I find adding ports to URLs to be quite tedius, so the fact that Ghost runs on a non-standard web port (:2368 as opposed to :80) bugs me...."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.5" />
+    <link rel="alternate" type="application/rss+xml" title="iyWare" href="https://iyware.com/rss/" />
+</head>
+<body class="post-template tag-devops  noimage">
+
+    
+
+
+    <article role="main" class="">
+        <header class="group">
+            <a href="../" id="home_link">«</a>
+            <div class="hgroup">
+            	<h1>Proxy Ghost with Homebrew Apache</h1>
+            	<div class="meta">
+            		<time datetime="2015-02-13">February 13, 2015</time>
+            		&nbsp;&bull;&nbsp;
+					<span class="tags"><a href="../tag/devops/">DevOps</a></span>
+            	</div>
+			</div>
+        </header>
+
+        <div class="text" id="js-post-content">
+            <p>I don't know if you're like me, but I'm lazy.  As such I find adding ports to URLs to be quite tedius, so the fact that <a href="https://ghost.org/">Ghost</a> runs on a non-standard web port (<code>:2368</code> as opposed to <code>:80</code>) bugs me.  I know it's so that it can run in userspace and not colide with any other services, but still.  So in this post we'll outline how to fix that.</p>
+
+<p>This outline should work for any version of <a href="http://httpd.apache.org/">Apache</a> but I'm using <a href="http://brew.sh/">homebrew</a> <a href="https://github.com/Homebrew/homebrew-apache/blob/master/httpd24.rb">Apache 2.4</a> using the <code>--with-privileged-ports</code> switch to run on port 80 but Apache can be running on any port.  If you're looking for how to install Apache I've written about it before <a href="../osx-yosemite-mamp-homebrew-development-setup/">here</a>.</p>
+
+<h2 id="enableapachemods">Enable Apache Mods</h2>
+
+<p>We need to enable 2 modules to allow Ghost to be proxied by Apache, <a href="http://httpd.apache.org/docs/current/mod/mod_proxy.html"><code>mod_proxy</code></a> (which enables proxy in general) and <a href="http://httpd.apache.org/docs/current/mod/mod_proxy_http.html"><code>mod_proxy_http</code></a> (which enables HTTP proxy specifically).</p>
+
+<p>Navigate to your <code>httpd.conf</code> file located at <code>/usr/local/etc/apache2/2.4/</code> and open it with your favorite editor.</p>
+
+<p><img src="../content/images/2015/02/folder-containing-homebrew-apache-config.png" alt="" /></p>
+
+<p>Locate the lines for <code>proxy_module</code> and <code>proxy_http_module</code> and uncomment them by removing the <code>#</code> at the beginning of the line so that:</p>
+
+<pre><code class="language-apacheconf">#LoadModule proxy_module libexec/mod_proxy.so
+</code></pre>
+
+<p>becomes:</p>
+
+<pre><code class="language-apacheconf">LoadModule proxy_module libexec/mod_proxy.so  
+</code></pre>
+
+<p>The snippet of that whole section should look something like this:</p>
+
+<pre><code class="language-apacheconf">#LoadModule remoteip_module libexec/mod_remoteip.so
+LoadModule proxy_module libexec/mod_proxy.so  
+#LoadModule proxy_connect_module libexec/mod_proxy_connect.so
+#LoadModule proxy_ftp_module libexec/mod_proxy_ftp.so
+LoadModule proxy_http_module libexec/mod_proxy_http.so  
+#LoadModule proxy_fcgi_module libexec/mod_proxy_fcgi.so
+#LoadModule proxy_scgi_module libexec/mod_proxy_scgi.so
+</code></pre>
+
+<p>Your settings may vary depending on other modules that you have previously enabled, the important thing is that both modules are uncommented.</p>
+
+<h2 id="addanapachevhost">Add an Apache VHost</h2>
+
+<p>The next step is to define an Apache VirtualHost declaration essentially stating how the proxy should work.  In the same <code>httpd.conf</code> document scroll all the way to the bottom and add the following snippet:</p>
+
+<pre><code class="language-apacheconf">&lt;VirtualHost example.com:80&gt;  
+     ServerName example.com
+     ProxyRequests off
+     ProxyPass / http://127.0.0.1:2368/
+     ProxyPassReverse / http:/127.0.0.1:2368/
+&lt;/VirtualHost&gt;  
+</code></pre>
+
+<p>You'll need to replace <code>example.com</code> with the domain that you'd like to access Ghost from.  If it's a localhost installation I highly suggest that you consider leveraging DNSmasq and mod_vhost_alias as well as this works well with that solution as well.  If you want more information about localhost development I've written previously about it <a href="../yosemite-mamp-homebrew-dev-setup-part-2/#dnsmasq">here</a>.</p>
+
+<p>My VHost looks like this:</p>
+
+<pre><code class="language-apacheconf">&lt;VirtualHost ghost.localhost:80&gt;  
+     ServerName ghost.localhost
+     ProxyRequests off
+     ProxyPass / http://127.0.0.1:2368/
+     ProxyPassReverse / http:/127.0.0.1:2368/
+&lt;/VirtualHost&gt;  
+</code></pre>
+
+<h2 id="restartapache">Restart Apache</h2>
+
+<p>After you've finished editing your config file save it and then restart Apache with this command:</p>
+
+<pre><code class="language-bash">sudo httpd -k restart  
+</code></pre>
+
+<p>This will immediately restart your Apache server, even if you're using a LaunchAgent to start it on load or log in.</p>
+
+<p>Now you can visit the URL you declared in your Apache configuration and access your Ghost instance.  Please note that you can still visit it from the old URL as well, this doesn't block access, so if Apache ever breaks you can still get to Ghost.</p>
+            <!--sse-->
+			<div id="disqus_thread"></div>
+			<script type="text/javascript">
+				var disqus_shortname = 'iyware';
+				(function() {
+					var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+					dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+					(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+				})();
+			</script>
+			<noscript><p style="text-align:center;"><small>Please enable JavaScript to view the <a href="https://disqus.com/home/forums/iyware/">comments powered by Disqus.</a></small></p></noscript>
+			<!--/sse-->
+        </div>
+
+        <footer class="post-footer" role="contentinfo">
+
+            <div class="vcard">
+                <a href="../rss/" id="btn_feed" class="btn" title="Feed">
+                    <span aria-hidden="true" data-icon=")"></span>
+                    <strong>Feed</strong>
+                </a>
+
+                <a href="../" class="photo">
+                    <span style="background-image: url('../content/images/2015/01/me.jpg');">
+                        <img src="../content/images/2015/01/me.jpg" alt="Danny Wahl">
+                    </span>
+                </a>
+
+                <div class="details">
+                    <h4><a href="../" class="url n">Danny Wahl</a></h4>
+                    <!--sse--><span>danny &#64; iyware.com</span><br/><!--/sse-->
+                    <span>License: <a href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span><br/>
+                    
+              
+                </div>
+            </div>
+
+            <div id="user_bio">
+                <div class="inner">
+                    My name is Danny Wahl and I provide IT management and consulting in the APAC region. I dabble in writing, programming, design, and ukulele playing.
+                </div>
+            </div>
+
+        </footer>
+
+    </article>
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<ins class="adsbygoogle" style="display:inline-block;width:320px;height:100px" data-ad-client="ca-pub-5811335018322110" data-ad-slot="8562617448"></ins>
+	<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+
+
+
+
+    <script src="../public/jquery50c9.js?v=bc8eb9ef7b"></script>
+
+		<script type="text/javascript" src="../assets/js/prism.min50c9.js?v=bc8eb9ef7b"></script>
+	
+
+	<aside style="display:none;">
+		<a href="../search/">Search</a>
+		<a href="../clients/">Clients</a>
+	</aside>
+</body>
+
+<!-- Mirrored from localhost:2368/proxy-ghost-with-homebrew-apache/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 04 Mar 2015 07:32:25 GMT -->
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from 127.0.0.1:2368/customize-moodle-theme-based-on-language/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 12 Jan 2018 22:49:18 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Customize Moodle theme based on Language - iyWare</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../favicon.png">
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.mine7a7.css?v=01261fe8a8" />
+    <link rel="shortcut icon" href="../favicon.png" type="image/png" />
+    <link rel="canonical" href="https://iyware.com/customize-moodle-theme-based-on-language/" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    
+    <meta property="og:site_name" content="iyWare" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Customize Moodle theme based on Language" />
+    <meta property="og:description" content="The other day I got an interesting request from a site administrator using my Zebra theme: I look after a lot of bi-lingual moodle sites… one school would like an English language banner with English content and a Welsh with Welsh. At the moment there’s no way to specify" />
+    <meta property="og:url" content="https://iyware.com/customize-moodle-theme-based-on-language/" />
+    <meta property="article:published_time" content="2012-12-07T11:43:00.000Z" />
+    <meta property="article:modified_time" content="2015-01-18T06:39:40.000Z" />
+    <meta property="article:tag" content="Moodle" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Customize Moodle theme based on Language" />
+    <meta name="twitter:description" content="The other day I got an interesting request from a site administrator using my Zebra theme: I look after a lot of bi-lingual moodle sites… one school would like an English language banner with English content and a Welsh with Welsh. At the moment there’s no way to specify" />
+    <meta name="twitter:url" content="https://iyware.com/customize-moodle-theme-based-on-language/" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Danny Wahl" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="Moodle" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "iyWare",
+        "logo": "https://iyware.com/content/images/2015/01/logo.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Danny Wahl",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://iyware.com/content/images/2015/03/dannywahl.jpg",
+            "width": 112,
+            "height": 112
+        },
+        "url": "https://iyware.com/author/danny-2/",
+        "sameAs": [
+            "https://iyware.com"
+        ]
+    },
+    "headline": "Customize Moodle theme based on Language",
+    "url": "https://iyware.com/customize-moodle-theme-based-on-language/",
+    "datePublished": "2012-12-07T11:43:00.000Z",
+    "dateModified": "2015-01-18T06:39:40.000Z",
+    "keywords": "Moodle",
+    "description": "The other day I got an interesting request from a site administrator using my Zebra theme: I look after a lot of bi-lingual moodle sites… one school would like an English language banner with English content and a Welsh with Welsh. At the moment there’s no way to specify",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://iyware.com/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 1.20" />
+    <link rel="alternate" type="application/rss+xml" title="iyWare" href="https://iyware.com/rss/" />
+</head>
+<body class="post-template tag-moodle">
+    
+
+	<header role="banner" class="header-main no-image">
+    		<ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="https://iyware.com/">Home</a></li>
+    <li class="nav-clients" role="menuitem"><a href="https://iyware.com/clients/">Clients</a></li>
+    <li class="nav-portfolio" role="menuitem"><a href="https://iyware.com/tag/portfolio/">Portfolio</a></li>
+    <li class="nav-search" role="menuitem"><a href="https://iyware.com/search/">Search</a></li>
+</ul>
+
+		<h1>
+    		<a href="https://iyware.com/">
+            		<img src="../content/images/2015/01/logo.png" alt="iyWare">
+			</a>
+		</h1>
+	</header>
+
+    <article role="main" class="post tag-moodle">
+
+        <header>
+            <h1>Customize Moodle theme based on Language</h1>
+
+			<small class="meta">
+						<a href="../author/danny-2/index.html" class="author" style="background-image:url('../content/images/2015/03/dannywahl.jpg');"><img src="../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl's picture"></a>
+					<a href="../author/danny-2/index.html">Danny Wahl</a>
+				&nbsp;&bull;&nbsp;
+				<time datetime="2012-12-07">December 07, 2012</time>
+					&nbsp;&bull;&nbsp;
+					<span class="tags"><a href="../tag/moodle/index.html">Moodle</a></span>
+			</small>
+        </header>
+
+        <div class="text">
+            <div class="kg-card-markdown"><p>The other day I got an interesting request from a site administrator using my Zebra theme:</p>
+<blockquote>
+<p>I look after a lot of bi-lingual moodle sites… one school would like an English language banner with English content and a Welsh with Welsh. At the moment there’s no way to specify different banner images for different languages. Is this something that you might/have consider(ed) for future versions of Zebra?</p>
+</blockquote>
+<p>Truthfully, it’s not something I’ve ever considered (no offense!) because at the moment there’s not really a “true” multi-site configuration for Moodle, though it may be coming. But the more I thought about it, the more I thought 1) the request isn’t really specific to Zebra and 2) Faking multi-site might be really easy by using cohort syncing and blind-groups in different categories (but that’s beside the point).</p>
+<p>So I thought about it, and I remembered that <code>$OUTPUT-&gt;htmlattributes();</code> contains the user’s selected language. I thought of sniffing that out and concatenating it to the <code>$bodyclasses</code> array, then I remembered that CSS2 has a <a href="http://www.w3.org/TR/CSS2/selector.html#lang">lang pseudo-class</a> which says this:</p>
+<blockquote>
+<p>If the document language specifies how the human language of an element is determined, it is possible to write selectors in CSS that match an element based on its language.</p>
+</blockquote>
+<p>Now, normally you’ll see this used to change the quotes that are used, or maybe the text-indent, but you can use it like any other selector. So the solution for the original request looks like this:</p>
+<p>Upload a blank PNG to your Moodle (or anywhere) and set that as the value in the Theme setting. This step’s just a little bit hacky, but that’s because you can’t change the <code>src</code> of an <code>img</code> tag with CSS. It would be possible to use JavaScript instead and load an actual logo.</p>
+<p>Upload all of your language specific logos where ever you’re going to reference them from. For sanity’s sake I’d store them in language specific sub folders, e.g. /logo/en/logo.png, /logo/cy/logo.png (oh yeah, cy = Cymraeg = Welsh). This future proofs if you need more language-specific files in the future.</p>
+<p>Finally, write your CSS to swap out the <code>background-image</code> value for each language and store it in the “Extra CSS” field.</p>
+<pre><code class="language-language-css">html:lang(en) #page-header .logo {
+    background-image: url('/logo/en/logo.png');
+}
+
+html:lang(cy) #page-header .logo {
+    background-image: url('/logo/cy/logo.png');
+}
+</code></pre>
+<p>The result will be that you see the language-specific logo behind the transparent png. Don’t forget these couple of ‘gotchas': your transparent image will need to be as large or larger than your background images and if you leave the setting field NULL then Zebra won’t output the <code>img</code> tag in the first place.</p>
+</div>
+        </div>
+
+        <section class="share">
+					<small class="meta">Share this post</small>
+        	<ul>
+				<li>
+					<a href="mailto:?&subject=iyWare%3A%20Customize%20Moodle%20theme%20based%20on%20Language&body=Customize%20Moodle%20theme%20based%20on%20Language%0D%0Ahttps://iyware.com/customize-moodle-theme-based-on-language/%0D%0A%0D%0AThe other day I got an interesting request from a site administrator using my Zebra theme: I look after a lot of bi-lingual moodle sites… one school would like an English language banner with English content and a Welsh with Welsh. At the moment there’%2E%2E%2E">Email</a>
+				</li>
+				<li>
+					<a href="https://twitter.com/home?status=https://iyware.com/customize-moodle-theme-based-on-language/%20%23Moodle">Twitter</a>
+				</li>
+				<li>
+					<a href="https://www.facebook.com/sharer/sharer.php?u=https://iyware.com/customize-moodle-theme-based-on-language/">Facebook</a>
+				</li>
+				<li>
+					<a href="https://plus.google.com/share?url=https://iyware.com/customize-moodle-theme-based-on-language/">Google+</a>
+				</li>
+				<li>
+					<a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://iyware.com/customize-moodle-theme-based-on-language/&amp;title=Customize%20Moodle%20theme%20based%20on%20Language&amp;summary=The%20other%20day%20I%20got%20an%20interesting%20request%20from%20a%20site%20administrator%20using%20my%20Zebra%20theme:%20I%20look%20after%20a%20lot%20of%20bi-lingual%20moodle%20sites%e2%80%a6%20one%20school%20would%20like%20an%20English%20language%20banner%20with%20English%20content%20and%20a%20Welsh%20with%20Welsh.%20At%20the%20moment%20there%e2%80%99&amp;source=iyWare">LinkedIn</a>
+				</li>
+			</ul>
+        </section>
+
+        <footer class="post-footer vcard cf" role="contentinfo">
+                	<div class="wrapper">
+                	<a href="../author/danny-2/index.html" class="author" style="background-image: url('../content/images/2015/03/dannywahl.jpg');">
+                    	<img src="../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl">
+					</a>
+					</div>
+                <div class="author-info meta">
+					<a href="../author/danny-2/index.html" class="fn">Danny Wahl</a>
+                    &nbsp;&bull;&nbsp;<span class="adr">天津</span>
+                    &nbsp;&bull;&nbsp;<a class="site" href="https://iyware.com/">https://iyware.com</a>
+                    <p class="bio">My name is Danny Wahl and I provide consulting in IT and education. I dabble in writing, programming, design, and ukulele playing. Post content licensed CC-BY-4.0</p>
+                </div>
+        </footer>
+
+    </article>
+
+
+<footer class="footer-main cf">
+	<p class="feed"><a href="../rss">RSS Feed</a></p>
+	<p class="description">
+        <a class="title" href="../index.html">iyWare</a>
+        <span>Things I Break</span>
+    </p>
+	<p class="copyright">&copy; 2018 <a href="../index.html">iyWare</a></p>
+</footer>
+
+    <script type="text/javascript" async defer>document.body.className.match("post-template")&&(prismcss=document.createElement("link"),prismcss.rel="stylesheet",prismcss.href="../assets/css/prism.min.css",document.body.appendChild(prismcss),prismjs=document.createElement("script"),prismjs.type="text/javascript",prismjs.async=!0,prismjs.onload=function(){},prismjs.src="https://cdn.jsdelivr.net/npm/prismjs@1.9.0/prism.min.js",document.body.appendChild(prismjs),disqushtml=document.createElement("div"),disqushtml.id="disqus_thread",document.getElementsByTagName("article")[0].appendChild(disqushtml),disqusjs=document.createElement("script"),disqusjs.type="text/javascript",disqusjs.async=!0,disqusjs.src="https://iyware.disqus.com/embed.js",document.body.appendChild(disqusjs)),function(s,e,t,i,m,n,c){s.SwiftypeObject=m,s[m]=s[m]||function(){(s[m].q=s[m].q||[]).push(arguments)},n=e.createElement(t),c=e.getElementsByTagName(t)[0],n.async=1,n.src=i,c.parentNode.insertBefore(n,c)}(window,document,"script","https://s.swiftypecdn.com/install/v2/st.js","_st"),_st("install","UpLojaav5s--stgt7FKu","2.0.0");</script>
+    <aside style="display:none;visibility:hidden;">
+  -		<a href="../search/index.html">search</a>
+  -		<a href="../clients/index.html">clients</a>
+      <a href="../sitemap.xml">sitemap</a>
+  -	</aside>
+</body>
+
+<!-- Mirrored from 127.0.0.1:2368/customize-moodle-theme-based-on-language/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 12 Jan 2018 22:49:18 GMT -->
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from 127.0.0.1:2368/simplex-project-introduction/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 12 Jan 2018 22:49:13 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>The Simplex Project: Introduction - iyWare</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../favicon.png">
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.mine7a7.css?v=01261fe8a8" />
+    <link rel="shortcut icon" href="../favicon.png" type="image/png" />
+    <link rel="canonical" href="https://iyware.com/simplex-project-introduction/" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    
+    <meta property="og:site_name" content="iyWare" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="The Simplex Project: Introduction" />
+    <meta property="og:description" content="It’s no secret that Moodle is geared toward college and university use, or at least to higher-level learning, but there’s still a huge contingent of primary school users out there. Unfortunately the attitude generally is “take it or leave it” when it comes to usability for small children" />
+    <meta property="og:url" content="https://iyware.com/simplex-project-introduction/" />
+    <meta property="article:published_time" content="2014-01-22T15:21:14.000Z" />
+    <meta property="article:modified_time" content="2015-01-18T05:38:42.000Z" />
+    <meta property="article:tag" content="Moodle" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="The Simplex Project: Introduction" />
+    <meta name="twitter:description" content="It’s no secret that Moodle is geared toward college and university use, or at least to higher-level learning, but there’s still a huge contingent of primary school users out there. Unfortunately the attitude generally is “take it or leave it” when it comes to usability for small children" />
+    <meta name="twitter:url" content="https://iyware.com/simplex-project-introduction/" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Danny Wahl" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="Moodle" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "iyWare",
+        "logo": "https://iyware.com/content/images/2015/01/logo.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Danny Wahl",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://iyware.com/content/images/2015/03/dannywahl.jpg",
+            "width": 112,
+            "height": 112
+        },
+        "url": "https://iyware.com/author/danny-2/",
+        "sameAs": [
+            "https://iyware.com"
+        ]
+    },
+    "headline": "The Simplex Project: Introduction",
+    "url": "https://iyware.com/simplex-project-introduction/",
+    "datePublished": "2014-01-22T15:21:14.000Z",
+    "dateModified": "2015-01-18T05:38:42.000Z",
+    "keywords": "Moodle",
+    "description": "It’s no secret that Moodle is geared toward college and university use, or at least to higher-level learning, but there’s still a huge contingent of primary school users out there. Unfortunately the attitude generally is “take it or leave it” when it comes to usability for small children",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://iyware.com/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 1.20" />
+    <link rel="alternate" type="application/rss+xml" title="iyWare" href="https://iyware.com/rss/" />
+</head>
+<body class="post-template tag-moodle">
+    
+
+	<header role="banner" class="header-main no-image">
+    		<ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="https://iyware.com/">Home</a></li>
+    <li class="nav-clients" role="menuitem"><a href="https://iyware.com/clients/">Clients</a></li>
+    <li class="nav-portfolio" role="menuitem"><a href="https://iyware.com/tag/portfolio/">Portfolio</a></li>
+    <li class="nav-search" role="menuitem"><a href="https://iyware.com/search/">Search</a></li>
+</ul>
+
+		<h1>
+    		<a href="https://iyware.com/">
+            		<img src="../content/images/2015/01/logo.png" alt="iyWare">
+			</a>
+		</h1>
+	</header>
+
+    <article role="main" class="post tag-moodle">
+
+        <header>
+            <h1>The Simplex Project: Introduction</h1>
+
+			<small class="meta">
+						<a href="../author/danny-2/index.html" class="author" style="background-image:url('../content/images/2015/03/dannywahl.jpg');"><img src="../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl's picture"></a>
+					<a href="../author/danny-2/index.html">Danny Wahl</a>
+				&nbsp;&bull;&nbsp;
+				<time datetime="2014-01-22">January 22, 2014</time>
+					&nbsp;&bull;&nbsp;
+					<span class="tags"><a href="../tag/moodle/index.html">Moodle</a></span>
+			</small>
+        </header>
+
+        <div class="text">
+            <div class="kg-card-markdown"><p>It’s no secret that Moodle is geared toward college and university use, or at least to higher-level learning, but there’s still a huge contingent of primary school users out there. Unfortunately the attitude generally is “take it or leave it” when it comes to usability for small children and themes exemplify this more than anything.</p>
+<p>We’ve decided to change that. Introducing <a href="http://simplex.iyware.com/">Simplex</a>, a Moodle project designed specifically for primary student and touch-device users. We don’t mean just a large logo in comic-sans or bright pink background with the normal Moodle interface resting on top. We mean a bottom-to-top redesign of the user interface and experience.</p>
+<p>Currently we’re hoping for a beta release around May and a stable release around July. If you’re interested in helping out head to the <a href="http://simplex.iyware.com/" title="Simplex project">project page</a> to see how you can help. If you just want to follow the development progress you can bookmark the <a href="http://www.iyware.com/tag/simplex/">Simplex tag</a> here.</p>
+</div>
+        </div>
+
+        <section class="share">
+					<small class="meta">Share this post</small>
+        	<ul>
+				<li>
+					<a href="mailto:?&subject=iyWare%3A%20The%20Simplex%20Project%3A%20Introduction&body=The%20Simplex%20Project%3A%20Introduction%0D%0Ahttps://iyware.com/simplex-project-introduction/%0D%0A%0D%0AIt’s no secret that Moodle is geared toward college and university use, or at least to higher-level learning, but there’s still a huge contingent of primary school users out there. Unfortunately the attitude generally is “take it or leave it” when it comes%2E%2E%2E">Email</a>
+				</li>
+				<li>
+					<a href="https://twitter.com/home?status=https://iyware.com/simplex-project-introduction/%20%23Moodle">Twitter</a>
+				</li>
+				<li>
+					<a href="https://www.facebook.com/sharer/sharer.php?u=https://iyware.com/simplex-project-introduction/">Facebook</a>
+				</li>
+				<li>
+					<a href="https://plus.google.com/share?url=https://iyware.com/simplex-project-introduction/">Google+</a>
+				</li>
+				<li>
+					<a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://iyware.com/simplex-project-introduction/&amp;title=The%20Simplex%20Project%3A%20Introduction&amp;summary=It%e2%80%99s%20no%20secret%20that%20Moodle%20is%20geared%20toward%20college%20and%20university%20use,%20or%20at%20least%20to%20higher-level%20learning,%20but%20there%e2%80%99s%20still%20a%20huge%20contingent%20of%20primary%20school%20users%20out%20there.%20Unfortunately%20the%20attitude%20generally%20is%20%e2%80%9ctake%20it%20or%20leave%20it%e2%80%9d%20when%20it%20comes&amp;source=iyWare">LinkedIn</a>
+				</li>
+			</ul>
+        </section>
+
+        <footer class="post-footer vcard cf" role="contentinfo">
+                	<div class="wrapper">
+                	<a href="../author/danny-2/index.html" class="author" style="background-image: url('../content/images/2015/03/dannywahl.jpg');">
+                    	<img src="../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl">
+					</a>
+					</div>
+                <div class="author-info meta">
+					<a href="../author/danny-2/index.html" class="fn">Danny Wahl</a>
+                    &nbsp;&bull;&nbsp;<span class="adr">天津</span>
+                    &nbsp;&bull;&nbsp;<a class="site" href="https://iyware.com/">https://iyware.com</a>
+                    <p class="bio">My name is Danny Wahl and I provide consulting in IT and education. I dabble in writing, programming, design, and ukulele playing. Post content licensed CC-BY-4.0</p>
+                </div>
+        </footer>
+
+    </article>
+
+
+<footer class="footer-main cf">
+	<p class="feed"><a href="../rss">RSS Feed</a></p>
+	<p class="description">
+        <a class="title" href="../index.html">iyWare</a>
+        <span>Things I Break</span>
+    </p>
+	<p class="copyright">&copy; 2018 <a href="../index.html">iyWare</a></p>
+</footer>
+
+    <script type="text/javascript" async defer>document.body.className.match("post-template")&&(prismcss=document.createElement("link"),prismcss.rel="stylesheet",prismcss.href="../assets/css/prism.min.css",document.body.appendChild(prismcss),prismjs=document.createElement("script"),prismjs.type="text/javascript",prismjs.async=!0,prismjs.onload=function(){},prismjs.src="https://cdn.jsdelivr.net/npm/prismjs@1.9.0/prism.min.js",document.body.appendChild(prismjs),disqushtml=document.createElement("div"),disqushtml.id="disqus_thread",document.getElementsByTagName("article")[0].appendChild(disqushtml),disqusjs=document.createElement("script"),disqusjs.type="text/javascript",disqusjs.async=!0,disqusjs.src="https://iyware.disqus.com/embed.js",document.body.appendChild(disqusjs)),function(s,e,t,i,m,n,c){s.SwiftypeObject=m,s[m]=s[m]||function(){(s[m].q=s[m].q||[]).push(arguments)},n=e.createElement(t),c=e.getElementsByTagName(t)[0],n.async=1,n.src=i,c.parentNode.insertBefore(n,c)}(window,document,"script","https://s.swiftypecdn.com/install/v2/st.js","_st"),_st("install","UpLojaav5s--stgt7FKu","2.0.0");</script>
+    <aside style="display:none;visibility:hidden;">
+  -		<a href="../search/index.html">search</a>
+  -		<a href="../clients/index.html">clients</a>
+      <a href="../sitemap.xml">sitemap</a>
+  -	</aside>
+</body>
+
+<!-- Mirrored from 127.0.0.1:2368/simplex-project-introduction/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 12 Jan 2018 22:49:13 GMT -->
+</html>

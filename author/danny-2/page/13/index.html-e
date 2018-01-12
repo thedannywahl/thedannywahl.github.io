@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from 127.0.0.1:2368/author/danny-2/page/13/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 12 Jan 2018 22:49:30 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Danny Wahl - iyWare (Page 13)</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../../../../favicon.png">
+    <link rel="stylesheet" type="text/css" href="../../../../assets/css/screen.mine7a7.css?v=01261fe8a8" />
+    <link rel="shortcut icon" href="../../../../favicon.png" type="image/png" />
+    <link rel="canonical" href="https://iyware.com/author/danny-2/page/13/" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <link rel="prev" href="https://iyware.com/author/danny-2/page/12/" />
+    <link rel="next" href="https://iyware.com/author/danny-2/page/14/" />
+    <meta name="generator" content="Ghost 1.20" />
+    <link rel="alternate" type="application/rss+xml" title="iyWare" href="https://iyware.com/rss/" />
+</head>
+<body class="author-template author-danny-2 paged">
+    
+<header role="banner" class="header-main no-image">
+    	<ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="https://iyware.com/">Home</a></li>
+    <li class="nav-clients" role="menuitem"><a href="https://iyware.com/clients/">Clients</a></li>
+    <li class="nav-portfolio" role="menuitem"><a href="https://iyware.com/tag/portfolio/">Portfolio</a></li>
+    <li class="nav-search" role="menuitem"><a href="https://iyware.com/search/">Search</a></li>
+</ul>
+
+    <h1>
+    	<a href="https://iyware.com/">
+            	<img src="../../../../content/images/2015/01/logo.png" alt="iyWare">
+		</a>
+    </h1>
+</header>
+
+<div class="loop">
+    <h1 class="title"><span class="author" style="background-image:url('../../../../content/images/2015/03/dannywahl.jpg');"><img src="../../../../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl's picture"></span>&nbsp;Author: Danny Wahl</h1>
+</div>
+
+	<div class="loop ">
+	<article class="post tag-wordpress">
+
+		<header>
+        	<h2><a href="../../../../simple-dynamic-sidebars-in-wordpress-themes/index.html">Simple Dynamic Sidebars in WordPress Themes</a></h2>
+
+			<small class="meta">
+						<a href="../../index.html" class="author" style="background-image:url('../../../../content/images/2015/03/dannywahl.jpg');"><img src="../../../../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl's picture"></a>					
+					<a href="../../index.html">Danny Wahl</a>
+				&nbsp;&bull;&nbsp;
+				<time datetime="2011-11-24">November 24, 2011</time>
+					&nbsp;&bull;&nbsp;
+					<span class="tags"><a href="../../../../tag/wordpress/index.html">WordPress</a></span>
+			</small>
+		</header>
+
+    	<div class="text">
+        	<p>One of the things I loved right off the bat about WordPress is that it’s extremely flexible in terms of output and rendering, and that its built in functions are simple but also robust. Here’s an example of what I’m talking about.</p>
+		</div>
+
+		<small class="continue">
+			<a href="../../../../simple-dynamic-sidebars-in-wordpress-themes/index.html">Continue Reading</a>
+		</small>
+
+	</article>
+	</div>
+	<div class="loop ">
+	<article class="post tag-moodle">
+
+		<header>
+        	<h2><a href="../../../../adding-custom-images-in-moodle-2-0-themes/index.html">Adding Custom Images in Moodle 2.0 Themes</a></h2>
+
+			<small class="meta">
+						<a href="../../index.html" class="author" style="background-image:url('../../../../content/images/2015/03/dannywahl.jpg');"><img src="../../../../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl's picture"></a>					
+					<a href="../../index.html">Danny Wahl</a>
+				&nbsp;&bull;&nbsp;
+				<time datetime="2011-11-17">November 17, 2011</time>
+					&nbsp;&bull;&nbsp;
+					<span class="tags"><a href="../../../../tag/moodle/index.html">Moodle</a></span>
+			</small>
+		</header>
+
+    	<div class="text">
+        	<p>Moodle 2.0 introduced the ability for a theme to plug in a custom settings page and allow an administrator to change some settings. Moodle 2.0 also introduced a new image renderer that uses an output function. I wanted to allow a user to</p>
+		</div>
+
+		<small class="continue">
+			<a href="../../../../adding-custom-images-in-moodle-2-0-themes/index.html">Continue Reading</a>
+		</small>
+
+	</article>
+	</div>
+	<div class="loop ">
+	<article class="post tag-devops">
+
+		<header>
+        	<h2><a href="../../../../re-writing-good-code/index.html">(Re-)Writing Good Code</a></h2>
+
+			<small class="meta">
+						<a href="../../index.html" class="author" style="background-image:url('../../../../content/images/2015/03/dannywahl.jpg');"><img src="../../../../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl's picture"></a>					
+					<a href="../../index.html">Danny Wahl</a>
+				&nbsp;&bull;&nbsp;
+				<time datetime="2011-11-05">November 05, 2011</time>
+					&nbsp;&bull;&nbsp;
+					<span class="tags"><a href="../../../../tag/devops/index.html">DevOps</a></span>
+			</small>
+		</header>
+
+    	<div class="text">
+        	<p>A few weeks back I published my qTranslate Missing Link code, what I didn’t say in that post was that that was the 3rd revision of the code. And I mean a real v3.0, not a “let’s call it a new version”</p>
+		</div>
+
+		<small class="continue">
+			<a href="../../../../re-writing-good-code/index.html">Continue Reading</a>
+		</small>
+
+	</article>
+	</div>
+	<div class="loop ">
+	<article class="post tag-devops">
+
+		<header>
+        	<h2><a href="../../../../playing-with-usercontent-css/index.html">Playing With userContent.css</a></h2>
+
+			<small class="meta">
+						<a href="../../index.html" class="author" style="background-image:url('../../../../content/images/2015/03/dannywahl.jpg');"><img src="../../../../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl's picture"></a>					
+					<a href="../../index.html">Danny Wahl</a>
+				&nbsp;&bull;&nbsp;
+				<time datetime="2011-11-04">November 04, 2011</time>
+					&nbsp;&bull;&nbsp;
+					<span class="tags"><a href="../../../../tag/devops/index.html">DevOps</a></span>
+			</small>
+		</header>
+
+    	<div class="text">
+        	<p>Here in China the fact that some websites just are never available (e.g. facebook, youtube, twitter, google+, hulu, etc…) and some sites get blocked intermittently depending on what you’re searching for is a constant source of frustration for me. My typical day looks</p>
+		</div>
+
+		<small class="continue">
+			<a href="../../../../playing-with-usercontent-css/index.html">Continue Reading</a>
+		</small>
+
+	</article>
+	</div>
+	<div class="loop last">
+	<article class="post tag-devops">
+
+		<header>
+        	<h2><a href="../../../../no-listening-sockets-available/index.html">No Listening Sockets Available?</a></h2>
+
+			<small class="meta">
+						<a href="../../index.html" class="author" style="background-image:url('../../../../content/images/2015/03/dannywahl.jpg');"><img src="../../../../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl's picture"></a>					
+					<a href="../../index.html">Danny Wahl</a>
+				&nbsp;&bull;&nbsp;
+				<time datetime="2011-11-03">November 03, 2011</time>
+					&nbsp;&bull;&nbsp;
+					<span class="tags"><a href="../../../../tag/devops/index.html">DevOps</a></span>
+			</small>
+		</header>
+
+    	<div class="text">
+        	<p>I’ve been trying to hunt down some sigterm and oom errors thrown by Apache 2 lately and in the process I decided to have it log in its default location /var/log/ and on my desktop. Amid an array of other things I’d</p>
+		</div>
+
+		<small class="continue">
+			<a href="../../../../no-listening-sockets-available/index.html">Continue Reading</a>
+		</small>
+
+	</article>
+	</div>
+
+<nav class="pagination">
+        <a href="../12/index.html" class="prev">&laquo;&nbsp;Newer</a>
+        <a href="../14/index.html" class="next">Older&nbsp;&raquo;</a>
+</nav>
+
+<footer class="footer-main cf">
+	<p class="feed"><a href="../../../../rss">RSS Feed</a></p>
+	<p class="description">
+        <a class="title" href="../../../../index.html">iyWare</a>
+        <span>Things I Break</span>
+    </p>
+	<p class="copyright">&copy; 2018 <a href="../../../../index.html">iyWare</a></p>
+</footer>
+
+    <script type="text/javascript" async defer>document.body.className.match("post-template")&&(prismcss=document.createElement("link"),prismcss.rel="stylesheet",prismcss.href="../../../../assets/css/prism.min.css",document.body.appendChild(prismcss),prismjs=document.createElement("script"),prismjs.type="text/javascript",prismjs.async=!0,prismjs.onload=function(){},prismjs.src="https://cdn.jsdelivr.net/npm/prismjs@1.9.0/prism.min.js",document.body.appendChild(prismjs),disqushtml=document.createElement("div"),disqushtml.id="disqus_thread",document.getElementsByTagName("article")[0].appendChild(disqushtml),disqusjs=document.createElement("script"),disqusjs.type="text/javascript",disqusjs.async=!0,disqusjs.src="https://iyware.disqus.com/embed.js",document.body.appendChild(disqusjs)),function(s,e,t,i,m,n,c){s.SwiftypeObject=m,s[m]=s[m]||function(){(s[m].q=s[m].q||[]).push(arguments)},n=e.createElement(t),c=e.getElementsByTagName(t)[0],n.async=1,n.src=i,c.parentNode.insertBefore(n,c)}(window,document,"script","https://s.swiftypecdn.com/install/v2/st.js","_st"),_st("install","UpLojaav5s--stgt7FKu","2.0.0");</script>
+    <aside style="display:none;visibility:hidden;">
+  -		<a href="../search/index.html">search</a>
+  -		<a href="../clients/index.html">clients</a>
+      <a href="../sitemap.xml">sitemap</a>
+  -	</aside>
+</body>
+
+<!-- Mirrored from 127.0.0.1:2368/author/danny-2/page/13/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 12 Jan 2018 22:49:30 GMT -->
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from 127.0.0.1:2368/google-books-fuller-full-screen/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 12 Jan 2018 22:48:58 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Google Books Fuller Full Screen - iyWare</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../favicon.png">
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.mine7a7.css?v=01261fe8a8" />
+    <link rel="shortcut icon" href="../favicon.png" type="image/png" />
+    <link rel="canonical" href="https://iyware.com/google-books-fuller-full-screen/" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    
+    <meta property="og:site_name" content="iyWare" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Google Books Fuller Full Screen" />
+    <meta property="og:description" content="Ever since I started using FireFox 4 Beta I’ve been wanting back my favorite plug-ins.  Fortunately Firebug has their 1.7a that’s compatible, so that’s good, but GreaseMonkey seems to have been lacking (even with their nightlies).  That’s too bad, but then I came across Scriptish" />
+    <meta property="og:url" content="https://iyware.com/google-books-fuller-full-screen/" />
+    <meta property="article:published_time" content="2010-12-26T00:29:30.000Z" />
+    <meta property="article:modified_time" content="2015-01-19T05:30:55.000Z" />
+    <meta property="article:tag" content="JavaScript" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Google Books Fuller Full Screen" />
+    <meta name="twitter:description" content="Ever since I started using FireFox 4 Beta I’ve been wanting back my favorite plug-ins.  Fortunately Firebug has their 1.7a that’s compatible, so that’s good, but GreaseMonkey seems to have been lacking (even with their nightlies).  That’s too bad, but then I came across Scriptish" />
+    <meta name="twitter:url" content="https://iyware.com/google-books-fuller-full-screen/" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Danny Wahl" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="JavaScript" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "iyWare",
+        "logo": "https://iyware.com/content/images/2015/01/logo.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Danny Wahl",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://iyware.com/content/images/2015/03/dannywahl.jpg",
+            "width": 112,
+            "height": 112
+        },
+        "url": "https://iyware.com/author/danny-2/",
+        "sameAs": [
+            "https://iyware.com"
+        ]
+    },
+    "headline": "Google Books Fuller Full Screen",
+    "url": "https://iyware.com/google-books-fuller-full-screen/",
+    "datePublished": "2010-12-26T00:29:30.000Z",
+    "dateModified": "2015-01-19T05:30:55.000Z",
+    "keywords": "JavaScript",
+    "description": "Ever since I started using FireFox 4 Beta I’ve been wanting back my favorite plug-ins.  Fortunately Firebug has their 1.7a that’s compatible, so that’s good, but GreaseMonkey seems to have been lacking (even with their nightlies).  That’s too bad, but then I came across Scriptish",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://iyware.com/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 1.20" />
+    <link rel="alternate" type="application/rss+xml" title="iyWare" href="https://iyware.com/rss/" />
+</head>
+<body class="post-template tag-javascript">
+    
+
+	<header role="banner" class="header-main no-image">
+    		<ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="https://iyware.com/">Home</a></li>
+    <li class="nav-clients" role="menuitem"><a href="https://iyware.com/clients/">Clients</a></li>
+    <li class="nav-portfolio" role="menuitem"><a href="https://iyware.com/tag/portfolio/">Portfolio</a></li>
+    <li class="nav-search" role="menuitem"><a href="https://iyware.com/search/">Search</a></li>
+</ul>
+
+		<h1>
+    		<a href="https://iyware.com/">
+            		<img src="../content/images/2015/01/logo.png" alt="iyWare">
+			</a>
+		</h1>
+	</header>
+
+    <article role="main" class="post tag-javascript">
+
+        <header>
+            <h1>Google Books Fuller Full Screen</h1>
+
+			<small class="meta">
+						<a href="../author/danny-2/index.html" class="author" style="background-image:url('../content/images/2015/03/dannywahl.jpg');"><img src="../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl's picture"></a>
+					<a href="../author/danny-2/index.html">Danny Wahl</a>
+				&nbsp;&bull;&nbsp;
+				<time datetime="2010-12-25">December 25, 2010</time>
+					&nbsp;&bull;&nbsp;
+					<span class="tags"><a href="../tag/javascript/index.html">JavaScript</a></span>
+			</small>
+        </header>
+
+        <div class="text">
+            <div class="kg-card-markdown"><p>Ever since I started using <a href="http://www.mozilla.com/en-US/firefox/beta/">FireFox 4</a> Beta I’ve been wanting back my favorite plug-ins.  Fortunately Firebug has their 1.7a that’s compatible, so that’s good, but GreaseMonkey seems to have been lacking (even with their nightlies).  That’s too bad, but then I came across <a href="https://addons.mozilla.org/en-US/firefox/addon/231203/">Scriptish</a> by <a href="http://erikvold.com/">Erik Vold</a>.  It’s a great light-weight fork that cuts out the old FireFox code and is lightning fast.  Anyways, after editing the plug-in minimum browser version to run with beta 8 I decided to give it a whirl.  So here’s my first work-in-progress for <a href="http://books.google.com/">Google Books</a>.</p>
+<pre><code class="language-language-javascript">// ==UserScript==
+// @id             Google Books Full Full Screen
+// @name           Google Books Full Full Screen
+// @namespace      books.google.com
+// @description    Makes the Google Books Full Screen Toolbar Smaller
+// @include        http://books.google.com/books?id=*v=onepage&amp;q&amp;f=true
+// ==/UserScript==
+
+function addStyle(css) {
+    var head, style;
+    head = document.getElementsByTagName('head')[0];
+    if (!head) { return; }
+    style = document.createElement('style');
+    style.type = 'text/css';
+    style.innerHTML = css;
+    head.appendChild(style);
+}
+
+addStyle('div#toolbar_container{position:absolute;z-index:9999;background:url(&quot;/googlebooks/images/viewport_images-4.gif&quot;) no-repeat scroll 1px -24px #DAE3F6;width:25px;height:auto;padding:1px;margin:0 0 5px 0;overflow:hidden;border-bottom:1px solid #6B90DA;border-right:1px solid #6B90DA;}div#toolbar_container:hover{background-image:none;padding:1px;width:auto;height:auto;border-bottom:1px solid #6B90DA;background-color:#FCFCFF;}div#gb-top-search-box{display:none;}div#gbar{display:none;}div.gbh{display:none;}div#guser{display:none;}div#search_bar{display:none;}div#toolbar_container:hover div.top-toolbar-button{border:1px solid #FCFCFF;background-color:transparent;}div#toolbar_container:hover div.top-toolbar-button-checked{background-color:#DAE3F6;}div.top-toolbar-button{border:1px solid #6B90DA;background-color:transparent;}div.top-linkbar-button{display:none;}div.top-toolbar-separator{margin-left:7px;border-left:1px solid #6B90DA;}div#toolbar_container:hover div.top-toolbar-separator{border-left:1px solid #6B90DA;}div#toolbar_container table{margin-left:-9999px;}div#toolbar_container:hover table{margin-left:0;}');
+addStyle('div#toolbar_container{-moz-transition:opacity 500ms ease-in-out 0ms, width 500ms ease-in-out 0ms, background-color 500ms ease-in-out 0ms;transition:opacity 500ms ease-in-out 0ms, width 500ms ease-in-out 0ms, background-color 500ms ease-in-out 0ms;}div#toolbar_container:hover{width:425px;}');
+</code></pre>
+<p>Currently, I have written it for the full-screen view, however, Google uses some JavaScript to toggle the full-screen/regular views without doing a full refresh of the page – but it’s passed in a variable in the URL – so currently the script will only load if you either start in full-screen mode, or hard refresh after you toggle it.  Fortunately since they already have the JavaScript running I should be able to plug into that and make it work with my update.  Also, it only works with single-page view-so I’ve hard coded the url for single page and not for double.  If I ever get around to finishing it I’ll upload it to <a href="http://userscripts.org/">Userscripts</a>.  Here’s a couple of before/after pics:</p>
+<p><img src="../content/images/import/google-books-after-1.png" alt="New Header"></p>
+<p><img src="../content/images/import/google-books-after-2.png" alt="New Header (Hover)"></p>
+<p><img src="../content/images/import/google-books-before.png" alt="Original Header"></p>
+<p>Isn’t it amazing what you can do with just a little bit of CSS?  The second function call calls the CSS3 Transitions, in case your browser doesn’t support them.  If you want just the altered CSS for some other post-processor besides Scriptish or GreaseMonkey then here’s what I have so far:</p>
+<pre><code class="language-language-css">/* MAIN TOOLBAR */
+
+div#toolbar_container{
+        position:absolute;
+        z-index:9999;
+        background:url(&quot;/googlebooks/images/viewport_images-4.gif&quot;) no-repeat scroll 1px -24px #DAE3F6;
+        width:25px;
+        height:auto;
+        padding:1px;
+        margin:0 0 5px 0;
+        overflow:hidden;
+        border-bottom:1px solid #6B90DA;
+        border-right:1px solid #6B90DA;
+}
+
+/* HOVER EFFECTS */
+
+div#toolbar_container:hover{
+        background-image:none;
+        padding:1px;
+        width:auto;
+        height:auto;
+        border-bottom:1px solid #6B90DA;
+        background-color:#FCFCFF;
+}
+
+div#toolbar_container:hover div.top-toolbar-button{
+        border:1px solid #FCFCFF;
+        background-color:transparent;
+}
+
+div#toolbar_container:hover div.top-toolbar-button-checked{
+        background-color:#DAE3F6;
+}
+
+div#toolbar_container:hover div.top-toolbar-separator{
+        border-left:1px solid #6B90DA;
+}
+
+div#toolbar_container:hover table{
+        margin-left:0;
+}
+
+/* HIDES */
+
+div#gb-top-search-box,div#gbar,div.gbh,div#guser,div#search_bar,div.top-linkbar-button{
+        display:none;
+}
+
+/* MISC. */
+
+div#toolbar_container table{
+        margin-left:-9999px;
+}
+
+div.top-toolbar-separator{
+        margin-left:7px;
+        border-left:1px solid #6B90DA;
+}
+
+div.top-toolbar-button{
+        border:1px solid #6B90DA;
+        background-color:transparent;
+}
+
+/* CSS3 TRANSITIONS */
+
+div#toolbar_container{
+        -moz-transition:opacity 500ms ease-in-out 0ms,width 500ms ease-in-out 0ms,background-color 500ms ease-in-out 0ms;
+        -o-transition:opacity 500ms ease-in-out 0ms,width 500ms ease-in-out 0ms,background-color 500ms ease-in-out 0ms;
+        -webkit-transition:opacity 500ms ease-in-out 0ms,width 500ms ease-in-out 0ms,background-color 500ms ease-in-out 0ms;
+        transition:opacity 500ms ease-in-out 0ms,width 500ms ease-in-out 0ms,background-color 500ms ease-in-out 0ms;
+}
+
+div#toolbar_container:hover{
+        width:425px;
+}
+</code></pre>
+<p>Oh, a couple of last notes – the arrow used comes from the same CSS sprite as the rest of the images, so it’s very useful in that regard – no extra pictures.  The book is <em><a href="http://books.google.com/books?id=FPaUUcX7AcsC">The Samoan Story of Creation</a></em> from <a href="http://www.forgottenbooks.org/">Forgotten Books</a>.</p>
+</div>
+        </div>
+
+        <section class="share">
+					<small class="meta">Share this post</small>
+        	<ul>
+				<li>
+					<a href="mailto:?&subject=iyWare%3A%20Google%20Books%20Fuller%20Full%20Screen&body=Google%20Books%20Fuller%20Full%20Screen%0D%0Ahttps://iyware.com/google-books-fuller-full-screen/%0D%0A%0D%0AEver since I started using FireFox 4 Beta I’ve been wanting back my favorite plug-ins.  Fortunately Firebug has their 1.7a that’s compatible, so that’s good, but GreaseMonkey seems to have been lacking (even with their nightlies).  That’s too bad, but%2E%2E%2E">Email</a>
+				</li>
+				<li>
+					<a href="https://twitter.com/home?status=https://iyware.com/google-books-fuller-full-screen/%20%23JavaScript">Twitter</a>
+				</li>
+				<li>
+					<a href="https://www.facebook.com/sharer/sharer.php?u=https://iyware.com/google-books-fuller-full-screen/">Facebook</a>
+				</li>
+				<li>
+					<a href="https://plus.google.com/share?url=https://iyware.com/google-books-fuller-full-screen/">Google+</a>
+				</li>
+				<li>
+					<a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://iyware.com/google-books-fuller-full-screen/&amp;title=Google%20Books%20Fuller%20Full%20Screen&amp;summary=Ever%20since%20I%20started%20using%20FireFox%204%20Beta%20I%e2%80%99ve%20been%20wanting%20back%20my%20favorite%20plug-ins.%c2%a0%20Fortunately%20Firebug%20has%20their%201.7a%20that%e2%80%99s%20compatible,%20so%20that%e2%80%99s%20good,%20but%20GreaseMonkey%20seems%20to%20have%20been%20lacking%20(even%20with%20their%20nightlies).%c2%a0%20That%e2%80%99s%20too%20bad,%20but&amp;source=iyWare">LinkedIn</a>
+				</li>
+			</ul>
+        </section>
+
+        <footer class="post-footer vcard cf" role="contentinfo">
+                	<div class="wrapper">
+                	<a href="../author/danny-2/index.html" class="author" style="background-image: url('../content/images/2015/03/dannywahl.jpg');">
+                    	<img src="../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl">
+					</a>
+					</div>
+                <div class="author-info meta">
+					<a href="../author/danny-2/index.html" class="fn">Danny Wahl</a>
+                    &nbsp;&bull;&nbsp;<span class="adr">天津</span>
+                    &nbsp;&bull;&nbsp;<a class="site" href="https://iyware.com/">https://iyware.com</a>
+                    <p class="bio">My name is Danny Wahl and I provide consulting in IT and education. I dabble in writing, programming, design, and ukulele playing. Post content licensed CC-BY-4.0</p>
+                </div>
+        </footer>
+
+    </article>
+
+
+<footer class="footer-main cf">
+	<p class="feed"><a href="../rss">RSS Feed</a></p>
+	<p class="description">
+        <a class="title" href="../index.html">iyWare</a>
+        <span>Things I Break</span>
+    </p>
+	<p class="copyright">&copy; 2018 <a href="../index.html">iyWare</a></p>
+</footer>
+
+    <script type="text/javascript" async defer>document.body.className.match("post-template")&&(prismcss=document.createElement("link"),prismcss.rel="stylesheet",prismcss.href="../assets/css/prism.min.css",document.body.appendChild(prismcss),prismjs=document.createElement("script"),prismjs.type="text/javascript",prismjs.async=!0,prismjs.onload=function(){},prismjs.src="https://cdn.jsdelivr.net/npm/prismjs@1.9.0/prism.min.js",document.body.appendChild(prismjs),disqushtml=document.createElement("div"),disqushtml.id="disqus_thread",document.getElementsByTagName("article")[0].appendChild(disqushtml),disqusjs=document.createElement("script"),disqusjs.type="text/javascript",disqusjs.async=!0,disqusjs.src="https://iyware.disqus.com/embed.js",document.body.appendChild(disqusjs)),function(s,e,t,i,m,n,c){s.SwiftypeObject=m,s[m]=s[m]||function(){(s[m].q=s[m].q||[]).push(arguments)},n=e.createElement(t),c=e.getElementsByTagName(t)[0],n.async=1,n.src=i,c.parentNode.insertBefore(n,c)}(window,document,"script","https://s.swiftypecdn.com/install/v2/st.js","_st"),_st("install","UpLojaav5s--stgt7FKu","2.0.0");</script>
+    <aside style="display:none;visibility:hidden;">
+  -		<a href="../search/index.html">search</a>
+  -		<a href="../clients/index.html">clients</a>
+      <a href="../sitemap.xml">sitemap</a>
+  -	</aside>
+</body>
+
+<!-- Mirrored from 127.0.0.1:2368/google-books-fuller-full-screen/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 12 Jan 2018 22:48:58 GMT -->
+</html>

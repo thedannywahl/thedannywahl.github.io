@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from 127.0.0.1:2368/sudo-and-os-x-aliases/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 12 Jan 2018 22:49:19 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Sudo and OS X Aliases - iyWare</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../favicon.png">
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.mine7a7.css?v=01261fe8a8" />
+    <link rel="shortcut icon" href="../favicon.png" type="image/png" />
+    <link rel="canonical" href="https://iyware.com/sudo-and-os-x-aliases/" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    
+    <meta property="og:site_name" content="iyWare" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Sudo and OS X Aliases" />
+    <meta property="og:description" content="I spend a lot of time in the shell on Ubuntu – and in Gnome one of the basic features that I rely on is the right click “Open as Administrator” which will prompt for administrator privileges and then open the file with the default application. Unfortunately, this feature is missing" />
+    <meta property="og:url" content="https://iyware.com/sudo-and-os-x-aliases/" />
+    <meta property="article:published_time" content="2011-01-25T22:14:44.000Z" />
+    <meta property="article:modified_time" content="2015-01-19T05:28:49.000Z" />
+    <meta property="article:tag" content="DevOps" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Sudo and OS X Aliases" />
+    <meta name="twitter:description" content="I spend a lot of time in the shell on Ubuntu – and in Gnome one of the basic features that I rely on is the right click “Open as Administrator” which will prompt for administrator privileges and then open the file with the default application. Unfortunately, this feature is missing" />
+    <meta name="twitter:url" content="https://iyware.com/sudo-and-os-x-aliases/" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Danny Wahl" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="DevOps" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "iyWare",
+        "logo": "https://iyware.com/content/images/2015/01/logo.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Danny Wahl",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://iyware.com/content/images/2015/03/dannywahl.jpg",
+            "width": 112,
+            "height": 112
+        },
+        "url": "https://iyware.com/author/danny-2/",
+        "sameAs": [
+            "https://iyware.com"
+        ]
+    },
+    "headline": "Sudo and OS X Aliases",
+    "url": "https://iyware.com/sudo-and-os-x-aliases/",
+    "datePublished": "2011-01-25T22:14:44.000Z",
+    "dateModified": "2015-01-19T05:28:49.000Z",
+    "keywords": "DevOps",
+    "description": "I spend a lot of time in the shell on Ubuntu – and in Gnome one of the basic features that I rely on is the right click “Open as Administrator” which will prompt for administrator privileges and then open the file with the default application. Unfortunately, this feature is missing",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://iyware.com/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 1.20" />
+    <link rel="alternate" type="application/rss+xml" title="iyWare" href="https://iyware.com/rss/" />
+</head>
+<body class="post-template tag-devops">
+    
+
+	<header role="banner" class="header-main no-image">
+    		<ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="https://iyware.com/">Home</a></li>
+    <li class="nav-clients" role="menuitem"><a href="https://iyware.com/clients/">Clients</a></li>
+    <li class="nav-portfolio" role="menuitem"><a href="https://iyware.com/tag/portfolio/">Portfolio</a></li>
+    <li class="nav-search" role="menuitem"><a href="https://iyware.com/search/">Search</a></li>
+</ul>
+
+		<h1>
+    		<a href="https://iyware.com/">
+            		<img src="../content/images/2015/01/logo.png" alt="iyWare">
+			</a>
+		</h1>
+	</header>
+
+    <article role="main" class="post tag-devops">
+
+        <header>
+            <h1>Sudo and OS X Aliases</h1>
+
+			<small class="meta">
+						<a href="../author/danny-2/index.html" class="author" style="background-image:url('../content/images/2015/03/dannywahl.jpg');"><img src="../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl's picture"></a>
+					<a href="../author/danny-2/index.html">Danny Wahl</a>
+				&nbsp;&bull;&nbsp;
+				<time datetime="2011-01-25">January 25, 2011</time>
+					&nbsp;&bull;&nbsp;
+					<span class="tags"><a href="../tag/devops/index.html">DevOps</a></span>
+			</small>
+        </header>
+
+        <div class="text">
+            <div class="kg-card-markdown"><p>I spend a lot of time in the shell on Ubuntu – and in Gnome one of the basic features that I rely on is the right click “Open as Administrator” which will prompt for administrator privileges and then open the file with the default application. Unfortunately, this feature is missing from OS X is a severe way.</p>
+<p>There’s not much you can do about this from the GUI – but on Ubuntu standard editors are integrated into terminal with a simple syntax.</p>
+<pre><code class="language-language-bash">sudo gedit /etc/someprogram/conf.conf
+</code></pre>
+<p>This will prompt for sudo authentication and then initiate a new instance of <a href="http://projects.gnome.org/gedit/">gEdit</a> and the terminal thread will wait until the file is saved before exiting. This is extremely useful, but try it on a Mac and you’ll see this:</p>
+<pre><code class="language-language-bash">-bash: gedit: command not found
+</code></pre>
+<p>Less useful. Well here’s how to integrate gedit (or any other program really) into your shell on OS X. The magic is all in terminal aliases.</p>
+<pre><code class="language-language-bash">vi ~/.profile
+</code></pre>
+<p>The first thing you’ll see is your $PATH variable defined, and possibly some aliases. We’re going to be adding some more aliases. Here’s a few text editors (<a href="http://www.fraiseapp.com/">Fraise</a>, <a href="http://projects.gnome.org/gedit/">gEdit</a>, and <a href="http://kodapp.com/">Kod</a>):</p>
+<pre><code class="language-language-bash"># aliases
+alias fraise=&quot;/Applications/Fraise.app/Contents/MacOS/Fraise&quot;
+alias gedit=&quot;/Applications/gedit.app/Contents/MacOS/gedit&quot;
+alias kod=&quot;/Applications/Kod.app/Contents/MacOS/Kod&quot;
+</code></pre>
+<p>ta-da you can now launch programs from terminal. But! try adding sudo and we’re right back to the “command not found”. The reason for that is that the first thing that happens after you type sudo is your command is actually passed to the super user shell – which doesn’t have your aliases in it. So you need to add one more line alias at the end:</p>
+<pre><code class="language-language-bash">alias sudo='sudo '
+</code></pre>
+<p>And we’re done, you can now sudo and edit files through terminal on OS X just like basically every other operating system that’s been available in this century. Seriously Apple, when is Finder going to get some usability improvements?</p>
+</div>
+        </div>
+
+        <section class="share">
+					<small class="meta">Share this post</small>
+        	<ul>
+				<li>
+					<a href="mailto:?&subject=iyWare%3A%20Sudo%20and%20OS%20X%20Aliases&body=Sudo%20and%20OS%20X%20Aliases%0D%0Ahttps://iyware.com/sudo-and-os-x-aliases/%0D%0A%0D%0AI spend a lot of time in the shell on Ubuntu – and in Gnome one of the basic features that I rely on is the right click “Open as Administrator” which will prompt for administrator privileges and then open the file with the default application.%2E%2E%2E">Email</a>
+				</li>
+				<li>
+					<a href="https://twitter.com/home?status=https://iyware.com/sudo-and-os-x-aliases/%20%23DevOps">Twitter</a>
+				</li>
+				<li>
+					<a href="https://www.facebook.com/sharer/sharer.php?u=https://iyware.com/sudo-and-os-x-aliases/">Facebook</a>
+				</li>
+				<li>
+					<a href="https://plus.google.com/share?url=https://iyware.com/sudo-and-os-x-aliases/">Google+</a>
+				</li>
+				<li>
+					<a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://iyware.com/sudo-and-os-x-aliases/&amp;title=Sudo%20and%20OS%20X%20Aliases&amp;summary=I%20spend%20a%20lot%20of%20time%20in%20the%20shell%20on%20Ubuntu%20%e2%80%93%20and%20in%20Gnome%20one%20of%20the%20basic%20features%20that%20I%20rely%20on%20is%20the%20right%20click%20%e2%80%9cOpen%20as%20Administrator%e2%80%9d%20which%20will%20prompt%20for%20administrator%20privileges%20and%20then%20open%20the%20file%20with%20the%20default%20application.&amp;source=iyWare">LinkedIn</a>
+				</li>
+			</ul>
+        </section>
+
+        <footer class="post-footer vcard cf" role="contentinfo">
+                	<div class="wrapper">
+                	<a href="../author/danny-2/index.html" class="author" style="background-image: url('../content/images/2015/03/dannywahl.jpg');">
+                    	<img src="../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl">
+					</a>
+					</div>
+                <div class="author-info meta">
+					<a href="../author/danny-2/index.html" class="fn">Danny Wahl</a>
+                    &nbsp;&bull;&nbsp;<span class="adr">天津</span>
+                    &nbsp;&bull;&nbsp;<a class="site" href="https://iyware.com/">https://iyware.com</a>
+                    <p class="bio">My name is Danny Wahl and I provide consulting in IT and education. I dabble in writing, programming, design, and ukulele playing. Post content licensed CC-BY-4.0</p>
+                </div>
+        </footer>
+
+    </article>
+
+
+<footer class="footer-main cf">
+	<p class="feed"><a href="../rss">RSS Feed</a></p>
+	<p class="description">
+        <a class="title" href="../index.html">iyWare</a>
+        <span>Things I Break</span>
+    </p>
+	<p class="copyright">&copy; 2018 <a href="../index.html">iyWare</a></p>
+</footer>
+
+    <script type="text/javascript" async defer>document.body.className.match("post-template")&&(prismcss=document.createElement("link"),prismcss.rel="stylesheet",prismcss.href="../assets/css/prism.min.css",document.body.appendChild(prismcss),prismjs=document.createElement("script"),prismjs.type="text/javascript",prismjs.async=!0,prismjs.onload=function(){},prismjs.src="https://cdn.jsdelivr.net/npm/prismjs@1.9.0/prism.min.js",document.body.appendChild(prismjs),disqushtml=document.createElement("div"),disqushtml.id="disqus_thread",document.getElementsByTagName("article")[0].appendChild(disqushtml),disqusjs=document.createElement("script"),disqusjs.type="text/javascript",disqusjs.async=!0,disqusjs.src="https://iyware.disqus.com/embed.js",document.body.appendChild(disqusjs)),function(s,e,t,i,m,n,c){s.SwiftypeObject=m,s[m]=s[m]||function(){(s[m].q=s[m].q||[]).push(arguments)},n=e.createElement(t),c=e.getElementsByTagName(t)[0],n.async=1,n.src=i,c.parentNode.insertBefore(n,c)}(window,document,"script","https://s.swiftypecdn.com/install/v2/st.js","_st"),_st("install","UpLojaav5s--stgt7FKu","2.0.0");</script>
+    <aside style="display:none;visibility:hidden;">
+  -		<a href="../search/index.html">search</a>
+  -		<a href="../clients/index.html">clients</a>
+      <a href="../sitemap.xml">sitemap</a>
+  -	</aside>
+</body>
+
+<!-- Mirrored from 127.0.0.1:2368/sudo-and-os-x-aliases/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 12 Jan 2018 22:49:19 GMT -->
+</html>

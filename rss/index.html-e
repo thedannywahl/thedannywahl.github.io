@@ -1,0 +1,1341 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[iyWare]]></title><description><![CDATA[Things I Break]]></description><link>https://iyware.com/</link><image><url>https://iyware.com/favicon.png</url><title>iyWare</title><link>https://iyware.com/</link></image><generator>Ghost 1.20</generator><lastBuildDate>Fri, 12 Jan 2018 22:21:04 GMT</lastBuildDate><atom:link href="https://iyware.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[The Plugin Statistic that Matters]]></title><description><![CDATA[<div class="kg-card-markdown"><p>I've written only one <a href="http://wordpress.org/">WordPress</a> plugin that was generic enough to be released in the plugins repository.  That plugin is called &quot;<a href="https://wordpress.org/plugins/my-posts/">My Posts</a>&quot; and it trivially solves a problem that was rather significant in one of my projects.  I say it trivially solves it because the entire plugin</p></div>]]></description><link>https://iyware.com/the-plugin-statistic-that-matters/</link><guid isPermaLink="false">5a513274533fe1b5bec542c7</guid><category><![CDATA[WordPress]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Sat, 23 Apr 2016 16:38:32 GMT</pubDate><content:encoded><![CDATA[<div class="kg-card-markdown"><p>I've written only one <a href="http://wordpress.org/">WordPress</a> plugin that was generic enough to be released in the plugins repository.  That plugin is called &quot;<a href="https://wordpress.org/plugins/my-posts/">My Posts</a>&quot; and it trivially solves a problem that was rather significant in one of my projects.  I say it trivially solves it because the entire plugin is comprised of only 11 lines of code (and funnily enough 10 lines of documentation, 9 lines of versioning, and 11 lines of license information).  Anyways, I've <a href="https://iyware.com/my-posts-wordpress-plugin/">written about this plugin</a> previously, today I want to talk about statistics.</p>
+<h2 id="whatmakesapluginpopular">What Makes a Plugin &quot;popular&quot;?</h2>
+<p>I'm sure that every developer has a different metric for what success is when they release something.  For some it's the fact that the project is complete, for others it's hearing that it's useful, for others it's download statistics, and for others still perhaps it's doors that are opened as a result.</p>
+<p>These are all great things, and I wouldn't necessarily advocate one over the other.  However, marketplaces tend to favor one particular statistic over all others: total downloads.  While other statistics are often leveraged (user ratings, active installs, etc...) this one is generally given priority treatment.  If you need evidence of this look no further than <a href="http://themeforest.net/page/top_sellers">Themeforest</a>, the <a href="https://moodle.org/plugins/stats.php">Moodle plugins directory</a> <em>(click &quot;log in as Guest&quot; if prompted for authentication)</em>, or the <a href="https://wordpress.org/plugins/browse/popular/">WordPress Plugins</a> page.  In fact, even if a market doesn't have a &quot;top downloads&quot; list you can bet that the total downloads for a product will be listed somewhere.</p>
+<p>In fact, Google Play seems to be about one of the only markets that doesn't just rely on a download count, but instead takes a <a href="http://getappcase.com/blog/app-stores/how-does-google-play-rank-mobile-apps">holistic approach</a> for ranking a &quot;top&quot; app.  I realize, of course, that this isn't feasible (or practical)  for all applications.  Various markets try to offset this by a variety of methods including things like &quot;top downloads by [day|week|month]&quot; to give some insight into trends or a &quot;featured&quot; selection - essentially showcasing a product that is really good at what it advertises but isn't necessarily downloaded a lot.  Of course the end-goal of a &quot;featured&quot; list is to get that product downloaded a lot so that it appears in the &quot;top&quot; list.</p>
+<h2 id="introducingactivepercentage">Introducing &quot;Active Percentage&quot;</h2>
+<p>Now, I'm not going to advocate that total downloads is a <em>bad</em> metric in itself, but I'm going to suggest one that I think is a <em>better</em> metric for both developers and markets.  That metric is &quot;active percentage&quot;.  Now, there are lies, damn lies, and statistics, so take this with a grain of salt.  Here's the formula I'm advocating:</p>
+<pre><code>AP == Active Installs / Total Downloads
+</code></pre>
+<p>This essentially tells you &quot;of the people that know of or tried your product, how many are actively using it&quot;.  Now this isn't possible for a number of projects, but it <em>is</em> possible for some including WordPress and Moodle.</p>
+<h2 id="activepercentageexamples">Active Percentage Examples</h2>
+<p>Let's take a look at a few examples, starting with my &quot;My Posts&quot; plugin:  as of writing the plugin has 317 downloads, which is not a lot (in my opinion) and it has 60+ Active Installs.</p>
+<h3 id="myposts"><a href="https://wordpress.org/plugins/my-posts/stats/">My Posts</a></h3>
+<pre><code>AP == Active Installs / Total Downloads
+AP == 60 / 317
+AP == 18.93%
+</code></pre>
+<p>18.9% of people who download my plugin actively use it.  Now, again, to me that's not a very high percentage.  That's a greater than 80% abandonment rate.  But, and this is big, we have no idea how that stacks up in the marketplace.  Maybe 18 is pretty high, maybe it's abysmally low.  Let's take a look at some of the other popular plugins in the WordPress plugins directory.  Now, there's one flaw here and that is that the plugins directory only reports up to 1 million+ active installs, so anything with over a million active installs (say 2 million or 10 million) is unreported so we are limited to looking at popular plugins with less than a million active installs.  We're also going to ignore the <code>+</code> which could significantly throw of some statistics (999,999 is reported as 900,000+ deviating by practically 10%).</p>
+<h3 id="pagebuilderbysiteorigin"><a href="https://wordpress.org/plugins/siteorigin-panels/stats/">Page Builder by SiteOrigin</a></h3>
+<pre><code>AP == 900,000 / 3,963,901
+AP == 22.70%
+</code></pre>
+<h3 id="disablecomments"><a href="https://wordpress.org/plugins/disable-comments/stats/">Disable Comments</a></h3>
+<pre><code>AP == 800,000 / 2,559,729
+AP == 31.25%
+</code></pre>
+<h3 id="wpmultibytepatch"><a href="https://wordpress.org/plugins/wp-multibyte-patch/stats/">WP Multibyte Patch</a></h3>
+<pre><code>AP == 800,000 / 2,184,427
+AP == 36.62%
+</code></pre>
+<h3 id="blackstudiotinymcewidgetblackstudiotinymcewidget">[Black Studio TinyMCE Widget](Black Studio TinyMCE Widget)</h3>
+<pre><code>AP == 800,000 / 2,949,696
+AP == 27.12%
+</code></pre>
+<h3 id="googleanalyticsdashboardforwp"><a href="https://wordpress.org/plugins/google-analytics-dashboard-for-wp/stats/">Google Analytics Dashboard for WP</a></h3>
+<pre><code>AP == 800,000 / 5,133,130
+AP == 15.59%
+</code></pre>
+<p>Those are the top 5 listed popular plugins with less than a million active installs, now let's look at the bottom 5.</p>
+<h3 id="checkemail"><a href="https://wordpress.org/plugins/check-email/stats/">Check Email</a></h3>
+<pre><code>AP == 10,000 / 58,813
+AP == 17.00%
+</code></pre>
+<h3 id="newuserapprove"><a href="https://wordpress.org/plugins/new-user-approve/">New User Approve</a></h3>
+<pre><code>AP == 10,000 / 155,479
+AP == 06.43%
+</code></pre>
+<h3 id="wordpressrecaptchaintegration"><a href="https://wordpress.org/plugins/wp-recaptcha-integration/stats/">WordPress ReCaptcha Integration</a></h3>
+<pre><code>AP == 10,000 / 59,765
+AP == 16.73%
+</code></pre>
+<h3 id="wpsocialsharing"><a href="https://wordpress.org/plugins/wp-social-sharing/">WP Social Sharing</a></h3>
+<pre><code>AP == 10,000 / 73,171
+AP == 13.67%
+</code></pre>
+<h3 id="latesttweetswidget"><a href="https://wordpress.org/plugins/latest-tweets-widget/stats/">Latest Tweets Widget</a></h3>
+<pre><code>AP == 10,000 / 92,484
+AP == 10.81%
+</code></pre>
+<p>Now let's get an average for top WordPress plugins: <code>19.79%</code> is the average of those 10 plugins.  I think it's reasonable to say that if your WP plugins has an Active Percentage of 20% then you're in-line with the top plugins.  Now, there's not necessarily a correlation between these two, but let's grab 10 random plugins and evaluate those.  We're going to grab the first plugin from the approximate top 10 results of the &quot;<a href="https://wordpress.org/plugins/tags/">popular tags</a>&quot; word cloud that aren't listed above.  We're going to rely on the generation of the word cloud and my inability to distinguish font-size to provide us some randomness.  The tag being popular doesn't indicate that the plugin itself will be, it just means that there are a lot of plugins in that category.</p>
+<h3 id="widgetwrangler"><a href="https://wordpress.org/plugins/widget-wrangler/stats/">Widget Wrangler</a></h3>
+<pre><code>AP == 1,000 / 33,807
+AP == 02.96%
+</code></pre>
+<h3 id="wordpressshortcodes"><a href="https://wordpress.org/plugins/synved-shortcodes/stats/">WordPress Shortcodes</a></h3>
+<pre><code>AP == 10,000 / 248,318
+AP == 04.03%
+</code></pre>
+<h3 id="emailitfreesharingbuttons"><a href="https://wordpress.org/plugins/e-mailit/stats/">E-MAILiT Free Sharing Buttons</a></h3>
+<pre><code>AP == 9,000 / 281,095
+AP == 03.20%
+</code></pre>
+<h3 id="wpsso"><a href="https://wordpress.org/plugins/wpsso/stats/">WPSSO</a></h3>
+<pre><code>AP == 10,000 / 1,472,313
+AP == 00.68%
+</code></pre>
+<h3 id="mailpress"><a href="https://wordpress.org/plugins/mailpress/stats/">MailPress</a></h3>
+<pre><code>AP == 9,000 / 310,781
+AP == 02.90%
+</code></pre>
+<h3 id="customizewoocommerceshop"><a href="https://wordpress.org/plugins/customize-woocommerce-shop/stats/">Customize Woocommerce Shop</a></h3>
+<pre><code>AP == 60 / 368
+AP == 16.30%
+</code></pre>
+<h3 id="socialmediafeather"><a href="https://wordpress.org/plugins/social-media-feather/stats/">Social Media Feather</a></h3>
+<pre><code>AP == 100,000 / 1,057,726
+AP == 09.45%
+</code></pre>
+<h3 id="simplegooglenewsde"><a href="https://wordpress.org/plugins/simple-google-news-de/stats/">Simple Google News DE</a></h3>
+<pre><code>AP == 500 / 2,009
+AP == 24.89%
+</code></pre>
+<h3 id="sliderseo"><a href="https://wordpress.org/plugins/slider-seo/stats/">Slider SEO</a></h3>
+<pre><code>AP == 10 / 131
+AP == 07.63%
+</code></pre>
+<h3 id="wpaccessibilityhelperwah"><a href="https://wordpress.org/plugins/wp-accessibility-helper/stats/">WP Accessibility Helper (WAH)</a></h3>
+<pre><code>AP == 10 / 77
+AP == 12.99%
+</code></pre>
+<p>Now the average of these 10 random plugins: <code>8.50%</code> which is significantly lower than the top downloaded plugins.  There are a number of things that can cause this (like bias toward top plugins) but I think it's safe to say that if your plugin is performing around 8% AP then you're a run-of-the-mill plugin.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>So what can we do with this?  Obviously I'm not advocating abandoning total downloads in favor of this- especially if your revenue comes from downloads!  What I'm suggesting is that this metric can be added to your toolbox to help give you an overview of how your plugin is performing.  Total downloads per day is great, but add in a second graph of AP-per-day and you can get a view of if your total market is growing or shrinking.  See if you're trending toward 20% or toward 8%.</p>
+<p>Abandonment is a key metric for a lot of recurring revenue markets like SaaS, subscriptions, or even ad-based generation.  Abandonment might affect your bottom line in download-based revenue as well.  Think of it this way: which plugin that does &quot;X&quot; is someone likely to recommend?  The one they're <em>using</em>, not the one they <em>used</em>.</p>
+</div>]]></content:encoded></item><item><title><![CDATA[Learning is the Goal]]></title><description><![CDATA[<div class="kg-card-markdown"><blockquote>
+<p>&quot;Our hypothesis was right.&quot;</p>
+</blockquote>
+<h2 id="firstastory">First, a Story</h2>
+<p>I've been a judge for the <a href="https://student.societyforscience.org/intel-isef">Intel International Science and Engineering Fair</a> (ISEF) in Asia, I think oh... about 5 times now.  In fact, I've been the judge of projects that have gone on to the US and placed and even</p></div>]]></description><link>https://iyware.com/learning-is-the-goal/</link><guid isPermaLink="false">5a513274533fe1b5bec542c5</guid><category><![CDATA[Education]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Mon, 04 Apr 2016 02:57:51 GMT</pubDate><content:encoded><![CDATA[<div class="kg-card-markdown"><blockquote>
+<p>&quot;Our hypothesis was right.&quot;</p>
+</blockquote>
+<h2 id="firstastory">First, a Story</h2>
+<p>I've been a judge for the <a href="https://student.societyforscience.org/intel-isef">Intel International Science and Engineering Fair</a> (ISEF) in Asia, I think oh... about 5 times now.  In fact, I've been the judge of projects that have gone on to the US and placed and even <em>won</em>.  I've seen students offered scholarships to universities based on their work, but one thing I've <em>never</em> seen is someone say &quot;my hypothesis was wrong.&quot;</p>
+<p>I've seen project records and logs which might, <em>might</em>, document some adversity.  But fortunately for the student it's always overcome.  This is particularly true of the engineering projects.  The closest thing I've ever seen to someone saying their hypothesis was wrong is when they follow up with &quot;the results were even <em>better</em> than we predicted!&quot;</p>
+<p>Now, full disclosure, I was picked as a judge because of my technical background- specifically computing.  There are some projects to which I am ignorant of the content (especially anything dealing with chemistry) but I am familiar enough with the framework of the scientific method to know what questions to ask, and when answers don't pass the sniff test.</p>
+<p>Additionally, in the world of engineering the refrain might as well be &quot;results or it didn't happen.&quot;  I've literally had sessions go like this:</p>
+<ul>
+<li>Student: here's our widget it does X and Y.</li>
+<li>Me: show me X</li>
+<li>Student: [tries X- fails]</li>
+<li>Me: show me Y</li>
+<li>Student: [tries Y- fails]</li>
+<li>Student: it's worked every other time!  I don't know what's going on!  Believe me this thing work!  Please don't judge based on the demonstration, we promise it works.</li>
+</ul>
+<h2 id="theproblem">The Problem</h2>
+<p>Now, perhaps you think that I'm berating these students.  This post is is an unmerited attack on high school students who are just participating in a science fair, and trying to win.</p>
+<p>That's the problem.  Well, let me be more specific: we're the problem.  We (adults in education) have set these students up for success.  Success, or passing, or winning, or the opposite of failing- is what matters most.  To the point that (in their minds) success must be achieved by any means.  Steal code (by which I mean use without attribution<a href="#foot1" id="ref1">*</a>), falsify scientific data, change your hypothesis after you get your results, BE RIGHT.</p>
+<p>Of course, if you look at the rubric for a science fair it's all based on method- not results.  No where does it say &quot;Was your hypothesis right? +10 points&quot;  But of course, you know that there's theory, and then there's practice.  What other event, in all of a child's schooling, are they given full credit for an incorrect answer?  If I recall correctly we spend a fair amount of time attacking the &quot;A for effort&quot; straw man.</p>
+<p>Even so-called formative assessments (quizzes, etc...) are awarded points and logged for <em>value</em> with the so-called summative assessments.  In fact it's entirely possible, generally speaking, to fail a class because enough formative assessments have been &quot;failed&quot;, results of the summative assessment be damned!</p>
+<p>No, we demand perfection.  Straight A's.  <s>4.0</s> <s>4.1</s> 4.25.  We demand better than perfection.  And at the end of the day (or 13 years...) we choose the <strong>best</strong> student and parade them out in front of all the other students to give a speech.</p>
+<h2 id="thesolution">The Solution</h2>
+<p>Well, unfortunately for you, dear reader, the solution while fairly obvious is both nuanced and outside the scope of this post.  Instead I offer you the remedy.</p>
+<h2 id="theremedy">The Remedy</h2>
+<p>Perhaps I'm being pedantic, but I believe that there's a difference between a solution and a remedy.  A solution is a top-down, functional, calculated fix.  A solution is indisputable, absolute, and THE right way.  We've seen plenty of solutions in education, and we seem to be fixing our way into more and more problems.  This is what Will Richardson calls &quot;<a href="https://medium.com/modern-learning/we-re-trying-to-do-the-wrong-thing-right-in-schools-210ce8f85d35#.4lqijmg6k">doing the wrong thing the right way</a>.&quot;</p>
+<p>On the other hand, a remedy is medicinal.  A remedy is a holistic approach to a number of symptoms that attempt to address an underlying cause (or causes).  A remedy takes time, re-assessment, and may cause other symptoms to flare-up during application but ultimately leaves a system in a better state than it started.</p>
+<p>Here's my proposed remedy:  document your failures.  Don't regale your students about people like Einstein or Elon Musk and their failures on the road to success.  Don't merely give them trivium about how many times Edison failed before he invented the light bulb.  Because you're still setting the goal at success, and frankly (given the current system), if you told you students to invent the light bulb they'd only get one shot at it before they got an &quot;F&quot;.</p>
+<p><a href="https://en.wikipedia.org/wiki/Adam_Savage">Adam Savage</a> says &quot;failure is always an option.&quot; but that's kind of a lie.  A certain <em>kind</em> of failure is allowable, a tolerance or margin of error if you will.  Let me put it this way.  Was there ever a week when a new <a href="https://en.wikipedia.org/wiki/MythBusters">MythBusters</a> was supposed to air, but instead the title card read something like,</p>
+<blockquote>
+<p>The new episode of MythBusters will not be airing tonight as Jamie and Adam went way over budget and time trying to solve an engineering problem.  They still haven't figured it out, but hopefully we'll be back next week.</p>
+</blockquote>
+<p>No way.  Failure, was not an option.  Probably contractually so.  And that's OK.</p>
+<p>But showing your students that the MythBusters fail is not- because the goal is still success.</p>
+<p>So, instead of documenting the failures of others (who are probably successful now), I challenge you to document your own failures.  Not your stumbling blocks on the way to success, but rather things that you just straight up failed at.  Didn't work.  Maybe even cost you some valuable time or money for which there was no reconciling.</p>
+<p>Students need to learn that failure is OK before they learn that it's just a stepping stone to success.  We tend to jump straight to success and then tell them that failure is OK.  This leaves them incapable of understanding how as they are diametrically opposed.</p>
+<h2 id="aclarification">A clarification</h2>
+<p>I've talked a lot about not setting the goal on &quot;success&quot;.  I can imagine that some might take issue with that, so I'd like to clarify.  The success that I'm saying we should avoid is &quot;do what it takes to get straight A's&quot; success.  It's the success that causes someone to lie about their science fair project.</p>
+<p>At the same time I'm advocating the acceptance of failure.  Assuredly I'm not saying to allow a competent student to be content with work below what he is capable of (notice I didn't say a grade letter?).</p>
+<p>No, the goal I'm talking about should be on learning.  You might call this &quot;success&quot; and, well, that's just semantics.  The point is that by ignoring failure, or covering it up, hiding it, it becomes impossible to accept the failure.  Without accepting failure it is impossible to analyze and adapt.  Without this analysis or reflection, it is impossible to learn.  Learning is the goal.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Ultimately students learn what they are taught, and this comes primarily by observation.  We are teaching students to fear failure.  We are teaching students to be prideful.  And we are teaching students to do what it takes to &quot;succeed.&quot;</p>
+<p>It's time for a remedy.  Share your failures with your students.</p>
+<hr>
+<p><a href="#ref1" id="foot1">*</a> I have no problem with using other people's properly licensed code.  There's no need to reinvent the wheel.  I do have a problem with taking code, removing authorship and copyright and telling me it's yours.  But I empathize due to the environment that makes one think that this is the only way to &quot;succeed.&quot;</p>
+</div>]]></content:encoded></item><item><title><![CDATA[My Laser-Cutter Projects]]></title><description><![CDATA[<div class="kg-card-markdown"><blockquote>
+<p>I never knew I was an artist until the let me play with lasers <em>‐Me</em></p>
+</blockquote>
+<h2 id="background">Background</h2>
+<p>A couple of years ago now one of the schools I was working with told me they wanted to start a Maker Space.  I didn't realize it but they had brought me into the</p></div>]]></description><link>https://iyware.com/my-laser-cutter-projects/</link><guid isPermaLink="false">5a513274533fe1b5bec542c3</guid><category><![CDATA[Portfolio]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Sun, 03 Apr 2016 21:23:24 GMT</pubDate><content:encoded><![CDATA[<div class="kg-card-markdown"><blockquote>
+<p>I never knew I was an artist until the let me play with lasers <em>‐Me</em></p>
+</blockquote>
+<h2 id="background">Background</h2>
+<p>A couple of years ago now one of the schools I was working with told me they wanted to start a Maker Space.  I didn't realize it but they had brought me into the conversation fairly late.</p>
+<p>They had already decided that they were going to buy a laser cutter, in fact they had already purchased it.  They wanted to know if I could learn to use it, come up with safety procedures, train some other staff, and help develop classroom application.</p>
+<p>Initially I thought &quot;what a terrible idea.&quot;  In fact, I still kind of do.  They spent the entire year's budget for the space on one machine.  That's not so practical when it comes to classroom application.  I would have much rather bought $10,000 worth of circuit boards, soldering irons, cardboard, fabric, sewing machines, etc...  But hey, what was done was done.</p>
+<p>At least the machine they ended up getting was really nice.  Industrial quality textile-cutting laser with a cutting area of about 3' x 4'.  That's enough to make some massive projects.</p>
+<p>Over the course of a year I spent a fair amount of time with the machine, learning the ins and outs of how how to use it, developing safety protocols, classroom projects, and maybe (hopefully) exposing myself to some <a href="https://en.wikipedia.org/wiki/Hulk_%28comics%29">gamma radiation</a>.</p>
+<p><img src="https://iyware.com/content/images/2016/04/friggin-lasers.jpg" alt="Radiation Warning"></p>
+<p>Seriously though, if you don't close the radiation hood you'll have a pretty good headache after about 15 minutes of operation.</p>
+<p>Anyways, I don't consider myself a particularly creative person- and definitely not a <em>visually</em> creative person.  I'm terrible with color schemes, bad at UI/UX (which is why I love working with APIs so much), but for some reason I just got totally creative - literally <em>creating things</em> with the laser.  Here are some of the projects I created.</p>
+<h2 id="materialtemplates">Material Templates</h2>
+<p>I made a bunch of these templates out of different materials, effectively trying to eliminate the guess-work and minimize material waste.  Across the top is the material type and laser settings.  As well as cut-speed at 10%, 20%, etc... and etch-speed in increments of 5%.</p>
+<p><img src="https://iyware.com/content/images/2016/04/material-template.jpg" alt="Laser Material Templates"></p>
+<p>These turned out to be one of the most valuable resources I made.</p>
+<h2 id="ipadcase">iPad Case</h2>
+<p>We even played with etching names onto iPad cases.  That was a fun one, and apparently there's big money to be made in this.  I'll tell you a secret, it's like 5 minutes worth of work.</p>
+<p><img src="https://iyware.com/content/images/2016/04/IMG_20141124_093025.jpg" alt="Laser Etched iPad Case"></p>
+<h2 id="ringcalendar">Ring Calendar</h2>
+<p>This calendar was really fun.  Again, I don't know where I got the idea, I just kind of came up with it.  It's 3 concentric circles, months, dates, and days.  I made it for my wife for our anniversary that year.  I think she liked it except for the fact that she had to remember to change it every day...</p>
+<p><img src="https://iyware.com/content/images/2016/04/IMG_20141124_200801.jpg" alt="My Calendar"></p>
+<h2 id="macbookcitymapcase">MacBook City Map Case</h2>
+<p>This one was really fun.  I downloaded the XML from the open maps project for Tianjin, converted it to a vector image, cropped it, removed a bunch of stuff except major roads and highways and then flipped it horizontally and etched it on the inside of a MacBook case.  The yellow coloring is actually trapped plastic smoke.  I'd love to do this one again with a better quality material.</p>
+<p><img src="https://iyware.com/content/images/2016/04/tianjin-map.jpg" alt="Tianjin Map"></p>
+<h2 id="customjournal">Custom Journal</h2>
+<p>A lot of these projects were simply throwing materials at the laser (or vice versa technically...) and seeing what it could do.  I was also playing around with Adobe Illustrator a lot to learn new tricks.  I brought a faux-leather journal from home and traced the letter &quot;M&quot; on the cover with a floral pattern inlay and etched my daughter's name on the spine.</p>
+<p><img src="https://iyware.com/content/images/2016/04/journal-cover.jpg" alt="Journal Cover"></p>
+<p><img src="https://iyware.com/content/images/2016/04/journal-spine.jpg" alt="Journal Spine"></p>
+<h2 id="basketball">Basketball</h2>
+<p>This is where I feel it's important to mention that there are different types of laser cutters.  The one we had was for textiles and so moved horizontally on an X and Y axis.  It could only handle flat objects.  There are other types of lasers which the laser is stationary and 3D objects are moved/rotated under the laser (for etching like mugs, etc...).  We tried anyways and put the school's name on a basketball.  Notice how the edges are faded as the laser power decreases with distance.</p>
+<p><img src="https://iyware.com/content/images/2016/04/basketball.jpg" alt="basketball"></p>
+<p>How thrilled would your IT staff be to get to engrave all the school property with a laser instead of a label maker?!</p>
+<h2 id="christmasornaments">Christmas Ornaments</h2>
+<p>I spent a full quarter working with 8th graders teaching them the fundamentals of Adobe Illustrator and vector images.  It culminated in a project to create a Christmas ornament which we cut out on the machine.  Here's something that's really cool:  We used cardboard to prototype, so we were able to do 3 or 4 &quot;drafts&quot; before we cut the final ones out of wood.  Here's another thing that's really cool.  When kids watch the laser cut out their project and it gets completely demolished you have <em>far</em> more &quot;oh!&quot; moments than you do repeatedly explaining it in a classroom.</p>
+<p><img src="https://iyware.com/content/images/2016/04/ornaments-cutting.jpg" alt="Ornaments Cutting"></p>
+<p><img src="https://iyware.com/content/images/2016/04/ornaments-cut.jpg" alt="Ornaments Cut"></p>
+<p><img src="https://iyware.com/content/images/2016/04/wooden-ornaments.jpg" alt="Wooden Ornaments"></p>
+<h2 id="coffeerocket">Coffee Rocket</h2>
+<p>Even though the laser can only cut vertically, there is a degree of tolerance, it works really well for writing vertically on cylinders.  Here's a rocket coffee mug one of the teachers bought for her dad.  We etched his name on it.</p>
+<p><img src="https://iyware.com/content/images/2016/04/rocket-coffee.jpg" alt="blast off"></p>
+<h2 id="photoframe">Photo Frame</h2>
+<p>My friend's wife came up with this vision, it's a sort of layered photo frame.  The front layer is grass and leaves and the back layer is trunks.</p>
+<p>After I gave it to her she painted a landscape behind it, unfortunately I don't have a picture of the finished project, but you get the idea.</p>
+<p><img src="https://iyware.com/content/images/2016/04/trees.jpg" alt="photo frame"></p>
+<h2 id="chessboard">Chess Board</h2>
+<p>The crown-jewel of my creations was this chess board.  I don't remember how I came up with the idea but I thought that a faux-3D chess board would be so cool.  I spent quite a few hours in illustrator laying this out (grr... math.)  It's 5 layers of balsa wood with a plexiglass top.  I love this thing, in fact it's like the only project I kept.</p>
+<p><img src="https://iyware.com/content/images/2016/04/chessboard1.jpg" alt="Check"></p>
+<p><img src="https://iyware.com/content/images/2016/04/chessboard2.jpg" alt="Checkmate"></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>I love laser cutters.  I think that a laser cutter would make a great <em>addition</em> to an already vibrant maker space, but it's not the tool I would pick to <em>start</em> one due to high cost entry, moderate learning curve, and the fact that they're so big it's not feasible to have more than one.  That said, they are a wonderful complement to STEAM programs.  I would argue that these projects are some of the most artistic, creative things I've done in my life, but they are highly technical and precision engineered (well most of them).</p>
+<p>If you're thinking of adding a laser cutter to your arsenal, or already have one, and are trying to figure out some inspirational projects or project-based-learning projects feel free to take any of these ideas listed above.  Just be sure to have fun!</p>
+</div>]]></content:encoded></item><item><title><![CDATA[Utah Pony Express Trail]]></title><description><![CDATA[<div class="kg-card-markdown"><p>Today I took my KLR650 on the <a href="http://www.blm.gov/ut/st/en/fo/salt_lake/recreation/back_country_byways/pony_express_trail.html">Pony Express Trail</a> in Utah.  It was a fun ride, definitely in the &quot;beginner&quot; category as far as difficulty, but surrounded by lots of great sights none the less.</p>
+<p><a href="https://www.google.com/maps/dir/Murray,+UT/Faust,+UT/Fish+Springs+National+Wildlife+Refuge,+Auto+Tour+Route,+Ibapah,+UT/Gold+Hill,+UT/West+Wendover,+NV/Magna,+UT/Murray,+UT/@40.3216134,-114.1599093,293390m/data=!3m2!1e3!4b1!4m44!4m43!1m5!1m1!1s0x875263fadae0b523:0x69b0984d520dc4b0!2m2!1d-111.8879909!2d40.6668916!1m5!1m1!1s0x874d5adcdd88187b:0x8b80a45fb255fcd2!2m2!1d-112.3918958!2d40.1841123!1m5!1m1!1s0x80b28a701a2aa465:0x5bfbe29143a2f31c!2m2!1d-113.3585384!2d39.869271!1m5!1m1!1s0x80adf2720e246827:0xc521ee06b7fb46c5!2m2!1d-113.829722!2d40.166389!1m5!1m1!1s0x80ac270a3fd12af5:0xf9335e58ce501155!2m2!1d-114.073345!2d40.739097!1m5!1m1!1s0x8752ecd11e264c01:0x8d50c5c4d45faee9!2m2!1d-112.1016088!2d40.7091121!1m5!1m1!1s0x875263fadae0b523:0x69b0984d520dc4b0!2m2!1d-111.8879909!2d40.6668916!3e0"><img src="https://iyware.com/content/images/2016/03/Screen-Shot-2016-03-27-at-9-07-09-PM.png" alt="Pony Express Route"></a></p>
+<p><a href="https://www.google.com/maps/dir/Murray,+UT/Faust,+UT/Fish+Springs+National+Wildlife+Refuge,+Auto+Tour+Route,+Ibapah,+UT/Gold+Hill,+UT/West+Wendover,+NV/Magna,+UT/Murray,+UT/@40.3216134,-114.1599093,293390m/data=!3m2!1e3!4b1!4m44!4m43!1m5!1m1!1s0x875263fadae0b523:0x69b0984d520dc4b0!2m2!1d-111.8879909!2d40.6668916!1m5!1m1!1s0x874d5adcdd88187b:0x8b80a45fb255fcd2!2m2!1d-112.3918958!2d40.1841123!1m5!1m1!1s0x80b28a701a2aa465:0x5bfbe29143a2f31c!2m2!1d-113.3585384!2d39.869271!1m5!1m1!1s0x80adf2720e246827:0xc521ee06b7fb46c5!2m2!1d-113.829722!2d40.166389!1m5!1m1!1s0x80ac270a3fd12af5:0xf9335e58ce501155!2m2!1d-114.073345!2d40.739097!1m5!1m1!1s0x8752ecd11e264c01:0x8d50c5c4d45faee9!2m2!1d-112.1016088!2d40.7091121!1m5!1m1!1s0x875263fadae0b523:0x69b0984d520dc4b0!2m2!1d-111.8879909!2d40.6668916!3e0"><img src="https://iyware.com/content/images/2016/03/Screen-Shot-2016-03-27-at-9-06-51-PM.png" alt="Topographic Pony Express Route"></a></p>
+<p>You can see this was about a 350 mile ride and largely</p></div>]]></description><link>https://iyware.com/utah-pony-express-trail/</link><guid isPermaLink="false">5a513274533fe1b5bec542c1</guid><category><![CDATA[Motorcycle]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Mon, 28 Mar 2016 03:18:51 GMT</pubDate><content:encoded><![CDATA[<div class="kg-card-markdown"><p>Today I took my KLR650 on the <a href="http://www.blm.gov/ut/st/en/fo/salt_lake/recreation/back_country_byways/pony_express_trail.html">Pony Express Trail</a> in Utah.  It was a fun ride, definitely in the &quot;beginner&quot; category as far as difficulty, but surrounded by lots of great sights none the less.</p>
+<p><a href="https://www.google.com/maps/dir/Murray,+UT/Faust,+UT/Fish+Springs+National+Wildlife+Refuge,+Auto+Tour+Route,+Ibapah,+UT/Gold+Hill,+UT/West+Wendover,+NV/Magna,+UT/Murray,+UT/@40.3216134,-114.1599093,293390m/data=!3m2!1e3!4b1!4m44!4m43!1m5!1m1!1s0x875263fadae0b523:0x69b0984d520dc4b0!2m2!1d-111.8879909!2d40.6668916!1m5!1m1!1s0x874d5adcdd88187b:0x8b80a45fb255fcd2!2m2!1d-112.3918958!2d40.1841123!1m5!1m1!1s0x80b28a701a2aa465:0x5bfbe29143a2f31c!2m2!1d-113.3585384!2d39.869271!1m5!1m1!1s0x80adf2720e246827:0xc521ee06b7fb46c5!2m2!1d-113.829722!2d40.166389!1m5!1m1!1s0x80ac270a3fd12af5:0xf9335e58ce501155!2m2!1d-114.073345!2d40.739097!1m5!1m1!1s0x8752ecd11e264c01:0x8d50c5c4d45faee9!2m2!1d-112.1016088!2d40.7091121!1m5!1m1!1s0x875263fadae0b523:0x69b0984d520dc4b0!2m2!1d-111.8879909!2d40.6668916!3e0"><img src="https://iyware.com/content/images/2016/03/Screen-Shot-2016-03-27-at-9-07-09-PM.png" alt="Pony Express Route"></a></p>
+<p><a href="https://www.google.com/maps/dir/Murray,+UT/Faust,+UT/Fish+Springs+National+Wildlife+Refuge,+Auto+Tour+Route,+Ibapah,+UT/Gold+Hill,+UT/West+Wendover,+NV/Magna,+UT/Murray,+UT/@40.3216134,-114.1599093,293390m/data=!3m2!1e3!4b1!4m44!4m43!1m5!1m1!1s0x875263fadae0b523:0x69b0984d520dc4b0!2m2!1d-111.8879909!2d40.6668916!1m5!1m1!1s0x874d5adcdd88187b:0x8b80a45fb255fcd2!2m2!1d-112.3918958!2d40.1841123!1m5!1m1!1s0x80b28a701a2aa465:0x5bfbe29143a2f31c!2m2!1d-113.3585384!2d39.869271!1m5!1m1!1s0x80adf2720e246827:0xc521ee06b7fb46c5!2m2!1d-113.829722!2d40.166389!1m5!1m1!1s0x80ac270a3fd12af5:0xf9335e58ce501155!2m2!1d-114.073345!2d40.739097!1m5!1m1!1s0x8752ecd11e264c01:0x8d50c5c4d45faee9!2m2!1d-112.1016088!2d40.7091121!1m5!1m1!1s0x875263fadae0b523:0x69b0984d520dc4b0!2m2!1d-111.8879909!2d40.6668916!3e0"><img src="https://iyware.com/content/images/2016/03/Screen-Shot-2016-03-27-at-9-06-51-PM.png" alt="Topographic Pony Express Route"></a></p>
+<p>You can see this was about a 350 mile ride and largely bypassed the mountain passes, which was nice since it was only about 40 degrees when I started out, though the high was 60 degrees later in the day.</p>
+<p><img src="https://iyware.com/content/images/2016/03/IMG_2051.JPG" alt="KLR in Driveway"></p>
+<p>Here's the bike at the beginning of the day, ready to go, which was also the point of my first breakdown.</p>
+<p><img src="https://iyware.com/content/images/2016/03/IMG_2053.JPG" alt="No Fuel"></p>
+<p>Looks like the fuel line disconnected itself, oops.  After that it was a great ride.  Here are some photos I took along the way.</p>
+<p><img src="https://iyware.com/content/images/2016/03/IMG_2055.JPG" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/03/IMG_2057.JPG" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/03/IMG_2061.JPG" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/03/IMG_2064.JPG" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/03/IMG_2067.JPG" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/03/IMG_2070.JPG" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/03/IMG_2071.JPG" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/03/IMG_2072.JPG" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/03/IMG_2073.JPG" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/03/IMG_2074.JPG" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/03/IMG_2075.JPG" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/03/IMG_2076.JPG" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/03/IMG_2079.JPG" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/03/IMG_2080.JPG" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/03/IMG_2081.JPG" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/03/IMG_2078.JPG" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/03/IMG_2082.JPG" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/03/IMG_2083.JPG" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/03/IMG_2087.JPG" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/03/IMG_2088.JPG" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/03/IMG_2089.JPG" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/03/IMG_2091.JPG" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/03/IMG_2094.JPG" alt=""></p>
+</div>]]></content:encoded></item><item><title><![CDATA[Add Auxiliary USB Power to a KLR 650]]></title><description><![CDATA[<div class="kg-card-markdown"><p>I'd like to start by saying that my long term dream is to rewire my entire bike.  Ideally I would move all of the relays and fuses into a <a href="http://pma4x4.com/product/relay-box/">weather-tight relay box</a> which is mounted where the starter relay cover is positioned.  Then I'd like to add something like the</p></div>]]></description><link>https://iyware.com/add-auxiliary-usb-power-to-a-klr-650/</link><guid isPermaLink="false">5a513274533fe1b5bec542c0</guid><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Fri, 25 Mar 2016 04:38:57 GMT</pubDate><content:encoded><![CDATA[<div class="kg-card-markdown"><p>I'd like to start by saying that my long term dream is to rewire my entire bike.  Ideally I would move all of the relays and fuses into a <a href="http://pma4x4.com/product/relay-box/">weather-tight relay box</a> which is mounted where the starter relay cover is positioned.  Then I'd like to add something like the <a href="http://www.northstarnav.com/Products/8000i-Integrated-System/8000i-Network-Hardware/8000i-USB-Hub/">Northstar 8000i</a> waterproof USB hub (now discontinued) and mount it where the exhaust fume canister used to be (CA models only).  But I'm not there yet, so this is the documentation of simply wiring in a single USB port.</p>
+<p>I wrote about <a href="https://iyware.com/add-auxiliary-usb-power-to-a-klr-650/i-accidentally-bought-a-2008-klr650/">swapping in a stainless bolt kit</a> on my KLR650 recently and it really made this work a lot easier.  In fact here's all the tools I needed:</p>
+<p><img src="https://iyware.com/content/images/2016/03/01.jpg" alt="Hex and sockets"></p>
+<p>Well, that's not entirely true- these are the tools needed to take apart the bike.  I needed wire strippers/crimpers/cutters for the electrical work and of course I used a torque wrench to put it back together, but the point is my tool roll will be significantly lighter going forward.</p>
+<p>The main fuse box is located under the seat.</p>
+<p><img src="https://iyware.com/content/images/2016/03/02.jpg" alt="KLR fuse box"></p>
+<p>Sadly it only has two fuses, the third is a spare.  There's one more in the the starter relay and another someone added with the charger, so adding the USB will make 5 fuses in 3 locations.</p>
+<p><img src="https://iyware.com/content/images/2016/03/03.jpg" alt="Charger fuse"></p>
+<p>Fortunately the Clymer has a colored wiring diagram which should make this pretty straight-forward.  I want to wire this in behind the ignition so it's only on when the key's on.  I'm going to wire it behind the 15A fuse because, why not.  The alternative is to wire it in front of the fuse, but I think that if I did that a surge might pop both fuses, whereas with the fuse behind the 15A it might save the 7A USB fuse.</p>
+<p><img src="https://iyware.com/content/images/2016/03/04.jpg" alt="KLR wiring diagram"></p>
+<p>So the plan is to simply use the red power wire and the black-and-yellow for ground.</p>
+<p>I already drew out the wiring for when I get a fuse box, and it looks pretty similar to what I'm planning now, so rewiring in the future shouldn't be too complicated.</p>
+<p><img src="https://iyware.com/content/images/2016/03/05.jpg" alt="KR rewire"></p>
+<p>I already own a weatherproof USB port- which I really like.  I've used those crappy 12v cigarette lighters w/ a USB drop-in before and I never liked them.  Mostly because it feels like an unnecessary step.  Why not just step-down the power directly into a USB port.  This one has a nice thick housing and a thick lid with a rotating mount.</p>
+<p><img src="https://iyware.com/content/images/2016/03/06.jpg" alt="USB port"></p>
+<p>Unfortunately it's currently in pieces because some a-hole stole my battery and in the process just hack-sawed all the wiring.  It's two screws you jerk!  Anyways... I have to wire it all back together now.</p>
+<p><img src="https://iyware.com/content/images/2016/03/08.jpg" alt="Fuse wires"></p>
+<p>Here you can see the red power wire coming out of the fuse as mentioned earlier, and the black and yellow ground wire from the battery.  Just gotta snip them and wire in the new stuff.</p>
+<p><img src="https://iyware.com/content/images/2016/03/09.jpg" alt="Cut wires"></p>
+<p>By the way, the manual says to remove the lower fairings to get the gas tank off- but you don't have to.  You only have to remove the upper bolt which mounts the fairing to the gas tank.</p>
+<p><img src="https://iyware.com/content/images/2016/03/10.jpg" alt="KLR with no tank and fairings"></p>
+<p>I used the factory wiring routes instead of zip-tieing everything to the frame.</p>
+<p><img src="https://iyware.com/content/images/2016/03/11.jpg" alt="wired in"></p>
+<p>And finally attached the fuse and power/ground under the seat and taped everything back together.</p>
+<p><img src="https://iyware.com/content/images/2016/03/12.jpg" alt=""></p>
+<p>Here's the port up by the handlebars and the phone mount.</p>
+<p><img src="https://iyware.com/content/images/2016/03/13.jpg" alt="close up of USB"></p>
+<p><img src="https://iyware.com/content/images/2016/03/14.jpg" alt="USB and phone mount"></p>
+<p>Of course the first time I turned it on, I got nothing.  Panicked a little, reviewed the wiring, started to pull the bike apart again, then put another USB cable in and it worked.</p>
+</div>]]></content:encoded></item><item><title><![CDATA[What's Your Originality Score?]]></title><description><![CDATA[<div class="kg-card-markdown"><p>We all know anti-plagiarism software.  They take a piece of work and then tell the teacher and the student how original it is.  It's a crazy business model.  What's even crazier is that schools fork out the cash for it.</p>
+<p>So here's the thing, basically these softwares do a search</p></div>]]></description><link>https://iyware.com/whats-your-originality-score/</link><guid isPermaLink="false">5a513274533fe1b5bec542be</guid><category><![CDATA[Education]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Fri, 04 Mar 2016 03:54:34 GMT</pubDate><content:encoded><![CDATA[<div class="kg-card-markdown"><p>We all know anti-plagiarism software.  They take a piece of work and then tell the teacher and the student how original it is.  It's a crazy business model.  What's even crazier is that schools fork out the cash for it.</p>
+<p>So here's the thing, basically these softwares do a search for you and return a certainty-based percentage score that tells you how &quot;original&quot; a student's work is.  That's not a very robust feature set for what schools pay for it.</p>
+<p>I know the argument is coming about not being able to put a price on academic integrity and blah blah blah, but here's the thing:  In higher ed. plagiarism is grounds for immediate failure of the class if not expulsion.  When's the last time you expelled a kid, or flunked a kid?  Because they're sure as shit plagiarizing.  So what are you paying for then?  And there's a good counter-point to be made which talks about if it's actually bad to plagiarize or not, but I'm not going there today.</p>
+<p>Here's what I want to ask.  What's <em>your</em> originality score?  You, as a teacher, or even as an individual.  If we took the contents of your course and fed them into a search engine that could look across all the internet (including other courses) what percentage would it say is original?  Handouts, writing prompts, science experiments, quiz questions, home work, all of it.  And don't tell me &quot;but standards&quot; because the point of standards is that you have the freedom to customize the things above as long as they align with the standards.</p>
+<p>Put yourself in the shoes of a student as we walk though an imaginary class.</p>
+<p><strong>Teacher:</strong> Read your textbook <em>(that I didn't write)</em>, then download the handout <em>(that I copied off the internet w/o citation)</em> from the course <em>(that an instructional designer made for me)</em>.  And don't forget that tomorrow we have a quiz <em>(written by a publisher)</em> that includes a reflective essay <em>(which I will assess using canned feedback from the SIS)</em>.</p>
+<p><strong>Student:</strong> ...</p>
+<p>Doesn't that reek of hypocrisy?  At least a little?  Yes, teachers gotta teach.  Yes, they're busy because they have 4 preps.  Students are busy too; they get this daily from 5 to 9 different teachers.</p>
+<p>The point is:  Why aren't we leading by example?  If it's okay for us to take (hopefully legally!) resources that approximate what we wish to express and rearrange them to suit our purposes, then why can't students?  Or, if original expression is <em>so</em> important that saying <em>something</em> unoriginal is grounds for expulsion- shouldn't it also be grounds for termination?</p>
+</div>]]></content:encoded></item><item><title><![CDATA[Should Students be Content Creators?]]></title><description><![CDATA[<div class="kg-card-markdown"><p>In my experience the rhetoric of &quot;we want our students to be content <em>creators</em> not content <em>consumers</em>&quot; is used ad nauseum by faculty and admins for all kinds of purposes. Maybe it's invoked to shut-down a 1:1 initiative or maybe it's just to <a href="http://www.goodreads.com/quotes/63219-the-children-now-love-luxury-they-have-bad-manners-contempt">complain about the youth</a></p></div>]]></description><link>https://iyware.com/should-students-be-content-creators/</link><guid isPermaLink="false">5a513274533fe1b5bec542bc</guid><category><![CDATA[Education]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Thu, 03 Mar 2016 02:40:39 GMT</pubDate><content:encoded><![CDATA[<div class="kg-card-markdown"><p>In my experience the rhetoric of &quot;we want our students to be content <em>creators</em> not content <em>consumers</em>&quot; is used ad nauseum by faculty and admins for all kinds of purposes. Maybe it's invoked to shut-down a 1:1 initiative or maybe it's just to <a href="http://www.goodreads.com/quotes/63219-the-children-now-love-luxury-they-have-bad-manners-contempt">complain about the youth</a>.</p>
+<p>This argument, I find, is generally indefensible as it ignores the fact that the kids are probably not creating anything <em>now</em> (through no fault of their own- they don't choose curricula) and the adults invoking this ad hominem attack are nothing but content consumers themselves. But the biggest problem I have is that the argument is based on a simple <a href="http://schoolsucksproject.com/podcast-414/">framing error</a> and that is that content creation and content consumption are mutually exclusive.</p>
+<p>I propose an alternative idea, and that is consumption and creation are progressive, if not cyclical. Everybody must consume media in order to create it. Ok, <strong>must</strong> is a generalization but let me make my argument... Is there a director out there, famous or otherwise, who would say, &quot;I have no mentors, no inspiration, my style is my own.&quot;? Is there a musician who would say, &quot;I've never heard music before I started making music.&quot;? I submit that the answer is &quot;no.&quot;</p>
+<p>This is not to say that every person who consumes media will necessarily become a de facto content creator, certainly the vast majority of history bears strong evidence to the contrary. Rather, we should be teaching students to move <em>from</em> consumption to <em>creation</em> or to start tipping the scales from 100/0 consumption/creation to 90/10 then 80/20, and so forth. Again, even once someone is renown for their artistic endeavors they hardly <strong>stop</strong> consuming new inspiration, they just spend the majority of their time creating. Maybe for them the scales have tipped to 80/20 or 90/10 in favor of creation.</p>
+<p>So what does this progression look like? Well like all good pedagogy it neatly fits into an easy-to-remember, easier-said-than-done, rule. I call it &quot;The Four 'C's of Creation&quot;. They are progressive, but can be cyclical as well.</p>
+<ul>
+<li>Consume: The person intakes media with no analysis or output</li>
+<li>Cherish: The person intakes media with internal and/or external analysis and no output</li>
+<li>Curate: The person intakes media with internal and/or external analysis and derivative output</li>
+<li>Create: The person intakes media with internal and/or external analysis and original output</li>
+</ul>
+<p>Let's take two examples, one generic and one unique to school.</p>
+<p>A person listens to music passively on the radio (ha! what's a radio?!). The person discovers a band that they really enjoy learns about the members, the history, the discography, has a favorite song, etc... The person starts creating mix tapes (ha! what's a tape?!) and playlists and sharing them with others. The person starts playing with audio recording creating covers and remixes of the band's songs, sharing them with others. The person starts creating their own unique songs which sounds very similar to the band's songs but over time grow into their own.</p>
+<p>In first grade students spend a month reading Dr. Seuss books. In third grade students have to do an oral/written (er... typed) report on your favorite Dr. Seuss book (I won't get into why they <a href="http://www.cantrip.org/gatto.html">have to</a> like Dr. Seuss...). In 6th grade they have to write their own poem a lá Dr. Seuss. In 10th grade they write their own poetry (which can be assigned to the first graders! what?!)</p>
+<p>Finally, it should be noted that the creation of <a href="http://www.amazon.com/Zen-Art-Motorcycle-Maintenance-Inquiry/dp/0060589469/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1456941319&amp;sr=1-1&amp;keywords=zen+and+the+art+of+motorcycle+maintenance"><em>good</em></a> content across all mediums is simply not feasible and the burden of that goal should not be hoisted upon students. Certainly that is an unbearable yoke and we should not be shaming them for simply consuming media. I am not a musical person by any means, and I have never made it past the &quot;cherish&quot; stage listed above. Should I be shamed for this? Should I be guilted into learning an instrument and pretending to have ambitions that simply do not exist? No. I create other things as I consume. I write, I code, I debate (believe it or not, that's an art).</p>
+<p>In conclusion I posit that consumption itself is not bad. It's our failure as educators, partially as the result of a framing error, that we do not encourage children to progress from consumption into creation. If we can re-frame our thinking on the purpose of consumption and encourage students to use it as inspiration, then we will see (mildly) transformative change in the realm of artistic creative endeavors in our schools.</p>
+</div>]]></content:encoded></item><item><title><![CDATA[I Accidentally Bought a 2008 KLR650]]></title><description><![CDATA[<div class="kg-card-markdown"><p>Long story short I was planning on moving from China to the USA and needed a bike before I landed so I wired some cash to my father-in-law and started sending him links on craigslist to anything that he would call and low-ball (sorry if you're one of the offended</p></div>]]></description><link>https://iyware.com/i-accidentally-bought-a-2008-klr650/</link><guid isPermaLink="false">5a513274533fe1b5bec542ba</guid><category><![CDATA[Motorcycle]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Wed, 24 Feb 2016 05:39:18 GMT</pubDate><content:encoded><![CDATA[<div class="kg-card-markdown"><p>Long story short I was planning on moving from China to the USA and needed a bike before I landed so I wired some cash to my father-in-law and started sending him links on craigslist to anything that he would call and low-ball (sorry if you're one of the offended call recipients). One day he emailed me back and said he had checked out an '09 KLR that looked pretty good, I said &quot;do it.&quot;</p>
+<p><img src="https://iyware.com/content/images/2016/02/01-my-new-to-me-klr-1.jpg" alt=""></p>
+<p>Beautiful factory &quot;pink&quot; fairings after years in the AZ sun.</p>
+<p>I landed in the US and when I came to collect the bike I thought &quot;uh-oh&quot;. If it had been me, I wouldn't have bought it: 19,990 miles, laid down on both sides, broken clutch lever, odd idle issues, missing about a half dozen bolts at first inspection, etc... But I smiled, told him &quot;thanks&quot; and took it. It wasn't until I took the title to the DOT to put it in my name (and get my driver's permit as the US doesn't recognize Chinese license) that I realized it said '08. D'oh. I knew I wanted anything but an '08 and here it sits.</p>
+<p>I also found the previous owner's &quot;full maintenance log&quot; that was included which when translated from Spanish reads: add oil, add oil, add oil, add water, add oil add oil, add oil...</p>
+<p>Oh well this just means I get to do some work. Ordered a doohickey kit from Eagle Mike with the deep hole fix and a 200+ bolt stainless steel kit and shipped them to my brother in California where I'm going tomorrow.</p>
+<p>By the way here's my China bike, A Jialing JH150GY-3<br>
+<img src="https://iyware.com/content/images/2016/02/02-my-old-jialing.jpg" alt=""></p>
+<p>Since all the parts are going to California and I'm in AZ I decided to paint the bike, so I jumped in photoshop and started playing around. I have the red '08 but I'm going to repaint the fairings gloss black with Krylon Fusion and clear coat with spraymax 2k enamel. My brother's girlfriend is a graphic designer and she's going to stencil part of the '14 new graphics on for me. This will give me a black and silver looking bike- similar to the black and gray '14. I'm very tempted to take it all the way down to the frame and paint the frame in Kawi green, but I'm a lazy lazy man.</p>
+<p><img src="https://iyware.com/content/images/2016/02/03-my-photoshop-vision.jpg" alt=""></p>
+<p>Yeah, I think that's going to look alright. I started pulling the fairings yesterday to prep them for painting, and then I find this:</p>
+<p><img src="https://iyware.com/content/images/2016/02/04-whats-this-hose.jpg" alt=""></p>
+<p>What the?! A California bike? This is the gift that keeps on giving. Add de-california-ing the bike to the list (I don't live in CA, so calm down).</p>
+<p>One final &quot;argh&quot; I have a sweet set of panniers from a company called <a href="http://item.taobao.com/item.htm?spm=a1z10.3-c.w4002-1788631219.55.P95EuL&amp;id=15565598849">MotoSevn in China</a> (you can see them up above). They hand make them and hand-make the racks for a ton of bikes. A rack and set of panniers costs about $400 USD. I really wanted to keep my panniers so I brought them with me and before I left I ordered a rack for a KLR from them for about $100 USD. Should look like this:</p>
+<p><img src="https://iyware.com/content/images/2016/02/05-moto-sevn-panniers.jpg" alt=""></p>
+<p>Except for two problems. First, they sent me the wrong rack.</p>
+<p><img src="https://iyware.com/content/images/2016/02/06-not-the-rack-youre-looking-for.jpg" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/02/07-definitely-not-the-right-rack.jpg" alt=""></p>
+<p>Second, at some point they switched from 15mm steel tubing to 18mm steel tubing, so I can't even use the 'loops' and get a mount fabricated. Anybody know where I can get a rack with the following dimensions:  31cm x 21cm / 15mm?  No?  Oh, well.</p>
+<p>Got the doo kit + deep hole fix from Eagle Mike, nicely packaged.</p>
+<p><img src="https://iyware.com/content/images/2016/02/08-do-the-doo.jpg" alt=""></p>
+<p>and got the stainless steel bolt replacement kit from Desmo Parts, neatly labeled and packaged with thorough instructions:</p>
+<p><img src="https://iyware.com/content/images/2016/02/09-bolt-on-options.jpg" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/02/10-who-needs-instructions.jpg" alt=""></p>
+<p>Started on the valve adjustment and ran into a &quot;huh&quot;? According to the Clymer cam lobes should face away from the engine at TDC, but my lobes are facing toward the engine:</p>
+<p><img src="https://iyware.com/content/images/2016/02/11-DNRTFM.jpg" alt=""></p>
+<p>Is this an issue, a misprint, or nothing? Turns out one more crankshaft revolution does the trick (the magic of 4-stroke!).  I aligned them 'center' and checked the valves.</p>
+<p><img src="https://iyware.com/content/images/2016/02/12-check-yourself.jpg" alt=""></p>
+<p>OK, all in spec. that will save me some time and money. I'll pop the spark plug out and visually check where the heck TDC actually is But I suspect that it doesn't actually matter for the purpose of checking the valves.  Onto the doohickey...</p>
+<p>Alternator looks good!</p>
+<p><img src="https://iyware.com/content/images/2016/02/13-probably-not-ironman.jpg" alt=""></p>
+<p>Rotor looks good on the outside</p>
+<p><img src="https://iyware.com/content/images/2016/02/14-shiny-shiny-rotor.jpg" alt=""></p>
+<p>A bit of scoring on the inside, I don't think it's enough to worry about, but it is rough to the touch. Notice the odd scoring pattern on the top-right</p>
+<p><img src="https://iyware.com/content/images/2016/02/15-seriously-did-tony-stark-design-this.jpg" alt=""></p>
+<p>Yet again, pristine.</p>
+<p><img src="https://iyware.com/content/images/2016/02/16-tired-of-rotor-images-yet.jpg" alt=""></p>
+<p>Nice and clean on the inside:</p>
+<p><img src="https://iyware.com/content/images/2016/02/17-so-fresh-and-so-clean.jpg" alt=""></p>
+<p>Is it just me or does this NOT look like a stock doo-hickey?</p>
+<p><img src="https://iyware.com/content/images/2016/02/18-do-what-do.jpg" alt=""></p>
+<p>Here it is next to the one from eagle mike:</p>
+<p><img src="https://iyware.com/content/images/2016/02/19-do-vs-do.jpg" alt=""></p>
+<p>The main difference is between a machined product vs. a cast product.</p>
+<p>Took a couple of days off from work to see my brother and his fiance. Once I got the left crank-case cover off I notice that the inside-seal between the alternator cover and the crankcase cover had a lot of gasket maker gunk stuck to it- so I think it will be necessary to pull the right side cover and check/clean the oil screen, which means I'll need to order a couple of new gaskets. I don't mind since I'm waiting on an oil filter and a small torque wrench from amazon.</p>
+<p>In the mean time my spraymax 2k arrived so I can get back to sanding/painting the fairings while I wait for stuff to arrive.</p>
+<p>I guess a question is do the new KLRs still have a water pump seal issue? I'm going to order the gaskets anyways so should I order any other parts for the right side?  Couldn't resist getting a little more work done...</p>
+<p>Those gaskets did not come off very clean</p>
+<p><img src="https://iyware.com/content/images/2016/02/20-gasket-hole.jpg" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/02/21-bad-gasket.jpg" alt=""></p>
+<p>I tried a few things as I was afraid of scoring the aluminum, but I finally ended up using action cleaner/degreaser and some fine steel wool. I figured if it's good enough for cleaning a gun it would probably work for a bike. In order to prevent the steel fuzz from ending up in the alternator case or the balancer guts I held a shop rag inside the case as I worked the steel wool along the rail to prevent anything from falling in.</p>
+<p><img src="https://iyware.com/content/images/2016/02/22-action-cleaner-in-action.jpg" alt=""></p>
+<p>In the end it turned out pretty good. The wool didn't seem to scratch the surface at all.</p>
+<p><img src="https://iyware.com/content/images/2016/02/23-nice-and-brushed-aluminum.jpg" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/02/24-like-a-babies-aluminum.jpg" alt=""></p>
+<p>When disassembling the bike the whole balancer sprocket fell off because I had the bike on its side stand, so I looked around the garage and found this:</p>
+<p><img src="https://iyware.com/content/images/2016/02/25-kydex-clip-frame.jpg" alt=""></p>
+<p>My brother makes <a href="http://wahlholsters.com">Kydex holsters</a> and that's a belt loop template for a spare clip. I propped it under the side stand to get the bike more upright and prevent things from sliding off when trying to reassemble.</p>
+<p>When disassembling the bike I kept everything in labelled baggies, here's the balancer and the old doohickey.</p>
+<p><img src="https://iyware.com/content/images/2016/02/26-what-a-mess.jpg" alt=""></p>
+<p>Well that went back together as easily as it came apart.</p>
+<p><img src="https://iyware.com/content/images/2016/02/27-reassembled-kinda.jpg" alt=""></p>
+<p>Now it's time to start reassembling the casings. First I applied some dressing to the faces with a Q-Tip using this:</p>
+<p><img src="https://iyware.com/content/images/2016/02/28-silicon-sealant.jpg" alt=""></p>
+<p>Now I can start reinstalling using the stainless kit.</p>
+<p><img src="https://iyware.com/content/images/2016/02/29-bag-o-bolts.jpg" alt=""></p>
+<p>Here's a stock bolt compared to a new stainless:</p>
+<p><img src="https://iyware.com/content/images/2016/02/30-old-and-busted-new-hotness.jpg" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/02/31-head-to-head.jpg" alt=""></p>
+<p>Unfortunately the kit didn't include the one hidden bolt that lives inside the casing (the one that's shorter than the others)</p>
+<p><img src="https://iyware.com/content/images/2016/02/32-one-of-these-things.jpg" alt=""></p>
+<p>Applied some copper-based anti-seize lubricant to the end of the threads and started installing.</p>
+<p><img src="https://iyware.com/content/images/2016/02/33-such-copper-wow.jpg" alt=""></p>
+<p>On to the doohickey.</p>
+<p><img src="https://iyware.com/content/images/2016/02/34-do-is-done.jpg" alt=""></p>
+<p>I reinstalled the washer and the bolt and tightened slightly to prevent it from slipping while trying to hook the torsion spring.</p>
+<p><img src="https://iyware.com/content/images/2016/02/35-do-screwed.jpg" alt=""></p>
+<p>I ended up using two pairs of needle-nosed pliers, the first I grabbed at the base of the 'U' and pulled across, the second I grabbed the end and used to insert into the doohickey hole.</p>
+<p><img src="https://iyware.com/content/images/2016/02/36-one-plier.jpg" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/02/37-two-plier.jpg" alt=""></p>
+<p>It seems like the spring might want to fall 'forward' off of the face of the doohickey, especially since it's a graded surface, should I be concerned about that?</p>
+<p>I'm stopping on reassembly there since I don't have a torque wrench that goes as low as needed, so I will wait for it to arrive</p>
+<p>Of course I couldn't have gotten any work done without help from the boy.</p>
+<p><img src="https://iyware.com/content/images/2016/02/38-the-boy.jpg" alt=""></p>
+<p>So there she sits for now, occupying the primo space in the garage. As you can see we're not brand loyalists (not pictured the 2 hondas and the yamaha)</p>
+<p>Water pump gasket and clutch cover gasket arrived from Partzilla yesterday, just waiting for that torque wrench from Amazon which should be here today.</p>
+<p><img src="https://iyware.com/content/images/2016/02/39-shes-figuratively-naked.jpg" alt=""></p>
+<p>They really outdid themselves on the packaging for this one</p>
+<p><img src="https://iyware.com/content/images/2016/02/40-all-this-for-a-gasket-1.jpg" alt=""></p>
+<p>Pulled the rotor and starter clutch gears back out, as well as the new (massive) tube of moly-infused grease</p>
+<p><img src="https://iyware.com/content/images/2016/02/41-greased-biking.jpg" alt=""></p>
+<p>Loaded it up in the grease gun and put a dab on the woodruff key to help keep it in place, as the key slot was currently sitting at about 3 o'clock- as an aside loading the grease gun was a pain as it's about a 2&quot; diameter and the canister was 2 1/2&quot; diameter...</p>
+<p><img src="https://iyware.com/content/images/2016/02/42-greasing-the-woodruff.jpg" alt=""></p>
+<p>Put a little dab at the end of the spacer for the deep hole fix as well- just to keep it seated during installation.</p>
+<p><img src="https://iyware.com/content/images/2016/02/43-deep-hole-away.jpg" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/02/44-deep-hole-for-this.jpg" alt=""></p>
+<p>Reading the descriptions of what the issue was and what it now fixes finally make sense, I guess a picture is worth a thousand words</p>
+<p>New rotor bolt ready to go.</p>
+<p><img src="https://iyware.com/content/images/2016/02/45-rotors-away.jpg" alt=""></p>
+<p>I couldn't find a deep 19mm socket and with the rotor tool installed the torque wrench wouldn't seat properly so I had to find an extension- this left me plenty of room but I was afraid of creating a bit of a moment arm and messing up the torque ratings, but I think it went alright.</p>
+<p><img src="https://iyware.com/content/images/2016/02/46-extendo-wrench.jpg" alt=""></p>
+<p>ran out of long zip ties...</p>
+<p><img src="https://iyware.com/content/images/2016/02/47-zippity-doo-dah.jpg" alt=""></p>
+<p>Starter clutch gears reinstalled. There's really only one way to install these so it's hard to get wrong, just make sure that all the teeth are seated between all the gears. It might be possible to have a starter clutch gear not installed all the way and close up the case. Unfortunately the clymer only provides all photos directly from in front so it's kind of hard to see the proper installation, so here's a clarifying photo.</p>
+<p><img src="https://iyware.com/content/images/2016/02/48-gears-one.jpg" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/02/49-gears-two.jpg" alt=""></p>
+<p>More gasket prep, new gasket, and new stainless bolts with anti-sieze on the threads. Now it's starting to look like a functioning motorcycle, and best part is I don't have any extra screws or washers left over (My grandpa always ended up with extra screws and washers )</p>
+<p><img src="https://iyware.com/content/images/2016/02/50-just-in-case.jpg" alt=""></p>
+<p>Those stainless bolts look kinda beefy if I do say so myself. Still have a lot of cleaning left to do on this side, then I tear down the right side and move back up to the top end. Maybe some day I'll ride this thing...</p>
+<p><img src="https://iyware.com/content/images/2016/02/51-what-a-mess.jpg" alt=""></p>
+<p>The front sprocket and sprocket guard area were much dirtier than I thought. There was a track for the chain through the gunk. Liberal amounts of wd40, a flathead screw driver and a few shop rags took care of it.</p>
+<p><img src="https://iyware.com/content/images/2016/02/52-more-crap.jpg" alt=""></p>
+<p>It wasn't officially in the stainless kits but they provided a ton of extra bolts so I swapped out the shifter bolt while I was at it (this is a spare oil filter cover bolt). Cleaned the crap off the shifter lever while I was at it</p>
+<p><img src="https://iyware.com/content/images/2016/02/53-kick-nuts-er-bolts.jpg" alt=""></p>
+<p>Swapped out the oil filter - the previous one was manufactured 5 years ago, so it's probably due. It didn't seat very well either on the outside or around the shaft, but this could also just be due to age, heat, and pressure.</p>
+<p><img src="https://iyware.com/content/images/2016/02/54-oil-filter.jpg" alt=""></p>
+<p>Drained the coolant and promptly spilled it all over the garage floor so I decided to call it a day.</p>
+<p>Started in on the right side of the bike- boy that's a lot of corrosion on those bolts.</p>
+<p><img src="https://iyware.com/content/images/2016/02/55-dirty-bolts.jpg" alt=""></p>
+<p>And some rust. Good thing they'll be replaced with stainless.</p>
+<p><img src="https://iyware.com/content/images/2016/02/56-dirty-bolts-two-electric-boogaloo.jpg" alt=""></p>
+<p>Got the oil screen out and there was some gasket maker which I expected but there was also some black plastic and a couple of shards of aluminum inside the crankcase where the oil screen sits.</p>
+<p><img src="https://iyware.com/content/images/2016/02/57-screen-gasket-sealer.jpg" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/02/58-screen-aluminum-shreds.jpg" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/02/59-screen-aluminum-two.jpg" alt=""></p>
+<p>Also found a pea-size glob of oil that had forced its way out of the case near the brake pedal mount- guess It's a good thing I'm replacing the gasket anyways...</p>
+<p><img src="https://iyware.com/content/images/2016/02/60-oil-should-be-in-the-bike.jpg" alt=""></p>
+<p>Put it all back together giving it the stainless treatment and added some 20W-50 oil and 50/50 coolant, now back up to the topend and it'll actually be ready to ride.</p>
+<p><img src="https://iyware.com/content/images/2016/02/61-right-side-out.jpg" alt=""></p>
+<p>Everything looked good so it was time to put the top end back together too. Pulled the old silicon (and gasket maker) off</p>
+<p><img src="https://iyware.com/content/images/2016/02/62-silicon-snakes.jpg" alt=""></p>
+<p>Added new silicon sealant</p>
+<p><img src="https://iyware.com/content/images/2016/02/63-silly-silicon.jpg" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/02/64-silicon-sealed.jpg" alt=""></p>
+<p>threw in a new spark plug and put the bike together enough to start it. Fired up the first time and turned it off after 30 seconds, checked the coolant and it looked good.</p>
+<p>Turned it back on and let it idle, while adjusting the idle to ~1200 RPM. While adjusting the idle I noticed a small puff of black/gray smoke from the rear-end of the right-side of the engine block. I cursed and turned the bike off, wiped down the whole thing and turned it back on. No more smoke, hopefully it was just a little bit of residue.</p>
+<p>I did have a single drop of coolant fall from here (the open hole between the coolant drain plug and the engine housing bolt):</p>
+<p><img src="https://iyware.com/content/images/2016/02/65-coolio.jpg" alt=""></p>
+<p>I'm going to assume that's OK since it was just a single drop.  So here she runs:</p>
+<p><img src="https://iyware.com/content/images/2016/02/66-up-and-running.jpg" alt=""></p>
+<p>Now I just need to finish painting... and put on the stainless bolt frame kit.. and do the other maintenance... and... and... ahh I'll just go ride.</p>
+<p>I forgot to say, this bike was manufactured in April 2007 in Thailand. Seems to be one of the first, the last 5 of the VIN is 02### - so it seems pretty early.</p>
+<p>Finished wet sanding everything with a 400 grit sand paper today. I was able to use the power sander only on the black fairings, everything else was done by hand. The power sander did a good job pulling the gloss finish off, but I still had to get some of it by hand.</p>
+<p><img src="https://iyware.com/content/images/2016/02/67-not-the-batmobile.jpg" alt=""></p>
+<p>My wife said it looks like the batmobile now. Kinda hard to tell here but this is a small dog kennel with rope run across and clothes hangars- nice and professional.</p>
+<p><img src="https://iyware.com/content/images/2016/02/68-painting-cage.jpg" alt=""></p>
+<p>For this type of stuff I'm going to skip the clear enamel, we'll save that for the fenders, and fairings. Here's the &quot;before&quot; for the rear rack. It was this faded before I sanded it.</p>
+<p><img src="https://iyware.com/content/images/2016/02/69-tail-before.jpg" alt=""></p>
+<p>And here's the after.</p>
+<p><img src="https://iyware.com/content/images/2016/02/70-tail-after.jpg" alt=""></p>
+<p>The paint looks unevenly colored but that's just a combination of light and texture- it came out really well. This is just krylon fusion gloss black. I did a grip coat, a &quot;primer&quot; coat, and then three thick coats waiting 15 minutes between each coat.</p>
+<p>I also wasn't going to paint the radiator cover or overflow cover, but since I had them off I figured &quot;why not?&quot; It allowed me to do a good test on some semi-hidden parts.</p>
+<p><img src="https://iyware.com/content/images/2016/02/71-painted-tool-box.jpg" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/02/72-painted-cooler-guard.jpg" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/02/73-painted-rad-guard.jpg" alt=""></p>
+<p>You might see some white flecks on some of the pieces- that's salt from the Bug-A-Salt rifle- but it's just sitting on dry paint, it's not in the paint.</p>
+<p>Tomorrow I'll hit the rest of the non-essential parts including the sprocket cover, master cylinder guard, rear fender/license plate holder, and city light cover. Then I'll move on to the big stuff that will get probably one or two more coats and two or three coats of enamel.</p>
+<p>Since it's getting above 90 in the afternoons I can only paint in the morning, so afternoons will be spend de-california-ing the bike as well as swapping out the frame bolts for stainless.</p>
+<p>Marked off the &quot;important&quot; stuff and kept painting. Grip, primer x2, and 4 top coats.</p>
+<p><img src="https://iyware.com/content/images/2016/02/74-taped-for-painting.jpg" alt=""></p>
+<p>Got a little lazy when it came to the tank- just sanded a surface on it taped it off and painted it. I also dropped the tribal/flame pattern for a solid space.</p>
+<p><img src="https://iyware.com/content/images/2016/02/75-paint-the-tank.jpg" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/02/76-paint-the-tank-two.jpg" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/02/77-paint-the-tank-three.jpg" alt=""></p>
+<p>I was waiting for my brother's girlfriend to be able to do some graphics but she's busy and I found a 2015 new graphics kit on ebay for $50 so I ordered that. Once it arrives I'll apply it to the bare paint and then apply top coat. That will prevent the graphics from peeling.</p>
+<p>Now it's the waiting game again...</p>
+<p>Forgot to do this before I painted so I grabbed the dremel and cut the broken part of the tail off below the license plate mount. Put a round corner on it and painted it.</p>
+<p><img src="https://iyware.com/content/images/2016/02/78-dremeled-tail.jpg" alt=""></p>
+<p>While I'm waiting for the decal set to arrive I decided to swap out the stock bolts for the stainless set. This means I'll be doing some of them twice when I reinstall the parts I painted, but whatever- it's one more thing I can do now.</p>
+<p>before and after (not torqued)</p>
+<p><img src="https://iyware.com/content/images/2016/02/79-brake-fluid.jpg" alt=""></p>
+<p>It's probably a good thing I ordered this kit anyways since I'd want to replace some of these eventually.</p>
+<p><img src="https://iyware.com/content/images/2016/02/80-stripped-bolt.jpg" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/02/81-new-stainless-bolt.jpg" alt=""></p>
+<p>Scotch-taping a well-nut, that's a new one for me... Of course another one was glued in</p>
+<p><img src="https://iyware.com/content/images/2016/02/82-scotch-tape-not-for-that.jpg" alt=""></p>
+<p>I have to say that one thing that surprised me with this bolt kit was how generous they were. If it called for 11 bolts they provided 16. Where you needed nylon washers they provided both black and opaque.</p>
+<p><img src="https://iyware.com/content/images/2016/02/83-black-washer.jpg" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/02/84-opaque-washer.jpg" alt=""></p>
+<p>I thought the bolts for the bar ends were torqued down incredibly tight, that was until I finally broke them and got them out...</p>
+<p><img src="https://iyware.com/content/images/2016/02/85-locktite-o-why.jpg" alt=""></p>
+<p>This bolt kit had something like 140+ stainless bolts and they probably gave me 200+ bolts. The problem is that the bike could easily swap probably 160 bolts, so now that I'm done with the instructions for the kit I'm chasing down extra screws on the bike and seeing if I have a stainless that can replace it, like these:</p>
+<p><img src="https://iyware.com/content/images/2016/02/86-foot-pegs.jpg" alt=""></p>
+<p>By the way, are the soft luggage racks not a stock option on the bike? The stainless screws that were in the kit were far too short for me to put these back on. It's not important to me since I'm getting a proper luggage rack at some point, just curious.</p>
+<p><img src="https://iyware.com/content/images/2016/02/87-soft-luggage-racks.jpg" alt=""></p>
+<p>This bolt (dead center), by the ways, is the most infuriating bolt I've found on the bike. it's dead simple to get it out on the right-hand side but it took forever to get this one out, and I still haven't been able to get it started again, there's just not enough room for a socket wrench</p>
+<p><img src="https://iyware.com/content/images/2016/02/88-i-hate-this-bolt.jpg" alt=""></p>
+<p>To get that bolt re-set I ended up taking off the whole upper fairing, which allowed me to replace quite a few bolts with stainless. All of the following are bolts that are NOT includes in the desmos instructions, but that I was able to replace with spare parts included with the kit.</p>
+<p>Upper fairing (inside)</p>
+<p><img src="https://iyware.com/content/images/2016/02/89-upper-fairing-inside.jpg" alt=""></p>
+<p>Upper fairing (outer)</p>
+<p><img src="https://iyware.com/content/images/2016/02/90-upper-fairing-outside-two.jpg" alt=""></p>
+<p>Pillion foot peg mounts</p>
+<p><img src="https://iyware.com/content/images/2016/02/91-pillion-footpeg-mounts.jpg" alt=""></p>
+<p>Air box filter mount and electric cable guide mount</p>
+<p><img src="https://iyware.com/content/images/2016/02/92-airbox.jpg" alt=""></p>
+<p>Rear fender connectors</p>
+<p><img src="https://iyware.com/content/images/2016/02/93-rear-fender.jpg" alt=""></p>
+<p>Radiator fan mounts</p>
+<p><img src="https://iyware.com/content/images/2016/02/94-radiator-fan-mounts.jpg" alt=""></p>
+<p>Brake pedal</p>
+<p><img src="https://iyware.com/content/images/2016/02/95-brake-pedal.jpg" alt=""></p>
+<p>Kick stand electrical cover</p>
+<p><img src="https://iyware.com/content/images/2016/02/96-kickstand-electric-cover.jpg" alt=""></p>
+<p>Exhaust heat shield</p>
+<p><img src="https://iyware.com/content/images/2016/02/97-exhaust-heat-shield.jpg" alt=""></p>
+<p>The exhaust heat shield bolts are the only ones I had to modify- I cut them down to about half length using the dremel. I also had to get some of my own crush washers, other than that all of the above came from the bolt kit.</p>
+<p><img src="https://iyware.com/content/images/2016/02/98-stumpy-bolts.jpg" alt=""></p>
+<p>Pulled all of the CA exhaust crap- that's an out of control amount of stuff.</p>
+<p><img src="https://iyware.com/content/images/2016/02/99-ca-crap.jpg" alt=""></p>
+<p>I rerouted the tank vent tube under seat</p>
+<p><img src="https://iyware.com/content/images/2016/02/100-reroute.jpg" alt=""></p>
+<p>I also pulled the battery vent tube drain since this battery doesn't seem to have a drain.</p>
+<p><img src="https://iyware.com/content/images/2016/02/101-no-mo-battery-drain.jpg" alt=""></p>
+<p>This allowed me to re-route the air box drain tube through the fairing where the battery drain tube used to be.</p>
+<p><img src="https://iyware.com/content/images/2016/02/102-airbox-reroute.jpg" alt=""></p>
+<p>And what on earth is this tube? I chased it up under the gas tank- but I didn't want to pull the tank to find out what it is. This seems ridiculously long. A cursory glance through the manual didn't show what it is.</p>
+<p><img src="https://iyware.com/content/images/2016/02/103-stupid-snake-tube.jpg" alt=""></p>
+<p>I have a few more minor bolts that I'll try to replace tomorrow, like cable guide mounts etc..., and I think I'll be done with the stainless kit.</p>
+<p>Turns out that stupid long hose is the radiator tank overflow line, knowing that I was able to re-route it directly into the overflow tank mount, removing about 3' of hose. Now it will just dump directly out the front of the bike.</p>
+<p><img src="https://iyware.com/content/images/2016/02/104-shortened-radiator-hose.jpg" alt=""></p>
+<p>Finished up the stainless bolt swap by grinding down a few remaining bolts and replacing the radiator overflow tank housing frame mounts and some cable guide mounts.</p>
+<p><img src="https://iyware.com/content/images/2016/02/105-stainless-rad-bolts.jpg" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/02/106-stainless-rad-bolts-two.jpg" alt=""></p>
+<p>While I was swapping bolts I removed this- it looks like it was supposed to be holding/guiding something but it was not- it was just sitting there (see the empty hole in the middle of the photo above, so for now I've removed it. Unless it's necessary I'll just keep it off for now.</p>
+<p><img src="https://iyware.com/content/images/2016/02/107-steel-piece-of-crap.jpg" alt=""></p>
+<p>I also threw in a new cotter pin on the rear wheel- notice how beat up that old thing is. Now it's back to waiting for my decals to arrive.</p>
+<p>Turns out waiting IS the hardest part. FedEx said my decals made it to town on Saturday morning but wouldn't be delivered until Thursday- but I could request to pick it up at the facility. I requested to hold for pickup and made the 30 minute drive to the airport, only to be told that it was there but not sorted yet- I can come back by maybe Tuesday or Wednesday to pick it up.</p>
+<p>Also got a package in the mail from China with my old handguards. Tried them out and they don't fit the KLR they sit too low, bummer- but I guess it gives me one less thing to paint...</p>
+<p><img src="https://iyware.com/content/images/2016/02/108-no-guards-for-you.jpg" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/02/109-no-guards-for-you-two.jpg" alt=""></p>
+<p>So I stuck them on the TT-R instead.</p>
+<p><img src="https://iyware.com/content/images/2016/02/110-ttr-en-garde.jpg" alt=""></p>
+<p>I completely forgot about my tailbox amongst all the other things. I have a nice large BJG brand aluminum box that a friend gave me and I wanted to try to make it quick release like my panniers. It was already drilled but I can't reuse those holes and make it quick release so, note to self- this box isn't water proof!</p>
+<p><img src="https://iyware.com/content/images/2016/02/111-tail-box.jpg" alt=""></p>
+<p>I bought a 4 eye-bolts and some wingnuts and cap nuts which won't work together... The goal is to eventually swap the wingnuts for a threaded washer with a cap nut.</p>
+<p><img src="https://iyware.com/content/images/2016/02/112-eye-eye-captain.jpg" alt=""></p>
+<p>The idea is to mount the eye bolts and allow them to rotate on and off the mounting plate to quickly release.</p>
+<p><img src="https://iyware.com/content/images/2016/02/113-mount-tbd.jpg" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/02/114-mount-tbd-two.jpg" alt=""></p>
+<p>Used the Dremel to open up the eye bolts for them to mount to the rear plate.</p>
+<p><img src="https://iyware.com/content/images/2016/02/115-eye-bolt-on.jpg" alt=""></p>
+<p>Then I decided to add a vacuum cap to the end of the bolt for a little more grip.</p>
+<p><img src="https://iyware.com/content/images/2016/02/116-always-use-protection.jpg" alt=""></p>
+<p>Now it's mounted, sturdy, and not moving anywhere.</p>
+<p><img src="https://iyware.com/content/images/2016/02/117-tail-mounted-one.jpg" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/02/118-tail-mounted-two.jpg" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/02/119-tail-mounted-three.jpg" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/02/120-tail-mounted-four.jpg" alt=""></p>
+<p>I noticed that mounting the tail box scuffed up my new paint job on the rear rack- and we can't have that yet so I went to harbor freight and bought a roll of tool box drawer liner, simple rubber matting that's about 2mm thick and used silicon RTV to attach it to the bottom of the box. I then decided I might as well line the inside of the box as well.</p>
+<p><img src="https://iyware.com/content/images/2016/02/121-tail-pad-one.jpg" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/02/122-tail-pad-two.jpg" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/02/123-tail-pad-three.jpg" alt=""></p>
+<p>The corners didn't come out so well inside of the box, oh well...</p>
+<p><img src="https://iyware.com/content/images/2016/02/124-mounted-tail-box.jpg" alt=""></p>
+<p>I figure between rubber on the eye bolts and rubber on the bottom of the box I should get a better mount with less slip</p>
+<p>My package was finally available for pickup from Fedex, I left off about 1/2 of the kit- I wanted something minimal. Also cut off all the gray stripe accents from what I did apply, except for the 650 part.</p>
+<p><img src="https://iyware.com/content/images/2016/02/125-its-not-a-2015.jpg" alt=""></p>
+<p>I'll clearcoat on Wednesday and then hit the pavement.</p>
+<p>Oh yeah, the stickers came from Venezuela (what copyright?!) from a company called backup kits. They also make some cool wraps and some that have, uh... character.</p>
+<p>Got it all put back together after clear coating, here she sits.</p>
+<p><img src="https://iyware.com/content/images/2016/02/126-all-done-one.jpg" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/02/127-all-done-two.jpg" alt=""></p>
+<p>Now for the fun project!</p>
+<p>I took an old gardening mat, wrapped it in Gorilla tape, glued it to some poplar board that I sprayed black and attached both some industrial Velcro and some fabricated Kydex clips and voila! a backrest for the pillion</p>
+<p><img src="https://iyware.com/content/images/2016/02/128-backrest-one.jpg" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/02/129-backrest-two.jpg" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/02/130-backrest-three.jpg" alt=""></p>
+<p>Since the bottom is velco, it doesn't have to be removed to open the tail box</p>
+<p><img src="https://iyware.com/content/images/2016/02/131-tailbox-open.jpg" alt=""></p>
+<p>This was supposed to be a prototype but it does its job. When it breaks I'll do a version 2. Now I need to start thinking about luggage racks again...</p>
+<p>After I moved to Utah I added new tires, a new battery, and new chain.  There's still lots more I want to do, just need time and money, but I'm having too much fun riding to!</p>
+<p><img src="https://iyware.com/content/images/2016/02/132-all-done-front.jpg" alt=""></p>
+<p><img src="https://iyware.com/content/images/2016/02/133-all-done-back.jpg" alt=""></p>
+</div>]]></content:encoded></item><item><title><![CDATA[Gridster for Instagram]]></title><description><![CDATA[<div class="kg-card-markdown"><h1 id="gridsterforinstagramv10">Gridster for instagram v1.0</h1>
+<p>Gridster for instagram is the easiest way to get a customized, full-screen, display of any instagram feed.  As its name implies, Gridster loads the images you want into a photo wall and animates through them.</p>
+<h2 id="installation">Installation</h2>
+<p>Navigate to the <code>assets/js</code> folder open the <code>Gridster.</code></p></div>]]></description><link>https://iyware.com/gridster-for-instagram/</link><guid isPermaLink="false">5a513274533fe1b5bec542b5</guid><category><![CDATA[Portfolio]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Sat, 17 Oct 2015 22:09:53 GMT</pubDate><content:encoded><![CDATA[<div class="kg-card-markdown"><h1 id="gridsterforinstagramv10">Gridster for instagram v1.0</h1>
+<p>Gridster for instagram is the easiest way to get a customized, full-screen, display of any instagram feed.  As its name implies, Gridster loads the images you want into a photo wall and animates through them.</p>
+<h2 id="installation">Installation</h2>
+<p>Navigate to the <code>assets/js</code> folder open the <code>Gridster.js</code> file and enter your <a href="https://instagram.com/developer/clients/manage/">clientID</a> on line 1.</p>
+<h2 id="usage">Usage</h2>
+<p>Simply open index.html in your browser and Gridster will display the most popular images on instagram.  Click on the hashtag to enter full-screen mode.</p>
+<h2 id="customization">Customization</h2>
+<p>There are two ways to customize the output of Gridster, the first is with the URL query string and the second is by editing Gridster.js</p>
+<h3 id="querystring">Query String</h3>
+<p>There are a number of options that you can use to customize the display of Gridster using the query string.</p>
+<ul>
+<li>tag: You can use <code>tag=tagname</code> to show a specific tag from instagram.  If no tag is provided, images from the &quot;popular page&quot; are displayed. You don't need to add &quot;#&quot; at the beginning, just the name of the tag. [default: null]</li>
+<li>images: You can use <code>images=##</code> to set how many images to fetch (maximum 60). [default: 60]</li>
+<li>speed: You can use <code>speed=##</code> to control the speed in seconds of the animation transitions between images. [default: 1]</li>
+<li>pause: You can use <code>pause=##</code> to control the time in seconds the scroll pauses between animations.  [default: 10]</li>
+<li>reload: You can use <code>reload=##</code> to control the time in minutes Gridster waits to get new images from instagram. [default: 60]</li>
+<li>sort: You can use <code>sort=none</code> to control the order in which the images are sorted on the page.  Available sort options are: none, most-recent, least-recent, most-liked, least-liked, most-commented, least-commented, and random. [default: none]</li>
+<li>animation: You can use <code>animation=scale</code> to control the animation type used to transition between images.  Available animation options are: showhide, fadeinout, slideleft, slideright, slidetop, slidebottom, rotateleft, rotateright, rotatetop, rotatebottom, scale, rotate3d, rotateleftscale, rotaterightscale, rotatetopscale, rotatebottomscale, and random. [default: random]</li>
+<li>rows: You can use <code>rows=##</code> to specify the number of rows in the grid. [default: 3]</li>
+<li>columns: You can use <code>columns=##</code> to specify the number of columns in the grid.  If the total images in rows multiplied by columns is more than specified in &quot;images&quot; then Gridster will subtract columns until the grid is full.  [default: 4]</li>
+<li>step: You can use <code>step=##</code> or <code>step=random</code> to control the number of animations that occur simultaneously. [default: random]</li>
+<li>maxstep: If step is set to &quot;random&quot; you can set <code>maxstep=##</code> to control the maximum amount of animations that occur at once. [default: 2]</li>
+<li>author: You can use <code>author</code> to display the username of the person who posted the picture. [default: null]</li>
+<li>caption: You can use <code>caption</code> to display the caption that was originally posted with the image (including hashtags) [default: null]</li>
+<li>comments: You can use <code>comments</code> to display the comment count on the image. [default: null]</li>
+<li>likes: You can use <code>likes</code> to display the number of likes on an image. [default: null]</li>
+<li>link: You can use <code>link</code> so that clicking the image will take the user to the image post on instagram. [default: null]</li>
+<li>background: You can use <code>background=red</code> to change the default background color.  If you use hex or rgb be sure to encode the URL. [default: null]</li>
+<li>color: You can use <code>color=purple</code> to change the default font color.  If you use hex or rgb be sure to encode the URL (# is %23). [default: null]</li>
+<li>clientid: You can use <code>clientid=##</code> to provide or override a clientID inserted in Gridster.js. [default: null]</li>
+</ul>
+<h3 id="gridsterjs">Gridster.js</h3>
+<p>Most of the variables that control the output of Gridster are in the <code>urlParams{}</code> object.  Simply change the default values that you want.  If you don't want users to be able to modify the output with the query string then at the top of Gridster.js set <code>enableQuery = false;</code> and only the settings from the js file will be used.</p>
+<h2 id="examples">Examples</h2>
+<p><code>?tag=spring&amp;author&amp;sort=random</code>: Display 60 large images all tagged &quot;spring&quot; with the username displayed, randomly displaying them in the grid.</p>
+<p><code>?sort=most-liked&amp;speed=0&amp;refresh=5&amp;likes&amp;link</code>: Display a small grid that doesn't animate of the most popular images on instagram that refreshes every 5 minutes, sorted by likes and you can click to see the original on instagram.</p>
+<p><code>?tag=tbt&amp;author&amp;likes&amp;comments&amp;caption</code>: See who's throwing back and what they have to say about it.</p>
+<h2 id="license">License</h2>
+<p>Gridster is built using a combination of open source and proprietary code.  The individual licenses for each open source component can be found in the LICENSE folder.</p>
+<h3 id="main">Main</h3>
+<p>Gridster for instagram is copyright 2015 Danny Wahl, all rights reserved except where specified in the LICENSE file.</p>
+<h3 id="vendor">Vendor</h3>
+<ul>
+<li><a href="http://tympanus.net/codrops/2012/08/02/animated-responsive-image-grid/">Animated Responsive Image Grid</a> | © Tympanus | Tympanus License</li>
+<li><a href="https://html5boilerplate.com/">HTML 5 Boilerplate</a> | © HTML 5 Boilerplate | MIT License</li>
+<li><a href="http://instafeedjs.com/">Instafeed.js</a> | © Steven Schobert | MIT License</li>
+<li><a href="https://jquery.org/">jQuery</a> | © jQuery Foundation and other contributors | MIT License</li>
+<li><a href="http://modernizr.com/">Modernizr</a> | © Faruk Ateş | MIT License</li>
+<li><a href="http://necolas.github.io/normalize.css/">Normalize.css</a> | © Nicolas Gallagher and Jonathan Neal | MIT License</li>
+<li><a href="http://sindresorhus.com/screenfull.js/">Screenfull.js</a> | © Sindre Sorhus | MIT License</li>
+</ul>
+<h2 id="changelog">Changelog</h2>
+<ul>
+<li>1.1</li>
+<li>
+<ul>
+<li>Content reload doesn't exit fullscreen anymore</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>readme now written in html</li>
+</ul>
+</li>
+<li>1.0</li>
+<li>
+<ul>
+<li>Initial release</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 style="text-align:center"><a href="https://github.com/thedannywahl/gridster">Download Gridster for Instagram</a></h2></div>]]></content:encoded></item><item><title><![CDATA[My Posts WordPress Plugin]]></title><description><![CDATA[<div class="kg-card-markdown"><p><a href="https://wordpress.org/plugins/my-posts/"><img src="https://iyware.com/content/images/2015/05/my-posts.jpg" alt="My Posts"></a></p>
+<p>If you run a multi-author blog you've probably noticed that it's not so easy to find only <em>your</em> posts.  &quot;My Posts&quot; fixes that by adding a link under the &quot;Posts&quot; menu that goes directly to a list of posts written by the current user.</p>
+<p>My Posts</p></div>]]></description><link>https://iyware.com/my-posts-wordpress-plugin/</link><guid isPermaLink="false">5a513274533fe1b5bec542b7</guid><category><![CDATA[WordPress]]></category><category><![CDATA[Portfolio]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Fri, 29 May 2015 04:01:51 GMT</pubDate><content:encoded><![CDATA[<div class="kg-card-markdown"><p><a href="https://wordpress.org/plugins/my-posts/"><img src="https://iyware.com/content/images/2015/05/my-posts.jpg" alt="My Posts"></a></p>
+<p>If you run a multi-author blog you've probably noticed that it's not so easy to find only <em>your</em> posts.  &quot;My Posts&quot; fixes that by adding a link under the &quot;Posts&quot; menu that goes directly to a list of posts written by the current user.</p>
+<p>My Posts is compatible with WordPress 3.0 and up and works with WPMU and Adminimize.  What are you waiting for?  Download it now from the WordPress plugins database.</p>
+<h2 style="text-align:center"><a href="https://wordpress.org/plugins/my-posts/">Download My Posts for WordPress</a></h2>
+</div>]]></content:encoded></item><item><title><![CDATA[Scrollster for Instagram]]></title><description><![CDATA[<div class="kg-card-markdown"><p><a href="https://gumroad.com/l/scrollster"><img src="https://iyware.com/content/images/2015/04/scrollster_for_instagram_logo-1.jpg" alt="# Scrollster for instagram logo"></a></p>
+<p>Scrollster for instagram is the best way to showcase instagram photos in a beautiful, full-screen, responsive scrolling gallery.  Scrollster for instagram is a standalone webapp you can run it from your desktop or from a server.</p>
+<p>Scrollster for instagram is very customizable:  You choose what images to display, how many,</p></div>]]></description><link>https://iyware.com/scrollster-for-instagram/</link><guid isPermaLink="false">5a513274533fe1b5bec542b3</guid><category><![CDATA[Portfolio]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Tue, 21 Apr 2015 00:30:02 GMT</pubDate><content:encoded><![CDATA[<div class="kg-card-markdown"><p><a href="https://gumroad.com/l/scrollster"><img src="https://iyware.com/content/images/2015/04/scrollster_for_instagram_logo-1.jpg" alt="# Scrollster for instagram logo"></a></p>
+<p>Scrollster for instagram is the best way to showcase instagram photos in a beautiful, full-screen, responsive scrolling gallery.  Scrollster for instagram is a standalone webapp you can run it from your desktop or from a server.</p>
+<p>Scrollster for instagram is very customizable:  You choose what images to display, how many, how large, comments, likes, you name it!  And customization is a snap.</p>
+<script src="https://iyware.com/content/images/2015/04/scrollster_gallery/jbcore/juicebox.js"></script>
+<script>
+new juicebox({
+baseUrl : '/content/images/2015/04/scrollster_gallery/',
+containerId: "scrollster-container",
+galleryWidth: "680",
+galleryHeight: "100%",
+backgroundColor: "#3f729b"
+});
+</script>
+<div id="scrollster-container"></div>
+<h2 style="text-align:center"><a href="https://github.com/thedannywahl/scrollster">Download Scrollster for Instagram</a></h2>
+<hr>
+<h2 id="installation">Installation</h2>
+<p>Navigate to the <code>assets/js</code> folder open the <code>scrollster.js</code> file and enter your <a href="https://instagram.com/developer/clients/manage/">clientID</a> on line 1.</p>
+<h2 id="usage">Usage</h2>
+<p>Simply open index.html in your browser and Scrollster will display the most popular images on instagram.  Click on the hashtag to enter full-screen mode.</p>
+<h2 id="customization">Customization</h2>
+<p>There are two ways to customize the output of Scrollster, the first is with the URL query string and the second is by editing scrollster.js</p>
+<h3 id="querystring">Query String</h3>
+<p>There are a number of options that you can use to customize the display of Scrollster using the query string.</p>
+<ul>
+<li>tag: You can use <code>tag=tagname</code> to show a specific tag from instagram.  If no tag is provided, images from the &quot;popular page&quot; are displayed. You don't need to add &quot;#&quot; at the beginning, just the name of the tag. [default: null]</li>
+<li>images: You can use <code>images=##</code> to set how many images to fetch (maximum 60). [default: 60]</li>
+<li>size: You can use <code>size=small</code> to select which size image to fetch from instagram.  Available sizes are: small, medium, and large. [default: large]</li>
+<li>speed: you can use <code>speed=##</code> to control the speed in seconds the page takes to scroll from top to bottom and vice versa. [default: 90]</li>
+<li>pause: You can use <code>pause=##</code> to control the time in seconds the scroll pauses at the top and bottom of the screen.  [default: 10]</li>
+<li>reload: You can use <code>reload=##</code> to control the time in minutes Scrollster waits to get new images from instagram. [default 60]</li>
+<li>sort: You can use <code>sort=none</code> to control the order in which the images are sorted on the page.  Available sort options are: none, most-recent, least-recent, most-liked, least-liked, most-commented, least-commented, and random. [default: none]</li>
+<li>author: You can use <code>author</code> to display the username of the person who posted the picture. [default: null]</li>
+<li>caption: You can use <code>caption</code> to display the caption that was originally posted with the image (including hashtags) [default: null]</li>
+<li>comments: You can use <code>comments</code> to display the comment count on the image. [default: null]</li>
+<li>likes: You can use <code>likes</code> to display the number of likes on an image. [default: null]</li>
+<li>link: You can use <code>link</code> so that clicking the image will take the user to the image post on instagram. [default: null]</li>
+<li>background: You can use <code>background=red</code> to change the default background color.  If you use hex or rgb be sure to encode the URL. [default: null]</li>
+<li>color: You can use <code>color=purple</code> to change the default font color.  If you use hex or rgb be sure to encode the URL (# is %23). [default: null]</li>
+<li>clientid: You can use <code>clientid=##</code> to provide or override a clientID inserted in scrollster.js. [default: null]</li>
+</ul>
+<h3 id="scrollsterjs">scrollster.js</h3>
+<p>Most of the variables that control the output of Scrollster are in the <code>urlParams{}</code> object.  Simply change the default values that you want.  If you don't want users to be able to modify the output with the query string then at the top of scrollster.js set <code>enableQuery = false;</code> and only the settings from the js file will be used.</p>
+<h2 id="examples">Examples</h2>
+<p><code>?tag=spring&amp;author&amp;sort=random</code>: Display 60 large images all tagged &quot;spring&quot; with the username displayed, slowly scrolling up and down.</p>
+<p><code>?size=small&amp;sort=most-liked&amp;speed=0&amp;refresh=5&amp;likes&amp;link</code>: Display a small grid that doesn't scroll of the most popular images on instagram that refreshes every 5 minutes, sorted by likes and you can click to see the original on instagram.</p>
+<p><code>?tag=tbt&amp;author&amp;likes&amp;comments&amp;caption</code>: See who's throwing back and what they have to say about it.</p>
+<h2 id="license">License</h2>
+<p>Scrollster is built using a combination of open source and proprietary code.  The individual licenses for each open source component can be found in the LICENSE folder.</p>
+<h3 id="main">Main</h3>
+<p>Scrollster for instagram is copyright 2015 Danny Wahl, all rights reserved except where specified in the LICENSE file.</p>
+<h3 id="vendor">Vendor</h3>
+<ul>
+<li><a href="http://vnjs.net/www/project/freewall/">Freewall</a> | © Minh Nguyen | MIT License</li>
+<li><a href="https://html5boilerplate.com/">HTML 5 Boilerplate</a> | © HTML 5 Boilerplate | MIT License</li>
+<li><a href="http://instafeedjs.com/">Instafeed.js</a> | © Steven Schobert | MIT License</li>
+<li><a href="https://jquery.org/">jQuery</a> | © jQuery Foundation and other contributors | MIT License</li>
+<li><a href="http://modernizr.com/">Modernizr</a> | © Faruk Ateş | MIT License</li>
+<li><a href="http://necolas.github.io/normalize.css/">Normalize.css</a> | © Nicolas Gallagher and Jonathan Neal | MIT License</li>
+<li><a href="http://sindresorhus.com/screenfull.js/">Screenfull.js</a> | © Sindre Sorhus | MIT License</li>
+</ul>
+<h2 id="changelog">Changelog</h2>
+<ul>
+<li>1.2</li>
+<li>
+<ul>
+<li>Minimized logo</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Removed extra CSS selectors</li>
+</ul>
+</li>
+<li>1.1</li>
+<li>
+<ul>
+<li>Fix scroll/pause timing: Now runs as soon as the page is loaded</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Fix reference to <code>scroll.js</code> to <code>scrollster.js</code></li>
+</ul>
+</li>
+<li>1.0</li>
+<li>
+<ul>
+<li>Initial release</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 style="text-align:center"><a href="https://github.com/thedannywahl/scrollster">Download Scrollster for Instagram</a></h2></div>]]></content:encoded></item><item><title><![CDATA[Add Share Links to WordPress]]></title><description><![CDATA[<div class="kg-card-markdown"><p>In my previous posts <a href="https://iyware.com/ghost-share-links-cheat-sheet/">Ghost Share Links Cheat Sheet</a> and <a href="https://iyware.com/add-share-links-to-ghost-themes/">Add Share Links to Ghost Themes</a> I explained &quot;no-cost&quot; sharing and provided reusable code snippets in handlebars to add share links to 19 different social networks.  Here they are adapted for WordPress in a single easy to use</p></div>]]></description><link>https://iyware.com/add-share-links-to-wordpress/</link><guid isPermaLink="false">5a513274533fe1b5bec542b1</guid><category><![CDATA[WordPress]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Wed, 25 Mar 2015 00:19:11 GMT</pubDate><content:encoded><![CDATA[<div class="kg-card-markdown"><p>In my previous posts <a href="https://iyware.com/ghost-share-links-cheat-sheet/">Ghost Share Links Cheat Sheet</a> and <a href="https://iyware.com/add-share-links-to-ghost-themes/">Add Share Links to Ghost Themes</a> I explained &quot;no-cost&quot; sharing and provided reusable code snippets in handlebars to add share links to 19 different social networks.  Here they are adapted for WordPress in a single easy to use function.</p>
+<p>tl;dr: <a href="https://gist.github.com/thedannywahl/fde944a1668fce9e2a60">Download WordPress shareLinks at github</a>.</p>
+<h2 id="installing">Installing</h2>
+<p>In your WordPress theme folder you can either simply add the following code to the <code>single.php</code> file inside of the <code>while()</code> loop or add it to your theme's <code>functions.php</code> and call it in <code>single.php</code></p>
+<h2 id="usage">Usage</h2>
+<p>This code provides a single function <code>shareLinks([$sites]){}</code> which takes an optional parameter <code>$sites[]</code> which is array of sites to output links.  If no parameter is provided then all sites are returned.  For example:</p>
+<pre><code class="language-php">shareLinks();  //All the things!
+
+shareLinks(array(&quot;email&quot;)); //Old School!
+
+ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
+</code></pre>
+<p>The function returns a string containing an unordered list with each site as its own list item.  The list item contains an anchor with a helper class of the machine-readable site name, like so:</p>
+<pre><code class="language-markup">&lt;ul&gt;
+  &lt;li&gt;
+    &lt;a class=&quot;stumbleupon&quot; href=&quot;https://stumbleupon.com...&quot;&gt;StumbleUpon&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    ...
+  &lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+<p>To output the list it needs to be echoed after it is called.  The simplest way is like this:</p>
+<pre><code class="language-php">&lt;?php echo shareLinks(); ?&gt;
+</code></pre>
+<p>Ok, now for the dev-nerd stuff...</p>
+<h2 id="queryitems">Query Items</h2>
+<p>Different networks require/allow different query items and as such <code>shareLinks()</code> provides a number operators:</p>
+<ul>
+<li>
+<p><code>$share[&quot;siteTitle&quot;]</code>: This is a string returned from <code>get_bloginfo('name')</code>.</p>
+</li>
+<li>
+<p><code>$share[&quot;siteURL&quot;]</code>: This is a string returned from <code>get_site_url()</code>.</p>
+</li>
+<li>
+<p><code>$share[&quot;postTitle&quot;]</code>: This is a string returned from <code>get_the_title()</code>.</p>
+</li>
+<li>
+<p><code>$share[&quot;postURL&quot;]</code>: This is a string returned from <code>get_permalink()</code> and then passed through <code>remove_query_arg()</code> to remove the page indicator.  If you want to share a specific page of a post then you'll need to remove the <code>remove_query_arg()</code> call.</p>
+</li>
+<li>
+<p><code>$share[&quot;postCategory&quot;]</code>: This is a string of all categories of the post returned from <code>get_the_category()</code> and then the spaces are stripped out of category names and each category is prefixed with &quot;#&quot;.  For example if a post is categorized as &quot;Word Press, Themes&quot; the return would be &quot; #WordPress #Themes&quot;.</p>
+</li>
+<li>
+<p><code>$share[&quot;postDblCategory&quot;]</code>: This is the same as <code>$share[&quot;postCategory&quot;]</code> except categories are also suffixed with &quot;#&quot; as is required by some networks.  For example if a post is categorized as &quot;The Simpsons, Ralph Wiggum&quot; the return would be &quot;#TheSimpsons# #RalphWiggum#&quot;.</p>
+</li>
+<li>
+<p><code>$share[&quot;postExcerpt&quot;]</code>: This is a string returned from <code>get_the_excerpt()</code> and then passed to <code>wp_strip_all_tags()</code>: This will have &quot;Continue Reading&quot; at the end.  If you want to remove that you'll need to add a filter to your theme.</p>
+</li>
+<li>
+<p><code>$share[&quot;postShortExcerpt&quot;]</code>: This is <code>$share[&quot;postExcerpt&quot;]</code>: substringed to the first 90 characters for networks with shorter share limits.</p>
+</li>
+<li>
+<p><code>$share[&quot;postImage&quot;]</code>  This is the URL of the featured image of the post.  If there is no featured image for the post, then it will grab the URL of the first image attached to the post.  If there are no images in the post then it is empty- which is fine.</p>
+</li>
+</ul>
+<h2 id="networksarray">Networks Array</h2>
+<p>Each network (facebook, twitter, etc..) is simply part of a multidimensional array.  To add another network, simply create another entry in <code>networks[]</code>.  Here's the schema of the primary array:</p>
+<pre><code class="language-language-php">	$networks[&quot;network-machine-readable-name&quot;] = [
+		&quot;name&quot;  =&gt; &quot;Network Display Name&quot;,
+		&quot;url&quot;   =&gt; &quot;https://example.com/share?&quot;,
+		&quot;query&quot; =&gt; [
+		    &quot;foo&quot; =&gt; $share[&quot;postURL&quot;]
+            &quot;bar&quot; =&gt; $share[&quot;postTitle&quot;],
+		],
+	];
+</code></pre>
+<p>The machine readable name is the helper class that's provided in the anchor, the &quot;name&quot; is the text output in the anchor content.  This is important especially when dealing with multilingual sites, for example &quot;Sina Weibo&quot; is <code>$networks[&quot;sinaWeibo&quot;]</code> but the display name is: <code>&quot;name&quot; =&gt; &quot;新浪微博&quot;</code>  to change the display of the network name you would change the &quot;name&quot; value.</p>
+<p>The <code>&quot;url&quot;</code> array value is where the share URL is stored- this is different for each site, but it should always end with the beginning of the query URL (i.e. <code>?</code>).</p>
+<p>The <code>&quot;query&quot;</code> array value should store another array which are the components of the URL query.  These are different for each network, but can be populated with elements from the <code>$share[]</code> array as outlined above.  For example a query array might look like this:</p>
+<pre><code class="language-language-php">&quot;query&quot; =&gt; [
+    &quot;url&quot; =&gt; $share[&quot;postURL&quot;],
+    &quot;title&quot; =&gt; $share[&quot;postTitle&quot;],
+    &quot;redirect&quot; =&gt; &quot;false&quot;,
+],
+</code></pre>
+<p>Notice the last option &quot;redirect=false&quot;.  It's possible to add static elements to the query URL if they're required by the remote site.  In the end this will give us something like:</p>
+<pre><code class="language-language-markup">url=http://example.com&amp;title=Post Title&amp;redirect=false
+</code></pre>
+<p>Finally, our query is passed through <a href="http://php.net/http_build_query"><code>http_build_query()</code></a> to make it URL encoded.</p>
+<h2 id="examples">Examples</h2>
+<p>The following are real examples of this function in action on my wife's blog (<a href="http://iywahl.com">iywahl.com</a>) with a random post.  Her site is using WordPress 4.1.1 and the &quot;Twenty Fifteen&quot; theme.</p>
+<h3 id="email">Email</h3>
+<pre><code class="language-language-php">	$networks[&quot;email&quot;] = [
+		&quot;name&quot;  =&gt; &quot;E-mail&quot;,
+		&quot;url&quot;   =&gt; &quot;mailto:?&quot;,
+		&quot;query&quot; =&gt; [
+		    &quot;subject&quot; =&gt; $share[&quot;siteTitle&quot;] . &quot;: &quot; . $share[&quot;postTitle&quot;],
+			&quot;body&quot;    =&gt; $share[&quot;postTitle&quot;] . &quot;\r\n&quot; . $share[&quot;postURL&quot;] . &quot;\r\n\r\n&quot; . $share[&quot;postExcerpt&quot;],
+		],
+	];
+</code></pre>
+<p><img src="https://iyware.com/content/images/2015/03/share-to-email-with-wordpress.png" alt=""></p>
+<h3 id="twitter">twitter</h3>
+<pre><code class="language-language-php">	$networks[&quot;twitter&quot;] = [
+		&quot;name&quot;  =&gt; &quot;twitter&quot;,
+		&quot;url&quot;   =&gt; &quot;https://twitter.com/home?&quot;,
+		&quot;query&quot; =&gt; [
+		    &quot;status&quot; =&gt; $share[&quot;postURL&quot;] . $share[&quot;postCategory&quot;],
+		],
+	];
+</code></pre>
+<p><img src="https://iyware.com/content/images/2015/03/share-to-twitter-with-wordpress.png" alt=""></p>
+<h3 id="facebook">Facebook</h3>
+<pre><code class="language-language-php">	$networks[&quot;facebook&quot;] = [
+		&quot;name&quot;  =&gt; &quot;Facebook&quot;,
+		&quot;url&quot;   =&gt; &quot;https://www.facebook.com/sharer/sharer.php?&quot;,
+		&quot;query&quot; =&gt; [
+			&quot;u&quot; =&gt; $share[&quot;postURL&quot;],
+		],
+	];
+</code></pre>
+<p><img src="https://iyware.com/content/images/2015/03/share-to-facebook-with-wordpress.png" alt=""></p>
+<h3 id="google">Google+</h3>
+<pre><code class="language-language-php">	$networks[&quot;googlePlus&quot;] = [
+		&quot;name&quot;  =&gt; &quot;Google+&quot;,
+		&quot;url&quot;   =&gt; &quot;https://plus.google.com/share?&quot;,
+		&quot;query&quot; =&gt; [
+			&quot;url&quot; =&gt; $share[&quot;postURL&quot;],
+		],
+	];
+</code></pre>
+<p><img src="https://iyware.com/content/images/2015/03/share-to-googleplus-with-wordpress.png" alt=""></p>
+<h3 id="linkedin">LinkedIn</h3>
+<pre><code class="language-language-php">	$networks[&quot;linkedin&quot;] = [
+		&quot;name&quot;  =&gt; &quot;LinkedIn&quot;,
+		&quot;url&quot;   =&gt; &quot;https://www.linkedin.com/shareArticle?&quot;,
+		&quot;query&quot; =&gt; [
+			&quot;mini&quot;    =&gt; &quot;true&quot;,
+			&quot;url&quot;     =&gt; $share[&quot;postURL&quot;],
+			&quot;title&quot;   =&gt; $share[&quot;postTitle&quot;],
+			&quot;summary&quot; =&gt; $share[&quot;postExcerpt&quot;],
+			&quot;source&quot;  =&gt; $share[&quot;siteTitle&quot;],
+		],
+	];
+</code></pre>
+<p><img src="https://iyware.com/content/images/2015/03/share-to-linkedin-with-wordpress.png" alt=""></p>
+<h3 id="pinterest">Pinterest</h3>
+<pre><code class="language-language-php">	$networks[&quot;pinterest&quot;] = [
+		&quot;name&quot;  =&gt; &quot;Pinterest&quot;,
+		&quot;url&quot;   =&gt; &quot;https://pinterest.com/pin/create/button/?&quot;,
+		&quot;query&quot; =&gt; [
+			&quot;url&quot;         =&gt; $share[&quot;postURL&quot;],
+			&quot;media&quot;       =&gt; $share[&quot;postImage&quot;],
+			&quot;description&quot; =&gt; $share[&quot;postShortExcerpt&quot;], 
+		],
+	];
+</code></pre>
+<p><img src="https://iyware.com/content/images/2015/03/share-to-pinterest-with-wordpress.png" alt=""></p>
+<h3 id="tumblr">Tumblr</h3>
+<pre><code class="language-language-php">	$networks[&quot;tumblr&quot;] = [
+		&quot;name&quot;  =&gt; &quot;tumblr&quot;,
+		&quot;url&quot;   =&gt; &quot;http://www.tumblr.com/share/link?&quot;,
+		&quot;query&quot; =&gt; [
+			&quot;url&quot;         =&gt; $share[&quot;postURL&quot;],
+			&quot;name&quot;        =&gt; $share[&quot;postTitle&quot;],
+			&quot;description&quot; =&gt; $share[&quot;postExcerpt&quot;],
+		],
+	];
+</code></pre>
+<p><img src="https://iyware.com/content/images/2015/03/share-to-tumblr-with-wordpress.png" alt=""></p>
+<h3 id="reddit">reddit</h3>
+<pre><code class="language-language-php">	$networks[&quot;reddit&quot;] = [
+		&quot;name&quot;  =&gt; &quot;reddit&quot;,
+		&quot;url&quot;   =&gt; &quot;http://www.reddit.com/submit/?&quot;,
+		&quot;query&quot; =&gt; [
+			&quot;url&quot;   =&gt; $share[&quot;postURL&quot;],
+			&quot;title&quot; =&gt; $share[&quot;postTitle&quot;],
+		],
+	];
+</code></pre>
+<p><img src="https://iyware.com/content/images/2015/03/share-to-reddit-with-wordpress.png" alt=""></p>
+<h3 id="xing">Xing</h3>
+<pre><code class="language-language-php">	$networks[&quot;xing&quot;] = [
+		&quot;name&quot;  =&gt; &quot;Xing&quot;,
+		&quot;url&quot;   =&gt; &quot;https://www.xing.com/spi/shares/new?&quot;,
+		&quot;query&quot; =&gt; [
+			&quot;sc_p&quot; =&gt; &quot;xing-share&quot;,
+			&quot;url&quot;  =&gt; $share[&quot;postURL&quot;],
+		],
+	];
+</code></pre>
+<p><img src="https://iyware.com/content/images/2015/03/share-to-xing-with-wordpress.png" alt=""></p>
+<h3 id="vk">VK</h3>
+<pre><code class="language-language-php">	$networks[&quot;vk&quot;] = [
+		&quot;name&quot;  =&gt; &quot;VK&quot;,
+		&quot;url&quot;   =&gt; &quot;https://vk.com/share.php?&quot;,
+		&quot;query&quot; =&gt; [
+			&quot;url&quot;         =&gt; $share[&quot;postURL&quot;],
+			&quot;title&quot;       =&gt; $share[&quot;postTitle&quot;],
+			&quot;description&quot; =&gt; $share[&quot;postExcerpt&quot;],
+			&quot;image&quot;       =&gt; $share[&quot;postImage&quot;],
+			&quot;noparse&quot;     =&gt; &quot;true&quot;,
+		],
+	];
+</code></pre>
+<p><img src="https://iyware.com/content/images/2015/03/share-to-vk-with-wordpress.png" alt=""></p>
+<h3 id="buffer">buffer</h3>
+<pre><code class="language-language-php">	$networks[&quot;buffer&quot;] = [
+		&quot;name&quot;  =&gt; &quot;buffer&quot;,
+		&quot;url&quot;   =&gt; &quot;https://bufferapp.com/add/?&quot;,
+		&quot;query&quot; =&gt; [
+			&quot;url&quot;  =&gt; $share[&quot;postURL&quot;],
+			&quot;text&quot; =&gt; $share[&quot;postShortExcerpt&quot;],
+		],
+	];
+</code></pre>
+<p><img src="https://iyware.com/content/images/2015/03/share-to-buffer-with-wordpress.png" alt=""></p>
+<h3 id="stumbleupon">StumbleUpon</h3>
+<pre><code class="language-language-php">	$networks[&quot;stumbleupon&quot;] = [
+		&quot;name&quot;  =&gt; &quot;StumbleUpon&quot;,
+		&quot;url&quot;   =&gt; &quot;https://www.stumbleupon.com/submit?&quot;,
+		&quot;query&quot; =&gt; [
+			&quot;url&quot;   =&gt; $share[&quot;postURL&quot;],
+			&quot;title&quot; =&gt; $share[&quot;postTitle&quot;],
+		],
+	];
+</code></pre>
+<p><img src="https://iyware.com/content/images/2015/03/share-to-stumbleupon-with-wordpress.png" alt=""></p>
+<h3 id="sinaweibo">新浪微博 (Sina Weibo)</h3>
+<pre><code class="language-language-php">	$networks[&quot;sinaWeibo&quot;] = [
+		&quot;name&quot;  =&gt; &quot;新浪微博&quot;,
+		&quot;url&quot;   =&gt; &quot;http://service.weibo.com/share/share.php?&quot;,
+		&quot;query&quot; =&gt; [
+			&quot;url&quot;   =&gt; $share[&quot;postURL&quot;],
+			&quot;pic&quot;   =&gt; $share[&quot;postImage&quot;],
+			&quot;title&quot; =&gt; $share[&quot;postTitle&quot;] . &quot;%0D%0A&quot; . $share[&quot;postShortExcerpt&quot;] . $share[&quot;postDblCategory&quot;],
+		],
+	];
+</code></pre>
+<p><img src="https://iyware.com/content/images/2015/03/share-to-sinaweibo-with-wordpress.png" alt=""></p>
+<h3 id="baidu">Baidu空间</h3>
+<pre><code class="language-language-php">	$networks[&quot;baidu&quot;] = [
+		&quot;name&quot;  =&gt; &quot;Baidu空间&quot;,
+		&quot;url&quot;   =&gt; &quot;http://hi.baidu.com/pub/show/share?&quot;,
+		&quot;query&quot; =&gt; [
+			&quot;url&quot;   =&gt; $share[&quot;postURL&quot;],
+			&quot;title&quot; =&gt; $share[&quot;postTitle&quot;],
+		],
+	];
+</code></pre>
+<p><img src="https://iyware.com/content/images/2015/03/share-to-baidus-with-wordpress.png" alt=""></p>
+<h3 id="renren">人人网 (Renren)</h3>
+<pre><code class="language-language-php">	$networks[&quot;renren&quot;] = [
+		&quot;name&quot;  =&gt; &quot;人人网&quot;,
+		&quot;url&quot;   =&gt; &quot;http://share.renren.com/share/buttonshare?&quot;,
+		&quot;query&quot; =&gt; [
+			&quot;link&quot;  =&gt; $share[&quot;postURL&quot;],
+			&quot;title&quot; =&gt; $share[&quot;postTitle&quot;],
+		],
+	];
+</code></pre>
+<p><img src="https://iyware.com/content/images/2015/03/share-to-renren-with-wordpress.png" alt=""></p>
+<h3 id="qqtencentweibo">腾讯微博 (QQ Tencent Weibo)</h3>
+<pre><code class="language-language-php">	$networks[&quot;tencentWeibo&quot;] = [
+		&quot;name&quot;  =&gt; &quot;腾讯微博&quot;,
+		&quot;url&quot;   =&gt; &quot;http://v.t.qq.com/share/share.php?&quot;,
+		&quot;query&quot; =&gt; [
+			&quot;title&quot; =&gt; $share[&quot;postTitle&quot;] . &quot; &quot; . $share[&quot;postShortExcerpt&quot;] . $share[&quot;postDblCategory&quot;],
+			&quot;url&quot;   =&gt; $share[&quot;postURL&quot;],
+		],
+	];
+</code></pre>
+<p><img src="https://iyware.com/content/images/2015/03/share-to-tencentweibo-with-wordpress.png" alt=""></p>
+<h3 id="qq">QQ空间</h3>
+<pre><code class="language-language-php">	$networks[&quot;qzone&quot;] = [
+		&quot;name&quot;  =&gt; &quot;QQ空间&quot;,
+		&quot;url&quot;   =&gt; &quot;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?&quot;,
+		&quot;query&quot; =&gt; [
+			&quot;title&quot;   =&gt; $share[&quot;postTitle&quot;],
+			&quot;url&quot;     =&gt; $share[&quot;postURL&quot;],
+			&quot;summary&quot; =&gt; $share[&quot;postShortExcerpt&quot;],
+		],
+	];
+</code></pre>
+<p><img src="https://iyware.com/content/images/2015/03/share-to-qqzone-with-weibo.png" alt=""></p>
+<h3 id="pengyou">腾讯朋友网 (Pengyou)</h3>
+<pre><code class="language-language-php">	$networks[&quot;pengyou&quot;] = [
+		&quot;name&quot;  =&gt; &quot;腾讯朋友网&quot;,
+		&quot;url&quot;   =&gt; &quot;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?&quot;,
+		&quot;query&quot; =&gt; [
+			&quot;to&quot; =&gt; &quot;pengyou&quot;,
+			&quot;title&quot;   =&gt; $share[&quot;postTitle&quot;],
+			&quot;url&quot;     =&gt; $share[&quot;postURL&quot;],
+			&quot;summary&quot; =&gt; $share[&quot;postShortExcerpt&quot;],
+		],
+	];
+</code></pre>
+<p><img src="https://iyware.com/content/images/2015/03/share-to-pengyou-with-wordpress.png" alt=""></p>
+<p>Wow, are you still reading this?  Go <a href="https://gist.github.com/thedannywahl/fde944a1668fce9e2a60">download shareLinks from github</a> and add it to your theme!</p>
+</div>]]></content:encoded></item><item><title><![CDATA[Ghost Theme Lenore]]></title><description><![CDATA[<div class="kg-card-markdown"><p><a href="http://ghost.org/">Ghost</a> is a blogging platform.  <a href="http://lenore.iyware.com"><em>Lenore</em></a> is a theme designed to showcase writing and as such most of its features are about what it doesn't do.</p>
+<p><img src="https://iyware.com/content/images/2015/03/lenore-banner-2.jpg" alt=""></p>
+<h2 id="demo">Demo</h2>
+<p>A demo site of this theme is available at <a href="http://lenore.iyware.com">lenore.iyware.com</a></p>
+<h2 id="features">Features</h2>
+<ul>
+<li>Ghost 0.5.10 compatible:
+<ul>
+<li>Images [<a href="http://support.ghost.org/change-my-ghost-blog-logo/">logo</a>, <a href="http://support.ghost.org/upload-cover-image-ghost-blog/">blog cover</a>, <a href="http://support.ghost.org/change-user-image-cover-photo/">author</a></li></ul></li></ul></div>]]></description><link>https://iyware.com/ghost-theme-lenore/</link><guid isPermaLink="false">5a513274533fe1b5bec542ae</guid><category><![CDATA[Portfolio]]></category><category><![CDATA[Ghost]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Thu, 19 Mar 2015 04:50:20 GMT</pubDate><content:encoded><![CDATA[<div class="kg-card-markdown"><p><a href="http://ghost.org/">Ghost</a> is a blogging platform.  <a href="http://lenore.iyware.com"><em>Lenore</em></a> is a theme designed to showcase writing and as such most of its features are about what it doesn't do.</p>
+<p><img src="https://iyware.com/content/images/2015/03/lenore-banner-2.jpg" alt=""></p>
+<h2 id="demo">Demo</h2>
+<p>A demo site of this theme is available at <a href="http://lenore.iyware.com">lenore.iyware.com</a></p>
+<h2 id="features">Features</h2>
+<ul>
+<li>Ghost 0.5.10 compatible:
+<ul>
+<li>Images [<a href="http://support.ghost.org/change-my-ghost-blog-logo/">logo</a>, <a href="http://support.ghost.org/upload-cover-image-ghost-blog/">blog cover</a>, <a href="http://support.ghost.org/change-user-image-cover-photo/">author</a>, <a href="http://support.ghost.org/add-image-post/">post</a>, <a href="http://support.ghost.org/using-tag-manager/#tag-image">tag</a>]</li>
+<li><a href="http://support.ghost.org/using-tag-manager/">Tags</a></li>
+<li><a href="http://support.ghost.org/publish-a-static-page/">Pages</a></li>
+<li><a href="http://support.ghost.org/post-settings-overview/#set-post-as-featured">Featured Posts</a></li>
+<li><a href="http://support.ghost.org/add-navigation-menu-ghost-blog/">Navigation</a></li>
+<li><a href="http://support.ghost.org/use-code-injection/">Code Injection</a></li>
+</ul>
+</li>
+<li>Dynamic rem/em based <a href="https://css-tricks.com/rems-ems/">root/compontent/element</a> sizing</li>
+<li>1.9KB of CSS (inluding <a href="http://necolas.github.io/normalize.css/">normalize.css</a>!)</li>
+<li>woff2 font with woff fallback (<a href="https://gist.github.com/sergejmueller/cf6b4f2133bcb3e2f64a">read more</a>)</li>
+<li>19 social sharing links
+<ul>
+<li>Email, twitter, Facebook, Google+, LinkedIn enabled by default</li>
+<li>Uncomment others in <code>post.hbs</code></li>
+</ul>
+</li>
+<li>HTML Validated with <a href="http://validator.w3.org/nu/">Nu HTML Checker</a></li>
+<li>Insanely easy to customize:
+<ul>
+<li>lightweight CSS specification</li>
+<li>shallow nesting</li>
+<li>no IDs</li>
+</ul>
+</li>
+</ul>
+<h2 id="unfeatures">Un-features</h2>
+<ul>
+<li>Exactly one layout. Use it with or without images, logos, descriptions, bios; it looks great with any options- and you don't have to edit a thing, it just works.</li>
+<li>No grid</li>
+<li>No JavaScript</li>
+<li>No images</li>
+<li>No external resources!</li>
+<li>No shims, fallbacks, or browser hacks ‐ because you don't need them</li>
+</ul>
+<h2 id="browsercompatiblity">Browser Compatiblity</h2>
+<p>✓Firefox <br>
+✓Safari <br>
+✓Chrome <br>
+✓IE9<br><br>
+✓iOS Safari 7 <br>
+✓Opera <br>
+✓Android <br>
+✓Vivaldi</p>
+<h2 id="layouts">Layouts</h2>
+<p>Lenore supports several different content configurations, below are links to some examples.  Note that none of these examples require theme customization, they just work.</p>
+<h3 id="author">Author</h3>
+<p><img src="https://iyware.com/content/images/2015/03/lenore-author-archive.jpg" alt=""></p>
+<p><a href="http://lenore.iyware.com/author/poe/">Author archive: ✓image, ✓cover</a><br><br>
+<a href="http://lenore.iyware.com/author/ghost-writer/">Author archive: ✗image, ✗cover</a></p>
+<p><a href="http://lenore.iyware.com/author-with-bioimages/">Author post: ✓with bio</a><br><br>
+<a href="http://lenore.iyware.com/author-without-bioimages/">Author post: ✗bio</a></p>
+<h3 id="page">Page</h3>
+<p><img src="https://iyware.com/content/images/2015/03/lenore-page-layout.jpg" alt=""></p>
+<p><a href="http://lenore.iyware.com/layouts/">Page: ✓image</a><br><br>
+<a href="http://lenore.iyware.com/features/">Page: ✗image</a></p>
+<h3 id="tagarchive">Tag Archive</h3>
+<p><img src="https://iyware.com/content/images/2015/03/lenore-tag-archive.jpg" alt=""></p>
+<p><a href="http://lenore.iyware.com/tag/tag-image-and-description/">Tag archive: ✓image, ✓description</a><br><br>
+<a href="http://lenore.iyware.com/tag/description/">Tag archive: ✗image, ✓description</a><br><br>
+<a href="http://lenore.iyware.com/tag/tag-image/">Tag archive: ✓image, ✗description</a><br><br>
+<a href="http://lenore.iyware.com/tag/paged/">Tag archive: ✗image, ✗description</a></p>
+<h3 id="post">Post</h3>
+<p><img src="https://iyware.com/content/images/2015/03/lenore-post.jpg" alt=""></p>
+<p><a href="http://lenore.iyware.com/image-and-tags/">Post: ✓image</a><br><br>
+<a href="http://lenore.iyware.com/tags-no-image/">Post: ✗image</a><br><br>
+<a href="http://lenore.iyware.com/tags-no-image/">Post: ✓tags</a><br><br>
+<a href="http://lenore.iyware.com/no-image-no-tags/">Post: ✗tags</a></p>
+<h2 id="customization">Customization</h2>
+<p>Lenore is easy to customize and everything you want to customize is commented in the file you need to edit.</p>
+<h3 id="stylesheets">Stylesheets</h3>
+<p>The CSS has a table of contents and comments labeled inline.  Want to change the link color?  Find it in the table of contents and search for it.  It's this easy:</p>
+<pre><code class="language-language-css">a {
+	color: #4b87aa; /*&lt;==11*/
+	text-decoration: none;
+	transition: all 0.25s;
+}
+a:hover,
+a:focus,
+a:active{
+	color: #068bd8; /*&lt;==12*/
+}
+</code></pre>
+<p>Or how about the max-width of post content?</p>
+<pre><code class="language-language-css">    article {
+	    max-width: 34rem; /*&lt;==06*/
+    }
+</code></pre>
+<h3 id="socialsharing">Social Sharing</h3>
+<p>There are also a number of social sharing links in <code>post.hbs</code>.  By default only 5 are enabled.  To enable or disable different networks, simply uncomment them by removing the handlebars around the <code>&lt;li&gt;</code> elements:</p>
+<pre><code class="language-language-handlebars">{{!--REDDIT
+	&lt;li&gt;&lt;a class=&quot;reddit&quot; href=&quot;http://www.reddit.com/submit/?url={{@blog.url}}{{url}}&quot;&gt;reddit&lt;/a&gt;&lt;/li&gt;
+--}}
+</code></pre>
+<p>becomes:</p>
+<pre><code class="language-language-handlebars">    &lt;li&gt;&lt;a class=&quot;reddit&quot; href=&quot;http://www.reddit.com/submit/?url={{@blog.url}}{{url}}&quot;&gt;reddit&lt;/a&gt;&lt;/li&gt;
+</code></pre>
+<p>All social networks have a helper class for ease of styling.  In total there are 19 sharing options provided.</p>
+<h2 id="downloadsupport">Download &amp; Support</h2>
+<p>Lenore is available for download on github and support is provided via github issues.</p>
+<p><a href="https://github.com/thedannywahl/ghost_theme-lenore/releases">Download <em>Lenore: A Theme for Writing</em></a></p>
+</div>]]></content:encoded></item><item><title><![CDATA[Ghost Share Links Cheat Sheet]]></title><description><![CDATA[<div class="kg-card-markdown"><p>In my previous post <a href="https://iyware.com/add-share-links-to-ghost-themes/">Add Share Links to Ghost Themes</a> I outlined how to create no-cost share links using the Ghost handlebars API.  In this post I'll provide code snippets to some of the most popular social networks that you can simply copy and paste into your custom theme.</p>
+<h2 id="email">Email</h2></div>]]></description><link>https://iyware.com/ghost-share-links-cheat-sheet/</link><guid isPermaLink="false">5a513274533fe1b5bec542ac</guid><category><![CDATA[Ghost]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Mon, 16 Mar 2015 12:20:12 GMT</pubDate><content:encoded><![CDATA[<div class="kg-card-markdown"><p>In my previous post <a href="https://iyware.com/add-share-links-to-ghost-themes/">Add Share Links to Ghost Themes</a> I outlined how to create no-cost share links using the Ghost handlebars API.  In this post I'll provide code snippets to some of the most popular social networks that you can simply copy and paste into your custom theme.</p>
+<h2 id="email">Email</h2>
+<pre><code class="language-language-handlebars">&lt;a href=&quot;mailto:?&amp;subject={{encode @blog.title}}%3A%20{{encode title}}&amp;body={{encode title}}%0D%0A{{url absolute=&quot;true&quot;}}%0D%0A%0D%0A{{excerpt words=&quot;45&quot;}}%2E%2E%2E&quot;&gt;
+    Email
+&lt;/a&gt;
+</code></pre>
+<p><img src="https://iyware.com/content/images/2015/03/share-to-email-with-ghost-1.png" alt=""></p>
+<h2 id="twitter">twitter</h2>
+<pre><code class="language-language-handlebars">&lt;a href=&quot;https://twitter.com/home?status={{url absolute=&quot;true&quot;}}%20{{tags prefix=&quot;%23&quot; separator=&quot;%20%23&quot; autolink=&quot;false&quot;}}&quot;&gt;
+    Twitter
+&lt;/a&gt;
+</code></pre>
+<p><img src="https://iyware.com/content/images/2015/03/share-to-twitter-with-ghost.png" alt=""></p>
+<h2 id="facebook">Facebook</h2>
+<pre><code class="language-language-handlebars">&lt;a href=&quot;https://www.facebook.com/sharer/sharer.php?u={{url absolute=&quot;true&quot;}}&quot;&gt;
+    Facebook
+&lt;/a&gt;
+</code></pre>
+<p><img src="https://iyware.com/content/images/2015/03/share-to-facebook-with-ghost-1.png" alt=""></p>
+<h2 id="google">Google+</h2>
+<pre><code class="language-language-handlebars">&lt;a href=&quot;https://plus.google.com/share?url={{url absolute=&quot;true&quot;}}&quot;&gt;
+    Google+
+&lt;/a&gt;
+</code></pre>
+<p><img src="https://iyware.com/content/images/2015/03/share-to-google-plus-with-ghost.png" alt=""></p>
+<h2 id="linkedin">LinkedIn</h2>
+<pre><code class="language-language-handlebars">&lt;a href=&quot;https://www.linkedin.com/shareArticle?mini=true&amp;url={{url absolute=&quot;true&quot;}}&amp;title={{encode title}}&amp;summary={{excerpt words=&quot;45&quot;}}&amp;source={{@blog.title}}&quot;&gt;
+    LinkedIn
+&lt;/a&gt;
+</code></pre>
+<p><img src="https://iyware.com/content/images/2015/03/share-to-linkedin-with-ghost.png" alt=""></p>
+<h2 id="pinterest">Pinterest</h2>
+<pre><code class="language-language-handlebars">&lt;a href=&quot;https://pinterest.com/pin/create/button/?{{url absolute=&quot;true&quot;}}{{#if image}}&amp;media={{@blog.url}}{{image}}{{/if}}&amp;description={{excerpt words=&quot;20&quot;}}&quot;&gt;
+    Pinterest
+&lt;/a&gt;
+</code></pre>
+<p><img src="https://iyware.com/content/images/2015/03/share-to-pinterest-with-ghost-1.png" alt=""></p>
+<h2 id="tumblr">tumblr</h2>
+<pre><code class="language-language-handlebars">&lt;a href=&quot;http://www.tumblr.com/share/link?url={{url absolute=&quot;true&quot;}}&amp;name={{encode title}}&amp;description={{excerpt words=&quot;45&quot;}}&quot;&gt;
+    Tumblr
+&lt;/a&gt;
+</code></pre>
+<p><img src="https://iyware.com/content/images/2015/03/share-to-tumblr-with-ghost.png" alt=""></p>
+<h2 id="reddit">reddit</h2>
+<pre><code class="language-language-handlebars">&lt;a href=&quot;http://www.reddit.com/submit/?url={{url absolute=&quot;true&quot;}}&amp;title={{encode title}}&quot;&gt;
+    reddit
+&lt;/a&gt;
+</code></pre>
+<p><img src="https://iyware.com/content/images/2015/03/share-to-reddit-with-ghost.png" alt=""></p>
+<h2 id="xing">Xing</h2>
+<pre><code class="language-language-handlebars">&lt;a href=&quot;https://www.xing-share.com/app/user?op=share;sc_p=xing-share;url={{url absolute=&quot;true&quot;}}&quot;&gt;
+    Xing
+&lt;/a&gt;
+</code></pre>
+<p><img src="https://iyware.com/content/images/2015/03/share-to-xing-with-ghost.png" alt=""></p>
+<h2 id="vk">VK</h2>
+<pre><code class="language-language-handlebars">&lt;a href=&quot;https://vk.com/share.php?url={{url absolute=&quot;true&quot;}}&amp;title={{encode title}}&amp;description={{excerpt words=&quot;45&quot;}}{{#if image}}&amp;image={{@blog.url}}{{image}}{{/if}}&amp;noparse=true&quot;&gt;
+    VK
+&lt;/a&gt;
+</code></pre>
+<p><img src="https://iyware.com/content/images/2015/03/share-to-VK-with-ghost.png" alt=""></p>
+<h2 id="buffer">buffer</h2>
+<pre><code class="language-language-handlebars">&lt;a href=&quot;https://bufferapp.com/add/?url={{url absolute=&quot;true&quot;}}&amp;text={{excerpt words=&quot;20&quot;}}&quot;&gt;
+    Buffer
+&lt;/a&gt;
+</code></pre>
+<p><img src="https://iyware.com/content/images/2015/03/share-to-buffer-with-ghost.png" alt=""></p>
+<h2 id="stumbleupon">StumbleUpon</h2>
+<pre><code class="language-language-handlebars">&lt;a href=&quot;https://www.stumbleupon.com/submit?url={{url absolute=&quot;true&quot;}}%2F&amp;title={{encode title}}&quot;&gt;
+    StumbleUpon
+&lt;/a&gt;
+</code></pre>
+<p><img src="https://iyware.com/content/images/2015/03/share-to-stumbleupon-with-ghost-2.png" alt=""></p>
+<h2 id="sinaweibo">新浪微博 (Sina Weibo)</h2>
+<pre><code class="language-language-handlebars">&lt;a href=&quot;http://service.weibo.com/share/share.php?url={{url absolute=&quot;true&quot;}}&amp;title={{encode title}}%0D%0A{{excerpt words=&quot;20&quot;}}%20{{tags prefix=&quot;%23&quot; separator=&quot;%23 %23&quot; suffix=&quot;%23&quot; autolink=&quot;false&quot;}}{{#if image}}&amp;pic={{@blog.url}}{{image}}{{/if}}&quot;&gt;
+    新浪微博
+&lt;/a&gt;
+</code></pre>
+<p><img src="https://iyware.com/content/images/2015/03/share-to-sinaweibo-with-ghost.png" alt=""></p>
+<h2 id="baidu">Baidu空间</h2>
+<pre><code class="language-language-handlebars">&lt;a href=&quot;http://hi.baidu.com/pub/show/share?url={{url absolute=&quot;true&quot;}}&amp;title={{encode title}}&quot;&gt;
+    Baidu空间
+&lt;/a&gt;
+</code></pre>
+<p><img src="https://iyware.com/content/images/2015/03/share-to-baidu-with-ghost.png" alt=""></p>
+<h2 id="renren">人人网 (Renren)</h2>
+<pre><code class="language-language-handlebars">&lt;a href=&quot;http://share.renren.com/share/buttonshare?link={{url absolute=&quot;true&quot;}}&amp;title={{encode title}}&quot;&gt;
+    人人网
+&lt;/a&gt;
+</code></pre>
+<p><img src="https://iyware.com/content/images/2015/03/share-to-renren-with-ghost.png" alt=""></p>
+<h2 id="qqtencentweibo">腾讯微博 (QQ Tencent Weibo)</h2>
+<pre><code class="language-language-handlebars">&lt;a href=&quot;http://v.t.qq.com/share/share.php?title={{encode title}}%3A%20{{excerpt words=&quot;20&quot;}}%20{{tags prefix=&quot;%23&quot; separator=&quot;%23 %23&quot; suffix=&quot;%23&quot; autolink=&quot;false&quot;}}&amp;url={{url absolute=&quot;true&quot;}}&quot;&gt;
+    腾讯微博
+&lt;/a&gt;
+</code></pre>
+<p><img src="https://iyware.com/content/images/2015/03/share-to-qq-tencent-weibo-with-ghost.png" alt=""></p>
+<h2 id="qq">QQ空间</h2>
+<pre><code class="language-language-handlebars">&lt;a href=&quot;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?title={{encode title}}&amp;url={{url absolute=&quot;true&quot;}}&amp;summary={{excerpt words=&quot;20&quot;}}&quot;&gt;
+    QQ空间
+&lt;/a&gt;
+</code></pre>
+<p><img src="https://iyware.com/content/images/2015/03/share-to-qq-zone-with-ghost.png" alt=""></p>
+<h2 id="pengyou">腾讯朋友网 (Pengyou)</h2>
+<pre><code class="language-language-handlebars">&lt;a href=&quot;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?to=pengyou&amp;title={{encode title}}&amp;url={{url absolute=&quot;true&quot;}}&amp;summary={{excerpt words=&quot;20&quot;}}&quot;&gt;
+    腾讯朋友网
+&lt;/a&gt;
+</code></pre>
+<p><img src="https://iyware.com/content/images/2015/03/share-to-pengyou-with-ghost.png" alt=""></p>
+<p>And there you have it. Share links that you can copy and paste into your theme.  Now if you're wondering what they look like in the wild, well here they are- maybe try clicking one and share this post yourself.</p>
+</div>]]></content:encoded></item><item><title><![CDATA[Add Share Links to Ghost Themes]]></title><description><![CDATA[<div class="kg-card-markdown"><p>Seems like the internet is all about sharing these days.  Back in my day it was a place for the <em>anti-social</em> people to not-really-get-together, but I digress.  The ability to share content instantly and effortlessly is powerful.  Today we'll take a look at adding share links to a Ghost theme's</p></div>]]></description><link>https://iyware.com/add-share-links-to-ghost-themes/</link><guid isPermaLink="false">5a513273533fe1b5bec542aa</guid><category><![CDATA[Ghost]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Mon, 16 Mar 2015 05:51:24 GMT</pubDate><content:encoded><![CDATA[<div class="kg-card-markdown"><p>Seems like the internet is all about sharing these days.  Back in my day it was a place for the <em>anti-social</em> people to not-really-get-together, but I digress.  The ability to share content instantly and effortlessly is powerful.  Today we'll take a look at adding share links to a Ghost theme's handlebars template files, and to make things easier for you I'll provide some basic templates that you can simply copy and paste.</p>
+<h2 id="sharevsfollowvslike">Share vs. Follow vs. Like</h2>
+<p>First we need to differentiate between &quot;share&quot;, &quot;like&quot;, and &quot;follow&quot;.  Share links provide an easy way to repost, send, or otherwise disseminate the content of a post via a third-party channel.  Like, and its kin (+1, prop, gild) provide a way to show a sense of solidarity with an idea or the content of the post.  And &quot;follow&quot; links provide a way for you to see what content the author is creating on the current platform or another platform.</p>
+<h2 id="nocostsharing">No-Cost Sharing</h2>
+<p>This article will be talking about the first option, that is &quot;share&quot; links.  We'll look at how to provide links to a variety of various social networks directly in your post template to facilitate the distribution of your post content.</p>
+<p>Specifially we will be looking at what I call &quot;no-cost&quot; sharing options.  By no-cost I mean that they require no <em>extra</em> resources (JS, images, etc...) and no extra HTTP requests.  These are simply links to third-party networks with URL queries crafted to pass the data to the remote site.  As a result adding these share links will add no over-head to your site for you or for your users, which is important especially if they're in a country with restricted internet access (like me).</p>
+<p>The information for these share links was pieced together from all over the web (other blogs, development API docs) but all of the porting to handlebars was done by me and more than a few were engineered by me- meaning I couldn't find a working example of how to share to a certian social network, so I built it.</p>
+<h2 id="gettingstartedwithposthbs">Getting Started with Post.hbs</h2>
+<p>We'll be specifically adding our sharing links to <code>post.hbs</code> because 1) it's the logical option- that's where the content you want to share is! and 2) it's exposed to the <a href="http://themes.ghost.org/v0.5.10/docs/post"><code>{{post}}</code></a> API in ghost.</p>
+<p>So navigate to your theme folder inside of your ghost installation, find <code>post.hbs</code> and open it in your favorite editor.  Ghost uses <a href="http://themes.ghost.org/v0.5.10/docs/handlebars">handlebars</a> to dynamically inject specific content into specific tag areas so you won't actually see anything that you've written in ghost inside of your template file.  Instead of the title of your post you'll see something like <code>{{title}}</code> and instead of the actual post content you'll see <code>{{content}}</code>.</p>
+<p>You'll need to play around with where you want the links to go and how you want to style them, but it's inside of this file that we will be adding them.</p>
+<h2 id="buildlinkswithghostapis">Build Links with Ghost APIs</h2>
+<p>We will be using several Ghost <a href="http://themes.ghost.org/">theme APIs</a> to construct our sharing links.  Briefly they are:</p>
+<h3 id="blogurl">{{@blog.url}}</h3>
+<p>This is the FQDN of your blog.  For example, on this website <code>{{@blog.url}}</code> resolves to <code>https://iyware.com</code></p>
+<h3 id="urlabsolutetrue">{{url absolute=&quot;true&quot;}}</h3>
+<p>This is the complete url to a post on Ghost.  For example, on this post <code>{{url absolute=&quot;true&quot;}}</code> would output <code>https://iyware.com/add-share-links-to-ghost-themes</code></p>
+<h3 id="blogtitle">{{@blog.title}}</h3>
+<p>This is the title of your blog which can be set under Ghost → Settings → General like this:</p>
+<p><img src="https://iyware.com/content/images/2015/03/ghost-blog-title.png" alt=""></p>
+<p>For example, for this website <code>{{@blog.title}}</code> is set to &quot;iyWare&quot;.  Please do not confuse this with the title of your post, which we'll cover below.</p>
+<h3 id="title">{{title}}</h3>
+<p>This is the title of the post that you are writing.  For example <code>{{title}}</code> on this post is &quot;Add Share Links to Ghost Themes&quot;.</p>
+<h3 id="excerpt">{{excerpt}}</h3>
+<p>The <code>{{excerpt}}</code> function allows you to specific a specific amount of words from the beginning of a post <em>without</em> formatting, meaning no headings, links, italics, etc.  You must specificy the number words that you want to include in the excerpt using the <code>words=&quot;##&quot;</code> parameter.  For example using <code>{{excerpt words=&quot;25&quot;}}</code> on this post would return the following:</p>
+<blockquote>
+<p>Seems like the internet is all about sharing these days.  Back in my day it was a place for the anti-social people to not-really-get-together, but</p>
+</blockquote>
+<p>Notice tha the word anti-social is not emphasized like it is in this article.</p>
+<h3 id="tags">{{tags}}</h3>
+<p>The <code>{{tags}}</code> API simply returns an alphabetical list of tags associated with a post, but we'll be using some cool parameters later to manipulate their appearance.  Unfortunately at this time they can only be output in alphabetical order.  The <code>{{tags}}</code> code on this post simply returns {{Ghost}} with a link to the tag page.</p>
+<h3 id="image">{{image}}</h3>
+<p>The <code>{{image}}</code> tag provides the relative path to a post's image (if it has one).  This post doesn't have a post image but if it did it <code>{{image}}</code> would return <code>/images/2015/03/post-image-name.png</code>.  Notice that this is <strong>not</strong> actually returning the image (or an HTML image tag) to an image but rather a partial relative path.</p>
+<h3 id="ifif">{{#if }} ... {{/if}}</h3>
+<p>Finally we'll be the <code>{{#if}}</code> API to selectively output different code dependent upon the parameters that we provide.  For example to see if a post has an image associated with it we would use <code>{{#if image}} ... {{/if}}</code> and the code between the opening and closing &quot;ifs&quot; would happen.</p>
+<h2 id="discoveringshareapis">Discovering Share APIs</h2>
+<p>Your best bet to find a network that provides a sharing URL API is to search their developer documents (if they have any) or to look at other software that shares the way you want.  Remember, for the sake of this post we're not looking for JavaScript or embeddable widgets, we're just looking for HTML anchor tags.</p>
+<h2 id="urlquerystrings">URL Query Strings</h2>
+<p>A URL can be provided what's known as a &quot;query string&quot; which is simply a list of variables and values.  The query string always begins with <code>?</code>, followed by a variable name (e.g. <code>title</code>), an equals sign <code>=</code>, and the query value (e.g.</p>
+<h2 id="examplesharelinkpinterest">Example Share Link: Pinterest</h2>
+<p>We'll use pinterest as our first example share link.  This is the basic structure of the pinterest share URL with the query string empty:</p>
+<pre><code class="language-markup">https://pinterest.com/pin/create/button/?url=&amp;media=&amp;description=
+</code></pre>
+<p>So we'll fill out the query with the following API calls:</p>
+<ul>
+<li><code>url={{url absolute=&quot;true&quot;}}</code></li>
+<li><code>media={{@blog.url}}{{image}}</code></li>
+<li><code>description={{excerpt words=&quot;20&quot;}}</code></li>
+</ul>
+<p>Then we'll wrap the media selector in an <code>{{#if}}</code> block in case there's no image associated with the post.</p>
+<pre><code class="language-handlebars">{{#if image}}&amp;media={{@blog.url}}{{image}}{{/if}}
+</code></pre>
+<p>Notice that the whole query key/value pair are selected, this prevents us from referring a blank image.  Finally we wrap it all in an html anchor tag:</p>
+<pre><code class="language-handlebars">&lt;a href=&quot;https://pinterest.com/pin/create/button/?{{url absolute=&quot;true&quot;}}{{#if image}}&amp;media={{@blog.url}}{{image}}{{/if}}&amp;description={{excerpt words=&quot;20&quot;}}&quot;&gt;
+    Pinterest
+&lt;/a&gt;
+</code></pre>
+<p>Now when you include the link to pinterest in your post and a user clicks on it the result will be something like this:</p>
+<p><img src="https://iyware.com/content/images/2015/03/share-to-pinterest-with-ghost.png" alt=""></p>
+<h2 id="examplesharelinkemail">Example Share Link: E-Mail</h2>
+<p>There's no more tried-and-true method of sharing online resources than email so it's crucial to include a <code>mailto:</code> link.  We'll skip the &quot;to&quot; part of the URL and allow the user to fill that in themselves as it would require adding a form.  Instead let's just fill out the query string:</p>
+<ul>
+<li><code>?&amp;subject={{encode @blog.title}}%3A%20{{encode title}}</code></li>
+<li><code>&amp;body={{encode title}}%0D%0A{{url absolute=&quot;true&quot;}}%0D%0A%0D%0A{{excerpt words=&quot;45&quot;}}%2E%2E%2E</code></li>
+</ul>
+<p>This will output the blog title followed by the post title in the subject of the email like this: &quot;iyWare: Add Share Links to Ghost Themes&quot; and the body will be populated with the post title, URL, and excerpt of the post.  Now let's wrap it in an anchor element:</p>
+<pre><code class="language-handlebars">&lt;a class=&quot;Email&quot; href=&quot;mailto:?&amp;subject={{encode @blog.title}}%3A%20{{encode title}}&amp;body={{encode title}}%0D%0A{{url absolute=&quot;true&quot;}}%0D%0A%0D%0A{{excerpt words=&quot;45&quot;}}%2E%2E%2E&quot;&gt;
+    Email
+&lt;/a&gt;
+</code></pre>
+<p>Now when a user clicks on the &quot;email&quot; link their default mail client will open:</p>
+<p><img src="https://iyware.com/content/images/2015/03/share-to-email-with-ghost.png" alt=""></p>
+<p>In another post I'll provide prebuilt urls for a dozen or so popular social networks that you can just copy and paste into custom theme.</p>
+</div>]]></content:encoded></item></channel></rss>

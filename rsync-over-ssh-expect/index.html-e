@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from 127.0.0.1:2368/rsync-over-ssh-expect/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 12 Jan 2018 22:49:17 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>rsync Over SSH + expect - iyWare</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../favicon.png">
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.mine7a7.css?v=01261fe8a8" />
+    <link rel="shortcut icon" href="../favicon.png" type="image/png" />
+    <link rel="canonical" href="https://iyware.com/rsync-over-ssh-expect/" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    
+    <meta property="og:site_name" content="iyWare" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="rsync Over SSH + expect" />
+    <meta property="og:description" content="lately I decided that a good plan of action would be to take the web server files in my virtual machine: Apache config, Postgres config and databases, Moodle root and moodle data and back them up to the host server via rsync over SSH.  Once they’re on the host" />
+    <meta property="og:url" content="https://iyware.com/rsync-over-ssh-expect/" />
+    <meta property="article:published_time" content="2011-03-21T12:32:54.000Z" />
+    <meta property="article:modified_time" content="2015-01-19T05:15:50.000Z" />
+    <meta property="article:tag" content="DevOps" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="rsync Over SSH + expect" />
+    <meta name="twitter:description" content="lately I decided that a good plan of action would be to take the web server files in my virtual machine: Apache config, Postgres config and databases, Moodle root and moodle data and back them up to the host server via rsync over SSH.  Once they’re on the host" />
+    <meta name="twitter:url" content="https://iyware.com/rsync-over-ssh-expect/" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Danny Wahl" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="DevOps" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "iyWare",
+        "logo": "https://iyware.com/content/images/2015/01/logo.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Danny Wahl",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://iyware.com/content/images/2015/03/dannywahl.jpg",
+            "width": 112,
+            "height": 112
+        },
+        "url": "https://iyware.com/author/danny-2/",
+        "sameAs": [
+            "https://iyware.com"
+        ]
+    },
+    "headline": "rsync Over SSH + expect",
+    "url": "https://iyware.com/rsync-over-ssh-expect/",
+    "datePublished": "2011-03-21T12:32:54.000Z",
+    "dateModified": "2015-01-19T05:15:50.000Z",
+    "keywords": "DevOps",
+    "description": "lately I decided that a good plan of action would be to take the web server files in my virtual machine: Apache config, Postgres config and databases, Moodle root and moodle data and back them up to the host server via rsync over SSH.  Once they’re on the host",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://iyware.com/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 1.20" />
+    <link rel="alternate" type="application/rss+xml" title="iyWare" href="https://iyware.com/rss/" />
+</head>
+<body class="post-template tag-devops">
+    
+
+	<header role="banner" class="header-main no-image">
+    		<ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="https://iyware.com/">Home</a></li>
+    <li class="nav-clients" role="menuitem"><a href="https://iyware.com/clients/">Clients</a></li>
+    <li class="nav-portfolio" role="menuitem"><a href="https://iyware.com/tag/portfolio/">Portfolio</a></li>
+    <li class="nav-search" role="menuitem"><a href="https://iyware.com/search/">Search</a></li>
+</ul>
+
+		<h1>
+    		<a href="https://iyware.com/">
+            		<img src="../content/images/2015/01/logo.png" alt="iyWare">
+			</a>
+		</h1>
+	</header>
+
+    <article role="main" class="post tag-devops">
+
+        <header>
+            <h1>rsync Over SSH + expect</h1>
+
+			<small class="meta">
+						<a href="../author/danny-2/index.html" class="author" style="background-image:url('../content/images/2015/03/dannywahl.jpg');"><img src="../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl's picture"></a>
+					<a href="../author/danny-2/index.html">Danny Wahl</a>
+				&nbsp;&bull;&nbsp;
+				<time datetime="2011-03-21">March 21, 2011</time>
+					&nbsp;&bull;&nbsp;
+					<span class="tags"><a href="../tag/devops/index.html">DevOps</a></span>
+			</small>
+        </header>
+
+        <div class="text">
+            <div class="kg-card-markdown"><p>lately I decided that a good plan of action would be to take the web server files in my virtual machine: Apache config, Postgres config and databases, Moodle root and moodle data and back them up to the host server via <a href="http://samba.anu.edu.au/rsync/documentation.html">rsync</a> over <a href="http://www.openssh.com/">SSH</a>.  Once they’re on the host machine, in this case a Mac Mini Server, the target folder can be backed up via Time Machine.</p>
+<p>So if an end user accidentally deletes a critical file from their Moodle course, and somehow can’t restore it from their course backups (which happen nightly and are kept for 12 months) then I can browse Time Machine, restore it and then rsync it back!  It all sounds good until you start getting into SSH sessions which is a PAIN to say the least.</p>
+<p>The first problem I encountered was that rsync really needs to be run by an account that has read/write access to all the files that you want to backup, but you shouldn’t use root – depending on how secure you want to be… So what user has access to apache config (apache) postgres (postgres) web root (www-data) and moodle data (admin user) other than root?  The short answer is nobody, the long answer is create a user and drop them in the respective groups.  I went with the short answer because I’m fairly comfortable security wise using root to rsync from the VM to the host.  If somebody has access to the host server they have my whole VM anyways.</p>
+<p>The second problem was that <a href="http://bashcurescancer.com/setting_up_ssh_keys_for_access_without_password.html">ssh-agent</a> is only a temporary shell, so after you’ve set up your authentication you need to start the shell and invoke <a href="http://www.usc.edu/its/ssh/key.html">ssh-add</a>, enter your passphrase and then start your backup script.  No problem if you want to leave a root shell open 24/7 which I don’t.  Also a problem if say, your session times out, then you need to re-add your key to the temp-session and start over.  This can be a big problem if you’re using a shell script to stop services at night to complete the backup.  If rsync hangs at the passphrase prompt you’re offline until you notice it – and you don’t have a backup!</p>
+<p>Enter <a href="http://oreilly.com/catalog/expect/chapter/ch03.html">expect</a>.  A program used for automating/interacting with programs which is really a powerful tool.  By writing a small expect script and calling that instead you can easily automate your backup via rsync, without needing a permanent root shell and without needing to mess with ssh-agent.  First let’s look at a simple backup script for rsyncing your apache config files to a remote server:</p>
+<pre><code class="language-language-bash">#rsync.sh
+#Stop Apache
+/etc/init.d/apache2 stop
+
+#Backup Apache
+rsync --progress -avze ssh --numeric-ids --delete /etc/apache2 username@yourserver.domain.com:/path/to/backup/etc
+
+#Start Apache
+/etc/init.d/apache2 start
+</code></pre>
+<p>That’s not too difficult, now let’s add expect into the mix to automate the process</p>
+<pre><code class="language-language-bash">#backup.exp
+if {[llength $argv] == 0} {
+  puts &quot;Usage: expect backup.exp passphrase&quot;
+  exit 1
+}
+
+spawn sh rsync.sh
+set passphrase [lindex $argv 0]
+expect &quot;Enter passphrase for key '/path/to/key/id_type':&quot;
+send &quot;$passphrase\r&quot;
+expect eof
+</code></pre>
+<p>ta-da!  That’s pretty easy to follow right?  You type expect backup.exp passphrase, where backup.exp is whatever you save the script as, and passphrase is your SSH passphrase and then the magic happens.  Of course this is very basic, and doesn’t handle errors or exceptions – something which you’ll definitely want to do – in case expect hangs you’ll want to kill rsync and start Apache eventually. Now just add the expect file to your cron jobs for fully automated backups.</p>
+</div>
+        </div>
+
+        <section class="share">
+					<small class="meta">Share this post</small>
+        	<ul>
+				<li>
+					<a href="mailto:?&subject=iyWare%3A%20rsync%20Over%20SSH%20%2B%20expect&body=rsync%20Over%20SSH%20%2B%20expect%0D%0Ahttps://iyware.com/rsync-over-ssh-expect/%0D%0A%0D%0Alately I decided that a good plan of action would be to take the web server files in my virtual machine: Apache config, Postgres config and databases, Moodle root and moodle data and back them up to the host server via rsync over SSH.  Once%2E%2E%2E">Email</a>
+				</li>
+				<li>
+					<a href="https://twitter.com/home?status=https://iyware.com/rsync-over-ssh-expect/%20%23DevOps">Twitter</a>
+				</li>
+				<li>
+					<a href="https://www.facebook.com/sharer/sharer.php?u=https://iyware.com/rsync-over-ssh-expect/">Facebook</a>
+				</li>
+				<li>
+					<a href="https://plus.google.com/share?url=https://iyware.com/rsync-over-ssh-expect/">Google+</a>
+				</li>
+				<li>
+					<a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://iyware.com/rsync-over-ssh-expect/&amp;title=rsync%20Over%20SSH%20%2B%20expect&amp;summary=lately%20I%20decided%20that%20a%20good%20plan%20of%20action%20would%20be%20to%20take%20the%20web%20server%20files%20in%20my%20virtual%20machine:%20Apache%20config,%20Postgres%20config%20and%20databases,%20Moodle%20root%20and%20moodle%20data%20and%20back%20them%20up%20to%20the%20host%20server%20via%20rsync%20over%20SSH.%c2%a0%20Once&amp;source=iyWare">LinkedIn</a>
+				</li>
+			</ul>
+        </section>
+
+        <footer class="post-footer vcard cf" role="contentinfo">
+                	<div class="wrapper">
+                	<a href="../author/danny-2/index.html" class="author" style="background-image: url('../content/images/2015/03/dannywahl.jpg');">
+                    	<img src="../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl">
+					</a>
+					</div>
+                <div class="author-info meta">
+					<a href="../author/danny-2/index.html" class="fn">Danny Wahl</a>
+                    &nbsp;&bull;&nbsp;<span class="adr">天津</span>
+                    &nbsp;&bull;&nbsp;<a class="site" href="https://iyware.com/">https://iyware.com</a>
+                    <p class="bio">My name is Danny Wahl and I provide consulting in IT and education. I dabble in writing, programming, design, and ukulele playing. Post content licensed CC-BY-4.0</p>
+                </div>
+        </footer>
+
+    </article>
+
+
+<footer class="footer-main cf">
+	<p class="feed"><a href="../rss">RSS Feed</a></p>
+	<p class="description">
+        <a class="title" href="../index.html">iyWare</a>
+        <span>Things I Break</span>
+    </p>
+	<p class="copyright">&copy; 2018 <a href="../index.html">iyWare</a></p>
+</footer>
+
+    <script type="text/javascript" async defer>document.body.className.match("post-template")&&(prismcss=document.createElement("link"),prismcss.rel="stylesheet",prismcss.href="../assets/css/prism.min.css",document.body.appendChild(prismcss),prismjs=document.createElement("script"),prismjs.type="text/javascript",prismjs.async=!0,prismjs.onload=function(){},prismjs.src="https://cdn.jsdelivr.net/npm/prismjs@1.9.0/prism.min.js",document.body.appendChild(prismjs),disqushtml=document.createElement("div"),disqushtml.id="disqus_thread",document.getElementsByTagName("article")[0].appendChild(disqushtml),disqusjs=document.createElement("script"),disqusjs.type="text/javascript",disqusjs.async=!0,disqusjs.src="https://iyware.disqus.com/embed.js",document.body.appendChild(disqusjs)),function(s,e,t,i,m,n,c){s.SwiftypeObject=m,s[m]=s[m]||function(){(s[m].q=s[m].q||[]).push(arguments)},n=e.createElement(t),c=e.getElementsByTagName(t)[0],n.async=1,n.src=i,c.parentNode.insertBefore(n,c)}(window,document,"script","https://s.swiftypecdn.com/install/v2/st.js","_st"),_st("install","UpLojaav5s--stgt7FKu","2.0.0");</script>
+    <aside style="display:none;visibility:hidden;">
+  -		<a href="../search/index.html">search</a>
+  -		<a href="../clients/index.html">clients</a>
+      <a href="../sitemap.xml">sitemap</a>
+  -	</aside>
+</body>
+
+<!-- Mirrored from 127.0.0.1:2368/rsync-over-ssh-expect/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 12 Jan 2018 22:49:17 GMT -->
+</html>

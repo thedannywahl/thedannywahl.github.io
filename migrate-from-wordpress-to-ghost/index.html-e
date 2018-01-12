@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from 127.0.0.1:2368/migrate-from-wordpress-to-ghost/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 12 Jan 2018 22:49:05 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Migrate from WordPress to Ghost - iyWare</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../favicon.png">
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.mine7a7.css?v=01261fe8a8" />
+    <link rel="shortcut icon" href="../favicon.png" type="image/png" />
+    <link rel="canonical" href="https://iyware.com/migrate-from-wordpress-to-ghost/" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    
+    <meta property="og:site_name" content="iyWare" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Migrate from WordPress to Ghost" />
+    <meta property="og:description" content="I&#x27;ve been using WordPress as the backend of my website for about 4 years now.  I&#x27;ve been a fan of its simplicity, its usability, and its extensability.  I didn&#x27;t want to spend a lot of time developing a site- I just wanted to blog but as time went on my" />
+    <meta property="og:url" content="https://iyware.com/migrate-from-wordpress-to-ghost/" />
+    <meta property="article:published_time" content="2015-01-19T07:49:03.000Z" />
+    <meta property="article:modified_time" content="2015-01-29T05:42:52.000Z" />
+    <meta property="article:tag" content="Ghost" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Migrate from WordPress to Ghost" />
+    <meta name="twitter:description" content="I&#x27;ve been using WordPress as the backend of my website for about 4 years now.  I&#x27;ve been a fan of its simplicity, its usability, and its extensability.  I didn&#x27;t want to spend a lot of time developing a site- I just wanted to blog but as time went on my" />
+    <meta name="twitter:url" content="https://iyware.com/migrate-from-wordpress-to-ghost/" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Danny Wahl" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="Ghost" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "iyWare",
+        "logo": "https://iyware.com/content/images/2015/01/logo.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Danny Wahl",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://iyware.com/content/images/2015/03/dannywahl.jpg",
+            "width": 112,
+            "height": 112
+        },
+        "url": "https://iyware.com/author/danny-2/",
+        "sameAs": [
+            "https://iyware.com"
+        ]
+    },
+    "headline": "Migrate from WordPress to Ghost",
+    "url": "https://iyware.com/migrate-from-wordpress-to-ghost/",
+    "datePublished": "2015-01-19T07:49:03.000Z",
+    "dateModified": "2015-01-29T05:42:52.000Z",
+    "keywords": "Ghost",
+    "description": "I&#x27;ve been using WordPress as the backend of my website for about 4 years now.  I&#x27;ve been a fan of its simplicity, its usability, and its extensability.  I didn&#x27;t want to spend a lot of time developing a site- I just wanted to blog but as time went on my",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://iyware.com/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 1.20" />
+    <link rel="alternate" type="application/rss+xml" title="iyWare" href="https://iyware.com/rss/" />
+</head>
+<body class="post-template tag-ghost-tag">
+    
+
+	<header role="banner" class="header-main no-image">
+    		<ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="https://iyware.com/">Home</a></li>
+    <li class="nav-clients" role="menuitem"><a href="https://iyware.com/clients/">Clients</a></li>
+    <li class="nav-portfolio" role="menuitem"><a href="https://iyware.com/tag/portfolio/">Portfolio</a></li>
+    <li class="nav-search" role="menuitem"><a href="https://iyware.com/search/">Search</a></li>
+</ul>
+
+		<h1>
+    		<a href="https://iyware.com/">
+            		<img src="../content/images/2015/01/logo.png" alt="iyWare">
+			</a>
+		</h1>
+	</header>
+
+    <article role="main" class="post tag-ghost-tag">
+
+        <header>
+            <h1>Migrate from WordPress to Ghost</h1>
+
+			<small class="meta">
+						<a href="../author/danny-2/index.html" class="author" style="background-image:url('../content/images/2015/03/dannywahl.jpg');"><img src="../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl's picture"></a>
+					<a href="../author/danny-2/index.html">Danny Wahl</a>
+				&nbsp;&bull;&nbsp;
+				<time datetime="2015-01-19">January 19, 2015</time>
+					&nbsp;&bull;&nbsp;
+					<span class="tags"><a href="../tag/ghost-tag/index.html">Ghost</a></span>
+			</small>
+        </header>
+
+        <div class="text">
+            <div class="kg-card-markdown"><p>I've been using <a href="http://wordpress.org/">WordPress</a> as the backend of my website for about 4 years now.  I've been a fan of its simplicity, its usability, and its extensability.  I didn't want to spend a lot of time developing a site- I just wanted to blog but as time went on my site was hacked, hacked again, botched an upgrade, received 20,000+ spam comments, and I realized I was spending more time as a WordPress administrator than as a WordPress author.  In a nutshell I was tired of my WordPress backend looking like this:</p>
+<p><img src="../content/images/2015/01/picture-of-an-ugly-wp-dashboard.png" alt=""></p>
+<p>So in my usual fashion I decided to pick something new that I knew nothing about and dive into that.  I picked <a href="http://ghost.org/">Ghost</a> because at its core it's what I wanted; a blogging platform.  Sure it's young, sure it's missing some features I want (or at least I thought I did until I actually started migrating) but that's OK with me.  It's extremely functional as a blog.</p>
+<p>In this post I will detail how I migrated, and how you can migrate too, from WordPress to Ghost.  I'm going to assume that you have a copy of Ghost already up an running <em>somewhere</em>.  I did mine on my MacBook but you could have a host somewhere too, however, if that's the case, you'll probably need FTP access at some point.</p>
+<h2 id="exportyourwordpresscontent">Export Your WordPress Content</h2>
+<p>There is quite a list of things that need to be exported from WordPress if you want to do a full site migration which may include:</p>
+<ul>
+<li>Comments</li>
+<li>Uploads (images, .zip, text files, etc...)</li>
+<li>Users</li>
+<li>Posts</li>
+<li>Pages</li>
+<li>Tags <s>and Categories</s></li>
+</ul>
+<p>At the time of this writing Ghost doesn't support categories, so we're not going to bother with attempting to <em>add</em> functionality.  If you want categories, please read the <a href="https://github.com/TryGhost/Ghost/wiki/Tags-101#canonical--primary">Ghost documentation on the subject</a> first and then try <a href="http://www.mathachew.com/blog/add-a-category-to-your-posts-url-in-ghost/">this hack</a> or make sure that your WordPress post category is also a tag.</p>
+<h3 id="exportyourwordpresscomments">Export Your WordPress Comments</h3>
+<p>The first thing to do is export your WordPress comments.  Unfortunately at the time of this writing Ghost does not support native comments, but there are many commenting solutions available that can be easily integrated with Ghost.  For this tutorial we will be using <a href="https://disqus.com/">Disqus</a> to host our comments.</p>
+<h4 id="installdisquswpplugin">Install Disqus WP Plugin</h4>
+<p>There is a plugin available from the WordPress plugins page called &quot;<a href="https://wordpress.org/plugins/disqus-comment-system/">Disqus Comment System</a>&quot; that needs to be installed.  This is the official Disqus plugin for WordPress and as such it works pretty well.  Simply install and activate the plugin.</p>
+<p><img src="../content/images/2015/01/activated-disqus-comments-plugin.png" alt=""></p>
+<h4 id="addadisqussite">Add a Disqus Site</h4>
+<p>If you don't already have a Disqus account <a href="https://disqus.com/admin/signup/?utm_source=New-Site">sign up</a> for one, if you do have an account sign in and click on &quot;<a href="https://disqus.com/admin/create/">Add Disqus to Your Site</a>&quot;.</p>
+<p>Fill out the 3 fields on the form with the information for your site and click &quot;Finish Registration&quot;.  For example my site name is just 'iyWare' and the URL is 'iyware.disqus.com'.  However, if you have a marketing identity or branding guideline, follow that.  Frankly I'm not sure how many people stumble up a blog by navigating the Disqus homepage so your conversion based on this information alone will probably be pretty low.</p>
+<p><img src="../content/images/2015/01/signing-up-for-a-disqus-site.png" alt=""></p>
+<p>After you click &quot;Finish Registration&quot; you will be taken to the &quot;Install&quot; page under &quot;Settings&quot;.  Since we've installed the Disqus plugin on WordPress we don't need to do a separate installation.  But we will need to come back to this page to get the &quot;Universal Code&quot; (a.k.a. JavaScript) when it's time to install it in Ghost.</p>
+<p><img src="../content/images/2015/01/disqus-installation-options.png" alt=""></p>
+<h4 id="migratecommentstodisqus">Migrate Comments to Disqus</h4>
+<p>Head back to your WordPress Dashboard and navigate to Comments in the sidebar. If you have any spam comments you'll want to delete those so that they don't accidentally get imported into Disqus.  This shouldn't happen, but I had a few get in there.</p>
+<p><img src="../content/images/2015/01/its-wonderful-spam.png" alt=""></p>
+<p>Now click on Comments → Disqus in the sidebar.  If your site was has not been configured yet you will need to authenticate to Disqus and type in your site's identifier, which is the &quot;Unique Disqus URL&quot; that you chose earlier.</p>
+<p>Once you've authenticated you can scroll down to the section titled &quot;Import and Export&quot; and find the label &quot;Export Comments to Disqus&quot;.  Click the &quot;Export Comments&quot; button.</p>
+<p><img src="../content/images/2015/01/export-comments-to-disqus-section.png" alt=""></p>
+<p>Shortly you should get an email from Disqus saying that comment migration has begun.</p>
+<p><img src="../content/images/2015/01/email-saying-disqus-import-began.png" alt=""></p>
+<p>The linked site will show you the progress and tell you that it might take up to 24 hours to complete.  My site only too 3 or 4 hours, but I don't have too many comments (maybe 100?).</p>
+<h4 id="deletecommentsfromwp">Delete comments from WP</h4>
+<p>After your comments are fully migrated to Disqus go back to WordPress → Comments → All Comments and delete all comments on your site.  Please don't delete your comments before the export is done (this should be obvious).  At this point I should mention that you might want to backup your WP DB first ;)</p>
+<p>The reason we're going to delete the comments from the WordPress instance is because even though Ghost doesn't support comments yet the Ghost WordPress export tool DOES export your comments in its JSON file. So despite the fact that the documentation says</p>
+<blockquote>
+<p>Ghost does not, and will not deal with comments.</p>
+</blockquote>
+<p>the Ghost exporter DOES export the comments.  Since I had over 1,800 spam comments they all got added to the JSON file and caused a real headache later- just to be ignored by Ghost.  So do yourself a favor, and delete the comments.</p>
+<p><img src="../content/images/2015/01/all-wordpress-comments-deleted.png" alt=""></p>
+<p>After this you might want to temporarily disable commenting on your WordPress site or fully integrate Disqus because if people continue adding comments to WP after you've done the migration, they will be lost when you kick over to Ghost.</p>
+<p>Finally you can head to your Disqus dashboard and view your site's comments there.</p>
+<p><img src="../content/images/2015/01/disqus-moderation-dashboard.png" alt=""></p>
+<h3 id="exportyourwordpressmediauploads">Export Your WordPress Media (Uploads)</h3>
+<p>According to the Ghost documentation</p>
+<blockquote>
+<p>Ghost has very rudimentary media handling at the moment, and currently grabbing images from WordPress and plucking them into Ghost is tedious. For that reason it might be a good idea to sign up for a free Cloudinary account...</p>
+</blockquote>
+<p>However, migrating your media (anything you've uploaded to WordPress) is not actualy that difficult of a task and there are many good reasons to not host your images on another cloud account.</p>
+<p>The reason that they advocate this is because the cloudinary plugin will transfer all your files to their server and then rewrite the URLs in your wordpress database so, for example</p>
+<p><code>http://www.example.com/assets/coolimage.gif</code></p>
+<p>would get rewritten as</p>
+<p><code>http://couldinary.com/youraccount/coolimage.gif</code></p>
+<p>which Ghost would have no trouble with when it is running as example.com instead of WordPress.  But it's very very simple to continue to serve your images directly from Ghost.</p>
+<h4 id="findyourwordpressmediafiles">Find Your WordPress Media Files</h4>
+<p>In WordPress head to Settings → Media and scroll down until you find the &quot;Uploading Files&quot; Section.  Take note of where your files are uploaded to.</p>
+<p>It does not matter if you have &quot;Organize my uploads into month- and year-based folders&quot; checked or not.  However, IF you do have it enabled you will be able to get even richer Ghost integration.  If you don't please don't change it- as this will only affect new media files.</p>
+<p><img src="../content/images/2015/01/wordpress-multimedia-settings.png" alt=""></p>
+<h4 id="downloadyourwordpressmediafiles">Download Your WordPress Media Files</h4>
+<p>Once you know where the files are open up your FTP client and download the entire containing folder.  So in the example above I would be downloading <code>/assets/</code> folder.  If yours is the default you will be downling the <code>/uploads/</code> folder NOT <code>/wp-content/</code>.  If you accidentally download <code>/wp-content/</code> it's OK- we'll just pull <code>/uploads/</code> from inside of it later.</p>
+<p><img src="../content/images/2015/01/ftp-down-all-wordpress-uploads.png" alt=""></p>
+<p>If you don't know your FTP credentials you'll need to check with your hosting provider about how to access.  If you don't have FTP you could try using the &quot;<a href="https://wordpress.org/plugins/downml/">downML</a>&quot; WordPress plugin to download your media library directly from WordPress.  I haven't personally tried this plugin.</p>
+<h4 id="optionallyoptimizeyourfiles">Optionally Optimize Your Files</h4>
+<p>This isn't a necessary step, but since Ghost doesn't have rich multimedia handling you could take this opportunity to properly minimize all of your media.  I simply dragged the entire <code>assets</code> folder that I downloaded onto the <a href="https://imageoptim.com/">ImageOptim</a> application.</p>
+<p><img src="../content/images/2015/01/image-optimization-in-progress.png" alt=""></p>
+<p>You might notice that for every file uploaded to WordPress, e.g. &quot;1.png&quot; there are multiple versions in the media folder.  This is because the way WordPress works is to create multiple sizes of each image and store them on the server, which you can then insert into a post/page/whatever.  Ghost will only use one version but it doesn't hurt to have them all there- it will only use more disk space, not more bandwidth.</p>
+<p>After the image compression finishes you'll probably find it's quite worth it.  I was able to shave 35.8MB off of 138.7MB for a total of 29.9%.  Not too shabby.</p>
+<p>If you want to further optimize your images you could batch resize them to the max-width that you theme will output.  I don't necessarily recommend this as you might want a header image or change themes at some point in the future.  Not too mention that a user could still want to see the image at full size which simply isn't possible if you've manually resized it.</p>
+<h4 id="moveyourwordpressmediatoghost">Move Your WordPress Media to Ghost</h4>
+<p>WordPress will store your images by default in the relative path <code>/wp-content/uploads/</code> and if you've enabled year and month sorting then it will add <code>YYYY/MM/</code> to the path.</p>
+<p>Ghost will store your images by default in <code>/content/images/YYYY/MM/</code> which is a similar URL structure.</p>
+<p>Now you can take your WordPress uploads folder and just drop it into the <code>/ghost/content/images/</code> folder on your install.  You can see that I renamed mine to &quot;import&quot; (which might not have been the best idea) but if an image failed I wanted to know it was from WordPress.</p>
+<p><img src="../content/images/2015/01/wp-content-in-ghost-content.png" alt=""></p>
+<p>If you were using year and month folders in WordPress then you can merge the folder with the Ghost folder for a completely seamless migration.  However, since I haven't tested this You might need to be careful for name collisions when adding media in the future.  This should NOT be an issue because importing our WordPress post content (covered later) <em>should</em> add the media references to the sqlite database.</p>
+<p>For my site any posts imported from WordPress will serve images from <code>/content/images/import/image.png</code> and any new posts created in Ghost will serve from <code>/content/images/YYYY/MM/image.png</code> with no ill effect.</p>
+<p>We'll still have a little more work to do to point the post data to the new URL but that will be covered later on.  For now your physical assets are located in Ghost.  You can test this by creating a new post in Ghost, inserting an image, and pointing the path to an imported image:</p>
+<p><img src="../content/images/2015/01/wordpress-image-imported-into-ghost-1.png" alt=""></p>
+<h3 id="exportyourwordpressdata">Export Your WordPress Data</h3>
+<p>Now that we've taken care of comments and media it's time to move on to actual WordPress data.  There are quite a few steps to this process but they are all fairly simple.</p>
+<h4 id="publishyourwordpressdrafts">Publish Your WordPress Drafts</h4>
+<p>I recommend that if you have any WordPress drafts that you publish them.  The Ghost Export tool should handle them, but it definitely handles published materials.  You can always unpublish once your content is imported into Ghost.</p>
+<h4 id="deleteyourwordpresstrash">Delete Your WordPress Trash</h4>
+<p>If you have any trash on WordPress, delete it.  This includes Posts, Pages, Comments, etc... If you don't want it then you definitely don't want it to migrate.  For now less is more.  If You have a backup of your DB you can always go back and get it later.</p>
+<h4 id="convertyourwordpressposttypes">Convert Your WordPress Post Types</h4>
+<p>One of the most popular features in WordPress is custom post types like &quot;Portfolio&quot;, &quot;Gallery&quot;, or whatever.  However, Ghost only supports two types- which are the default WordPress types- &quot;Post&quot; and &quot;Page&quot;.  The Ghost Exporter might export other types but it won't know how to map them, so you'll need to do it manually.</p>
+<p>The &quot;<a href="https://wordpress.org/plugins/post-type-switcher/">Post Type Switcher</a>&quot; WordPress plugin is a great utility for switching individual posts.  To change a post type after you have installed this plugin simply go to edit the post (page, or whatever) and click &quot;Edit&quot; under the &quot;Post Type&quot; section in the &quot;Publish&quot; widget, choose Post or Page, and click &quot;Update&quot;.</p>
+<p><img src="../content/images/2015/01/post-type-switcher-example.png" alt=""></p>
+<p>If You have a lot of posts to convert you might consider using the &quot;<a href="https://wordpress.org/plugins/convert-post-types/">Convert Post Types</a>&quot; plugin instead.  I have not personally used this plugin.</p>
+<h4 id="addwordpresscategoriesastags">Add WordPress Categories as Tags</h4>
+<p>As we mentioned earlier, Ghost does not support Categories- only tags.  As a result when we export WordPress data later categories will be lost.  If you wish to preserve a category-like metadata in your post you must add the category as a tag in your WordPress posts.</p>
+<p><img src="../content/images/2015/01/category-not-a-tag.png" alt=""></p>
+<p>In this example the category &quot;Android&quot; will not be preserved when exporting to Ghost.  I need to manually add the category as a tag.</p>
+<p><img src="../content/images/2015/01/category-and-tag.png" alt=""></p>
+<p>Now when I export my WordPress data the tag &quot;Android&quot; will still be associated with this post.  At the time of this writing Ghost 0.5.8 has only rudimentary tag support, so you can't set &quot;Android&quot; as the first or primary tag or anything like that- tags are simply all listed alphabetically.</p>
+<p>If you have many posts I suggest using the WordPress plugin &quot;<a href="https://wordpress.org/plugins/wpcat2tag-importer/">Categories to Tags Converter</a>&quot; which will automate this process for you.  I have not personally used this plugin.</p>
+<h4 id="deleteyourwordpressusers">Delete Your WordPress Users</h4>
+<p>The Ghost export plugin will export all users and associated metadata, so if you have &quot;Anyone can register&quot; enabled under Settings → General in your WordPress instance you will need to check your users page to see how many users you have.</p>
+<p><img src="../content/images/2015/01/anyone-can-register-is-enabled.png" alt=""></p>
+<p>Navigate to Users → All Users and see how many users are registered on your site.  My site had over 18,000 users registered with the default role &quot;Subscriber&quot;.  If you don't have too many users you can filter the role and delete them.</p>
+<p><img src="../content/images/2015/01/picture-of-too-many-wp-subscribers.png" alt=""></p>
+<p>However, if you have more than a few hundred users it will be more effective to delete the users directly from the database.  You can connect to phpMyAdmin or directly to your database and execute the following SQL commands.</p>
+<pre><code class="language-language-sql">DELETE
+FROM wp_users
+WHERE ID NOT IN
+(SELECT post_author FROM wp_posts
+UNION SELECT user_id FROM wp_comments);
+
+DELETE
+FROM wp_usermeta
+WHERE user_id NOT IN
+(SELECT ID FROM wp_users);
+</code></pre>
+<p><em>commands courtsey of <a href="http://wordpress.mcdspot.com/">vtxyzzy</a> at <a href="https://wordpress.org/support/topic/best-way-to-delete-users?replies=8#post-1838411">WordPress Support Forums</a></em></p>
+<p>This will execute two commands, the first will delete all users from the <code>wp_users</code> table who are not post authors.  <strong>Caveat</strong>: if you have an admin account that you use to change settings and a separate account to post with you WILL lose your admin account.  Quickly publish something with your admin account or modify the SQL command.</p>
+<p>The second command will delete the metadata for users from the <code>wp_metadata</code> table for users that aren't found in the <code>wp_users</code> table.</p>
+<p>Again, please make sure you have a backup of your database first.  After you execute the SQL commands you can refresh the All Users page on WordPress and only post authors should be left- in my case just my account.</p>
+<p><img src="../content/images/2015/01/all-extra-wp-users-deleted.png" alt=""></p>
+<h4 id="installwordpressghostexporter">Install WordPress Ghost Exporter</h4>
+<p>I've mentioned exporting your WordPress data to Ghost a few times so far and now we're going to get ready to do just that.  The final WordPress plugin you'll need to install is the oddly named &quot;<a href="https://wordpress.org/plugins/ghost/">Ghost</a>&quot; which takes all of WordPress data, and converts it to a format that can be imported to your Ghost instance.  Once you've installed and activated the plugin head to Tools → Export to Ghost in WordPress.</p>
+<p><img src="../content/images/2015/01/export-to-ghost-page.png" alt=""></p>
+<h4 id="exportyourghostjsonfile">Export Your Ghost JSON File</h4>
+<p>Now that the Ghost exporter is installed and activated it's time to actually export the data.  You can safely ignore the &quot;Things to Keep in Mind&quot; section as it mostly covers things that we've gone over in this post.  Scroll to the bottom of the page and click &quot;Download Ghost File&quot;</p>
+<p>WordPress will think for a minute and you should eventually get a download prompt for a .json file</p>
+<p><img src="../content/images/2015/01/download-wp2ghost-json-file.png" alt=""></p>
+<p>Save the file to your local machine and you're done with WordPress for now.</p>
+<h5 id="fixghostjsonexporterrors">Fix Ghost JSON Export Errors</h5>
+<p>The potential for something going wrong is pretty high at this point.  There's a lot of data manipulation and conversion going on and the amount of variables from system to system can be pretty extreme.  Your best bet is to check the <a href="https://wordpress.org/support/plugin/ghost">WordPress to Ghost Support Forum</a> at WordPress and see if anyone else has had the same error as you.  If they haven't, report it there and see if someone can help you.  That said here are the errors I ran into.</p>
+<h6 id="errorwhitepageofdeath">Error: White Page of Death</h6>
+<p>After clicking &quot;Download Ghost File&quot; my WordPress just hung for a minute and turned to a white page.  I enabled debugging on my WordPress instance by editing my wp-config.php and changing</p>
+<pre><code class="language-language-php">define( 'WP_DEBUG', false );
+</code></pre>
+<p>to</p>
+<pre><code class="language-language-php">define( 'WP_DEBUG', true );
+</code></pre>
+<p>After enabling debugging I ran the export again and the page output the error:</p>
+<p><code>Fatal error: Maximum execution time of 30 seconds exceeded</code></p>
+<p>Essentially, it was taking the exporter longer to build the download file than my server was set to allow.  Fortunately this is something that can be easily changed in a variety of ways:</p>
+<ul>
+<li><a href="http://php.net/manual/en/info.configuration.php#ini.max-execution-time">php.ini</a></li>
+<li><a href="http://php.net/manual/en/info.configuration.php#ini.max-execution-time">phprc</a></li>
+<li><a href="http://stackoverflow.com/questions/7739870/increase-max-execution-time-for-php">.htaccess</a></li>
+<li><a href="http://stackoverflow.com/questions/14681655/how-can-i-override-the-php-ini-value-of-max-execution-time-at-runtime">script level</a></li>
+</ul>
+<p>I ended up settling on the script level so that it only changed it for this export tool.  To do this, in WordPress head to Plugins → Editor and choose &quot;Ghost&quot; from the menu on the top right then select the file <code>ghost/class-ghost.php</code>.</p>
+<p><img src="../content/images/2015/01/editing-a-plugin-in-wordpress.png" alt=""></p>
+<p>Search the file for the definition of the function <code>populate_data()</code> at the begging of the function add an <code>ini_set()</code>.  Your code should now look like this:</p>
+<pre><code class="language-language-php">	/**
+	 * Gets the raw data in an array that will be later turned into glorious escaped json format
+	 * so Ghost can gobble it up
+	 * @return array 						everything we need, but in an array
+	 */
+	public function populate_data() {
+	        ini_set('max_execution_time', 0);
+		if ( $this-&gt;garray !== null ) {
+			return;
+		}
+
+		$this-&gt;_safe_url( 'http://google.com' );
+
+		$this-&gt;garray = array();
+
+		// preps the structure
+		$this-&gt;prepare_garray_structure();
+
+		// attaches metadata
+		$this-&gt;populate_meta();
+
+		// get the users
+		$this-&gt;populate_users();
+
+		// attaches tags
+		$this-&gt;populate_tags();
+
+		// populates posts
+		$this-&gt;populate_posts();
+	}
+</code></pre>
+<p>setting the value of <code>max_execution_time</code> to <code>0</code> means 'unlimited'.  Now you might run into a memory error, but similarly you can allocate extra memory.</p>
+<h6 id="errorinvalidcontentencoding">Error: Invalid Content Encoding</h6>
+<p>After I was able to extend the execution time I started getting an &quot;Invalid Content Encoding&quot; error when trying to generate the file.  It would gripe about being unable to set headers after they'd already been set.  The specific code it was referring to was again in class-ghost.php</p>
+<pre><code class="language-language-php">		header( 'Content-Description: File Transfer' );
+		header( 'Content-Type: application/octet-stream' );
+		header( 'Content-Disposition: attachment; filename='.$filename );
+		header( 'Content-Transfer-Encoding: binary' );
+		header( 'Expires: 0' );
+		header( 'Cache-Control: must-revalidate' );
+		header( 'Pragma: public' );
+		header( 'Content-Length: ' . filesize( $filedir . '/' . $filename ) );
+</code></pre>
+<p>Here ghost is trying to build and serve the download file, not a webpage, but what I discovered was that with debugging on PHP would throw  an error</p>
+<pre><code class="language-language-php">Notice: Undefined index: description in /wp-content/plugins/ghost/class-ghost.php on line 394
+</code></pre>
+<p>saying that it couldn't grab some data from WordPress.  When PHP threw the error it would set the headers to a webpage to display the error, then Ghost Export would try to set them to be a file download, and we'd end up with a content encoding error.</p>
+<p>There are a couple of ways to fix this.  The first (and easiest) is to disable debugging.  This will prevent PHP from throwing a notice, that value will silently fail (not a problem) and you'll get your export file.  The second is to comment out the link looking for the <code>description</code> index so the failure doesn't occur.  You still don't end up with the data but it's not a big deal.  Again in class-ghost.php edit the <code>user_meta</code> section to comment out <code>bio</code> as shown below:</p>
+<pre><code class="language-language-php">		foreach ( $users as $user ) {
+			$user_meta = get_user_meta( $user-&gt;ID );
+
+			$this-&gt;garray['data']['users'][] = array(
+				'id' =&gt; $this-&gt;_safe_author_id( $user-&gt;ID ),
+				'slug' =&gt; $user-&gt;user_login,
+				//'bio' =&gt; substr( $user_meta['description'][0], 0, 199 ),
+				'website' =&gt; $this-&gt;_safe_url( $user-&gt;user_url ),
+				'created_at' =&gt; $this-&gt;_get_json_date( $user-&gt;user_registered ),
+				'created_by' =&gt; 1,
+				'email' =&gt; $user-&gt;user_email,
+				'name' =&gt; $user-&gt;user_nicename,
+			);
+		}
+</code></pre>
+<h6 id="error404pagenotfound">Error: 404 Page Not Found</h6>
+<p>Occassionally you will end up at a page that was served by the WordPress front end instead of getting your JSON file or an error.  This is, I believe (though I haven't investigated) related to the script execution time and memory limit.  Increasing those as described above should resolve it.</p>
+<h6 id="errorcorruptjsonfile">Error: Corrupt JSON File</h6>
+<p>You won't necessarily know that you have a corrupt file until you go to import it and it fails.  But a fast way to check if your download file is vaild is to either open it in a text editor and check, or pass it to a website like <a href="http://jsonlint.com/">JSONLint</a>.  A corrupt file would look something like this:</p>
+<p><img src="../content/images/2015/01/botched-JSON-export.png" alt=""></p>
+<p>If you look closesly you can see that where it falls apart is actually on a user account.  When I first tried to export my WP data to JSON the file size was over 4MB.  4MB of text is quite a lot of data.  After removing comments, users, drafts, etc... the final file size was 498Kb.  So if you're getting a botched JSON file please make sure that you've followed this tutorial so far- otherwise investigate where it's failing and if you can't fix it submit a report at the <a href="https://wordpress.org/support/plugin/ghost">WordPress Support Forums for Ghost</a>.</p>
+<h2 id="manipulateyourwordpressdata">Manipulate Your WordPress Data</h2>
+<p>If you follow the import instructions of the Ghost plugin you would simply import your JSON file into Ghost, but if you do that now you'll spend more time correcting data in Ghost than you need to.  We're simply going to massage the data to be a better fit in Ghost.</p>
+<h3 id="removewordpressshortcodes">Remove WordPress Shortcodes</h3>
+<p>One of the major drawbacks of WordPress is shortcodes.  Years ago they were revolutionary, <code>[gallery]</code> was awesome!  But once theme devs started adding their own shortcodes to create a type of &quot;vendor lock-in&quot; then they got really frustrating.</p>
+<p>So Hopefully you didn't have any shortcodes in your text.  I did.  When you import them into ghost the raw code will show up.  For example, if you had a shortcode called <code>[button]</code> that outputs a link element with the class button, in Ghost you'll just have:</p>
+<pre><code class="language-language-markup">[button href=&quot;#&quot;]Text[/button]
+</code></pre>
+<p>Which probably you just don't want.  Now, fortunately shortcodes are just a bit of code that become a different bit of code which means we can reverse engineer them pretty easily.  Open your JSON file in your favorite text editor, I'm using <a href="http://panic.com/coda/">Coda 2</a> but you can use <a href="http://ss64.com/bash/sed.html">sed</a> or whatever you want.</p>
+<p>You're going to have to do a little bit of personalization here but I'll give you an overview of what I did in my editor.</p>
+<p><strong>Note:</strong> be sure to escape your <a href="http://json.org/">JSON strings</a>!</p>
+<h4 id="replacebuttonshortcode">Replace [button] Shortcode</h4>
+<p>In My text editor I simply searched for <code>[button</code> (not there's no closing bracket) to evaluate how I used it in my source and then built a replacement string:</p>
+<pre><code class="language-language-javascript">[button link=\u201d
+&lt;a href=\&quot;
+
+\u201d]Download[\/button]
+\&quot;&gt;Download&lt;\/a&gt;
+</code></pre>
+<h4 id="replacetabgroupshortcode">Replace [tabgroup] Shortcode</h4>
+<p>The second shortcode I used was was one that took some inline code and formatted it for jQuery tabs.  Mostly all I needed to do to replace them was a NULL string</p>
+<pre><code class="language-language-javascript">[tabgroup]
+NULL
+
+[tab]
+NULL
+
+[\/tab]
+NULL
+
+[\/tabgroup]
+NULL
+</code></pre>
+<p>The output was simply the inline markup.</p>
+<h3 id="editwordpressurls">Edit WordPress URLs</h3>
+<p>After the shortcodes we need to edit wordpress URLs to work with our Ghost paths.  Remember that our media has been moved from <code>/wp-content/uploads/</code> (default) or <code>/assets/</code> to <code>/content/images/</code>.  Since the paths have moved we need to reflect this in our posts.  Again we simply use find and replace.  This time we need 3 find and replaces starting with fully qualified path down to relative path.  The reason being that if you replace the relative path first then the fully qualified path will fail.</p>
+<p>My site was served from <code>http://www.iyware.com</code> so we'll start with <code>http://www.iyware.com/assets/</code> again we need to escape the JSON strings.</p>
+<pre><code class="language-language-javascript">http:\/\/www.iyware.com\/assets\/
+\/content\/images\/import\/
+
+http:\/\/iyware.com\/assets\/
+\/content\/images\/import\/
+
+\/assets\/
+\/content\/images\/import\/
+</code></pre>
+<p>In addition to images/videos this will work for ALL media, so if you have text, html, or zip files they will work too.  This again, in my opinion, makes it a better option than migrating your images to cloudify.</p>
+<h3 id="optionallyeditwordpressmediaurls">Optionally Edit WordPress Media URLs</h3>
+<p>Once we've rewritten the paths for our media to be relative to our Ghost instance we need to edit the source for our images to always use the original image.  Go back to your WordPress instance and note the thumbnail sizes for images under Settings → Media.</p>
+<p><img src="../content/images/2015/01/wordpress-image-sizes.png" alt=""></p>
+<p>When you insert an image into a WordPress post you generally have to choose an image size and WordPress will insert the resized image with the dimensions appended to it inside of an anchor element linked to the original.  So, for example an image called &quot;post.jpg&quot; that was inserted into a WordPress post at medium size (using the settings above) would generate the following HTML:</p>
+<pre><code class="language-language-markup">&lt;a href=&quot;/wp-content/uploads/post.jpg&quot;&gt;
+  &lt;img src=&quot;/wp-content/uploads/post-500x500.jpg&quot; /&gt;
+&lt;/a&gt;
+</code></pre>
+<p>Essentially all we need to do is strip off the suffix for each media size.  Make sure that you use your WordPress settings, and if you've ever changed the settings that you use what your old settings were too.</p>
+<pre><code class="language-language-javascript">-300x300
+NULL
+
+-500x500
+NULL
+
+-960x658
+NULL
+</code></pre>
+<p>Now the output HTML would look like this:</p>
+<pre><code class="language-language-markup">&lt;a href=&quot;/wp-content/uploads/post.jpg&quot;&gt;
+  &lt;img src=&quot;/wp-content/uploads/post.jpg&quot; /&gt;
+&lt;/a&gt;
+</code></pre>
+<h2 id="importyourwordpressdatatoghost">Import Your WordPress Data to Ghost</h2>
+<p>Now that our JSON file has been edited to better work with it's ready to be imported to Ghost.  Fortunately this is about the easiest part of the process.  On your Ghost instance head to Settings → Labs → Import.</p>
+<p><img src="../content/images/2015/01/ghost-labs-import.png" alt=""></p>
+<p>Click &quot;Browse&quot; and then select your edited JSON file and click &quot;Import&quot;.  When the import is finished you should be able to browse your posts on the back-end and the front-end with working images and links to other media resources (.zip, .html, etc...).</p>
+<h2 id="integratedisquscommentswithghost">Integrate Disqus Comments with Ghost</h2>
+<p>Now that all the other data has been imported the only thing left to do is add comments back to the site.  Since Ghost doesn't natively support comments we won't be importing them from Disqus, but rather integrating the Disqus JavaScript applet into our theme template.</p>
+<h3 id="configuredisqussettings">Configure Disqus settings</h3>
+<p>Before we integrate the code there are a couple of settings worth checking at the Disqus website.  In the Disqus Admin Panel click on the &quot;settings&quot; tab and scroll to &quot;Community Settings&quot;.</p>
+<p><img src="../content/images/2015/01/disqus-community-settings.png" alt=""></p>
+<p>It's worth reviewing some of the settings regarding moderation and guest posting.  I personally enabled guest posting as I don't necessarily expect someone to sign up for an account at a third party website to comment on my site.</p>
+<h3 id="insertdisqusjavascriptcode">Insert Disqus JavaScript Code</h3>
+<p>Now you can integrate the Disqus code into your site.  The Ghost documentation has a great overview of doing that:  &quot;<a href="http://support.ghost.org/add-disqus-to-my-ghost-blog/">How Do I Add Disqus to my Ghost Blog?</a>&quot;</p>
+<p>I highly recommend that you simply follow that tutorial and then return here- no need to reinvent the wheel!</p>
+<p>Once you have completed that I do have one change that I make to the integration to increase user experience.  In your <code>post.hbs</code> where you inserted the Disqus JavaScript find this line:</p>
+<pre><code class="language-language-javascript"> &lt;noscript&gt;Please enable JavaScript to view the &lt;a href=&quot;https://disqus.com/?ref_noscript&quot;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;
+</code></pre>
+<p>and replace it with a link to your site's Disqus forum instead of to the Disqus homepage.</p>
+<pre><code class="language-language-markup">&lt;noscript&gt;Please enable JavaScript to view the &lt;a href=&quot;https://disqus.com/home/forums/iyware/&quot;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;
+</code></pre>
+<p>Obviously you'll need to replace <code>/iyware/</code> with your site's URL, but this will allow users with JavaScript disabled on your site to go directly to your Disqus forum- where they'll get another error if they hava JS disabled there too- but that's a Disqus problem, not yours.</p>
+<h2 id="optionallymovewordpresstoanotherdomain">Optionally Move WordPress to Another Domain</h2>
+<p>If you intend to run Ghost on the same domain as your WordPress instance was originally running you'll need to move your WordPress to a different domain.  Personally I moved my WordPress instance to the <code>old.</code> subdomain.  To do this you can simply head to Settings -&gt; General in WordPress and change both &quot;WordPress Address (URL) and &quot;Site Address (URL)&quot; to the new domain that you wish to use.</p>
+<p><img src="../content/images/2015/01/wordpress-settings-general.png" alt=""></p>
+<p>Without doing a massive find and replace in your database a lot of things will probably break- like image URLs but the site will be largely functional.</p>
+<p>Please note that as soon as you change this setting your WordPress site will stop serving at the old URL and only serve from the new URL so if you need to configure the submain with your DNS provider make sure to do that too.  I'm using CloudFlare for DNS so I simply added an &quot;A Record&quot; for &quot;old&quot; pointing to the IP address where WordPress is hosted.</p>
+<p><img src="../content/images/2015/01/redirect-to-old-wordpress.png" alt=""></p>
+<p>If you've already published Ghost to your domain and lost access to WordPress you can change it in the database directly.  Here's an example of the two fields to change in phpMyAdmin but changing directly in SQL will work too.</p>
+<p>Field <code>siteurl</code> in table <code>wp_options</code></p>
+<p><img src="../content/images/2015/01/edit-old-wordpress-database-siteurl.png" alt=""></p>
+<p>Field <code>home</code> in table <code>wp_options</code></p>
+<p><img src="../content/images/2015/01/edit-old-wordpress-home.png" alt=""></p>
+<h2 id="finalsteps">Final Steps</h2>
+<p>Hopefully by this point all the heavy lifting is done.  If you're intending to setup Ghost as your main domain you can do do that as WordPress is now out of the way.</p>
+<p>Of course I strongly recommend you do a thorough content audit before you go live.  It took me about a day and a half to audit my 60 or so posts and clean them up a little.  The biggest issue I found was that the MarkDown conversion stripped anything that came after two less-than signs (<code>&lt;&lt;</code>) for whatever reason.  Fortunately there were only two instances in my site where this happened and I was able to repace the text by copying it straight from WordPress to the Ghost editor.</p>
+<p>The only other thing I did was remove superflous <code>&lt;span&gt;</code> tags in the post body which were used for element positioning in WordPress and no longer necessary in Ghost.</p>
+<p>Next time I'll write about some of the other things I've done to customize my Ghost instance which I think are rather nice, but for now that's the end of this tutorial.</p>
+<p>Happy blogging!</p>
+</div>
+        </div>
+
+        <section class="share">
+					<small class="meta">Share this post</small>
+        	<ul>
+				<li>
+					<a href="mailto:?&subject=iyWare%3A%20Migrate%20from%20WordPress%20to%20Ghost&body=Migrate%20from%20WordPress%20to%20Ghost%0D%0Ahttps://iyware.com/migrate-from-wordpress-to-ghost/%0D%0A%0D%0AI've been using WordPress as the backend of my website for about 4 years now.  I've been a fan of its simplicity, its usability, and its extensability.  I didn't want to spend a lot of time developing a site- I just wanted to blog but%2E%2E%2E">Email</a>
+				</li>
+				<li>
+					<a href="https://twitter.com/home?status=https://iyware.com/migrate-from-wordpress-to-ghost/%20%23Ghost">Twitter</a>
+				</li>
+				<li>
+					<a href="https://www.facebook.com/sharer/sharer.php?u=https://iyware.com/migrate-from-wordpress-to-ghost/">Facebook</a>
+				</li>
+				<li>
+					<a href="https://plus.google.com/share?url=https://iyware.com/migrate-from-wordpress-to-ghost/">Google+</a>
+				</li>
+				<li>
+					<a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://iyware.com/migrate-from-wordpress-to-ghost/&amp;title=Migrate%20from%20WordPress%20to%20Ghost&amp;summary=I've%20been%20using%20WordPress%20as%20the%20backend%20of%20my%20website%20for%20about%204%20years%20now.%20%20I've%20been%20a%20fan%20of%20its%20simplicity,%20its%20usability,%20and%20its%20extensability.%20%20I%20didn't%20want%20to%20spend%20a%20lot%20of%20time%20developing%20a%20site-%20I%20just%20wanted%20to%20blog%20but&amp;source=iyWare">LinkedIn</a>
+				</li>
+			</ul>
+        </section>
+
+        <footer class="post-footer vcard cf" role="contentinfo">
+                	<div class="wrapper">
+                	<a href="../author/danny-2/index.html" class="author" style="background-image: url('../content/images/2015/03/dannywahl.jpg');">
+                    	<img src="../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl">
+					</a>
+					</div>
+                <div class="author-info meta">
+					<a href="../author/danny-2/index.html" class="fn">Danny Wahl</a>
+                    &nbsp;&bull;&nbsp;<span class="adr">天津</span>
+                    &nbsp;&bull;&nbsp;<a class="site" href="https://iyware.com/">https://iyware.com</a>
+                    <p class="bio">My name is Danny Wahl and I provide consulting in IT and education. I dabble in writing, programming, design, and ukulele playing. Post content licensed CC-BY-4.0</p>
+                </div>
+        </footer>
+
+    </article>
+
+
+<footer class="footer-main cf">
+	<p class="feed"><a href="../rss">RSS Feed</a></p>
+	<p class="description">
+        <a class="title" href="../index.html">iyWare</a>
+        <span>Things I Break</span>
+    </p>
+	<p class="copyright">&copy; 2018 <a href="../index.html">iyWare</a></p>
+</footer>
+
+    <script type="text/javascript" async defer>document.body.className.match("post-template")&&(prismcss=document.createElement("link"),prismcss.rel="stylesheet",prismcss.href="../assets/css/prism.min.css",document.body.appendChild(prismcss),prismjs=document.createElement("script"),prismjs.type="text/javascript",prismjs.async=!0,prismjs.onload=function(){},prismjs.src="https://cdn.jsdelivr.net/npm/prismjs@1.9.0/prism.min.js",document.body.appendChild(prismjs),disqushtml=document.createElement("div"),disqushtml.id="disqus_thread",document.getElementsByTagName("article")[0].appendChild(disqushtml),disqusjs=document.createElement("script"),disqusjs.type="text/javascript",disqusjs.async=!0,disqusjs.src="https://iyware.disqus.com/embed.js",document.body.appendChild(disqusjs)),function(s,e,t,i,m,n,c){s.SwiftypeObject=m,s[m]=s[m]||function(){(s[m].q=s[m].q||[]).push(arguments)},n=e.createElement(t),c=e.getElementsByTagName(t)[0],n.async=1,n.src=i,c.parentNode.insertBefore(n,c)}(window,document,"script","https://s.swiftypecdn.com/install/v2/st.js","_st"),_st("install","UpLojaav5s--stgt7FKu","2.0.0");</script>
+    <aside style="display:none;visibility:hidden;">
+  -		<a href="../search/index.html">search</a>
+  -		<a href="../clients/index.html">clients</a>
+      <a href="../sitemap.xml">sitemap</a>
+  -	</aside>
+</body>
+
+<!-- Mirrored from 127.0.0.1:2368/migrate-from-wordpress-to-ghost/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 12 Jan 2018 22:49:05 GMT -->
+</html>

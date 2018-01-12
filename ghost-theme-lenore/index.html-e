@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from 127.0.0.1:2368/ghost-theme-lenore/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 12 Jan 2018 22:48:18 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Ghost Theme Lenore - iyWare</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../favicon.png">
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.mine7a7.css?v=01261fe8a8" />
+    <link rel="shortcut icon" href="../favicon.png" type="image/png" />
+    <link rel="canonical" href="https://iyware.com/ghost-theme-lenore/" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    
+    <meta property="og:site_name" content="iyWare" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Ghost Theme Lenore" />
+    <meta property="og:description" content="Ghost is a blogging platform.  Lenore is a theme designed to showcase writing and as such most of its features are about what it doesn&#x27;t do. Demo A demo site of this theme is available at lenore.iyware.com Features Ghost 0.5.10 compatible: Images [logo, blog cover, author," />
+    <meta property="og:url" content="https://iyware.com/ghost-theme-lenore/" />
+    <meta property="article:published_time" content="2015-03-19T04:50:20.000Z" />
+    <meta property="article:modified_time" content="2015-03-19T05:27:06.000Z" />
+    <meta property="article:tag" content="Portfolio" />
+    <meta property="article:tag" content="Ghost" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Ghost Theme Lenore" />
+    <meta name="twitter:description" content="Ghost is a blogging platform.  Lenore is a theme designed to showcase writing and as such most of its features are about what it doesn&#x27;t do. Demo A demo site of this theme is available at lenore.iyware.com Features Ghost 0.5.10 compatible: Images [logo, blog cover, author," />
+    <meta name="twitter:url" content="https://iyware.com/ghost-theme-lenore/" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Danny Wahl" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="Portfolio, Ghost" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "iyWare",
+        "logo": "https://iyware.com/content/images/2015/01/logo.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Danny Wahl",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://iyware.com/content/images/2015/03/dannywahl.jpg",
+            "width": 112,
+            "height": 112
+        },
+        "url": "https://iyware.com/author/danny-2/",
+        "sameAs": [
+            "https://iyware.com"
+        ]
+    },
+    "headline": "Ghost Theme Lenore",
+    "url": "https://iyware.com/ghost-theme-lenore/",
+    "datePublished": "2015-03-19T04:50:20.000Z",
+    "dateModified": "2015-03-19T05:27:06.000Z",
+    "keywords": "Portfolio, Ghost",
+    "description": "Ghost is a blogging platform.  Lenore is a theme designed to showcase writing and as such most of its features are about what it doesn&#x27;t do. Demo A demo site of this theme is available at lenore.iyware.com Features Ghost 0.5.10 compatible: Images [logo, blog cover, author,",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://iyware.com/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 1.20" />
+    <link rel="alternate" type="application/rss+xml" title="iyWare" href="https://iyware.com/rss/" />
+</head>
+<body class="post-template tag-portfolio tag-ghost-tag">
+    
+
+	<header role="banner" class="header-main no-image">
+    		<ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="https://iyware.com/">Home</a></li>
+    <li class="nav-clients" role="menuitem"><a href="https://iyware.com/clients/">Clients</a></li>
+    <li class="nav-portfolio" role="menuitem"><a href="https://iyware.com/tag/portfolio/">Portfolio</a></li>
+    <li class="nav-search" role="menuitem"><a href="https://iyware.com/search/">Search</a></li>
+</ul>
+
+		<h1>
+    		<a href="https://iyware.com/">
+            		<img src="../content/images/2015/01/logo.png" alt="iyWare">
+			</a>
+		</h1>
+	</header>
+
+    <article role="main" class="post tag-portfolio tag-ghost-tag">
+
+        <header>
+            <h1>Ghost Theme Lenore</h1>
+
+			<small class="meta">
+						<a href="../author/danny-2/index.html" class="author" style="background-image:url('../content/images/2015/03/dannywahl.jpg');"><img src="../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl's picture"></a>
+					<a href="../author/danny-2/index.html">Danny Wahl</a>
+				&nbsp;&bull;&nbsp;
+				<time datetime="2015-03-18">March 18, 2015</time>
+					&nbsp;&bull;&nbsp;
+					<span class="tags"><a href="../tag/portfolio/index.html">Portfolio</a>, <a href="../tag/ghost-tag/index.html">Ghost</a></span>
+			</small>
+        </header>
+
+        <div class="text">
+            <div class="kg-card-markdown"><p><a href="http://ghost.org/">Ghost</a> is a blogging platform.  <a href="http://lenore.iyware.com/"><em>Lenore</em></a> is a theme designed to showcase writing and as such most of its features are about what it doesn't do.</p>
+<p><img src="../content/images/2015/03/lenore-banner-2.jpg" alt=""></p>
+<h2 id="demo">Demo</h2>
+<p>A demo site of this theme is available at <a href="http://lenore.iyware.com/">lenore.iyware.com</a></p>
+<h2 id="features">Features</h2>
+<ul>
+<li>Ghost 0.5.10 compatible:
+<ul>
+<li>Images [<a href="http://support.ghost.org/change-my-ghost-blog-logo/">logo</a>, <a href="http://support.ghost.org/upload-cover-image-ghost-blog/">blog cover</a>, <a href="http://support.ghost.org/change-user-image-cover-photo/">author</a>, <a href="http://support.ghost.org/add-image-post/">post</a>, <a href="http://support.ghost.org/using-tag-manager/#tag-image">tag</a>]</li>
+<li><a href="http://support.ghost.org/using-tag-manager/">Tags</a></li>
+<li><a href="http://support.ghost.org/publish-a-static-page/">Pages</a></li>
+<li><a href="http://support.ghost.org/post-settings-overview/#set-post-as-featured">Featured Posts</a></li>
+<li><a href="http://support.ghost.org/add-navigation-menu-ghost-blog/">Navigation</a></li>
+<li><a href="http://support.ghost.org/use-code-injection/">Code Injection</a></li>
+</ul>
+</li>
+<li>Dynamic rem/em based <a href="https://css-tricks.com/rems-ems/">root/compontent/element</a> sizing</li>
+<li>1.9KB of CSS (inluding <a href="http://necolas.github.io/normalize.css/">normalize.css</a>!)</li>
+<li>woff2 font with woff fallback (<a href="https://gist.github.com/sergejmueller/cf6b4f2133bcb3e2f64a">read more</a>)</li>
+<li>19 social sharing links
+<ul>
+<li>Email, twitter, Facebook, Google+, LinkedIn enabled by default</li>
+<li>Uncomment others in <code>post.hbs</code></li>
+</ul>
+</li>
+<li>HTML Validated with <a href="http://validator.w3.org/nu/">Nu HTML Checker</a></li>
+<li>Insanely easy to customize:
+<ul>
+<li>lightweight CSS specification</li>
+<li>shallow nesting</li>
+<li>no IDs</li>
+</ul>
+</li>
+</ul>
+<h2 id="unfeatures">Un-features</h2>
+<ul>
+<li>Exactly one layout. Use it with or without images, logos, descriptions, bios; it looks great with any options- and you don't have to edit a thing, it just works.</li>
+<li>No grid</li>
+<li>No JavaScript</li>
+<li>No images</li>
+<li>No external resources!</li>
+<li>No shims, fallbacks, or browser hacks ‐ because you don't need them</li>
+</ul>
+<h2 id="browsercompatiblity">Browser Compatiblity</h2>
+<p>✓Firefox <br>
+✓Safari <br>
+✓Chrome <br>
+✓IE9<br/><br>
+✓iOS Safari 7 <br>
+✓Opera <br>
+✓Android <br>
+✓Vivaldi</p>
+<h2 id="layouts">Layouts</h2>
+<p>Lenore supports several different content configurations, below are links to some examples.  Note that none of these examples require theme customization, they just work.</p>
+<h3 id="author">Author</h3>
+<p><img src="../content/images/2015/03/lenore-author-archive.jpg" alt=""></p>
+<p><a href="http://lenore.iyware.com/author/poe/">Author archive: ✓image, ✓cover</a><br/><br>
+<a href="http://lenore.iyware.com/author/ghost-writer/">Author archive: ✗image, ✗cover</a></p>
+<p><a href="http://lenore.iyware.com/author-with-bioimages/">Author post: ✓with bio</a><br/><br>
+<a href="http://lenore.iyware.com/author-without-bioimages/">Author post: ✗bio</a></p>
+<h3 id="page">Page</h3>
+<p><img src="../content/images/2015/03/lenore-page-layout.jpg" alt=""></p>
+<p><a href="http://lenore.iyware.com/layouts/">Page: ✓image</a><br/><br>
+<a href="http://lenore.iyware.com/features/">Page: ✗image</a></p>
+<h3 id="tagarchive">Tag Archive</h3>
+<p><img src="../content/images/2015/03/lenore-tag-archive.jpg" alt=""></p>
+<p><a href="http://lenore.iyware.com/tag/tag-image-and-description/">Tag archive: ✓image, ✓description</a><br/><br>
+<a href="http://lenore.iyware.com/tag/description/">Tag archive: ✗image, ✓description</a><br/><br>
+<a href="http://lenore.iyware.com/tag/tag-image/">Tag archive: ✓image, ✗description</a><br/><br>
+<a href="http://lenore.iyware.com/tag/paged/">Tag archive: ✗image, ✗description</a></p>
+<h3 id="post">Post</h3>
+<p><img src="../content/images/2015/03/lenore-post.jpg" alt=""></p>
+<p><a href="http://lenore.iyware.com/image-and-tags/">Post: ✓image</a><br/><br>
+<a href="http://lenore.iyware.com/tags-no-image/">Post: ✗image</a><br/><br>
+<a href="http://lenore.iyware.com/tags-no-image/">Post: ✓tags</a><br/><br>
+<a href="http://lenore.iyware.com/no-image-no-tags/">Post: ✗tags</a></p>
+<h2 id="customization">Customization</h2>
+<p>Lenore is easy to customize and everything you want to customize is commented in the file you need to edit.</p>
+<h3 id="stylesheets">Stylesheets</h3>
+<p>The CSS has a table of contents and comments labeled inline.  Want to change the link color?  Find it in the table of contents and search for it.  It's this easy:</p>
+<pre><code class="language-language-css">a {
+	color: #4b87aa; /*&lt;==11*/
+	text-decoration: none;
+	transition: all 0.25s;
+}
+a:hover,
+a:focus,
+a:active{
+	color: #068bd8; /*&lt;==12*/
+}
+</code></pre>
+<p>Or how about the max-width of post content?</p>
+<pre><code class="language-language-css">    article {
+	    max-width: 34rem; /*&lt;==06*/
+    }
+</code></pre>
+<h3 id="socialsharing">Social Sharing</h3>
+<p>There are also a number of social sharing links in <code>post.hbs</code>.  By default only 5 are enabled.  To enable or disable different networks, simply uncomment them by removing the handlebars around the <code>&lt;li&gt;</code> elements:</p>
+<pre><code class="language-language-handlebars">{{!--REDDIT
+	&lt;li&gt;&lt;a class=&quot;reddit&quot; href=&quot;http://www.reddit.com/submit/?url={{@blog.url}}{{url}}&quot;&gt;reddit&lt;/a&gt;&lt;/li&gt;
+--}}
+</code></pre>
+<p>becomes:</p>
+<pre><code class="language-language-handlebars">    &lt;li&gt;&lt;a class=&quot;reddit&quot; href=&quot;http://www.reddit.com/submit/?url={{@blog.url}}{{url}}&quot;&gt;reddit&lt;/a&gt;&lt;/li&gt;
+</code></pre>
+<p>All social networks have a helper class for ease of styling.  In total there are 19 sharing options provided.</p>
+<h2 id="downloadsupport">Download &amp; Support</h2>
+<p>Lenore is available for download on github and support is provided via github issues.</p>
+<p><a href="https://github.com/thedannywahl/ghost_theme-lenore/releases">Download <em>Lenore: A Theme for Writing</em></a></p>
+</div>
+        </div>
+
+        <section class="share">
+					<small class="meta">Share this post</small>
+        	<ul>
+				<li>
+					<a href="mailto:?&subject=iyWare%3A%20Ghost%20Theme%20Lenore&body=Ghost%20Theme%20Lenore%0D%0Ahttps://iyware.com/ghost-theme-lenore/%0D%0A%0D%0AGhost is a blogging platform.  Lenore is a theme designed to showcase writing and as such most of its features are about what it doesn't do. Demo A demo site of this theme is available at lenore.iyware.com Features Ghost 0.5.10 compatible:%2E%2E%2E">Email</a>
+				</li>
+				<li>
+					<a href="https://twitter.com/home?status=https://iyware.com/ghost-theme-lenore/%20%23Portfolio%20%23Ghost">Twitter</a>
+				</li>
+				<li>
+					<a href="https://www.facebook.com/sharer/sharer.php?u=https://iyware.com/ghost-theme-lenore/">Facebook</a>
+				</li>
+				<li>
+					<a href="https://plus.google.com/share?url=https://iyware.com/ghost-theme-lenore/">Google+</a>
+				</li>
+				<li>
+					<a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://iyware.com/ghost-theme-lenore/&amp;title=Ghost%20Theme%20Lenore&amp;summary=Ghost%20is%20a%20blogging%20platform.%20%20Lenore%20is%20a%20theme%20designed%20to%20showcase%20writing%20and%20as%20such%20most%20of%20its%20features%20are%20about%20what%20it%20doesn't%20do.%20Demo%20A%20demo%20site%20of%20this%20theme%20is%20available%20at%20lenore.iyware.com%20Features%20Ghost%200.5.10%20compatible:&amp;source=iyWare">LinkedIn</a>
+				</li>
+			</ul>
+        </section>
+
+        <footer class="post-footer vcard cf" role="contentinfo">
+                	<div class="wrapper">
+                	<a href="../author/danny-2/index.html" class="author" style="background-image: url('../content/images/2015/03/dannywahl.jpg');">
+                    	<img src="../content/images/2015/03/dannywahl.jpg" alt="Danny Wahl">
+					</a>
+					</div>
+                <div class="author-info meta">
+					<a href="../author/danny-2/index.html" class="fn">Danny Wahl</a>
+                    &nbsp;&bull;&nbsp;<span class="adr">天津</span>
+                    &nbsp;&bull;&nbsp;<a class="site" href="https://iyware.com/">https://iyware.com</a>
+                    <p class="bio">My name is Danny Wahl and I provide consulting in IT and education. I dabble in writing, programming, design, and ukulele playing. Post content licensed CC-BY-4.0</p>
+                </div>
+        </footer>
+
+    </article>
+
+
+<footer class="footer-main cf">
+	<p class="feed"><a href="../rss">RSS Feed</a></p>
+	<p class="description">
+        <a class="title" href="../index.html">iyWare</a>
+        <span>Things I Break</span>
+    </p>
+	<p class="copyright">&copy; 2018 <a href="../index.html">iyWare</a></p>
+</footer>
+
+    <script type="text/javascript" async defer>document.body.className.match("post-template")&&(prismcss=document.createElement("link"),prismcss.rel="stylesheet",prismcss.href="../assets/css/prism.min.css",document.body.appendChild(prismcss),prismjs=document.createElement("script"),prismjs.type="text/javascript",prismjs.async=!0,prismjs.onload=function(){},prismjs.src="https://cdn.jsdelivr.net/npm/prismjs@1.9.0/prism.min.js",document.body.appendChild(prismjs),disqushtml=document.createElement("div"),disqushtml.id="disqus_thread",document.getElementsByTagName("article")[0].appendChild(disqushtml),disqusjs=document.createElement("script"),disqusjs.type="text/javascript",disqusjs.async=!0,disqusjs.src="https://iyware.disqus.com/embed.js",document.body.appendChild(disqusjs)),function(s,e,t,i,m,n,c){s.SwiftypeObject=m,s[m]=s[m]||function(){(s[m].q=s[m].q||[]).push(arguments)},n=e.createElement(t),c=e.getElementsByTagName(t)[0],n.async=1,n.src=i,c.parentNode.insertBefore(n,c)}(window,document,"script","https://s.swiftypecdn.com/install/v2/st.js","_st"),_st("install","UpLojaav5s--stgt7FKu","2.0.0");</script>
+    <aside style="display:none;visibility:hidden;">
+  -		<a href="../search/index.html">search</a>
+  -		<a href="../clients/index.html">clients</a>
+      <a href="../sitemap.xml">sitemap</a>
+  -	</aside>
+</body>
+
+<!-- Mirrored from 127.0.0.1:2368/ghost-theme-lenore/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 12 Jan 2018 22:48:18 GMT -->
+</html>
