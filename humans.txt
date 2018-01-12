@@ -1,6 +1,6 @@
 /* TEAM */
 	Author: Danny Wahl
-	Contact: danny [at] iyware.com
+	Contact: danny [at] iywahl.com
 	Twitter: @thedannywahl
 
 /* SITE */
@@ -8,6 +8,6 @@
 	Language: English
 	Doctype: HTML5
 	Standards: HTML5, CSS3
-	Components: jQuery, Prism
+	Components: Prism
 	Software: node.js, Ghost, Lenore, HTTrack, Disqus, Cloudflare, Swiftype
-	IDE: Coda 2, git
+	IDE: atom, git
