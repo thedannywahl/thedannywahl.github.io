@@ -773,13 +773,14 @@ pre[class*="language-"] {
     font-size: 0.8em;
     overflow-y: hidden;
     font-family: "Inconsolata", monospace;
-    border: 1px solid #ededee;
     border-radius: 6px;
-    border-width: 1px 1px 1px 0;
-    border-color: #ededee #ededee #ededee;
+    border-width: 2px 2px 2px 0;
+    border-color: #ededee;
+    border-style: solid;
 }
 
 pre[class*="language-"] > code {
     box-shadow: none;
     border-left: 5px solid #6ba7a5;
+    border-radius: 6px;
 }
