@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<!-- Mirrored from 127.0.0.1:2368/add-share-links-to-ghost-themes/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 12 Jan 2018 19:52:04 GMT -->
+<!-- Mirrored from 127.0.0.1:2368/add-share-links-to-ghost-themes/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 12 Jan 2018 20:31:59 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8" />
@@ -22,7 +22,7 @@
     <meta property="og:description" content="Seems like the internet is all about sharing these days.  Back in my day it was a place for the anti-social people to not-really-get-together, but I digress.  The ability to share content instantly and effortlessly is powerful.  Today we&#x27;ll take a look at adding share links to a Ghost theme&#x27;s" />
     <meta property="og:url" content="https://iyware.com/add-share-links-to-ghost-themes/" />
     <meta property="article:published_time" content="2015-03-16T05:51:24.000Z" />
-    <meta property="article:modified_time" content="2015-03-16T13:20:41.000Z" />
+    <meta property="article:modified_time" content="2018-01-12T20:06:22.000Z" />
     <meta property="article:tag" content="Ghost" />
     
     <meta name="twitter:card" content="summary" />
@@ -60,7 +60,7 @@
     "headline": "Add Share Links to Ghost Themes",
     "url": "https://iyware.com/add-share-links-to-ghost-themes/",
     "datePublished": "2015-03-16T05:51:24.000Z",
-    "dateModified": "2015-03-16T13:20:41.000Z",
+    "dateModified": "2018-01-12T20:06:22.000Z",
     "keywords": "Ghost",
     "description": "Seems like the internet is all about sharing these days.  Back in my day it was a place for the anti-social people to not-really-get-together, but I digress.  The ability to share content instantly and effortlessly is powerful.  Today we&#x27;ll take a look at adding share links to a Ghost theme&#x27;s",
     "mainEntityOfPage": {
@@ -70,13 +70,6 @@
 }
     </script>
 
-    <script type="text/javascript" src="../public/ghost-sdk2ce6.js?v=d0d73aecc2"></script>
-<script type="text/javascript">
-ghost.init({
-	clientId: "ghost-frontend",
-	clientSecret: "035844ea19dd"
-});
-</script>
     <meta name="generator" content="Ghost 1.20" />
     <link rel="alternate" type="application/rss+xml" title="iyWare" href="https://iyware.com/rss/" />
 </head>
@@ -155,7 +148,7 @@ ghost.init({
 <p>A URL can be provided what's known as a &quot;query string&quot; which is simply a list of variables and values.  The query string always begins with <code>?</code>, followed by a variable name (e.g. <code>title</code>), an equals sign <code>=</code>, and the query value (e.g.</p>
 <h2 id="examplesharelinkpinterest">Example Share Link: Pinterest</h2>
 <p>We'll use pinterest as our first example share link.  This is the basic structure of the pinterest share URL with the query string empty:</p>
-<pre><code class="language-language-markup">https://pinterest.com/pin/create/button/?url=&amp;media=&amp;description=
+<pre><code class="language-markup">https://pinterest.com/pin/create/button/?url=&amp;media=&amp;description=
 </code></pre>
 <p>So we'll fill out the query with the following API calls:</p>
 <ul>
@@ -164,10 +157,10 @@ ghost.init({
 <li><code>description={{excerpt words=&quot;20&quot;}}</code></li>
 </ul>
 <p>Then we'll wrap the media selector in an <code>{{#if}}</code> block in case there's no image associated with the post.</p>
-<pre><code class="language-language-handlebars">{{#if image}}&amp;media={{@blog.url}}{{image}}{{/if}}
+<pre><code class="language-handlebars">{{#if image}}&amp;media={{@blog.url}}{{image}}{{/if}}
 </code></pre>
 <p>Notice that the whole query key/value pair are selected, this prevents us from referring a blank image.  Finally we wrap it all in an html anchor tag:</p>
-<pre><code class="language-language-handlebars">&lt;a href=&quot;https://pinterest.com/pin/create/button/?{{url absolute=&quot;true&quot;}}{{#if image}}&amp;media={{@blog.url}}{{image}}{{/if}}&amp;description={{excerpt words=&quot;20&quot;}}&quot;&gt;
+<pre><code class="language-handlebars">&lt;a href=&quot;https://pinterest.com/pin/create/button/?{{url absolute=&quot;true&quot;}}{{#if image}}&amp;media={{@blog.url}}{{image}}{{/if}}&amp;description={{excerpt words=&quot;20&quot;}}&quot;&gt;
     Pinterest
 &lt;/a&gt;
 </code></pre>
@@ -180,7 +173,7 @@ ghost.init({
 <li><code>&amp;body={{encode title}}%0D%0A{{url absolute=&quot;true&quot;}}%0D%0A%0D%0A{{excerpt words=&quot;45&quot;}}%2E%2E%2E</code></li>
 </ul>
 <p>This will output the blog title followed by the post title in the subject of the email like this: &quot;iyWare: Add Share Links to Ghost Themes&quot; and the body will be populated with the post title, URL, and excerpt of the post.  Now let's wrap it in an anchor element:</p>
-<pre><code class="language-language-handlebars">&lt;a class=&quot;Email&quot; href=&quot;mailto:?&amp;subject={{encode @blog.title}}%3A%20{{encode title}}&amp;body={{encode title}}%0D%0A{{url absolute=&quot;true&quot;}}%0D%0A%0D%0A{{excerpt words=&quot;45&quot;}}%2E%2E%2E&quot;&gt;
+<pre><code class="language-handlebars">&lt;a class=&quot;Email&quot; href=&quot;mailto:?&amp;subject={{encode @blog.title}}%3A%20{{encode title}}&amp;body={{encode title}}%0D%0A{{url absolute=&quot;true&quot;}}%0D%0A%0D%0A{{excerpt words=&quot;45&quot;}}%2E%2E%2E&quot;&gt;
     Email
 &lt;/a&gt;
 </code></pre>
@@ -272,7 +265,30 @@ ghost.init({
 	<p class="copyright">&copy; 2018 <a href="https://iyware.com/">iyWare</a></p>
 </footer>
 
-    <script type="text/javascript">document.body.className.match("post-template")&&!function(t,e){e=t.createElement("script"),e.type="text/javascript",e.async=!0,e.onload=function(){},e.src="https://cdn.jsdelivr.net/npm/prismjs@1.9.0/prism.js",t.body.appendChild(e)}(document),function(t,e,s,n,c,a,i){t.SwiftypeObject=c,t[c]=t[c]||function(){(t[c].q=t[c].q||[]).push(arguments)},a=e.createElement(s),i=e.getElementsByTagName(s)[0],a.async=1,a.src=n,i.parentNode.insertBefore(a,i)}(window,document,"script","https://s.swiftypecdn.com/install/v2/st.js","_st"),_st("install","UpLojaav5s--stgt7FKu","2.0.0");</script>
+    <script type="text/javascript">
+if( document.body.className.match('post-template') ) {
+  (function(d, script, link) {
+    script = d.createElement('script');
+    script.type = 'text/javascript';
+    script.async = true;
+    script.onload = function(){};
+    script.src = 'https://cdn.jsdelivr.net/npm/prismjs@1.9.0/prism.min.js';
+    link = d.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = '../assets/css/prism.min.css';
+    d.body.appendChild(link);
+    d.body.appendChild(script);
+  }(document));
+}
+</script>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','https://s.swiftypecdn.com/install/v2/st.js','_st');
+  _st('install','UpLojaav5s--stgt7FKu','2.0.0');
+</script>
 
 	<aside style="display:none;">
 		<a href="../search/">search</a>
@@ -280,5 +296,5 @@ ghost.init({
 	</aside>
 </body>
 
-<!-- Mirrored from 127.0.0.1:2368/add-share-links-to-ghost-themes/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 12 Jan 2018 19:52:04 GMT -->
+<!-- Mirrored from 127.0.0.1:2368/add-share-links-to-ghost-themes/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 12 Jan 2018 20:31:59 GMT -->
 </html>
