@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<!-- Mirrored from 127.0.0.1:2368/add-share-links-to-wordpress/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 12 Jan 2018 19:15:18 GMT -->
+<!-- Mirrored from 127.0.0.1:2368/add-share-links-to-wordpress/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 12 Jan 2018 19:26:26 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8" />
@@ -22,7 +22,7 @@
     <meta property="og:description" content="In my previous posts Ghost Share Links Cheat Sheet and Add Share Links to Ghost Themes I explained &amp;quot;no-cost&amp;quot; sharing and provided reusable code snippets in handlebars to add share links to 19 different social networks.  Here they are adapted for WordPress in a single easy to use" />
     <meta property="og:url" content="https://iyware.com/add-share-links-to-wordpress/" />
     <meta property="article:published_time" content="2015-03-25T00:19:11.000Z" />
-    <meta property="article:modified_time" content="2015-04-21T02:17:19.000Z" />
+    <meta property="article:modified_time" content="2018-01-12T19:25:41.000Z" />
     <meta property="article:tag" content="WordPress" />
     
     <meta name="twitter:card" content="summary" />
@@ -60,7 +60,7 @@
     "headline": "Add Share Links to WordPress",
     "url": "https://iyware.com/add-share-links-to-wordpress/",
     "datePublished": "2015-03-25T00:19:11.000Z",
-    "dateModified": "2015-04-21T02:17:19.000Z",
+    "dateModified": "2018-01-12T19:25:41.000Z",
     "keywords": "WordPress",
     "description": "In my previous posts Ghost Share Links Cheat Sheet and Add Share Links to Ghost Themes I explained &amp;quot;no-cost&amp;quot; sharing and provided reusable code snippets in handlebars to add share links to 19 different social networks.  Here they are adapted for WordPress in a single easy to use",
     "mainEntityOfPage": {
@@ -120,14 +120,14 @@ ghost.init({
 <p>In your WordPress theme folder you can either simply add the following code to the <code>single.php</code> file inside of the <code>while()</code> loop or add it to your theme's <code>functions.php</code> and call it in <code>single.php</code></p>
 <h2 id="usage">Usage</h2>
 <p>This code provides a single function <code>shareLinks([$sites]){}</code> which takes an optional parameter <code>$sites[]</code> which is array of sites to output links.  If no parameter is provided then all sites are returned.  For example:</p>
-<pre><code class="language-language-php">shareLinks();  //All the things!
+<pre><code class="language-php">shareLinks();  //All the things!
 
 shareLinks(array(&quot;email&quot;)); //Old School!
 
 ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 </code></pre>
 <p>The function returns a string containing an unordered list with each site as its own list item.  The list item contains an anchor with a helper class of the machine-readable site name, like so:</p>
-<pre><code class="language-language-markup">&lt;ul&gt;
+<pre><code class="language-markup">&lt;ul&gt;
   &lt;li&gt;
     &lt;a class=&quot;stumbleupon&quot; href=&quot;https://stumbleupon.com...&quot;&gt;StumbleUpon&lt;/a&gt;
   &lt;/li&gt;
@@ -137,7 +137,7 @@ ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 &lt;/ul&gt;
 </code></pre>
 <p>To output the list it needs to be echoed after it is called.  The simplest way is like this:</p>
-<pre><code class="language-language-php">&lt;?php echo shareLinks(); ?&gt;
+<pre><code class="language-php">&lt;?php echo shareLinks(); ?&gt;
 </code></pre>
 <p>Ok, now for the dev-nerd stuff...</p>
 <h2 id="queryitems">Query Items</h2>
@@ -490,7 +490,7 @@ ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 	<p class="copyright">&copy; 2018 <a href="https://iyware.com/">iyWare</a></p>
 </footer>
 
-    <script type="text/javascript">document.body.className.match("post-template")&&!function(t,e){e=t.createElement("script"),e.type="text/javascript",e.async=!0,e.onload=function(){},e.src="https://cdn.jsdelivr.net/npm/prismjs@1.9.0/prism.min.js",t.body.appendChild(e)}(document),function(t,e,s,n,c,a,i){t.SwiftypeObject=c,t[c]=t[c]||function(){(t[c].q=t[c].q||[]).push(arguments)},a=e.createElement(s),i=e.getElementsByTagName(s)[0],a.async=1,a.src=n,i.parentNode.insertBefore(a,i)}(window,document,"script","http://s.swiftypecdn.com/install/v2/st.js","_st"),_st("install","UpLojaav5s--stgt7FKu","2.0.0");</script>
+    <script type="text/javascript">document.body.className.match("post-template")&&!function(t,e){e=t.createElement("script"),e.type="text/javascript",e.async=!0,e.onload=function(){},e.src="https://cdn.jsdelivr.net/npm/prismjs@1.9.0/prism.js",t.body.appendChild(e)}(document),function(t,e,s,n,c,a,i){t.SwiftypeObject=c,t[c]=t[c]||function(){(t[c].q=t[c].q||[]).push(arguments)},a=e.createElement(s),i=e.getElementsByTagName(s)[0],a.async=1,a.src=n,i.parentNode.insertBefore(a,i)}(window,document,"script","http://s.swiftypecdn.com/install/v2/st.js","_st"),_st("install","UpLojaav5s--stgt7FKu","2.0.0");</script>
 
 	<aside style="display:none;">
 		<a href="../search/">search</a>
@@ -498,5 +498,5 @@ ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 	</aside>
 </body>
 
-<!-- Mirrored from 127.0.0.1:2368/add-share-links-to-wordpress/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 12 Jan 2018 19:15:18 GMT -->
+<!-- Mirrored from 127.0.0.1:2368/add-share-links-to-wordpress/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 12 Jan 2018 19:26:26 GMT -->
 </html>
