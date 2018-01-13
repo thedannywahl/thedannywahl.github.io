@@ -18,7 +18,7 @@
     <meta property="og:description" content="In my previous posts Ghost Share Links Cheat Sheet and Add Share Links to Ghost Themes I explained &amp;quot;no-cost&amp;quot; sharing and provided reusable code snippets in handlebars to add share links to 19 different social networks.  Here they are adapted for WordPress in a single easy to use" />
     <meta property="og:url" content="https://iyware.com/add-share-links-to-wordpress/" />
     <meta property="article:published_time" content="2015-03-25T00:19:11.000Z" />
-    <meta property="article:modified_time" content="2018-01-12T19:25:41.000Z" />
+    <meta property="article:modified_time" content="2018-01-13T00:25:18.000Z" />
     <meta property="article:tag" content="WordPress" />
     
     <meta name="twitter:card" content="summary" />
@@ -56,7 +56,7 @@
     "headline": "Add Share Links to WordPress",
     "url": "https://iyware.com/add-share-links-to-wordpress/",
     "datePublished": "2015-03-25T00:19:11.000Z",
-    "dateModified": "2018-01-12T19:25:41.000Z",
+    "dateModified": "2018-01-13T00:25:18.000Z",
     "keywords": "WordPress",
     "description": "In my previous posts Ghost Share Links Cheat Sheet and Add Share Links to Ghost Themes I explained &amp;quot;no-cost&amp;quot; sharing and provided reusable code snippets in handlebars to add share links to 19 different social networks.  Here they are adapted for WordPress in a single easy to use",
     "mainEntityOfPage": {
@@ -162,7 +162,7 @@ ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 </ul>
 <h2 id="networksarray">Networks Array</h2>
 <p>Each network (facebook, twitter, etc..) is simply part of a multidimensional array.  To add another network, simply create another entry in <code>networks[]</code>.  Here's the schema of the primary array:</p>
-<pre><code class="language-language-php">	$networks[&quot;network-machine-readable-name&quot;] = [
+<pre><code class="language-php">	$networks[&quot;network-machine-readable-name&quot;] = [
 		&quot;name&quot;  =&gt; &quot;Network Display Name&quot;,
 		&quot;url&quot;   =&gt; &quot;https://example.com/share?&quot;,
 		&quot;query&quot; =&gt; [
@@ -174,20 +174,20 @@ ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 <p>The machine readable name is the helper class that's provided in the anchor, the &quot;name&quot; is the text output in the anchor content.  This is important especially when dealing with multilingual sites, for example &quot;Sina Weibo&quot; is <code>$networks[&quot;sinaWeibo&quot;]</code> but the display name is: <code>&quot;name&quot; =&gt; &quot;新浪微博&quot;</code>  to change the display of the network name you would change the &quot;name&quot; value.</p>
 <p>The <code>&quot;url&quot;</code> array value is where the share URL is stored- this is different for each site, but it should always end with the beginning of the query URL (i.e. <code>?</code>).</p>
 <p>The <code>&quot;query&quot;</code> array value should store another array which are the components of the URL query.  These are different for each network, but can be populated with elements from the <code>$share[]</code> array as outlined above.  For example a query array might look like this:</p>
-<pre><code class="language-language-php">&quot;query&quot; =&gt; [
+<pre><code class="language-php">&quot;query&quot; =&gt; [
     &quot;url&quot; =&gt; $share[&quot;postURL&quot;],
     &quot;title&quot; =&gt; $share[&quot;postTitle&quot;],
     &quot;redirect&quot; =&gt; &quot;false&quot;,
 ],
 </code></pre>
 <p>Notice the last option &quot;redirect=false&quot;.  It's possible to add static elements to the query URL if they're required by the remote site.  In the end this will give us something like:</p>
-<pre><code class="language-language-markup">url=http://example.com&amp;title=Post Title&amp;redirect=false
+<pre><code class="language-markup">url=http://example.com&amp;title=Post Title&amp;redirect=false
 </code></pre>
 <p>Finally, our query is passed through <a href="http://php.net/http_build_query"><code>http_build_query()</code></a> to make it URL encoded.</p>
 <h2 id="examples">Examples</h2>
 <p>The following are real examples of this function in action on my wife's blog (<a href="http://iywahl.com/">iywahl.com</a>) with a random post.  Her site is using WordPress 4.1.1 and the &quot;Twenty Fifteen&quot; theme.</p>
 <h3 id="email">Email</h3>
-<pre><code class="language-language-php">	$networks[&quot;email&quot;] = [
+<pre><code class="language-php">	$networks[&quot;email&quot;] = [
 		&quot;name&quot;  =&gt; &quot;E-mail&quot;,
 		&quot;url&quot;   =&gt; &quot;mailto:?&quot;,
 		&quot;query&quot; =&gt; [
@@ -198,7 +198,7 @@ ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 </code></pre>
 <p><img src="../content/images/2015/03/share-to-email-with-wordpress.png" alt=""></p>
 <h3 id="twitter">twitter</h3>
-<pre><code class="language-language-php">	$networks[&quot;twitter&quot;] = [
+<pre><code class="language-php">	$networks[&quot;twitter&quot;] = [
 		&quot;name&quot;  =&gt; &quot;twitter&quot;,
 		&quot;url&quot;   =&gt; &quot;https://twitter.com/home?&quot;,
 		&quot;query&quot; =&gt; [
@@ -208,7 +208,7 @@ ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 </code></pre>
 <p><img src="../content/images/2015/03/share-to-twitter-with-wordpress.png" alt=""></p>
 <h3 id="facebook">Facebook</h3>
-<pre><code class="language-language-php">	$networks[&quot;facebook&quot;] = [
+<pre><code class="language-php">	$networks[&quot;facebook&quot;] = [
 		&quot;name&quot;  =&gt; &quot;Facebook&quot;,
 		&quot;url&quot;   =&gt; &quot;https://www.facebook.com/sharer/sharer.php?&quot;,
 		&quot;query&quot; =&gt; [
@@ -218,7 +218,7 @@ ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 </code></pre>
 <p><img src="../content/images/2015/03/share-to-facebook-with-wordpress.png" alt=""></p>
 <h3 id="google">Google+</h3>
-<pre><code class="language-language-php">	$networks[&quot;googlePlus&quot;] = [
+<pre><code class="language-php">	$networks[&quot;googlePlus&quot;] = [
 		&quot;name&quot;  =&gt; &quot;Google+&quot;,
 		&quot;url&quot;   =&gt; &quot;https://plus.google.com/share?&quot;,
 		&quot;query&quot; =&gt; [
@@ -228,7 +228,7 @@ ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 </code></pre>
 <p><img src="../content/images/2015/03/share-to-googleplus-with-wordpress.png" alt=""></p>
 <h3 id="linkedin">LinkedIn</h3>
-<pre><code class="language-language-php">	$networks[&quot;linkedin&quot;] = [
+<pre><code class="language-php">	$networks[&quot;linkedin&quot;] = [
 		&quot;name&quot;  =&gt; &quot;LinkedIn&quot;,
 		&quot;url&quot;   =&gt; &quot;https://www.linkedin.com/shareArticle?&quot;,
 		&quot;query&quot; =&gt; [
@@ -242,7 +242,7 @@ ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 </code></pre>
 <p><img src="../content/images/2015/03/share-to-linkedin-with-wordpress.png" alt=""></p>
 <h3 id="pinterest">Pinterest</h3>
-<pre><code class="language-language-php">	$networks[&quot;pinterest&quot;] = [
+<pre><code class="language-php">	$networks[&quot;pinterest&quot;] = [
 		&quot;name&quot;  =&gt; &quot;Pinterest&quot;,
 		&quot;url&quot;   =&gt; &quot;https://pinterest.com/pin/create/button/?&quot;,
 		&quot;query&quot; =&gt; [
@@ -254,7 +254,7 @@ ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 </code></pre>
 <p><img src="../content/images/2015/03/share-to-pinterest-with-wordpress.png" alt=""></p>
 <h3 id="tumblr">Tumblr</h3>
-<pre><code class="language-language-php">	$networks[&quot;tumblr&quot;] = [
+<pre><code class="language-php">	$networks[&quot;tumblr&quot;] = [
 		&quot;name&quot;  =&gt; &quot;tumblr&quot;,
 		&quot;url&quot;   =&gt; &quot;http://www.tumblr.com/share/link?&quot;,
 		&quot;query&quot; =&gt; [
@@ -266,7 +266,7 @@ ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 </code></pre>
 <p><img src="../content/images/2015/03/share-to-tumblr-with-wordpress.png" alt=""></p>
 <h3 id="reddit">reddit</h3>
-<pre><code class="language-language-php">	$networks[&quot;reddit&quot;] = [
+<pre><code class="language-php">	$networks[&quot;reddit&quot;] = [
 		&quot;name&quot;  =&gt; &quot;reddit&quot;,
 		&quot;url&quot;   =&gt; &quot;http://www.reddit.com/submit/?&quot;,
 		&quot;query&quot; =&gt; [
@@ -277,7 +277,7 @@ ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 </code></pre>
 <p><img src="../content/images/2015/03/share-to-reddit-with-wordpress.png" alt=""></p>
 <h3 id="xing">Xing</h3>
-<pre><code class="language-language-php">	$networks[&quot;xing&quot;] = [
+<pre><code class="language-php">	$networks[&quot;xing&quot;] = [
 		&quot;name&quot;  =&gt; &quot;Xing&quot;,
 		&quot;url&quot;   =&gt; &quot;https://www.xing.com/spi/shares/new?&quot;,
 		&quot;query&quot; =&gt; [
@@ -288,7 +288,7 @@ ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 </code></pre>
 <p><img src="../content/images/2015/03/share-to-xing-with-wordpress.png" alt=""></p>
 <h3 id="vk">VK</h3>
-<pre><code class="language-language-php">	$networks[&quot;vk&quot;] = [
+<pre><code class="language-php">	$networks[&quot;vk&quot;] = [
 		&quot;name&quot;  =&gt; &quot;VK&quot;,
 		&quot;url&quot;   =&gt; &quot;https://vk.com/share.php?&quot;,
 		&quot;query&quot; =&gt; [
@@ -302,7 +302,7 @@ ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 </code></pre>
 <p><img src="../content/images/2015/03/share-to-vk-with-wordpress.png" alt=""></p>
 <h3 id="buffer">buffer</h3>
-<pre><code class="language-language-php">	$networks[&quot;buffer&quot;] = [
+<pre><code class="language-php">	$networks[&quot;buffer&quot;] = [
 		&quot;name&quot;  =&gt; &quot;buffer&quot;,
 		&quot;url&quot;   =&gt; &quot;https://bufferapp.com/add/?&quot;,
 		&quot;query&quot; =&gt; [
@@ -313,7 +313,7 @@ ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 </code></pre>
 <p><img src="../content/images/2015/03/share-to-buffer-with-wordpress.png" alt=""></p>
 <h3 id="stumbleupon">StumbleUpon</h3>
-<pre><code class="language-language-php">	$networks[&quot;stumbleupon&quot;] = [
+<pre><code class="language-php">	$networks[&quot;stumbleupon&quot;] = [
 		&quot;name&quot;  =&gt; &quot;StumbleUpon&quot;,
 		&quot;url&quot;   =&gt; &quot;https://www.stumbleupon.com/submit?&quot;,
 		&quot;query&quot; =&gt; [
@@ -324,7 +324,7 @@ ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 </code></pre>
 <p><img src="../content/images/2015/03/share-to-stumbleupon-with-wordpress.png" alt=""></p>
 <h3 id="sinaweibo">新浪微博 (Sina Weibo)</h3>
-<pre><code class="language-language-php">	$networks[&quot;sinaWeibo&quot;] = [
+<pre><code class="language-php">	$networks[&quot;sinaWeibo&quot;] = [
 		&quot;name&quot;  =&gt; &quot;新浪微博&quot;,
 		&quot;url&quot;   =&gt; &quot;http://service.weibo.com/share/share.php?&quot;,
 		&quot;query&quot; =&gt; [
@@ -336,7 +336,7 @@ ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 </code></pre>
 <p><img src="../content/images/2015/03/share-to-sinaweibo-with-wordpress.png" alt=""></p>
 <h3 id="baidu">Baidu空间</h3>
-<pre><code class="language-language-php">	$networks[&quot;baidu&quot;] = [
+<pre><code class="language-php">	$networks[&quot;baidu&quot;] = [
 		&quot;name&quot;  =&gt; &quot;Baidu空间&quot;,
 		&quot;url&quot;   =&gt; &quot;http://hi.baidu.com/pub/show/share?&quot;,
 		&quot;query&quot; =&gt; [
@@ -347,7 +347,7 @@ ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 </code></pre>
 <p><img src="../content/images/2015/03/share-to-baidus-with-wordpress.png" alt=""></p>
 <h3 id="renren">人人网 (Renren)</h3>
-<pre><code class="language-language-php">	$networks[&quot;renren&quot;] = [
+<pre><code class="language-php">	$networks[&quot;renren&quot;] = [
 		&quot;name&quot;  =&gt; &quot;人人网&quot;,
 		&quot;url&quot;   =&gt; &quot;http://share.renren.com/share/buttonshare?&quot;,
 		&quot;query&quot; =&gt; [
@@ -358,7 +358,7 @@ ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 </code></pre>
 <p><img src="../content/images/2015/03/share-to-renren-with-wordpress.png" alt=""></p>
 <h3 id="qqtencentweibo">腾讯微博 (QQ Tencent Weibo)</h3>
-<pre><code class="language-language-php">	$networks[&quot;tencentWeibo&quot;] = [
+<pre><code class="language-php">	$networks[&quot;tencentWeibo&quot;] = [
 		&quot;name&quot;  =&gt; &quot;腾讯微博&quot;,
 		&quot;url&quot;   =&gt; &quot;http://v.t.qq.com/share/share.php?&quot;,
 		&quot;query&quot; =&gt; [
@@ -369,7 +369,7 @@ ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 </code></pre>
 <p><img src="../content/images/2015/03/share-to-tencentweibo-with-wordpress.png" alt=""></p>
 <h3 id="qq">QQ空间</h3>
-<pre><code class="language-language-php">	$networks[&quot;qzone&quot;] = [
+<pre><code class="language-php">	$networks[&quot;qzone&quot;] = [
 		&quot;name&quot;  =&gt; &quot;QQ空间&quot;,
 		&quot;url&quot;   =&gt; &quot;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?&quot;,
 		&quot;query&quot; =&gt; [
@@ -381,7 +381,7 @@ ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 </code></pre>
 <p><img src="../content/images/2015/03/share-to-qqzone-with-weibo.png" alt=""></p>
 <h3 id="pengyou">腾讯朋友网 (Pengyou)</h3>
-<pre><code class="language-language-php">	$networks[&quot;pengyou&quot;] = [
+<pre><code class="language-php">	$networks[&quot;pengyou&quot;] = [
 		&quot;name&quot;  =&gt; &quot;腾讯朋友网&quot;,
 		&quot;url&quot;   =&gt; &quot;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?&quot;,
 		&quot;query&quot; =&gt; [

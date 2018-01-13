@@ -18,7 +18,7 @@
     <meta property="og:description" content="I&#x27;ve been using WordPress as the backend of my website for about 4 years now.  I&#x27;ve been a fan of its simplicity, its usability, and its extensability.  I didn&#x27;t want to spend a lot of time developing a site- I just wanted to blog but as time went on my" />
     <meta property="og:url" content="https://iyware.com/migrate-from-wordpress-to-ghost/" />
     <meta property="article:published_time" content="2015-01-19T07:49:03.000Z" />
-    <meta property="article:modified_time" content="2015-01-29T05:42:52.000Z" />
+    <meta property="article:modified_time" content="2018-01-13T00:21:14.000Z" />
     <meta property="article:tag" content="Ghost" />
     
     <meta name="twitter:card" content="summary" />
@@ -56,7 +56,7 @@
     "headline": "Migrate from WordPress to Ghost",
     "url": "https://iyware.com/migrate-from-wordpress-to-ghost/",
     "datePublished": "2015-01-19T07:49:03.000Z",
-    "dateModified": "2015-01-29T05:42:52.000Z",
+    "dateModified": "2018-01-13T00:21:14.000Z",
     "keywords": "Ghost",
     "description": "I&#x27;ve been using WordPress as the backend of my website for about 4 years now.  I&#x27;ve been a fan of its simplicity, its usability, and its extensability.  I didn&#x27;t want to spend a lot of time developing a site- I just wanted to blog but as time went on my",
     "mainEntityOfPage": {
@@ -207,7 +207,7 @@
 <p>Navigate to Users → All Users and see how many users are registered on your site.  My site had over 18,000 users registered with the default role &quot;Subscriber&quot;.  If you don't have too many users you can filter the role and delete them.</p>
 <p><img src="../content/images/2015/01/picture-of-too-many-wp-subscribers.png" alt=""></p>
 <p>However, if you have more than a few hundred users it will be more effective to delete the users directly from the database.  You can connect to phpMyAdmin or directly to your database and execute the following SQL commands.</p>
-<pre><code class="language-language-sql">DELETE
+<pre><code class="language-sql">DELETE
 FROM wp_users
 WHERE ID NOT IN
 (SELECT post_author FROM wp_posts
@@ -235,10 +235,10 @@ WHERE user_id NOT IN
 <p>The potential for something going wrong is pretty high at this point.  There's a lot of data manipulation and conversion going on and the amount of variables from system to system can be pretty extreme.  Your best bet is to check the <a href="https://wordpress.org/support/plugin/ghost">WordPress to Ghost Support Forum</a> at WordPress and see if anyone else has had the same error as you.  If they haven't, report it there and see if someone can help you.  That said here are the errors I ran into.</p>
 <h6 id="errorwhitepageofdeath">Error: White Page of Death</h6>
 <p>After clicking &quot;Download Ghost File&quot; my WordPress just hung for a minute and turned to a white page.  I enabled debugging on my WordPress instance by editing my wp-config.php and changing</p>
-<pre><code class="language-language-php">define( 'WP_DEBUG', false );
+<pre><code class="language-php">define( 'WP_DEBUG', false );
 </code></pre>
 <p>to</p>
-<pre><code class="language-language-php">define( 'WP_DEBUG', true );
+<pre><code class="language-php">define( 'WP_DEBUG', true );
 </code></pre>
 <p>After enabling debugging I ran the export again and the page output the error:</p>
 <p><code>Fatal error: Maximum execution time of 30 seconds exceeded</code></p>
@@ -252,7 +252,7 @@ WHERE user_id NOT IN
 <p>I ended up settling on the script level so that it only changed it for this export tool.  To do this, in WordPress head to Plugins → Editor and choose &quot;Ghost&quot; from the menu on the top right then select the file <code>ghost/class-ghost.php</code>.</p>
 <p><img src="../content/images/2015/01/editing-a-plugin-in-wordpress.png" alt=""></p>
 <p>Search the file for the definition of the function <code>populate_data()</code> at the begging of the function add an <code>ini_set()</code>.  Your code should now look like this:</p>
-<pre><code class="language-language-php">	/**
+<pre><code class="language-php">	/**
 	 * Gets the raw data in an array that will be later turned into glorious escaped json format
 	 * so Ghost can gobble it up
 	 * @return array 						everything we need, but in an array
@@ -286,7 +286,7 @@ WHERE user_id NOT IN
 <p>setting the value of <code>max_execution_time</code> to <code>0</code> means 'unlimited'.  Now you might run into a memory error, but similarly you can allocate extra memory.</p>
 <h6 id="errorinvalidcontentencoding">Error: Invalid Content Encoding</h6>
 <p>After I was able to extend the execution time I started getting an &quot;Invalid Content Encoding&quot; error when trying to generate the file.  It would gripe about being unable to set headers after they'd already been set.  The specific code it was referring to was again in class-ghost.php</p>
-<pre><code class="language-language-php">		header( 'Content-Description: File Transfer' );
+<pre><code class="language-php">		header( 'Content-Description: File Transfer' );
 		header( 'Content-Type: application/octet-stream' );
 		header( 'Content-Disposition: attachment; filename='.$filename );
 		header( 'Content-Transfer-Encoding: binary' );
@@ -296,11 +296,11 @@ WHERE user_id NOT IN
 		header( 'Content-Length: ' . filesize( $filedir . '/' . $filename ) );
 </code></pre>
 <p>Here ghost is trying to build and serve the download file, not a webpage, but what I discovered was that with debugging on PHP would throw  an error</p>
-<pre><code class="language-language-php">Notice: Undefined index: description in /wp-content/plugins/ghost/class-ghost.php on line 394
+<pre><code class="language-php">Notice: Undefined index: description in /wp-content/plugins/ghost/class-ghost.php on line 394
 </code></pre>
 <p>saying that it couldn't grab some data from WordPress.  When PHP threw the error it would set the headers to a webpage to display the error, then Ghost Export would try to set them to be a file download, and we'd end up with a content encoding error.</p>
 <p>There are a couple of ways to fix this.  The first (and easiest) is to disable debugging.  This will prevent PHP from throwing a notice, that value will silently fail (not a problem) and you'll get your export file.  The second is to comment out the link looking for the <code>description</code> index so the failure doesn't occur.  You still don't end up with the data but it's not a big deal.  Again in class-ghost.php edit the <code>user_meta</code> section to comment out <code>bio</code> as shown below:</p>
-<pre><code class="language-language-php">		foreach ( $users as $user ) {
+<pre><code class="language-php">		foreach ( $users as $user ) {
 			$user_meta = get_user_meta( $user-&gt;ID );
 
 			$this-&gt;garray['data']['users'][] = array(
@@ -326,14 +326,14 @@ WHERE user_id NOT IN
 <h3 id="removewordpressshortcodes">Remove WordPress Shortcodes</h3>
 <p>One of the major drawbacks of WordPress is shortcodes.  Years ago they were revolutionary, <code>[gallery]</code> was awesome!  But once theme devs started adding their own shortcodes to create a type of &quot;vendor lock-in&quot; then they got really frustrating.</p>
 <p>So Hopefully you didn't have any shortcodes in your text.  I did.  When you import them into ghost the raw code will show up.  For example, if you had a shortcode called <code>[button]</code> that outputs a link element with the class button, in Ghost you'll just have:</p>
-<pre><code class="language-language-markup">[button href=&quot;#&quot;]Text[/button]
+<pre><code class="language-markup">[button href=&quot;#&quot;]Text[/button]
 </code></pre>
 <p>Which probably you just don't want.  Now, fortunately shortcodes are just a bit of code that become a different bit of code which means we can reverse engineer them pretty easily.  Open your JSON file in your favorite text editor, I'm using <a href="http://panic.com/coda/">Coda 2</a> but you can use <a href="http://ss64.com/bash/sed.html">sed</a> or whatever you want.</p>
 <p>You're going to have to do a little bit of personalization here but I'll give you an overview of what I did in my editor.</p>
 <p><strong>Note:</strong> be sure to escape your <a href="http://json.org/">JSON strings</a>!</p>
 <h4 id="replacebuttonshortcode">Replace [button] Shortcode</h4>
 <p>In My text editor I simply searched for <code>[button</code> (not there's no closing bracket) to evaluate how I used it in my source and then built a replacement string:</p>
-<pre><code class="language-language-javascript">[button link=\u201d
+<pre><code class="language-javascript">[button link=\u201d
 &lt;a href=\&quot;
 
 \u201d]Download[\/button]
@@ -341,7 +341,7 @@ WHERE user_id NOT IN
 </code></pre>
 <h4 id="replacetabgroupshortcode">Replace [tabgroup] Shortcode</h4>
 <p>The second shortcode I used was was one that took some inline code and formatted it for jQuery tabs.  Mostly all I needed to do to replace them was a NULL string</p>
-<pre><code class="language-language-javascript">[tabgroup]
+<pre><code class="language-javascript">[tabgroup]
 NULL
 
 [tab]
@@ -357,7 +357,7 @@ NULL
 <h3 id="editwordpressurls">Edit WordPress URLs</h3>
 <p>After the shortcodes we need to edit wordpress URLs to work with our Ghost paths.  Remember that our media has been moved from <code>/wp-content/uploads/</code> (default) or <code>/assets/</code> to <code>/content/images/</code>.  Since the paths have moved we need to reflect this in our posts.  Again we simply use find and replace.  This time we need 3 find and replaces starting with fully qualified path down to relative path.  The reason being that if you replace the relative path first then the fully qualified path will fail.</p>
 <p>My site was served from <code>http://www.iyware.com</code> so we'll start with <code>http://www.iyware.com/assets/</code> again we need to escape the JSON strings.</p>
-<pre><code class="language-language-javascript">http:\/\/www.iyware.com\/assets\/
+<pre><code class="language-javascript">http:\/\/www.iyware.com\/assets\/
 \/content\/images\/import\/
 
 http:\/\/iyware.com\/assets\/
@@ -371,12 +371,12 @@ http:\/\/iyware.com\/assets\/
 <p>Once we've rewritten the paths for our media to be relative to our Ghost instance we need to edit the source for our images to always use the original image.  Go back to your WordPress instance and note the thumbnail sizes for images under Settings → Media.</p>
 <p><img src="../content/images/2015/01/wordpress-image-sizes.png" alt=""></p>
 <p>When you insert an image into a WordPress post you generally have to choose an image size and WordPress will insert the resized image with the dimensions appended to it inside of an anchor element linked to the original.  So, for example an image called &quot;post.jpg&quot; that was inserted into a WordPress post at medium size (using the settings above) would generate the following HTML:</p>
-<pre><code class="language-language-markup">&lt;a href=&quot;/wp-content/uploads/post.jpg&quot;&gt;
+<pre><code class="language-markup">&lt;a href=&quot;/wp-content/uploads/post.jpg&quot;&gt;
   &lt;img src=&quot;/wp-content/uploads/post-500x500.jpg&quot; /&gt;
 &lt;/a&gt;
 </code></pre>
 <p>Essentially all we need to do is strip off the suffix for each media size.  Make sure that you use your WordPress settings, and if you've ever changed the settings that you use what your old settings were too.</p>
-<pre><code class="language-language-javascript">-300x300
+<pre><code class="language-javascript">-300x300
 NULL
 
 -500x500
@@ -386,7 +386,7 @@ NULL
 NULL
 </code></pre>
 <p>Now the output HTML would look like this:</p>
-<pre><code class="language-language-markup">&lt;a href=&quot;/wp-content/uploads/post.jpg&quot;&gt;
+<pre><code class="language-markup">&lt;a href=&quot;/wp-content/uploads/post.jpg&quot;&gt;
   &lt;img src=&quot;/wp-content/uploads/post.jpg&quot; /&gt;
 &lt;/a&gt;
 </code></pre>
@@ -404,10 +404,10 @@ NULL
 <p>Now you can integrate the Disqus code into your site.  The Ghost documentation has a great overview of doing that:  &quot;<a href="http://support.ghost.org/add-disqus-to-my-ghost-blog/">How Do I Add Disqus to my Ghost Blog?</a>&quot;</p>
 <p>I highly recommend that you simply follow that tutorial and then return here- no need to reinvent the wheel!</p>
 <p>Once you have completed that I do have one change that I make to the integration to increase user experience.  In your <code>post.hbs</code> where you inserted the Disqus JavaScript find this line:</p>
-<pre><code class="language-language-javascript"> &lt;noscript&gt;Please enable JavaScript to view the &lt;a href=&quot;https://disqus.com/?ref_noscript&quot;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;
+<pre><code class="language-javascript"> &lt;noscript&gt;Please enable JavaScript to view the &lt;a href=&quot;https://disqus.com/?ref_noscript&quot;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;
 </code></pre>
 <p>and replace it with a link to your site's Disqus forum instead of to the Disqus homepage.</p>
-<pre><code class="language-language-markup">&lt;noscript&gt;Please enable JavaScript to view the &lt;a href=&quot;https://disqus.com/home/forums/iyware/&quot;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;
+<pre><code class="language-markup">&lt;noscript&gt;Please enable JavaScript to view the &lt;a href=&quot;https://disqus.com/home/forums/iyware/&quot;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;
 </code></pre>
 <p>Obviously you'll need to replace <code>/iyware/</code> with your site's URL, but this will allow users with JavaScript disabled on your site to go directly to your Disqus forum- where they'll get another error if they hava JS disabled there too- but that's a Disqus problem, not yours.</p>
 <h2 id="optionallymovewordpresstoanotherdomain">Optionally Move WordPress to Another Domain</h2>

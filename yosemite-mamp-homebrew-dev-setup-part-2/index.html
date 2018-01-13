@@ -18,7 +18,7 @@
     <meta property="og:description" content="In my previous post OS X 10.10 Yosemite, Apache, MySQL, PHP 5.6, (MAMP) Homebrew Dev Setup I covered a lot. Like a lot a lot, but by the end of the post all we had really accomplished was installing the basic building blocks of a development server, namely:" />
     <meta property="og:url" content="https://iyware.com/yosemite-mamp-homebrew-dev-setup-part-2/" />
     <meta property="article:published_time" content="2014-10-28T19:39:48.000Z" />
-    <meta property="article:modified_time" content="2015-01-14T05:25:39.000Z" />
+    <meta property="article:modified_time" content="2018-01-13T00:19:57.000Z" />
     <meta property="article:tag" content="DevOps" />
     
     <meta name="twitter:card" content="summary" />
@@ -56,7 +56,7 @@
     "headline": "Yosemite MAMP Homebrew Dev Setup, Part 2",
     "url": "https://iyware.com/yosemite-mamp-homebrew-dev-setup-part-2/",
     "datePublished": "2014-10-28T19:39:48.000Z",
-    "dateModified": "2015-01-14T05:25:39.000Z",
+    "dateModified": "2018-01-13T00:19:57.000Z",
     "keywords": "DevOps",
     "description": "In my previous post OS X 10.10 Yosemite, Apache, MySQL, PHP 5.6, (MAMP) Homebrew Dev Setup I covered a lot. Like a lot a lot, but by the end of the post all we had really accomplished was installing the basic building blocks of a development server, namely:",
     "mainEntityOfPage": {
@@ -106,7 +106,7 @@
             <div class="kg-card-markdown"><p>In my previous post <a href="../osx-yosemite-mamp-homebrew-development-setup/" title="OS X 10.10 Yosemite, Apache, MySQL, PHP 5.6, (MAMP) Homebrew Dev Setup">OS X 10.10 Yosemite, Apache, MySQL, PHP 5.6, (MAMP) Homebrew Dev Setup</a> I covered a lot. Like a lot a lot, but by the end of the post all we had really accomplished was installing the basic building blocks of a development server, namely: Apache, MySQL, and PHP. In this post we’ll take those components and turn them into a sweet development workflow.</p>
 <h2 id="updatingbrew">Updating Brew</h2>
 <p>Everyone loves running <code>brew update &amp;&amp; brew upgrade</code> just to see what’s been updated. It’s a seriously <a href="https://github.com/Homebrew/homebrew/commits/master/Library/Formula">busy repo</a>, but it’s easy to forget to do and then your versions languish. Fortunately for us <a href="http://mkalmes.net/">Mark Kalmes</a> wrote a LaunchAgent plist for us called, aptly, <a href="http://mkalmes.net/2012/01/02/brewupdate-a-launchd-agent-for-automatic-homebrew-formulae-updates.html">brewupdate</a>. We’re going to grab the latest version and install it.</p>
-<pre><code class="language-language-bash">curl https://raw.githubusercontent.com/mkalmes/brewupdate/develop/net.mkalmes.brewupdate.plist &gt; ~/Library/LaunchAgents/net.mkalmes.brewupdate.plist
+<pre><code class="language-bash">curl https://raw.githubusercontent.com/mkalmes/brewupdate/develop/net.mkalmes.brewupdate.plist &gt; ~/Library/LaunchAgents/net.mkalmes.brewupdate.plist
 launchctl load ~/Library/LaunchAgents/net.mkalmes.brewupdate.plist
 </code></pre>
 <p>The first line downloads the latest version straight from github to the user-space LaunchAgents folder. The second line loads it. You can edit the file and change when it updates, the default is 11 AM (local time zone). I changed mine to 8 AM because I like to start the day with a fresh brew (ha ha.)</p>
@@ -114,19 +114,19 @@ launchctl load ~/Library/LaunchAgents/net.mkalmes.brewupdate.plist
 <h2 id="apache2documentroot">Apache 2: DocumentRoot</h2>
 <p>That’s a clever title, you see we’re <em>running</em> Apache HTTPD 2, and at the same time this is part 2 of the Apache section… Anyways, at the end of Part 1 Apache was running on port 80 like a champ. The DocumentRoot is set to something ridiculous like <code>/usr/local/var/www/htdocs</code> which is pretty freaking inconvenient.</p>
 <p>First we need to create our /Sites folder and we’ll still keep our web documents inside of that folder.</p>
-<pre><code class="language-language-bash">mkdir ~/Sites ~/Sites/htdocs
+<pre><code class="language-bash">mkdir ~/Sites ~/Sites/htdocs
 </code></pre>
 <p>Then edit your <code>/usr/local/etc/apache2/2.4/httpd.conf</code> file and change the DocumentRoot directive, as well as accompanying Directory declaration to match your new htdocs location:</p>
-<pre><code class="language-language-apacheconf">DocumentRoot &quot;/Users/USERNAME/Sites/htdocs&quot;
+<pre><code class="language-apacheconf">DocumentRoot &quot;/Users/USERNAME/Sites/htdocs&quot;
 &lt;directory&gt;
 &lt;/directory&gt;
 </code></pre>
 <p>Obviously replace <code>USERNAME</code> with your username’s folder name. Then inside of that directory declaration we’re going to change some of the default Apache values to be more permissive:</p>
-<pre><code class="language-language-apacheconf">Options All MultiViews
+<pre><code class="language-apacheconf">Options All MultiViews
 AllowOverride All
 </code></pre>
 <p>This is given with the usual caveat that OF COURSE you would never default everything like this on a production server- but on a development server there’s generally not much security implication (unless you’re playing with live data!). My full DocumentRoot section looks like this:</p>
-<pre><code class="language-language-apacheconf">DocumentRoot &quot;/Users/dannywahl/Sites/htdocs&quot;
+<pre><code class="language-apacheconf">DocumentRoot &quot;/Users/dannywahl/Sites/htdocs&quot;
 &lt;directory&gt;
   #
   # Possible values for the Options directive are &quot;None&quot;, &quot;All&quot;, 
@@ -149,21 +149,21 @@ AllowOverride All
 &lt;/directory&gt;
 </code></pre>
 <p>Now, restart your httpd daemon:</p>
-<pre><code class="language-language-bash">sudo httpd -k restart
+<pre><code class="language-bash">sudo httpd -k restart
 </code></pre>
 <p>If you didn’t use <code>--with-privileged-ports</code> when you installed Apache then you don’t need root. Now when you visit <a href="http://localhost/">http://localhost</a> you should just get a blank directory listing instead of the default “It Works!” page. Let’s put a test page there. First let’s create a sub-directory in our /Sites folder called <code>phpinfo.localhost</code> (more on the <code>.</code> later).</p>
-<pre><code class="language-language-bash">mkdir ~/Sites/phpinfo.localhost
+<pre><code class="language-bash">mkdir ~/Sites/phpinfo.localhost
 </code></pre>
 <p>Now let’s create a page that calls the <code>phpinfo();</code> function and place it in that folder. if you don’t know about <a href="http://cn2.php.net/manual/en/function.phpinfo.php">phpinfo()</a> it’s a simple function that outputs a page that shows you information about your PHP configuration.</p>
-<pre><code class="language-language-bash">printf ‘&lt;?php phpinfo(); ??&gt;‘ &gt;&gt; ~/Sites/htdocs/phpinfo.localhost/index.php
+<pre><code class="language-bash">printf ‘&lt;?php phpinfo(); ??&gt;‘ &gt;&gt; ~/Sites/htdocs/phpinfo.localhost/index.php
 </code></pre>
 <p>Now you should be able to visit <code>http://localhost/phpinfo.localhost/</code> and see the overview of your PHP configuration. That’s it for now for Apache, let’s move on to MySQL.</p>
 <h2 id="mysql">MySQL</h2>
 <p>In the first post we simply installed MySQL and set a root password. It’s good to have a password because some authentication APIs require one, but we’re not necessarily using it for security (otherwise we wouldn’t be using root), so we’re going to save our authentication in a my.cnf <a href="http://dev.mysql.com/doc/refman/5.1/en/option-files.html">options file</a>. Homebrew provides us with a sample file, but it’s not symlinked by default so we’re going to copy it to an available configuration folder and since MySQL is running in user-space, we will override the configuration at the user-space level:</p>
-<pre><code class="language-language-sql">cp -v $(brew –prefix mysql)/support-files/my-default.cnf ~/.my.cnf
+<pre><code class="language-sql">cp -v $(brew –prefix mysql)/support-files/my-default.cnf ~/.my.cnf
 </code></pre>
 <p>Now we have our config override, let’s have it auto-save our credentials.</p>
-<pre><code class="language-language-bash">cat &gt; ~/.my.cnf 
+<pre><code class="language-bash">cat &gt; ~/.my.cnf 
 [client] 
 user=root 
 password=PASS 
@@ -179,18 +179,18 @@ password=PASS
 EOF
 </code></pre>
 <p>Replace “PASS” with your root MySQL password. If you have special characters in your password, which you shouldn’t, add double quotes around the password. Now you can connect to mysql without having to manually authenticate.</p>
-<pre><code class="language-language-sql">mysql -u root
+<pre><code class="language-sql">mysql -u root
 </code></pre>
 <h2 id="phpmyadmin">phpmyadmin</h2>
 <p>Finally we’re going to install everyone’s favorite database manager, <a href="http://www.phpmyadmin.net/home_page/index.php">phpmyadmin</a>. Again, we’ll be using homebrew to install it.</p>
-<pre><code class="language-language-bash">brew install phpmyadmin
+<pre><code class="language-bash">brew install phpmyadmin
 </code></pre>
 <p>After a successful installation you will get a caveat about adding a directory alias to your httpd configuration to enable phpmyadmin, but we’re not going to do that we’re going to <a href="http://en.wikipedia.org/wiki/Symbolic_link">symlink</a> it to to our ~/Sites directory.</p>
-<pre><code class="language-language-bash">ln -s /usr/local/share/phpmyadmin ~/Sites/htdocs/phpmyadmin.localhost  
+<pre><code class="language-bash">ln -s /usr/local/share/phpmyadmin ~/Sites/htdocs/phpmyadmin.localhost  
 </code></pre>
 <p>This will create a symbolic link in your webroot called phpmyadmin.localhost that takes you to /usr/local/share/phpmyadmin (which itself is a symlink to the Cellar). The benefit here is you don’t need to restart Apache, and again we’ll go over it later but the .localhost is important.</p>
 <p>Now that phpmyadmin is installed, we need to configure it. First we’ll import the phpmyadmin linked tabled <a href="http://docs.phpmyadmin.net/en/latest/setup.html#linked-tables">configuration storage</a> via commandline:</p>
-<pre><code class="language-language-sql">mysql -u root -e 'CREATE DATABASE IF NOT EXISTS `phpmyadmin`;'
+<pre><code class="language-sql">mysql -u root -e 'CREATE DATABASE IF NOT EXISTS `phpmyadmin`;'
 mysql -u root phpmyadmin
 </code></pre>
 <p>Once the tables are imported open your phpmyadmin config file located at <code>/usr/local/etc/phpmyadmin.config.inc.php</code> and you're going to do a few things:</p>
@@ -200,7 +200,7 @@ mysql -u root phpmyadmin
 <li>Uncomment the storage database and tables section</li>
 </ol>
 <p>In the end your blowfish and servers configuration sections should look something like this:</p>
-<pre><code class="language-language-php">$cfg['blowfish_secret'] = 'y=PUY@-GleE+~%OiGQVz#)N4I)@Q%Ug_Jr[DxF';
+<pre><code class="language-php">$cfg['blowfish_secret'] = 'y=PUY@-GleE+~%OiGQVz#)N4I)@Q%Ug_Jr[DxF';
 /* YOU MUST FILL IN THIS FOR COOKIE AUTH! */
 /* * Servers configuration */
 $i = 0;
@@ -245,16 +245,16 @@ $cfg['Servers'][$i]['savedsearches'] = 'pma__savedsearches';
 <p>You might notice that I changed my host to &quot;127.0.0.1&quot; from &quot;localhost&quot;. By default /etc/hosts should resolve localhost to 127.0.0.1 so it shouldn't trigger a DNS lookup, but by changing it to an IP address you'll never have that happen because there are ways to inadvertently send lookups to your machine DNS for localhost. Again, this is not necessary. After saving your phpmyadmin configuration you should be able to visit the page at <code>http://localhost/phpmyadmin.localhost</code></p>
 <h2 id="dnsmasq">dnsmasq</h2>
 <p><a href="http://www.thekelleys.org.uk/dnsmasq/doc.html">Dnsmasq</a> is a lightweight DNS/DHCP server which can be installed and serve DNS for addresses that aren't in the <a href="http://en.wikipedia.org/wiki/Global_Namespace">global namespace</a>. We'll be installing dnsmasq via homebrew and configuring it, along with Apache to serve sites on <a href="http://en.wikipedia.org/wiki/Top-level_domain#Reserved_domains">reserved TLDs</a>.</p>
-<pre><code class="language-language-bash">brew install dnsmasq
+<pre><code class="language-bash">brew install dnsmasq
 </code></pre>
 <p>Once dnsmasq is installed we need to copy a configuration profile, edit it, and then load the daemon. First we'll copy a provided configuration:</p>
-<pre><code class="language-language-bash">cp /usr/local/opt/dnsmasq/dnsmasq.conf.example /usr/local/etc/dnsmasq.conf
+<pre><code class="language-bash">cp /usr/local/opt/dnsmasq/dnsmasq.conf.example /usr/local/etc/dnsmasq.conf
 printf '\naddress=/localhost/127.0.0.1' &gt;&gt; /usr/local/etc/dnsmasq.conf
 sudo cp -fv /usr/local/opt/dnsmasq/*.plist /Library/LaunchDaemons
 sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
 </code></pre>
 <p>Effectively we are telling dnsmasq to resolve all .localhost domains to 127.0.0.1 and setting it to run the daemon at the machine level (with Apache). So you can now try to ping any .localhost domain and it will resolve to 127.0.0.1:</p>
-<pre><code class="language-language-bash">ping -c 1 thisdoesntexist.localhost
+<pre><code class="language-bash">ping -c 1 thisdoesntexist.localhost
 PING thisdoesntexist.localhost (127.0.0.1): 56 data bytes 
 64 bytes from 127.0.0.1: icmp_seq=0 ttl=64 time=0.029 ms
 
@@ -265,24 +265,24 @@ round-trip min/avg/max/stddev = 0.029/0.029/0.029/0.000 ms
 <p>Obviously trying to visit <a href="http://thisdoesntexit.localhost/">http://thisdoesntexit.localhost</a> won't work because Apache isn't configured to handle requests to that address, yet. There are two different ways to configure this, the first is to create a vhost entry for every domain you want to use, the second is to enable <a href="http://httpd.apache.org/docs/2.2/mod/mod_vhost_alias.html">mod_vhost_alias</a>- which is what we'll do now.</p>
 <h2 id="mod_vhost_alias">mod_vhost_alias</h2>
 <p>Mod_vhost_alias is an Apache module that let's you do pattern matching from a request URL to a directory structure, there are lots of cool examples at the documentation site- but the one we want is pretty straight forward. Open your httpd.conf file (in /usr/local/etc/apache2/2.4/) and uncomment the mod_vhost_alias module</p>
-<pre><code class="language-language-apacheconf">LoadModule vhost_alias_module libexec/mod_vhost_alias.so
+<pre><code class="language-apacheconf">LoadModule vhost_alias_module libexec/mod_vhost_alias.so
 </code></pre>
 <p>then in terminal we'll configure vhost_alias_module:</p>
-<pre><code class="language-language-bash">printf '\nUseCanonicalName Off\nVirtualDocumentRoot /Users/USERNAME/Sites/htdocs/%%0' &gt;&gt; /usr/local/etc/apache2/2.4/httpd.conf
+<pre><code class="language-bash">printf '\nUseCanonicalName Off\nVirtualDocumentRoot /Users/USERNAME/Sites/htdocs/%%0' &gt;&gt; /usr/local/etc/apache2/2.4/httpd.conf
 </code></pre>
 <p>And finally restart the httpd daemon:</p>
-<pre><code class="language-language-bash">sudo httpd -k restart
+<pre><code class="language-bash">sudo httpd -k restart
 </code></pre>
 <p>The end result is that now every folder that ends in .localhost in your ~/Sites/htdocs/ folder is accessible as a <a href="http://en.wikipedia.org/wiki/Fully_qualified_domain_name">FQDN</a>. Go back to your browser and now you can visit <a href="http://phpinfo.localhost/">http://phpinfo.localhost</a> and <a href="http://phpmyadmin.localhost/">http://phpmyadmin.localhost</a> If you create another folder inside of htdocs that ends in .localhost it will be available in your dev environment as a standalone domain. Here's a couple of examples of how that could be useful:</p>
 <p>Say you want a standalone domain of wordpress:</p>
-<pre><code class="language-language-bash">git clone git@github.com:WordPress/WordPress.git ~/Sites/htdocs/wordpress.localhost
+<pre><code class="language-bash">git clone git@github.com:WordPress/WordPress.git ~/Sites/htdocs/wordpress.localhost
 </code></pre>
 <p>What about multiple branches of drupal on standalone domains? Let's make <code>http://drupal6.localhost</code> and <code>http://drupal7.localhost</code></p>
-<pre><code class="language-language-bash">git clone git@github.com:drupal/drupal.git --branch 6.x --single-branch ~/Sites/htdocs/drupal6.localhost
+<pre><code class="language-bash">git clone git@github.com:drupal/drupal.git --branch 6.x --single-branch ~/Sites/htdocs/drupal6.localhost
 git clone git@github.com:drupal/drupal.git --branch 7.x --single-branch ~/Sites/htdocs/drupal7.localhost
 </code></pre>
 <p>As another example, how about a single domain with multiple moodle instances in sub-directories like <code>http://moodle.localhost/26</code> and <code>http://moodle.localhost/27</code></p>
-<pre><code class="language-language-bash">mkdir ~/Sites/htdocs/moodle
+<pre><code class="language-bash">mkdir ~/Sites/htdocs/moodle
 git clone git@github.com:moodle/moodle.git --branch MOODLE_26_STABLE --single-branch ~/Sites/htdocs/moodle/26 
 git clone git@github.com:moodle/moodle.git --branch MOODLE_27_STABLE --single-branch ~/Sites/htdocs/moodle/27
 </code></pre>

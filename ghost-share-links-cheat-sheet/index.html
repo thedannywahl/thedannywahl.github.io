@@ -18,7 +18,7 @@
     <meta property="og:description" content="In my previous post Add Share Links to Ghost Themes I outlined how to create no-cost share links using the Ghost handlebars API.  In this post I&#x27;ll provide code snippets to some of the most popular social networks that you can simply copy and paste into your custom theme. Email" />
     <meta property="og:url" content="https://iyware.com/ghost-share-links-cheat-sheet/" />
     <meta property="article:published_time" content="2015-03-16T12:20:12.000Z" />
-    <meta property="article:modified_time" content="2015-03-17T13:41:07.000Z" />
+    <meta property="article:modified_time" content="2018-01-13T00:23:51.000Z" />
     <meta property="article:tag" content="Ghost" />
     
     <meta name="twitter:card" content="summary" />
@@ -56,7 +56,7 @@
     "headline": "Ghost Share Links Cheat Sheet",
     "url": "https://iyware.com/ghost-share-links-cheat-sheet/",
     "datePublished": "2015-03-16T12:20:12.000Z",
-    "dateModified": "2015-03-17T13:41:07.000Z",
+    "dateModified": "2018-01-13T00:23:51.000Z",
     "keywords": "Ghost",
     "description": "In my previous post Add Share Links to Ghost Themes I outlined how to create no-cost share links using the Ghost handlebars API.  In this post I&#x27;ll provide code snippets to some of the most popular social networks that you can simply copy and paste into your custom theme. Email",
     "mainEntityOfPage": {
@@ -105,109 +105,109 @@
         <div class="text">
             <div class="kg-card-markdown"><p>In my previous post <a href="../add-share-links-to-ghost-themes/">Add Share Links to Ghost Themes</a> I outlined how to create no-cost share links using the Ghost handlebars API.  In this post I'll provide code snippets to some of the most popular social networks that you can simply copy and paste into your custom theme.</p>
 <h2 id="email">Email</h2>
-<pre><code class="language-language-handlebars">&lt;a href=&quot;mailto:?&amp;subject={{encode @blog.title}}%3A%20{{encode title}}&amp;body={{encode title}}%0D%0A{{url absolute=&quot;true&quot;}}%0D%0A%0D%0A{{excerpt words=&quot;45&quot;}}%2E%2E%2E&quot;&gt;
+<pre><code class="language-handlebars">&lt;a href=&quot;mailto:?&amp;subject={{encode @blog.title}}%3A%20{{encode title}}&amp;body={{encode title}}%0D%0A{{url absolute=&quot;true&quot;}}%0D%0A%0D%0A{{excerpt words=&quot;45&quot;}}%2E%2E%2E&quot;&gt;
     Email
 &lt;/a&gt;
 </code></pre>
 <p><img src="../content/images/2015/03/share-to-email-with-ghost-1.png" alt=""></p>
 <h2 id="twitter">twitter</h2>
-<pre><code class="language-language-handlebars">&lt;a href=&quot;https://twitter.com/home?status={{url absolute=&quot;true&quot;}}%20{{tags prefix=&quot;%23&quot; separator=&quot;%20%23&quot; autolink=&quot;false&quot;}}&quot;&gt;
+<pre><code class="language-handlebars">&lt;a href=&quot;https://twitter.com/home?status={{url absolute=&quot;true&quot;}}%20{{tags prefix=&quot;%23&quot; separator=&quot;%20%23&quot; autolink=&quot;false&quot;}}&quot;&gt;
     Twitter
 &lt;/a&gt;
 </code></pre>
 <p><img src="../content/images/2015/03/share-to-twitter-with-ghost.png" alt=""></p>
 <h2 id="facebook">Facebook</h2>
-<pre><code class="language-language-handlebars">&lt;a href=&quot;https://www.facebook.com/sharer/sharer.php?u={{url absolute=&quot;true&quot;}}&quot;&gt;
+<pre><code class="language-handlebars">&lt;a href=&quot;https://www.facebook.com/sharer/sharer.php?u={{url absolute=&quot;true&quot;}}&quot;&gt;
     Facebook
 &lt;/a&gt;
 </code></pre>
 <p><img src="../content/images/2015/03/share-to-facebook-with-ghost-1.png" alt=""></p>
 <h2 id="google">Google+</h2>
-<pre><code class="language-language-handlebars">&lt;a href=&quot;https://plus.google.com/share?url={{url absolute=&quot;true&quot;}}&quot;&gt;
+<pre><code class="language-handlebars">&lt;a href=&quot;https://plus.google.com/share?url={{url absolute=&quot;true&quot;}}&quot;&gt;
     Google+
 &lt;/a&gt;
 </code></pre>
 <p><img src="../content/images/2015/03/share-to-google-plus-with-ghost.png" alt=""></p>
 <h2 id="linkedin">LinkedIn</h2>
-<pre><code class="language-language-handlebars">&lt;a href=&quot;https://www.linkedin.com/shareArticle?mini=true&amp;url={{url absolute=&quot;true&quot;}}&amp;title={{encode title}}&amp;summary={{excerpt words=&quot;45&quot;}}&amp;source={{@blog.title}}&quot;&gt;
+<pre><code class="language-handlebars">&lt;a href=&quot;https://www.linkedin.com/shareArticle?mini=true&amp;url={{url absolute=&quot;true&quot;}}&amp;title={{encode title}}&amp;summary={{excerpt words=&quot;45&quot;}}&amp;source={{@blog.title}}&quot;&gt;
     LinkedIn
 &lt;/a&gt;
 </code></pre>
 <p><img src="../content/images/2015/03/share-to-linkedin-with-ghost.png" alt=""></p>
 <h2 id="pinterest">Pinterest</h2>
-<pre><code class="language-language-handlebars">&lt;a href=&quot;https://pinterest.com/pin/create/button/?{{url absolute=&quot;true&quot;}}{{#if image}}&amp;media={{@blog.url}}{{image}}{{/if}}&amp;description={{excerpt words=&quot;20&quot;}}&quot;&gt;
+<pre><code class="language-handlebars">&lt;a href=&quot;https://pinterest.com/pin/create/button/?{{url absolute=&quot;true&quot;}}{{#if image}}&amp;media={{@blog.url}}{{image}}{{/if}}&amp;description={{excerpt words=&quot;20&quot;}}&quot;&gt;
     Pinterest
 &lt;/a&gt;
 </code></pre>
 <p><img src="../content/images/2015/03/share-to-pinterest-with-ghost-1.png" alt=""></p>
 <h2 id="tumblr">tumblr</h2>
-<pre><code class="language-language-handlebars">&lt;a href=&quot;http://www.tumblr.com/share/link?url={{url absolute=&quot;true&quot;}}&amp;name={{encode title}}&amp;description={{excerpt words=&quot;45&quot;}}&quot;&gt;
+<pre><code class="language-handlebars">&lt;a href=&quot;http://www.tumblr.com/share/link?url={{url absolute=&quot;true&quot;}}&amp;name={{encode title}}&amp;description={{excerpt words=&quot;45&quot;}}&quot;&gt;
     Tumblr
 &lt;/a&gt;
 </code></pre>
 <p><img src="../content/images/2015/03/share-to-tumblr-with-ghost.png" alt=""></p>
 <h2 id="reddit">reddit</h2>
-<pre><code class="language-language-handlebars">&lt;a href=&quot;http://www.reddit.com/submit/?url={{url absolute=&quot;true&quot;}}&amp;title={{encode title}}&quot;&gt;
+<pre><code class="language-handlebars">&lt;a href=&quot;http://www.reddit.com/submit/?url={{url absolute=&quot;true&quot;}}&amp;title={{encode title}}&quot;&gt;
     reddit
 &lt;/a&gt;
 </code></pre>
 <p><img src="../content/images/2015/03/share-to-reddit-with-ghost.png" alt=""></p>
 <h2 id="xing">Xing</h2>
-<pre><code class="language-language-handlebars">&lt;a href=&quot;https://www.xing-share.com/app/user?op=share;sc_p=xing-share;url={{url absolute=&quot;true&quot;}}&quot;&gt;
+<pre><code class="language-handlebars">&lt;a href=&quot;https://www.xing-share.com/app/user?op=share;sc_p=xing-share;url={{url absolute=&quot;true&quot;}}&quot;&gt;
     Xing
 &lt;/a&gt;
 </code></pre>
 <p><img src="../content/images/2015/03/share-to-xing-with-ghost.png" alt=""></p>
 <h2 id="vk">VK</h2>
-<pre><code class="language-language-handlebars">&lt;a href=&quot;https://vk.com/share.php?url={{url absolute=&quot;true&quot;}}&amp;title={{encode title}}&amp;description={{excerpt words=&quot;45&quot;}}{{#if image}}&amp;image={{@blog.url}}{{image}}{{/if}}&amp;noparse=true&quot;&gt;
+<pre><code class="language-handlebars">&lt;a href=&quot;https://vk.com/share.php?url={{url absolute=&quot;true&quot;}}&amp;title={{encode title}}&amp;description={{excerpt words=&quot;45&quot;}}{{#if image}}&amp;image={{@blog.url}}{{image}}{{/if}}&amp;noparse=true&quot;&gt;
     VK
 &lt;/a&gt;
 </code></pre>
 <p><img src="../content/images/2015/03/share-to-VK-with-ghost.png" alt=""></p>
 <h2 id="buffer">buffer</h2>
-<pre><code class="language-language-handlebars">&lt;a href=&quot;https://bufferapp.com/add/?url={{url absolute=&quot;true&quot;}}&amp;text={{excerpt words=&quot;20&quot;}}&quot;&gt;
+<pre><code class="language-handlebars">&lt;a href=&quot;https://bufferapp.com/add/?url={{url absolute=&quot;true&quot;}}&amp;text={{excerpt words=&quot;20&quot;}}&quot;&gt;
     Buffer
 &lt;/a&gt;
 </code></pre>
 <p><img src="../content/images/2015/03/share-to-buffer-with-ghost.png" alt=""></p>
 <h2 id="stumbleupon">StumbleUpon</h2>
-<pre><code class="language-language-handlebars">&lt;a href=&quot;https://www.stumbleupon.com/submit?url={{url absolute=&quot;true&quot;}}%2F&amp;title={{encode title}}&quot;&gt;
+<pre><code class="language-handlebars">&lt;a href=&quot;https://www.stumbleupon.com/submit?url={{url absolute=&quot;true&quot;}}%2F&amp;title={{encode title}}&quot;&gt;
     StumbleUpon
 &lt;/a&gt;
 </code></pre>
 <p><img src="../content/images/2015/03/share-to-stumbleupon-with-ghost-2.png" alt=""></p>
 <h2 id="sinaweibo">新浪微博 (Sina Weibo)</h2>
-<pre><code class="language-language-handlebars">&lt;a href=&quot;http://service.weibo.com/share/share.php?url={{url absolute=&quot;true&quot;}}&amp;title={{encode title}}%0D%0A{{excerpt words=&quot;20&quot;}}%20{{tags prefix=&quot;%23&quot; separator=&quot;%23 %23&quot; suffix=&quot;%23&quot; autolink=&quot;false&quot;}}{{#if image}}&amp;pic={{@blog.url}}{{image}}{{/if}}&quot;&gt;
+<pre><code class="language-handlebars">&lt;a href=&quot;http://service.weibo.com/share/share.php?url={{url absolute=&quot;true&quot;}}&amp;title={{encode title}}%0D%0A{{excerpt words=&quot;20&quot;}}%20{{tags prefix=&quot;%23&quot; separator=&quot;%23 %23&quot; suffix=&quot;%23&quot; autolink=&quot;false&quot;}}{{#if image}}&amp;pic={{@blog.url}}{{image}}{{/if}}&quot;&gt;
     新浪微博
 &lt;/a&gt;
 </code></pre>
 <p><img src="../content/images/2015/03/share-to-sinaweibo-with-ghost.png" alt=""></p>
 <h2 id="baidu">Baidu空间</h2>
-<pre><code class="language-language-handlebars">&lt;a href=&quot;http://hi.baidu.com/pub/show/share?url={{url absolute=&quot;true&quot;}}&amp;title={{encode title}}&quot;&gt;
+<pre><code class="language-handlebars">&lt;a href=&quot;http://hi.baidu.com/pub/show/share?url={{url absolute=&quot;true&quot;}}&amp;title={{encode title}}&quot;&gt;
     Baidu空间
 &lt;/a&gt;
 </code></pre>
 <p><img src="../content/images/2015/03/share-to-baidu-with-ghost.png" alt=""></p>
 <h2 id="renren">人人网 (Renren)</h2>
-<pre><code class="language-language-handlebars">&lt;a href=&quot;http://share.renren.com/share/buttonshare?link={{url absolute=&quot;true&quot;}}&amp;title={{encode title}}&quot;&gt;
+<pre><code class="language-handlebars">&lt;a href=&quot;http://share.renren.com/share/buttonshare?link={{url absolute=&quot;true&quot;}}&amp;title={{encode title}}&quot;&gt;
     人人网
 &lt;/a&gt;
 </code></pre>
 <p><img src="../content/images/2015/03/share-to-renren-with-ghost.png" alt=""></p>
 <h2 id="qqtencentweibo">腾讯微博 (QQ Tencent Weibo)</h2>
-<pre><code class="language-language-handlebars">&lt;a href=&quot;http://v.t.qq.com/share/share.php?title={{encode title}}%3A%20{{excerpt words=&quot;20&quot;}}%20{{tags prefix=&quot;%23&quot; separator=&quot;%23 %23&quot; suffix=&quot;%23&quot; autolink=&quot;false&quot;}}&amp;url={{url absolute=&quot;true&quot;}}&quot;&gt;
+<pre><code class="language-handlebars">&lt;a href=&quot;http://v.t.qq.com/share/share.php?title={{encode title}}%3A%20{{excerpt words=&quot;20&quot;}}%20{{tags prefix=&quot;%23&quot; separator=&quot;%23 %23&quot; suffix=&quot;%23&quot; autolink=&quot;false&quot;}}&amp;url={{url absolute=&quot;true&quot;}}&quot;&gt;
     腾讯微博
 &lt;/a&gt;
 </code></pre>
 <p><img src="../content/images/2015/03/share-to-qq-tencent-weibo-with-ghost.png" alt=""></p>
 <h2 id="qq">QQ空间</h2>
-<pre><code class="language-language-handlebars">&lt;a href=&quot;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?title={{encode title}}&amp;url={{url absolute=&quot;true&quot;}}&amp;summary={{excerpt words=&quot;20&quot;}}&quot;&gt;
+<pre><code class="language-handlebars">&lt;a href=&quot;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?title={{encode title}}&amp;url={{url absolute=&quot;true&quot;}}&amp;summary={{excerpt words=&quot;20&quot;}}&quot;&gt;
     QQ空间
 &lt;/a&gt;
 </code></pre>
 <p><img src="../content/images/2015/03/share-to-qq-zone-with-ghost.png" alt=""></p>
 <h2 id="pengyou">腾讯朋友网 (Pengyou)</h2>
-<pre><code class="language-language-handlebars">&lt;a href=&quot;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?to=pengyou&amp;title={{encode title}}&amp;url={{url absolute=&quot;true&quot;}}&amp;summary={{excerpt words=&quot;20&quot;}}&quot;&gt;
+<pre><code class="language-handlebars">&lt;a href=&quot;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?to=pengyou&amp;title={{encode title}}&amp;url={{url absolute=&quot;true&quot;}}&amp;summary={{excerpt words=&quot;20&quot;}}&quot;&gt;
     腾讯朋友网
 &lt;/a&gt;
 </code></pre>

@@ -18,7 +18,7 @@
     <meta property="og:description" content="One of the things I loved right off the bat about WordPress is that it’s extremely flexible in terms of output and rendering, and that its built in functions are simple but also robust. Here’s an example of what I’m talking about. If you want to output" />
     <meta property="og:url" content="https://iyware.com/simple-dynamic-sidebars-in-wordpress-themes/" />
     <meta property="article:published_time" content="2011-11-24T09:08:19.000Z" />
-    <meta property="article:modified_time" content="2015-01-19T03:00:21.000Z" />
+    <meta property="article:modified_time" content="2018-01-13T00:07:39.000Z" />
     <meta property="article:tag" content="WordPress" />
     
     <meta name="twitter:card" content="summary" />
@@ -56,7 +56,7 @@
     "headline": "Simple Dynamic Sidebars in WordPress Themes",
     "url": "https://iyware.com/simple-dynamic-sidebars-in-wordpress-themes/",
     "datePublished": "2011-11-24T09:08:19.000Z",
-    "dateModified": "2015-01-19T03:00:21.000Z",
+    "dateModified": "2018-01-13T00:07:39.000Z",
     "keywords": "WordPress",
     "description": "One of the things I loved right off the bat about WordPress is that it’s extremely flexible in terms of output and rendering, and that its built in functions are simple but also robust. Here’s an example of what I’m talking about. If you want to output",
     "mainEntityOfPage": {
@@ -104,7 +104,7 @@
 
         <div class="text">
             <div class="kg-card-markdown"><p>One of the things I loved right off the bat about <a href="http://wordpress.org/">WordPress</a> is that it’s extremely flexible in terms of output and rendering, and that its built in functions are simple but also robust. Here’s an example of what I’m talking about. If you want to output a sidebar (widget area) you simply call the <code>dynamic_sidebar()</code> function and WP handles the rest. A practical example of that might look something like this:</p>
-<pre><code class="language-language-php">&lt;div id=&quot;container&quot;&gt;
+<pre><code class="language-php">&lt;div id=&quot;container&quot;&gt;
     &lt;aside id=&quot;sidebar&quot;&gt;
         &lt;?php dynamic_sidebar(); ?&gt;
     &lt;/aside&gt;
@@ -114,7 +114,7 @@
 &lt;/div&gt;
 </code></pre>
 <p>It’s extremely simple to use and works well, no complaints here! When it come time to layout the styles your CSS would be similar to this:</p>
-<pre><code class="language-language-css">#sidebar {
+<pre><code class="language-css">#sidebar {
     float: right;
     width: 200px;
 }
@@ -124,13 +124,13 @@
 }
 </code></pre>
 <p>And that would generally work, but if you’re designing a theme for someone else to use, they actually might not want to use your sidebar and if they don’t add any widgets their content is going to have an empty 210px wide column on the right-hand side. WordPress provides a way to handle this too by evaluating the return value.</p>
-<pre><code class="language-language-php">&lt;?php if ( ! dynamic_sidebar() ) { ?&gt;
+<pre><code class="language-php">&lt;?php if ( ! dynamic_sidebar() ) { ?&gt;
    &lt;li&gt;...&lt;/li&gt;
    &lt;li&gt;...&lt;/li&gt;
 &lt;?php } ?&gt;
 </code></pre>
 <p>Well that’s good too, but again, if you’re building a theme for someone else they probably don’t want to use your hard-coded links either! The good news is there’s a solution that involves only a little more code. And actually we’re still going to be using the return value to dynamically build our theme.</p>
-<pre><code class="language-language-php">&lt;div id=&quot;container&quot;&gt;
+<pre><code class="language-php">&lt;div id=&quot;container&quot;&gt;
     &lt;aside id=&quot;sidebar&quot;&gt;&lt;?php dynamic_sidebar() == TRUE ? $class = 'sidebar' : $class = 'no-sidebar'; ?&gt;&lt;/aside&gt;
     &lt;article id=&quot;content&quot; class=&quot;&lt;?php echo $class; ?&gt;&quot;&gt;
         ...
@@ -138,7 +138,7 @@
 &lt;/div&gt;
 </code></pre>
 <p>What this does is immediately evaluate the return value (boolean) and store a variable based on the value, e.g. <code>TRUE</code> means there is a sidebar, <code>FALSE</code> means there is no sidebar. That variable is then echoed in another item as a class. You might also notice that the <code>#sidebar</code> article has no white-space any more, that’s to allow some of our CSS3 to work properly, but it’s not necessary. Now let’s look at the CSS:</p>
-<pre><code class="language-language-css">#sidebar {
+<pre><code class="language-css">#sidebar {
     float: right;
     width: 200px;
 }

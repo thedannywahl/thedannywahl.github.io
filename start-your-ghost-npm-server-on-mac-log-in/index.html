@@ -18,7 +18,7 @@
     <meta property="og:description" content="If you follow the Ghost documentation to install and start Ghost then you probably just open terminal, cd to your install directory and type npm start, this leaves you with a terminal window always opened.  There&#x27;s a few simple steps you can take to get node, and therefore Ghost, running" />
     <meta property="og:url" content="https://iyware.com/start-your-ghost-npm-server-on-mac-log-in/" />
     <meta property="article:published_time" content="2015-02-03T00:39:00.000Z" />
-    <meta property="article:modified_time" content="2015-02-03T01:11:54.000Z" />
+    <meta property="article:modified_time" content="2018-01-13T00:22:21.000Z" />
     <meta property="article:tag" content="Ghost" />
     
     <meta name="twitter:card" content="summary" />
@@ -56,7 +56,7 @@
     "headline": "Start Your Ghost NPM Server on Mac Log In",
     "url": "https://iyware.com/start-your-ghost-npm-server-on-mac-log-in/",
     "datePublished": "2015-02-03T00:39:00.000Z",
-    "dateModified": "2015-02-03T01:11:54.000Z",
+    "dateModified": "2018-01-13T00:22:21.000Z",
     "keywords": "Ghost",
     "description": "If you follow the Ghost documentation to install and start Ghost then you probably just open terminal, cd to your install directory and type npm start, this leaves you with a terminal window always opened.  There&#x27;s a few simple steps you can take to get node, and therefore Ghost, running",
     "mainEntityOfPage": {
@@ -105,10 +105,10 @@
         <div class="text">
             <div class="kg-card-markdown"><p>If you follow the <a href="http://support.ghost.org/installing-ghost-mac/">Ghost documentation</a> to install and start Ghost then you probably just open terminal, <code>cd</code> to your install directory and type <code>npm start</code>, this leaves you with a terminal window always opened.  There's a few simple steps you can take to get node, and therefore Ghost, running on log in on OS X.</p>
 <p>The first is to install the NPM package <a href="https://www.npmjs.com/package/forever-mac">forever</a>:</p>
-<pre><code class="language-language-bash">npm install forever -g
+<pre><code class="language-bash">npm install forever -g
 </code></pre>
 <p>Next you should copy this <code>.plist</code> and save it to <code>~/Library/LaunchAgents/node.forever.ghost.plist</code>.</p>
-<pre><code class="language-language-markup">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+<pre><code class="language-markup">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;
 &lt;plist version=&quot;1.0&quot;&gt;
 &lt;dict&gt;
@@ -132,7 +132,7 @@
 &lt;/plist&gt;
 </code></pre>
 <p>replacing <code>[PATH TO GHOST]</code> with the path to your Ghost installation.  Finally load the launchAgent:</p>
-<pre><code class="language-language-bash">launchctl load ~/Library/LaunchAgents/node.forever.ghost.plist 
+<pre><code class="language-bash">launchctl load ~/Library/LaunchAgents/node.forever.ghost.plist 
 </code></pre>
 <p>Now you can head to your ghost URL (default <a href="http://localhost:2368/">http://localhost:2368</a>) and start blogging- node forever will start ghost every time you log in to your Mac.</p>
 </div>

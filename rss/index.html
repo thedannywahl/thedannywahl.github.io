@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[iyWare]]></title><description><![CDATA[Things I Break]]></description><link>https://iyware.com/</link><image><url>https://iyware.com/favicon.png</url><title>iyWare</title><link>https://iyware.com/</link></image><generator>Ghost 1.20</generator><lastBuildDate>Fri, 12 Jan 2018 23:25:38 GMT</lastBuildDate><atom:link href="https://iyware.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[The Plugin Statistic that Matters]]></title><description><![CDATA[<div class="kg-card-markdown"><p>I've written only one <a href="http://wordpress.org/">WordPress</a> plugin that was generic enough to be released in the plugins repository.  That plugin is called &quot;<a href="https://wordpress.org/plugins/my-posts/">My Posts</a>&quot; and it trivially solves a problem that was rather significant in one of my projects.  I say it trivially solves it because the entire plugin</p></div>]]></description><link>https://iyware.com/the-plugin-statistic-that-matters/</link><guid isPermaLink="false">5a513274533fe1b5bec542c7</guid><category><![CDATA[WordPress]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Sat, 23 Apr 2016 16:38:32 GMT</pubDate><content:encoded><![CDATA[<div class="kg-card-markdown"><p>I've written only one <a href="http://wordpress.org/">WordPress</a> plugin that was generic enough to be released in the plugins repository.  That plugin is called &quot;<a href="https://wordpress.org/plugins/my-posts/">My Posts</a>&quot; and it trivially solves a problem that was rather significant in one of my projects.  I say it trivially solves it because the entire plugin is comprised of only 11 lines of code (and funnily enough 10 lines of documentation, 9 lines of versioning, and 11 lines of license information).  Anyways, I've <a href="https://iyware.com/my-posts-wordpress-plugin/">written about this plugin</a> previously, today I want to talk about statistics.</p>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[iyWare]]></title><description><![CDATA[Things I Break]]></description><link>https://iyware.com/</link><image><url>https://iyware.com/favicon.png</url><title>iyWare</title><link>https://iyware.com/</link></image><generator>Ghost 1.20</generator><lastBuildDate>Sat, 13 Jan 2018 00:26:30 GMT</lastBuildDate><atom:link href="https://iyware.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[The Plugin Statistic that Matters]]></title><description><![CDATA[<div class="kg-card-markdown"><p>I've written only one <a href="http://wordpress.org/">WordPress</a> plugin that was generic enough to be released in the plugins repository.  That plugin is called &quot;<a href="https://wordpress.org/plugins/my-posts/">My Posts</a>&quot; and it trivially solves a problem that was rather significant in one of my projects.  I say it trivially solves it because the entire plugin</p></div>]]></description><link>https://iyware.com/the-plugin-statistic-that-matters/</link><guid isPermaLink="false">5a513274533fe1b5bec542c7</guid><category><![CDATA[WordPress]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Sat, 23 Apr 2016 16:38:32 GMT</pubDate><content:encoded><![CDATA[<div class="kg-card-markdown"><p>I've written only one <a href="http://wordpress.org/">WordPress</a> plugin that was generic enough to be released in the plugins repository.  That plugin is called &quot;<a href="https://wordpress.org/plugins/my-posts/">My Posts</a>&quot; and it trivially solves a problem that was rather significant in one of my projects.  I say it trivially solves it because the entire plugin is comprised of only 11 lines of code (and funnily enough 10 lines of documentation, 9 lines of versioning, and 11 lines of license information).  Anyways, I've <a href="https://iyware.com/my-posts-wordpress-plugin/">written about this plugin</a> previously, today I want to talk about statistics.</p>
 <h2 id="whatmakesapluginpopular">What Makes a Plugin &quot;popular&quot;?</h2>
 <p>I'm sure that every developer has a different metric for what success is when they release something.  For some it's the fact that the project is complete, for others it's hearing that it's useful, for others it's download statistics, and for others still perhaps it's doors that are opened as a result.</p>
 <p>These are all great things, and I wouldn't necessarily advocate one over the other.  However, marketplaces tend to favor one particular statistic over all others: total downloads.  While other statistics are often leveraged (user ratings, active installs, etc...) this one is generally given priority treatment.  If you need evidence of this look no further than <a href="http://themeforest.net/page/top_sellers">Themeforest</a>, the <a href="https://moodle.org/plugins/stats.php">Moodle plugins directory</a> <em>(click &quot;log in as Guest&quot; if prompted for authentication)</em>, or the <a href="https://wordpress.org/plugins/browse/popular/">WordPress Plugins</a> page.  In fact, even if a market doesn't have a &quot;top downloads&quot; list you can bet that the total downloads for a product will be listed somewhere.</p>
@@ -805,7 +805,7 @@ ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 </ul>
 <h2 id="networksarray">Networks Array</h2>
 <p>Each network (facebook, twitter, etc..) is simply part of a multidimensional array.  To add another network, simply create another entry in <code>networks[]</code>.  Here's the schema of the primary array:</p>
-<pre><code class="language-language-php">	$networks[&quot;network-machine-readable-name&quot;] = [
+<pre><code class="language-php">	$networks[&quot;network-machine-readable-name&quot;] = [
 		&quot;name&quot;  =&gt; &quot;Network Display Name&quot;,
 		&quot;url&quot;   =&gt; &quot;https://example.com/share?&quot;,
 		&quot;query&quot; =&gt; [
@@ -817,20 +817,20 @@ ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 <p>The machine readable name is the helper class that's provided in the anchor, the &quot;name&quot; is the text output in the anchor content.  This is important especially when dealing with multilingual sites, for example &quot;Sina Weibo&quot; is <code>$networks[&quot;sinaWeibo&quot;]</code> but the display name is: <code>&quot;name&quot; =&gt; &quot;新浪微博&quot;</code>  to change the display of the network name you would change the &quot;name&quot; value.</p>
 <p>The <code>&quot;url&quot;</code> array value is where the share URL is stored- this is different for each site, but it should always end with the beginning of the query URL (i.e. <code>?</code>).</p>
 <p>The <code>&quot;query&quot;</code> array value should store another array which are the components of the URL query.  These are different for each network, but can be populated with elements from the <code>$share[]</code> array as outlined above.  For example a query array might look like this:</p>
-<pre><code class="language-language-php">&quot;query&quot; =&gt; [
+<pre><code class="language-php">&quot;query&quot; =&gt; [
     &quot;url&quot; =&gt; $share[&quot;postURL&quot;],
     &quot;title&quot; =&gt; $share[&quot;postTitle&quot;],
     &quot;redirect&quot; =&gt; &quot;false&quot;,
 ],
 </code></pre>
 <p>Notice the last option &quot;redirect=false&quot;.  It's possible to add static elements to the query URL if they're required by the remote site.  In the end this will give us something like:</p>
-<pre><code class="language-language-markup">url=http://example.com&amp;title=Post Title&amp;redirect=false
+<pre><code class="language-markup">url=http://example.com&amp;title=Post Title&amp;redirect=false
 </code></pre>
 <p>Finally, our query is passed through <a href="http://php.net/http_build_query"><code>http_build_query()</code></a> to make it URL encoded.</p>
 <h2 id="examples">Examples</h2>
 <p>The following are real examples of this function in action on my wife's blog (<a href="http://iywahl.com">iywahl.com</a>) with a random post.  Her site is using WordPress 4.1.1 and the &quot;Twenty Fifteen&quot; theme.</p>
 <h3 id="email">Email</h3>
-<pre><code class="language-language-php">	$networks[&quot;email&quot;] = [
+<pre><code class="language-php">	$networks[&quot;email&quot;] = [
 		&quot;name&quot;  =&gt; &quot;E-mail&quot;,
 		&quot;url&quot;   =&gt; &quot;mailto:?&quot;,
 		&quot;query&quot; =&gt; [
@@ -841,7 +841,7 @@ ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 </code></pre>
 <p><img src="https://iyware.com/content/images/2015/03/share-to-email-with-wordpress.png" alt=""></p>
 <h3 id="twitter">twitter</h3>
-<pre><code class="language-language-php">	$networks[&quot;twitter&quot;] = [
+<pre><code class="language-php">	$networks[&quot;twitter&quot;] = [
 		&quot;name&quot;  =&gt; &quot;twitter&quot;,
 		&quot;url&quot;   =&gt; &quot;https://twitter.com/home?&quot;,
 		&quot;query&quot; =&gt; [
@@ -851,7 +851,7 @@ ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 </code></pre>
 <p><img src="https://iyware.com/content/images/2015/03/share-to-twitter-with-wordpress.png" alt=""></p>
 <h3 id="facebook">Facebook</h3>
-<pre><code class="language-language-php">	$networks[&quot;facebook&quot;] = [
+<pre><code class="language-php">	$networks[&quot;facebook&quot;] = [
 		&quot;name&quot;  =&gt; &quot;Facebook&quot;,
 		&quot;url&quot;   =&gt; &quot;https://www.facebook.com/sharer/sharer.php?&quot;,
 		&quot;query&quot; =&gt; [
@@ -861,7 +861,7 @@ ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 </code></pre>
 <p><img src="https://iyware.com/content/images/2015/03/share-to-facebook-with-wordpress.png" alt=""></p>
 <h3 id="google">Google+</h3>
-<pre><code class="language-language-php">	$networks[&quot;googlePlus&quot;] = [
+<pre><code class="language-php">	$networks[&quot;googlePlus&quot;] = [
 		&quot;name&quot;  =&gt; &quot;Google+&quot;,
 		&quot;url&quot;   =&gt; &quot;https://plus.google.com/share?&quot;,
 		&quot;query&quot; =&gt; [
@@ -871,7 +871,7 @@ ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 </code></pre>
 <p><img src="https://iyware.com/content/images/2015/03/share-to-googleplus-with-wordpress.png" alt=""></p>
 <h3 id="linkedin">LinkedIn</h3>
-<pre><code class="language-language-php">	$networks[&quot;linkedin&quot;] = [
+<pre><code class="language-php">	$networks[&quot;linkedin&quot;] = [
 		&quot;name&quot;  =&gt; &quot;LinkedIn&quot;,
 		&quot;url&quot;   =&gt; &quot;https://www.linkedin.com/shareArticle?&quot;,
 		&quot;query&quot; =&gt; [
@@ -885,7 +885,7 @@ ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 </code></pre>
 <p><img src="https://iyware.com/content/images/2015/03/share-to-linkedin-with-wordpress.png" alt=""></p>
 <h3 id="pinterest">Pinterest</h3>
-<pre><code class="language-language-php">	$networks[&quot;pinterest&quot;] = [
+<pre><code class="language-php">	$networks[&quot;pinterest&quot;] = [
 		&quot;name&quot;  =&gt; &quot;Pinterest&quot;,
 		&quot;url&quot;   =&gt; &quot;https://pinterest.com/pin/create/button/?&quot;,
 		&quot;query&quot; =&gt; [
@@ -897,7 +897,7 @@ ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 </code></pre>
 <p><img src="https://iyware.com/content/images/2015/03/share-to-pinterest-with-wordpress.png" alt=""></p>
 <h3 id="tumblr">Tumblr</h3>
-<pre><code class="language-language-php">	$networks[&quot;tumblr&quot;] = [
+<pre><code class="language-php">	$networks[&quot;tumblr&quot;] = [
 		&quot;name&quot;  =&gt; &quot;tumblr&quot;,
 		&quot;url&quot;   =&gt; &quot;http://www.tumblr.com/share/link?&quot;,
 		&quot;query&quot; =&gt; [
@@ -909,7 +909,7 @@ ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 </code></pre>
 <p><img src="https://iyware.com/content/images/2015/03/share-to-tumblr-with-wordpress.png" alt=""></p>
 <h3 id="reddit">reddit</h3>
-<pre><code class="language-language-php">	$networks[&quot;reddit&quot;] = [
+<pre><code class="language-php">	$networks[&quot;reddit&quot;] = [
 		&quot;name&quot;  =&gt; &quot;reddit&quot;,
 		&quot;url&quot;   =&gt; &quot;http://www.reddit.com/submit/?&quot;,
 		&quot;query&quot; =&gt; [
@@ -920,7 +920,7 @@ ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 </code></pre>
 <p><img src="https://iyware.com/content/images/2015/03/share-to-reddit-with-wordpress.png" alt=""></p>
 <h3 id="xing">Xing</h3>
-<pre><code class="language-language-php">	$networks[&quot;xing&quot;] = [
+<pre><code class="language-php">	$networks[&quot;xing&quot;] = [
 		&quot;name&quot;  =&gt; &quot;Xing&quot;,
 		&quot;url&quot;   =&gt; &quot;https://www.xing.com/spi/shares/new?&quot;,
 		&quot;query&quot; =&gt; [
@@ -931,7 +931,7 @@ ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 </code></pre>
 <p><img src="https://iyware.com/content/images/2015/03/share-to-xing-with-wordpress.png" alt=""></p>
 <h3 id="vk">VK</h3>
-<pre><code class="language-language-php">	$networks[&quot;vk&quot;] = [
+<pre><code class="language-php">	$networks[&quot;vk&quot;] = [
 		&quot;name&quot;  =&gt; &quot;VK&quot;,
 		&quot;url&quot;   =&gt; &quot;https://vk.com/share.php?&quot;,
 		&quot;query&quot; =&gt; [
@@ -945,7 +945,7 @@ ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 </code></pre>
 <p><img src="https://iyware.com/content/images/2015/03/share-to-vk-with-wordpress.png" alt=""></p>
 <h3 id="buffer">buffer</h3>
-<pre><code class="language-language-php">	$networks[&quot;buffer&quot;] = [
+<pre><code class="language-php">	$networks[&quot;buffer&quot;] = [
 		&quot;name&quot;  =&gt; &quot;buffer&quot;,
 		&quot;url&quot;   =&gt; &quot;https://bufferapp.com/add/?&quot;,
 		&quot;query&quot; =&gt; [
@@ -956,7 +956,7 @@ ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 </code></pre>
 <p><img src="https://iyware.com/content/images/2015/03/share-to-buffer-with-wordpress.png" alt=""></p>
 <h3 id="stumbleupon">StumbleUpon</h3>
-<pre><code class="language-language-php">	$networks[&quot;stumbleupon&quot;] = [
+<pre><code class="language-php">	$networks[&quot;stumbleupon&quot;] = [
 		&quot;name&quot;  =&gt; &quot;StumbleUpon&quot;,
 		&quot;url&quot;   =&gt; &quot;https://www.stumbleupon.com/submit?&quot;,
 		&quot;query&quot; =&gt; [
@@ -967,7 +967,7 @@ ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 </code></pre>
 <p><img src="https://iyware.com/content/images/2015/03/share-to-stumbleupon-with-wordpress.png" alt=""></p>
 <h3 id="sinaweibo">新浪微博 (Sina Weibo)</h3>
-<pre><code class="language-language-php">	$networks[&quot;sinaWeibo&quot;] = [
+<pre><code class="language-php">	$networks[&quot;sinaWeibo&quot;] = [
 		&quot;name&quot;  =&gt; &quot;新浪微博&quot;,
 		&quot;url&quot;   =&gt; &quot;http://service.weibo.com/share/share.php?&quot;,
 		&quot;query&quot; =&gt; [
@@ -979,7 +979,7 @@ ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 </code></pre>
 <p><img src="https://iyware.com/content/images/2015/03/share-to-sinaweibo-with-wordpress.png" alt=""></p>
 <h3 id="baidu">Baidu空间</h3>
-<pre><code class="language-language-php">	$networks[&quot;baidu&quot;] = [
+<pre><code class="language-php">	$networks[&quot;baidu&quot;] = [
 		&quot;name&quot;  =&gt; &quot;Baidu空间&quot;,
 		&quot;url&quot;   =&gt; &quot;http://hi.baidu.com/pub/show/share?&quot;,
 		&quot;query&quot; =&gt; [
@@ -990,7 +990,7 @@ ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 </code></pre>
 <p><img src="https://iyware.com/content/images/2015/03/share-to-baidus-with-wordpress.png" alt=""></p>
 <h3 id="renren">人人网 (Renren)</h3>
-<pre><code class="language-language-php">	$networks[&quot;renren&quot;] = [
+<pre><code class="language-php">	$networks[&quot;renren&quot;] = [
 		&quot;name&quot;  =&gt; &quot;人人网&quot;,
 		&quot;url&quot;   =&gt; &quot;http://share.renren.com/share/buttonshare?&quot;,
 		&quot;query&quot; =&gt; [
@@ -1001,7 +1001,7 @@ ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 </code></pre>
 <p><img src="https://iyware.com/content/images/2015/03/share-to-renren-with-wordpress.png" alt=""></p>
 <h3 id="qqtencentweibo">腾讯微博 (QQ Tencent Weibo)</h3>
-<pre><code class="language-language-php">	$networks[&quot;tencentWeibo&quot;] = [
+<pre><code class="language-php">	$networks[&quot;tencentWeibo&quot;] = [
 		&quot;name&quot;  =&gt; &quot;腾讯微博&quot;,
 		&quot;url&quot;   =&gt; &quot;http://v.t.qq.com/share/share.php?&quot;,
 		&quot;query&quot; =&gt; [
@@ -1012,7 +1012,7 @@ ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 </code></pre>
 <p><img src="https://iyware.com/content/images/2015/03/share-to-tencentweibo-with-wordpress.png" alt=""></p>
 <h3 id="qq">QQ空间</h3>
-<pre><code class="language-language-php">	$networks[&quot;qzone&quot;] = [
+<pre><code class="language-php">	$networks[&quot;qzone&quot;] = [
 		&quot;name&quot;  =&gt; &quot;QQ空间&quot;,
 		&quot;url&quot;   =&gt; &quot;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?&quot;,
 		&quot;query&quot; =&gt; [
@@ -1024,7 +1024,7 @@ ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 </code></pre>
 <p><img src="https://iyware.com/content/images/2015/03/share-to-qqzone-with-weibo.png" alt=""></p>
 <h3 id="pengyou">腾讯朋友网 (Pengyou)</h3>
-<pre><code class="language-language-php">	$networks[&quot;pengyou&quot;] = [
+<pre><code class="language-php">	$networks[&quot;pengyou&quot;] = [
 		&quot;name&quot;  =&gt; &quot;腾讯朋友网&quot;,
 		&quot;url&quot;   =&gt; &quot;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?&quot;,
 		&quot;query&quot; =&gt; [
@@ -1125,7 +1125,7 @@ ShareLinks(array(&quot;sinaWeibo&quot;, &quot;renren&quot;)); //你好！
 <p>Lenore is easy to customize and everything you want to customize is commented in the file you need to edit.</p>
 <h3 id="stylesheets">Stylesheets</h3>
 <p>The CSS has a table of contents and comments labeled inline.  Want to change the link color?  Find it in the table of contents and search for it.  It's this easy:</p>
-<pre><code class="language-language-css">a {
+<pre><code class="language-css">a {
 	color: #4b87aa; /*&lt;==11*/
 	text-decoration: none;
 	transition: all 0.25s;
@@ -1137,18 +1137,18 @@ a:active{
 }
 </code></pre>
 <p>Or how about the max-width of post content?</p>
-<pre><code class="language-language-css">    article {
+<pre><code class="language-css">    article {
 	    max-width: 34rem; /*&lt;==06*/
     }
 </code></pre>
 <h3 id="socialsharing">Social Sharing</h3>
 <p>There are also a number of social sharing links in <code>post.hbs</code>.  By default only 5 are enabled.  To enable or disable different networks, simply uncomment them by removing the handlebars around the <code>&lt;li&gt;</code> elements:</p>
-<pre><code class="language-language-handlebars">{{!--REDDIT
+<pre><code class="language-handlebars">{{!--REDDIT
 	&lt;li&gt;&lt;a class=&quot;reddit&quot; href=&quot;http://www.reddit.com/submit/?url={{@blog.url}}{{url}}&quot;&gt;reddit&lt;/a&gt;&lt;/li&gt;
 --}}
 </code></pre>
 <p>becomes:</p>
-<pre><code class="language-language-handlebars">    &lt;li&gt;&lt;a class=&quot;reddit&quot; href=&quot;http://www.reddit.com/submit/?url={{@blog.url}}{{url}}&quot;&gt;reddit&lt;/a&gt;&lt;/li&gt;
+<pre><code class="language-handlebars">    &lt;li&gt;&lt;a class=&quot;reddit&quot; href=&quot;http://www.reddit.com/submit/?url={{@blog.url}}{{url}}&quot;&gt;reddit&lt;/a&gt;&lt;/li&gt;
 </code></pre>
 <p>All social networks have a helper class for ease of styling.  In total there are 19 sharing options provided.</p>
 <h2 id="downloadsupport">Download &amp; Support</h2>
@@ -1157,109 +1157,109 @@ a:active{
 </div>]]></content:encoded></item><item><title><![CDATA[Ghost Share Links Cheat Sheet]]></title><description><![CDATA[<div class="kg-card-markdown"><p>In my previous post <a href="https://iyware.com/add-share-links-to-ghost-themes/">Add Share Links to Ghost Themes</a> I outlined how to create no-cost share links using the Ghost handlebars API.  In this post I'll provide code snippets to some of the most popular social networks that you can simply copy and paste into your custom theme.</p>
 <h2 id="email">Email</h2></div>]]></description><link>https://iyware.com/ghost-share-links-cheat-sheet/</link><guid isPermaLink="false">5a513274533fe1b5bec542ac</guid><category><![CDATA[Ghost]]></category><dc:creator><![CDATA[Danny Wahl]]></dc:creator><pubDate>Mon, 16 Mar 2015 12:20:12 GMT</pubDate><content:encoded><![CDATA[<div class="kg-card-markdown"><p>In my previous post <a href="https://iyware.com/add-share-links-to-ghost-themes/">Add Share Links to Ghost Themes</a> I outlined how to create no-cost share links using the Ghost handlebars API.  In this post I'll provide code snippets to some of the most popular social networks that you can simply copy and paste into your custom theme.</p>
 <h2 id="email">Email</h2>
-<pre><code class="language-language-handlebars">&lt;a href=&quot;mailto:?&amp;subject={{encode @blog.title}}%3A%20{{encode title}}&amp;body={{encode title}}%0D%0A{{url absolute=&quot;true&quot;}}%0D%0A%0D%0A{{excerpt words=&quot;45&quot;}}%2E%2E%2E&quot;&gt;
+<pre><code class="language-handlebars">&lt;a href=&quot;mailto:?&amp;subject={{encode @blog.title}}%3A%20{{encode title}}&amp;body={{encode title}}%0D%0A{{url absolute=&quot;true&quot;}}%0D%0A%0D%0A{{excerpt words=&quot;45&quot;}}%2E%2E%2E&quot;&gt;
     Email
 &lt;/a&gt;
 </code></pre>
 <p><img src="https://iyware.com/content/images/2015/03/share-to-email-with-ghost-1.png" alt=""></p>
 <h2 id="twitter">twitter</h2>
-<pre><code class="language-language-handlebars">&lt;a href=&quot;https://twitter.com/home?status={{url absolute=&quot;true&quot;}}%20{{tags prefix=&quot;%23&quot; separator=&quot;%20%23&quot; autolink=&quot;false&quot;}}&quot;&gt;
+<pre><code class="language-handlebars">&lt;a href=&quot;https://twitter.com/home?status={{url absolute=&quot;true&quot;}}%20{{tags prefix=&quot;%23&quot; separator=&quot;%20%23&quot; autolink=&quot;false&quot;}}&quot;&gt;
     Twitter
 &lt;/a&gt;
 </code></pre>
 <p><img src="https://iyware.com/content/images/2015/03/share-to-twitter-with-ghost.png" alt=""></p>
 <h2 id="facebook">Facebook</h2>
-<pre><code class="language-language-handlebars">&lt;a href=&quot;https://www.facebook.com/sharer/sharer.php?u={{url absolute=&quot;true&quot;}}&quot;&gt;
+<pre><code class="language-handlebars">&lt;a href=&quot;https://www.facebook.com/sharer/sharer.php?u={{url absolute=&quot;true&quot;}}&quot;&gt;
     Facebook
 &lt;/a&gt;
 </code></pre>
 <p><img src="https://iyware.com/content/images/2015/03/share-to-facebook-with-ghost-1.png" alt=""></p>
 <h2 id="google">Google+</h2>
-<pre><code class="language-language-handlebars">&lt;a href=&quot;https://plus.google.com/share?url={{url absolute=&quot;true&quot;}}&quot;&gt;
+<pre><code class="language-handlebars">&lt;a href=&quot;https://plus.google.com/share?url={{url absolute=&quot;true&quot;}}&quot;&gt;
     Google+
 &lt;/a&gt;
 </code></pre>
 <p><img src="https://iyware.com/content/images/2015/03/share-to-google-plus-with-ghost.png" alt=""></p>
 <h2 id="linkedin">LinkedIn</h2>
-<pre><code class="language-language-handlebars">&lt;a href=&quot;https://www.linkedin.com/shareArticle?mini=true&amp;url={{url absolute=&quot;true&quot;}}&amp;title={{encode title}}&amp;summary={{excerpt words=&quot;45&quot;}}&amp;source={{@blog.title}}&quot;&gt;
+<pre><code class="language-handlebars">&lt;a href=&quot;https://www.linkedin.com/shareArticle?mini=true&amp;url={{url absolute=&quot;true&quot;}}&amp;title={{encode title}}&amp;summary={{excerpt words=&quot;45&quot;}}&amp;source={{@blog.title}}&quot;&gt;
     LinkedIn
 &lt;/a&gt;
 </code></pre>
 <p><img src="https://iyware.com/content/images/2015/03/share-to-linkedin-with-ghost.png" alt=""></p>
 <h2 id="pinterest">Pinterest</h2>
-<pre><code class="language-language-handlebars">&lt;a href=&quot;https://pinterest.com/pin/create/button/?{{url absolute=&quot;true&quot;}}{{#if image}}&amp;media={{@blog.url}}{{image}}{{/if}}&amp;description={{excerpt words=&quot;20&quot;}}&quot;&gt;
+<pre><code class="language-handlebars">&lt;a href=&quot;https://pinterest.com/pin/create/button/?{{url absolute=&quot;true&quot;}}{{#if image}}&amp;media={{@blog.url}}{{image}}{{/if}}&amp;description={{excerpt words=&quot;20&quot;}}&quot;&gt;
     Pinterest
 &lt;/a&gt;
 </code></pre>
 <p><img src="https://iyware.com/content/images/2015/03/share-to-pinterest-with-ghost-1.png" alt=""></p>
 <h2 id="tumblr">tumblr</h2>
-<pre><code class="language-language-handlebars">&lt;a href=&quot;http://www.tumblr.com/share/link?url={{url absolute=&quot;true&quot;}}&amp;name={{encode title}}&amp;description={{excerpt words=&quot;45&quot;}}&quot;&gt;
+<pre><code class="language-handlebars">&lt;a href=&quot;http://www.tumblr.com/share/link?url={{url absolute=&quot;true&quot;}}&amp;name={{encode title}}&amp;description={{excerpt words=&quot;45&quot;}}&quot;&gt;
     Tumblr
 &lt;/a&gt;
 </code></pre>
 <p><img src="https://iyware.com/content/images/2015/03/share-to-tumblr-with-ghost.png" alt=""></p>
 <h2 id="reddit">reddit</h2>
-<pre><code class="language-language-handlebars">&lt;a href=&quot;http://www.reddit.com/submit/?url={{url absolute=&quot;true&quot;}}&amp;title={{encode title}}&quot;&gt;
+<pre><code class="language-handlebars">&lt;a href=&quot;http://www.reddit.com/submit/?url={{url absolute=&quot;true&quot;}}&amp;title={{encode title}}&quot;&gt;
     reddit
 &lt;/a&gt;
 </code></pre>
 <p><img src="https://iyware.com/content/images/2015/03/share-to-reddit-with-ghost.png" alt=""></p>
 <h2 id="xing">Xing</h2>
-<pre><code class="language-language-handlebars">&lt;a href=&quot;https://www.xing-share.com/app/user?op=share;sc_p=xing-share;url={{url absolute=&quot;true&quot;}}&quot;&gt;
+<pre><code class="language-handlebars">&lt;a href=&quot;https://www.xing-share.com/app/user?op=share;sc_p=xing-share;url={{url absolute=&quot;true&quot;}}&quot;&gt;
     Xing
 &lt;/a&gt;
 </code></pre>
 <p><img src="https://iyware.com/content/images/2015/03/share-to-xing-with-ghost.png" alt=""></p>
 <h2 id="vk">VK</h2>
-<pre><code class="language-language-handlebars">&lt;a href=&quot;https://vk.com/share.php?url={{url absolute=&quot;true&quot;}}&amp;title={{encode title}}&amp;description={{excerpt words=&quot;45&quot;}}{{#if image}}&amp;image={{@blog.url}}{{image}}{{/if}}&amp;noparse=true&quot;&gt;
+<pre><code class="language-handlebars">&lt;a href=&quot;https://vk.com/share.php?url={{url absolute=&quot;true&quot;}}&amp;title={{encode title}}&amp;description={{excerpt words=&quot;45&quot;}}{{#if image}}&amp;image={{@blog.url}}{{image}}{{/if}}&amp;noparse=true&quot;&gt;
     VK
 &lt;/a&gt;
 </code></pre>
 <p><img src="https://iyware.com/content/images/2015/03/share-to-VK-with-ghost.png" alt=""></p>
 <h2 id="buffer">buffer</h2>
-<pre><code class="language-language-handlebars">&lt;a href=&quot;https://bufferapp.com/add/?url={{url absolute=&quot;true&quot;}}&amp;text={{excerpt words=&quot;20&quot;}}&quot;&gt;
+<pre><code class="language-handlebars">&lt;a href=&quot;https://bufferapp.com/add/?url={{url absolute=&quot;true&quot;}}&amp;text={{excerpt words=&quot;20&quot;}}&quot;&gt;
     Buffer
 &lt;/a&gt;
 </code></pre>
 <p><img src="https://iyware.com/content/images/2015/03/share-to-buffer-with-ghost.png" alt=""></p>
 <h2 id="stumbleupon">StumbleUpon</h2>
-<pre><code class="language-language-handlebars">&lt;a href=&quot;https://www.stumbleupon.com/submit?url={{url absolute=&quot;true&quot;}}%2F&amp;title={{encode title}}&quot;&gt;
+<pre><code class="language-handlebars">&lt;a href=&quot;https://www.stumbleupon.com/submit?url={{url absolute=&quot;true&quot;}}%2F&amp;title={{encode title}}&quot;&gt;
     StumbleUpon
 &lt;/a&gt;
 </code></pre>
 <p><img src="https://iyware.com/content/images/2015/03/share-to-stumbleupon-with-ghost-2.png" alt=""></p>
 <h2 id="sinaweibo">新浪微博 (Sina Weibo)</h2>
-<pre><code class="language-language-handlebars">&lt;a href=&quot;http://service.weibo.com/share/share.php?url={{url absolute=&quot;true&quot;}}&amp;title={{encode title}}%0D%0A{{excerpt words=&quot;20&quot;}}%20{{tags prefix=&quot;%23&quot; separator=&quot;%23 %23&quot; suffix=&quot;%23&quot; autolink=&quot;false&quot;}}{{#if image}}&amp;pic={{@blog.url}}{{image}}{{/if}}&quot;&gt;
+<pre><code class="language-handlebars">&lt;a href=&quot;http://service.weibo.com/share/share.php?url={{url absolute=&quot;true&quot;}}&amp;title={{encode title}}%0D%0A{{excerpt words=&quot;20&quot;}}%20{{tags prefix=&quot;%23&quot; separator=&quot;%23 %23&quot; suffix=&quot;%23&quot; autolink=&quot;false&quot;}}{{#if image}}&amp;pic={{@blog.url}}{{image}}{{/if}}&quot;&gt;
     新浪微博
 &lt;/a&gt;
 </code></pre>
 <p><img src="https://iyware.com/content/images/2015/03/share-to-sinaweibo-with-ghost.png" alt=""></p>
 <h2 id="baidu">Baidu空间</h2>
-<pre><code class="language-language-handlebars">&lt;a href=&quot;http://hi.baidu.com/pub/show/share?url={{url absolute=&quot;true&quot;}}&amp;title={{encode title}}&quot;&gt;
+<pre><code class="language-handlebars">&lt;a href=&quot;http://hi.baidu.com/pub/show/share?url={{url absolute=&quot;true&quot;}}&amp;title={{encode title}}&quot;&gt;
     Baidu空间
 &lt;/a&gt;
 </code></pre>
 <p><img src="https://iyware.com/content/images/2015/03/share-to-baidu-with-ghost.png" alt=""></p>
 <h2 id="renren">人人网 (Renren)</h2>
-<pre><code class="language-language-handlebars">&lt;a href=&quot;http://share.renren.com/share/buttonshare?link={{url absolute=&quot;true&quot;}}&amp;title={{encode title}}&quot;&gt;
+<pre><code class="language-handlebars">&lt;a href=&quot;http://share.renren.com/share/buttonshare?link={{url absolute=&quot;true&quot;}}&amp;title={{encode title}}&quot;&gt;
     人人网
 &lt;/a&gt;
 </code></pre>
 <p><img src="https://iyware.com/content/images/2015/03/share-to-renren-with-ghost.png" alt=""></p>
 <h2 id="qqtencentweibo">腾讯微博 (QQ Tencent Weibo)</h2>
-<pre><code class="language-language-handlebars">&lt;a href=&quot;http://v.t.qq.com/share/share.php?title={{encode title}}%3A%20{{excerpt words=&quot;20&quot;}}%20{{tags prefix=&quot;%23&quot; separator=&quot;%23 %23&quot; suffix=&quot;%23&quot; autolink=&quot;false&quot;}}&amp;url={{url absolute=&quot;true&quot;}}&quot;&gt;
+<pre><code class="language-handlebars">&lt;a href=&quot;http://v.t.qq.com/share/share.php?title={{encode title}}%3A%20{{excerpt words=&quot;20&quot;}}%20{{tags prefix=&quot;%23&quot; separator=&quot;%23 %23&quot; suffix=&quot;%23&quot; autolink=&quot;false&quot;}}&amp;url={{url absolute=&quot;true&quot;}}&quot;&gt;
     腾讯微博
 &lt;/a&gt;
 </code></pre>
 <p><img src="https://iyware.com/content/images/2015/03/share-to-qq-tencent-weibo-with-ghost.png" alt=""></p>
 <h2 id="qq">QQ空间</h2>
-<pre><code class="language-language-handlebars">&lt;a href=&quot;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?title={{encode title}}&amp;url={{url absolute=&quot;true&quot;}}&amp;summary={{excerpt words=&quot;20&quot;}}&quot;&gt;
+<pre><code class="language-handlebars">&lt;a href=&quot;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?title={{encode title}}&amp;url={{url absolute=&quot;true&quot;}}&amp;summary={{excerpt words=&quot;20&quot;}}&quot;&gt;
     QQ空间
 &lt;/a&gt;
 </code></pre>
 <p><img src="https://iyware.com/content/images/2015/03/share-to-qq-zone-with-ghost.png" alt=""></p>
 <h2 id="pengyou">腾讯朋友网 (Pengyou)</h2>
-<pre><code class="language-language-handlebars">&lt;a href=&quot;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?to=pengyou&amp;title={{encode title}}&amp;url={{url absolute=&quot;true&quot;}}&amp;summary={{excerpt words=&quot;20&quot;}}&quot;&gt;
+<pre><code class="language-handlebars">&lt;a href=&quot;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?to=pengyou&amp;title={{encode title}}&amp;url={{url absolute=&quot;true&quot;}}&amp;summary={{excerpt words=&quot;20&quot;}}&quot;&gt;
     腾讯朋友网
 &lt;/a&gt;
 </code></pre>

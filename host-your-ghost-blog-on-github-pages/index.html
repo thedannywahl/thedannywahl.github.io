@@ -16,7 +16,7 @@
     <meta property="og:description" content="I&#x27;ve written a little bit about this before but this site is currently created using a local copy of Ghost and then converted to a static HTML site and deployed to GitHub pages.  This post will overview how I do that. First I&#x27;d like to say that I am aware" />
     <meta property="og:url" content="https://iyware.com/host-your-ghost-blog-on-github-pages/" />
     <meta property="article:published_time" content="2015-02-04T05:41:23.000Z" />
-    <meta property="article:modified_time" content="2015-02-04T05:44:51.000Z" />
+    <meta property="article:modified_time" content="2018-01-13T00:22:46.000Z" />
     <meta property="article:tag" content="Ghost" />
     
     <meta name="twitter:card" content="summary" />
@@ -52,7 +52,7 @@
     },
     "url": "https://iyware.com/host-your-ghost-blog-on-github-pages/",
     "datePublished": "2015-02-04T05:41:23.000Z",
-    "dateModified": "2015-02-04T05:44:51.000Z",
+    "dateModified": "2018-01-13T00:22:46.000Z",
     "keywords": "Ghost",
     "description": "I&#x27;ve written a little bit about this before but this site is currently created using a local copy of Ghost and then converted to a static HTML site and deployed to GitHub pages.  This post will overview how I do that. First I&#x27;d like to say that I am aware",
     "mainEntityOfPage": {
@@ -108,7 +108,7 @@
 <li><code>./localhost_2368/</code></li>
 </ul>
 <p>with <code>./localhost_2368/</code> containing your static site.  So you'll need to initialize your git repository there.  I have mine in <code>~/Sites/htdocs/iyware.com/localhost_2368/</code></p>
-<pre><code class="language-language-bash">mkdir ~/Sites/htdocs/iyware.com/localhost_2368/
+<pre><code class="language-bash">mkdir ~/Sites/htdocs/iyware.com/localhost_2368/
 cd ~/Sites/htdocs/iyware.com/localhost_2368/
 git init
 git checkout -b master
@@ -123,7 +123,7 @@ git remote add origin git@github.com:[USER NAME]/[USER NAME].github.io.git
 </ol>
 <p>Initializing your Git repository is obviously a one time task.</p>
 <h2 id="generateyourinitialstaticsite">Generate Your Initial Static Site</h2>
-<pre><code class="language-language-bash">httrack http://localhost:2368/ -O /PATH/TO/OUTPUT/FOLDER/ -c128 -I0 -#p &quot;+sitemap*&quot;
+<pre><code class="language-bash">httrack http://localhost:2368/ -O /PATH/TO/OUTPUT/FOLDER/ -c128 -I0 -#p &quot;+sitemap*&quot;
 </code></pre>
 <p>Let's break this command down a little bit.  The first parameter is the path to the site you want to crawl, e.g. your ghost blog.  The second parameter <code>-O</code> is the path to the output folder.  You'll obviously need to replace <code>/PATH/TO/OUTPUT/FOLDER/</code> with your actual path (NOT the <code>localhost_2368</code> folder but it's parent.  Mine is <code>/Users/dannywahl/Sites/htdocs/iyware.com/</code>.  <code>-c128</code> means that we scrape with a rate of 128 simulatneous connections.  <code>-I0</code> tells httrack not to make a custom / file for the output and <code>-#p</code> is detailed output (verbose).</p>
 <p>The <code>&quot;+sitemap*&quot;</code> tells httrack to explicitly to grab any links to a sitemap.  Ghost automatically generates a sitemap, but it uses <code>@blog.url</code> to populate them so httrack will not scrape them by default- so we need add this command.  This might be dangerous if you blog content contains a lot of links to other sites' sitemaps.  You might consider changing it to your Ghost blog url, e.g. <code>&quot;+https://iyware.com/sitemap*&quot;</code> to only grab your site's sitemap.</p>
@@ -134,19 +134,19 @@ mirroring http://localhost:2368/ +/sitemap* with the wizard help..
 <p>Now you should have a fully viewable static site in <code>/localhost_2368/</code> that is ready to deploy to GitHub Pages.</p>
 <h2 id="deploytogithubpages">Deploy to GitHub Pages</h2>
 <p>In terminal navigate back to the <code>/localhost_2368/</code> directory and commit at push your changes to GitHub:</p>
-<pre><code class="language-language-bash">git add .
+<pre><code class="language-bash">git add .
 git commit -m &quot;Blog updated&quot;
 git push -u origin master
 </code></pre>
 <p>Now you should be able to visit your GitHub page and see the static version of your site.</p>
 <h3 id="updateyourstaticsite">Update Your Static Site</h3>
 <p>The next time you update your Ghost blog and you need to update your static site navigate to the folder containing <code>/localhost_2368/</code> and run this command:</p>
-<pre><code class="language-language-bash">httrack -iC2
+<pre><code class="language-bash">httrack -iC2
 </code></pre>
 <p>This command updates your site and reuses your cache, you don't need to do a full re-scrape.  It will delete items that are remotely deleted, update changed assets, and it will add new files.  Then push to GitHub again.</p>
 <h3 id="wrapitinashellscript">Wrap it in a Shell Script</h3>
 <p>After the initial static site is created and the git repository is created it's quite a simple and repetitive task to update and deploy, so you can stick it all in a simple shell script like this:</p>
-<pre><code class="language-language-bash"># working path
+<pre><code class="language-bash"># working path
 cd /Users/dannywahl/Sites/htdocs/iyware.com/
 
 # update

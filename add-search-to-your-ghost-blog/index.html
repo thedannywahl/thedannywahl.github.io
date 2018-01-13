@@ -18,7 +18,7 @@
     <meta property="og:description" content="If you&#x27;re moving from WordPress to Ghost (or really any other blog platform) one of the things you&#x27;ve probably noticed is sorely missing is search.  The Ghost devs know it too.  Adding search is on the roadmap, unfortunately it&#x27;s backlogged and they&#x27;re currently looking for a Search Lead developer.  So" />
     <meta property="og:url" content="https://iyware.com/add-search-to-your-ghost-blog/" />
     <meta property="article:published_time" content="2015-02-02T05:39:55.000Z" />
-    <meta property="article:modified_time" content="2015-02-02T05:43:41.000Z" />
+    <meta property="article:modified_time" content="2018-01-13T00:21:54.000Z" />
     <meta property="article:tag" content="Ghost" />
     
     <meta name="twitter:card" content="summary" />
@@ -56,7 +56,7 @@
     "headline": "Add Search to Your Ghost Blog with Swiftype",
     "url": "https://iyware.com/add-search-to-your-ghost-blog/",
     "datePublished": "2015-02-02T05:39:55.000Z",
-    "dateModified": "2015-02-02T05:43:41.000Z",
+    "dateModified": "2018-01-13T00:21:54.000Z",
     "keywords": "Ghost",
     "description": "If you&#x27;re moving from WordPress to Ghost (or really any other blog platform) one of the things you&#x27;ve probably noticed is sorely missing is search.  The Ghost devs know it too.  Adding search is on the roadmap, unfortunately it&#x27;s backlogged and they&#x27;re currently looking for a Search Lead developer.  So",
     "mainEntityOfPage": {
@@ -147,7 +147,7 @@
 <h3 id="addautocompletesearchtoyourthemetemplate">Add Autocomplete &amp; Search to your Theme Template</h3>
 <p>Now that you have added the files to your Ghost <code>/assets/</code> folder you can insert them into your theme template files.  Navigate to <code>/Ghost/content/themes/[your theme]/</code> and open up <code>default.hbs</code>.  The reason that we need to edit the default template is because the function <code>{{ghost_foot}}</code> outputs the jQuery call.  If you call Swiftype before jQuery is loaded (e.g. in <code>page.hbs</code>) you'll get an error.</p>
 <p>In <code>default.hbs</code> find the line with <code>{{ghost-foot}}</code> and add the following:</p>
-<pre><code class="language-language-handlebars">		&lt;script src=&quot;{{asset &quot;js/jquery.swiftype.autocomplete.js&quot;}}&quot;&gt;&lt;/script&gt;
+<pre><code class="language-handlebars">		&lt;script src=&quot;{{asset &quot;js/jquery.swiftype.autocomplete.js&quot;}}&quot;&gt;&lt;/script&gt;
 		&lt;script src=&quot;{{asset &quot;js/jquery.ba-hashchange.min.js&quot;}}&quot;&gt;&lt;/script&gt;
 		&lt;script src=&quot;{{asset &quot;js/jquery.swiftype.search.js&quot;}}&quot;&gt;&lt;/script&gt;
 
@@ -163,7 +163,7 @@
 </code></pre>
 <p>Notice that we're using the <a href="http://themes.ghost.org/v0.5.8/docs/asset"><code>{{asset }}</code></a> API so you don't have to worry about the full path, Ghost will build it for you.  You'll need to replace <code>engineKey: &quot;XXX&quot;</code> with your engine key, found on your Swiftkey dashboard.</p>
 <p>If you want search to be available on every page (you'll still have to add a search form to <code>default.hbs</code> then leave the code as is.  If you intend to only have search available on a specific search page then you can wrap the above code in <a href="http://themes.ghost.org/v0.5.8/docs/is"><code>{{is}}</code></a> brackets:</p>
-<pre><code class="language-language-handlebars">	{{#is 'page'}}
+<pre><code class="language-handlebars">	{{#is 'page'}}
 		&lt;script src=&quot;{{asset &quot;js/jquery.swiftype.autocomplete.js&quot;}}&quot;&gt;&lt;/script&gt;
 		&lt;script src=&quot;{{asset &quot;js/jquery.ba-hashchange.min.js&quot;}}&quot;&gt;&lt;/script&gt;
 		&lt;script src=&quot;{{asset &quot;js/jquery.swiftype.search.js&quot;}}&quot;&gt;&lt;/script&gt;
@@ -188,7 +188,7 @@
 <p>If you want to provide information to your users you can add content to the page, for example I added all the tags I use on my blog.  There's no easy way to do this I just don't have many tags, if you want something more dynamic, I suggest you add it to your template.</p>
 <p><img src="../content/images/2015/02/edited-search-page-with-content.png" alt=""></p>
 <p>Finally it's time to add the search form to your page.  Even though Ghost uses Markdown, remember that any HTML is valid Markdown, so you can directly create a form:</p>
-<pre><code class="language-language-markdown">&lt;form&gt;
+<pre><code class="language-markdown">&lt;form&gt;
     &lt;input type=&quot;text&quot; id=&quot;st-search-input&quot;&gt;
     &lt;button type=&quot;submit&quot;&gt;Search&lt;/button&gt;
 &lt;/form&gt;

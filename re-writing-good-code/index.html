@@ -18,7 +18,7 @@
     <meta property="og:description" content="A few weeks back I published my qTranslate Missing Link code, what I didn’t say in that post was that that was the 3rd revision of the code. And I mean a real v3.0, not a “let’s call it a new version” kind of 3.0 (I’" />
     <meta property="og:url" content="https://iyware.com/re-writing-good-code/" />
     <meta property="article:published_time" content="2011-11-05T14:39:53.000Z" />
-    <meta property="article:modified_time" content="2015-01-19T03:13:04.000Z" />
+    <meta property="article:modified_time" content="2018-01-13T00:06:29.000Z" />
     <meta property="article:tag" content="DevOps" />
     
     <meta name="twitter:card" content="summary" />
@@ -56,7 +56,7 @@
     "headline": "(Re-)Writing Good Code",
     "url": "https://iyware.com/re-writing-good-code/",
     "datePublished": "2011-11-05T14:39:53.000Z",
-    "dateModified": "2015-01-19T03:13:04.000Z",
+    "dateModified": "2018-01-13T00:06:29.000Z",
     "keywords": "DevOps",
     "description": "A few weeks back I published my qTranslate Missing Link code, what I didn’t say in that post was that that was the 3rd revision of the code. And I mean a real v3.0, not a “let’s call it a new version” kind of 3.0 (I’",
     "mainEntityOfPage": {
@@ -106,14 +106,14 @@
             <div class="kg-card-markdown"><p>A few weeks back I published my <a href="https://iyware.com/qtranslate-jquery-missing-link/" title="qtranslate + jQuery Missing Link">qTranslate Missing Link</a> code, what I didn’t say in that post was that that was the 3rd revision of the code. And I mean a real v3.0, not a “let’s call it a new version” kind of 3.0 (I’m looking at you Firefox…). What I want to do now is show you revisions 1.0 and 2.0, and how I got them, and then on to the final 3.0. And believe it or not, there’s room (for someone else) to take it to a version 4.</p>
 <p>First I needed to define my problem, and I needed to identify how I wanted to develop a fix for it. Defining the problem was easy, there were already threads at <a href="http://mysitemyway.com/">mysitemyway.com</a> saying that qTranslate didn’t translate the ‘Home’ link on their themes’ custom menus (which isn’t really mysitemyway’s fault) and there were threads over at the <a href="http://www.qianqin.de/qtranslate/">qTranslate</a> forums saying the same thing for lots of different themes. Now we were on the right track. What I needed to do now is decide how to fix it. The answer became clear almost straight away: <a href="http://jquery.com/">jQuery</a>, simply because that’s what WordPress uses, so I knew it would work.</p>
 <p>Since I’ve never used jQuery before (I think I’ve mentioned I’m not a JS guy…) I spent most of the time with this version (1.0) reading jQuery docs, and actually this rev. took the longest to write. Sadly, it’s the ugliest and least pluggable. So here’s the code:</p>
-<pre><code class="language-language-javascript">    if(jQuery('html').attr('lang') == 'zh-CN') {
+<pre><code class="language-javascript">    if(jQuery('html').attr('lang') == 'zh-CN') {
         jQuery('#menu-top-menu &gt; li:first-child a').attr('href', function(i, val) {
             return val + 'zh'
         });
     }
 </code></pre>
 <p>You can see it’s a pretty static script, written specifically to take a single selector in a single language and modify it by appending ‘<code>zh</code>‘ to the end of the <code>href</code>. That “worked” until I needed it in multiple languages. Then I wrote version 2.0:</p>
-<pre><code class="language-language-javascript">   switch(jQuery('html').attr('lang')) {
+<pre><code class="language-javascript">   switch(jQuery('html').attr('lang')) {
       case 'zh-CN': jQuery('#menu-top-menu &gt; li:first-child a').attr('href', function(i, val) {
                 return val + 'zh/'
             });
@@ -125,7 +125,7 @@
    }
 </code></pre>
 <p>Well now you can define multiple language, and we’re using a proper <code>switch</code> instead of <code>elif</code>s but still, what if you need multiple selectors per language? Enter version 3.0 (the one I released):</p>
-<pre><code class="language-language-javascript">   jQuery.each(['#menu-top-menu &gt; li:first-child a'], function(index, value) {
+<pre><code class="language-javascript">   jQuery.each(['#menu-top-menu &gt; li:first-child a'], function(index, value) {
         jQuery(value).attr('href', function(i, val) {
             return val + jQuery('html').attr('lang').split('-')[0]
         });   

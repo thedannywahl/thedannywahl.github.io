@@ -18,7 +18,7 @@
     <meta property="og:description" content="Update: A quick update, this was originally written for Yosemite Beta 1, XCode 6 Beta, and PHP56 RC1. Now that the official versions of all those are out, a lot of this post is unnecessary because, well, stable software is much more… stable. Who knew? Anyways, here’s a tl;" />
     <meta property="og:url" content="https://iyware.com/osx-yosemite-mamp-homebrew-development-setup/" />
     <meta property="article:published_time" content="2014-08-13T11:17:52.000Z" />
-    <meta property="article:modified_time" content="2015-02-04T05:46:22.000Z" />
+    <meta property="article:modified_time" content="2018-01-13T00:18:37.000Z" />
     <meta property="article:tag" content="DevOps" />
     
     <meta name="twitter:card" content="summary" />
@@ -56,7 +56,7 @@
     "headline": "OS X 10.10 Yosemite, Apache, MySQL, PHP 5.6, (MAMP) Homebrew Dev Setup",
     "url": "https://iyware.com/osx-yosemite-mamp-homebrew-development-setup/",
     "datePublished": "2014-08-13T11:17:52.000Z",
-    "dateModified": "2015-02-04T05:46:22.000Z",
+    "dateModified": "2018-01-13T00:18:37.000Z",
     "keywords": "DevOps",
     "description": "Update: A quick update, this was originally written for Yosemite Beta 1, XCode 6 Beta, and PHP56 RC1. Now that the official versions of all those are out, a lot of this post is unnecessary because, well, stable software is much more… stable. Who knew? Anyways, here’s a tl;",
     "mainEntityOfPage": {
@@ -105,7 +105,7 @@
         <div class="text">
             <div class="kg-card-markdown"><h2 id="update">Update:</h2>
 <p>A quick update, this was originally written for Yosemite Beta 1, XCode 6 Beta, and PHP56 RC1. Now that the official versions of all those are out, a lot of this post is unnecessary because, well, stable software is much more… stable. Who knew? Anyways, here’s a tl;dr for the stable version:</p>
-<pre><code class="language-language-bash"># Install Homebrew
+<pre><code class="language-bash"># Install Homebrew
 xcode-select --install
 ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
 brew doctor 
@@ -168,10 +168,10 @@ brew install moodle-sdk
 <p>We need to do a bit of configuring of our Mac before we dive into setting up services. Mostly this will involve downloading some applications.</p>
 <h3 id="getgit">Get git</h3>
 <p>Moodle development is managed using <a href="http://en.wikipedia.org/wiki/Git_(software)">git</a>. git in a nutshell lets you track changes of code from lots of users. If you’re going to be doing Moodle development you MUST use git. Fortunately OS X comes with git included, but you can’t use it. Open up terminal and enter the following command:</p>
-<pre><code class="language-language-bash">which git; git -version
+<pre><code class="language-bash">which git; git -version
 </code></pre>
 <p>and you’ll end up with a return something like this</p>
-<pre><code class="language-language-bash">which git
+<pre><code class="language-bash">which git
 /usr/bin/git
 git -version
 xcode-select: note: no developer tools were found at '/Applications/Xcode.app', requesting install. Choose an option in the dialog to download the command line developer tools.
@@ -182,19 +182,19 @@ xcode-select: note: no developer tools were found at '/Applications/Xcode.app', 
 <p>When it comes to installing the git binary we have a few different choices. First, we can install the <a href="http://git-scm.com/downloads">official git version</a> from git-scm.com, second we can install a bundled version of git with a different application like <a href="https://mac.github.com/">github for Mac</a> or <a href="http://www.git-tower.com/">git-tower</a> (both of which we’ll go over later), or third you can use a third-party package manager to install a copy of git for you. This last option is the one we will be using.</p>
 <h3 id="homebrew">Homebrew</h3>
 <p><a href="http://brew.sh/">Homebrew</a> is self-styled &quot;The missing package manager for OS X&quot; and they really deliver. If you’ve spent any amount of time working on an <em>actual</em> Unix or Linux machine you probably both appreciate OS X’s &quot;Unix roots&quot; and really dislike what Apple has chosen to trim back. Without a package manager like pac-man, apt, or the like, OS X is really limited. Homebrew solves that in a really elegant way, so let’s install it. Open up terminal and copy and paste this single command:</p>
-<pre><code class="language-language-bash">ruby -e &quot;$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)&quot;
+<pre><code class="language-bash">ruby -e &quot;$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)&quot;
 </code></pre>
 <p>This command has three requirements, one you need to have administrator access or you’ll not be able to install the program as the <code>/usr/</code> directory is protected. Two you’ll need internet access as the command downloads the script from github and then passes it to ruby to run. If you don’t have internet access you’ll see an error like this:</p>
-<pre><code class="language-language-bash">ruby -e &quot;$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)&quot; 
+<pre><code class="language-bash">ruby -e &quot;$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)&quot; 
 curl: (6) Could not resolve host: raw.github.com
 </code></pre>
 <p>Three, you will need to have the XCode command line utilities installed. You should have already install them. If you don’t have the command line tools installed then you will be prompted to install them:</p>
-<pre><code class="language-language-bash">==&gt; Installing the Command Line Tools (expect a GUI popup): 
+<pre><code class="language-bash">==&gt; Installing the Command Line Tools (expect a GUI popup): 
 ==&gt; /usr/bin/sudo /usr/bin/xcode-select --install 
 xcode-select: note: install requested for command line developer tools Press any key when the installation has completed.
 </code></pre>
 <p>After that you should be good to go. Just run <code>brew doctor</code> as recommended to make sure everything’s okay.</p>
-<pre><code class="language-language-bash">ruby -e &quot;$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)&quot; 
+<pre><code class="language-bash">ruby -e &quot;$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)&quot; 
 ==&gt; This script will install: 
 /usr/local/bin/brew /usr/local/Library/... 
 /usr/local/share/man/man1/brew.1 
@@ -219,10 +219,10 @@ brew doctor
 Your system is ready to brew.
 </code></pre>
 <p>If you see &quot;Your system is ready to brew.&quot; then we can move on to the next step. At this point you do have OS X’s version of git installed. To see your specific version run <code>git --version</code> in terminal:</p>
-<pre><code class="language-language-bash">git --version git version 1.9.3 (Apple Git-50)
+<pre><code class="language-bash">git --version git version 1.9.3 (Apple Git-50)
 </code></pre>
 <p>That’s the version on my system, which is the bleeding-edge version of git that Apple is shipping on a beta operating system and according to <a href="https://github.com/git/git/releases">github releases</a>, it was released (at time of this writing) about two and a half months ago. Not to mention it’s a full major release behind. git-scm.com has the latest version of git available as 2.0.3. I like to be a little more up to date than that. If we search the homebrew repository we can see the latest version available is 2.0.2:</p>
-<pre><code class="language-language-bash">brew search git 
+<pre><code class="language-bash">brew search git 
 bagit           git-extras      git-number      giter8
 bash-git-prompt git-flow        git-open        gitfs
 easy-git        git-flow-avh    git-review      github-release
@@ -236,7 +236,7 @@ git-crypt       git-multipush   git-url-sub     topgit
 git-encrypt     git-now         gitbucket
 </code></pre>
 <p>At the time of this writing 2.0.2 is only 13 days old and 2.0.3 is only 5 days old. That’s a much better timeframe for updating. So let’s install the homebrew version of git using <code>brew install git</code></p>
-<pre><code class="language-language-bash">brew install git 
+<pre><code class="language-bash">brew install git 
 ==&gt; Downloading https://www.kernel.org/pub/software/scm/git/git-2.0.3.tar.gz
 ######################################################################## 100.0% 
 ==&gt; make prefix=/usr/local/Cellar/git/2.0.3 sysconfdir=/usr/local/etc CC=clang C 
@@ -256,7 +256,7 @@ zsh completion has been installed to:
 ==&gt; Summary /usr/local/Cellar/git/2.0.3: 1328 files, 31M, built in 69 seconds
 </code></pre>
 <p>So you’ll see a couple of things- first we actually installed 2.0.3 and that’s because homebrew isn’t a repository of binaries, it simply manages them, the install actually comes from the main git repository at git-scm (kernel.org). In addition to the vanilla git binary we also get bash completion and man pages. Sweet! Go ahead and check the version again, you may have to quit your terminal session and start a new one.</p>
-<pre><code class="language-language-bash">dannywahlmbp:~ dannywahl$ git --version git version 2.0.3
+<pre><code class="language-bash">dannywahlmbp:~ dannywahl$ git --version git version 2.0.3
 </code></pre>
 <p>That’s pretty much it for git, now we can move on to github, where we’ll be managing our source code.</p>
 <h3 id="github">Github</h3>
@@ -273,18 +273,18 @@ zsh completion has been installed to:
 <p>Log in and head over to your <a href="https://github.com/settings/profile">profile</a>, fill in any info you want and then click on the <a href="https://github.com/settings/ssh">SSH Keys</a> tab on the left. <a href="http://en.wikipedia.org/wiki/Ssh">SSH</a> basically lets you securely communicate with the server where you are storing your code. Right now we’ll go through the process of generating an SSH key and storing it on github.</p>
 <h4 id="checkforexistingsshkeys">Check for existing SSH Keys</h4>
 <p>Open Terminal again, now if you’re on a fresh OS install you won’t have to do this but you can. Type the following command:</p>
-<pre><code class="language-language-bash">ls -lsa ~/.ssh
+<pre><code class="language-bash">ls -lsa ~/.ssh
 </code></pre>
 <p><code>ls</code> is the command to ‘list’ everything in a directory. <code>~</code> is short code for your home folder, on a Mac that’s /Users/UserName (by default). <code>/</code> is a folder inside of your home folder. <code>.ssh</code> is the name of the folder. On Unix systems a folder that starts with a ‘.’ will be hidden- no need for <a href="http://ss64.com/osx/chflags.html">chflags</a>! So we’ve put together a command that says &quot;show the contents of the hidden folder ‘.ssh’ inside of my home folder&quot;. And that is probably shockingly similar to the AppleScript that you would use to do that too.</p>
 <p>If terminal gives you this return:</p>
-<pre><code class="language-language-bash">ls -lsa ~/.ssh ls: /Users/dannywahl/.ssh: No such file or directory
+<pre><code class="language-bash">ls -lsa ~/.ssh ls: /Users/dannywahl/.ssh: No such file or directory
 </code></pre>
 <p>then we need to create the directory with another command (just copy and paste):</p>
-<pre><code class="language-language-bash">mkdir ~/.ssh; chmod 700 ~/.ssh
+<pre><code class="language-bash">mkdir ~/.ssh; chmod 700 ~/.ssh
 </code></pre>
 <p>This will do two things, create the ssh directory, and then make sure only you can access it. You can learn more about Unix permissions <a href="http://en.wikipedia.org/wiki/Unix_permissions#Numeric_notation">here</a>.</p>
 <p>If terminal gives you this return:</p>
-<pre><code class="language-language-bash">ls -lsa ~/.ssh/ 
+<pre><code class="language-bash">ls -lsa ~/.ssh/ 
 total 16 
 0 drwx------ 4 dannywahl staff 136 Jul 31 16:41 . 
 0 drwxr-xr-x+ 18 dannywahl staff 612 Jul 31 16:36 .. 
@@ -294,19 +294,19 @@ total 16
 <p>Then you already have an SSH Key. IF you created this key and are sure of its security you can use it with github, skip to the &quot;Adding your SSH Key to Github&quot; section below. Otherwise you can create a new one.</p>
 <h4 id="creatingansshkeypair">Creating an SSH Key Pair</h4>
 <p>When you create an SSH key you actually create two keys, a private key and a public key. You keep the private key and you can share the public key with others. This allows them to receive messages and ensure it is from you, but they can’t pretend to be you and send out messages on your behalf. Back in terminal we’re going to create a new <a href="http://en.wikipedia.org/wiki/RSA_(cryptosystem)">RSA</a> SSH key set. Run the command:</p>
-<pre><code class="language-language-bash">ssh-keygen -t rsa -C &quot;email@address.invalid&quot;
+<pre><code class="language-bash">ssh-keygen -t rsa -C &quot;email@address.invalid&quot;
 </code></pre>
 <p>This will kick off a &quot;Wizard&quot; of sorts and walk you through creating your key pair. First you need to specify where to save the new keys, the default is your ~/.ssh folder, so just push enter.</p>
-<pre><code class="language-language-bash">Generating public/private rsa key pair.
+<pre><code class="language-bash">Generating public/private rsa key pair.
 Enter file in which to save the key (/Users/dannywahl/.ssh/id_rsa):
 </code></pre>
 <p>Note that you can specify a different name, as you can have multiple SSH key pairs. Though for most instances a single pair is all that is necessary.</p>
 <p>Next it will ask you for a key passphrase, which is optional. I strongly suggest that you add a passphrase for both added security and the fact that other SSH applications (not github) require a passphrase to function properly and if you want to reuse your key pair you will need a passphrase. Type your passphrase press Enter and type it again to make sure it matches.</p>
-<pre><code class="language-language-bash">Enter passphrase (empty for no passphrase): 
+<pre><code class="language-bash">Enter passphrase (empty for no passphrase): 
 Enter same passphrase again:
 </code></pre>
 <p>After that your key pair will be save and you will be given some information about it. It will look something like this:</p>
-<pre><code class="language-language-bash">Your identification has been saved in /Users/dannywahl/.ssh/id_rsa. 
+<pre><code class="language-bash">Your identification has been saved in /Users/dannywahl/.ssh/id_rsa. 
 Your public key has been saved in /Users/dannywahl/.ssh/id_rsa.pub. 
 The key fingerprint is:
 fa:e7:5c:f2:60:d8:ad:44:3c:a4:07:0d:b5:09:77:9f
@@ -322,14 +322,14 @@ The key's randomart image is:
 <p>The finger print and randomart allow you to verify that a public key copy is a real copy. Please note that these are NOT my real public key credentials. On that note you should NEVER share your private key with anyone.</p>
 <h4 id="activatingyourkey">Activating Your Key</h4>
 <p>Now that you have created your key you need to tell the operating system to use it. We will use the <code>ssh-add</code> command to load your key. Enter this command, and then type your key passphrase. If you didn’t enter a passphrase, simply press Enter.</p>
-<pre><code class="language-language-bash">ssh-add ~/.ssh/id_rsa 
+<pre><code class="language-bash">ssh-add ~/.ssh/id_rsa 
 Enter passphrase for /Users/dannywahl/.ssh/id_rsa:
 Identity added: /Users/dannywahl/.ssh/id_rsa (/Users/dannywahl/.ssh/id_rsa)
 </code></pre>
 <h4 id="copyyourpublickeytogithub">Copy Your Public Key to Github</h4>
 <p>The final step is to give github a copy of your public key. If you don’t have the <a href="https://github.com/settings/ssh">SSH Keys</a> page open you will need to navigate there and click &quot;Add SSH Keys&quot;. You can store more than one key with github, which is useful if you have multiple devices that you do development from.</p>
 <p>Back in terminal you have one more command to run, simply copy and paste (unless you renamed your key):</p>
-<pre><code class="language-language-bash">pbcopy &lt; ~/.ssh/id_rsa.pub
+<pre><code class="language-bash">pbcopy &lt; ~/.ssh/id_rsa.pub
 </code></pre>
 <p>This command copies the contents of your public key to your clipboard. You can also open your key in a text editor and copy the contents but this command prevents both omitting a character and accidentally editing the key. Switch back to github and paste in the &quot;Key&quot; field. If there’s a blank line at the end, that’s ok- don’t erase it. Remember we want the contents of the key exactly.</p>
 <p>You’ll want to give you key a title so that if you ever have a security issue at github you can see exactly which machine accessed or changed which repositories. Your page should look something like this:</p>
@@ -339,10 +339,10 @@ Identity added: /Users/dannywahl/.ssh/id_rsa (/Users/dannywahl/.ssh/id_rsa)
 <p>For now we’re done with github. So far we’ve set up homebrew, installed git, created an SSH key pair, and added a copy of our public key to github. Next we’ll start setting up the &quot;server&quot; side of our development machine, starting with Apache.</p>
 <h2 id="apache">Apache</h2>
 <p>The <a href="http://httpd.apache.org/">Apache HTTPD</a> server is the most popular web server in the world. And in fact Apache is included with OS X by default. Just copy and paste this command into terminal:</p>
-<pre><code class="language-language-bash">apachectl -v
+<pre><code class="language-bash">apachectl -v
 </code></pre>
 <p>Mine says:</p>
-<pre><code class="language-language-bash">Server version: Apache/2.4.9 (Unix) Server built: Jun 28 2014 12:11:10
+<pre><code class="language-bash">Server version: Apache/2.4.9 (Unix) Server built: Jun 28 2014 12:11:10
 </code></pre>
 <p>Which is actually not that bad. Apache is one of those softwares that updates rather slowly, 2.4.10 was released on July 10th. Since Apache is included in OS X we can just use that right? Sure, just visit this link: <a href="http://localhost/">http://localhost</a>. Oops, does your screen look something like this?</p>
 <p><img src="../content/images/import/unabletoconnect-960x600.png" alt="localhost: Unable to connect"></p>
@@ -351,23 +351,23 @@ Identity added: /Users/dannywahl/.ssh/id_rsa (/Users/dannywahl/.ssh/id_rsa)
 <p>Even though Apple includes Apache as a part of OS X, and they used to include an option to enable it in the &quot;Sharing&quot; pane of System preferences, the preferred way to enable Apache on OS X since 10.7 is to <a href="http://www.apple.com/osx/server/">buy the Server app</a> from the App Store. That’s right, for only $19 Apple will sell you a button that starts Apache.</p>
 <h3 id="thepoormansway">The Poor Man’s Way</h3>
 <p>The second option is to simply start Apache ourselves. Go to terminal and type this command:</p>
-<pre><code class="language-language-bash">sudo apachectl start
+<pre><code class="language-bash">sudo apachectl start
 </code></pre>
 <p>After you type your password head back to <a href="http://loclahost/">http://localhost</a> and it should look more like this:</p>
 <p><img src="../content/images/import/itworks-960x600.png" alt="it works!"></p>
 <p>$20 bucks for that. To be fair to Apple, Server does give you lots of other functionality but for our purposes they’re not really necessary. Kind of like installing XCode to use git. Now, I’m going to recommend that you actually stop the Apache service because we are not going to use the built in version that Apple ships with.</p>
-<pre><code class="language-language-bash">sudo apachectl stop
+<pre><code class="language-bash">sudo apachectl stop
 </code></pre>
 <h3 id="thehomebrewway">The Homebrew Way</h3>
 <p>The reason we’re not going to use the version that ships with Apple is because they do a TON of customization to the Apache configurations and it makes it really difficult to simply add a vhost or edit a config. You even have to mess with groups to allow yourself to change files in your ~/Sites folder. Instead we’re going to install Apache via Homebrew and it will run entirely within your home folder.</p>
 <p>First we need to unload the OS X version of Apache which is loaded on the machine at startup, but &quot;stopped&quot;. Copy and paste this into terminal.</p>
-<pre><code class="language-language-bash">sudo launchctl unload -w /System/Library/LaunchDaemons/org.apache.httpd.plist 2&gt;/dev/null
+<pre><code class="language-bash">sudo launchctl unload -w /System/Library/LaunchDaemons/org.apache.httpd.plist 2&gt;/dev/null
 </code></pre>
 <p>Next we need to do is add the Apache repository to the list of repositories that Homebrew tracks, as it is not included by default.</p>
-<pre><code class="language-language-bash">brew tap homebrew/apache
+<pre><code class="language-bash">brew tap homebrew/apache
 </code></pre>
 <p>and you’ll see that the repository is downloaded and 9 new forumlae are available for install.</p>
-<pre><code class="language-language-bash">brew tap homebrew/apache 
+<pre><code class="language-bash">brew tap homebrew/apache 
 Cloning into '/usr/local/Library/Taps/homebrew/homebrew-apache'... 
 remote: Counting objects: 241, done. 
 remote: Total 241 (delta 0), reused 0 (delta 0) 
@@ -377,20 +377,20 @@ Checking connectivity... done.
 Tapped 9 formulae
 </code></pre>
 <p>The new repository gives us two versions of Apache: 2.2 and 2.4. For our development we will be installing Apache 2.4, however when we try we end up with an error:</p>
-<pre><code class="language-language-bash">brew install httpd24 
+<pre><code class="language-bash">brew install httpd24 
 Error: No available formula for apr (dependency of httpd24) 
 Searching taps... 
 homebrew/dupes/apr-util homebrew/dupes/apr homebrew/science/reapr
 </code></pre>
 <p>it seems that Apache 2.4 requires another app called ‘apr’ that isn’t on our system. Fortunately Homebrew does us a favor and tells us where to find it and it’s available in another repository, so we need to add that to our list of available repositories like before:</p>
-<pre><code class="language-language-bash">brew tap homebrew/dupes
+<pre><code class="language-bash">brew tap homebrew/dupes
 </code></pre>
 <p>According to the <a href="https://github.com/Homebrew/homebrew-dupes">‘dupes’ repository</a>, &quot;These formulae duplicate software provided by OS X, though may provide more recent or bugfix versions.&quot; Now what’s nice is that homebrew will resolve dependencies for us now that it knows where the files are, so let’s try again:</p>
-<pre><code class="language-language-bash">brew install httpd24 –with-privileged-ports
+<pre><code class="language-bash">brew install httpd24 –with-privileged-ports
 </code></pre>
 <p><code>httpd24</code> will get us the current version of Apache 2.4. The ‘with-privileged-ports’ parameter tells Apache to run on port 80/443 instead of 8080/8443. Essentially this means you can visit <a href="http://localhost/">http://localhost</a> instead of having to type <a href="http://localhost:8080/">http://localhost:8080</a>. 80 and 443 are the default ports that all websites run on and for our development purposes are preferable.</p>
 <p>If you get an error during compiling please follow the instructions of the output. If you have installed a beta version of Xcode on your machine please do NOT open an issue with the Homebrew people (like <a href="https://github.com/Homebrew/homebrew/issues/31217">this one</a>). Instead head over to the App Store and redownload the old version. If the app store won’t let you download you can go to the <a href="https://developer.apple.com/downloads/">Apple Developer Downloads</a> page and download the latest stable version of Xcode to your machine. You don’t have to remove the beta version, but the stable needs to be named ‘Xcode.app’.</p>
-<pre><code class="language-language-bash">Error: Homebrew doesn't know what compiler versions ship with your version of Xcode (6.0). 
+<pre><code class="language-bash">Error: Homebrew doesn't know what compiler versions ship with your version of Xcode (6.0). 
 Please `brew update` and if that doesn't help, file an issue with the output of `brew --config`:
 https://github.com/Homebrew/homebrew/issues 
 Note that we only track stable, released versions of Xcode. Thanks! 
@@ -400,7 +400,7 @@ If reporting this issue please do so at (not Homebrew/homebrew):
 https://github.com/homebrew/homebrew-apache/issues
 </code></pre>
 <p>Another issue I ran into was a configure failure because zlib couldn’t be found:</p>
-<pre><code class="language-language-bash">brew install httpd24 --with-privileged-ports 
+<pre><code class="language-bash">brew install httpd24 --with-privileged-ports 
 ==&gt; Downloading https://archive.apache.org/dist/httpd/httpd-2.4.10.tar.bz2 
 Already downloaded: /Library/Caches/Homebrew/httpd24-2.4.10.tar.bz2 
 ==&gt; ./configure --enable-layout=Homebrew --enable-mods-shared=all --with-mpm=pre 
@@ -415,10 +415,10 @@ https://github.com/Homebrew/homebrew/wiki/troubleshooting If reporting this issu
 https://github.com/homebrew/homebrew-apache/issues
 </code></pre>
 <p>This is probably a result of using a beta version of the Xcode command line tools, but there’s a simple fix that’s <a href="https://github.com/Homebrew/homebrew-apache/issues/30">been reported</a>. First you need to install zlib in Homebrew from the dupes repository.</p>
-<pre><code class="language-language-bash">brew install zlib
+<pre><code class="language-bash">brew install zlib
 </code></pre>
 <p>Homebrew will give you this caveat:</p>
-<pre><code class="language-language-bash">==&gt; Caveats 
+<pre><code class="language-bash">==&gt; Caveats 
 This formula is keg-only, so it was not symlinked into /usr/local. 
 Mac OS X already provides this software and installing another version in parallel can cause all kinds of trouble. 
 Generally there are no consequences of this for you. 
@@ -427,13 +427,13 @@ LDFLAGS: -L/usr/local/opt/zlib/lib
 CPPFLAGS: -I/usr/local/opt/zlib/include
 </code></pre>
 <p>Which basically means that you need to manually use that version of zlib, which is what we’ll tell our Apache build script to do now. Go back to terminal and enter the following command:</p>
-<pre><code class="language-language-bash">brew edit httpd24
+<pre><code class="language-bash">brew edit httpd24
 </code></pre>
 <p>This will open the config in your default text editor. Enter this line:</p>
-<pre><code class="language-language-ruby">args &lt;&lt; &quot;--with-z=/usr/local/Cellar/zlib/1.2.8&quot;
+<pre><code class="language-ruby">args &lt;&lt; &quot;--with-z=/usr/local/Cellar/zlib/1.2.8&quot;
 </code></pre>
 <p>After this section:</p>
-<pre><code class="language-language-ruby">if build.with? &quot;privileged-ports&quot;
+<pre><code class="language-ruby">if build.with? &quot;privileged-ports&quot;
   args &lt;&lt; &quot;--with-port=80&quot;
   args &lt;&lt; &quot;--with-sslport=443&quot;
 else
@@ -442,10 +442,10 @@ else
 end
 </code></pre>
 <p>That will add a new argument that forces it to use our Homebrew version of zlib. Save the file and run the build again:</p>
-<pre><code class="language-language-bash">brew install httpd24 --with-privileged-ports
+<pre><code class="language-bash">brew install httpd24 --with-privileged-ports
 </code></pre>
 <p>If you don't have any errors then your output should look something like this:</p>
-<pre><code class="language-language-bash">brew install httpd24 --with-privileged-ports 
+<pre><code class="language-bash">brew install httpd24 --with-privileged-ports 
 ==&gt; Downloading https://archive.apache.org/dist/httpd/httpd-2.4.10.tar.bz2 
 Already downloaded: /Library/Caches/Homebrew/httpd24-2.4.10.tar.bz2 
 ==&gt; ./configure --enable-layout=Homebrew --enable-mods-shared=all --with-mpm=pre 
@@ -459,15 +459,15 @@ launchctl load ~/Library/LaunchAgents/homebrew.mxcl.httpd24.plist
 ==&gt; Summary /usr/local/Cellar/httpd24/2.4.10: 199 files, 4.4M, built in 86 seconds
 </code></pre>
 <p>Finally it's important that we look at the caveats as they will tell us how to make sure that Apache starts when we log in to the system. Since we used the <code>--with-privileged-ports</code> parameter we will have to make some adjustments to the recommendations that Homebrew provides. Their recommendation is to create a symlink to your user LaunchAgents folder. That folder contains plists that do certain things when you log in. However, on a Unix system lower ports like 80 require root to run. Since this launch agent is launching Apache under your username it will quietly fail. Instead we will have the system (root) load it for us. The biggest difference is that Apache will be loaded at system start instead of when you log in. So go ahead and copy and paste this modified command into terminal.</p>
-<pre><code class="language-language-bash">sudo ln -sfv /usr/local/opt/httpd24/*.plist /Library/LaunchDaemons; sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.httpd24.plist
+<pre><code class="language-bash">sudo ln -sfv /usr/local/opt/httpd24/*.plist /Library/LaunchDaemons; sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.httpd24.plist
 </code></pre>
 <p>Now the next time you reboot Apache will load. But the beautiful thing about a service is that you can start, stop, or reload it at any time- we don't <em>need</em> to log out and log in again to start. Now, since we're running Apache as root we will need to use <code>sudo</code>. So it's not necessary now, because we just loaded it, but for the future you can use:</p>
-<pre><code class="language-language-bash">sudo httpd -k start 
+<pre><code class="language-bash">sudo httpd -k start 
 sudo httpd -k restart 
 sudo httpd -k stop
 </code></pre>
 <p>for more info you can check the manual <code>man</code> entry that's included with our Apache install.</p>
-<pre><code class="language-language-bash">man httpd
+<pre><code class="language-bash">man httpd
 </code></pre>
 <p>Now Apache is installed (by you) and running (as root). Go ahead and go back to <a href="http://localhost/">http://localhost</a> and you should see this:</p>
 <p><img src="../content/images/import/itworks1-960x600.png" alt="Apache is Installed"></p>
@@ -475,10 +475,10 @@ sudo httpd -k stop
 <h2 id="mysqluhhpostgresql">MySQL, uhh.. PostgreSQL</h2>
 <p>The next step on setting up our MA*P server is the database. In the old, olden days of 3 years ago OS X included MySQL in OS X server. Then Apple switched to Postgres. Then Apple bundled Postgres with the OS and added an 'enable' button in the Server app (a la Apache). And now starting with OS 10.9 it's back to being bundled exclusively with the Server App. tl;dr: you need to install a database, and I figure if it's so trivial for Apple to switch databases then it doesn't really matter which one we're using right ;)</p>
 <p>Ok, here's the exception, if you're planning on developing some sort of Moodle plugin, or fixing bugs that are database oriented, then you'll probably want to install multiple database drivers. But for simpler development where Moodle $DB handled the transactions, pick your poison. I'm going to use MySQL. So let's head back to the Homebrew app in terminal and get started:</p>
-<pre><code class="language-language-bash">brew install mysql
+<pre><code class="language-bash">brew install mysql
 </code></pre>
 <p>Ok, caveat. If you happen to be on an as-of-yet-unreleased OS and have both Xcode 5 and Xcode 6 beta installed on your system you will need to use Xcode 6 to install MySQL otherwise this will happen:</p>
-<pre><code class="language-language-bash">brew install mysql 
+<pre><code class="language-bash">brew install mysql 
 ==&gt; Installing dependencies for mysql: cmake, pkg-config, makedepend, ope 
 ==&gt; Installing mysql dependency: cmake 
 ==&gt; Downloading http://www.cmake.org/files/v3.0/cmake-3.0.0.tar.gz 
@@ -499,10 +499,10 @@ cmake find_package(PythonLibs)
 broken with brewed python on 10.9 (https://github.com/Homebrew/homebrew/issues/25118)
 </code></pre>
 <p>It's nice that they give you a log to inspect, but it's also kind of annoying that the /tmp dir gets cleaned up one it's done failing... Basically if you can capture the log in Console while it's failing you'll see that something in the Xcode tool is causing the failure. I guessed that it was because of Xcode 5 - and hey, lucky guess! So if you have that error drop into terminal and use this command:</p>
-<pre><code class="language-language-bash">mv /Applications/Xcode.app /Applications/Xcode5.app; mv /Applications/Xcode6-beta4.app /Applications/Xcode.app
+<pre><code class="language-bash">mv /Applications/Xcode.app /Applications/Xcode5.app; mv /Applications/Xcode6-beta4.app /Applications/Xcode.app
 </code></pre>
 <p>Or just go to the /Applications folder and rename them, your choice. Then run the install command again. When the build is done you can move your Xcode apps back to their original names. If all goes well you should end up with some terminal output like this:</p>
-<pre><code class="language-language-bash">brew install mysql 
+<pre><code class="language-bash">brew install mysql 
 ==&gt; Installing dependencies for mysql: cmake, pkg-config, makedepend, ope 
 ==&gt; Installing mysql dependency: cmake 
 ==&gt; Downloading http://www.cmake.org/files/v3.0/cmake-3.0.0.tar.gz 
@@ -574,14 +574,14 @@ mysql.server start
 </code></pre>
 <p>Now that's pretty amazing to me, and where homebrew is really worth its salt. All of those dependencies managed, auto downloaded, configured, and installed: cmake, pkg-config, makedepend, openssl, and finally mysql. There's no way I could have done that in 7.2 minutes manually.</p>
 <p>Generally MySQL runs at a high enough port that it can run in user space, so you don't need to sudo it into the /Library/LaunchAgents folder, it's ok to run it from your home folder, so go ahead and follow the instruction on screen:</p>
-<pre><code class="language-language-bash">ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents; 
+<pre><code class="language-bash">ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents; 
 launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
 </code></pre>
 <p>That will load MySQL. Now we'll test it and make some configuration changes. In shell we will connect to the mysql server:</p>
-<pre><code class="language-language-bash">mysql -u root
+<pre><code class="language-bash">mysql -u root
 </code></pre>
 <p>You will now drop into a MySQL prompt that should look something like this:</p>
-<pre><code class="language-language-bash">Welcome to the MySQL monitor. Commands end with ; or \g.
+<pre><code class="language-bash">Welcome to the MySQL monitor. Commands end with ; or \g.
 Your MySQL connection id is 3 
 Server version: 5.6.20 Homebrew 
 
@@ -594,22 +594,22 @@ Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 mysql&gt;
 </code></pre>
 <p>Notice that we have version 5.6.20 Homebrew - helpful in identifying that we are connected to the <em>correct</em> database. Now at the prompt (<code>mysql &gt;</code>) we will set a password for the root account. It's not only good practice, it's required by some software. Obviously in a production server you would worry about security- but for a dev server using root is A-OK in my book. To set the root password enter this command:</p>
-<pre><code class="language-language-sql">exit;
+<pre><code class="language-sql">exit;
 </code></pre>
 <p>No, that didn't really change the root password. That simply disconnected from the MySQL server and dropped us back into our standard shell. You see, there's a simple command called <code>mysqladmin</code> that's been installed for us as well which makes it much easier to change the password. Now we will use this command:</p>
-<pre><code class="language-language-bash">mysqladmin -u root password &quot;newpwd&quot;
+<pre><code class="language-bash">mysqladmin -u root password &quot;newpwd&quot;
 </code></pre>
 <p>Please substitute &quot;newpwd&quot; for the password you want to use for the root account. I use &quot;root&quot; (no quotes). Again- it's a dev. server. Remember that the MySQL docs recommend only alphanumeric characters for MySQL passwords. If you run into log in issues later it might be because of special characters. Now, let's try to connect to mysql again as above and you should get an error:</p>
-<pre><code class="language-language-bash">mysql -u root ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: NO)
+<pre><code class="language-bash">mysql -u root ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: NO)
 </code></pre>
 <p>If you want to connect via terminal in the future you will have to use the <code>-p</code> flag like so:</p>
-<pre><code class="language-language-bash">mysql -u root -p
+<pre><code class="language-bash">mysql -u root -p
 </code></pre>
 <p>After which you will be prompted for the password which you just set.</p>
 <p>For now that's the basic configuration of MySQL, we'll cover creating databases later when we go into Moodle setup.</p>
 <h2 id="php">PHP</h2>
 <p><a href="http://php.net/">PHP</a> is one of the most popular dynamic languages out there. It's robust, it's solid, and it's what Moodle uses. So let's install it. Once again, OS X ships with PHP installed, but we're going to disable it and replace with the Homebrew version. My shipped version is 5.5.9 (cli) which was released on Feb 4, 2014. The latest stable version is 5.5.15:</p>
-<pre><code class="language-language-bash">php -v 
+<pre><code class="language-bash">php -v 
 PHP 5.5.9 (cli) (built: Jun 28 2014 15:59:38) 
 Copyright (c) 1997-2014 The PHP Group 
 Zend Engine v2.5.0, Copyright (c) 1998-2014 Zend Technologies
@@ -639,10 +639,10 @@ Zend Engine v2.5.0, Copyright (c) 1998-2014 Zend Technologies
 <li>php_extension hash</li>
 </ul>
 <p>Man that's a lot of requirements/recommendations, fortunately Homebrew is going to provide us a lot of flexibility in getting everything installed. First we're going to need to tap two new repositories 'versions' and 'homebrew-php':</p>
-<pre><code class="language-language-bash">brew tap homebrew/versions; brew tap homebrew/homebrew-php
+<pre><code class="language-bash">brew tap homebrew/versions; brew tap homebrew/homebrew-php
 </code></pre>
 <p>If everything goes well your output should look something like this:</p>
-<pre><code class="language-language-bash">brew tap homebrew/versions 
+<pre><code class="language-bash">brew tap homebrew/versions 
 Cloning into '/usr/local/Library/Taps/homebrew/homebrew-versions'... 
 remote: Counting objects: 2274, done. 
 remote: Compressing objects: 100% (42/42), done. 
@@ -661,10 +661,10 @@ Checking connectivity... done.
 Tapped 408 formulae
 </code></pre>
 <p>Next you'll need to decide which version of PHP you want. I'm going to use PHP 5.6 even though it's only at RC1 as of this writing because I really want to try <a href="http://phpdbg.com/">phpdbg</a>. If nobody tests release versions of software then how will the bugs be found? Let's take a look at what options are available to us by running this command:</p>
-<pre><code class="language-language-bash">brew options php56
+<pre><code class="language-bash">brew options php56
 </code></pre>
 <p>and we get quite a few options:</p>
-<pre><code class="language-language-bash">brew options php56 
+<pre><code class="language-bash">brew options php56 
 --disable-opcache 
   Build without Opcache extension 
 --homebrew-apxs 
@@ -713,10 +713,10 @@ Tapped 408 formulae
   Build without PEAR --HEAD install HEAD version
 </code></pre>
 <p>Even though it's probably not required for php56 I'm going to use the <code>--with-phpdbg</code> flag just to be safe. In addition I'm going to use a few other options for homebrew versions of software. Since we've already installed Homebrew OpenSSL we'll use that, as well as APXS and Curl. Apxs is a tool for building Apache modules (like PHP) - since we're using a newer version of Apache than shipped with OS X we should probably use a newer version of APXS too. Curl is another one of those tools that's slightly outdated and we may as well use the latest stable version. The version on my system is 7.30.0, and at the time of this writing the version shipping with Homebrew is 7.37.1. I've also used <code>--with-tidy</code> because if I recall correctly Moodle text editors can leverage it for WYSIWYG input. Finally, notice that we're not using the <code>--with-intl</code> flag, that's because currently intl is broken and we'll have to install a separate package after PHP builds. Here's my full install command (copy and paste):</p>
-<pre><code class="language-language-bash">brew install php56 --homebrew-apxs --with-apache --with-homebrew-curl --with-homebrew-openssl --with-phpdbg --with-tidy
+<pre><code class="language-bash">brew install php56 --homebrew-apxs --with-apache --with-homebrew-curl --with-homebrew-openssl --with-phpdbg --with-tidy
 </code></pre>
 <p>If you get an error about missing bzip2 like this:</p>
-<pre><code class="language-language-bash">==&gt; ./configure --prefix=/usr/local/Cellar/php56/5.6.0-rc.2 --localstatedir=/usr 
+<pre><code class="language-bash">==&gt; ./configure --prefix=/usr/local/Cellar/php56/5.6.0-rc.2 --localstatedir=/usr 
 checking for gzgets in -lz... yes 
 checking whether to enable bc style precision math functions... yes 
 checking for BZip2 support... yes 
@@ -741,25 +741,25 @@ from /usr/local/Library/Homebrew/exceptions.rb:207:in 'dump' from /usr/local/Lib
 from /usr/local/Library/brew.rb:66:in '&lt;main&gt;'&lt;/main&gt;&lt;/main&gt;&lt;/top&gt;&lt;/top&gt;&lt;/net&gt;&lt;/http&gt;
 </code></pre>
 <p>Then you will need to edit the formula to set the path of your bzip2 binary manually. First, find where your bzip2 binary is located with the following command:</p>
-<pre><code class="language-language-bash">which bzip2
+<pre><code class="language-bash">which bzip2
 </code></pre>
 <p>Then edit the forumula for php:</p>
-<pre><code class="language-language-bash">brew edit php56
+<pre><code class="language-bash">brew edit php56
 </code></pre>
 <p>and add this line:</p>
-<pre><code class="language-language-bash">args &lt;&lt; &quot;--with-bz2=/usr/bin/bzip2&quot;
+<pre><code class="language-bash">args &lt;&lt; &quot;--with-bz2=/usr/bin/bzip2&quot;
 </code></pre>
 <p>after these lines:</p>
-<pre><code class="language-language-bash">def install_args args = super
+<pre><code class="language-bash">def install_args args = super
 </code></pre>
 <p>Another common error that seems to be occuring, and has been reported (<a href="https://github.com/Homebrew/homebrew-php/issues/1268">here</a>) is a compilation error while building phar. The basic error is:</p>
-<pre><code class="language-language-bash">make: *** [ext/phar/phar.phar] Illegal instruction: 4 
+<pre><code class="language-bash">make: *** [ext/phar/phar.phar] Illegal instruction: 4 
 </code></pre>
 <p>or</p>
-<pre><code class="language-language-bash">/Library/Ruby/Site/2.0.0/rubygems/core_ext/kernel_require.rb:55:in require': Class is not a module (TypeError)
+<pre><code class="language-bash">/Library/Ruby/Site/2.0.0/rubygems/core_ext/kernel_require.rb:55:in require': Class is not a module (TypeError)
 </code></pre>
 <p>I found this to be an error of trying to use Homebrew's OpenSSL, either by setting it as the default on the system or using the <code>--with-homebrew-ssl</code> flag. So for now my build is using the system version of OpenSSL. If the build goes correctly then your total output should look something like this:</p>
-<pre><code class="language-language-bash">brew install php56 --homebrew-apxs --with-apache --with-homebrew-curl  --with-phpdbg --with-tidy
+<pre><code class="language-bash">brew install php56 --homebrew-apxs --with-apache --with-homebrew-curl  --with-phpdbg --with-tidy
 ==&gt; Installing dependencies for php56: curl, libpng, freetype, xz, gettex
 ==&gt; Installing php56 dependency: curl
 ==&gt; Downloading http://curl.haxx.se/download/curl-7.37.1.tar.gz
@@ -913,45 +913,45 @@ Then to load php56 now:
   /usr/local/Cellar/php56/5.6.0-rc.3: 497 files, 50M, built in 5.9 minutes
 </code></pre>
 <p>As you can see looking at the caveats there are still a few steps we need to do. First we will fix the PEAR permissions, this might not be necessary, but it won't hurt anything so go ahead and copy and paste these commands into the terminal:</p>
-<pre><code class="language-language-bash">chmod -R ug+w /usr/local/Cellar/php56/5.6.0-rc.3/lib/php
+<pre><code class="language-bash">chmod -R ug+w /usr/local/Cellar/php56/5.6.0-rc.3/lib/php
 pear config-set php_ini /usr/local/etc/php/5.6/php.ini
 </code></pre>
 <p>Next we'll make sure that PHP gets loaded at login by the launchd and load it now, too:</p>
-<pre><code class="language-language-bash">ln -sfv /usr/local/opt/php56/*.plist ~/Library/LaunchAgents 
+<pre><code class="language-bash">ln -sfv /usr/local/opt/php56/*.plist ~/Library/LaunchAgents 
 launchctl load ~/Library/LaunchAgents/homebrew.mxcl.php56.plist
 </code></pre>
 <p>Then we'll check our command line version. First, exit or Quit Terminal and reopen it, then run this command in terminal:</p>
-<pre><code class="language-language-bash">php -v
+<pre><code class="language-bash">php -v
 </code></pre>
 <p>The output should have 5.6 listed as the version, like this:</p>
-<pre><code class="language-language-bash">php -v 
+<pre><code class="language-bash">php -v 
 PHP 5.6.0RC3 (cli) (built: Aug 7 2014 10:21:55) 
 Copyright (c) 1997-2014 The PHP Group 
 Zend Engine v2.6.0-dev, Copyright (c) 1998-2014 Zend Technologies
 </code></pre>
 <p>If it lists 5.5 as the version then you need to update you <code>$PATH</code> variable. Depending on the version of shell your're running you need to add the following line to your terminal config (default ~/.profile). The following commands should add it for you:</p>
-<pre><code class="language-language-bash">touch ~/.profile
+<pre><code class="language-bash">touch ~/.profile
 cat &gt;&gt; ~/.profile &lt;&lt;EOF
 export PATH=&quot;$(brew --prefix homebrew/php/php56)/bin:$PATH&quot;
 EOF
 </code></pre>
 <p>Now you can exit Terminal and reopen it and run <code>php -v</code> again.</p>
 <p>Finally you need to add the php handlers to the httpd.conf. Open up <code>/usr/local/etc/apache2/2.4/httpd.conf</code> and add the following three lines to the document:</p>
-<pre><code class="language-language-apacheconf">LoadModule php5_module /usr/local/opt/php56/libexec/apache2/libphp5.so 
+<pre><code class="language-apacheconf">LoadModule php5_module /usr/local/opt/php56/libexec/apache2/libphp5.so 
 AddHandler php5-script .php 
 AddType text/html .php
 </code></pre>
 <p>and find the line that starts with <code>DirectoryIndex</code> and change it to read:</p>
-<pre><code class="language-language-apacheconf">DirectoryIndex index.php /
+<pre><code class="language-apacheconf">DirectoryIndex index.php /
 </code></pre>
 <p>Save the document and then restart the httpd service with the following command:</p>
-<pre><code class="language-language-bash">sudo httpd -k restart
+<pre><code class="language-bash">sudo httpd -k restart
 </code></pre>
 <p>Now we having functioning PHP on our server, but remember we need to install <code>intl</code> separately, so go back to terminal and run the following command:</p>
-<pre><code class="language-language-bash">brew install php56-intl
+<pre><code class="language-bash">brew install php56-intl
 </code></pre>
 <p>When it finishes building you should have output similar to this:</p>
-<pre><code class="language-language-bash">brew install php56-intl
+<pre><code class="language-bash">brew install php56-intl
 ==&gt; Installing php56-intl dependency: icu4c
 ==&gt; Downloading http://download.icu-project.org/files/icu4c/52.1/icu4c-52_1-src.
 ######################################################################## 100.0%
