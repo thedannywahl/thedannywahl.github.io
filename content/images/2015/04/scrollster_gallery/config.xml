@@ -87,7 +87,7 @@
   </image>
   <image imageURL="images/example_on_Macbook.jpg"
 	thumbURL="thumbs/example_on_Macbook.jpg"
-	linkURL="https://www.youtube.com/watch?v=Zpxi1Ya9OqU"
+	linkURL="https://www.youtube.com/watch" />
 	linkTarget="_blank"
 	sourcePath="/Users/dannywahl/Sites/htdocs/ghost.localhost/content/images/2015/04/scrollster_gallery/images/example_on_Macbook.jpg">
     <title><![CDATA[See it on Youtube]]></title>
