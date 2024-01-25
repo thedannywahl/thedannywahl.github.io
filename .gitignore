@@ -13,3 +13,7 @@ _fresh/
 
 # npm dependencies
 node_modules/
+
+# Dev files
+.vscode/
+Biomefile
