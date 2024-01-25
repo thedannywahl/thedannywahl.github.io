@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>rmdot and lsdot - iyWare</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="../favicon.png">
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.min8520.css" />
+    <link rel="shortcut icon" href="../favicon.png" type="image/png" />
+    <link rel="canonical" href="https://iyware.com/rmdot-and-lsdot/" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    
+    <meta property="og:site_name" content="iyWare" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="rmdot and lsdot" />
+    <meta property="og:description" content="Remotely accessing a non-Macintosh machine from a Macintosh can really be a pain because OS X creates a hidden meta file for every file and sometimes these files are actually larger than the file itself. If you have a slow internet connection like me it can make simple things like" />
+    <meta property="og:url" content="https://iyware.com/rmdot-and-lsdot/" />
+    <meta property="article:published_time" content="2011-10-28T08:26:32.000Z" />
+    <meta property="article:modified_time" content="2018-01-13T00:05:20.000Z" />
+    <meta property="article:tag" content="DevOps" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="rmdot and lsdot" />
+    <meta name="twitter:description" content="Remotely accessing a non-Macintosh machine from a Macintosh can really be a pain because OS X creates a hidden meta file for every file and sometimes these files are actually larger than the file itself. If you have a slow internet connection like me it can make simple things like" />
+    <meta name="twitter:url" content="https://iyware.com/rmdot-and-lsdot/" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Danny Wahl" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="DevOps" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "iyWare",
+        "logo": "https://iyware.com/content/images/2015/01/logo.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Danny Wahl",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://iyware.com/content/images/2018/01/dannywahl.jpg",
+            "width": 112,
+            "height": 112
+        },
+        "url": "https://iyware.com/author/danny/",
+        "sameAs": [
+            "https://iyware.com"
+        ]
+    },
+    "headline": "rmdot and lsdot",
+    "url": "https://iyware.com/rmdot-and-lsdot/",
+    "datePublished": "2011-10-28T08:26:32.000Z",
+    "dateModified": "2018-01-13T00:05:20.000Z",
+    "keywords": "DevOps",
+    "description": "Remotely accessing a non-Macintosh machine from a Macintosh can really be a pain because OS X creates a hidden meta file for every file and sometimes these files are actually larger than the file itself. If you have a slow internet connection like me it can make simple things like",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://iyware.com/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 1.20" />
+    <link rel="alternate" type="application/rss+xml" title="iyWare" href="https://iyware.com/rss/" />
+</head>
+<body class="post-template tag-devops">
+    
+
+	<header role="banner" class="header-main no-image">
+    		<ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="https://iyware.com/">Home</a></li>
+    <li class="nav-clients" role="menuitem"><a href="https://iyware.com/clients/">Clients</a></li>
+    <li class="nav-portfolio" role="menuitem"><a href="https://iyware.com/tag/portfolio/">Portfolio</a></li>
+    <li class="nav-search" role="menuitem"><a href="https://iyware.com/search/">Search</a></li>
+</ul>
+
+		<h1>
+    		<a href="../">
+            		<img src="../content/images/2015/01/logo.png" alt="iyWare">
+			</a>
+		</h1>
+	</header>
+
+    <article role="main" class="post tag-devops">
+
+        <header>
+            <h1>rmdot and lsdot</h1>
+
+			<small class="meta">
+						<a href="../author/danny/" class="author" style="background-image:url('../content/images/2018/01/dannywahl.jpg');"><img src="../content/images/2018/01/dannywahl.jpg" alt="Danny Wahl's picture"></a>
+					<a href="../author/danny/">Danny Wahl</a>
+				&nbsp;&bull;&nbsp;
+				<time datetime="2011-10-28">October 28, 2011</time>
+					&nbsp;&bull;&nbsp;
+					<span class="tags"><a href="../tag/devops/">DevOps</a></span>
+			</small>
+        </header>
+
+        <div class="text">
+            <div class="kg-card-markdown"><p>Remotely accessing a non-Macintosh machine from a Macintosh can really be a pain because OS X creates a hidden meta file for every file and sometimes these files are actually larger than the file itself. If you have a slow internet connection like me it can make simple things like uploading some files via FTP extremely frustrating. Of course OS X does have the hidden “<a href="http://support.apple.com/kb/HT1629">do not create .DS_Store files on network folders</a>” – helpful, but those aren’t what I’m talking about. I’m talking about the <code>._</code> files.</p>
+<p>What finally pushed me to figure out a way to deal with these files was adding a folder of new flags to a WordPress instance for qTranslate to use. qTranslate looks at all the files in a folder and dynamically builds it’s select list with those file names. After FTPing the flag folder to the server qTranslate was listing 500+ flags instead of 250 and that’s because the meta files got copied too. So en-US.png also included <code>._en-US.png</code> and if you know your naming conventions all the <code>._</code> files showed up first.</p>
+<p>Enter lsdot and rmdot, a couple of short shell commands to blow away those files. These scripts will work not just on OS X but on Linux too, so if you have ssh access I really recommend running the commands on the remote server after you copy files, just because I’m not really sure when OS X recreates the meta files.</p>
+<pre><code class="language-bash">#lsdot
+if [ -z &quot;$1&quot; ]
+then
+  echo &quot;usage: lsdot /path/&quot;
+  exit
+fi
+dot_path=$1
+find $dot_path -name &quot;._*&quot; -exec ls {} \;
+</code></pre>
+<pre><code class="language-bash">#rmdot
+if [ -z &quot;$1&quot; ]
+then
+  echo &quot;usage: rmdot /path/&quot;
+  exit
+fi
+dot_path=$1
+find $dot_path -name &quot;._*&quot; -exec rm {} \;
+</code></pre>
+<p>As you can see it’s just a simple wrapper for a find command with an <code>-exec</code> switch but if you save these in your /usr/bin/ folder (on OS X at least) it’s pretty handy to just call from terminal. With lsdot I really recommend piping it because you’re going to get a LOT of results.</p>
+</div>
+        </div>
+
+        <section class="share">
+					<small class="meta">Share this post</small>
+        	<ul>
+				<li>
+					<a href="mailto:?&subject=iyWare%3A%20rmdot%20and%20lsdot&body=rmdot%20and%20lsdot%0D%0Ahttps://iyware.com/rmdot-and-lsdot/%0D%0A%0D%0ARemotely accessing a non-Macintosh machine from a Macintosh can really be a pain because OS X creates a hidden meta file for every file and sometimes these files are actually larger than the file itself. If you have a slow internet connection like me it%2E%2E%2E">Email</a>
+				</li>
+				<li>
+					<a href="https://twitter.com/home?status=https://iyware.com/rmdot-and-lsdot/%20%23DevOps">Twitter</a>
+				</li>
+				<li>
+					<a href="https://www.facebook.com/sharer/sharer.php?u=https://iyware.com/rmdot-and-lsdot/">Facebook</a>
+				</li>
+				<li>
+					<a href="https://plus.google.com/share?url=https://iyware.com/rmdot-and-lsdot/">Google+</a>
+				</li>
+				<li>
+					<a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://iyware.com/rmdot-and-lsdot/&amp;title=rmdot%20and%20lsdot&amp;summary=Remotely%20accessing%20a%20non-Macintosh%20machine%20from%20a%20Macintosh%20can%20really%20be%20a%20pain%20because%20OS%20X%20creates%20a%20hidden%20meta%20file%20for%20every%20file%20and%20sometimes%20these%20files%20are%20actually%20larger%20than%20the%20file%20itself.%20If%20you%20have%20a%20slow%20internet%20connection%20like%20me%20it&amp;source=iyWare">LinkedIn</a>
+				</li>
+			</ul>
+        </section>
+
+        <footer class="post-footer vcard cf" role="contentinfo">
+                	<div class="wrapper">
+                	<a href="../author/danny/" class="author" style="background-image: url('../content/images/2018/01/dannywahl.jpg');">
+                    	<img src="../content/images/2018/01/dannywahl.jpg" alt="Danny Wahl">
+					</a>
+					</div>
+                <div class="author-info meta">
+					<a href="../author/danny/" class="fn">Danny Wahl</a>
+                    &nbsp;&bull;&nbsp;<span class="adr">SLC, UT</span>
+                    &nbsp;&bull;&nbsp;<a class="site" href="https://iyware.com/">https://iyware.com</a>
+                    <p class="bio">My name is Danny Wahl and I provide consulting in IT and education. I dabble in writing, programming, design, and ukulele playing. Post content licensed CC-BY-4.0</p>
+                </div>
+        </footer>
+
+    </article>
+
+
+<footer class="footer-main cf">
+	<p class="feed"><a href="../rss">RSS Feed</a></p>
+	<p class="description">
+        <a class="title" href="../">iyWare</a>
+        <span>Things I Break</span>
+    </p>
+	<p class="copyright">&copy; 2018 Danny Wahl</p>
+</footer>
+
+    <script type="text/javascript" async defer>document.body.className.match("post-template")&&(prismcss=document.createElement("link"),prismcss.rel="stylesheet",prismcss.href="../assets/css/prism.min.css",document.body.appendChild(prismcss),prismjs=document.createElement("script"),prismjs.type="text/javascript",prismjs.async=!0,prismjs.onload=function(){},prismjs.src="https://cdn.jsdelivr.net/npm/prismjs@1.9.0/prism.min.js",document.body.appendChild(prismjs),disqushtml=document.createElement("div"),disqushtml.id="disqus_thread",document.getElementsByTagName("article")[0].appendChild(disqushtml),disqusjs=document.createElement("script"),disqusjs.type="text/javascript",disqusjs.async=!0,disqusjs.src="https://iyware.disqus.com/embed.js",document.body.appendChild(disqusjs));</script>
+<!--<script type="text/javascript" async defer>!function(t,e,s,n,a,c,i){t.SwiftypeObject=a,t[a]=t[a]||function(){(t[a].q=t[a].q||[]).push(arguments)},c=e.createElement(s),i=e.getElementsByTagName(s)[0],c.async=1,c.src=n,i.parentNode.insertBefore(c,i)}(window,document,"script","https://s.swiftypecdn.com/install/v2/st.js","_st"),_st("install","UpLojaav5s--stgt7FKu","2.0.0");</script>-->
+    <aside style="display:none;visibility:hidden;">
+      <a href="../search/">search</a>
+      <a href="../clients/">clients</a>
+      <a href="../sitemap.xml">sitemap</a>
+    </aside>
+</body>
+
+</html>

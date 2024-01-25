@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Moodle $OUTPUT: An Introduction - iyWare</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="../favicon.png">
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.min8520.css" />
+    <link rel="shortcut icon" href="../favicon.png" type="image/png" />
+    <link rel="canonical" href="https://iyware.com/moodle-output-an-introduction/" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    
+    <meta property="og:site_name" content="iyWare" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Moodle $OUTPUT: An Introduction" />
+    <meta property="og:description" content="Here at iyWare we’re not really developers. Sure we write some code, and we have even released a few plugins for Moodle, WordPress, and Mahara but really we’re in the educational technology consulting business. Recently we took over development of the Elegance Moodle theme from its original author" />
+    <meta property="og:url" content="https://iyware.com/moodle-output-an-introduction/" />
+    <meta property="article:published_time" content="2014-07-18T16:44:33.000Z" />
+    <meta property="article:modified_time" content="2015-01-18T05:28:43.000Z" />
+    <meta property="article:tag" content="Moodle" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Moodle $OUTPUT: An Introduction" />
+    <meta name="twitter:description" content="Here at iyWare we’re not really developers. Sure we write some code, and we have even released a few plugins for Moodle, WordPress, and Mahara but really we’re in the educational technology consulting business. Recently we took over development of the Elegance Moodle theme from its original author" />
+    <meta name="twitter:url" content="https://iyware.com/moodle-output-an-introduction/" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Danny Wahl" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="Moodle" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "iyWare",
+        "logo": "https://iyware.com/content/images/2015/01/logo.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Danny Wahl",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://iyware.com/content/images/2018/01/dannywahl.jpg",
+            "width": 112,
+            "height": 112
+        },
+        "url": "https://iyware.com/author/danny/",
+        "sameAs": [
+            "https://iyware.com"
+        ]
+    },
+    "headline": "Moodle $OUTPUT: An Introduction",
+    "url": "https://iyware.com/moodle-output-an-introduction/",
+    "datePublished": "2014-07-18T16:44:33.000Z",
+    "dateModified": "2015-01-18T05:28:43.000Z",
+    "keywords": "Moodle",
+    "description": "Here at iyWare we’re not really developers. Sure we write some code, and we have even released a few plugins for Moodle, WordPress, and Mahara but really we’re in the educational technology consulting business. Recently we took over development of the Elegance Moodle theme from its original author",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://iyware.com/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 1.20" />
+    <link rel="alternate" type="application/rss+xml" title="iyWare" href="https://iyware.com/rss/" />
+</head>
+<body class="post-template tag-moodle">
+    
+
+	<header role="banner" class="header-main no-image">
+    		<ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="https://iyware.com/">Home</a></li>
+    <li class="nav-clients" role="menuitem"><a href="https://iyware.com/clients/">Clients</a></li>
+    <li class="nav-portfolio" role="menuitem"><a href="https://iyware.com/tag/portfolio/">Portfolio</a></li>
+    <li class="nav-search" role="menuitem"><a href="https://iyware.com/search/">Search</a></li>
+</ul>
+
+		<h1>
+    		<a href="../">
+            		<img src="../content/images/2015/01/logo.png" alt="iyWare">
+			</a>
+		</h1>
+	</header>
+
+    <article role="main" class="post tag-moodle">
+
+        <header>
+            <h1>Moodle $OUTPUT: An Introduction</h1>
+
+			<small class="meta">
+						<a href="../author/danny/" class="author" style="background-image:url('../content/images/2018/01/dannywahl.jpg');"><img src="../content/images/2018/01/dannywahl.jpg" alt="Danny Wahl's picture"></a>
+					<a href="../author/danny/">Danny Wahl</a>
+				&nbsp;&bull;&nbsp;
+				<time datetime="2014-07-18">July 18, 2014</time>
+					&nbsp;&bull;&nbsp;
+					<span class="tags"><a href="../tag/moodle/">Moodle</a></span>
+			</small>
+        </header>
+
+        <div class="text">
+            <div class="kg-card-markdown"><p>Here at iyWare we’re not really developers. Sure we write some code, and we have even released a few plugins for <a href="https://github.com/thedannywahl/Zebra_4_Moodle_2">Moodle</a>, <a href="https://github.com/thedannywahl/California_4_WordPress_3">WordPress</a>, and <a href="https://github.com/thedannywahl/Zebra_4_Mahara">Mahara</a> but really we’re in the educational technology consulting business. Recently <a href="http://www.iyware.com/new-home-elegance/" title="New Home for Elegance">we took over development</a> of the <a href="https://moodle.org/plugins/view.php?plugin=theme_elegance" title="Elegance">Elegance</a> Moodle theme from its original author and began auditing the code. We quickly released a <a href="http://www.iyware.com/elegance-2-7-release/" title="Elegance 2.7 release">Moodle 2.7 compatible</a> version- but to the (<a href="https://moodle.org/mod/forum/discuss.php?d=263376#p1141999">understandable</a>) <a href="https://moodle.org/mod/forum/discuss.php?d=263376#p1142297">dissatisfaction</a> <a href="https://moodle.org/mod/forum/discuss.php?d=263376#p1142539">of a lot</a> <a href="https://moodle.org/mod/forum/discuss.php?d=263376#p1143365">of users</a> some of the changes we made were perceived as “worse” or at least “not better” than the older version of the theme. So in this post I’d like to clarify why some of the changes we made were made and why they’re actually better. This may get a bit technical but I’ll try to keep it simple.</p>
+<h2 id="outputrulesall">$OUTPUT Rules All</h2>
+<p>In Moodle what a plugin can do is determined by what kind of plugin it is. This is logical AND makes sense. For example an activity (say Forum) is not allowed to ask you if you want to change your site logo. Other software, like WordPress aren’t so well defined. Have you ever changed themes and had an entire post-type (like testimonials) disappear? That’s because themes in WordPress are allowed to do things beyond change the look and feel of the site. Imagine in Moodle if you changed your theme and suddenly couldn’t use the Quiz module any more! So we have a good system of permissions in Moodle and what’s allowed to do what.</p>
+<p>Now we’re going to introduce you to <code>$OUTPUT</code>. $OUTPUT is a variable (meaning its content changes) that stores everything that gets output to a page- i.e. what you see in Moodle. This is a not-quite-technically-accurate definition because there are other global variables like <code>$CFG</code>, <code>$THEME</code>, <code>$PAGE</code>, <code>$USER</code>, and <code>$DB</code> but I think you get the idea. When a plugin has some data or information that it wants to display on the screen it gives it to $OUTPUT. For example, a list of quiz questions, or a button group that says “ok” or “cancel”. Generally the way that things are given to, read from, or changed in $OUTPUT is via what’s called in programming language a &quot;<a href="http://en.wikipedia.org/wiki/Method_(programming)">method</a>&quot;. Simply stated a method is a way of doing things- this applies offline as well as online. I have a method of stacking our plates (largest on bottom, smallest on top) so they don’t fall over. People have various methods of parking their cars- and the method varies depending on the type of parking spot.</p>
+<h2 id="methodtothemadness">Method to the Madness</h2>
+<p>Methods in Moodle are defined by Moodle core- and this is why a quiz can’t change a logo or a theme can’t add an activity type. Moodle core will, in a programmatic way, tell the plugin “sorry you can’t do that.” There’s pretty much one exception to this, themes actually CAN do pretty much whatever they want with $OUTPUT. Sure, there are a few limitations (like the example above) but really they can add to, remove from, or change ANYTHING inside of $OUTPUT. This isn’t actually a bad thing, look and feel some times requires to a degree modifying the document structure- some times! The bad thing is that ONLY themes have this power. So let’s give an example of why this is good, and then an example of why it might be bad.</p>
+<h3 id="thegoodfonticons">The Good: Font Icons</h3>
+<p>Iconography definitely falls into the “look &amp; feel” department. So if a theme wants to use a font icon (like <a href="http://fontawesome.io/">fontawesome</a> it will have to change $OUTPUT. The transaction would look something like this:</p>
+<blockquote>
+<p>Quiz Module: Hey, $OUTPUT the user is adding a quiz to the course page. Make sure you use that piece of paper with a fat red check mark on it as the icon.</p>
+<p>$OUTPUT: Cool, thanks for that info.</p>
+<p>$OUTPUT: Yo! Theme, here’s everything you need to put on the page, get to work.</p>
+<p>Theme plugin: Hold up $OUTPUT Imma let you finish, but font-awesome has the best icons. So We’re going to use a “question mark” icon instead.</p>
+</blockquote>
+<p>Ta-da! Now you’re using an icon font to change the look-and feel of your website, but not really changing the functionality- which is the textbook definition of what a theme should do.</p>
+<h3 id="thebadsharethislinks">The Bad: “Share This” Links</h3>
+<p>Let’s say you work at an actually-forward-thinking school that’s not bound by stuff like COPPA or CISPA, or a think-of-the-children mindset, or just a university. Pretend your school really wants to be able to add an array of “share this” links at the bottom of every forum post, next to the “reply”, “edit”, and “permalink” links. There are a number of options that you might try (or think you can try):</p>
+<h4 id="localplugintype">“local” plugin type</h4>
+<p>At first a developer might think “I’ll just make a small plugin that modifies the method that makes forum posts to include “share” links. They write a “local” plugin- meaning it’s not one of the well-defined plugin types (like assignment, theme, authentication, etc…) and write their new version of the method- and voila! It doesn’t work! Remember, Moodle tells plugins that they can’t change other plugins’ methods or their part of $OUTPUT.</p>
+<h4 id="forum2electricboogaloo">Forum 2: Electric Boogaloo!</h4>
+<p>The next option is to fork (or make a copy of) the forum module and change its name (and all mentions of its name) to something different, like “Forum 2″. Then you change the method of your new module to add sharing links. Install the new Forum 2 on your Moodle and people can start using it. But now you have 2 forum modules. Do you leave them both enabled? One without sharing links and the other with? No, that’s silly- turn off the old forum. And now your Moodle administrator has 9,000 emails from teachers and students saying they can’t find their old posts- their conditional activities and course completion are broken. Fix it! Fix it! Fix it!. Now you need to write <em>another</em> plugin called a “tool” that takes all of the old “Forum” instances on your site and converts them to “Forum 2″ types. What a nightmare! And don’t forget as soon as Moodle updates the original “Forum” you need to track those changes and copy them to your new version.</p>
+<h4 id="or">Or…</h4>
+<h3 id="theuglythesocialesttheme">The Ugly: The Social-est Theme</h3>
+<p>Instead of continuing with the “social” sharing example let’s switch to another one. Assume that you want to add some touch icons to your theme. There’s a variety of ways to achieve this and we’ll look at some of them here, with their drawbacks and advantages.</p>
+<h4 id="thehtmlway">The “HTML” Way</h4>
+<p>This is probably the most straight forward way to add touch icons to your theme. Simply put the icons in the /pix/ folder and add the meta tag to your layout. Of course if your theme uses multiple layout files (which it probably does) you’ll need to add it to all all 5 or 6 or 7 layout files. The downside here is that by working outside of the image API you will probably cause some caching issues- and you <em>might</em> even end up with broken images, depending on the site config.</p>
+<h4 id="themoodleway">The “Moodle” Way</h4>
+<p>So why not just use the pix_url() method instead? Good idea, actually! Then your touch icons are handled Moodle and all edge cases of config and cache are taken into account for you. But what if you have different themes for desktop and for mobile?</p>
+<h4 id="andonitgoes">And On it Goes…</h4>
+<p>Okay, rather than itemizing every option we’re simply going to go down the rabbit trail. Now what if your site has a different theme for desktop vs. mobile? Simply add the new method and the images to both themes. Now what if your site allows teachers to choose their own course theme? Simply add the new method and images to all themes. Now what if some of those themes are “core” themes (included with Moodle) like “More”? Simply clone that theme (see the bullet point above) and add the method and images to your new theme OR create a new “child” theme (a theme that requires another theme) and add your method and images to that theme OR edit the core code [please don’t do that!!!!]</p>
+<p>Did we mention that if you make a child theme to make a few modifications that settings aren’t inherited? They’re not. So if you want to clone “more” and make a few changes you’re really out of luck. You’re really just inheriting layout, styles, and JS – which would be good if that’s all themes could do. But that custom logo you created? Nope.</p>
+<p>You might as well make your own theme. There is one final option, if you don’t have an in-house developer who can build and maintain a theme your only option is to ask a theme developer to add a feature to a theme. Which we get a lot of, and usually they’re very specific to that instance and wouldn’t be a good general inclusion for a them. But the reason that people ask is because of what’s specifically outlined above- there’s no other way to do it.</p>
+<h2 id="rubbermeetstheroad">Rubber Meets the Road</h2>
+<p>Okay there’s a bit of a background, now let’s look at some of the things specific to Elegance.</p>
+<h3 id="courseresourcetiles">Course Resource Tiles</h3>
+<p>As we’ve stated, one of the core responsibilities of a theme is to control the look and feel. The “Tiled Resources” was a cool look &amp; feel feature but it wasn’t a complete feature- it took the big resource output and reformatted it as a box instead of a rectangle, and then “floated” it so they stacked next to each other. We removed this from the theme because it wasn’t <em>fully</em> functional- and the functionality that it was trying to create already has a definition: “Course Format”. Remember how we said a theme can’t create a new activity? Well we shouldn’t try to have it <em>pretend</em> like it has added other plugin types- we should actually create them. Very quickly, off the top of my head, here’s a list of the problems with the Tiled Resources as it existed in the theme that would need to be fixed for it to be fully functional:</p>
+<ul>
+<li>Does it work across multiple course formats (including third party?)</li>
+<li>How are labels output inside of the “box”?</li>
+<li>How are folders w/ expanded content displayed in the “box”?</li>
+<li>How does a resource with the “Description” shown on the page look?</li>
+<li>How does the list of conditional access rules look on the page?</li>
+<li>Does “drag and drop” reordering of resources work?</li>
+<li>How do indented (move right/left) resources look?</li>
+<li>How do boxes look on a mobile phone or tablet? Desktop?</li>
+</ul>
+<p>All of these things fall into the definition of a course format- which a theme could then tweak the look and feel of, but ADDING all of this stuff to a theme is like cramming two plugins into one. On top of that you have a little bit of “vendor lock in”. We all know that teachers shouldn’t tailor their display to their theme and/or device – but they do. And this facilitates that. As an admin you’d never be able to remove or change Elegance as a theme option because suddenly <em>poof</em> Tiled Resources is gone. That’s not good.</p>
+<h3 id="mycoursetileblock">My Course Tile Block</h3>
+<p>Let me just start by saying that the function that added this part to the theme was called something like “theme_elegance_my_course_tiles_fake_block”. That should be enough right there. A theme is a theme, a block is a block. A fake block in a theme is NOT a block. And here’s the problem(s) with it:</p>
+<ul>
+<li>No block settings (global)</li>
+<li>No block config (per-block)</li>
+<li>Users can’t hide, move, or dock the block</li>
+</ul>
+<p>All of those things are required by a block type plugin, but a theme modifying doesn’t have to follow the block rules to the detriment of the user. Not to mention, again, that if you switch themes you lose your block- unlike all other block types.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>In conclusion there are three main ways that themes modify $OUTPUT of a Moodle site:</p>
+<ol>
+<li>Strictly changing look and feel without changing functionality</li>
+<li>Adding functionality that <em>can’t</em> be added by other plugin types</li>
+<li>Adding functionality that <em>can</em> by added by other plugin types</li>
+</ol>
+<p>The above two examples are examples of #3. They were providing functionality that should be provided by “real” plugins. This makes testing and maintaining the theme exponentially harder because you usage cases and configuration options increase with each additional fake plugin you add to your theme.</p>
+<p>Now, to be clear, we didn’t remove these features from Elegance simply because ideally they should be a standalone plugin. We removed them because they were broken. Sure, for most simple Moodle installs they mostly worked, but we have to support all Moodle installs. And the only way to ensure that it works properly is to build the functionality correctly. So, while we understand that it’s not fun to lose functionality (especially stuff you really like!) we’re now on the path to being able to do it the right way.</p>
+</div>
+        </div>
+
+        <section class="share">
+					<small class="meta">Share this post</small>
+        	<ul>
+				<li>
+					<a href="mailto:?&subject=iyWare%3A%20Moodle%20%24OUTPUT%3A%20An%20Introduction&body=Moodle%20%24OUTPUT%3A%20An%20Introduction%0D%0Ahttps://iyware.com/moodle-output-an-introduction/%0D%0A%0D%0AHere at iyWare we’re not really developers. Sure we write some code, and we have even released a few plugins for Moodle, WordPress, and Mahara but really we’re in the educational technology consulting business. Recently we took over development of the Elegance Moodle%2E%2E%2E">Email</a>
+				</li>
+				<li>
+					<a href="https://twitter.com/home?status=https://iyware.com/moodle-output-an-introduction/%20%23Moodle">Twitter</a>
+				</li>
+				<li>
+					<a href="https://www.facebook.com/sharer/sharer.php?u=https://iyware.com/moodle-output-an-introduction/">Facebook</a>
+				</li>
+				<li>
+					<a href="https://plus.google.com/share?url=https://iyware.com/moodle-output-an-introduction/">Google+</a>
+				</li>
+				<li>
+					<a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://iyware.com/moodle-output-an-introduction/&amp;title=Moodle%20%24OUTPUT%3A%20An%20Introduction&amp;summary=Here%20at%20iyWare%20we%e2%80%99re%20not%20really%20developers.%20Sure%20we%20write%20some%20code,%20and%20we%20have%20even%20released%20a%20few%20plugins%20for%20Moodle,%20WordPress,%20and%20Mahara%20but%20really%20we%e2%80%99re%20in%20the%20educational%20technology%20consulting%20business.%20Recently%20we%20took%20over%20development%20of%20the%20Elegance%20Moodle&amp;source=iyWare">LinkedIn</a>
+				</li>
+			</ul>
+        </section>
+
+        <footer class="post-footer vcard cf" role="contentinfo">
+                	<div class="wrapper">
+                	<a href="../author/danny/" class="author" style="background-image: url('../content/images/2018/01/dannywahl.jpg');">
+                    	<img src="../content/images/2018/01/dannywahl.jpg" alt="Danny Wahl">
+					</a>
+					</div>
+                <div class="author-info meta">
+					<a href="../author/danny/" class="fn">Danny Wahl</a>
+                    &nbsp;&bull;&nbsp;<span class="adr">SLC, UT</span>
+                    &nbsp;&bull;&nbsp;<a class="site" href="https://iyware.com/">https://iyware.com</a>
+                    <p class="bio">My name is Danny Wahl and I provide consulting in IT and education. I dabble in writing, programming, design, and ukulele playing. Post content licensed CC-BY-4.0</p>
+                </div>
+        </footer>
+
+    </article>
+
+
+<footer class="footer-main cf">
+	<p class="feed"><a href="../rss">RSS Feed</a></p>
+	<p class="description">
+        <a class="title" href="../">iyWare</a>
+        <span>Things I Break</span>
+    </p>
+	<p class="copyright">&copy; 2018 Danny Wahl</p>
+</footer>
+
+    <script type="text/javascript" async defer>document.body.className.match("post-template")&&(prismcss=document.createElement("link"),prismcss.rel="stylesheet",prismcss.href="../assets/css/prism.min.css",document.body.appendChild(prismcss),prismjs=document.createElement("script"),prismjs.type="text/javascript",prismjs.async=!0,prismjs.onload=function(){},prismjs.src="https://cdn.jsdelivr.net/npm/prismjs@1.9.0/prism.min.js",document.body.appendChild(prismjs),disqushtml=document.createElement("div"),disqushtml.id="disqus_thread",document.getElementsByTagName("article")[0].appendChild(disqushtml),disqusjs=document.createElement("script"),disqusjs.type="text/javascript",disqusjs.async=!0,disqusjs.src="https://iyware.disqus.com/embed.js",document.body.appendChild(disqusjs));</script>
+<!--<script type="text/javascript" async defer>!function(t,e,s,n,a,c,i){t.SwiftypeObject=a,t[a]=t[a]||function(){(t[a].q=t[a].q||[]).push(arguments)},c=e.createElement(s),i=e.getElementsByTagName(s)[0],c.async=1,c.src=n,i.parentNode.insertBefore(c,i)}(window,document,"script","https://s.swiftypecdn.com/install/v2/st.js","_st"),_st("install","UpLojaav5s--stgt7FKu","2.0.0");</script>-->
+    <aside style="display:none;visibility:hidden;">
+      <a href="../search/">search</a>
+      <a href="../clients/">clients</a>
+      <a href="../sitemap.xml">sitemap</a>
+    </aside>
+</body>
+
+</html>

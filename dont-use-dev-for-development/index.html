@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Don&#x27;t Use .dev For Development - iyWare</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="../favicon.png">
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.min8520.css" />
+    <link rel="shortcut icon" href="../favicon.png" type="image/png" />
+    <link rel="canonical" href="https://iyware.com/dont-use-dev-for-development/" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    
+    <meta property="og:site_name" content="iyWare" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Don&#x27;t Use .dev For Development" />
+    <meta property="og:description" content="A while back I wrote about setting up DNSMasq for your local development using the .localhost TLD.  Unfortunately during my research I came across a lot of people advocating setup using the hypothetical .dev domain under the guise of &amp;quot;DevOps&amp;quot;.  I hate to say it but this is" />
+    <meta property="og:url" content="https://iyware.com/dont-use-dev-for-development/" />
+    <meta property="article:published_time" content="2015-01-27T02:39:52.000Z" />
+    <meta property="article:modified_time" content="2015-01-27T02:39:52.000Z" />
+    <meta property="article:tag" content="DevOps" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Don&#x27;t Use .dev For Development" />
+    <meta name="twitter:description" content="A while back I wrote about setting up DNSMasq for your local development using the .localhost TLD.  Unfortunately during my research I came across a lot of people advocating setup using the hypothetical .dev domain under the guise of &amp;quot;DevOps&amp;quot;.  I hate to say it but this is" />
+    <meta name="twitter:url" content="https://iyware.com/dont-use-dev-for-development/" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Danny Wahl" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="DevOps" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "iyWare",
+        "logo": "https://iyware.com/content/images/2015/01/logo.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Danny Wahl",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://iyware.com/content/images/2018/01/dannywahl.jpg",
+            "width": 112,
+            "height": 112
+        },
+        "url": "https://iyware.com/author/danny/",
+        "sameAs": [
+            "https://iyware.com"
+        ]
+    },
+    "headline": "Don&#x27;t Use .dev For Development",
+    "url": "https://iyware.com/dont-use-dev-for-development/",
+    "datePublished": "2015-01-27T02:39:52.000Z",
+    "dateModified": "2015-01-27T02:39:52.000Z",
+    "keywords": "DevOps",
+    "description": "A while back I wrote about setting up DNSMasq for your local development using the .localhost TLD.  Unfortunately during my research I came across a lot of people advocating setup using the hypothetical .dev domain under the guise of &amp;quot;DevOps&amp;quot;.  I hate to say it but this is",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://iyware.com/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 1.20" />
+    <link rel="alternate" type="application/rss+xml" title="iyWare" href="https://iyware.com/rss/" />
+</head>
+<body class="post-template tag-devops">
+    
+
+	<header role="banner" class="header-main no-image">
+    		<ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="https://iyware.com/">Home</a></li>
+    <li class="nav-clients" role="menuitem"><a href="https://iyware.com/clients/">Clients</a></li>
+    <li class="nav-portfolio" role="menuitem"><a href="https://iyware.com/tag/portfolio/">Portfolio</a></li>
+    <li class="nav-search" role="menuitem"><a href="https://iyware.com/search/">Search</a></li>
+</ul>
+
+		<h1>
+    		<a href="../">
+            		<img src="../content/images/2015/01/logo.png" alt="iyWare">
+			</a>
+		</h1>
+	</header>
+
+    <article role="main" class="post tag-devops">
+
+        <header>
+            <h1>Don&#x27;t Use .dev For Development</h1>
+
+			<small class="meta">
+						<a href="../author/danny/" class="author" style="background-image:url('../content/images/2018/01/dannywahl.jpg');"><img src="../content/images/2018/01/dannywahl.jpg" alt="Danny Wahl's picture"></a>
+					<a href="../author/danny/">Danny Wahl</a>
+				&nbsp;&bull;&nbsp;
+				<time datetime="2015-01-26">January 26, 2015</time>
+					&nbsp;&bull;&nbsp;
+					<span class="tags"><a href="../tag/devops/">DevOps</a></span>
+			</small>
+        </header>
+
+        <div class="text">
+            <div class="kg-card-markdown"><p>A while back I wrote about setting up <a href="http://www.thekelleys.org.uk/dnsmasq/doc.html">DNSMasq</a> for your local development using the <code>.localhost</code> <a href="http://en.wikipedia.org/wiki/Top-level_domain">TLD</a>.  Unfortunately during my research I came across a lot of people advocating setup using the hypothetical <code>.dev</code> domain under the guise of &quot;DevOps&quot;.  I hate to say it but this is a bad idea, so consider this post a public service announcement.</p>
+<h2 id="generictlds">Generic TLDs</h2>
+<p>In the beginning there was <code>.com</code> and it was good.  In 1984 the IETF released <a href="http://tools.ietf.org/html/rfc920">RFC-920</a> which specified a list of generic top level domains including:</p>
+<ul>
+<li><code>.gov</code></li>
+<li><code>.edu</code></li>
+<li><code>.com</code></li>
+<li><code>.mil</code></li>
+<li><code>.org</code></li>
+<li><code>.net</code> (added later)</li>
+</ul>
+<p>in addition to country code TLDs.  We're probably all familiar with these as they have been the primary domains since then, and upto even a few years ago it would have been safe to mess around with other top-level domains on your local DNS or intranet.  But the issue now is that the IANA has started registering <a href="https://www.iana.org/domains/root/db">more and more</a> TLDs.</p>
+<p>Do you remember how pissed you were (or your sysadmin was) when your intranet was set to the same domain as your company website and no one could reach the website because your AD server was serving an IIS error page?  I do.  Everyone that's advocating using <code>.dev</code> is potentially doing the same thing.</p>
+<h2 id="newhotnesswhatever">New hotness: .whatever</h2>
+<p>According to <a href="http://www.gtld.com/">gTLD.com</a>:</p>
+<blockquote>
+<p>The release of more than 1,000 new gTLDs (generic Top Level Domains) is the biggest shake-up since the internet began.</p>
+</blockquote>
+<blockquote>
+<p>Dot place, dot trend, dot industry, dot meme – dot allsorts. They’re up for grabs.</p>
+</blockquote>
+<p>You read that right, we went from a list of 6 TLDs to over 1,000 [vegeta-its-over-1000.gif]!  Why?</p>
+<blockquote>
+<p>One of ICANN's key commitments is to promote competition in the domain name market</p>
+</blockquote>
+<p><a href="http://newgtlds.icann.org/en/applicants/customer-service/faqs/faqs-en">Money</a>, duh.</p>
+<h2 id="dontdowhatdonnydevdoes">Don't Do What Donny Dev Does</h2>
+<p>Ok, that's all well and good but what about <code>.dev</code>?  Turns out it's <a href="https://www.iana.org/domains/root/db/dev.html">already available</a> as a TLD.  Oops.  Oh, look, it's administered by Google too- so you know it's super serious.  Now, I want you go to back to a DNSmasq article where the author advocates routing all <code>.dev</code> traffic to <code>127.0.0.1</code> and replace <code>.dev</code> with <code>.com</code> and then tell me how smart of an idea it is.  Awesome DevOps d00d!</p>
+<h2 id="reservedtopleveldomainnames">Reserved Top Level Domain Names</h2>
+<p>Now that I've dumped all over DNS hacking it's only fair that I suggest an alternative.  The answer is simple: <a href="http://tools.ietf.org/html/rfc2606">RFC-2606</a>.  You see after the IETF released the list of Generic TLDs they released a list of Reserved TLDs.  Reserved meaning that they will never be valid TLDs in a global DNS sense.  This is similar to how <code>192.xxx.xxx.xxx</code> and <code>10.xxx.xxx.xxx</code> are reserved IP addresses.</p>
+<p>The list of Reserved TLDs contains 4 different domains specifically for &quot;Testing &amp; Documentation Examples&quot;:</p>
+<ul>
+<li><code>.test</code></li>
+<li><code>.example</code></li>
+<li><code>.invalid</code></li>
+<li><code>.localhost</code></li>
+</ul>
+<p>A subsection of the document also declares reserved second-level addresses:</p>
+<ul>
+<li><code>example.com</code></li>
+<li><code>example.net</code></li>
+<li><code>example.org</code></li>
+</ul>
+<p>so feel free to continue to use <code>nobody@example.com</code> for instructions for users.</p>
+<h2 id="usingreservedtlds">Using Reserved TLDs</h2>
+<p>RFC-2606 goes on to describe recommended usage cases for the four reserved TLDs but they're pretty vague, saying things like:</p>
+<blockquote>
+<p>&quot;.invalid&quot; is intended for use in online construction of domain names that are sure to be invalid and which it is obvious at a glance are invalid.</p>
+</blockquote>
+<p>In order to clarify when and how these Reserved TLDs should be used another specification was released, <a href="http://tools.ietf.org/html/rfc6761">RFC-6761</a>: Special-Use Domain Names.  This document clarifies how a Reserved TLD should be used and how it should be handled by DNS servers.  This document specifies seven categories of use:</p>
+<ol>
+<li>users</li>
+<li>applications</li>
+<li>APIs &amp; libraries</li>
+<li>DNS cache servers</li>
+<li>Authoratative DNS servers</li>
+<li>DNS server operators</li>
+<li>DNS registries/registrars</li>
+</ol>
+<p>Probably as a developer you only care about the first 4, and maybe number 5, essentially, how does your local network handle these domains?  Go read the specification and the outline for each Reserved TLD.</p>
+<h2 id="recommendedsetup">Recommended Setup</h2>
+<p>Now I'll outline my recommendation to you for using the Reserved TLDs.  There's a bit of wiggle room in here, by design of the RFCs.</p>
+<h3 id="localhosttld">.localhost TLD</h3>
+<p>I recommend (as does RFC-6761) that you use <code>.localhost</code> to only look at your local loopback address: <code>127.0.0.1</code>. The specification explicitly states that APIs and libraries <em>should</em> point at the loopback address already, so if you were to try to point it anywhere else you might end up with unexpected results.  In addition everyone knows that <code>localhost === 127.0.0.1</code> so from a people perspective, this just makes sense.</p>
+<h3 id="invalidtld">.invalid TLD</h3>
+<p>This is just my personal recommendation, but it is acceptable according to the specification.  Your local DNS cache server should be configured to point <code>.invalid</code> domains back to development machines. This should NOT be configured on a client machine.  If you're using static IPs or DHCP reservations (better, IMO) then you can easily set this up.</p>
+<p>The reason for this is that you can serve the same site (hopefully) from <code>.localhost</code> or <code>.invalid</code>.  If you have a cool new feature that you want to show someone or want someone to play with then they can view it- but they know that it requires your dev machine to be up and running.  This is great for face-to-face development.  Here's an example:</p>
+<p>I spend a while working on <code>dannywahlmbp.localhost/widget</code> and I want some feedback.  I send a coworker a link to <code>dannywahlmbp.invalid/widget</code> and we can sit down and check it out together.  If I shut my laptop- it's gone.  This isn't necessarily obvious in the naming but it can be documented.</p>
+<h3 id="testexampletlds">.test &amp; .example TLDs</h3>
+<p>You could decide to use either of these interchangably but I recommend using <code>.test</code> first.  My recommendation is that <code>.test</code> is where you move code to be tested- this is the first step toward production.  So my code base would be moved off of my development machine and onto a server that's accessible by all machines on our local network 24/7.  Maybe you start running code coverage here- maybe it's even an upstream repository.  Of course you'll need to configure your local DNS server.</p>
+<p>The final step is to use <code>.example</code>.  My recommendation is that you use this for code that's nearly ready to go live.  You could also use this to tie together multiple locations and even use an internet-facing IP address, knowing that it's not going to be resolved by global DNS servers.</p>
+<p>After that you're ready to go live with trusty ol' <code>.com</code>.  Hacking on domains and DNS can be fun and a lot of people have built some really cool tools- but it's important that you use them appropriately too.  Once <code>.dev</code> domains start becoming prevalent I imagine that there will be a few people kicking themselves for mapping it to their local machine, but hey, that's part of learning!</p>
+</div>
+        </div>
+
+        <section class="share">
+					<small class="meta">Share this post</small>
+        	<ul>
+				<li>
+					<a href="mailto:?&subject=iyWare%3A%20Don't%20Use%20.dev%20For%20Development&body=Don't%20Use%20.dev%20For%20Development%0D%0Ahttps://iyware.com/dont-use-dev-for-development/%0D%0A%0D%0AA while back I wrote about setting up DNSMasq for your local development using the .localhost TLD.  Unfortunately during my research I came across a lot of people advocating setup using the hypothetical .dev domain under the guise of &quot;DevOps&quot;.  I hate to%2E%2E%2E">Email</a>
+				</li>
+				<li>
+					<a href="https://twitter.com/home?status=https://iyware.com/dont-use-dev-for-development/%20%23DevOps">Twitter</a>
+				</li>
+				<li>
+					<a href="https://www.facebook.com/sharer/sharer.php?u=https://iyware.com/dont-use-dev-for-development/">Facebook</a>
+				</li>
+				<li>
+					<a href="https://plus.google.com/share?url=https://iyware.com/dont-use-dev-for-development/">Google+</a>
+				</li>
+				<li>
+					<a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://iyware.com/dont-use-dev-for-development/&amp;title=Don't%20Use%20.dev%20For%20Development&amp;summary=A%20while%20back%20I%20wrote%20about%20setting%20up%20DNSMasq%20for%20your%20local%20development%20using%20the%20.localhost%20TLD.%20%20Unfortunately%20during%20my%20research%20I%20came%20across%20a%20lot%20of%20people%20advocating%20setup%20using%20the%20hypothetical%20.dev%20domain%20under%20the%20guise%20of%20%22DevOps%22.%20%20I%20hate%20to&amp;source=iyWare">LinkedIn</a>
+				</li>
+			</ul>
+        </section>
+
+        <footer class="post-footer vcard cf" role="contentinfo">
+                	<div class="wrapper">
+                	<a href="../author/danny/" class="author" style="background-image: url('../content/images/2018/01/dannywahl.jpg');">
+                    	<img src="../content/images/2018/01/dannywahl.jpg" alt="Danny Wahl">
+					</a>
+					</div>
+                <div class="author-info meta">
+					<a href="../author/danny/" class="fn">Danny Wahl</a>
+                    &nbsp;&bull;&nbsp;<span class="adr">SLC, UT</span>
+                    &nbsp;&bull;&nbsp;<a class="site" href="https://iyware.com/">https://iyware.com</a>
+                    <p class="bio">My name is Danny Wahl and I provide consulting in IT and education. I dabble in writing, programming, design, and ukulele playing. Post content licensed CC-BY-4.0</p>
+                </div>
+        </footer>
+
+    </article>
+
+
+<footer class="footer-main cf">
+	<p class="feed"><a href="../rss">RSS Feed</a></p>
+	<p class="description">
+        <a class="title" href="../">iyWare</a>
+        <span>Things I Break</span>
+    </p>
+	<p class="copyright">&copy; 2018 Danny Wahl</p>
+</footer>
+
+    <script type="text/javascript" async defer>document.body.className.match("post-template")&&(prismcss=document.createElement("link"),prismcss.rel="stylesheet",prismcss.href="../assets/css/prism.min.css",document.body.appendChild(prismcss),prismjs=document.createElement("script"),prismjs.type="text/javascript",prismjs.async=!0,prismjs.onload=function(){},prismjs.src="https://cdn.jsdelivr.net/npm/prismjs@1.9.0/prism.min.js",document.body.appendChild(prismjs),disqushtml=document.createElement("div"),disqushtml.id="disqus_thread",document.getElementsByTagName("article")[0].appendChild(disqushtml),disqusjs=document.createElement("script"),disqusjs.type="text/javascript",disqusjs.async=!0,disqusjs.src="https://iyware.disqus.com/embed.js",document.body.appendChild(disqusjs));</script>
+<!--<script type="text/javascript" async defer>!function(t,e,s,n,a,c,i){t.SwiftypeObject=a,t[a]=t[a]||function(){(t[a].q=t[a].q||[]).push(arguments)},c=e.createElement(s),i=e.getElementsByTagName(s)[0],c.async=1,c.src=n,i.parentNode.insertBefore(c,i)}(window,document,"script","https://s.swiftypecdn.com/install/v2/st.js","_st"),_st("install","UpLojaav5s--stgt7FKu","2.0.0");</script>-->
+    <aside style="display:none;visibility:hidden;">
+      <a href="../search/">search</a>
+      <a href="../clients/">clients</a>
+      <a href="../sitemap.xml">sitemap</a>
+    </aside>
+</body>
+
+</html>

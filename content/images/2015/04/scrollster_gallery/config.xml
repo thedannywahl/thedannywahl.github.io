@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<juiceboxgallery 
+
+	resizeOnImport="false"
+	galleryTitle="Scrollster for Instagram"
+	galleryWidth="680"
+	backgroundColor="rgba(63,114,155,1)"
+	showThumbsButton="false"
+	showOpenButton="true"
+	showExpandButton="false"
+	useThumbDots="true"
+	textColor="rgba(255,255,255,1)"
+
+>
+  <image imageURL="images/large1.jpg"
+	thumbURL="thumbs/large1.jpg"
+	linkURL="https://gumroad.com/l/scrollster"
+	linkTarget="_blank"
+	sourcePath="/Users/dannywahl/Sites/htdocs/ghost.localhost/content/images/2015/04/scrollster_gallery/images/large1.jpg">
+    <title><![CDATA[#spring]]></title>
+    <caption><![CDATA[Scrollster can display any instagram tag]]></caption>
+  </image>
+  <image imageURL="images/popular2.jpg"
+	thumbURL="thumbs/popular2.jpg"
+	linkURL="https://gumroad.com/l/scrollster"
+	linkTarget="_blank"
+	sourcePath="/Users/dannywahl/Sites/htdocs/ghost.localhost/content/images/2015/04/scrollster_gallery/images/popular2.jpg">
+    <title><![CDATA[Popular Page]]></title>
+    <caption><![CDATA[Or the popular page if no hastag is provided]]></caption>
+  </image>
+  <image imageURL="images/author_comments_likes1.jpg"
+	thumbURL="thumbs/author_comments_likes1.jpg"
+	linkURL="https://gumroad.com/l/scrollster"
+	linkTarget="_blank"
+	sourcePath="/Users/dannywahl/Sites/htdocs/ghost.localhost/content/images/2015/04/scrollster_gallery/images/author_comments_likes1.jpg">
+    <title><![CDATA[Author, comments, likes, caption]]></title>
+    <caption><![CDATA[You can show or hide the author, comments, likes, and caption]]></caption>
+  </image>
+  <image imageURL="images/author_comments_likes2.jpg"
+	thumbURL="thumbs/author_comments_likes2.jpg"
+	linkURL="https://gumroad.com/l/scrollster"
+	linkTarget="_blank"
+	sourcePath="/Users/dannywahl/Sites/htdocs/ghost.localhost/content/images/2015/04/scrollster_gallery/images/author_comments_likes2.jpg">
+    <title><![CDATA[Large Images]]></title>
+    <caption><![CDATA[You can control the size of the images, here's large]]></caption>
+  </image>
+  <image imageURL="images/medium1.jpg"
+	thumbURL="thumbs/medium1.jpg"
+	linkURL="https://gumroad.com/l/scrollster"
+	linkTarget="_blank"
+	sourcePath="/Users/dannywahl/Sites/htdocs/ghost.localhost/content/images/2015/04/scrollster_gallery/images/medium1.jpg">
+    <title><![CDATA[Medium Images]]></title>
+    <caption><![CDATA[here's medium]]></caption>
+  </image>
+  <image imageURL="images/small1.jpg"
+	thumbURL="thumbs/small1.jpg"
+	linkURL="https://gumroad.com/l/scrollster"
+	linkTarget="_blank"
+	sourcePath="/Users/dannywahl/Sites/htdocs/ghost.localhost/content/images/2015/04/scrollster_gallery/images/small1.jpg">
+    <title><![CDATA[Small Images]]></title>
+    <caption><![CDATA[and here's small]]></caption>
+  </image>
+  <image imageURL="images/phone.jpg"
+	thumbURL="thumbs/phone.jpg"
+	linkURL="images/phone.jpg"
+	linkTarget="_blank"
+	sourcePath="/Users/dannywahl/Desktop/phone.jpg">
+    <title><![CDATA[Phones]]></title>
+    <caption><![CDATA[Scrollster works on any size device from phones]]></caption>
+  </image>
+  <image imageURL="images/tablet.jpg"
+	thumbURL="thumbs/tablet.jpg"
+	linkURL="images/tablet.jpg"
+	linkTarget="_blank"
+	sourcePath="/Users/dannywahl/Desktop/tablet.jpg">
+    <title><![CDATA[Tablets]]></title>
+    <caption><![CDATA[to tablets]]></caption>
+  </image>
+  <image imageURL="images/desktop.jpg"
+	thumbURL="thumbs/desktop.jpg"
+	linkURL="images/desktop.jpg"
+	linkTarget="_blank"
+	sourcePath="/Users/dannywahl/Desktop/desktop.jpg">
+    <title><![CDATA[Laptops]]></title>
+    <caption><![CDATA[to computers and even TVs and projectors]]></caption>
+  </image>
+  <image imageURL="images/example_on_Macbook.jpg"
+	thumbURL="thumbs/example_on_Macbook.jpg"
+	linkURL="https://www.youtube.com/watch" />
+	linkTarget="_blank"
+	sourcePath="/Users/dannywahl/Sites/htdocs/ghost.localhost/content/images/2015/04/scrollster_gallery/images/example_on_Macbook.jpg">
+    <title><![CDATA[See it on Youtube]]></title>
+    <caption><![CDATA[Click here to see Scrollster in action on Youtube]]></caption>
+  </image>
+</juiceboxgallery>
