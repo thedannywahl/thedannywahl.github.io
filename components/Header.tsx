@@ -6,9 +6,9 @@ export default function Header() {
     { page: "Blog", href: "/blog" },
   ];
   return (
-    <nav class="bg-teal-500  py-6 px-8 flex flex-col md:flex-row mt-6 mb-8 rounded-xl shadow">
+    <nav class="py-6 px-8 flex flex-col md:flex-row mt-6 mb-8 rounded-xl shadow bg-teal-500 dark:bg-teal-900">
       <div class="flex items-center flex-1">
-        <div class="text-2xl ml-1 font-thin text-white">
+        <div class="text-2xl ml-1 font-thin text-white dark:text-teal-200">
           iyWahl
         </div>
       </div>
@@ -17,7 +17,7 @@ export default function Header() {
           <li>
             <a
               href={menu.href}
-              class="text-white hover:underline py-1 border-gray-500 aria-[current='page']:font-semibold"
+              class="hover:underline py-1 aria-[current='page']:font-semibold text-white dark:text-teal-100"
             >
               {menu.page}
             </a>
