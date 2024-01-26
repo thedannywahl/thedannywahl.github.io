@@ -1,5 +1,3 @@
 # iywahl.com
 
-made with [Deno Fresh][def]
-
-[def]: https://fresh.deno.dev/
+[![Made with Fresh](https://fresh.deno.dev/fresh-badge-dark.svg)](https://fresh.deno.dev)
