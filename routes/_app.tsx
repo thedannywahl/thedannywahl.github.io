@@ -14,15 +14,21 @@ export default function App({ Component }: PageProps) {
       </head>
       <body
         f-client-nav
-        class="w-full max-w-screen-lg mx-auto bg-slate-200 dark:bg-slate-800"
+        class="w-full max-w-screen-lg mx-auto bg-slate-200 dark:bg-gradient-to-br dark:from-slate-900 dark:to-slate-950"
       >
-        <Header />
-        <main class="px-4 py-8 mx-auto bg-white dark:bg-slate-200">
-          <Partial name="body">
-            <Component />
-          </Partial>
-        </main>
-        <Footer />
+        <div id="app" class="flex flex-col h-dvh">
+          <header class="lg:pt-6">
+            <Header />
+          </header>
+          <main class="flex-1 p-4 sm:p-8 bg-white dark:bg-gray-800 shadow dark:shadow-none h-full w-full lg:rounded-t-xl dark:text-gray-200">
+            <Partial name="main">
+              <Component />
+            </Partial>
+          </main>
+          <footer class="lg:pb-8">
+            <Footer />
+          </footer>
+        </div>
       </body>
     </html>
   );
