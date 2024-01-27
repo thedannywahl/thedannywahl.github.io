@@ -26,13 +26,16 @@ export default function PostPage(props: PageProps<Post>) {
       <article>
         <div class="fm header">
           <h1 class="text-2xl sm:text-4xl font-bold">{post.title}</h1>
-          <time class="text-gray-500">
-            {new Date(post.publishedAt).toLocaleDateString("en-us", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
-          </time>
+          <div class="text-gray-500">
+            Published: <time>{post.sPublishedAt}</time>
+          </div>
+          {post.modifiedAt > post.publishedAt
+            ? (
+              <div class="text-gray-500">
+                Modified: <time>{post.sModifiedAt}</time>
+              </div>
+            )
+            : null}
         </div>
         <div
           class="mkd prose dark:prose-invert"
