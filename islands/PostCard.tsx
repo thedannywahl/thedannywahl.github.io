@@ -2,6 +2,11 @@ import { Post } from "@/utils/posts.tsx";
 
 export function PostCard(props: { post: Post }) {
   const { post } = props;
+  const metaDate = post.modifiedAt > post.publishedAt
+    ? post.sModifiedAt
+    : post.sPublishedAt;
+  const metaAuthors = post.authors.split(",");
+  const metaTags = post.tags.split(",");
   return (
     <a
       href={post.url}
@@ -12,7 +17,7 @@ export function PostCard(props: { post: Post }) {
             {post.title}
           </h2>
           <ul class="meta">
-            {[post.formattedDate, post.author, post.tag].map((post) => {
+            {[metaDate, ...metaAuthors, ...metaTags].map((post) => {
               return (
                 <li class="inline-block relative pe-6 last:pe-0 last-of-type:before:hidden before:absolute before:top-1/2 before:end-2 before:-translate-y-1/2 before:w-1 before:h-1 before:bg-gray-600 before:rounded-full text-gray-500 dark:text-gray-300 dark:before:bg-teal-500">
                   {post}

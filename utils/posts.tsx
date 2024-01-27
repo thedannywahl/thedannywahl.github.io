@@ -7,11 +7,13 @@ export interface Post {
   slug: string;
   title: string;
   publishedAt: Date;
-  formattedDate: string;
-  tag: string;
+  modifiedAt: Date;
+  sPublishedAt: string;
+  sModifiedAt: string;
+  tags: string;
   snippet: string;
   content: string;
-  author: string;
+  authors: string;
   url: string;
 }
 
@@ -34,16 +36,18 @@ export async function getPost(slug: string): Promise<Post | null> {
     slug,
     title: attrs.title,
     publishedAt: new Date(attrs.published_at),
-    formattedDate: formatDate(attrs.published_at),
-    tag: attrs.tag,
+    modifiedAt: new Date(attrs.modified_at),
+    sPublishedAt: dateToString(attrs.published_at),
+    sModifiedAt: dateToString(attrs.modified_at),
+    tags: attrs.tags,
     snippet: attrs.snippet,
     content: body,
-    author: attrs.author,
+    authors: attrs.authors,
     url: `/blog/${slug}`,
   };
 }
 
-export function formatDate(toFormat: Date) {
+export function dateToString(toFormat: Date) {
   const formattedDate = new Date(toFormat).toLocaleDateString("en-us", {
     year: "numeric",
     month: "long",
