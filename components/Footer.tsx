@@ -32,10 +32,10 @@ const socials = [
 
 export default function Footer() {
   return (
-    <div class="flex flex-col sm:flex-row w-full max-w-screen-lg gap-8 md:gap-16 p-4 sm:p-8 text-sm  bg-gray-100 dark:bg-teal-900 shadow dark:shadown-none">
+    <div class="flex flex-col sm:flex-row w-full max-w-screen-lg gap-8 md:gap-16 p-4 sm:p-8 text-sm bg-gray-100 dark:bg-[#6ba7a5] shadow dark:shadown-none">
       <div class="flex-1">
         <div class="flex lg:items-center gap-1">
-          <div class="font-thin text-2xl dark:text-teal-200">
+          <div class="font-thin text-2xl">
             iyWahl
           </div>
         </div>
@@ -44,17 +44,20 @@ export default function Footer() {
         </div>
       </div>
 
-      <div class="text-gray-500 dark:text-teal-100 space-y-2 sm:text-right">
+      <div class="sm:text-right">
         {socials.map((social) => (
           <a
             href={social.href}
-            class={`inline-block ${social.style}`}
+            class={`inline-block pe-4 sm:pe-2 last:pe-0 ${social.style}`}
             aria-label={social.name}
           >
-            <social.icon aria-hidden="true" />
+            <social.icon
+              aria-hidden="true"
+              class="size-5 sm:size-6 dark:text-gray-200"
+            />
           </a>
         ))}
-        <div class="text-xs dark:text-gray-200">
+        <div class="font-thin text-gray-500 dark:text-gray-200 mt-0">
           Copyright © 2024 iyWahl, LLC.
         </div>
       </div>
