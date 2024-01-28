@@ -18,11 +18,10 @@ export interface Post {
 }
 
 export async function getPosts(): Promise<Post[]> {
-  const files = Deno.readDir(DIRECTORY);
+  const dirs = Deno.readDir(DIRECTORY);
   const promises = [];
-  for await (const file of files) {
-    const slug = file.name.replace(".md", "");
-    promises.push(getPost(slug));
+  for await (const dir of dirs) {
+    if (dir.isDirectory) promises.push(getPost(dir.name));
   }
   const posts = await Promise.all(promises) as Post[];
   posts.sort((a, b) => b.publishedAt.getTime() - a.publishedAt.getTime());
@@ -30,7 +29,7 @@ export async function getPosts(): Promise<Post[]> {
 }
 
 export async function getPost(slug: string): Promise<Post | null> {
-  const text = await Deno.readTextFile(join(DIRECTORY, `${slug}.md`));
+  const text = await Deno.readTextFile(join(DIRECTORY, `${slug}/index.md`));
   const { attrs, body } = extract(text);
   return {
     slug,
@@ -43,7 +42,7 @@ export async function getPost(slug: string): Promise<Post | null> {
     snippet: attrs.snippet,
     content: body,
     authors: attrs.authors,
-    url: `/blog/${slug}`,
+    url: `/blog/${slug}/`,
   };
 }
 
