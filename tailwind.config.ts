@@ -7,7 +7,21 @@ export default {
     "{routes,islands,components}/**/*.{ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            a: {
+              color: "#6ba7a5",
+              textDecoration: "none",
+              "&:hover": {
+                textDecoration: "underline",
+              },
+            },
+          },
+        },
+      },
+    },
   },
   plugins: [
     plugin(({ addVariant, addComponents }) => {
