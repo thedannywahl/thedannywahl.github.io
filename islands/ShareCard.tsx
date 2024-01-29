@@ -45,7 +45,7 @@ export default function ShareCard(props: PageProps<Post>) {
   return (
     <aside
       id="share"
-      class=" mx-auto max-w-screen-sm py-4 px-4 mt-8 lg:my-12 sm:py-6 sm:px-8 lg:rounded-md lg:shadow dark:shadow-none bg-[#90bdbc] dark:bg-gray-800 dark:lg:bg-transparent "
+      class=" mx-auto max-w-screen-sm py-4 px-4 mt-8 md:my-12 sm:py-6 sm:px-8 md:rounded-md md:shadow dark:shadow-none bg-[#90bdbc] dark:bg-gray-800 dark:lg:bg-transparent "
     >
       <small class="pb-4 block">Share this post</small>
       <ul class="block mx-auto">

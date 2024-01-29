@@ -23,8 +23,8 @@ export default function PostPage(props: PageProps<Post>) {
       <Head>
         <title>iywahl | Blog | {post.title}</title>
       </Head>
-      <article class="max-w-screen-md mx-auto">
-        <header class="fm">
+      <article class="max-w-screen-md mx-auto p-4 pt-0 lg:pt-4">
+        <header class="pb-4 lg:py-8">
           <h1 class="text-2xl sm:text-4xl font-bold">{post.title}</h1>
           <div class="text-gray-500">
             Published: <time>{post.sPublishedAt}</time>
