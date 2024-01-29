@@ -17,3 +17,6 @@ node_modules/
 # Dev files
 .vscode/
 Biomefile
+
+# Blog migration
+/routes/blog/**/*.html
