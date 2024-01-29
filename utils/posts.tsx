@@ -14,7 +14,9 @@ export interface Post {
   snippet: string;
   content: string;
   authors: string;
+  fqdn: string;
   url: string;
+  permalink: string;
 }
 
 export async function getPosts(): Promise<Post[]> {
@@ -42,7 +44,9 @@ export async function getPost(slug: string): Promise<Post | null> {
     snippet: attrs.snippet,
     content: body,
     authors: attrs.authors,
+    fqdn: "iywahl.com",
     url: `/blog/${slug}/`,
+    permalink: `https://iywahl.com/blog/${slug}/`,
   };
 }
 
