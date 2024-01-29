@@ -1,7 +1,7 @@
-import IconGithub from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/brand-github.tsx";
-import IconLinkedin from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/brand-linkedin.tsx";
-import IconMail from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/mail.tsx";
-import IconCamera from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/camera.tsx";
+import IconGithub from "$icons/brand-github.tsx";
+import IconLinkedin from "$icons/brand-linkedin.tsx";
+import IconMail from "$icons/mail.tsx";
+import IconCamera from "$icons/camera.tsx";
 
 const socials = [
   {
@@ -44,7 +44,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div class="sm:text-right">
+      <div class="sm:text-right text-gray-500 dark:text-gray-200 ">
         {socials.map((social) => (
           <a
             href={social.href}
@@ -53,11 +53,11 @@ export default function Footer() {
           >
             <social.icon
               aria-hidden="true"
-              class="size-5 sm:size-6 dark:text-gray-200"
+              class="size-5 sm:size-6"
             />
           </a>
         ))}
-        <div class="font-thin text-gray-500 dark:text-gray-200 mt-0">
+        <div class="font-thin mt-0">
           Copyright © 2024 iyWahl, LLC.
         </div>
       </div>
