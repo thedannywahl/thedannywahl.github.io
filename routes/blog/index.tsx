@@ -1,7 +1,6 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
-import { getPosts, Post } from "../../utils/posts.tsx";
+import { getPosts, Post } from "@/utils/posts.tsx";
 import { PostCard } from "@/islands/PostCard.tsx";
-import Construction from "@/components/Construction.tsx";
 
 export const handler: Handlers<Post[]> = {
   async GET(_req, ctx) {
@@ -14,10 +13,9 @@ export default function Blog(props: PageProps<Post[]>) {
   const posts = props.data;
   return (
     <>
-      <Construction />
       <div
         id="feed"
-        class="max-w-screen-md mx-auto justify-center mt-2 lg:mt-12"
+        class="max-w-screen-md mx-auto justify-center mt-2 lg:mt-12 p-4 sm:p-8"
       >
         <div>
           <h1 class="text-2xl sm:text-4xl inline">

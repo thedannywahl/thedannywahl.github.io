@@ -1,4 +1,3 @@
-import Construction from "@/components/Construction.tsx";
 import { Head } from "$fresh/runtime.ts";
 
 export default function Projects() {
@@ -7,7 +6,6 @@ export default function Projects() {
       <Head>
         <title>iyWahl | Projects</title>
       </Head>
-      <Construction />
     </>
   );
 }
