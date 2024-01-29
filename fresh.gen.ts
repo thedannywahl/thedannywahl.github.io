@@ -14,10 +14,10 @@ import * as $index from "./routes/index.tsx";
 import * as $projects from "./routes/projects.tsx";
 import * as $Button from "./islands/Button.tsx";
 import * as $Carousel from "./islands/Carousel.tsx";
-import * as $Code from "./islands/Code.tsx";
 import * as $ColoredButton from "./islands/ColoredButton.tsx";
 import * as $Input from "./islands/Input.tsx";
 import * as $PostCard from "./islands/PostCard.tsx";
+import * as $ShareCard from "./islands/ShareCard.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -36,10 +36,10 @@ const manifest = {
   islands: {
     "./islands/Button.tsx": $Button,
     "./islands/Carousel.tsx": $Carousel,
-    "./islands/Code.tsx": $Code,
     "./islands/ColoredButton.tsx": $ColoredButton,
     "./islands/Input.tsx": $Input,
     "./islands/PostCard.tsx": $PostCard,
+    "./islands/ShareCard.tsx": $ShareCard,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;
