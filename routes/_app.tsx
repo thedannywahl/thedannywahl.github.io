@@ -2,6 +2,7 @@ import { type PageProps } from "$fresh/server.ts";
 import { Partial } from "$fresh/runtime.ts";
 import Header from "@/components/Header.tsx";
 import Footer from "@/components/Footer.tsx";
+import Construction from "@/components/Construction.tsx";
 
 export default function App({ Component }: PageProps) {
   return (
@@ -26,8 +27,9 @@ export default function App({ Component }: PageProps) {
           <header class="lg:pt-6">
             <Header />
           </header>
-          <main class="flex-1 p-4 sm:p-8 bg-white dark:bg-gray-800 shadow dark:shadow-none h-full w-full lg:rounded-t-xl dark:text-gray-200">
+          <main class="flex-1 bg-white dark:bg-gray-800 shadow dark:shadow-none h-full w-full lg:rounded-t-xl dark:text-gray-200">
             <Partial name="main">
+              <Construction />
               <Component />
             </Partial>
           </main>
