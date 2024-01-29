@@ -34,9 +34,9 @@
     "tailwindcss": "npm:tailwindcss@3.4.1",
     "tailwindcss/": "npm:/tailwindcss@3.4.1/",
     "tailwindcss/plugin": "npm:/tailwindcss@3.4.1/plugin.js",
-    "shiki": "npm:shiki@0.14.6",
     "$gfm": "https://deno.land/x/gfm@0.5.0/mod.ts",
-    "feed": "https://esm.sh/feed@4.2.2"
+    "feed": "https://esm.sh/feed@4.2.2",
+    "$icons/": "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/"
   },
   "compilerOptions": {
     "jsx": "react-jsx",
