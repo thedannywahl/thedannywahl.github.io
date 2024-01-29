@@ -1,8 +1,8 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
-import { getPost, Post } from "../../utils/posts.tsx";
+import { getPost, Post } from "@/utils/posts.tsx";
 import { render } from "$gfm";
-import Construction from "@/components/Construction.tsx";
+import ShareCard from "@/islands/ShareCard.tsx";
 
 export const handler: Handlers<Post> = {
   async GET(_req, ctx) {
@@ -17,14 +17,14 @@ export const handler: Handlers<Post> = {
 
 export default function PostPage(props: PageProps<Post>) {
   const post = props.data;
+
   return (
     <>
       <Head>
         <title>iywahl | Blog | {post.title}</title>
       </Head>
-      <Construction />
-      <article>
-        <div class="fm header">
+      <article class="max-w-screen-md mx-auto">
+        <header class="fm">
           <h1 class="text-2xl sm:text-4xl font-bold">{post.title}</h1>
           <div class="text-gray-500">
             Published: <time>{post.sPublishedAt}</time>
@@ -36,12 +36,15 @@ export default function PostPage(props: PageProps<Post>) {
               </div>
             )
             : null}
-        </div>
+        </header>
         <div
-          class="mkd prose dark:prose-invert"
-          dangerouslySetInnerHTML={{ __html: render(post.content) }}
+          class="markdown-body prose lg:prose-lg dark:prose-invert"
+          dangerouslySetInnerHTML={{
+            __html: render(post.content, {}),
+          }}
         />
       </article>
+      <ShareCard {...props} />
     </>
   );
 }
