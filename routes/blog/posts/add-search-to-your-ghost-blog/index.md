@@ -30,21 +30,21 @@ Sounds exactly like what we need!
 Head on over to the [Swiftype pricing page](https://swiftype.com/pricing) page
 and scout out the plan that you want. Personally I'm just using the free plan.
 
-![Swiftype Pricing Page](add-search-to-your-ghost-blog/swiftype-pricing-overview.png)
+![Swiftype Pricing Page](/blog//blog/add-search-to-your-ghost-blog/swiftype-pricing-overview.png)
 
 Another option available is to activate Smart Errors as an app in
 your[Cloudflare dashboard](https://www.cloudflare.com/zone-picker?from=/cloudflare-apps)
 if you're using Cloudflare. This will also give you the added benefit of having
 a better 404 page than this: `< >`
 
-![](add-search-to-your-ghost-blog/smart-errors-cloudflare-app.png)
+![](/blog/add-search-to-your-ghost-blog/smart-errors-cloudflare-app.png)
 
 After you've enabled smart errors head to your
 [swiftype dashboard](https://swiftype.com/home) and create what they call a
 "[Search Engine](https://swiftype.com/engines/new)" which is actually a search
 context (generally a domain- but you can have it search multiple domains).
 
-![](add-search-to-your-ghost-blog/swiftype-search-engine-overview.png)
+![](/blog/add-search-to-your-ghost-blog/swiftype-search-engine-overview.png)
 
 ## Option 1: Add Swiftype Search with Cloudflare
 
@@ -65,7 +65,7 @@ you how to make a static search page with an embedded search form.
 Go back to the Swiftype page and inside your search engine choose "Install" from
 the toolbar.
 
-![](add-search-to-your-ghost-blog/swiftype-searchengine-toolbar.png)
+![](/blog/add-search-to-your-ghost-blog/swiftype-searchengine-toolbar.png)
 
 ### Download Swiftype Autocomplete & Search
 
@@ -93,14 +93,14 @@ don't need all the files, only the `.js` files:
 - jquery.ba-hashchange.min.js
 - jquery.swiftype.search.js
 
-![](add-search-to-your-ghost-blog/swiftype-js-files-added-to-ghost.png)
+![](/blog/add-search-to-your-ghost-blog/swiftype-js-files-added-to-ghost.png)
 
 Now do the same thing for the CSS files but in the `/assets/css/` folder:
 
 - autocomplete.css
 - search.css
 
-![](add-search-to-your-ghost-blog/swiftype-css-files-added-to-ghost.png)
+![](/blog/add-search-to-your-ghost-blog/swiftype-css-files-added-to-ghost.png)
 
 Optionally you can concatenate the CSS to the end of the Ghost CSS file
 `screen.css`, which is probably a better idea because it will save you 2 HTTP
@@ -170,19 +170,19 @@ If you are intending to create a static search page and not to integrate search
 into your theme template then head to your Ghost dashboard and create a new
 post. I titled mine "Search":
 
-![](add-search-to-your-ghost-blog/post-named-search-in-ghost.png)
+![](/blog/add-search-to-your-ghost-blog/post-named-search-in-ghost.png)
 
 Click on the 'settings' wheel and change the post into a static page. You can
 also adjust the slug if you'd like.
 
-![](add-search-to-your-ghost-blog/adjusting-a-post-type-in-ghost.png)
+![](/blog/add-search-to-your-ghost-blog/adjusting-a-post-type-in-ghost.png)
 
 If you want to provide information to your users you can add content to the
 page, for example I added all the tags I use on my blog. There's no easy way to
 do this I just don't have many tags, if you want something more dynamic, I
 suggest you add it to your template.
 
-![](add-search-to-your-ghost-blog/edited-search-page-with-content.png)
+![](/blog/add-search-to-your-ghost-blog/edited-search-page-with-content.png)
 
 Finally it's time to add the search form to your page. Even though Ghost uses
 Markdown, remember that any HTML is valid Markdown, so you can directly create a
@@ -201,7 +201,7 @@ Publish your page and you should be ready to go (assuming Swiftype has finished
 indexing your content). Just make sure that the form ID and the results ID match
 your jQuery selectors- they should if you just copied from here.
 
-![](add-search-to-your-ghost-blog/swiftype-autocomplete.png)
+![](/blog/add-search-to-your-ghost-blog/swiftype-autocomplete.png)
 
 That's it for the integration. You can always go back and edit the CSS to better
 match your site. You can also add the
