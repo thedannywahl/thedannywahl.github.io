@@ -15,6 +15,7 @@ import * as $projects from "./routes/projects.tsx";
 import * as $Button from "./islands/Button.tsx";
 import * as $Carousel from "./islands/Carousel.tsx";
 import * as $ColoredButton from "./islands/ColoredButton.tsx";
+import * as $DarkMode from "./islands/DarkMode.tsx";
 import * as $Input from "./islands/Input.tsx";
 import * as $PostCard from "./islands/PostCard.tsx";
 import * as $ShareCard from "./islands/ShareCard.tsx";
@@ -37,6 +38,7 @@ const manifest = {
     "./islands/Button.tsx": $Button,
     "./islands/Carousel.tsx": $Carousel,
     "./islands/ColoredButton.tsx": $ColoredButton,
+    "./islands/DarkMode.tsx": $DarkMode,
     "./islands/Input.tsx": $Input,
     "./islands/PostCard.tsx": $PostCard,
     "./islands/ShareCard.tsx": $ShareCard,

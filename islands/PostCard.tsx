@@ -5,8 +5,8 @@ export function PostCard(props: { post: Post }) {
   const metaDate = post.modifiedAt > post.publishedAt
     ? post.sModifiedAt
     : post.sPublishedAt;
-  const metaAuthors = post.authors.split(",");
-  const metaTags = post.tags.split(",");
+  const metaAuthors = post.authors?.split(",") ?? "";
+  const metaTags = post.tags?.split(",") ?? "";
   return (
     <a
       href={post.url}

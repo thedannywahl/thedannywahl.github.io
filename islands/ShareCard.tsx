@@ -20,7 +20,7 @@ export default function ShareCard(props: PageProps<Post>) {
       name: "Twitter",
       icon: IconTwitter,
       url: `https://twitter.com/home?status=${post.permalink}%20${
-        post.tags.split(",").map((tag) => `%23${tag.trim()}`).join("%20")
+        post.tags?.split(",").map((tag) => `%23${tag.trim()}`).join("%20")
       }`,
       style: "hover:text-[#1DA1F2]",
     },
