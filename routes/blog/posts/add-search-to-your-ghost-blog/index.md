@@ -2,7 +2,7 @@
 title: Add Search to Your Ghost Blog with Swiftype
 published_at: 2015-02-02T05:39:55.000Z
 modified_at: 2018-01-13T00:21:54.000Z
-snippet: This is an excerpt of my first blog post.
+snippet:
 tags: Ghost, Swiftype
 authors: Danny Wahl
 ---
