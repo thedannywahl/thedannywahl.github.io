@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:has(> .tooltip) {
+    @apply decoration-dashed underline;
+}
+
+.tooltip {
+    @apply invisible absolute -translate-y-1/4 -translate-x-2/3;
+}
+
+.tooltip:before {
+    @apply content-[''] left-1/2 -bottom-1/2 border-solid border-8 border-transparent border-t-gray-50 absolute w-0 h-0 block
+}
+
+:has(> .tooltip):hover .tooltip {
+    @apply visible z-50
+}
