@@ -16,5 +16,8 @@
   },
   "[json]": {
     "files.insertFinalNewline": true
-  }
+  },
+  "css.customData": [
+    ".vscode/tailwind.json"
+  ]
 }
