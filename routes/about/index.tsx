@@ -6,7 +6,7 @@ export default function About() {
       <Head>
         <title>iyWahl | About</title>
       </Head>
-      <header class="bg-[url('/about/header.jpg')] bg-cover bg-center flex min-h-[12em] md:min-h-[24em] justify-center items-center flex-col gap-8 lg:rounded-t-xl">
+      <header class="bg-[url('/about/header.jpg')] bg-cover bg-center flex min-h-[12em] md:min-h-[24em] justify-center items-center flex-col gap-8 /*lg:rounded-t-xl*/">
         <div class="space-y-4 text-center">
           <h1 class="text-2xl sm:text-4xl inline-block font-bold text-white shadow-lg">
             About
