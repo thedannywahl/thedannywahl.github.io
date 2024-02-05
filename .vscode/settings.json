@@ -19,5 +19,8 @@
   },
   "css.customData": [
     ".vscode/tailwind.json"
-  ]
+  ],
+  "[markdown]": {
+    "files.autoSave": "afterDelay"
+  }
 }
