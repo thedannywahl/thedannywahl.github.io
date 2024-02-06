@@ -20,3 +20,4 @@ Biomefile
 
 # Blog migration
 /routes/blog/**/*.html
+legacy/
