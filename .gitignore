@@ -21,3 +21,4 @@ Biomefile
 # Blog migration
 /routes/blog/**/*.html
 legacy/
+static/blog/hero.png
