@@ -14,7 +14,7 @@ export default function About() {
         </div>
       </header>
       <article class="prose lg:prose-lg dark:prose-invert p-4 lg:p-12">
-        <p class="text-4xl">Hey,</p>
+        <p class="text-4xl">Hi,</p>
         <p>
           I'm{" "}
           <a href="https://www.linkedin.com/in/thedannywahl/">Danny Wahl</a>,
