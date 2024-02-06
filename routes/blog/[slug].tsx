@@ -1,5 +1,4 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
-import { Partial } from "$fresh/runtime.ts";
 import { Head } from "$fresh/runtime.ts";
 import { getPost, Post } from "@/utils/posts.tsx";
 import { render } from "$gfm";
@@ -38,14 +37,12 @@ export default function PostPage(props: PageProps<Post>) {
             )
             : null}
         </header>
-        <Partial name="post">
-          <div
-            class="markdown-body prose lg:prose-lg dark:prose-invert prose-pre:bg-gray-50 prose-pre:text-gray-700 dark:prose-pre:bg-slate-950 dark:prose-pre:text-gray-300"
-            dangerouslySetInnerHTML={{
-              __html: render(post.content, {}),
-            }}
-          />
-        </Partial>
+        <div
+          class="markdown-body prose lg:prose-lg dark:prose-invert prose-pre:bg-gray-50 prose-pre:text-gray-700 dark:prose-pre:bg-slate-950 dark:prose-pre:text-gray-300"
+          dangerouslySetInnerHTML={{
+            __html: render(post.content, {}),
+          }}
+        />
       </article>
       <ShareCard {...props} />
     </>
