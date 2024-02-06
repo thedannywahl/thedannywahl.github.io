@@ -13,10 +13,10 @@ export function PostCard(props: { post: Post }) {
       class="block pt-1 bg-gradient-to-r from-[#90bdbc] to-[#6BA7A5] dark:bg-none rounded-xl shadow children:focus:pt-24"
     >
       <div
-        class="bg-contain hover:pt-24 transition-all duration-300 ease-in-out motion-reduce:transition-none motion-reduce:pt-24 rounded-xl children:hover:rounded-none"
+        class="bg-contain motion-reduce:pt-24 pt-24 lg:pt-0 lg:hover:pt-24 transition-all duration-300 ease-in-out motion-reduce:transition-none rounded-xl children:hover:rounded-none"
         style={`background-image: url('/blog/${post.slug}/hero.png')`}
       >
-        <article class="rounded-xl mb-10 sm:p-6 p-8 bg-gray-50 dark:shadow-none dark:border-2 dark:border-[#6BA7A5] dark:bg-slate-800 transition-all duration-300 ease-in-out">
+        <article class="lg:rounded-xl mb-10 sm:p-6 p-8 bg-gray-50 dark:shadow-none dark:border-2 dark:border-[#6BA7A5] dark:bg-slate-800 transition-all duration-300 ease-in-out">
           <header class="mb-4 sm:mb-6">
             <h2 class="text-2xl sm:text-3xl">
               {post.title}
