@@ -30,7 +30,7 @@ Sounds exactly like what we need!
 Head on over to the [Swiftype pricing page](https://swiftype.com/pricing) page
 and scout out the plan that you want. Personally I'm just using the free plan.
 
-![Swiftype Pricing Page](/blog//blog/add-search-to-your-ghost-blog/swiftype-pricing-overview.png)
+![Swiftype Pricing Page](/blog/add-search-to-your-ghost-blog/swiftype-pricing-overview.png)
 
 Another option available is to activate Smart Errors as an app in
 your[Cloudflare dashboard](https://www.cloudflare.com/zone-picker?from=/cloudflare-apps)
