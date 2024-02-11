@@ -1,7 +1,7 @@
 ---
 title: Learning is the Goal
 published_at: 2016-04-04T02:57:51.000Z
-modified_at: 2024-02-11T01:01:07.035Z
+modified_at: 
 snippet: 
 tags: Education
 authors: Danny Wahl
