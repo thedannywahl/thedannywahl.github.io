@@ -35,7 +35,7 @@ export default function About() {
         </p>
         <ul>
           <li>Live on two continents, and manage people in five.</li>
-          <li>Directly touch up to 40% of revenue.</li>
+          <li>Directly touch &gt; $100M in revenue.</li>
           <li>Launch nearly a dozen new products in global markets.</li>
           <li>
             Scale from &lt; $75 million to over $500 million in revenue.
@@ -45,9 +45,6 @@ export default function About() {
           </li>
         </ul>
         <hr />
-        <p>
-          I guess that's a résumé of sorts.
-        </p>
         <p>
           If you'd like to chat with me about an idea or a challenge, or just
           want to talk, please{" "}

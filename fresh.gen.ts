@@ -5,13 +5,12 @@
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
 import * as $about_index from "./routes/about/index.tsx";
-import * as $blog from "./routes/blog.tsx";
 import * as $blog_slug_ from "./routes/blog/[slug].tsx";
 import * as $blog_feed from "./routes/blog/feed.ts";
 import * as $blog_index from "./routes/blog/index.tsx";
-import * as $feed from "./routes/feed.ts";
 import * as $index from "./routes/index.tsx";
-import * as $projects from "./routes/projects.tsx";
+import * as $projects_index from "./routes/projects/index.tsx";
+import * as $projects_moodle from "./routes/projects/moodle.tsx";
 import * as $Button from "./islands/Button.tsx";
 import * as $Carousel from "./islands/Carousel.tsx";
 import * as $ColoredButton from "./islands/ColoredButton.tsx";
@@ -26,13 +25,12 @@ const manifest = {
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
     "./routes/about/index.tsx": $about_index,
-    "./routes/blog.tsx": $blog,
     "./routes/blog/[slug].tsx": $blog_slug_,
     "./routes/blog/feed.ts": $blog_feed,
     "./routes/blog/index.tsx": $blog_index,
-    "./routes/feed.ts": $feed,
     "./routes/index.tsx": $index,
-    "./routes/projects.tsx": $projects,
+    "./routes/projects/index.tsx": $projects_index,
+    "./routes/projects/moodle.tsx": $projects_moodle,
   },
   islands: {
     "./islands/Button.tsx": $Button,
