@@ -38,7 +38,7 @@ export default function PostPage(props: PageProps<Post>) {
             : null}
         </header>
         <div
-          class="markdown-body prose lg:prose-lg dark:prose-invert prose-pre:bg-gray-50 prose-pre:text-gray-700 dark:prose-pre:bg-slate-950 dark:prose-pre:text-gray-300"
+          class="markdown-body prose lg:prose-lg dark:prose-invert prose-pre:bg-gray-50 prose-pre:text-gray-700 dark:prose-pre:bg-slate-950 dark:prose-pre:text-gray-300 break-word"
           dangerouslySetInnerHTML={{
             __html: render(post.content, {}),
           }}
