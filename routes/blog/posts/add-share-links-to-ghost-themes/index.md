@@ -1,7 +1,7 @@
 ---
 title: Add Share Links to Ghost Themes
 published_at: 2015-03-16T05:51:24.000Z
-modified_at: 2018-01-12T20:06:22.000Z
+modified_at: 
 snippet: The fastest, "lightest" way to make your Ghost blog shareable.
 tags: Ghost
 authors: Danny Wahl

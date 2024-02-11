@@ -1,6 +1,8 @@
 import { parse } from "$std/flags/mod.ts";
 import type { Args } from "$std/flags/mod.ts";
 
+import { load } from "$std/dotenv/mod.ts";
+
 /**
  * Parses command line arguments and returns a parsed object.
  *
@@ -85,7 +87,8 @@ function createPost(
 }
 
 async function openEditor(path: string): Promise<void> {
-  const editor = Deno.env.get("EDITOR") || "vi";
+  const env = await load();
+  const editor = env.EDITOR || "vi";
   console.log("Running: ", [editor, path]);
   const edit = Deno.run({
     cmd: [editor, path],

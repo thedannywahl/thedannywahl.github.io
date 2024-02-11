@@ -1,7 +1,7 @@
 ---
 title: Add Auxiliary Power to a KLR650
 published_at: 2016-03-25T04:38:57.000Z
-modified_at: 2018-01-12T23:08:39.000Z
+modified_at: 
 snippet: It's just a little electricity, what could go wrong?
 tags: Motorcycles
 authors: Danny Wahl

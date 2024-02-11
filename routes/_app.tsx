@@ -29,7 +29,7 @@ export default function App({ Component }: PageProps) {
           </header>
           <main class="flex-1 bg-white dark:bg-gray-800 shadow dark:shadow-none h-full w-full lg:rounded-t-xl dark:text-gray-200">
             <Partial name="main">
-              <Construction />
+              {/* <Construction /> */}
               <Component />
             </Partial>
           </main>
