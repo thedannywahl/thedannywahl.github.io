@@ -25,7 +25,7 @@ const socials = [
   {
     name: "Danielle Wahl Photography",
     icon: IconCamera,
-    href: "/blog",
+    href: "https://daniellewahl.com/",
     style: "hover:text-[#F444AF]",
   },
 ];
