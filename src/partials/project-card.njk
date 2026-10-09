@@ -1,0 +1,12 @@
+<article class="instui-card card project-card" data-pantoken-theme="rebrand" data-pantoken-color="{{ project.color }}">
+  <a class="project-link" href="{{ project.url }}" aria-label="Visit {{ project.name }} at {{ project.url | replace('https://', '') }}">
+    <div class="project-art">
+      {{ projectArtwork(project, 'light') | safe }}
+      {{ projectArtwork(project, 'dark') | safe }}
+    </div>
+    <div class="project-caption">
+      <strong>{{ project.name }}</strong>
+      <span>{{ project.url | replace('https://', '') }} <span class="instui-icon -icon-external-link" aria-hidden="true"></span></span>
+    </div>
+  </a>
+</article>

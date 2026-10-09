@@ -8,8 +8,11 @@
 .env.production.local
 .env.local
 
-# Fresh build directory
-_fresh/
+# Build and test output
+dist/
+dist-baseline/
+coverage/
+test-results/
 
 # npm dependencies
 node_modules/
