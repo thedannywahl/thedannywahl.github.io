@@ -1,33 +1,52 @@
-name: Deploy
+name: GitHub Pages
 on:
   push:
     branches: [master]
   pull_request:
-    branches: master
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
-  deploy:
-    name: Deploy
+  build:
+    name: Build and Validate
     runs-on: ubuntu-latest
-
-    permissions:
-      id-token: write
-      contents: read
-
     steps:
-      - name: Clone repository
-        uses: actions/checkout@v3
-
-      - name: Install Deno
-        uses: denoland/setup-deno@v1
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.1.0
         with:
-          deno-version: v1.x
-
-      - name: Build step
-        run: "deno task build"
-
-      - name: Upload to Deno Deploy
-        uses: denoland/deployctl@v1
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:coverage
+      - name: Upload Pages Artifact
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v5.0.0
         with:
-          project: "iywahl"
-          entrypoint: "./main.ts"
+          path: dist
+
+  deploy:
+    name: Deploy to GitHub Pages
+    if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/configure-pages@v6.0.0
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v5.0.1
+        with:
+          artifact_name: github-pages

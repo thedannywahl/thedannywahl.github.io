@@ -1,0 +1,71 @@
+@import '@pantoken/css/style.css';
+@import '@pantoken/css/scope.css';
+@import '@pantoken/components/fonts.css';
+@import '@pantoken/components/base.css';
+@import '@pantoken/components/prose.css';
+@import '@pantoken/components/screen-reader-content.css';
+@import '@pantoken/plugin-custom-theme-colors/custom-theme-colors.scoped.css';
+@import '@pantoken/plugin-custom-components/card.css';
+@import '@pantoken/components/button.css';
+@import '@pantoken/plugin-custom-components/button-set.css';
+@import '@pantoken/components/icon.css';
+@import '@pantoken/components/icons/external-link.css';
+@import '@pantoken/components/icons/sun.css';
+@import '@pantoken/components/icons/monitor.css';
+@import '@pantoken/components/icons/moon.css';
+
+:root {
+  color-scheme: light dark;
+  --instui-font-family-heading: var(--instui-font-family-base);
+  --instui-component-heading-h1-font-family: var(--instui-font-family-base);
+  --instui-component-shared-tokens-focus-outline-info-color: var(--instui-color-stroke-interactive-focus-ring-base);
+  --instui-focus-outline-color: var(--instui-component-shared-tokens-focus-outline-info-color);
+  --instui-component-card-background-color: var(--instui-color-background-container);
+}
+
+body { min-height: 100vh; }
+:root[data-color-scheme="light"] { color-scheme: light; }
+:root[data-color-scheme="dark"] { color-scheme: dark; }
+.theme-switcher { position: absolute; inset-block-start: max(8px, env(safe-area-inset-top)); inset-inline-end: max(8px, env(safe-area-inset-right)); z-index: 10; }
+.theme-switcher[hidden] { display: none; }
+.theme-switcher .instui-button { inline-size: 28px; block-size: 28px; min-inline-size: 28px; min-block-size: 28px; max-block-size: 28px; padding: 0; font-size: 14px; }
+main { max-width: 1440px; margin-inline: auto; padding: clamp(20px, 4vw, 56px); padding-block-start: clamp(48px, 4vw, 56px); }
+.gallery { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; }
+.card { min-width: 0; border-radius: 8px; transition: box-shadow 180ms ease; }
+.project-card:hover, .project-card:focus-within { box-shadow: var(--instui-elevation-cardHover); }
+.project-card.instui-card { padding: 0; }
+.project-card:has(.project-link:focus-visible) { outline: var(--instui-focus-outline-width) var(--instui-focus-outline-style) var(--instui-color-stroke-interactive-focus-ring-base); outline-offset: var(--instui-focus-outline-offset); }
+.project-link { display: flex; flex-direction: column; position: relative; aspect-ratio: 1200 / 630; height: 100%; text-decoration: none; color: inherit; }
+.project-link:hover { color: inherit; }
+.project-link:focus-visible { outline: none; }
+.project-art { position: absolute; inset: 0 0 3em; overflow: hidden; pointer-events: none; }
+.project-art > svg { display: block; width: 100%; height: 100%; }
+.og-dark { display: none !important; }
+.project-caption { position: relative; margin-top: auto; background: light-dark(#fff, #10141a); display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: clamp(8px, 1.4vw, 18px) clamp(12px, 2vw, 24px); }
+.project-caption strong { font-weight: 600; }
+.project-caption span { font-size: 0.875rem; color: var(--instui-color-text-interactive-navigation-primary-base); }
+.project-caption > span { display: inline-flex; align-items: center; gap: 0.35em; }
+.project-link:hover .project-caption span, .project-link:focus-visible .project-caption span { color: var(--instui-color-text-interactive-navigation-primary-hover); text-decoration: underline; text-underline-offset: 3px; }
+.page-footer { margin-top: 32px; text-align: center; color: var(--instui-color-text-muted); }
+.page-footer p { margin-bottom: 0; font-size: 0.875rem; }
+
+@media (min-width: 900px) {
+  .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-color-scheme]) .og-light { display: none !important; }
+  :root:not([data-color-scheme]) .og-dark { display: block !important; }
+}
+:root[data-color-scheme="dark"] .og-light { display: none !important; }
+:root[data-color-scheme="dark"] .og-dark { display: block !important; }
+@media (max-width: 600px) {
+  .intro h1 { font-size: 32px; }
+}
+@media (max-width: 420px) {
+  .project-caption { padding: 8px 12px; gap: 8px; }
+  .project-caption strong { font-size: 0.875rem; }
+  .project-caption span { font-size: 0.75rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .card { transition: none; }
+}
