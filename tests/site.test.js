@@ -106,9 +106,9 @@ test('templates read original artwork and retain accessible project semantics', 
   const html = renderPage(await readFile('src/index.html', 'utf8'));
   expect(html).not.toContain('{%');
   expect(html).toContain('href="/blog/"');
-  expect(html).toContain('Visit Blog at /blog');
+  expect(html).not.toContain('aria-label="Visit Blog at /blog"');
   expect(html).not.toContain('aria-labelledby="intro-heading"');
-  expect(html).toContain('Visit Pantoken at pantoken.app');
+  expect(html).not.toContain('aria-label="Visit Pantoken at pantoken.app"');
   const plugin = site({ optimize: false });
   const watched = [];
   plugin.buildStart.call({ addWatchFile: filename => watched.push(filename) });
@@ -240,11 +240,14 @@ for (const width of [375, 1280]) {
         rel: element.getAttribute('rel'),
         label: element.getAttribute('aria-label'),
       })))).toEqual([
-        { target: null, rel: null, label: 'Visit Blog at /blog' },
-        { target: '_blank', rel: 'noopener noreferrer', label: 'Visit Pantoken at pantoken.app' },
-        { target: '_blank', rel: 'noopener noreferrer', label: 'Visit CSSDoc at cssdoc.dev' },
-        { target: '_blank', rel: 'noopener noreferrer', label: 'Visit automatica11y at automatica11y.dev' },
+        { target: null, rel: null, label: null },
+        { target: '_blank', rel: 'noopener noreferrer', label: null },
+        { target: '_blank', rel: 'noopener noreferrer', label: null },
+        { target: '_blank', rel: 'noopener noreferrer', label: null },
       ]);
+      for (const name of ['Blog /blog', 'Pantoken pantoken.app', 'CSSDoc cssdoc.dev', 'automatica11y automatica11y.dev']) {
+        expect(await page.getByRole('link', { name, exact: true }).count()).toBe(1);
+      }
       expect(await page.locator('h1').allTextContents()).toEqual(["Hi, I'm Danny."]);
       expect(await page.locator('.gallery > article').count()).toBe(4);
       expect(await page.locator('footer').textContent()).toBe('\u00a9 2026 Danny Wahl | danny@iywahl.com');

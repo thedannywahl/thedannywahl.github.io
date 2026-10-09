@@ -4,7 +4,7 @@
   {% if isInternal and displayUrl[displayUrl.length - 1] == '/' %}
     {% set displayUrl = displayUrl | truncate(displayUrl.length - 1, true, '') %}
   {% endif %}
-  <a class="project-link" href="{{ project.url }}" aria-label="Visit {{ project.name }} at {{ displayUrl }}"{% if not isInternal %} target="_blank" rel="noopener noreferrer"{% endif %}>
+  <a class="project-link" href="{{ project.url }}"{% if not isInternal %} target="_blank" rel="noopener noreferrer"{% endif %}>
     <div class="project-art">
       {{ projectArtwork(project, 'light') | safe }}
       {{ projectArtwork(project, 'dark') | safe }}
