@@ -1,0 +1,14 @@
+---
+layout: partials/blog-layout.njk
+pagination:
+  data: blog.topics
+  size: 1
+  alias: topic
+eleventyComputed:
+  title: "{{ topic.label }}"
+  description: "Posts about {{ topic.label }} by Danny Wahl."
+permalink: "/blog/tags/{{ topic.slug }}/index.html"
+---
+<h1>{{ topic.label }}</h1>
+{% set entries = topic.posts %}
+{% include "partials/post-list.njk" %}

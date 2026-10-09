@@ -1,0 +1,24 @@
+---
+layout: partials/blog-layout.njk
+---
+<article>
+  <header class="post-header">
+    <p class="post-meta"><time datetime="{{ post.date | isoDate }}">{{ post.date | displayDate }}</time> {% if post.updated %} (Updated <time datetime="{{ post.updated | isoDate }}">{{ post.updated | displayDate }}</time>){% endif %} &middot; {{ post.author }}</p>
+    <h1>{{ title }}</h1>
+    
+    {% if post.topics.length %}
+    <ul class="post-topics" aria-label="Topics">
+      {% for topic in post.topics %}
+      <li><a class="instui-pill post-topic-pill" data-topic="{{ topic.slug }}" href="/blog/tags/{{ topic.slug }}/"><span class="instui-icon -icon-{{ topic.icon }}" aria-hidden="true"></span>{{ topic.label }}</a></li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </header>
+  <div class="instui-card blog-prose">{{ content | safe }}</div>
+</article>
+<nav class="post-adjacent" aria-label="More posts">
+  {% for entry in blog.posts %}{% if entry.slug == post.slug %}
+    {% if not loop.first %}{% set newer = blog.posts[loop.index0 - 1] %}<a class="instui-button -color-tertiary -without-border" href="{{ newer.url }}">Newer: {{ newer.title }}</a>{% endif %}
+    {% if not loop.last %}{% set older = blog.posts[loop.index0 + 1] %}<a class="instui-button -color-tertiary -without-border" href="{{ older.url }}">Older: {{ older.title }}</a>{% endif %}
+  {% endif %}{% endfor %}
+</nav>

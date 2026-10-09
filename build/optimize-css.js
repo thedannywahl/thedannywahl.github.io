@@ -33,7 +33,7 @@ export function productionCss() {
         const declarations = new Map(rule.nodes.filter(node => node.type === 'decl')
           .map(node => [node.prop, node.value]));
         if (declarations.get('font-family') === 'Atkinson Hyperlegible Next' &&
-            (declarations.get('font-style') !== 'normal' ||
+            (!['normal', 'italic'].includes(declarations.get('font-style')) ||
              !['400', '500', '600', '700'].includes(declarations.get('font-weight')))) {
           rule.remove();
         }

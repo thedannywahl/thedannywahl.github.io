@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en" data-pantoken-theme="rebrand" data-pantoken-color="sea">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>{{ title }} | Danny Wahl</title>
+  <meta name="description" content="{{ description }}">
+  <link rel="canonical" href="https://iywahl.com{{ page.url | cleanUrl }}">
+  <meta property="og:type" content="{% if post %}article{% else %}website{% endif %}">
+  <meta property="og:title" content="{{ title }}">
+  <meta property="og:description" content="{{ description }}">
+  <meta property="og:url" content="https://iywahl.com{{ page.url | cleanUrl }}">
+  <meta property="og:image" content="https://iywahl.com/assets/social/iywahl-og-light.png">
+  {% if post %}<meta property="article:published_time" content="{{ post.date | isoDate }}">{% endif %}
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/assets/favicon/iywahl-favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/assets/favicon/iywahl-favicon.png">
+  <link rel="alternate" type="application/atom+xml" title="Danny Wahl's Blog" href="/blog/feed.xml">
+  <link rel="license" href="/third-party-notices.txt">
+  <link rel="stylesheet" href="/styles/site.css">
+  <script type="module" src="/scripts/color-scheme.js"></script>
+</head>
+<body class="blog-page">
+  <a class="blog-skip" href="#main">Skip to content</a>
+  {% include "partials/theme-switcher.njk" %}
+  <main id="main" class="blog-main">
+    <header class="blog-header instui-card">
+      <a class="blog-brand" href="/" aria-label="iyWahl home">
+        <img class="og-light" src="/assets/brand/iywahl-wordmark-light.svg" width="283" height="97" alt="" aria-hidden="true">
+        <img class="og-dark" src="/assets/brand/iywahl-wordmark-dark.svg" width="283" height="97" alt="" aria-hidden="true">
+      </a>
+      <nav aria-label="Blog"><a class="instui-button -without-border -color-tertiary" href="/blog/">Blog</a><a class="instui-button -without-border -color-tertiary" href="/blog/archive/">Archive</a><a class="instui-button -without-border -color-tertiary" href="/blog/tags/">Topics</a><a class="instui-button -without-border -color-tertiary" href="/blog/feed.xml">Feed</a></nav>
+    </header>
+    {{ content | safe }}
+    <footer class="page-footer"><p>&copy; 2026 Danny Wahl | <a href="mailto:danny@iywahl.com">danny@iywahl.com</a></p></footer>
+  </main>
+</body>
+</html>

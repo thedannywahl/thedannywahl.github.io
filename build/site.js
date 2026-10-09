@@ -1,9 +1,10 @@
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { basename, join, sep } from 'node:path';
+import { join, sep } from 'node:path';
 import nunjucks from 'nunjucks';
 import { optimize as optimizeSvg } from 'svgo';
 import { minify } from 'html-minifier-terser';
+import { blogAssets } from './generate.js';
 
 const source = fileURLToPath(new URL('../src/', import.meta.url));
 const projectAssets = join(source, 'assets/projects');
@@ -77,7 +78,7 @@ export function renderPage(html) {
   return environment.renderString(html, { projects: readProjects() });
 }
 
-export function site({ optimize }) {
+export function site({ optimize, renderTemplates = true, regenerate }) {
   const watched = [dataPath, join(source, 'index.html'),
     ...readdirSync(join(source, 'partials')).map(filename => join(source, 'partials', filename)),
     ...readdirSync(projectAssets).map(filename => join(projectAssets, filename))];
@@ -88,6 +89,27 @@ export function site({ optimize }) {
       for (const filename of watched) this.addWatchFile(filename);
     },
     configureServer(server) {
+      if (regenerate) {
+        let pending;
+        let generation = Promise.resolve();
+        server.watcher.add(source);
+        server.watcher.on('all', (_event, filename) => {
+          if (!filename.startsWith(`${source}${sep}`)) return;
+          clearTimeout(pending);
+          pending = setTimeout(() => {
+            generation = generation.then(regenerate).then(() => server.ws.send({ type: 'full-reload' }))
+              .catch(error => { server.config.logger.error(error.stack); server.ws.send({ type: 'error', err: { message: error.message, stack: error.stack } }); });
+          }, 80);
+        });
+        server.httpServer?.once('close', () => clearTimeout(pending));
+        server.middlewares.use((request, response, next) => {
+          const pathname = new URL(request.url, 'http://localhost').pathname;
+          if (!['/blog/feed', '/blog/feed/', '/feed', '/feed/'].includes(pathname)) return next();
+          response.setHeader('Content-Type', 'application/atom+xml; charset=utf-8');
+          response.end(readFileSync(new URL('../.generated/site/blog/feed.xml', import.meta.url)));
+        });
+        return;
+      }
       server.watcher.add(watched);
       server.watcher.on('change', filename => {
         if (watched.includes(filename) || filename.startsWith(`${projectAssets}${sep}`) ||
@@ -98,12 +120,23 @@ export function site({ optimize }) {
     },
     transformIndexHtml: {
       order: 'pre',
-      handler: renderPage,
+      handler: renderTemplates ? renderPage : html => html,
     },
     async generateBundle(_options, bundle) {
+      if (!renderTemplates) {
+        for (const asset of await blogAssets()) {
+          this.emitFile({ type: 'asset', fileName: asset.fileName, source: readFileSync(asset.source) });
+        }
+        for (const fileName of ['blog/feed.xml', 'sitemap.xml']) {
+          this.emitFile({ type: 'asset', fileName,
+            source: readFileSync(new URL(`../.generated/site/${fileName}`, import.meta.url)) });
+        }
+        const feed = readFileSync(new URL('../.generated/site/blog/feed.xml', import.meta.url));
+        for (const fileName of ['blog/feed', 'feed']) this.emitFile({ type: 'asset', fileName, source: feed });
+      }
       if (!optimize) return;
       for (const asset of Object.values(bundle)) {
-        if (asset.type === 'asset' && basename(asset.fileName) === 'index.html') {
+        if (asset.type === 'asset' && asset.fileName.endsWith('.html')) {
           asset.source = await minify(String(asset.source), {
             collapseWhitespace: true,
             removeComments: true,

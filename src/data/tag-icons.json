@@ -1,0 +1,9 @@
+{
+  "css": "css",
+  "deno": "deno",
+  "fresh": "fresh",
+  "ghost": "ghost",
+  "github": "github",
+  "moodle": "moodle",
+  "wordpress": "wordpress"
+}

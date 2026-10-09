@@ -1,0 +1,13 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://iywahl.com/</loc></url>
+  <url><loc>https://iywahl.com/blog/</loc></url>
+  <url><loc>https://iywahl.com/blog/archive/</loc></url>
+  <url><loc>https://iywahl.com/blog/tags/</loc></url>
+  {% for entry in blog.posts %}<url><loc>{{ entry.canonical }}</loc><lastmod>{% if entry.updated %}{{ entry.updated | isoDate }}{% else %}{{ entry.date | isoDate }}{% endif %}</lastmod></url>{% endfor %}
+  {% for topic in blog.topics %}<url><loc>https://iywahl.com/blog/tags/{{ topic.slug }}/</loc></url>{% endfor %}
+</urlset>

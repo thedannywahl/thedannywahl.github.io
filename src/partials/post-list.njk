@@ -1,0 +1,9 @@
+<ol class="post-list instui-card{% if entries.length > 1 %} -variant-container{% endif %}">
+{% for entry in entries %}
+  <li>
+    <time class="post-meta" datetime="{{ entry.date | isoDate }}">{{ entry.date | displayDate }}</time>
+    <h2 class="instui-heading -level-h3"><a href="{{ entry.url }}">{{ entry.title }}</a></h2>
+    <p>{{ entry.description }}</p>
+  </li>
+{% endfor %}
+</ol>

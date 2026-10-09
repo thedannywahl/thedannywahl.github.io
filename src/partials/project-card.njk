@@ -1,12 +1,17 @@
 <article class="instui-card card project-card" data-pantoken-theme="rebrand" data-pantoken-color="{{ project.color }}">
-  <a class="project-link" href="{{ project.url }}" aria-label="Visit {{ project.name }} at {{ project.url | replace('https://', '') }}">
+  {% set isInternal = project.url[0] == '/' %}
+  {% set displayUrl = project.url | replace('https://', '') %}
+  {% if isInternal and displayUrl[displayUrl.length - 1] == '/' %}
+    {% set displayUrl = displayUrl | truncate(displayUrl.length - 1, true, '') %}
+  {% endif %}
+  <a class="project-link" href="{{ project.url }}" aria-label="Visit {{ project.name }} at {{ displayUrl }}"{% if not isInternal %} target="_blank" rel="noopener noreferrer"{% endif %}>
     <div class="project-art">
       {{ projectArtwork(project, 'light') | safe }}
       {{ projectArtwork(project, 'dark') | safe }}
     </div>
     <div class="project-caption">
       <strong>{{ project.name }}</strong>
-      <span>{{ project.url | replace('https://', '') }} <span class="instui-icon -icon-external-link" aria-hidden="true"></span></span>
+      <span>{{ displayUrl }}{% if not isInternal %} <span class="instui-icon -icon-external-link" aria-hidden="true"></span>{% endif %}</span>
     </div>
   </a>
 </article>

@@ -1,5 +1,5 @@
 [
-  { "id": "intro", "name": "Blog", "url": "/blog", "color": "sea" },
+  { "id": "intro", "name": "Blog", "url": "/blog/", "color": "sea" },
   { "id": "pantoken", "name": "Pantoken", "url": "https://pantoken.app", "color": "blue" },
   { "id": "cssdoc", "name": "CSSDoc", "url": "https://cssdoc.dev", "color": "aurora" },
   { "id": "automatica11y", "name": "automatica11y", "url": "https://automatica11y.dev", "color": "plum" }

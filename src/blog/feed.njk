@@ -1,0 +1,24 @@
+---
+permalink: /blog/feed.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Danny Wahl's Blog</title>
+  <subtitle>Software, technology, and education.</subtitle>
+  <id>https://iywahl.com/blog</id>
+  <link href="https://iywahl.com/blog/"/>
+  <link href="https://iywahl.com/blog/feed.xml" rel="self" type="application/atom+xml"/>
+  <updated>{{ blog.updatedAt | dateToRfc3339 }}</updated>
+  <author><name>Danny Wahl</name></author>
+  {% for entry in blog.posts %}
+  <entry>
+    <title>{{ entry.title }}</title>
+    <id>{{ entry.feedId }}</id>
+    <link href="{{ entry.canonical }}"/>
+    <published>{{ entry.date | dateToRfc3339 }}</published>
+    <updated>{% if entry.updated %}{{ entry.updated | dateToRfc3339 }}{% else %}{{ entry.date | dateToRfc3339 }}{% endif %}</updated>
+    <summary>{{ entry.description }}</summary>
+  </entry>
+  {% endfor %}
+</feed>

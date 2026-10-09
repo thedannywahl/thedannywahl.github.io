@@ -1,0 +1,17 @@
+---
+layout: partials/blog-layout.njk
+title: Blog
+description: Software, technology, and education. Writing by Danny Wahl.
+pagination:
+  data: blog.posts
+  size: 10
+  alias: entries
+permalink: "/blog/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumber + 1 }}/{% endif %}index.html"
+---
+<h1>Blog</h1>
+{% include "partials/post-list.njk" %}
+<nav class="blog-pagination" aria-label="Pagination">
+  {% if pagination.href.previous %}<a class="instui-button -color-tertiary -without-border" href="{{ pagination.href.previous | cleanUrl }}" rel="prev">Newer posts</a>{% endif %}
+  <span>Page {{ pagination.pageNumber + 1 }} of {{ pagination.pages.length }}</span>
+  {% if pagination.href.next %}<a class="instui-button -color-tertiary -without-border" href="{{ pagination.href.next | cleanUrl }}" rel="next">Older posts</a>{% endif %}
+</nav>

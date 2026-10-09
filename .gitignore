@@ -16,12 +16,8 @@ test-results/
 
 # npm dependencies
 node_modules/
+.generated/
 
 # Dev files
 .vscode/
 Biomefile
-
-# Blog migration
-/routes/blog/**/*.html
-legacy/
-static/blog/hero.png

@@ -21,6 +21,20 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+Pantoken Simple Icons integration: MIT License (included above).
+https://github.com/thedannywahl/pantoken
+
+Simple Icons brand glyph collection: CC0 1.0 Universal.
+https://simpleicons.org/
+https://creativecommons.org/publicdomain/zero/1.0/
+
+The Deno icon's upstream metadata additionally identifies the MIT License:
+https://spdx.org/licenses/MIT.html
+
+Brand names and marks remain the property of their respective owners.
+Their display does not imply endorsement.
+
+
 Copyright 2020 Braille Institute of America, Inc.
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
