@@ -1,5 +1,7 @@
 # iywahl.com
 
+![iywahl: I break things.](https://iywahl.com/assets/social/iywahl-og-light.png)
+
 A static project gallery and Markdown blog built with Eleventy, Vite, and
 Pantoken. Eleventy renders templates into an ignored staging directory; Vite
 bundles all pages and their shared assets. A small script powers the light/system/dark button-set and remembers
