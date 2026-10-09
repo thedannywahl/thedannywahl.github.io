@@ -8,12 +8,23 @@
   <meta name="description" content="{{ description }}">
   <link rel="canonical" href="https://iywahl.com{{ page.url | cleanUrl }}">
   <meta property="og:type" content="{% if post %}article{% else %}website{% endif %}">
-  <meta property="og:title" content="{{ title }}">
+  <meta property="og:site_name" content="iyWahl">
+  <meta property="og:title" content="{{ title }} | Danny Wahl">
   <meta property="og:description" content="{{ description }}">
   <meta property="og:url" content="https://iywahl.com{{ page.url | cleanUrl }}">
   <meta property="og:image" content="https://iywahl.com/assets/social/iywahl-og-light.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="iyWahl. I break things. Danny Wahl. Software, technology, and EdTech.">
   {% if post %}<meta property="article:published_time" content="{{ post.date | isoDate }}">{% endif %}
+  {% if post and post.updated %}<meta property="article:modified_time" content="{{ post.updated | isoDate }}">{% endif %}
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ title }} | Danny Wahl">
+  <meta name="twitter:description" content="{{ description }}">
+  <meta name="twitter:image" content="https://iywahl.com/assets/social/iywahl-og-light.png">
+  <meta name="twitter:image:alt" content="iyWahl. I break things. Danny Wahl. Software, technology, and EdTech.">
+  <script type="application/ld+json">{{ structuredData(title ~ ' | Danny Wahl', description, page.url, post) | safe }}</script>
   <link rel="icon" href="/assets/favicon/iywahl-favicon.ico" sizes="any">
   <link rel="apple-touch-icon" href="/assets/favicon/iywahl-favicon.png">
   <link rel="alternate" type="application/atom+xml" title="Danny Wahl's Blog" href="/blog/feed.xml">

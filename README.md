@@ -1,6 +1,6 @@
 # iywahl.com
 
-![iywahl: I break things.](https://iywahl.com/assets/social/iywahl-og-light.png)
+![iywahl: I break things.](https://iywahl.com/assets/social/iywahl-og.png)
 
 A static project gallery and Markdown blog built with Eleventy, Vite, and
 Pantoken. Eleventy renders templates into an ignored staging directory; Vite
@@ -31,7 +31,7 @@ inspect the production output. Generated files are not committed.
 - [src/scripts/color-scheme.js](src/scripts/color-scheme.js): persistent appearance control.
 - [src/assets/projects](src/assets/projects): original light/dark project SVGs.
 - [public/assets](public/assets): site favicons and social images, copied unchanged.
-- [build/site.js](build/site.js): rendering, SVG processing, and HTML minification.
+- [build/site.js](build/site.js): rendering, schema.org JSON-LD, SVG processing, and HTML minification.
 - [build/optimize-css.js](build/optimize-css.js): Pantoken palette and CSS optimization.
 
 To add a project, add its data record and matching `<id>-og.svg` and
@@ -39,6 +39,12 @@ To add a project, add its data record and matching `<id>-og.svg` and
 SVG IDs and references are prefixed during rendering, and the bottom URL is
 omitted in the gallery because it already appears in the caption. Source artwork
 remains unchanged. Inline SVGs inherit the locally bundled Atkinson font.
+
+The homepage and blog pages include Open Graph, Twitter cards, and schema.org
+JSON-LD. Posts expose their author, publication/update dates, and topics as
+`BlogPosting` data. Unfurls use the blue-tinted 1200x630
+[public/assets/social/iywahl-og-light.png](public/assets/social/iywahl-og-light.png);
+both light and dark artwork are retained in PNG and SVG formats.
 
 ## Production Optimization
 

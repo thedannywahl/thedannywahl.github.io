@@ -10,6 +10,41 @@ const source = fileURLToPath(new URL('../src/', import.meta.url));
 const projectAssets = join(source, 'assets/projects');
 const dataPath = join(source, 'data/projects.json');
 
+export function structuredData(
+  title = 'Accessible Web Tools by Danny Wahl | Pantoken & CSSDoc',
+  description = 'Pantoken, CSSDoc, and automatica11y \u2014 tools for building and documenting the accessible web.',
+  path = '/', post = null,
+) {
+  const origin = 'https://iywahl.com';
+  const url = new URL(path.replace(/index\.html$/, ''), origin).href;
+  const person = { '@type': 'Person', '@id': `${origin}/#person`, name: 'Danny Wahl', url: `${origin}/` };
+  const image = { '@type': 'ImageObject', '@id': `${origin}/#social-image`,
+    url: `${origin}/assets/social/iywahl-og-light.png`, contentUrl: `${origin}/assets/social/iywahl-og-light.png`,
+    width: 1200, height: 630, caption: 'iyWahl. I break things. Danny Wahl. Software, technology, and EdTech.' };
+  const website = { '@type': 'WebSite', '@id': `${origin}/#website`, name: 'iyWahl', url: `${origin}/`,
+    publisher: { '@id': person['@id'] }, inLanguage: 'en' };
+  const page = { '@type': path === '/' ? 'ProfilePage' : post ? 'WebPage' : 'CollectionPage',
+    '@id': `${url}#webpage`, url, name: title, description, inLanguage: 'en',
+    isPartOf: { '@id': website['@id'] }, primaryImageOfPage: { '@id': image['@id'] } };
+  const graph = [person, website, image, page];
+  if (path === '/') page.mainEntity = { '@id': person['@id'] };
+  else {
+    const blog = { '@type': 'Blog', '@id': `${origin}/blog/#blog`, url: `${origin}/blog/`,
+      name: "Danny Wahl's Blog", publisher: { '@id': person['@id'] }, inLanguage: 'en' };
+    graph.push(blog);
+    if (post) {
+      page.mainEntity = { '@id': `${url}#article` };
+      graph.push({ '@type': 'BlogPosting', '@id': `${url}#article`, url, headline: post.title, description,
+        datePublished: post.date.toISOString(), dateModified: (post.updated || post.date).toISOString(),
+        author: post.author === person.name ? { '@id': person['@id'] } : { '@type': 'Person', name: post.author },
+        publisher: { '@id': person['@id'] }, image: { '@id': image['@id'] },
+        isPartOf: { '@id': blog['@id'] }, mainEntityOfPage: { '@id': page['@id'] },
+        keywords: post.topics.map(topic => topic.label), inLanguage: 'en' });
+    } else page.mainEntity = { '@id': blog['@id'] };
+  }
+  return JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\\u003c');
+}
+
 export function projectUrl(url) {
   if (typeof url !== 'string' || !url.trim()) throw new Error('Invalid project URL');
   const resolved = new URL(url, 'https://iywahl.com/');
@@ -75,6 +110,7 @@ export function renderPage(html) {
     noCache: true,
   }), { autoescape: true, throwOnUndefined: true });
   environment.addGlobal('projectArtwork', projectArtwork);
+  environment.addGlobal('structuredData', structuredData);
   return environment.renderString(html, { projects: readProjects() });
 }
 

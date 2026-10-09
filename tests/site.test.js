@@ -10,7 +10,7 @@ import { gzipSync } from 'node:zlib';
 import postcss from 'postcss';
 import nunjucks from 'nunjucks';
 import { bluePalette, optimizeCss, productionCss } from '../build/optimize-css.js';
-import { projectArtwork, projectUrl, readProjects, renderPage, site } from '../build/site.js';
+import { projectArtwork, projectUrl, readProjects, renderPage, site, structuredData } from '../build/site.js';
 import { normalizePost, readBlog, sanitizeMarkdown } from '../build/blog.js';
 import { blogAssets, generateSite, staging } from '../build/generate.js';
 import { readTagIcons, tagIconStyles } from '../build/tag-icons.js';
@@ -388,7 +388,7 @@ test('Pages workflow uses npm, deploys only master, and uploads only the product
   expect(upload.if).toBe(workflow.jobs.deploy.if);
 });
 
-test('homepage metadata uses a descriptive title and preserves the existing social image', async () => {
+test('homepage metadata uses a descriptive title and branded social image', async () => {
   const page = await browser.newPage();
   await page.setContent(renderPage(await readFile('src/index.html', 'utf8')));
   const title = await page.title();
@@ -404,6 +404,63 @@ test('homepage metadata uses a descriptive title and preserves the existing soci
     .toBe('iyWahl. I break things. Danny Wahl. Software, technology, and EdTech.');
   expect(await page.locator('meta[name="twitter:image:alt"]').getAttribute('content'))
     .toBe('iyWahl. I break things. Danny Wahl. Software, technology, and EdTech.');
+  await page.close();
+});
+
+test('structured metadata safely serializes titles, authors, dates and topics', () => {
+  const post = normalizePost({ title: '</script><script>alert("title")</script>',
+    published_at: '2024-01-01T00:00:00Z', modified_at: '2024-02-01T00:00:00Z',
+    authors: 'Guest Author', tags: 'CSS, Education' }, 'metadata-probe');
+  const json = structuredData(post.title, 'Quotes " & <markup>', `${post.url}index.html`, post);
+  expect(json).not.toContain('<');
+  const article = JSON.parse(json)['@graph'].find(node => node['@type'] === 'BlogPosting');
+  expect(article).toMatchObject({ headline: post.title, description: 'Quotes " & <markup>',
+    url: post.canonical, datePublished: post.date.toISOString(), dateModified: post.updated.toISOString(),
+    author: { '@type': 'Person', name: 'Guest Author' }, keywords: ['CSS', 'Education'] });
+});
+
+test('built pages expose consistent schema.org and social unfurl metadata', async () => {
+  const post = readBlog().posts[0];
+  const page = await browser.newPage();
+  for (const path of ['/', '/blog/', '/blog/page/2/', '/blog/archive/', '/blog/tags/', post.url]) {
+    await page.goto(`${urls.dist}${path}`);
+    const canonical = `https://iywahl.com${path}`;
+    const title = await page.title();
+    const description = await page.locator('meta[name="description"]').getAttribute('content');
+    for (const selector of ['meta[property="og:title"]', 'meta[name="twitter:title"]']) {
+      expect(await page.locator(selector).getAttribute('content')).toBe(title);
+    }
+    expect(await page.locator('meta[property="og:url"]').getAttribute('content')).toBe(canonical);
+    expect(await page.locator('meta[name="twitter:image"]').getAttribute('content'))
+      .toBe('https://iywahl.com/assets/social/iywahl-og-light.png');
+    const schema = JSON.parse(await page.locator('script[type="application/ld+json"]').textContent());
+    expect(schema['@context']).toBe('https://schema.org');
+    const nodes = schema['@graph'];
+    const webpage = nodes.find(node => node['@id'] === `${canonical}#webpage`);
+    expect(webpage).toMatchObject({ url: canonical, name: title, description,
+      '@type': path === '/' ? 'ProfilePage' : path === post.url ? 'WebPage' : 'CollectionPage' });
+    expect(nodes.find(node => node['@type'] === 'ImageObject')).toMatchObject({ width: 1200, height: 630 });
+    const ids = new Set(nodes.map(node => node['@id']));
+    for (const reference of JSON.stringify(nodes).matchAll(/\{"@id":"([^"]+)"\}/g)) {
+      expect(ids.has(reference[1])).toBe(true);
+    }
+    if (path === post.url) {
+      expect(nodes.find(node => node['@type'] === 'BlogPosting')).toMatchObject({
+        headline: post.title, datePublished: post.date.toISOString(),
+        dateModified: (post.updated || post.date).toISOString(), author: { '@id': 'https://iywahl.com/#person' } });
+    }
+  }
+  const artwork = {
+    'iywahl-og.png': '3cb5d369bc72d90dcc2b12ace0dad5367707aba6e12c81665b54ec7c7784acaf',
+    'iywahl-og-light.png': '4f83ef26e8a4af40c7285aae9c3264e601859a5226570a8a530a2f9c9f89b7ae',
+    'iywahl-og.svg': '9e650abb23054ab5840b26dc7bb04a130efd78aa16889904ac4b0dc762e5b758',
+    'iywahl-og-light.svg': '5cc0ab8b39c8c52cdd755042eeaaaa9124960748d265179d7bd61c9e2eb88b29',
+  };
+  for (const [filename, hash] of Object.entries(artwork)) {
+    const response = await page.request.get(`${urls.dist}/assets/social/${filename}`);
+    expect(response.status()).toBe(200);
+    expect(createHash('sha256').update(await response.body()).digest('hex')).toBe(hash);
+  }
   await page.close();
 });
 

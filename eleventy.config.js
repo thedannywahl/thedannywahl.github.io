@@ -1,5 +1,5 @@
 import nunjucks from 'nunjucks';
-import { readProjects, projectArtwork } from './build/site.js';
+import { readProjects, projectArtwork, structuredData } from './build/site.js';
 import { readBlog, sanitizeMarkdown } from './build/blog.js';
 import anchor from 'markdown-it-anchor';
 import Shiki from '@shikijs/markdown-it';
@@ -20,6 +20,7 @@ export default function (configuration) {
     noCache: true,
   }), { autoescape: true, throwOnUndefined: true });
   environment.addGlobal('projectArtwork', projectArtwork);
+  environment.addGlobal('structuredData', structuredData);
   configuration.setLibrary('njk', environment);
   configuration.addLayoutAlias('partials/blog-layout.njk', 'blog-layout.njk');
   configuration.addLayoutAlias('partials/blog-post.njk', 'blog-post.njk');
