@@ -3,7 +3,10 @@
 ![iywahl: I break things.](https://iywahl.com/assets/social/iywahl-og.png)
 
 A static project gallery and Markdown blog built with Eleventy, Vite, and
-Pantoken. Eleventy renders templates into an ignored staging directory; Vite
+Pantoken. Markdown Exit handles post rendering and excerpt parsing, with
+markdown-it-compatible heading anchors and direct Shiki highlighting through
+Markdown Exit's `highlight` option. Eleventy
+renders templates into an ignored staging directory; Vite
 bundles all pages and their shared assets. A small script powers the light/system/dark button-set and remembers
 the selection locally. The gallery remains usable without JavaScript, following
 the system color scheme. Hosting is GitHub Pages, not Deno.
@@ -118,8 +121,8 @@ entry IDs, so editing an archived post's title does not create a duplicate feed
 entry. New posts use their permanent URL as the feed ID.
 
 Topic pills use [src/data/tag-icons.json](src/data/tag-icons.json) to map topic
-slugs to Simple Icons brand slugs. Icon CSS comes from Pantoken's Simple Icons
-plugin; brand colors are derived from the installed `simple-icons` registry.
+slugs to icon slugs and explicit brand colors. Icon CSS comes from Pantoken's
+Simple Icons plugin; its manifest validates the selected icon slugs.
 Only mapped glyphs ship in the CSS. Unmapped topics use Pantoken's neutral tag
 icon. Brand tints adapt to both themes while labels retain readable text colors.
 

@@ -2,51 +2,54 @@
   "name": "iywahl-site",
   "private": true,
   "type": "module",
-  "engines": {
-    "node": ">=24.0.0"
-  },
   "scripts": {
-    "dev": "vite --host 127.0.0.1",
-    "build": "vite build",
-    "build:baseline": "SITE_OPTIMIZE=false SITE_BASELINE=true vite build",
-    "preview": "vite preview --host 127.0.0.1",
-    "test": "npm run build && npm run build:baseline && vitest run",
-    "test:coverage": "npm run build && npm run build:baseline && vitest run --coverage",
+    "dev": "vp dev --host 127.0.0.1",
+    "build": "vp build",
+    "build:baseline": "SITE_OPTIMIZE=false SITE_BASELINE=true vp build",
+    "preview": "vp preview --host 127.0.0.1",
+    "test": "npm run build && npm run build:baseline && vp test run",
+    "test:coverage": "npm run build && npm run build:baseline && vp test run --coverage",
     "cms": "node build/cms.js",
-    "cms:setup": "node build/cms.js --setup"
-  },
-  "overrides": {
-    "decap-server": {
-      "simple-git": "4.0.2",
-      "@hapi/joi": "npm:joi@18.2.9"
-    }
+    "cms:setup": "node build/cms.js --setup",
+    "prepare": "vp config"
   },
   "dependencies": {
-    "@pantoken/components": "^2.0.2",
-    "@pantoken/css": "^0.4.3",
-    "@pantoken/plugin-custom-components": "^0.7.0",
-    "@pantoken/plugin-custom-theme-colors": "^0.3.3"
+    "@pantoken/components": "^2.2.0",
+    "@pantoken/css": "^0.4.7",
+    "@pantoken/plugin-custom-components": "^0.7.4",
+    "@pantoken/plugin-custom-theme-colors": "^0.3.7"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^3.1.6",
+    "@11ty/eleventy": "^3.1.8",
     "@11ty/eleventy-plugin-rss": "^3.1.0",
-    "@axe-core/playwright": "^4.13.0",
+    "@axe-core/playwright": "^4.14.0",
     "@pantoken/plugin-props-minify": "^0.1.4",
-    "@pantoken/plugin-simple-icons": "^0.3.12",
-    "@playwright/test": "^1.64.0",
-    "@shikijs/markdown-it": "^4.5.0",
-    "@vitest/coverage-v8": "^5.0.3",
-    "decap-server": "^3.11.3",
+    "@pantoken/plugin-simple-icons": "^0.3.16",
+    "@playwright/test": "^1.64.1",
+    "@vitest/coverage-v8": "5.1.0",
+    "decap-server": "^3.11.6",
     "html-minifier-terser": "^7.2.0",
-    "markdown-it": "^15.0.2",
+    "markdown-exit": "^2.1.3",
     "markdown-it-anchor": "^10.0.0",
     "nunjucks": "^3.2.4",
-    "postcss": "^8.5.29",
-    "sanitize-html": "^2.18.0",
-    "simple-icons": "^16.34.0",
+    "postcss": "^8.5.32",
+    "sanitize-html": "^2.18.1",
+    "shiki": "^4.6.0",
     "svgo": "^4.1.0",
-    "vite": "^8.3.4",
-    "vitest": "^5.0.3",
+    "vite": "npm:@voidzero-dev/vite-plus-core@1.5.0",
+    "vite-plus": "1.5.0",
+    "vitest": "5.1.0",
     "yaml": "^2.9.1"
+  },
+  "overrides": {
+    "vite": "npm:@voidzero-dev/vite-plus-core@1.5.0",
+    "vitest": "5.1.0"
+  },
+  "engines": {
+    "node": ">=26.0.0"
+  },
+  "packageManager": "npm@12.2.2",
+  "allowScripts": {
+    "fsevents@2.3.3": true
   }
 }

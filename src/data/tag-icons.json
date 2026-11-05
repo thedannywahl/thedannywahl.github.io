@@ -1,9 +1,9 @@
 {
-  "css": "css",
-  "deno": "deno",
-  "fresh": "fresh",
-  "ghost": "ghost",
-  "github": "github",
-  "moodle": "moodle",
-  "wordpress": "wordpress"
+  "css": { "icon": "css", "color": "#663399" },
+  "deno": { "icon": "deno", "color": "#000000" },
+  "fresh": { "icon": "fresh", "color": "#FFDB1E" },
+  "ghost": { "icon": "ghost", "color": "#15171A" },
+  "github": { "icon": "github", "color": "#181717" },
+  "moodle": { "icon": "moodle", "color": "#F98012" },
+  "wordpress": { "icon": "wordpress", "color": "#21759B" }
 }

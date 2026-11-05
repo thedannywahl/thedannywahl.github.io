@@ -22,3 +22,4 @@ node_modules/
 # Dev files
 .vscode/
 Biomefile
+.vitest/
