@@ -152,6 +152,12 @@ integrity-checked editor bundle into the ignored cache; subsequent starts use
 that local copy, so editing works offline. `CMS_PORT` and `CMS_PROXY_PORT` can
 override the default ports 8079 and 8081. Stop with Ctrl-C.
 
+On startup, the CMS compiles the site's stylesheet and local fonts into its
+ignored preview cache. The preview uses the blog's typography, theme, article
+card, and topic pills, always in light mode to match the editor. Restart the
+CMS after changing site styles. The body still uses Decap's Markdown preview,
+not the site's Markdown Exit/Shiki renderer, so syntax highlighting can differ.
+
 **Publish now** saves files in this checkout. It does not commit, push, or deploy;
 the post's **Draft** field controls whether the site build includes it. Run
 `npm run dev` in another terminal to preview saved changes, then review, commit,

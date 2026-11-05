@@ -1150,6 +1150,86 @@ test("blog appearance persists through navigation and local CMS stays out of pro
   await page.close();
 });
 
+for (const colorScheme of ["light", "dark"]) {
+  test.skipIf(!process.env.CMS_TEST_URL)(
+    `local Decap preview stays light with ${colorScheme} system preference`,
+    async () => {
+      const context = await browser.newContext({ colorScheme });
+      const page = await context.newPage();
+      const failures = [];
+      page.on("response", (response) => {
+        if (response.status() >= 400) failures.push(response.url());
+      });
+      const readTypography = async (scope) => {
+        await scope.evaluate(() => document.fonts.ready);
+        return scope.locator("h1, .post-meta, .blog-prose").evaluateAll((elements) =>
+          elements.map((element) => {
+            const style = getComputedStyle(element);
+            return [
+              "fontFamily",
+              "fontSize",
+              "fontWeight",
+              "lineHeight",
+              "color",
+              "backgroundColor",
+            ].map((property) => style[property]);
+          }),
+        );
+      };
+      try {
+        await page.goto(`${urls.dist}/blog/my-posts-wordpress-plugin/`);
+        await page.locator("html").evaluate((element) => {
+          element.dataset.colorScheme = "light";
+        });
+        const expected = await readTypography(page);
+        await page.goto(process.env.CMS_TEST_URL);
+        await page.getByRole("button", { name: /Login/i }).click();
+        await page.getByRole("link", { name: '"My Posts" Wordpress Plugin', exact: true }).click();
+        await expect.poll(() => page.frames().length).toBe(2);
+        const preview = page.frames().find((frame) => frame !== page.mainFrame());
+        await preview.locator(".blog-prose").waitFor();
+        await expect
+          .poll(() => preview.locator("html").getAttribute("data-pantoken-theme"))
+          .toBe("rebrand");
+        expect(await preview.locator("html").getAttribute("data-pantoken-color")).toBe("sea");
+        expect(await preview.locator("html").getAttribute("data-color-scheme")).toBe("light");
+        await expect.poll(() => readTypography(preview)).toEqual(expected);
+        expect(
+          await preview.evaluate(() =>
+            [...document.fonts].some(
+              (font) =>
+                font.family.includes("Atkinson Hyperlegible Next") && font.status === "loaded",
+            ),
+          ),
+        ).toBe(true);
+        await expect
+          .poll(() =>
+            preview
+              .locator(".blog-prose img")
+              .evaluateAll(
+                (images) =>
+                  images.length > 0 &&
+                  images.every((image) => image.complete && image.naturalWidth > 0),
+              ),
+          )
+          .toBe(true);
+        expect(failures).toEqual([]);
+        for (const pathname of [
+          "preview/../index.md",
+          "preview/assets/missing.woff2",
+          "preview/preview.js.map",
+        ]) {
+          expect(
+            (await page.request.get(new URL(pathname, process.env.CMS_TEST_URL).href)).status(),
+          ).toBe(404);
+        }
+      } finally {
+        await context.close();
+      }
+    },
+  );
+}
+
 test.skipIf(!process.env.CMS_TEST_URL)(
   "local Decap preserves Markdown and slugs and writes uploaded media",
   async () => {
