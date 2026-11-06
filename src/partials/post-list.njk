@@ -1,9 +1,11 @@
-<ol class="post-list instui-card">
+<ol class="post-list card">
 {% for entry in entries %}
-  <li class="instui-card -variant-nested">
-    <time class="post-meta" datetime="{{ entry.date | isoDate }}">{{ entry.date | displayDate }}</time>
-    <h2 class="instui-heading -level-h3"><a href="{{ entry.url }}">{{ entry.title }}</a></h2>
-    <p>{{ entry.description }}</p>
+  <li class="card -variant-nested">
+    <div class="content">
+      <time class="post-meta" datetime="{{ entry.date | isoDate }}">{{ entry.date | displayDate }}</time>
+      <h2 class="heading -level-h3"><a href="{{ entry.url }}">{{ entry.title }}</a></h2>
+      <p>{{ entry.description }}</p>
+    </div>
   </li>
 {% endfor %}
 </ol>

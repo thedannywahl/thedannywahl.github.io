@@ -1,7 +1,8 @@
 import "../../src/styles/site.css";
 import tagIcons from "../../src/data/tag-icons.json";
+import { initializeCodeTabs } from "../../src/scripts/code-tabs.js";
 
-const { CMS, h } = window;
+const { CMS, h, createClass } = window;
 const dateFormat = new Intl.DateTimeFormat("en-US", { dateStyle: "long", timeZone: "UTC" });
 
 function previewDate(value) {
@@ -11,8 +12,69 @@ function previewDate(value) {
 }
 
 CMS.registerPreviewStyle("/preview/preview.css");
-CMS.registerPreviewTemplate("posts", ({ entry, widgetFor }) => {
+const BodyPreview = createClass({
+  getInitialState() {
+    return { html: "", error: null, loading: true };
+  },
+  componentDidMount() {
+    this.renderMarkdown();
+  },
+  componentDidUpdate(previous) {
+    if (previous.body !== this.props.body) this.renderMarkdown();
+  },
+  componentWillUnmount() {
+    this.controller.abort();
+  },
+  async renderMarkdown() {
+    this.controller?.abort();
+    const controller = new AbortController();
+    this.controller = controller;
+    this.setState({ error: null, loading: true });
+    try {
+      const response = await fetch("/preview/render", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ body: this.props.body || "" }),
+        signal: controller.signal,
+      });
+      if (!response.ok) throw new Error(await response.text());
+      const html = await response.text();
+      if (!controller.signal.aborted) this.setState({ html, loading: false });
+    } catch (error) {
+      if (controller.signal.aborted) return;
+      console.error("CMS Markdown preview failed:", error);
+      this.setState({ error: error.message, html: "", loading: false });
+    }
+  },
+  render() {
+    if (this.state.error) return h("p", { role: "alert" }, this.state.error);
+    const document = new DOMParser().parseFromString(this.state.html, "text/html");
+    for (const image of document.querySelectorAll("img")) {
+      const source = image.getAttribute("src");
+      if (source) {
+        image.dataset.cmsAsset = source;
+        const path = source.startsWith(this.props.mediaPrefix)
+          ? source.slice(this.props.mediaPrefix.length)
+          : source;
+        const asset = this.props.getAsset(path);
+        image.src = String(asset);
+      }
+    }
+    return h("div", {
+      className: "card blog-prose",
+      "aria-busy": this.state.loading,
+      dangerouslySetInnerHTML: { __html: document.body.innerHTML },
+      ref: (element) => {
+        if (element) initializeCodeTabs(element);
+      },
+    });
+  },
+});
+CMS.registerPreviewTemplate("posts", ({ entry, getAsset }) => {
   const data = entry.get("data");
+  const directory = String(entry.get("path") || "")
+    .replace(/^src\/blog\/posts\//, "")
+    .replace(/\/[^/]+$/, "");
   const published = previewDate(data.get("published_at"));
   const modified = previewDate(data.get("modified_at"));
   const topics = [
@@ -78,19 +140,19 @@ CMS.registerPreviewTemplate("posts", ({ entry, widgetFor }) => {
                 h(
                   "a",
                   {
-                    className: "instui-pill post-topic-pill",
+                    className: "pill post-topic-pill",
                     "data-topic": slug,
                     href: `/blog/tags/${slug}/`,
                     onClick: (event) => event.preventDefault(),
                   },
-                  h("span", { className: `instui-icon -icon-${icon}`, "aria-hidden": true }),
+                  h("span", { className: `icon -icon-${icon}`, "aria-hidden": true }),
                   label,
                 ),
               );
             }),
           ),
       ),
-      h("div", { className: "instui-card blog-prose" }, widgetFor("body")),
+      h(BodyPreview, { body: data.get("body"), getAsset, mediaPrefix: `/blog/${directory}/` }),
     ),
   );
 });

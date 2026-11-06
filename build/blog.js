@@ -121,7 +121,7 @@ export function readBlog() {
 
 export function sanitizeMarkdown(html) {
   return sanitizeHtml(html, {
-    allowedTags: [...sanitizeHtml.defaults.allowedTags, "img", "input", "del"],
+    allowedTags: [...sanitizeHtml.defaults.allowedTags, "img", "input", "del", "button"],
     allowedAttributes: {
       ...sanitizeHtml.defaults.allowedAttributes,
       "*": ["id", "class"],
@@ -129,7 +129,10 @@ export function sanitizeMarkdown(html) {
       img: ["src", "alt", "title", "width", "height", "loading"],
       input: ["type", "checked", "disabled"],
       pre: ["style"],
-      span: ["style"],
+      span: ["style", "data-line"],
+      button: ["type", "aria-controls"],
+      section: ["aria-labelledby"],
+      div: ["aria-label"],
     },
     allowedStyles: {
       "*": {

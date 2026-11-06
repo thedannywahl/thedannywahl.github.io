@@ -9,7 +9,7 @@ import { resolve, relative, extname } from "node:path";
 import { gzipSync } from "node:zlib";
 import postcss from "postcss";
 import nunjucks from "nunjucks";
-import { bluePalette, optimizeCss, productionCss } from "../build/optimize-css.js";
+import { bluePalette, pantokenNames, productionCss } from "../build/optimize-css.js";
 import {
   projectArtwork,
   projectUrl,
@@ -21,6 +21,7 @@ import {
 import { normalizePost, readBlog, sanitizeMarkdown } from "../build/blog.js";
 import { blogAssets, generateSite, staging } from "../build/generate.js";
 import { readTagIcons, tagIconStyles } from "../build/tag-icons.js";
+import { createPostMarkdown } from "../build/markdown.js";
 
 let browser;
 const servers = [];
@@ -51,6 +52,7 @@ beforeAll(async () => {
         );
         if (relative(root, filename).startsWith("..")) throw new Error("Invalid path");
         response.setHeader("Content-Type", mime[extname(filename)] || "application/octet-stream");
+        if (extname(filename) === ".woff2") response.setHeader("Access-Control-Allow-Origin", "*");
         response.end(await readFile(filename));
       } catch {
         response.writeHead(404).end();
@@ -69,14 +71,30 @@ afterAll(async () => {
   await Promise.all(servers.map((server) => new Promise((done) => server.close(done))));
 });
 
-test("Pantoken optimization retains live dependencies and removes unused tokens", () => {
-  const css =
-    ":root { --instui-live: var(--instui-value); --instui-value: red; --instui-unused: blue; } a { color: var(--instui-live); }";
-  const result = optimizeCss(css);
-  expect(result).toContain("red");
-  expect(result).not.toContain("unused");
-  expect(result).not.toContain("--instui-");
-  expect(postcss([productionCss()]).process(css, { from: "probe.css" }).css).toBe(result);
+test("Pantoken names are unprefixed and production pruning preserves example dependencies", () => {
+  const css = `@property --instui-unused { syntax: "<color>"; inherits: true; initial-value: blue; }
+    @property --instui-example-color { syntax: "<color>"; inherits: true; initial-value: green; }
+    :root { --instui-example: var(--instui-example-color); --instui-unreferenced: orange; }
+    [data-color-scheme="dark"] { --instui-example: var(--instui-dark-color); --instui-dark-color: black; }
+    :root { --instui-live: var(--instui-value); --instui-value: red; }
+    @scope (.instui-card) { .instui-button { color: var(--instui-live); } }`;
+  const result = postcss([
+    pantokenNames(),
+    productionCss({ content: ["```css\n.example { background: var(--example); }\n```"] }),
+  ]).process(css, {
+    from: "probe.css",
+  }).css;
+  expect(result).not.toContain("--unused");
+  expect(result).not.toContain("--unreferenced");
+  expect(result).not.toContain("@property");
+  expect(result).toContain("--example-color: green");
+  expect(result).toContain("--example: var(--example-color)");
+  expect(result).toContain("--dark-color: black");
+  expect(result).not.toContain("content: var(");
+  expect(result).toContain("--live: var(--value)");
+  expect(result).toContain("@scope (.card)");
+  expect(result).toContain(".button");
+  expect(result).not.toContain("instui-");
   const declarations = Array.from(
     { length: 20 },
     (_unused, index) => `--instui-primitive-color-blue-blue${(index + 1) * 10}: #123456;`,
@@ -128,7 +146,7 @@ test.each([0, 1, 2])(
     const page = await browser.newPage();
     await page.setContent(html);
     expect(await page.locator("ol").getAttribute("class")).toBe(
-      `post-list instui-card${count > 1 ? " -variant-container" : ""}`,
+      `post-list card${count > 1 ? " -variant-container" : ""}`,
     );
     expect(await page.locator("li").count()).toBe(count);
     await page.close();
@@ -179,7 +197,79 @@ test("templates read original artwork and retain accessible project semantics", 
   expect(messages).toEqual([{ type: "full-reload" }, { type: "full-reload" }]);
 });
 
-test("production output is smaller, self-contained and contains only resolvable CSS references", async () => {
+test.each(["light", "dark"])(
+  "%s: screen-reader heading and shared theme button seams retain their styles",
+  async (colorScheme) => {
+    const page = await browser.newPage({ colorScheme });
+    const readControl = () =>
+      page.locator(".theme-switcher").evaluate((element) => {
+        const group = element.querySelector('[role="group"]');
+        const style = getComputedStyle(group);
+        return {
+          display: style.display,
+          gap: style.gap,
+          buttons: [...group.querySelectorAll("button")].map((button) => {
+            const style = getComputedStyle(button);
+            return Object.fromEntries(
+              [
+                "borderInlineStartWidth",
+                "borderInlineEndWidth",
+                "borderStartStartRadius",
+                "borderStartEndRadius",
+                "backgroundColor",
+                "color",
+              ].map((property) => [property, style[property]]),
+            );
+          }),
+        };
+      });
+    for (const path of ["/", "/blog/"]) {
+      let baseline;
+      for (const directory of ["dist-baseline", "dist"]) {
+        await page.goto(`${urls[directory]}${path}`);
+        await expect.poll(() => page.locator(".theme-switcher").isVisible()).toBe(true);
+        expect(await page.locator('[class*="instui-"]').count()).toBe(0);
+        const control = await readControl();
+        expect(control.display).toBe("flex");
+        expect(control.gap).toBe("0px");
+        expect(control.buttons).toHaveLength(3);
+        expect(parseFloat(control.buttons[0].borderInlineStartWidth)).toBeGreaterThan(0);
+        expect(parseFloat(control.buttons[0].borderStartStartRadius)).toBeGreaterThan(0);
+        expect(parseFloat(control.buttons[2].borderStartEndRadius)).toBeGreaterThan(0);
+        for (const button of control.buttons.slice(1)) {
+          expect(button.borderInlineStartWidth).toBe("0px");
+          expect(parseFloat(button.borderInlineEndWidth)).toBeGreaterThan(0);
+        }
+        if (directory === "dist-baseline") baseline = control;
+        else expect(control).toEqual(baseline);
+        if (path === "/") {
+          expect(
+            await page.locator("h1").evaluate((element) => {
+              const style = getComputedStyle(element);
+              return {
+                position: style.position,
+                clipPath: style.clipPath,
+                blockSize: style.blockSize,
+                inlineSize: style.inlineSize,
+                overflow: style.overflow,
+              };
+            }),
+          ).toEqual({
+            position: "absolute",
+            clipPath: "inset(50%)",
+            blockSize: "1px",
+            inlineSize: "1px",
+            overflow: "hidden",
+          });
+          expect(await page.getByRole("heading", { name: "Hi, I'm Danny." }).count()).toBe(1);
+        }
+      }
+    }
+    await page.close();
+  },
+);
+
+test("production output retains public tokens, is self-contained and contains only resolvable CSS references", async () => {
   const files = await readdir("dist/assets");
   const css = await readFile(
     `dist/assets/${files.find((filename) => filename.endsWith(".css"))}`,
@@ -190,18 +280,31 @@ test("production output is smaller, self-contained and contains only resolvable 
     `dist-baseline/assets/${baselineFiles.find((filename) => filename.endsWith(".css"))}`,
     "utf8",
   );
+  expect(css).not.toContain("instui-");
   expect(css.length).toBeLessThan(baseline.length / 2);
   expect(gzipSync(css).length).toBeLessThan(gzipSync(baseline).length / 2);
-  expect(css).not.toContain("--instui-icon-");
-  expect(css).not.toContain("--instui-");
   const definitions = new Set();
   const references = new Set();
   const ast = postcss.parse(css);
+  ast.walkAtRules("property", (rule) => definitions.add(rule.params));
   ast.walkDecls((declaration) => {
     if (declaration.prop.startsWith("--")) definitions.add(declaration.prop);
     for (const match of declaration.value.matchAll(/var\((--[a-zA-Z0-9-]+)/g))
       references.add(match[1]);
   });
+  expect(definitions.has("--component-card-background-color")).toBe(true);
+  const baselineDefinitions = new Set();
+  const baselineAst = postcss.parse(baseline);
+  baselineAst.walkAtRules("property", (rule) => baselineDefinitions.add(rule.params));
+  baselineAst.walkDecls((declaration) => {
+    if (declaration.prop.startsWith("--")) baselineDefinitions.add(declaration.prop);
+  });
+  for (const post of readBlog().posts) {
+    const source = await readFile(`src/blog/posts/${post.slug}/index.md`, "utf8");
+    for (const [reference] of source.matchAll(/--[\w-]+/g)) {
+      if (baselineDefinitions.has(reference)) expect(definitions.has(reference)).toBe(true);
+    }
+  }
   const inlineShikiVariables = new Set([
     "--shiki-light",
     "--shiki-dark",
@@ -218,7 +321,10 @@ test("production output is smaller, self-contained and contains only resolvable 
   expect(
     [...html.matchAll(/data:([^;,]+);base64,/g)].every((match) => match[1].startsWith("image/")),
   ).toBe(true);
-  expect(files.filter((filename) => filename.endsWith(".js"))).toHaveLength(1);
+  expect(files.filter((filename) => filename.endsWith(".js")).sort()).toEqual([
+    expect.stringMatching(/^code-tabs-[\w-]+\.js$/),
+    expect.stringMatching(/^color-scheme-[\w-]+\.js$/),
+  ]);
   expect(files.filter((filename) => filename.endsWith(".woff2"))).toHaveLength(8);
   expect(await readFile("dist/third-party-notices.txt", "utf8")).toContain("SIL OPEN FONT LICENSE");
   expect((await readFile("dist/CNAME", "utf8")).trim()).toBe("iywahl.com");
@@ -253,10 +359,10 @@ for (const width of [375, 1280]) {
               };
               if (checkTokens) {
                 const probe = document.createElement("span");
-                probe.style.color = "var(--instui-color-stroke-interactive-focus-ring-base)";
+                probe.style.color = "var(--color-stroke-interactive-focus-ring-base)";
                 probe.style.outline =
-                  "var(--instui-focus-outline-width) var(--instui-focus-outline-style) currentColor";
-                probe.style.outlineOffset = "var(--instui-focus-outline-offset)";
+                  "var(--focus-outline-width) var(--focus-outline-style) currentColor";
+                probe.style.outlineOffset = "var(--focus-outline-offset)";
                 card.append(probe);
                 const tokens = getComputedStyle(probe);
                 ring.expected = {
@@ -491,7 +597,7 @@ test("grid breakpoint and reduced motion stay stable", async () => {
   }
   expect(
     await page
-      .locator(".card")
+      .locator(".project-card")
       .first()
       .evaluate((element) => getComputedStyle(element).transitionDuration),
   ).toBe("0s");
@@ -510,7 +616,7 @@ for (const width of [320, 375, 1280]) {
     const switcher = page.locator(".theme-switcher");
     await expect.poll(() => switcher.isVisible()).toBe(true);
     const geometry = () =>
-      page.locator("main, .gallery, .card").evaluateAll((elements) =>
+      page.locator("main, .gallery, .project-card").evaluateAll((elements) =>
         elements.map((element) => {
           const rect = element.getBoundingClientRect();
           return { x: rect.x, y: rect.y, width: rect.width, height: rect.height };
@@ -530,7 +636,7 @@ for (const width of [320, 375, 1280]) {
     expect(control.x + control.width).toBeLessThanOrEqual(width);
     expect(
       await page
-        .locator(".theme-switcher .instui-icon")
+        .locator(".theme-switcher .icon")
         .evaluateAll((elements) =>
           elements.every((element) => getComputedStyle(element, "::before").maskImage !== "none"),
         ),
@@ -816,13 +922,15 @@ test("tag map preserves brand colors and emits only selected Pantoken icon style
       "fallback-probe",
     ).topics[0],
   ).toMatchObject({ icon: "tag", color: null });
-  const css = postcss([tagIconStyles()]).process("", { from: "tag-probe.css" }).css;
+  const css = postcss([tagIconStyles(), pantokenNames()]).process("", {
+    from: "tag-probe.css",
+  }).css;
   for (const [tag, appearance] of Object.entries(mapping)) {
-    expect(css).toContain(`--instui-icon-${appearance.icon}`);
+    expect(css).toContain(`--icon-${appearance.icon}`);
     expect(css).toContain(`data-topic="${tag}"`);
     expect(css).toContain(appearance.color);
   }
-  expect(css).not.toContain("--instui-icon-react");
+  expect(css).not.toContain("--icon-react");
 });
 
 for (const colorScheme of ["light", "dark"]) {
@@ -839,7 +947,7 @@ for (const colorScheme of ["light", "dark"]) {
       const readStyles = async () =>
         page.locator(`.post-topic-pill[data-topic="${tag}"]`).evaluate((element) => {
           const style = getComputedStyle(element);
-          const glyph = element.querySelector(".instui-icon");
+          const glyph = element.querySelector(".icon");
           const iconStyle = getComputedStyle(glyph);
           const mask = getComputedStyle(glyph, "::before");
           return {
@@ -872,7 +980,7 @@ for (const colorScheme of ["light", "dark"]) {
         ).toBe(true);
       }
       expect(await pill.getAttribute("href")).toBe(`/blog/tags/${tag}/`);
-      expect(await pill.locator(".instui-icon").getAttribute("aria-hidden")).toBe("true");
+      expect(await pill.locator(".icon").getAttribute("aria-hidden")).toBe("true");
       expect(await pill.locator(`.-icon-${mapping[tag]?.icon || "tag"}`).count()).toBe(1);
       await pill.focus();
       expect(
@@ -954,6 +1062,166 @@ test("blog feeds, pagination and sitemap retain stable static routes", async () 
   await page.close();
 });
 
+test("post navigation keeps newer left and older right at either end of the blog", async () => {
+  const posts = readBlog().posts;
+  const page = await browser.newPage();
+  try {
+    for (const directory of ["dist", "dist-baseline"]) {
+      for (const width of [375, 1280]) {
+        await page.setViewportSize({ width, height: 1000 });
+        for (const index of [0, 1, posts.length - 1]) {
+          await page.goto(`${urls[directory]}${posts[index].url}`);
+          const nav = page.getByRole("navigation", { name: "More posts" });
+          const newer = nav.getByRole("link", { name: /^Newer:/ });
+          const older = nav.getByRole("link", { name: /^Older:/ });
+          expect(await newer.count()).toBe(index > 0 ? 1 : 0);
+          expect(await older.count()).toBe(index < posts.length - 1 ? 1 : 0);
+          const bounds = await nav.boundingBox();
+          if (index > 0) {
+            expect(await newer.getAttribute("href")).toBe(posts[index - 1].url);
+            expect((await newer.boundingBox()).x).toBeCloseTo(bounds.x, 0);
+          }
+          if (index < posts.length - 1) {
+            expect(await older.getAttribute("href")).toBe(posts[index + 1].url);
+            const link = await older.boundingBox();
+            expect(link.x + link.width).toBeCloseTo(bounds.x + bounds.width, 0);
+          }
+        }
+      }
+    }
+  } finally {
+    await page.close();
+  }
+});
+
+test("topics are wrapped in a card and retain responsive columns", async () => {
+  const page = await browser.newPage();
+  try {
+    for (const directory of ["dist", "dist-baseline"]) {
+      for (const width of [375, 1280]) {
+        await page.setViewportSize({ width, height: 1000 });
+        await page.goto(`${urls[directory]}/blog/tags/`);
+        const topics = page.locator(".card > .topic-index");
+        expect(await topics.locator("li").count()).toBe(readBlog().topics.length);
+        const layout = await topics.evaluate((list) => ({
+          columns: getComputedStyle(list).columnCount,
+          padding: parseFloat(getComputedStyle(list.parentElement).paddingTop),
+          overflow: document.documentElement.scrollWidth > innerWidth,
+        }));
+        expect(layout.columns).toBe(width < 600 ? "1" : "2");
+        expect(layout.padding).toBeGreaterThan(0);
+        expect(layout.overflow).toBe(false);
+      }
+    }
+  } finally {
+    await page.close();
+  }
+});
+
+test("archive years are nested cards inside a full-width card", async () => {
+  const page = await browser.newPage();
+  try {
+    for (const directory of ["dist", "dist-baseline"]) {
+      for (const width of [375, 1280]) {
+        await page.setViewportSize({ width, height: 1000 });
+        await page.goto(`${urls[directory]}/blog/archive/`);
+        const years = page.locator(".archive-list.card > .archive-year.card.-variant-nested");
+        expect(await years.count()).toBe(readBlog().years.length);
+        const layout = await page.locator(".archive-list").evaluate((card) => {
+          const style = getComputedStyle(card);
+          const yearStyle = getComputedStyle(card.firstElementChild.querySelector(".content"));
+          return {
+            width: card.getBoundingClientRect().width,
+            mainWidth:
+              card.parentElement.clientWidth -
+              parseFloat(getComputedStyle(card.parentElement).paddingLeft) -
+              parseFloat(getComputedStyle(card.parentElement).paddingRight),
+            gap: parseFloat(style.gap),
+            yearBorder: parseFloat(yearStyle.borderTopWidth),
+            yearPadding: parseFloat(yearStyle.paddingTop),
+            overflow: document.documentElement.scrollWidth > innerWidth,
+          };
+        });
+        expect(layout.width).toBeCloseTo(layout.mainWidth, 0);
+        expect(layout.gap).toBeGreaterThan(0);
+        expect(layout.yearBorder).toBeGreaterThan(0);
+        expect(layout.yearPadding).toBeGreaterThan(0);
+        expect(layout.overflow).toBe(false);
+      }
+    }
+  } finally {
+    await page.close();
+  }
+});
+
+test("blog post content is capped at 65ch inside a full-width card with responsive padding", async () => {
+  const page = await browser.newPage();
+  const paddingByWidth = new Map();
+  try {
+    for (const directory of ["dist-baseline", "dist"]) {
+      for (const width of [375, 479, 480, 767, 768, 1024, 1280]) {
+        await page.setViewportSize({ width, height: 1000 });
+        await page.goto(`${urls[directory]}/blog/blogging-from-the-cli/`);
+        await page.evaluate(() => document.fonts.ready);
+        const dimensions = await page.locator(".blog-post-content").evaluate((content) => {
+          const card = content.parentElement;
+          const cardStyle = getComputedStyle(card);
+          const available =
+            card.clientWidth -
+            parseFloat(cardStyle.paddingLeft) -
+            parseFloat(cardStyle.paddingRight);
+          const probe = document.createElement("div");
+          probe.style.width = "65ch";
+          const spacing = matchMedia("(min-width: 48em)").matches
+            ? "lg"
+            : matchMedia("(min-width: 30em)").matches
+              ? "md"
+              : "sm";
+          probe.style.paddingBlockStart = `var(--spacing-padding-container-${spacing})`;
+          content.append(probe);
+          const limit = probe.getBoundingClientRect().width;
+          const expectedPadding = getComputedStyle(probe).paddingTop;
+          probe.remove();
+          const rect = content.getBoundingClientRect();
+          const cardRect = card.getBoundingClientRect();
+          return {
+            content: rect.width,
+            expected: Math.min(available, limit),
+            card: cardRect.width,
+            article: card.parentElement.getBoundingClientRect().width,
+            leftGap: rect.left - cardRect.left,
+            rightGap: cardRect.right - rect.right,
+            topGap: content.firstElementChild.getBoundingClientRect().top - cardRect.top,
+            firstChildMargin: parseFloat(getComputedStyle(content.firstElementChild).marginTop),
+            expectedFirstChildMargin: Math.max(0, (available - rect.width) / 2),
+            overflow: document.documentElement.scrollWidth > innerWidth,
+            padding: [
+              cardStyle.paddingTop,
+              cardStyle.paddingRight,
+              cardStyle.paddingBottom,
+              cardStyle.paddingLeft,
+            ],
+            expectedPadding,
+          };
+        });
+        expect(dimensions.content).toBeCloseTo(dimensions.expected, 0);
+        expect(dimensions.card).toBeCloseTo(dimensions.article, 0);
+        expect(dimensions.leftGap).toBeCloseTo(dimensions.rightGap, 0);
+        expect(dimensions.topGap).toBeCloseTo(dimensions.leftGap, 0);
+        expect(dimensions.firstChildMargin).toBeCloseTo(dimensions.expectedFirstChildMargin, 0);
+        expect(dimensions.overflow).toBe(false);
+        if (directory === "dist-baseline") {
+          expect(parseFloat(dimensions.expectedPadding)).toBeGreaterThan(0);
+          paddingByWidth.set(width, dimensions.expectedPadding);
+        }
+        expect(dimensions.padding).toEqual(Array(4).fill(paddingByWidth.get(width)));
+      }
+    }
+  } finally {
+    await page.close();
+  }
+});
+
 test("original hero images lead individual post prose and never appear in post lists", async () => {
   const heroes = (await blogAssets()).filter((asset) => asset.fileName.endsWith("/hero.png"));
   expect(heroes.length).toBeGreaterThan(0);
@@ -966,7 +1234,7 @@ test("original hero images lead individual post prose and never appear in post l
     for (const asset of heroes) {
       const postUrl = `/${asset.fileName.slice(0, -"hero.png".length)}`;
       await page.goto(`${urls.dist}${postUrl}`);
-      const image = page.locator(".blog-prose > p:first-child > img");
+      const image = page.locator(".blog-post-content > p:first-child > img");
       expect(await image.count()).toBe(1);
       expect(await image.getAttribute("alt")).not.toBe("");
       expect(await image.evaluate((element) => element.complete && element.naturalWidth > 0)).toBe(
@@ -996,10 +1264,507 @@ test("original hero images lead individual post prose and never appear in post l
   }
 });
 
+test("Shiki highlights exact line ranges and comment notation without unsafe HTML", async () => {
+  const markdown = createPostMarkdown();
+  const page = await browser.newPage();
+  try {
+    const lines = ["const a = 1;", "const b = 2;", "const c = 3;", "const d = 4;"];
+    await page.setContent(markdown.render(`\`\`\`js {2,4}\n${lines.join("\n")}\n\`\`\``));
+    expect(
+      await page
+        .locator(".line")
+        .evaluateAll((elements) => elements.map((element) => element.dataset.line)),
+    ).toEqual(["1", "2", "3", "4"]);
+    expect(await page.locator(".line.highlighted").allTextContents()).toEqual([lines[1], lines[3]]);
+    await page.setContent(markdown.render(`\`\`\`js {2-3}\n${lines.join("\n")}\n\`\`\``));
+    expect(await page.locator(".line.highlighted").allTextContents()).toEqual([lines[1], lines[2]]);
+    await page.setContent(
+      markdown.render("```js\nconst a = 1; // [!code highlight]\nconst b = 2;\n```"),
+    );
+    expect(await page.locator(".line.highlighted").count()).toBe(1);
+    expect(await page.locator("code").textContent()).not.toContain("[!code");
+    await page.setContent(
+      markdown.render(
+        "```js\n// [!code highlight:2]\nconst a = 1;\nconst b = 2;\nconst c = 3;\n```",
+      ),
+    );
+    expect(await page.locator(".line.highlighted").allTextContents()).toEqual([lines[0], lines[1]]);
+    const html = markdown.render(
+      '# Heading\n\n<script>alert(1)</script>\n\n```html {1}\n<img onerror="alert(1)">\n```',
+    );
+    expect(html).toContain('id="heading"');
+    expect(html).not.toContain("<script>");
+    await page.setContent(html);
+    expect(await page.locator("img").count()).toBe(0);
+    expect(await page.locator("code").textContent()).toBe('<img onerror="alert(1)">');
+    expect(() => markdown.render("```not-a-real-language\nexample\n```")).toThrow();
+  } finally {
+    await page.close();
+  }
+});
+
+test("Pantoken code tabs support keyboard controls, safe demos and no-JS content", async () => {
+  const markdown = createPostMarkdown();
+  const code =
+    "::: tabs\n@tab HTML\n```html\n<p>Example</p>\n```\n@tab:active CSS\n```css {1}\np { color: red; }\n```\n:::";
+  const demo =
+    '::: demo\n@tab HTML\n```html\n<p id="result">Initial</p>\n```\n@tab CSS\n```css\np {color: rgb(255, 0, 0)}\n```\n@tab JS\n```js\ndocument.querySelector("p").textContent = "Rendered";\ntry { parent.document.body.dataset.escaped = "yes"; } catch {}\nfetch("https://example.com").catch(() => { document.body.dataset.network = "blocked"; });\n```\n:::';
+  const context = await browser.newContext();
+  const page = await context.newPage();
+  try {
+    await page.goto(`${urls.dist}/blog/my-posts-wordpress-plugin/`);
+    const stylesheet = await page.locator('link[rel="stylesheet"]').getAttribute("href");
+    await page.locator(".blog-prose").evaluate(
+      (element, html) => {
+        element.innerHTML = html;
+      },
+      createPostMarkdown({ stylesheet }).render(`${code}\n\n${demo}\n\n${code}`),
+    );
+    const groups = page.locator(".code-tabs");
+    expect(await groups.count()).toBe(3);
+    expect(await groups.first().locator("iframe").count()).toBe(0);
+    expect(
+      await groups
+        .first()
+        .locator(".panel")
+        .evaluateAll((elements) => elements.every((element) => !element.hidden)),
+    ).toBe(true);
+    const ids = await groups
+      .locator("[id]")
+      .evaluateAll((elements) => elements.map((element) => element.id));
+    expect(new Set(ids).size).toBe(ids.length);
+    await page.addScriptTag({
+      type: "module",
+      content: await readFile("src/scripts/code-tabs.js", "utf8"),
+    });
+    const first = groups.first();
+    await expect
+      .poll(() => first.getByRole("tab", { name: "CSS" }).getAttribute("aria-selected"))
+      .toBe("true");
+    await first.getByRole("tab", { name: "CSS" }).focus();
+    await page.keyboard.press("ArrowLeft");
+    expect(await first.getByRole("tab", { name: "HTML" }).getAttribute("aria-selected")).toBe(
+      "true",
+    );
+    await page.keyboard.press("End");
+    expect(await first.getByRole("tab", { name: "CSS" }).getAttribute("aria-selected")).toBe(
+      "true",
+    );
+    await page.keyboard.press("Home");
+    expect(await first.getByRole("tab", { name: "HTML" }).getAttribute("aria-selected")).toBe(
+      "true",
+    );
+    await groups.nth(1).getByRole("tab", { name: "Result" }).click();
+    const frame = page.frameLocator('iframe[title="Code example result"]');
+    await expect.poll(() => frame.locator("#result").textContent()).toBe("Rendered");
+    expect(
+      await frame.locator("#result").evaluate((element) => getComputedStyle(element).color),
+    ).toBe("rgb(255, 0, 0)");
+    expect(await page.locator("body").getAttribute("data-escaped")).toBeNull();
+    await expect.poll(() => frame.locator("body").getAttribute("data-network")).toBe("blocked");
+    expect(await groups.nth(1).locator("iframe").getAttribute("sandbox")).toBe("allow-scripts");
+    expect(await first.getByRole("tabpanel", { name: "HTML" }).isVisible()).toBe(true);
+    expect(
+      await groups.nth(2).getByRole("tab", { name: "CSS" }).getAttribute("aria-selected"),
+    ).toBe("true");
+    expect(
+      (await new AxeBuilder({ page }).include(".code-tabs").exclude("iframe").analyze()).violations,
+    ).toEqual([]);
+    expect(markdown.render('<iframe src="https://example.com"></iframe>')).not.toContain("iframe");
+    expect(markdown.render("```js\nconsole.log(1)\n```")).not.toContain("code-tabs");
+    expect(() => markdown.render("::: demo\n@tab A\n```python\nprint(1)\n```\n:::")).toThrow(
+      "Demo groups",
+    );
+  } finally {
+    await context.close();
+  }
+});
+
+test("tabbed and standalone demo results share the same bordered wrapper", async () => {
+  const page = await browser.newPage();
+  try {
+    await page.goto(`${urls.dist}/blog/my-posts-wordpress-plugin/`);
+    const stylesheet = await page.locator('link[rel="stylesheet"]').getAttribute("href");
+    const markdown = createPostMarkdown({ stylesheet });
+    const example = "@tab HTML\n```html\n<p>Same result</p>\n```\n";
+    await page.locator(".blog-prose").evaluate(
+      (element, html) => {
+        element.innerHTML = html;
+      },
+      markdown.render(`::: demo-result\n${example}:::\n\n::: demo\n${example}:::`),
+    );
+    const standalone = page.locator(".blog-prose > .code-demo");
+    const tabbed = page.locator(".code-tabs > .panel > .code-demo");
+    expect(await standalone.count()).toBe(1);
+    expect(await tabbed.count()).toBe(1);
+    expect(await standalone.locator("iframe").getAttribute("srcdoc")).toBe(
+      await tabbed.locator("iframe").getAttribute("srcdoc"),
+    );
+    const readStyles = (locator) =>
+      locator.evaluate((element) => {
+        const style = getComputedStyle(element);
+        return [
+          "borderTopWidth",
+          "borderTopStyle",
+          "borderTopColor",
+          "borderRadius",
+          "overflow",
+        ].map((property) => style[property]);
+      });
+    expect(await readStyles(tabbed)).toEqual(await readStyles(standalone));
+    expect(await standalone.evaluate((element) => getComputedStyle(element).borderTopStyle)).toBe(
+      "solid",
+    );
+    expect(await readStyles(tabbed.locator("iframe"))).toEqual(
+      await readStyles(standalone.locator("iframe")),
+    );
+  } finally {
+    await page.close();
+  }
+});
+
+test.each(["dist", "dist-baseline"])(
+  "%s: demo srcdocs share unprefixed Pantoken styles and public tokens",
+  async (directory) => {
+    const context = await browser.newContext();
+    const page = await context.newPage();
+    try {
+      await page.goto(urls[directory]);
+      const stylesheet = await page.locator('link[rel="stylesheet"]').getAttribute("href");
+      const example =
+        '<h2>Example</h2><p>Paragraph <a href="#example">link</a></p><input aria-label="Text"><button type="button">Plain button</button><div class="card" style="color:var(--color-text-muted);background:var(--component-card-background-color)">Public tokens</div>';
+      const html = createPostMarkdown({ stylesheet }).render(
+        `::: demo-result\n@tab HTML\n\`\`\`html\n${example}\n\`\`\`\n:::`,
+      );
+      expect(html).toContain("https://iywahl.com http://127.0.0.1:* http://localhost:*");
+      await page.locator("main").evaluate(
+        (element, content) => {
+          element.innerHTML = `<div class="blog-prose"><div id="base-probe" class="blog-prose">${content.example}</div>${content.html}</div>`;
+        },
+        { example, html },
+      );
+      await page.addScriptTag({
+        type: "module",
+        content: await readFile("src/scripts/code-tabs.js", "utf8"),
+      });
+      const frame = page.frameLocator('iframe[title="Code example result"]');
+      const styles = (locator) =>
+        locator.evaluateAll((elements) =>
+          elements.map((element) => {
+            const style = getComputedStyle(element);
+            return [
+              "fontFamily",
+              "fontSize",
+              "fontWeight",
+              "lineHeight",
+              "color",
+              "backgroundColor",
+              "paddingTop",
+              "marginTop",
+              "marginBottom",
+            ].map((property) => style[property]);
+          }),
+        );
+      for (const scheme of ["light", "dark"]) {
+        await page.locator("html").evaluate((element, value) => {
+          element.dataset.colorScheme = value;
+        }, scheme);
+        await expect
+          .poll(() => frame.locator("html").getAttribute("data-color-scheme"))
+          .toBe(scheme);
+        await frame.locator("h2").evaluate(() => document.fonts.ready);
+        await expect
+          .poll(() => styles(frame.locator("h2, p, a, input, button, .card")))
+          .toEqual(
+            await styles(
+              page.locator(
+                "#base-probe h2, #base-probe p, #base-probe a, #base-probe input, #base-probe button, #base-probe .card",
+              ),
+            ),
+          );
+        expect(
+          await frame.locator(".card").evaluate((element) => getComputedStyle(element).color),
+        ).not.toBe(
+          await frame.locator("body").evaluate((element) => getComputedStyle(element).color),
+        );
+        expect(
+          await frame
+            .locator(".card")
+            .evaluate((element) => parseFloat(getComputedStyle(element).paddingTop)),
+        ).toBeGreaterThan(0);
+        for (const input of [page.locator("#base-probe input"), frame.locator("input")]) {
+          await input.evaluate((element) => {
+            element.style.transition = "none";
+          });
+        }
+        await page.locator("#base-probe input").focus();
+        const focusColor = await page
+          .locator("#base-probe input")
+          .evaluate((element) => getComputedStyle(element).outlineColor);
+        await frame.locator("input").focus();
+        await page.waitForTimeout(200);
+        expect(
+          await frame
+            .locator("input")
+            .evaluate((element) => getComputedStyle(element).outlineStyle),
+        ).toBe("solid");
+        expect(
+          await frame
+            .locator("input")
+            .evaluate((element) => getComputedStyle(element).outlineWidth),
+        ).not.toBe("0px");
+        expect(
+          await frame
+            .locator("input")
+            .evaluate((element) => getComputedStyle(element).outlineColor),
+        ).toBe(focusColor);
+        expect(await frame.locator("button").getAttribute("class")).toBeNull();
+        expect(await frame.locator("html").getAttribute("data-pantoken-theme")).toBe("rebrand");
+        expect(await frame.locator("html").getAttribute("data-pantoken-color")).toBe("sea");
+        expect(
+          await frame
+            .locator("body")
+            .evaluate(() =>
+              [...document.fonts].some(
+                (font) =>
+                  font.family.includes("Atkinson Hyperlegible Next") && font.status === "loaded",
+              ),
+            ),
+        ).toBe(true);
+      }
+    } finally {
+      await context.close();
+    }
+  },
+);
+
+test("standalone and tabbed code results follow light, dark, and system themes", async () => {
+  const context = await browser.newContext({ colorScheme: "light" });
+  const page = await context.newPage();
+  try {
+    await page.goto(`${urls.dist}/blog/my-posts-wordpress-plugin/`);
+    const stylesheet = await page.locator('link[rel="stylesheet"]').getAttribute("href");
+    const markdown = createPostMarkdown({ stylesheet });
+    const source = "@tab HTML\n```html\n<p>Theme preview</p>\n```\n";
+    await page.locator(".blog-prose").evaluate(
+      (element, html) => {
+        element.innerHTML = html;
+      },
+      markdown.render(`::: demo-result\n${source}:::\n\n::: demo\n${source}:::`),
+    );
+    await page.addScriptTag({
+      type: "module",
+      content: await readFile("src/scripts/code-tabs.js", "utf8"),
+    });
+    await page.getByRole("tab", { name: "Result", exact: true }).click();
+    for (const mode of ["light", "dark", "system"]) {
+      await page.locator(`[data-color-mode="${mode}"]`).click();
+      const schemes = mode === "system" ? ["light", "dark"] : [mode];
+      for (const scheme of schemes) {
+        if (mode === "system") await page.emulateMedia({ colorScheme: scheme });
+        await expect
+          .poll(() => page.locator("html").getAttribute("data-color-scheme"))
+          .toBe(scheme);
+        const background = await page
+          .locator("html")
+          .evaluate((element) => getComputedStyle(element).backgroundColor);
+        for (const selector of [
+          ".blog-prose > .code-demo > iframe",
+          ".code-tabs .code-demo > iframe",
+        ]) {
+          const iframe = page.locator(selector);
+          const frame = page.frameLocator(selector);
+          await expect
+            .poll(() => frame.locator("html").getAttribute("data-color-scheme"))
+            .toBe(scheme);
+          await expect
+            .poll(() =>
+              frame
+                .locator("html")
+                .evaluate((element) => getComputedStyle(element).backgroundColor),
+            )
+            .toBe(background);
+          expect(
+            await iframe.evaluate((element) => getComputedStyle(element).backgroundColor),
+          ).toBe(background);
+          expect(await iframe.getAttribute("sandbox")).toBe("allow-scripts");
+        }
+      }
+    }
+  } finally {
+    await context.close();
+  }
+});
+
+test("demo frames grow and shrink with content without vertical scrollbars", async () => {
+  const page = await browser.newPage();
+  try {
+    await page.goto(`${urls.dist}/blog/my-posts-wordpress-plugin/`);
+    const stylesheet = await page.locator('link[rel="stylesheet"]').getAttribute("href");
+    const source =
+      '@tab HTML\n```html\n<div id="content" style="height:600px">Example</div>\n```\n';
+    await page.locator(".blog-prose").evaluate(
+      (element, html) => {
+        element.innerHTML = html;
+      },
+      createPostMarkdown({ stylesheet }).render(
+        `::: demo-result\n${source}:::\n\n::: demo\n${source}:::`,
+      ),
+    );
+    await page.addScriptTag({
+      type: "module",
+      content: await readFile("src/scripts/code-tabs.js", "utf8"),
+    });
+    await page.getByRole("tab", { name: "Result", exact: true }).click();
+    for (const selector of [
+      ".blog-prose > .code-demo > iframe",
+      ".code-tabs .code-demo > iframe",
+    ]) {
+      const iframe = page.locator(selector);
+      const frame = page.frameLocator(selector);
+      for (const height of [600, 90, 900, 120]) {
+        await frame.locator("#content").evaluate((element, value) => {
+          element.style.height = `${value}px`;
+        }, height);
+        await expect.poll(() => iframe.evaluate((element) => element.clientHeight)).toBe(height);
+        expect(
+          await frame
+            .locator("html")
+            .evaluate((element) => element.scrollHeight <= element.clientHeight),
+        ).toBe(true);
+      }
+    }
+    const before = await page
+      .locator("iframe")
+      .first()
+      .evaluate((element) => element.clientHeight);
+    await page.evaluate(() =>
+      window.postMessage({ type: "iywahl-demo-height", height: 12345 }, "*"),
+    );
+    expect(
+      await page
+        .locator("iframe")
+        .first()
+        .evaluate((element) => element.clientHeight),
+    ).toBe(before);
+  } finally {
+    await page.close();
+  }
+});
+
+test("dev watcher regenerates posts and reloads clients after source edits", async () => {
+  const handlers = {};
+  const messages = [];
+  const errors = [];
+  let generations = 0;
+  site({
+    optimize: false,
+    renderTemplates: false,
+    regenerate: async () => {
+      generations++;
+    },
+  }).configureServer({
+    middlewares: { use() {} },
+    watcher: {
+      add() {},
+      on(event, handler) {
+        handlers[event] = handler;
+      },
+    },
+    ws: {
+      send(message) {
+        messages.push(message);
+      },
+    },
+    config: {
+      logger: {
+        error(error) {
+          errors.push(error);
+        },
+      },
+    },
+  });
+  handlers.all("change", resolve("src/blog/posts/example/index.md"));
+  await expect.poll(() => generations).toBe(1);
+  expect(messages).toEqual([{ type: "full-reload" }]);
+  expect(errors).toEqual([]);
+  handlers.all("change", resolve(".generated/site/blog/example/index.html"));
+  await new Promise((resolve) => setTimeout(resolve, 120));
+  expect(generations).toBe(1);
+});
+
+test("production and baseline demo frames reference the bundled site stylesheet", async () => {
+  const html = createPostMarkdown().render(
+    "::: demo-result\n@tab HTML\n```html\n<p>Example</p>\n```\n:::",
+  );
+  for (const optimize of [false, true]) {
+    const bundle = {
+      css: { type: "asset", fileName: "assets/site-test.css", source: "body { color: black; }" },
+      html: { type: "asset", fileName: "example.html", source: html },
+    };
+    await site({ optimize }).generateBundle({}, bundle);
+    expect(bundle.html.source).toContain("/assets/site-test.css");
+    expect(bundle.html.source).not.toContain("/styles/site.css");
+  }
+});
+
+test("Shiki line numbers appear in both themes and stay out of copied code", async () => {
+  const markdown = createPostMarkdown();
+  const body = "```js {2}\nconst a = 1;\nconst b = 2;\n```\n\n```\nplain text\n```";
+  const page = await browser.newPage();
+  try {
+    await page.goto(`${urls.dist}/blog/my-posts-wordpress-plugin/`);
+    await page.locator(".blog-prose").evaluate((element, html) => {
+      element.innerHTML = html;
+    }, markdown.render(body));
+    for (const colorScheme of ["light", "dark"]) {
+      await page.locator("html").evaluate((element, scheme) => {
+        element.dataset.colorScheme = scheme;
+      }, colorScheme);
+      expect(
+        await page.locator(".shiki .line").evaluateAll((elements) =>
+          elements.map((element) => {
+            const style = getComputedStyle(element, "::before");
+            return {
+              number: style.content,
+              selection: style.userSelect,
+              width: parseFloat(style.minWidth),
+            };
+          }),
+        ),
+      ).toEqual([
+        { number: '"1"', selection: "none", width: expect.any(Number) },
+        { number: '"2"', selection: "none", width: expect.any(Number) },
+        { number: '"1"', selection: "none", width: expect.any(Number) },
+      ]);
+      expect(
+        await page
+          .locator(".line.highlighted")
+          .evaluate((element) => getComputedStyle(element).backgroundColor),
+      ).not.toBe("rgba(0, 0, 0, 0)");
+    }
+    expect(
+      await page
+        .locator("code")
+        .first()
+        .evaluate((element) => {
+          const selection = getSelection();
+          const range = document.createRange();
+          range.selectNodeContents(element);
+          selection.removeAllRanges();
+          selection.addRange(range);
+          return selection.toString();
+        }),
+    ).toBe("const a = 1;\nconst b = 2;");
+  } finally {
+    await page.close();
+  }
+});
+
 test("new posts highlight code literally and drafts remove stale generated routes", async () => {
   const directory = "src/blog/posts/integration-draft-probe";
   const body =
-    "---\ntitle: Integration probe\npublished_at: 2026-10-09T00:00:00Z\ndraft: false\ntags: Test\n---\n\n```js\n{{ undefined_example }}\n```\n\n    <script>literal()</script>\n\n<script>unsafe()</script>\n";
+    "---\ntitle: Integration probe\npublished_at: 2026-10-09T00:00:00Z\ndraft: false\ntags: Test\n---\n\n```js {1}\n{{ undefined_example }}\n```\n\n    <script>literal()</script>\n\n<script>unsafe()</script>\n";
   await mkdir(directory, { recursive: true });
   try {
     await writeFile(`${directory}/index.md`, body);
@@ -1016,6 +1781,7 @@ test("new posts highlight code literally and drafts remove stale generated route
     expect(html).toContain("--shiki-light:#");
     expect(html).toContain("--shiki-dark:#");
     expect(html).toContain("undefined_example");
+    expect(html).toContain('class="line highlighted"');
     expect(html).toContain("&lt;script&gt;literal()&lt;/script&gt;");
     expect(html).not.toContain("<script>unsafe()");
     expect(await readFile(resolve(staging, "blog/integration-draft-probe/example.png"))).toEqual(
@@ -1230,13 +1996,58 @@ for (const colorScheme of ["light", "dark"]) {
   );
 }
 
+test.skipIf(!process.env.CMS_TEST_URL)("local Decap renders sandboxed demo tabs", async () => {
+  const directory = "src/blog/posts/integration-demo-probe";
+  await expect(access(directory)).rejects.toThrow();
+  await mkdir(directory);
+  const source =
+    "---\ntitle: CMS demo probe\npublished_at: 2024-01-30T00:48:19.476Z\ndraft: true\n---\n\n::: demo\n@tab HTML\n```html\n<p id=\"result\">Initial</p>\n```\n@tab JavaScript\n```js\ndocument.querySelector('p').textContent = 'Preview result';\n```\n:::";
+  const context = await browser.newContext();
+  const page = await context.newPage();
+  try {
+    await writeFile(`${directory}/index.md`, source);
+    await page.goto(process.env.CMS_TEST_URL);
+    await page.getByRole("button", { name: /Login/i }).click();
+    await page.getByRole("link", { name: "CMS demo probe", exact: true }).click();
+    const preview = page.frameLocator("#preview-pane");
+    await preview.getByRole("tab", { name: "Result", exact: true }).click();
+    await expect
+      .poll(() => preview.frameLocator("iframe").locator("#result").textContent())
+      .toBe("Preview result");
+    expect(await preview.locator("iframe").getAttribute("sandbox")).toBe("allow-scripts");
+    const result = preview.frameLocator("iframe");
+    expect(await result.locator("html").getAttribute("data-color-scheme")).toBe("light");
+    await result.locator("p").evaluate(() => document.fonts.ready);
+    expect(
+      await result.locator("p").evaluate((element) => getComputedStyle(element).fontFamily),
+    ).toContain("Atkinson Hyperlegible Next");
+    expect(
+      await result
+        .locator("body")
+        .evaluate(() =>
+          [...document.fonts].some(
+            (font) =>
+              font.family.includes("Atkinson Hyperlegible Next") && font.status === "loaded",
+          ),
+        ),
+    ).toBe(true);
+    await preview.getByRole("tab", { name: "HTML", exact: true }).click();
+    expect(await preview.getByRole("tabpanel", { name: "HTML", exact: true }).isVisible()).toBe(
+      true,
+    );
+  } finally {
+    await context.close();
+    await rm(directory, { recursive: true, force: true });
+  }
+});
+
 test.skipIf(!process.env.CMS_TEST_URL)(
   "local Decap preserves Markdown and slugs and writes uploaded media",
   async () => {
     const directory = "src/blog/posts/integration-cms-probe";
     const media = `${directory}/cms-integration-probe.png`;
     const body =
-      "This is a temporary **Markdown** round-trip check.\n\n```njk\n{{ literal_template }}\n```\n\n    <script>literal_code()</script>\n";
+      "This is a temporary **Markdown** round-trip check.\n\n::: tabs\n@tab Template\n```njk {1}\n{{ literal_template }}\n```\n@tab Text\nPlain example\n:::\n\n    <script>literal_code()</script>\n";
     const source = `---\ntitle: CMS integration probe\npublished_at: 2024-01-30T00:48:19.476Z\nmodified_at:\nsnippet: Local CMS test\ntags: Deno, Fresh\nauthors: Danny Wahl\ndraft: true\n---\n\n${body}`;
     await expect(access(`${directory}/index.md`)).rejects.toThrow();
     await expect(access(media)).rejects.toThrow();
@@ -1249,6 +2060,46 @@ test.skipIf(!process.env.CMS_TEST_URL)(
       await page.goto(process.env.CMS_TEST_URL);
       await page.getByRole("button", { name: /Login/i }).click();
       await page.getByRole("link", { name: "CMS integration probe", exact: true }).click();
+      await expect.poll(() => page.frames().length).toBe(2);
+      const preview = page.frames().find((frame) => frame !== page.mainFrame());
+      await preview.locator(".shiki .line.highlighted").waitFor();
+      expect(
+        await preview
+          .locator(".shiki .line.highlighted")
+          .evaluate((element) => getComputedStyle(element, "::before").content),
+      ).toBe('"1"');
+      await preview.getByRole("tab", { name: "Text", exact: true }).click();
+      expect(
+        await preview.getByRole("tabpanel", { name: "Text", exact: true }).textContent(),
+      ).toContain("Plain example");
+      await preview.getByRole("tab", { name: "Template", exact: true }).click();
+      expect(await preview.locator(".shiki .line.highlighted").textContent()).toBe(
+        "{{ literal_template }}",
+      );
+      expect(await preview.locator(".shiki").count()).toBe(1);
+      const endpoint = new URL("preview/render", process.env.CMS_TEST_URL).href;
+      const rendered = await page.request.post(endpoint, { data: { body } });
+      expect(rendered.status()).toBe(200);
+      expect(await rendered.text()).toBe(createPostMarkdown().render(body));
+      expect((await page.request.post(endpoint, { data: { body: 42 } })).status()).toBe(400);
+      expect(
+        (await page.request.post(endpoint, { data: { body: "x".repeat(1024 * 1024) } })).status(),
+      ).toBe(413);
+      expect(
+        (
+          await page.request.post(endpoint, {
+            data: { body },
+            headers: { Origin: "https://example.com" },
+          })
+        ).status(),
+      ).toBe(403);
+      expect(
+        (
+          await page.request.post(endpoint, {
+            data: { body: "```not-a-real-language\nexample\n```" },
+          })
+        ).status(),
+      ).toBe(422);
       await page.locator("[id^=title-field]").fill("CMS integration probe renamed");
       await page.getByRole("button", { name: "Publish", exact: true }).click();
       await page.getByText("Publish now", { exact: true }).click();
@@ -1287,6 +2138,20 @@ test.skipIf(!process.env.CMS_TEST_URL)(
           buffer: await readFile("public/assets/favicon/iywahl-favicon.png"),
         });
         await uploadPage.getByText("Choose selected", { exact: true }).click();
+        await expect
+          .poll(() => {
+            const frame = uploadPage.frames().find((frame) => frame !== uploadPage.mainFrame());
+            return (
+              frame
+                ?.locator('.blog-prose img[data-cms-asset*="cms-integration-probe"]')
+                .evaluateAll(
+                  (images) =>
+                    images.length > 0 &&
+                    images.every((image) => image.complete && image.naturalWidth > 0),
+                ) ?? false
+            );
+          })
+          .toBe(true);
         await uploadPage.getByRole("button", { name: "Publish", exact: true }).click();
         await uploadPage.getByText("Publish now", { exact: true }).click();
         await expect

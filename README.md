@@ -22,7 +22,8 @@ npm run dev
 ```
 
 Vite prints the local URL and reloads when the page, partial, project data, or SVG
-assets change. Use `npm run build` to generate `dist/` and `npm run preview` to
+assets change. Markdown post edits regenerate the site and reload the page,
+including its demo frames. Use `npm run build` to generate `dist/` and `npm run preview` to
 inspect the production output. Generated files are not committed.
 
 ## Source
@@ -51,13 +52,25 @@ both light and dark artwork are retained in PNG and SVG formats.
 
 ## Production Optimization
 
-All token, component, theme, and site CSS is combined before Pantoken's
-`@pantoken/plugin-props-minify` prunes unused custom properties, flattens typed
-registrations, and consistently shortens property names. Vite then minifies the
-CSS and fingerprints assets. HTML is minified after template rendering. There
-is no token-generation or template runtime in the browser.
+All token, component, theme, and site CSS is combined and transformed to omit
+Pantoken's `instui-` prefix: `.instui-card` becomes `.card`, and
+`--instui-component-card-background-color` becomes `--component-card-background-color`.
+The same transform runs for the site and CMS preview; demo srcdocs load that
+shared stylesheet. Author component classes and CSS variables without the prefix.
+The homepage and blog reuse the same theme-switcher partial to keep component
+classes consistent.
+Production prunes unused tokens while preserving references from generated HTML
+and published Markdown examples, including their transitive dependencies.
+It then flattens typed `@property` registrations into plain declarations to
+remove registration overhead; production does not retain typed-token animation
+or validation semantics.
+Development and CMS previews retain all tokens for unsaved examples. Readable
+names remain unchanged in production; name mangling is disabled so example CSS
+can use the same names as the site. Vite still minifies CSS and fingerprints assets,
+and HTML is minified after template rendering. There is no token-generation or
+template runtime in the browser.
 
-Readable CSS property names remain available during development. Blue palette
+Blue palette
 values are derived from the installed package to isolate blue cards from the
 page's sea palette. Fonts and required third-party attribution ship locally.
 Production retains the normal and italic 400, 500, 600, and 700 font weights
@@ -155,8 +168,58 @@ override the default ports 8079 and 8081. Stop with Ctrl-C.
 On startup, the CMS compiles the site's stylesheet and local fonts into its
 ignored preview cache. The preview uses the blog's typography, theme, article
 card, and topic pills, always in light mode to match the editor. Restart the
-CMS after changing site styles. The body still uses Decap's Markdown preview,
-not the site's Markdown Exit/Shiki renderer, so syntax highlighting can differ.
+CMS after changing site styles. The body uses the same sanitized Markdown
+Exit/Shiki renderer as the site, including heading anchors and code highlighting.
+Preview rendering stays local; preview requests are limited to 1 MiB.
+
+Highlight code lines using fence metadata such as `js {2,4-6}`, or append
+`// [!code highlight]` to a line. A standalone `// [!code highlight:2]`
+highlights the next two lines. These work in both the site and CMS preview.
+Code blocks show line numbers starting at 1; numbers are excluded from copied code.
+
+Group examples using `@mdit/plugin-tab` syntax with Pantoken tabs:
+
+````md
+::: tabs
+@tab HTML
+
+```html
+<p>Hello</p>
+```
+
+@tab CSS
+
+```css
+p {
+  color: rebeccapurple;
+}
+```
+:::
+````
+
+Use `::: demo` instead of `::: tabs` to add a **Result** panel assembled
+from the same source fences. Use `::: demo-result` to show only the rendered
+result, with no source tabs. Demos accept at most one `html`, `css`, and
+`js` (or `javascript`) fence; any subset is allowed. Code-only tabs never
+execute their examples. Ordinary fences remain unchanged. Use
+`@tab:active Title` to select an initial tab.
+
+Result frames load the blog's compiled stylesheet and fonts with the same
+Pantoken theme, typography, base spacing, and focus styles. Plain elements
+remain plain elements: no component classes are added to example HTML, and
+example CSS takes precedence over the base styles.
+Site demos follow the Light/System/Dark control; CMS demos stay light.
+Explicit colors in example CSS are not rewritten for dark mode.
+Demo frames automatically adjust their height when content, fonts, or viewport
+width change, including when a Result tab becomes visible.
+Result frames allow scripts but not same-origin access, forms, popups, or
+top-level navigation. Their content security policy permits same-site styles
+and fonts from `https://iywahl.com` and loopback development servers
+(`127.0.0.1` / `localhost`) but blocks other external assets and network requests; examples
+must otherwise be self-contained. Neither nested demo groups
+nor duplicate language fences are supported. Tabs work with mouse and
+Left/Right/Home/End keys in both the site and CMS. Without JavaScript, all
+panels remain readable.
 
 **Publish now** saves files in this checkout. It does not commit, push, or deploy;
 the post's **Draft** field controls whether the site build includes it. Run

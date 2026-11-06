@@ -16,16 +16,19 @@
 @import "@pantoken/components/icons/monitor.css";
 @import "@pantoken/components/icons/moon.css";
 @import "@pantoken/components/icons/tag.css";
+@import "@pantoken/components/tabs.css";
+@import "@pantoken/components/tabs.tab.css";
+@import "@pantoken/components/tabs.panel.css";
 
 :root {
   color-scheme: light dark;
-  --instui-font-family-heading: var(--instui-font-family-base);
-  --instui-component-heading-h1-font-family: var(--instui-font-family-base);
-  --instui-component-shared-tokens-focus-outline-info-color: var(
-    --instui-color-stroke-interactive-focus-ring-base
+  --font-family-heading: var(--font-family-base);
+  --component-heading-h1-font-family: var(--font-family-base);
+  --component-shared-tokens-focus-outline-info-color: var(
+    --color-stroke-interactive-focus-ring-base
   );
-  --instui-focus-outline-color: var(--instui-component-shared-tokens-focus-outline-info-color);
-  --instui-component-card-background-color: var(--instui-color-background-container);
+  --focus-outline-color: var(--component-shared-tokens-focus-outline-info-color);
+  --component-card-background-color: var(--color-background-container);
 }
 
 body {
@@ -42,8 +45,8 @@ body {
 
 .theme-switcher {
   position: absolute;
-  inset-block-start: max(var(--instui-spacing-space-sm), env(safe-area-inset-top));
-  inset-inline-end: max(var(--instui-spacing-space-sm), env(safe-area-inset-right));
+  inset-block-start: max(var(--spacing-space-sm), env(safe-area-inset-top));
+  inset-inline-end: max(var(--spacing-space-sm), env(safe-area-inset-right));
   z-index: 10;
 }
 
@@ -55,39 +58,39 @@ main {
   max-width: 1440px;
   margin-inline: auto;
   padding: clamp(
-    var(--instui-spacing-padding-container-sm),
+    var(--spacing-padding-container-sm),
     4vw,
-    calc(var(--instui-spacing-padding-container-lg) + var(--instui-spacing-padding-container-sm))
+    calc(var(--spacing-padding-container-lg) + var(--spacing-padding-container-sm))
   );
   padding-block-start: calc(
-    var(--instui-spacing-padding-container-lg) + var(--instui-spacing-padding-container-sm)
+    var(--spacing-padding-container-lg) + var(--spacing-padding-container-sm)
   );
 }
 
 .gallery {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: var(--instui-spacing-gap-cards-lg);
+  gap: var(--spacing-gap-cards-lg);
 }
 
-.card {
+.project-card {
   min-width: 0;
   transition: box-shadow 180ms ease;
 }
 
 .project-card:hover,
 .project-card:focus-within {
-  box-shadow: var(--instui-elevation-cardHover);
+  box-shadow: var(--elevation-cardHover);
 }
 
-.project-card.instui-card {
+.project-card.card {
   padding: 0;
 }
 
 .project-card:has(.project-link:focus-visible) {
-  outline: var(--instui-focus-outline-width) var(--instui-focus-outline-style)
-    var(--instui-color-stroke-interactive-focus-ring-base);
-  outline-offset: var(--instui-focus-outline-offset);
+  outline: var(--focus-outline-width) var(--focus-outline-style)
+    var(--color-stroke-interactive-focus-ring-base);
+  outline-offset: var(--focus-outline-offset);
 }
 
 .project-link {
@@ -128,17 +131,13 @@ main {
 .project-caption {
   position: relative;
   margin-top: auto;
-  background: var(--instui-component-card-background-color);
+  background: var(--component-card-background-color);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--instui-spacing-gap-cards-md);
-  padding: clamp(var(--instui-spacing-space-sm), 1.4vw, var(--instui-spacing-padding-container-sm))
-    clamp(
-      var(--instui-spacing-padding-container-xs),
-      2vw,
-      var(--instui-spacing-padding-container-md)
-    );
+  gap: var(--spacing-gap-cards-md);
+  padding: clamp(var(--spacing-space-sm), 1.4vw, var(--spacing-padding-container-sm))
+    clamp(var(--spacing-padding-container-xs), 2vw, var(--spacing-padding-container-md));
 }
 
 .project-caption strong {
@@ -146,32 +145,32 @@ main {
 }
 
 .project-caption span {
-  font-size: var(--instui-font-size-text-sm);
-  color: var(--instui-color-text-interactive-navigation-primary-base);
+  font-size: var(--font-size-text-sm);
+  color: var(--color-text-interactive-navigation-primary-base);
 }
 
 .project-caption > span {
   display: inline-flex;
   align-items: center;
-  gap: var(--instui-spacing-space-xs);
+  gap: var(--spacing-space-xs);
 }
 
 .project-link:hover .project-caption span,
 .project-link:focus-visible .project-caption span {
-  color: var(--instui-color-text-interactive-navigation-primary-hover);
+  color: var(--color-text-interactive-navigation-primary-hover);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 
 .page-footer {
-  margin-top: var(--instui-spacing-space2xl);
+  margin-top: var(--spacing-space2xl);
   text-align: center;
-  color: var(--instui-color-text-muted);
+  color: var(--color-text-muted);
 }
 
 .page-footer p {
   margin-bottom: 0;
-  font-size: var(--instui-font-size-text-sm);
+  font-size: var(--font-size-text-sm);
 }
 
 .blog-main {
@@ -213,7 +212,7 @@ main {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: var(--instui-spacing-gap-cards-md);
+  gap: var(--spacing-gap-cards-md);
 }
 
 .post-list p {
@@ -224,7 +223,7 @@ main {
 
 .post-meta {
   font-size: 0.875rem;
-  color: var(--instui-color-text-muted);
+  color: var(--color-text-muted);
 }
 
 .post-header {
@@ -245,11 +244,11 @@ main {
 }
 
 .post-topic-pill {
-  --topic-brand-color: var(--instui-component-pill-base-text-color);
+  --topic-brand-color: var(--component-pill-base-text-color);
 }
 
 .post-topics a.post-topic-pill {
-  color: var(--instui-component-pill-base-text-color);
+  color: var(--component-pill-base-text-color);
   text-decoration: none;
 }
 
@@ -257,11 +256,11 @@ main {
   background: color-mix(
     in srgb,
     var(--topic-brand-color) 12%,
-    var(--instui-component-pill-neutral-background-color)
+    var(--component-pill-neutral-background-color)
   );
 }
 
-.post-topic-pill .instui-icon {
+.post-topic-pill .icon {
   color: light-dark(
     color-mix(in srgb, var(--topic-brand-color) 60%, black),
     color-mix(in srgb, var(--topic-brand-color) 35%, white)
@@ -278,11 +277,38 @@ main {
   overflow-wrap: anywhere;
 }
 
+.card.blog-prose:has(> .blog-post-content) {
+  padding: var(--spacing-padding-container-sm);
+}
+
+@media (min-width: 30em) {
+  .card.blog-prose:has(> .blog-post-content) {
+    padding: var(--spacing-padding-container-md);
+  }
+}
+
+@media (min-width: 48em) {
+  .card.blog-prose:has(> .blog-post-content) {
+    padding: var(--spacing-padding-container-lg);
+  }
+}
+
+.blog-post-content {
+  width: 100%;
+  max-width: 65ch;
+  margin-inline: auto;
+}
+
 .blog-prose > :first-child {
   margin-block-start: 0;
 }
 
-.blog-prose > :last-child {
+.blog-post-content > :first-child {
+  margin-block-start: max(0px, calc((100cqi - 100%) / 2));
+}
+
+.blog-prose > :last-child,
+.blog-post-content > :last-child {
   margin-block-end: 0;
 }
 
@@ -293,6 +319,10 @@ main {
   margin-block: 24px;
 }
 
+.blog-post-content > :first-child > img:first-child {
+  margin-block-start: 0;
+}
+
 .blog-prose figure {
   margin-inline: 0;
 }
@@ -301,7 +331,7 @@ main {
   max-width: 100%;
   overflow-x: auto;
   padding: 16px;
-  background: var(--instui-color-background-container);
+  background: var(--color-background-container);
   font-size: 0.875rem;
   line-height: 1.6;
   white-space: pre;
@@ -321,13 +351,13 @@ main {
 .blog-prose th,
 .blog-prose td {
   padding: 8px;
-  border: 1px solid var(--instui-color-text-muted);
+  border: 1px solid var(--color-text-muted);
 }
 
 .blog-prose blockquote {
   margin-inline: 0;
   padding-inline-start: 20px;
-  border-inline-start: 3px solid var(--instui-color-text-muted);
+  border-inline-start: 3px solid var(--color-text-muted);
 }
 
 .blog-prose .shiki {
@@ -339,6 +369,48 @@ main {
   color: light-dark(var(--shiki-light), var(--shiki-dark));
 }
 
+.blog-prose .shiki .line {
+  display: inline-block;
+  min-width: 100%;
+}
+
+.blog-prose .shiki .line::before {
+  content: attr(data-line);
+  display: inline-block;
+  min-width: 4ch;
+  margin-inline-end: 1em;
+  text-align: end;
+  color: light-dark(#57606a, #8b949e);
+  user-select: none;
+}
+
+.blog-prose .shiki .line.highlighted {
+  background-color: light-dark(#e6edf5, #303c4f);
+}
+
+.code-tabs {
+  margin-block: 24px;
+}
+
+.code-demo {
+  margin-block: 24px;
+  border: var(--border-width-sm) solid var(--color-stroke-base);
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+}
+
+.code-demo > iframe {
+  display: block;
+  width: 100%;
+  border: 0;
+  background: var(--color-background-page);
+}
+
+.code-tabs > .list > .tab:focus-visible {
+  outline: 2px solid var(--color-stroke-interactive-focus-ring-base);
+  outline-offset: -2px;
+}
+
 .post-adjacent {
   display: flex;
   flex-direction: row;
@@ -347,9 +419,23 @@ main {
   margin-block-start: 16px;
 }
 
+.post-adjacent .post-older {
+  margin-inline-start: auto;
+}
+
 .blog-pagination {
   margin-block-start: 24px;
   justify-content: space-between;
+}
+
+.archive-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-gap-cards-md);
+}
+
+.archive-year {
+  padding-inline-start: var(--spacing-padding-container-md);
 }
 
 .archive-year ul {
@@ -432,21 +518,21 @@ main {
 
 @media (max-width: 420px) {
   .project-caption {
-    padding: var(--instui-spacing-space-sm) var(--instui-spacing-padding-container-xs);
-    gap: var(--instui-spacing-space-sm);
+    padding: var(--spacing-space-sm) var(--spacing-padding-container-xs);
+    gap: var(--spacing-space-sm);
   }
 
   .project-caption strong {
-    font-size: var(--instui-font-size-text-sm);
+    font-size: var(--font-size-text-sm);
   }
 
   .project-caption span {
-    font-size: var(--instui-font-size-text-xs);
+    font-size: var(--font-size-text-xs);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .card {
+  .project-card {
     transition: none;
   }
 }

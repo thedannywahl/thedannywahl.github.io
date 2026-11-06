@@ -1,4 +1,4 @@
-<article class="instui-card card project-card" data-pantoken-theme="rebrand" data-pantoken-color="{{ project.color }}">
+<article class="card project-card" data-pantoken-theme="rebrand" data-pantoken-color="{{ project.color }}">
   {% set isInternal = project.url[0] == '/' %}
   {% set displayUrl = project.url | replace('https://', '') %}
   {% if isInternal and displayUrl[displayUrl.length - 1] == '/' %}
@@ -11,7 +11,7 @@
     </div>
     <div class="project-caption">
       <strong>{{ project.name }}</strong>
-      <span>{{ displayUrl }}{% if not isInternal %} <span class="instui-icon -icon-external-link" aria-hidden="true"></span>{% endif %}</span>
+      <span>{{ displayUrl }}{% if not isInternal %} <span class="icon -icon-external-link" aria-hidden="true"></span>{% endif %}</span>
     </div>
   </a>
 </article>

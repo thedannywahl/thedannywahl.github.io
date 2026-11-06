@@ -1,67 +1,113 @@
-import { existsSync, readFileSync, readdirSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
-import { join, sep } from 'node:path';
-import nunjucks from 'nunjucks';
-import { optimize as optimizeSvg } from 'svgo';
-import { minify } from 'html-minifier-terser';
-import { blogAssets } from './generate.js';
+import { existsSync, readFileSync, readdirSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import { join, resolve, sep } from "node:path";
+import nunjucks from "nunjucks";
+import { optimize as optimizeSvg } from "svgo";
+import { minify } from "html-minifier-terser";
+import { blogAssets } from "./generate.js";
 
-const source = fileURLToPath(new URL('../src/', import.meta.url));
-const projectAssets = join(source, 'assets/projects');
-const dataPath = join(source, 'data/projects.json');
+const source = resolve(fileURLToPath(new URL("../src/", import.meta.url)));
+const projectAssets = join(source, "assets/projects");
+const dataPath = join(source, "data/projects.json");
 
 export function structuredData(
-  title = 'Accessible Web Tools by Danny Wahl | Pantoken & CSSDoc',
-  description = 'Pantoken, CSSDoc, and automatica11y \u2014 tools for building and documenting the accessible web.',
-  path = '/', post = null,
+  title = "Accessible Web Tools by Danny Wahl | Pantoken & CSSDoc",
+  description = "Pantoken, CSSDoc, and automatica11y \u2014 tools for building and documenting the accessible web.",
+  path = "/",
+  post = null,
 ) {
-  const origin = 'https://iywahl.com';
-  const url = new URL(path.replace(/index\.html$/, ''), origin).href;
-  const person = { '@type': 'Person', '@id': `${origin}/#person`, name: 'Danny Wahl', url: `${origin}/` };
-  const image = { '@type': 'ImageObject', '@id': `${origin}/#social-image`,
-    url: `${origin}/assets/social/iywahl-og-light.png`, contentUrl: `${origin}/assets/social/iywahl-og-light.png`,
-    width: 1200, height: 630, caption: 'iyWahl. I break things. Danny Wahl. Software, technology, and EdTech.' };
-  const website = { '@type': 'WebSite', '@id': `${origin}/#website`, name: 'iyWahl', url: `${origin}/`,
-    publisher: { '@id': person['@id'] }, inLanguage: 'en' };
-  const page = { '@type': path === '/' ? 'ProfilePage' : post ? 'WebPage' : 'CollectionPage',
-    '@id': `${url}#webpage`, url, name: title, description, inLanguage: 'en',
-    isPartOf: { '@id': website['@id'] }, primaryImageOfPage: { '@id': image['@id'] } };
+  const origin = "https://iywahl.com";
+  const url = new URL(path.replace(/index\.html$/, ""), origin).href;
+  const person = {
+    "@type": "Person",
+    "@id": `${origin}/#person`,
+    name: "Danny Wahl",
+    url: `${origin}/`,
+  };
+  const image = {
+    "@type": "ImageObject",
+    "@id": `${origin}/#social-image`,
+    url: `${origin}/assets/social/iywahl-og-light.png`,
+    contentUrl: `${origin}/assets/social/iywahl-og-light.png`,
+    width: 1200,
+    height: 630,
+    caption: "iyWahl. I break things. Danny Wahl. Software, technology, and EdTech.",
+  };
+  const website = {
+    "@type": "WebSite",
+    "@id": `${origin}/#website`,
+    name: "iyWahl",
+    url: `${origin}/`,
+    publisher: { "@id": person["@id"] },
+    inLanguage: "en",
+  };
+  const page = {
+    "@type": path === "/" ? "ProfilePage" : post ? "WebPage" : "CollectionPage",
+    "@id": `${url}#webpage`,
+    url,
+    name: title,
+    description,
+    inLanguage: "en",
+    isPartOf: { "@id": website["@id"] },
+    primaryImageOfPage: { "@id": image["@id"] },
+  };
   const graph = [person, website, image, page];
-  if (path === '/') page.mainEntity = { '@id': person['@id'] };
+  if (path === "/") page.mainEntity = { "@id": person["@id"] };
   else {
-    const blog = { '@type': 'Blog', '@id': `${origin}/blog/#blog`, url: `${origin}/blog/`,
-      name: "Danny Wahl's Blog", publisher: { '@id': person['@id'] }, inLanguage: 'en' };
+    const blog = {
+      "@type": "Blog",
+      "@id": `${origin}/blog/#blog`,
+      url: `${origin}/blog/`,
+      name: "Danny Wahl's Blog",
+      publisher: { "@id": person["@id"] },
+      inLanguage: "en",
+    };
     graph.push(blog);
     if (post) {
-      page.mainEntity = { '@id': `${url}#article` };
-      graph.push({ '@type': 'BlogPosting', '@id': `${url}#article`, url, headline: post.title, description,
-        datePublished: post.date.toISOString(), dateModified: (post.updated || post.date).toISOString(),
-        author: post.author === person.name ? { '@id': person['@id'] } : { '@type': 'Person', name: post.author },
-        publisher: { '@id': person['@id'] }, image: { '@id': image['@id'] },
-        isPartOf: { '@id': blog['@id'] }, mainEntityOfPage: { '@id': page['@id'] },
-        keywords: post.topics.map(topic => topic.label), inLanguage: 'en' });
-    } else page.mainEntity = { '@id': blog['@id'] };
+      page.mainEntity = { "@id": `${url}#article` };
+      graph.push({
+        "@type": "BlogPosting",
+        "@id": `${url}#article`,
+        url,
+        headline: post.title,
+        description,
+        datePublished: post.date.toISOString(),
+        dateModified: (post.updated || post.date).toISOString(),
+        author:
+          post.author === person.name
+            ? { "@id": person["@id"] }
+            : { "@type": "Person", name: post.author },
+        publisher: { "@id": person["@id"] },
+        image: { "@id": image["@id"] },
+        isPartOf: { "@id": blog["@id"] },
+        mainEntityOfPage: { "@id": page["@id"] },
+        keywords: post.topics.map((topic) => topic.label),
+        inLanguage: "en",
+      });
+    } else page.mainEntity = { "@id": blog["@id"] };
   }
-  return JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\\u003c');
+  return JSON.stringify({ "@context": "https://schema.org", "@graph": graph }).replace(
+    /</g,
+    "\\u003c",
+  );
 }
 
 export function projectUrl(url) {
-  if (typeof url !== 'string' || !url.trim()) throw new Error('Invalid project URL');
-  const resolved = new URL(url, 'https://iywahl.com/');
-  if (resolved.protocol !== 'https:') throw new Error(`Invalid project URL: ${url}`);
+  if (typeof url !== "string" || !url.trim()) throw new Error("Invalid project URL");
+  const resolved = new URL(url, "https://iywahl.com/");
+  if (resolved.protocol !== "https:") throw new Error(`Invalid project URL: ${url}`);
   return resolved;
 }
 
 export function readProjects() {
-  const projects = JSON.parse(readFileSync(dataPath, 'utf8'));
+  const projects = JSON.parse(readFileSync(dataPath, "utf8"));
   const ids = new Set();
   for (const project of projects) {
     if (!/^[a-z][a-z0-9-]*$/.test(project.id) || ids.has(project.id)) {
       throw new Error(`Invalid or duplicate project ID: ${project.id}`);
     }
     projectUrl(project.url);
-    if (!project.name ||
-      !['sea', 'blue', 'aurora', 'plum'].includes(project.color)) {
+    if (!project.name || !["sea", "blue", "aurora", "plum"].includes(project.color)) {
       throw new Error(`Invalid project: ${project.id}`);
     }
     ids.add(project.id);
@@ -70,32 +116,39 @@ export function readProjects() {
 }
 
 export function projectArtwork(project, scheme) {
-  if (!['light', 'dark'].includes(scheme)) throw new Error('Invalid color scheme');
+  if (!["light", "dark"].includes(scheme)) throw new Error("Invalid color scheme");
   const themedFilename = `${project.id}-og-${scheme}.svg`;
-  const filename = scheme === 'light' || existsSync(join(projectAssets, themedFilename))
-    ? themedFilename : `${project.id}-og.svg`;
+  const filename =
+    scheme === "light" || existsSync(join(projectAssets, themedFilename))
+      ? themedFilename
+      : `${project.id}-og.svg`;
   const hostname = projectUrl(project.url).hostname;
-  const artwork = readFileSync(join(projectAssets, filename), 'utf8');
+  const artwork = readFileSync(join(projectAssets, filename), "utf8");
   return optimizeSvg(artwork, {
     plugins: [
-      { name: 'prefixIds', params: { prefix: `${project.id}-${scheme}`, prefixClassNames: false } },
+      { name: "prefixIds", params: { prefix: `${project.id}-${scheme}`, prefixClassNames: false } },
       {
-        name: 'project-decoration',
+        name: "project-decoration",
         fn: () => ({
           element: {
             enter(node, parent) {
-              if (node.name === 'svg' && parent.type === 'root') {
+              if (node.name === "svg" && parent.type === "root") {
                 Object.assign(node.attributes, {
                   class: `og-${scheme}`,
-                  'aria-hidden': 'true',
-                  focusable: 'false',
-                  preserveAspectRatio: 'xMidYMid slice',
+                  "aria-hidden": "true",
+                  focusable: "false",
+                  preserveAspectRatio: "xMidYMid slice",
                 });
               }
-              if (node.name === 'text' && node.attributes.x === '100' &&
-                  node.attributes.y === '556' &&
-                  node.children.some(child => child.type === 'text' && child.value.trim() === hostname)) {
-                parent.children = parent.children.filter(child => child !== node);
+              if (
+                node.name === "text" &&
+                node.attributes.x === "100" &&
+                node.attributes.y === "556" &&
+                node.children.some(
+                  (child) => child.type === "text" && child.value.trim() === hostname,
+                )
+              ) {
+                parent.children = parent.children.filter((child) => child !== node);
               }
             },
           },
@@ -106,73 +159,118 @@ export function projectArtwork(project, scheme) {
 }
 
 export function renderPage(html) {
-  const environment = new nunjucks.Environment(new nunjucks.FileSystemLoader(source, {
-    noCache: true,
-  }), { autoescape: true, throwOnUndefined: true });
-  environment.addGlobal('projectArtwork', projectArtwork);
-  environment.addGlobal('structuredData', structuredData);
+  const environment = new nunjucks.Environment(
+    new nunjucks.FileSystemLoader(source, {
+      noCache: true,
+    }),
+    { autoescape: true, throwOnUndefined: true },
+  );
+  environment.addGlobal("projectArtwork", projectArtwork);
+  environment.addGlobal("structuredData", structuredData);
   return environment.renderString(html, { projects: readProjects() });
 }
 
 export function site({ optimize, renderTemplates = true, regenerate }) {
-  const watched = [dataPath, join(source, 'index.html'),
-    ...readdirSync(join(source, 'partials')).map(filename => join(source, 'partials', filename)),
-    ...readdirSync(projectAssets).map(filename => join(projectAssets, filename))];
+  const watched = [
+    dataPath,
+    join(source, "index.html"),
+    ...readdirSync(join(source, "partials")).map((filename) => join(source, "partials", filename)),
+    ...readdirSync(projectAssets).map((filename) => join(projectAssets, filename)),
+  ];
   return {
-    name: 'iywahl-static-site',
-    enforce: 'post',
+    name: "iywahl-static-site",
+    enforce: "post",
     buildStart() {
       for (const filename of watched) this.addWatchFile(filename);
     },
     configureServer(server) {
+      server.middlewares.use((request, response, next) => {
+        const pathname = new URL(request.url, "http://localhost").pathname;
+        if (pathname.endsWith(".woff2")) {
+          response.setHeader("Access-Control-Allow-Origin", "*");
+        }
+        next();
+      });
       if (regenerate) {
         let pending;
         let generation = Promise.resolve();
         server.watcher.add(source);
-        server.watcher.on('all', (_event, filename) => {
+        server.watcher.on("all", (_event, filename) => {
           if (!filename.startsWith(`${source}${sep}`)) return;
           clearTimeout(pending);
           pending = setTimeout(() => {
-            generation = generation.then(regenerate).then(() => server.ws.send({ type: 'full-reload' }))
-              .catch(error => { server.config.logger.error(error.stack); server.ws.send({ type: 'error', err: { message: error.message, stack: error.stack } }); });
+            generation = generation
+              .then(regenerate)
+              .then(() => server.ws.send({ type: "full-reload" }))
+              .catch((error) => {
+                server.config.logger.error(error.stack);
+                server.ws.send({
+                  type: "error",
+                  err: { message: error.message, stack: error.stack },
+                });
+              });
           }, 80);
         });
-        server.httpServer?.once('close', () => clearTimeout(pending));
+        server.httpServer?.once("close", () => clearTimeout(pending));
         server.middlewares.use((request, response, next) => {
-          const pathname = new URL(request.url, 'http://localhost').pathname;
-          if (!['/blog/feed', '/blog/feed/', '/feed', '/feed/'].includes(pathname)) return next();
-          response.setHeader('Content-Type', 'application/atom+xml; charset=utf-8');
-          response.end(readFileSync(new URL('../.generated/site/blog/feed.xml', import.meta.url)));
+          const pathname = new URL(request.url, "http://localhost").pathname;
+          if (!["/blog/feed", "/blog/feed/", "/feed", "/feed/"].includes(pathname)) return next();
+          response.setHeader("Content-Type", "application/atom+xml; charset=utf-8");
+          response.end(readFileSync(new URL("../.generated/site/blog/feed.xml", import.meta.url)));
         });
         return;
       }
       server.watcher.add(watched);
-      server.watcher.on('change', filename => {
-        if (watched.includes(filename) || filename.startsWith(`${projectAssets}${sep}`) ||
-            filename.startsWith(`${join(source, 'partials')}${sep}`)) {
-          server.ws.send({ type: 'full-reload' });
+      server.watcher.on("change", (filename) => {
+        if (
+          watched.includes(filename) ||
+          filename.startsWith(`${projectAssets}${sep}`) ||
+          filename.startsWith(`${join(source, "partials")}${sep}`)
+        ) {
+          server.ws.send({ type: "full-reload" });
         }
       });
     },
     transformIndexHtml: {
-      order: 'pre',
-      handler: renderTemplates ? renderPage : html => html,
+      order: "pre",
+      handler: renderTemplates ? renderPage : (html) => html,
     },
     async generateBundle(_options, bundle) {
       if (!renderTemplates) {
         for (const asset of await blogAssets()) {
-          this.emitFile({ type: 'asset', fileName: asset.fileName, source: readFileSync(asset.source) });
+          this.emitFile({
+            type: "asset",
+            fileName: asset.fileName,
+            source: readFileSync(asset.source),
+          });
         }
-        for (const fileName of ['blog/feed.xml', 'sitemap.xml']) {
-          this.emitFile({ type: 'asset', fileName,
-            source: readFileSync(new URL(`../.generated/site/${fileName}`, import.meta.url)) });
+        for (const fileName of ["blog/feed.xml", "sitemap.xml"]) {
+          this.emitFile({
+            type: "asset",
+            fileName,
+            source: readFileSync(new URL(`../.generated/site/${fileName}`, import.meta.url)),
+          });
         }
-        const feed = readFileSync(new URL('../.generated/site/blog/feed.xml', import.meta.url));
-        for (const fileName of ['blog/feed', 'feed']) this.emitFile({ type: 'asset', fileName, source: feed });
+        const feed = readFileSync(new URL("../.generated/site/blog/feed.xml", import.meta.url));
+        for (const fileName of ["blog/feed", "feed"])
+          this.emitFile({ type: "asset", fileName, source: feed });
+      }
+      const stylesheet = Object.values(bundle).find(
+        (asset) => asset.type === "asset" && asset.fileName.endsWith(".css"),
+      );
+      if (stylesheet) {
+        for (const asset of Object.values(bundle)) {
+          if (asset.type === "asset" && asset.fileName.endsWith(".html")) {
+            asset.source = String(asset.source).replaceAll(
+              "href=&quot;/styles/site.css&quot;",
+              `href=&quot;/${stylesheet.fileName}&quot;`,
+            );
+          }
+        }
       }
       if (!optimize) return;
       for (const asset of Object.values(bundle)) {
-        if (asset.type === 'asset' && asset.fileName.endsWith('.html')) {
+        if (asset.type === "asset" && asset.fileName.endsWith(".html")) {
           asset.source = await minify(String(asset.source), {
             collapseWhitespace: true,
             removeComments: true,

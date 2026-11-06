@@ -5,9 +5,13 @@ description: Blog posts by year, from Danny Wahl.
 permalink: /blog/archive/index.html
 ---
 <h1>Archive</h1>
+<div class="archive-list card">
 {% for group in blog.years %}
-<section class="archive-year" aria-labelledby="year-{{ group.year }}">
+<section class="archive-year card -variant-nested" aria-labelledby="year-{{ group.year }}">
   <h2 id="year-{{ group.year }}">{{ group.year }}</h2>
+  <div class="view content">
   <ul>{% for entry in group.posts %}<li><time datetime="{{ entry.date | isoDate }}">{{ entry.date | displayDate }}</time><a href="{{ entry.url }}">{{ entry.title }}</a></li>{% endfor %}</ul>
+  </div>
 </section>
 {% endfor %}
+</div>

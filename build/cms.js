@@ -7,8 +7,9 @@ import { resolve, relative, extname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parse, stringify } from "yaml";
 import { build } from "vite-plus";
-import { bluePalette } from "./optimize-css.js";
+import { bluePalette, pantokenNames } from "./optimize-css.js";
 import { tagIconStyles } from "./tag-icons.js";
+import { createPostMarkdown } from "./markdown.js";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
 const cache = resolve(root, ".generated/cms");
@@ -23,7 +24,7 @@ export async function buildPreview() {
     root,
     base: "/preview/",
     publicDir: false,
-    css: { postcss: { plugins: [tagIconStyles(), bluePalette()] } },
+    css: { postcss: { plugins: [tagIconStyles(), bluePalette(), pantokenNames()] } },
     build: {
       outDir: preview,
       emptyOutDir: true,
@@ -75,6 +76,7 @@ export async function ensureEditor() {
 export async function startCms() {
   const bundle = await ensureEditor();
   await buildPreview();
+  const markdown = createPostMarkdown({ stylesheet: "/preview/preview.css", colorScheme: "light" });
   const port = Number(process.env.CMS_PORT || 8079);
   const proxyPort = Number(process.env.CMS_PROXY_PORT || 8081);
   const proxy = spawn(resolve(root, "node_modules/.bin/decap-server"), [], {
@@ -90,6 +92,47 @@ export async function startCms() {
   const server = createServer(async (request, response) => {
     try {
       const pathname = decodeURIComponent(new URL(request.url, "http://localhost").pathname);
+      if (pathname === "/preview/render") {
+        if (request.method !== "POST") {
+          response.writeHead(405, { Allow: "POST" }).end();
+          return;
+        }
+        if (request.headers.origin && request.headers.origin !== `http://127.0.0.1:${port}`) {
+          response.writeHead(403).end("Preview requests must come from the local editor");
+          return;
+        }
+        try {
+          const chunks = [];
+          let size = 0;
+          for await (const chunk of request) {
+            size += chunk.length;
+            if (size > 1024 * 1024) {
+              response.writeHead(413).end("Markdown preview exceeds 1 MiB");
+              return;
+            }
+            chunks.push(chunk);
+          }
+          const data = JSON.parse(Buffer.concat(chunks).toString("utf8"));
+          if (typeof data?.body !== "string") {
+            response.writeHead(400).end("Preview requires a Markdown body string");
+            return;
+          }
+          const html = markdown.render(data.body);
+          response
+            .writeHead(200, {
+              "Content-Type": "text/html; charset=utf-8",
+              "Cache-Control": "no-store",
+              "X-Content-Type-Options": "nosniff",
+            })
+            .end(html);
+        } catch (error) {
+          console.error("CMS Markdown preview failed:", error);
+          response
+            .writeHead(error instanceof SyntaxError ? 400 : 422)
+            .end("Unable to render Markdown preview. Check the code language and Markdown syntax.");
+        }
+        return;
+      }
       if (pathname === "/config.yml") {
         const configuration = parse(await readFile(resolve(root, "tools/cms/config.yml"), "utf8"));
         configuration.local_backend.url = `http://127.0.0.1:${proxyPort}/api/v1`;
@@ -131,6 +174,7 @@ export async function startCms() {
       };
       response.setHeader("Content-Type", mime[extname(filename)] || "application/octet-stream");
       response.setHeader("X-Content-Type-Options", "nosniff");
+      if (extname(filename) === ".woff2") response.setHeader("Access-Control-Allow-Origin", "*");
       response.end(await readFile(filename));
     } catch {
       response.writeHead(404).end();

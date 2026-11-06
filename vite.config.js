@@ -1,15 +1,25 @@
 import { defineConfig, lazyPlugins } from "vite-plus";
 import { fileURLToPath } from "node:url";
 import { resolve } from "node:path";
+import { readFileSync } from "node:fs";
 import { site } from "./build/site.js";
-import { bluePalette, productionCss } from "./build/optimize-css.js";
+import { bluePalette, pantokenNames, productionCss } from "./build/optimize-css.js";
 import { generateSite, cleanStaging, staging } from "./build/generate.js";
 import { tagIconStyles } from "./build/tag-icons.js";
+import { readBlog } from "./build/blog.js";
 
 export default defineConfig(async ({ command }) => {
   const optimize = command === "build" && process.env.SITE_OPTIMIZE !== "false";
   await cleanStaging();
   const pages = await generateSite();
+  const content = optimize
+    ? [
+        ...pages.map((page) => page.content),
+        ...readBlog().posts.map((post) =>
+          readFileSync(new URL(`./src/blog/posts/${post.slug}/index.md`, import.meta.url), "utf8"),
+        ),
+      ]
+    : [];
   return {
     staged: {
       "*": "vp check --fix",
@@ -29,7 +39,12 @@ export default defineConfig(async ({ command }) => {
     ]),
     css: {
       postcss: {
-        plugins: [tagIconStyles(), bluePalette(), ...(optimize ? [productionCss()] : [])],
+        plugins: [
+          tagIconStyles(),
+          bluePalette(),
+          pantokenNames(),
+          ...(optimize ? [productionCss({ content })] : []),
+        ],
       },
     },
     build: {

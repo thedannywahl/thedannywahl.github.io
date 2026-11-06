@@ -31,17 +31,18 @@
   <link rel="license" href="/third-party-notices.txt">
   <link rel="stylesheet" href="/styles/site.css">
   <script type="module" src="/scripts/color-scheme.js"></script>
+  <script type="module" src="/scripts/code-tabs.js"></script>
 </head>
 <body class="blog-page">
   <a class="blog-skip" href="#main">Skip to content</a>
   {% include "partials/theme-switcher.njk" %}
   <main id="main" class="blog-main">
-    <header class="blog-header instui-card">
+    <header class="blog-header card">
       <a class="blog-brand" href="/" aria-label="iyWahl home">
         <img class="og-light" src="/assets/brand/iywahl-wordmark-light.svg" width="283" height="97" alt="" aria-hidden="true">
         <img class="og-dark" src="/assets/brand/iywahl-wordmark-dark.svg" width="283" height="97" alt="" aria-hidden="true">
       </a>
-      <nav aria-label="Blog"><a class="instui-button -without-border -color-tertiary" href="/blog/">Blog</a><a class="instui-button -without-border -color-tertiary" href="/blog/archive/">Archive</a><a class="instui-button -without-border -color-tertiary" href="/blog/tags/">Topics</a><a class="instui-button -without-border -color-tertiary" href="/blog/feed.xml">Feed</a></nav>
+      <nav aria-label="Blog"><a class="button -without-border -color-tertiary" href="/blog/">Blog</a><a class="button -without-border -color-tertiary" href="/blog/archive/">Archive</a><a class="button -without-border -color-tertiary" href="/blog/tags/">Topics</a><a class="button -without-border -color-tertiary" href="/blog/feed.xml">Feed</a></nav>
     </header>
     {{ content | safe }}
     <footer class="page-footer"><p>&copy; 2026 Danny Wahl | <a href="mailto:danny@iywahl.com">danny@iywahl.com</a></p></footer>

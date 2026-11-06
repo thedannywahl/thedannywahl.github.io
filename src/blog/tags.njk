@@ -5,4 +5,6 @@ description: Browse Danny Wahl's blog by topic.
 permalink: /blog/tags/index.html
 ---
 <h1>Topics</h1>
+<div class="card">
 <ul class="topic-index">{% for topic in blog.topics %}<li><a href="/blog/tags/{{ topic.slug }}/">{{ topic.label }}</a> <span class="post-meta">{{ topic.posts.length }}</span></li>{% endfor %}</ul>
+</div>

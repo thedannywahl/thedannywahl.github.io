@@ -1,16 +1,8 @@
 import nunjucks from "nunjucks";
-import { MarkdownExit } from "markdown-exit";
 import { readProjects, projectArtwork, structuredData } from "./build/site.js";
-import { readBlog, sanitizeMarkdown } from "./build/blog.js";
-import anchor from "markdown-it-anchor";
-import { bundledLanguages, createHighlighter } from "shiki";
+import { readBlog } from "./build/blog.js";
+import { createPostMarkdown } from "./build/markdown.js";
 import rss from "@11ty/eleventy-plugin-rss";
-
-const shiki = await createHighlighter({
-  themes: ["github-light", "github-dark"],
-  langs: Object.keys(bundledLanguages),
-  langAlias: { markup: "html", apacheconf: "nginx" },
-});
 
 export default function (configuration) {
   configuration.setUseTemplateCache(false);
@@ -39,33 +31,9 @@ export default function (configuration) {
     }).format(date),
   );
   configuration.addFilter("cleanUrl", (url) => url.replace(/index\.html$/, ""));
-  configuration.setLibrary(
-    "md",
-    new MarkdownExit({
-      html: true,
-      highlight(code, language) {
-        const lang = language || "text";
-        return shiki.codeToHtml(code.endsWith("\n") ? code.slice(0, -1) : code, {
-          lang,
-          themes: { light: "github-light", dark: "github-dark" },
-          defaultColor: false,
-          transformers: [
-            {
-              name: "iywahl:code-language",
-              code(node) {
-                node.properties.class = `language-${lang}`;
-              },
-            },
-          ],
-        });
-      },
-    }),
-  );
+  configuration.setLibrary("md", createPostMarkdown());
   configuration.amendLibrary("md", (markdown) => {
     markdown.enable("code");
-    markdown.use(anchor);
-    const render = markdown.render.bind(markdown);
-    markdown.render = (...argumentsList) => sanitizeMarkdown(render(...argumentsList));
   });
   configuration.addPassthroughCopy("src/styles");
   configuration.addPassthroughCopy("src/scripts");

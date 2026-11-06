@@ -11,7 +11,7 @@ permalink: "/blog/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumbe
 <h1>Blog</h1>
 {% include "partials/post-list.njk" %}
 <nav class="blog-pagination" aria-label="Pagination">
-  {% if pagination.href.previous %}<a class="instui-button -color-tertiary -without-border" href="{{ pagination.href.previous | cleanUrl }}" rel="prev">Newer posts</a>{% endif %}
+  {% if pagination.href.previous %}<a class="button -color-tertiary -without-border" href="{{ pagination.href.previous | cleanUrl }}" rel="prev">Newer posts</a>{% endif %}
   <span>Page {{ pagination.pageNumber + 1 }} of {{ pagination.pages.length }}</span>
-  {% if pagination.href.next %}<a class="instui-button -color-tertiary -without-border" href="{{ pagination.href.next | cleanUrl }}" rel="next">Older posts</a>{% endif %}
+  {% if pagination.href.next %}<a class="button -color-tertiary -without-border" href="{{ pagination.href.next | cleanUrl }}" rel="next">Older posts</a>{% endif %}
 </nav>
