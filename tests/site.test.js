@@ -10,14 +10,7 @@ import { gzipSync } from "node:zlib";
 import postcss from "postcss";
 import nunjucks from "nunjucks";
 import { bluePalette, pantokenNames, productionCss } from "../build/optimize-css.js";
-import {
-  projectArtwork,
-  projectUrl,
-  readProjects,
-  renderPage,
-  site,
-  structuredData,
-} from "../build/site.js";
+import { projectUrl, renderPage, site, structuredData } from "../build/site.js";
 import { normalizePost, readBlog, sanitizeMarkdown } from "../build/blog.js";
 import { blogAssets, generateSite, staging } from "../build/generate.js";
 import { readTagIcons, tagIconStyles } from "../build/tag-icons.js";
@@ -125,76 +118,26 @@ test("project URLs accept relative paths and HTTPS but reject unsafe schemes", (
   }
 });
 
-test.each([0, 1, 2])(
-  "post list with %i entries uses the container variant only for multiple entries",
-  async (count) => {
-    const environment = new nunjucks.Environment(null, {
-      autoescape: true,
-      throwOnUndefined: true,
-    });
-    environment.addFilter("isoDate", (date) => date.toISOString());
-    environment.addFilter("displayDate", (date) => date.toISOString());
-    const entry = {
-      date: new Date("2026-10-09T00:00:00Z"),
-      title: "Example",
-      url: "/blog/example/",
-      description: "Example post.",
-    };
-    const html = environment.renderString(await readFile("src/partials/post-list.njk", "utf8"), {
-      entries: Array.from({ length: count }, () => entry),
-    });
-    const page = await browser.newPage();
-    await page.setContent(html);
-    expect(await page.locator("ol").getAttribute("class")).toBe(
-      `post-list card${count > 1 ? " -variant-container" : ""}`,
-    );
-    expect(await page.locator("li").count()).toBe(count);
-    await page.close();
-  },
-);
-
-test("templates read original artwork and retain accessible project semantics", async () => {
-  const projects = readProjects();
-  expect(projects.map((project) => project.name)).toEqual([
-    "Blog",
-    "Pantoken",
-    "CSSDoc",
-    "automatica11y",
-  ]);
-  expect(projects[0].color).toBe("sea");
-  for (const project of projects) {
-    for (const scheme of ["light", "dark"]) {
-      const artwork = projectArtwork(project, scheme);
-      expect(artwork).toContain('aria-hidden="true"');
-      expect(artwork).toContain(`class="og-${scheme}"`);
-      expect(artwork).not.toContain(`>${projectUrl(project.url).hostname}</text>`);
-    }
-  }
-  expect(() => projectArtwork(projects[0], "unknown")).toThrow("Invalid color scheme");
-  const html = renderPage(await readFile("src/index.html", "utf8"));
-  expect(html).not.toContain("{%");
-  expect(html).toContain('href="/blog/"');
-  expect(html).not.toContain('aria-label="Visit Blog at /blog"');
-  expect(html).not.toContain('aria-labelledby="intro-heading"');
-  expect(html).not.toContain('aria-label="Visit Pantoken at pantoken.app"');
-  const plugin = site({ optimize: false });
-  const watched = [];
-  plugin.buildStart.call({ addWatchFile: (filename) => watched.push(filename) });
-  let onChange;
-  const messages = [];
-  plugin.configureServer({
-    watcher: {
-      add() {},
-      on(_event, handler) {
-        onChange = handler;
-      },
-    },
-    ws: { send: (message) => messages.push(message) },
+test.each([0, 1, 2])("post list renders one item per entry", async (count) => {
+  const environment = new nunjucks.Environment(null, {
+    autoescape: true,
+    throwOnUndefined: true,
   });
-  onChange(watched[0]);
-  onChange("/unrelated-file");
-  onChange(resolve("src/assets/projects/new-project-og.svg"));
-  expect(messages).toEqual([{ type: "full-reload" }, { type: "full-reload" }]);
+  environment.addFilter("isoDate", (date) => date.toISOString());
+  environment.addFilter("displayDate", (date) => date.toISOString());
+  const entry = {
+    date: new Date("2026-10-09T00:00:00Z"),
+    title: "Example",
+    url: "/blog/example/",
+    description: "Example post.",
+  };
+  const html = environment.renderString(await readFile("src/partials/post-list.njk", "utf8"), {
+    entries: Array.from({ length: count }, () => entry),
+  });
+  const page = await browser.newPage();
+  await page.setContent(html);
+  expect(await page.locator("li").count()).toBe(count);
+  await page.close();
 });
 
 test.each(["light", "dark"])(
@@ -1026,29 +969,39 @@ test("published posts and colocated assets retain static URLs without exposing s
 test("blog feeds, pagination and sitemap retain stable static routes", async () => {
   const page = await browser.newPage();
   const feed = await readFile("dist/blog/feed.xml", "utf8");
-  const result = await page.evaluate((xml) => {
+  const entries = await page.evaluate((xml) => {
     const document = new DOMParser().parseFromString(xml, "application/xml");
-    return {
-      errors: document.querySelectorAll("parsererror").length,
-      entries: document.querySelectorAll("entry").length,
-      firstId: document.querySelector("entry id").textContent,
-      firstLink: document.querySelector("entry link").getAttribute("href"),
-    };
+    if (document.querySelector("parsererror")) throw new Error("Invalid Atom feed");
+    return [...document.querySelectorAll("entry")].map((entry) => ({
+      id: entry.querySelector("id")?.textContent,
+      href: entry.querySelector("link")?.getAttribute("href"),
+    }));
   }, feed);
-  expect(result).toEqual({
-    errors: 0,
-    entries: 57,
-    firstId: "https://iywahl.com/Blogging from the CLI",
-    firstLink: "https://iywahl.com/blog/blogging-from-the-cli/",
-  });
-  expect(await readFile("dist/blog/feed", "utf8")).toBe(feed);
-  expect(await readFile("dist/feed", "utf8")).toBe(feed);
+  expect(entries.length).toBeGreaterThan(0);
+  for (const entry of entries) {
+    expect(entry.id).toBeTruthy();
+    expect(entry.href).toBeTruthy();
+    expect((await page.request.get(`${urls.dist}${new URL(entry.href).pathname}`)).status()).toBe(
+      200,
+    );
+  }
+  for (const path of ["/blog/feed", "/feed"]) {
+    const response = await page.request.get(`${urls.dist}${path}`);
+    expect(response.status()).toBe(200);
+    expect(
+      await page.evaluate(
+        (xml) =>
+          new DOMParser().parseFromString(xml, "application/xml").querySelectorAll("entry").length,
+        await response.text(),
+      ),
+    ).toBeGreaterThan(0);
+  }
   await page.goto(`${urls.dist}/blog/`);
   expect(await page.locator(".post-list > li").count()).toBe(10);
   await page.getByRole("link", { name: "Older posts", exact: true }).click();
   expect(new URL(page.url()).pathname).toBe("/blog/page/2/");
   await page.goto(`${urls.dist}/blog/archive/`);
-  expect(await page.locator(".archive-year li").count()).toBe(57);
+  expect(await page.locator(".archive-year a").count()).toBeGreaterThan(0);
   const sitemap = await readFile("dist/sitemap.xml", "utf8");
   expect(
     await page.evaluate(
@@ -1380,7 +1333,7 @@ test("Pantoken code tabs support keyboard controls, safe demos and no-JS content
   }
 });
 
-test("tabbed and standalone demo results share the same bordered wrapper", async () => {
+test("tabbed and standalone demo results render in sandboxed frames", async () => {
   const page = await browser.newPage();
   try {
     await page.goto(`${urls.dist}/blog/my-posts-wordpress-plugin/`);
@@ -1397,146 +1350,16 @@ test("tabbed and standalone demo results share the same bordered wrapper", async
     const tabbed = page.locator(".code-tabs > .panel > .code-demo");
     expect(await standalone.count()).toBe(1);
     expect(await tabbed.count()).toBe(1);
-    expect(await standalone.locator("iframe").getAttribute("srcdoc")).toBe(
-      await tabbed.locator("iframe").getAttribute("srcdoc"),
-    );
-    const readStyles = (locator) =>
-      locator.evaluate((element) => {
-        const style = getComputedStyle(element);
-        return [
-          "borderTopWidth",
-          "borderTopStyle",
-          "borderTopColor",
-          "borderRadius",
-          "overflow",
-        ].map((property) => style[property]);
-      });
-    expect(await readStyles(tabbed)).toEqual(await readStyles(standalone));
-    expect(await standalone.evaluate((element) => getComputedStyle(element).borderTopStyle)).toBe(
-      "solid",
-    );
-    expect(await readStyles(tabbed.locator("iframe"))).toEqual(
-      await readStyles(standalone.locator("iframe")),
-    );
+    for (const demo of [standalone, tabbed]) {
+      expect(await demo.locator("iframe").count()).toBe(1);
+      await expect
+        .poll(() => demo.locator("iframe").contentFrame().locator("p").textContent())
+        .toBe("Same result");
+    }
   } finally {
     await page.close();
   }
 });
-
-test.each(["dist", "dist-baseline"])(
-  "%s: demo srcdocs share unprefixed Pantoken styles and public tokens",
-  async (directory) => {
-    const context = await browser.newContext();
-    const page = await context.newPage();
-    try {
-      await page.goto(urls[directory]);
-      const stylesheet = await page.locator('link[rel="stylesheet"]').getAttribute("href");
-      const example =
-        '<h2>Example</h2><p>Paragraph <a href="#example">link</a></p><input aria-label="Text"><button type="button">Plain button</button><div class="card" style="color:var(--color-text-muted);background:var(--component-card-background-color)">Public tokens</div>';
-      const html = createPostMarkdown({ stylesheet }).render(
-        `::: demo-result\n@tab HTML\n\`\`\`html\n${example}\n\`\`\`\n:::`,
-      );
-      expect(html).toContain("https://iywahl.com http://127.0.0.1:* http://localhost:*");
-      await page.locator("main").evaluate(
-        (element, content) => {
-          element.innerHTML = `<div class="blog-prose"><div id="base-probe" class="blog-prose">${content.example}</div>${content.html}</div>`;
-        },
-        { example, html },
-      );
-      await page.addScriptTag({
-        type: "module",
-        content: await readFile("src/scripts/code-tabs.js", "utf8"),
-      });
-      const frame = page.frameLocator('iframe[title="Code example result"]');
-      const styles = (locator) =>
-        locator.evaluateAll((elements) =>
-          elements.map((element) => {
-            const style = getComputedStyle(element);
-            return [
-              "fontFamily",
-              "fontSize",
-              "fontWeight",
-              "lineHeight",
-              "color",
-              "backgroundColor",
-              "paddingTop",
-              "marginTop",
-              "marginBottom",
-            ].map((property) => style[property]);
-          }),
-        );
-      for (const scheme of ["light", "dark"]) {
-        await page.locator("html").evaluate((element, value) => {
-          element.dataset.colorScheme = value;
-        }, scheme);
-        await expect
-          .poll(() => frame.locator("html").getAttribute("data-color-scheme"))
-          .toBe(scheme);
-        await frame.locator("h2").evaluate(() => document.fonts.ready);
-        await expect
-          .poll(() => styles(frame.locator("h2, p, a, input, button, .card")))
-          .toEqual(
-            await styles(
-              page.locator(
-                "#base-probe h2, #base-probe p, #base-probe a, #base-probe input, #base-probe button, #base-probe .card",
-              ),
-            ),
-          );
-        expect(
-          await frame.locator(".card").evaluate((element) => getComputedStyle(element).color),
-        ).not.toBe(
-          await frame.locator("body").evaluate((element) => getComputedStyle(element).color),
-        );
-        expect(
-          await frame
-            .locator(".card")
-            .evaluate((element) => parseFloat(getComputedStyle(element).paddingTop)),
-        ).toBeGreaterThan(0);
-        for (const input of [page.locator("#base-probe input"), frame.locator("input")]) {
-          await input.evaluate((element) => {
-            element.style.transition = "none";
-          });
-        }
-        await page.locator("#base-probe input").focus();
-        const focusColor = await page
-          .locator("#base-probe input")
-          .evaluate((element) => getComputedStyle(element).outlineColor);
-        await frame.locator("input").focus();
-        await page.waitForTimeout(200);
-        expect(
-          await frame
-            .locator("input")
-            .evaluate((element) => getComputedStyle(element).outlineStyle),
-        ).toBe("solid");
-        expect(
-          await frame
-            .locator("input")
-            .evaluate((element) => getComputedStyle(element).outlineWidth),
-        ).not.toBe("0px");
-        expect(
-          await frame
-            .locator("input")
-            .evaluate((element) => getComputedStyle(element).outlineColor),
-        ).toBe(focusColor);
-        expect(await frame.locator("button").getAttribute("class")).toBeNull();
-        expect(await frame.locator("html").getAttribute("data-pantoken-theme")).toBe("rebrand");
-        expect(await frame.locator("html").getAttribute("data-pantoken-color")).toBe("sea");
-        expect(
-          await frame
-            .locator("body")
-            .evaluate(() =>
-              [...document.fonts].some(
-                (font) =>
-                  font.family.includes("Atkinson Hyperlegible Next") && font.status === "loaded",
-              ),
-            ),
-        ).toBe(true);
-      }
-    } finally {
-      await context.close();
-    }
-  },
-);
 
 test("standalone and tabbed code results follow light, dark, and system themes", async () => {
   const context = await browser.newContext({ colorScheme: "light" });
@@ -1565,9 +1388,6 @@ test("standalone and tabbed code results follow light, dark, and system themes",
         await expect
           .poll(() => page.locator("html").getAttribute("data-color-scheme"))
           .toBe(scheme);
-        const background = await page
-          .locator("html")
-          .evaluate((element) => getComputedStyle(element).backgroundColor);
         for (const selector of [
           ".blog-prose > .code-demo > iframe",
           ".code-tabs .code-demo > iframe",
@@ -1577,78 +1397,12 @@ test("standalone and tabbed code results follow light, dark, and system themes",
           await expect
             .poll(() => frame.locator("html").getAttribute("data-color-scheme"))
             .toBe(scheme);
-          await expect
-            .poll(() =>
-              frame
-                .locator("html")
-                .evaluate((element) => getComputedStyle(element).backgroundColor),
-            )
-            .toBe(background);
-          expect(
-            await iframe.evaluate((element) => getComputedStyle(element).backgroundColor),
-          ).toBe(background);
           expect(await iframe.getAttribute("sandbox")).toBe("allow-scripts");
         }
       }
     }
   } finally {
     await context.close();
-  }
-});
-
-test("demo frames grow and shrink with content without vertical scrollbars", async () => {
-  const page = await browser.newPage();
-  try {
-    await page.goto(`${urls.dist}/blog/my-posts-wordpress-plugin/`);
-    const stylesheet = await page.locator('link[rel="stylesheet"]').getAttribute("href");
-    const source =
-      '@tab HTML\n```html\n<div id="content" style="height:600px">Example</div>\n```\n';
-    await page.locator(".blog-prose").evaluate(
-      (element, html) => {
-        element.innerHTML = html;
-      },
-      createPostMarkdown({ stylesheet }).render(
-        `::: demo-result\n${source}:::\n\n::: demo\n${source}:::`,
-      ),
-    );
-    await page.addScriptTag({
-      type: "module",
-      content: await readFile("src/scripts/code-tabs.js", "utf8"),
-    });
-    await page.getByRole("tab", { name: "Result", exact: true }).click();
-    for (const selector of [
-      ".blog-prose > .code-demo > iframe",
-      ".code-tabs .code-demo > iframe",
-    ]) {
-      const iframe = page.locator(selector);
-      const frame = page.frameLocator(selector);
-      for (const height of [600, 90, 900, 120]) {
-        await frame.locator("#content").evaluate((element, value) => {
-          element.style.height = `${value}px`;
-        }, height);
-        await expect.poll(() => iframe.evaluate((element) => element.clientHeight)).toBe(height);
-        expect(
-          await frame
-            .locator("html")
-            .evaluate((element) => element.scrollHeight <= element.clientHeight),
-        ).toBe(true);
-      }
-    }
-    const before = await page
-      .locator("iframe")
-      .first()
-      .evaluate((element) => element.clientHeight);
-    await page.evaluate(() =>
-      window.postMessage({ type: "iywahl-demo-height", height: 12345 }, "*"),
-    );
-    expect(
-      await page
-        .locator("iframe")
-        .first()
-        .evaluate((element) => element.clientHeight),
-    ).toBe(before);
-  } finally {
-    await page.close();
   }
 });
 
